@@ -7,7 +7,7 @@ async function run() {
         bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
-    const result = await sdk.sessions.logout();
+    const result = await sdk.apiLogs.listApiLogs();
 
     // Handle the result
     console.log(result);

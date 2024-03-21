@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 5bcbf6edf84f77481a51b9d35c2731d8
+  docChecksum: f0f2fdc0825402fb35cd9ed358800824
   docVersion: 1.1.0-beta
-  speakeasyVersion: 1.215.1
-  generationVersion: 2.286.4
-  releaseVersion: 0.1.0
-  configChecksum: 14a2298ea1c7d5f0e2a38eb3f37842bd
+  speakeasyVersion: 1.215.2
+  generationVersion: 2.286.5
+  releaseVersion: 0.2.0
+  configChecksum: a619d9e21d2e520a56a81536f3f146e9
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
 features:
@@ -18,14 +18,12 @@ features:
     flattening: 2.81.1
     globalSecurity: 2.82.8
     globalServerURLs: 2.82.4
+    ignores: 2.81.1
     responseFormat: 0.2.2
     serverIDs: 2.81.2
     unions: 2.85.3
 generatedFiles:
-  - src/sdk/sessions.ts
-  - src/sdk/apikeypairs.ts
   - src/sdk/apilogs.ts
-  - src/sdk/applepaycertificates.ts
   - src/sdk/auditlogs.ts
   - src/sdk/buyers.ts
   - src/sdk/giftcards.ts
@@ -40,9 +38,7 @@ generatedFiles:
   - src/sdk/paymentservicedefinitions.ts
   - src/sdk/digitalwallets.ts
   - src/sdk/transactions.ts
-  - src/sdk/users.ts
   - src/sdk/webhooks.ts
-  - src/sdk/carddetails.ts
   - src/sdk/flow.ts
   - src/sdk/giftcardservices.ts
   - src/sdk/giftcardservicedefinitions.ts
@@ -51,8 +47,6 @@ generatedFiles:
   - src/sdk/roles.ts
   - src/sdk/merchantaccounts.ts
   - src/sdk/tokens.ts
-  - src/sdk/vaultforwarddefinitions.ts
-  - src/sdk/vaultforwardconfigurations.ts
   - src/sdk/sdk.ts
   - .eslintrc.js
   - .npmignore
@@ -76,15 +70,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/logout.ts
-  - src/models/operations/listapikeypairs.ts
-  - src/models/operations/newapikeypair.ts
-  - src/models/operations/updateapikeypair.ts
-  - src/models/operations/deleteapikeypair.ts
   - src/models/operations/listapilogs.ts
-  - src/models/operations/listapplepaycertificates.ts
-  - src/models/operations/newapplepaycertificate.ts
-  - src/models/operations/deleteapplepaycertificate.ts
   - src/models/operations/listauditlogs.ts
   - src/models/operations/listbuyers.ts
   - src/models/operations/getbuyer.ts
@@ -123,18 +109,9 @@ generatedFiles:
   - src/models/operations/listtransactionrefunds.ts
   - src/models/operations/getrefund.ts
   - src/models/operations/gettransactionsummary.ts
-  - src/models/operations/getcurrentuser.ts
-  - src/models/operations/updatecurrentuser.ts
-  - src/models/operations/getuser.ts
-  - src/models/operations/deleteuser.ts
-  - src/models/operations/listusers.ts
-  - src/models/operations/newuser.ts
-  - src/models/operations/setpassword.ts
-  - src/models/operations/resetpassword.ts
   - src/models/operations/inboundwebhookdeprecated.ts
   - src/models/operations/inboundwebhook.ts
   - src/models/operations/inboundwebhooks.ts
-  - src/models/operations/getcarddetails.ts
   - src/models/operations/listflowrules.ts
   - src/models/operations/getflowrule.ts
   - src/models/operations/deleteflowrule.ts
@@ -166,26 +143,15 @@ generatedFiles:
   - src/models/operations/deletenetworktoken.ts
   - src/models/operations/suspendnetworktoken.ts
   - src/models/operations/resumenetworktoken.ts
-  - src/models/operations/listvaultforwarddefinitions.ts
-  - src/models/operations/listvaultforwardconfig.ts
-  - src/models/operations/deletevaultforwardconfig.ts
-  - src/models/components/httpmetadata.ts
-  - src/models/components/errordetail.ts
-  - src/models/components/apikeypairs.ts
-  - src/models/components/apikeypair.ts
-  - src/models/components/merchantaccount.ts
-  - src/models/components/apikeypaircreate.ts
-  - src/models/components/errorgeneric.ts
-  - src/models/components/apikeypairupdate.ts
   - src/models/components/apilogs.ts
   - src/models/components/apilog.ts
-  - src/models/components/applepaycertificates.ts
-  - src/models/components/applepaycertificate.ts
-  - src/models/components/applepaycertificaterequest.ts
+  - src/models/components/httpmetadata.ts
+  - src/models/components/errordetail.ts
   - src/models/components/auditlogs.ts
   - src/models/components/auditlog.ts
   - src/models/components/buyers.ts
   - src/models/components/buyer.ts
+  - src/models/components/errorgeneric.ts
   - src/models/components/shippingdetails.ts
   - src/models/components/shippingdetail.ts
   - src/models/components/billingdetails.ts
@@ -238,15 +204,6 @@ generatedFiles:
   - src/models/components/refunds.ts
   - src/models/components/refund.ts
   - src/models/components/transactionstatussummary.ts
-  - src/models/components/user.ts
-  - src/models/components/userrole.ts
-  - src/models/components/rolepermissions.ts
-  - src/models/components/usercurrentupdate.ts
-  - src/models/components/users.ts
-  - src/models/components/userrequest.ts
-  - src/models/components/setpasswordrequest.ts
-  - src/models/components/resetpasswordrequest.ts
-  - src/models/components/carddetails.ts
   - src/models/components/flowrules.ts
   - src/models/components/flowrule.ts
   - src/models/components/flowruleserviceoutcome.ts
@@ -291,19 +248,17 @@ generatedFiles:
   - src/models/components/reportexecutionurl.ts
   - src/models/components/roles.ts
   - src/models/components/role.ts
+  - src/models/components/rolepermissions.ts
   - src/models/components/roleassignments.ts
   - src/models/components/roleassignment.ts
   - src/models/components/merchantaccounts.ts
+  - src/models/components/merchantaccount.ts
   - src/models/components/paymentservicetokens.ts
   - src/models/components/paymentservicetoken.ts
   - src/models/components/paymentservicetokenrequest.ts
   - src/models/components/networktokens.ts
   - src/models/components/networktoken.ts
   - src/models/components/networktokenrequest.ts
-  - src/models/components/pciforwarddefinitions.ts
-  - src/models/components/pciforwarddefinition.ts
-  - src/models/components/pciforwardconfigs.ts
-  - src/models/components/pciforwardconfig.ts
   - src/models/components/security.ts
   - src/models/errors/error401unauthorized.ts
   - src/models/errors/error404notfound.ts
@@ -313,20 +268,7 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/logoutresponse.md
-  - docs/models/operations/listapikeypairsrequest.md
-  - docs/models/operations/listapikeypairsresponse.md
-  - docs/models/operations/newapikeypairresponse.md
-  - docs/models/operations/updateapikeypairrequest.md
-  - docs/models/operations/updateapikeypairresponse.md
-  - docs/models/operations/deleteapikeypairrequest.md
-  - docs/models/operations/deleteapikeypairresponse.md
   - docs/models/operations/listapilogsresponse.md
-  - docs/models/operations/listapplepaycertificatesrequest.md
-  - docs/models/operations/listapplepaycertificatesresponse.md
-  - docs/models/operations/newapplepaycertificateresponse.md
-  - docs/models/operations/deleteapplepaycertificaterequest.md
-  - docs/models/operations/deleteapplepaycertificateresponse.md
   - docs/models/operations/action.md
   - docs/models/operations/listauditlogsrequest.md
   - docs/models/operations/listauditlogsresponse.md
@@ -401,18 +343,6 @@ generatedFiles:
   - docs/models/operations/getrefundresponse.md
   - docs/models/operations/gettransactionsummaryrequest.md
   - docs/models/operations/gettransactionsummaryresponse.md
-  - docs/models/operations/getcurrentuserresponse.md
-  - docs/models/operations/updatecurrentuserresponse.md
-  - docs/models/operations/getuserrequest.md
-  - docs/models/operations/getuserresponse.md
-  - docs/models/operations/deleteuserrequest.md
-  - docs/models/operations/deleteuserresponse.md
-  - docs/models/operations/listusersqueryparamstatus.md
-  - docs/models/operations/listusersrequest.md
-  - docs/models/operations/listusersresponse.md
-  - docs/models/operations/newuserresponse.md
-  - docs/models/operations/setpasswordresponse.md
-  - docs/models/operations/resetpasswordresponse.md
   - docs/models/operations/inboundwebhookdeprecatedrequest.md
   - docs/models/operations/inboundwebhookdeprecatedresponse.md
   - docs/models/operations/inboundwebhookrequest.md
@@ -420,10 +350,6 @@ generatedFiles:
   - docs/models/operations/resource.md
   - docs/models/operations/inboundwebhooksrequest.md
   - docs/models/operations/inboundwebhooksresponse.md
-  - docs/models/operations/intent.md
-  - docs/models/operations/paymentsource.md
-  - docs/models/operations/getcarddetailsrequest.md
-  - docs/models/operations/getcarddetailsresponse.md
   - docs/models/operations/flow.md
   - docs/models/operations/listflowrulesrequest.md
   - docs/models/operations/listflowrulesresponse.md
@@ -495,42 +421,19 @@ generatedFiles:
   - docs/models/operations/suspendnetworktokenresponse.md
   - docs/models/operations/resumenetworktokenrequest.md
   - docs/models/operations/resumenetworktokenresponse.md
-  - docs/models/operations/listvaultforwarddefinitionsresponse.md
-  - docs/models/operations/listvaultforwardconfigrequest.md
-  - docs/models/operations/listvaultforwardconfigresponse.md
-  - docs/models/operations/deletevaultforwardconfigrequest.md
-  - docs/models/operations/deletevaultforwardconfigresponse.md
-  - docs/models/components/httpmetadata.md
-  - docs/models/components/location.md
-  - docs/models/components/errordetail.md
-  - docs/models/components/apikeypairs.md
-  - docs/models/components/apikeypairtype.md
-  - docs/models/components/algorithm.md
-  - docs/models/components/creator.md
-  - docs/models/components/apikeypair.md
-  - docs/models/components/merchantaccounttype.md
-  - docs/models/components/loonacceptedschemes.md
-  - docs/models/components/merchantaccount.md
-  - docs/models/components/apikeypaircreatealgorithm.md
-  - docs/models/components/apikeypaircreate.md
-  - docs/models/components/errorgenerictype.md
-  - docs/models/components/errorgeneric.md
-  - docs/models/components/apikeypairupdate.md
   - docs/models/components/apilogs.md
   - docs/models/components/apilogtype.md
   - docs/models/components/details.md
   - docs/models/components/responsebody.md
   - docs/models/components/apilog.md
-  - docs/models/components/applepaycertificates.md
-  - docs/models/components/applepaycertificatetype.md
-  - docs/models/components/applepaycertificatestatus.md
-  - docs/models/components/applepaycertificate.md
-  - docs/models/components/applepaycertificaterequest.md
+  - docs/models/components/httpmetadata.md
+  - docs/models/components/location.md
+  - docs/models/components/errordetail.md
   - docs/models/components/auditlogs.md
   - docs/models/components/auditlogtype.md
   - docs/models/components/auditlogaction.md
   - docs/models/components/auditlogstatus.md
-  - docs/models/components/auditloguser.md
+  - docs/models/components/user.md
   - docs/models/components/resource.md
   - docs/models/components/auditlog.md
   - docs/models/components/buyers.md
@@ -541,6 +444,8 @@ generatedFiles:
   - docs/models/components/buyertaxid.md
   - docs/models/components/buyerbillingdetails.md
   - docs/models/components/buyer.md
+  - docs/models/components/errorgenerictype.md
+  - docs/models/components/errorgeneric.md
   - docs/models/components/shippingdetails.md
   - docs/models/components/shippingdetailtype.md
   - docs/models/components/shippingdetailaddress.md
@@ -633,7 +538,7 @@ generatedFiles:
   - docs/models/components/paymentoptionsrequest.md
   - docs/models/components/paymentservices.md
   - docs/models/components/paymentservicetype.md
-  - docs/models/components/paymentservicefields.md
+  - docs/models/components/fields.md
   - docs/models/components/merchantprofilesinglescheme.md
   - docs/models/components/paymentservicemerchantprofilesinglescheme.md
   - docs/models/components/paymentservicemerchantprofilemerchantprofilesinglescheme.md
@@ -716,22 +621,6 @@ generatedFiles:
   - docs/models/components/transactionstatussummarytype.md
   - docs/models/components/transactionstatussummarystatus.md
   - docs/models/components/transactionstatussummary.md
-  - docs/models/components/usertype.md
-  - docs/models/components/usercategory.md
-  - docs/models/components/userstatus.md
-  - docs/models/components/user.md
-  - docs/models/components/userroletype.md
-  - docs/models/components/userrole.md
-  - docs/models/components/rolepermissions.md
-  - docs/models/components/usercurrentupdate.md
-  - docs/models/components/users.md
-  - docs/models/components/userrequest.md
-  - docs/models/components/setpasswordrequest.md
-  - docs/models/components/resetpasswordrequest.md
-  - docs/models/components/carddetailstype.md
-  - docs/models/components/carddetailscardtype.md
-  - docs/models/components/carddetailsscheme.md
-  - docs/models/components/carddetails.md
   - docs/models/components/flowrules.md
   - docs/models/components/flowruletype.md
   - docs/models/components/flowruleflow.md
@@ -850,8 +739,8 @@ generatedFiles:
   - docs/models/components/giftcardservicedefinitionfields.md
   - docs/models/components/giftcardservicedefinition.md
   - docs/models/components/antifraudservicetype.md
-  - docs/models/components/antifraudservicedefinitionid.md
-  - docs/models/components/fields.md
+  - docs/models/components/antifraudserviceantifraudservicedefinitionid.md
+  - docs/models/components/antifraudservicefields.md
   - docs/models/components/antifraudservice.md
   - docs/models/components/reportexecutions.md
   - docs/models/components/reportexecutiontype.md
@@ -880,12 +769,16 @@ generatedFiles:
   - docs/models/components/roles.md
   - docs/models/components/roletype.md
   - docs/models/components/role.md
+  - docs/models/components/rolepermissions.md
   - docs/models/components/roleassignments.md
   - docs/models/components/roleassignmenttype.md
   - docs/models/components/roleassignmentassigneetype.md
   - docs/models/components/assignee.md
   - docs/models/components/roleassignment.md
   - docs/models/components/merchantaccounts.md
+  - docs/models/components/merchantaccounttype.md
+  - docs/models/components/loonacceptedschemes.md
+  - docs/models/components/merchantaccount.md
   - docs/models/components/paymentservicetokens.md
   - docs/models/components/paymentservicetokentype.md
   - docs/models/components/paymentservicetokenstatus.md
@@ -896,10 +789,6 @@ generatedFiles:
   - docs/models/components/networktokenstatus.md
   - docs/models/components/networktoken.md
   - docs/models/components/networktokenrequest.md
-  - docs/models/components/pciforwarddefinitions.md
-  - docs/models/components/pciforwarddefinition.md
-  - docs/models/components/pciforwardconfigs.md
-  - docs/models/components/pciforwardconfig.md
   - docs/models/components/security.md
   - docs/models/errors/error401unauthorizedtype.md
   - docs/models/errors/error401unauthorizedcode.md
@@ -924,10 +813,7 @@ generatedFiles:
   - docs/models/errors/status.md
   - docs/models/errors/error400badrequest.md
   - docs/sdks/gr4vy/README.md
-  - docs/sdks/sessions/README.md
-  - docs/sdks/apikeypairs/README.md
   - docs/sdks/apilogs/README.md
-  - docs/sdks/applepaycertificates/README.md
   - docs/sdks/auditlogs/README.md
   - docs/sdks/buyers/README.md
   - docs/sdks/giftcards/README.md
@@ -942,9 +828,7 @@ generatedFiles:
   - docs/sdks/paymentservicedefinitions/README.md
   - docs/sdks/digitalwallets/README.md
   - docs/sdks/transactions/README.md
-  - docs/sdks/users/README.md
   - docs/sdks/webhooks/README.md
-  - docs/sdks/carddetails/README.md
   - docs/sdks/flow/README.md
   - docs/sdks/giftcardservices/README.md
   - docs/sdks/giftcardservicedefinitions/README.md
@@ -953,8 +837,6 @@ generatedFiles:
   - docs/sdks/roles/README.md
   - docs/sdks/merchantaccounts/README.md
   - docs/sdks/tokens/README.md
-  - docs/sdks/vaultforwarddefinitions/README.md
-  - docs/sdks/vaultforwardconfigurations/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts

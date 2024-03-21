@@ -7,12 +7,9 @@ import { SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK } from "../lib/sdks";
 import { AntiFraudServices } from "./antifraudservices";
-import { APIKeyPairs } from "./apikeypairs";
 import { APILogs } from "./apilogs";
-import { ApplePayCertificates } from "./applepaycertificates";
 import { AuditLogs } from "./auditlogs";
 import { Buyers } from "./buyers";
-import { CardDetails } from "./carddetails";
 import { CardSchemeDefinitions } from "./cardschemedefinitions";
 import { CheckoutSessions } from "./checkoutsessions";
 import { ConnectionDefinitions } from "./connectiondefinitions";
@@ -30,12 +27,8 @@ import { PaymentServiceDefinitions } from "./paymentservicedefinitions";
 import { PaymentServices } from "./paymentservices";
 import { Reports } from "./reports";
 import { Roles } from "./roles";
-import { Sessions } from "./sessions";
 import { Tokens } from "./tokens";
 import { Transactions } from "./transactions";
-import { Users } from "./users";
-import { VaultForwardConfigurations } from "./vaultforwardconfigurations";
-import { VaultForwardDefinitions } from "./vaultforwarddefinitions";
 import { Webhooks } from "./webhooks";
 
 export class Gr4vy extends ClientSDK {
@@ -65,24 +58,9 @@ export class Gr4vy extends ClientSDK {
         void this.options$;
     }
 
-    private _sessions?: Sessions;
-    get sessions() {
-        return (this._sessions ??= new Sessions(this.options$));
-    }
-
-    private _apiKeyPairs?: APIKeyPairs;
-    get apiKeyPairs() {
-        return (this._apiKeyPairs ??= new APIKeyPairs(this.options$));
-    }
-
     private _apiLogs?: APILogs;
     get apiLogs() {
         return (this._apiLogs ??= new APILogs(this.options$));
-    }
-
-    private _applePayCertificates?: ApplePayCertificates;
-    get applePayCertificates() {
-        return (this._applePayCertificates ??= new ApplePayCertificates(this.options$));
     }
 
     private _auditLogs?: AuditLogs;
@@ -155,19 +133,9 @@ export class Gr4vy extends ClientSDK {
         return (this._transactions ??= new Transactions(this.options$));
     }
 
-    private _users?: Users;
-    get users() {
-        return (this._users ??= new Users(this.options$));
-    }
-
     private _webhooks?: Webhooks;
     get webhooks() {
         return (this._webhooks ??= new Webhooks(this.options$));
-    }
-
-    private _cardDetails?: CardDetails;
-    get cardDetails() {
-        return (this._cardDetails ??= new CardDetails(this.options$));
     }
 
     private _flow?: Flow;
@@ -208,15 +176,5 @@ export class Gr4vy extends ClientSDK {
     private _tokens?: Tokens;
     get tokens() {
         return (this._tokens ??= new Tokens(this.options$));
-    }
-
-    private _vaultForwardDefinitions?: VaultForwardDefinitions;
-    get vaultForwardDefinitions() {
-        return (this._vaultForwardDefinitions ??= new VaultForwardDefinitions(this.options$));
-    }
-
-    private _vaultForwardConfigurations?: VaultForwardConfigurations;
-    get vaultForwardConfigurations() {
-        return (this._vaultForwardConfigurations ??= new VaultForwardConfigurations(this.options$));
     }
 }

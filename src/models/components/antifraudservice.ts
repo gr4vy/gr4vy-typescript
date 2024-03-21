@@ -18,7 +18,7 @@ export enum AntiFraudServiceType {
  * During update request, this value is used for validation only but
  * the underlying service can not be changed for an existing service.
  */
-export enum AntiFraudServiceDefinitionId {
+export enum AntiFraudServiceAntiFraudServiceDefinitionId {
     CybersourceAntiFraud = "cybersource-anti-fraud",
     ForterAntiFraud = "forter-anti-fraud",
     SiftAntiFraud = "sift-anti-fraud",
@@ -27,7 +27,7 @@ export enum AntiFraudServiceDefinitionId {
 /**
  * A key-value pair that represents a field defined in the definition for this anti-fraud service.
  */
-export type Fields = {
+export type AntiFraudServiceFields = {
     /**
      * The key of the field to set a value for.
      */
@@ -58,7 +58,7 @@ export type AntiFraudService = {
      * During update request, this value is used for validation only but
      * the underlying service can not be changed for an existing service.
      */
-    antiFraudServiceDefinitionId?: AntiFraudServiceDefinitionId | undefined;
+    antiFraudServiceDefinitionId?: AntiFraudServiceAntiFraudServiceDefinitionId | undefined;
     /**
      * A unique name for this anti-fraud service which is used in the Gr4vy admin panel to give a anti-fraud service a human readable name.
      */
@@ -78,7 +78,7 @@ export type AntiFraudService = {
     /**
      * A list of fields, each containing a key-value pair for anti-fraud service decision mapping e.g. for Sift `approve_decision` will be in the response.
      */
-    fields?: Array<Fields> | undefined;
+    fields?: Array<AntiFraudServiceFields> | undefined;
     /**
      * The date and time
      *
@@ -99,16 +99,18 @@ export type AntiFraudService = {
 export const AntiFraudServiceType$ = z.nativeEnum(AntiFraudServiceType);
 
 /** @internal */
-export const AntiFraudServiceDefinitionId$ = z.nativeEnum(AntiFraudServiceDefinitionId);
+export const AntiFraudServiceAntiFraudServiceDefinitionId$ = z.nativeEnum(
+    AntiFraudServiceAntiFraudServiceDefinitionId
+);
 
 /** @internal */
-export namespace Fields$ {
+export namespace AntiFraudServiceFields$ {
     export type Inbound = {
         key: string;
         value: string;
     };
 
-    export const inboundSchema: z.ZodType<Fields, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AntiFraudServiceFields, z.ZodTypeDef, Inbound> = z
         .object({
             key: z.string(),
             value: z.string(),
@@ -125,7 +127,7 @@ export namespace Fields$ {
         value: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Fields> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AntiFraudServiceFields> = z
         .object({
             key: z.string(),
             value: z.string(),
@@ -144,11 +146,11 @@ export namespace AntiFraudService$ {
         type?: AntiFraudServiceType | undefined;
         id?: string | undefined;
         merchant_account_id?: string | undefined;
-        anti_fraud_service_definition_id?: AntiFraudServiceDefinitionId | undefined;
+        anti_fraud_service_definition_id?: AntiFraudServiceAntiFraudServiceDefinitionId | undefined;
         display_name?: string | null | undefined;
         active?: boolean | undefined;
         reviews_enabled?: boolean | undefined;
-        fields?: Array<Fields$.Inbound> | undefined;
+        fields?: Array<AntiFraudServiceFields$.Inbound> | undefined;
         created_at?: string | undefined;
         updated_at?: string | undefined;
     };
@@ -158,11 +160,12 @@ export namespace AntiFraudService$ {
             type: AntiFraudServiceType$.optional(),
             id: z.string().optional(),
             merchant_account_id: z.string().optional(),
-            anti_fraud_service_definition_id: AntiFraudServiceDefinitionId$.optional(),
+            anti_fraud_service_definition_id:
+                AntiFraudServiceAntiFraudServiceDefinitionId$.optional(),
             display_name: z.nullable(z.string()).optional(),
             active: z.boolean().default(true),
             reviews_enabled: z.boolean().default(false),
-            fields: z.array(z.lazy(() => Fields$.inboundSchema)).optional(),
+            fields: z.array(z.lazy(() => AntiFraudServiceFields$.inboundSchema)).optional(),
             created_at: z
                 .string()
                 .datetime({ offset: true })
@@ -197,11 +200,11 @@ export namespace AntiFraudService$ {
         type?: AntiFraudServiceType | undefined;
         id?: string | undefined;
         merchant_account_id?: string | undefined;
-        anti_fraud_service_definition_id?: AntiFraudServiceDefinitionId | undefined;
+        anti_fraud_service_definition_id?: AntiFraudServiceAntiFraudServiceDefinitionId | undefined;
         display_name?: string | null | undefined;
         active: boolean;
         reviews_enabled: boolean;
-        fields?: Array<Fields$.Outbound> | undefined;
+        fields?: Array<AntiFraudServiceFields$.Outbound> | undefined;
         created_at?: string | undefined;
         updated_at?: string | undefined;
     };
@@ -211,11 +214,11 @@ export namespace AntiFraudService$ {
             type: AntiFraudServiceType$.optional(),
             id: z.string().optional(),
             merchantAccountId: z.string().optional(),
-            antiFraudServiceDefinitionId: AntiFraudServiceDefinitionId$.optional(),
+            antiFraudServiceDefinitionId: AntiFraudServiceAntiFraudServiceDefinitionId$.optional(),
             displayName: z.nullable(z.string()).optional(),
             active: z.boolean().default(true),
             reviewsEnabled: z.boolean().default(false),
-            fields: z.array(z.lazy(() => Fields$.outboundSchema)).optional(),
+            fields: z.array(z.lazy(() => AntiFraudServiceFields$.outboundSchema)).optional(),
             createdAt: z
                 .date()
                 .transform((v) => v.toISOString())

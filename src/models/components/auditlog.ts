@@ -32,7 +32,7 @@ export enum AuditLogStatus {
 /**
  * The user who performed the action.
  */
-export type AuditLogUser = {
+export type User = {
     /**
      * The ID of the user.
      */
@@ -100,7 +100,7 @@ export type AuditLog = {
     /**
      * The user who performed the action.
      */
-    user?: AuditLogUser | undefined;
+    user?: User | undefined;
     /**
      * The resource that was changed.
      */
@@ -117,7 +117,7 @@ export const AuditLogAction$ = z.nativeEnum(AuditLogAction);
 export const AuditLogStatus$ = z.nativeEnum(AuditLogStatus);
 
 /** @internal */
-export namespace AuditLogUser$ {
+export namespace User$ {
     export type Inbound = {
         id?: string | undefined;
         name?: string | undefined;
@@ -126,7 +126,7 @@ export namespace AuditLogUser$ {
         status?: AuditLogStatus | undefined;
     };
 
-    export const inboundSchema: z.ZodType<AuditLogUser, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, Inbound> = z
         .object({
             id: z.string().optional(),
             name: z.string().optional(),
@@ -152,7 +152,7 @@ export namespace AuditLogUser$ {
         status?: AuditLogStatus | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuditLogUser> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, User> = z
         .object({
             id: z.string().optional(),
             name: z.string().optional(),
@@ -222,7 +222,7 @@ export namespace AuditLog$ {
         timestamp?: string | undefined;
         action?: AuditLogAction | undefined;
         merchant_account_id?: string | null | undefined;
-        user?: AuditLogUser$.Inbound | undefined;
+        user?: User$.Inbound | undefined;
         resource?: Resource$.Inbound | undefined;
     };
 
@@ -237,7 +237,7 @@ export namespace AuditLog$ {
                 .optional(),
             action: AuditLogAction$.optional(),
             merchant_account_id: z.nullable(z.string()).optional(),
-            user: z.lazy(() => AuditLogUser$.inboundSchema).optional(),
+            user: z.lazy(() => User$.inboundSchema).optional(),
             resource: z.lazy(() => Resource$.inboundSchema).optional(),
         })
         .transform((v) => {
@@ -260,7 +260,7 @@ export namespace AuditLog$ {
         timestamp?: string | undefined;
         action?: AuditLogAction | undefined;
         merchant_account_id?: string | null | undefined;
-        user?: AuditLogUser$.Outbound | undefined;
+        user?: User$.Outbound | undefined;
         resource?: Resource$.Outbound | undefined;
     };
 
@@ -274,7 +274,7 @@ export namespace AuditLog$ {
                 .optional(),
             action: AuditLogAction$.optional(),
             merchantAccountId: z.nullable(z.string()).optional(),
-            user: z.lazy(() => AuditLogUser$.outboundSchema).optional(),
+            user: z.lazy(() => User$.outboundSchema).optional(),
             resource: z.lazy(() => Resource$.outboundSchema).optional(),
         })
         .transform((v) => {
