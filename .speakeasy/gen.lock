@@ -1,12 +1,14 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 10ed4215b3d534351180b0926ad666cb
+  docChecksum: 5bcbf6edf84f77481a51b9d35c2731d8
   docVersion: 1.1.0-beta
   speakeasyVersion: 1.215.1
   generationVersion: 2.286.4
-  releaseVersion: 0.0.1
-  configChecksum: 9c60355caa900f93f9fcc45eab01b5df
+  releaseVersion: 0.1.0
+  configChecksum: 14a2298ea1c7d5f0e2a38eb3f37842bd
+  repoURL: https://github.com/gr4vy/gr4vy-js.git
+  installationURL: https://github.com/gr4vy/gr4vy-js
 features:
   typescript:
     additionalProperties: 0.1.1
@@ -17,6 +19,7 @@ features:
     globalSecurity: 2.82.8
     globalServerURLs: 2.82.4
     responseFormat: 0.2.2
+    serverIDs: 2.81.2
     unions: 2.85.3
 generatedFiles:
   - src/sdk/sessions.ts

@@ -6,10 +6,15 @@ import { HTTPClient } from "./http";
 import { RetryConfig } from "./retries";
 import { pathToFunc } from "./url";
 
+export const ServerProduction = "production";
+export const ServerSandbox = "sandbox";
 /**
  * Contains the list of servers available to the SDK
  */
-export const ServerList = ["https://api.{gr4vy_id}.gr4vy.app"] as const;
+export const ServerList = {
+    [ServerProduction]: "https://api.{gr4vy_id}.gr4vy.app",
+    [ServerSandbox]: "https://api.sandbox.{gr4vy_id}.gr4vy.app",
+} as const;
 
 export type SDKOptions = {
     bearerAuth?: string | (() => Promise<string>);
@@ -18,7 +23,7 @@ export type SDKOptions = {
     /**
      * Allows overriding the default server used by the SDK
      */
-    serverIdx?: number;
+    server?: keyof typeof ServerList;
     /**
      * Allows setting the gr4vy_id variable for url substitution
      */
@@ -36,20 +41,21 @@ export type SDKOptions = {
 export function serverURLFromOptions(options: SDKOptions): URL | null {
     let serverURL = options.serverURL;
 
-    const serverParams = [
-        {
+    const serverParams = {
+        production: {
             gr4vy_id: options.gr4vyId?.toString() ?? "plantly",
         },
-    ];
+        sandbox: {
+            gr4vy_id: options.gr4vyId?.toString() ?? "plantly",
+        },
+    };
+
     let params: Record<string, string> = {};
 
     if (!serverURL) {
-        const serverIdx = options.serverIdx ?? 0;
-        if (serverIdx < 0 || serverIdx >= ServerList.length) {
-            throw new Error(`Invalid server index ${serverIdx}`);
-        }
-        serverURL = ServerList[serverIdx] || "";
-        params = serverParams[serverIdx] || {};
+        const server = options.server ?? ServerProduction;
+        serverURL = ServerList[server] || "";
+        params = serverParams[server] || {};
     }
 
     const u = pathToFunc(serverURL)(params);
@@ -59,7 +65,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = Object.freeze({
     language: "typescript",
     openapiDocVersion: "1.1.0-beta",
-    sdkVersion: "0.0.1",
+    sdkVersion: "0.1.0",
     genVersion: "2.286.4",
-    userAgent: "speakeasy-sdk/typescript 0.0.1 2.286.4 1.1.0-beta @gr4vy/node",
+    userAgent: "speakeasy-sdk/typescript 0.1.0 2.286.4 1.1.0-beta @gr4vy/node",
 });

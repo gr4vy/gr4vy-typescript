@@ -22,13 +22,13 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add https://github.com/gr4vy/gr4vy-js
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET>
+yarn add https://github.com/gr4vy/gr4vy-js
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -308,20 +308,21 @@ run();
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
+### Select Server by Name
 
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server name to the `server` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.{gr4vy_id}.gr4vy.app` | `gr4vy_id` (default is `plantly`) |
+| Name | Server | Variables |
+| ----- | ------ | --------- |
+| `production` | `https://api.{gr4vy_id}.gr4vy.app` | `gr4vy_id` (default is `plantly`) |
+| `sandbox` | `https://api.sandbox.{gr4vy_id}.gr4vy.app` | `gr4vy_id` (default is `plantly`) |
 
 ```typescript
 import { Gr4vy } from "@gr4vy/node";
 
 async function run() {
     const sdk = new Gr4vy({
-        serverIdx: 0,
+        server: "sandbox",
         bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
