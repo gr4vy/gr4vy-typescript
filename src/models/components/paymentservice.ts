@@ -11,7 +11,7 @@ export enum PaymentServiceType {
     PaymentService = "payment-service",
 }
 
-export type PaymentServiceFields = {
+export type Fields = {
     /**
      * The key of the field.
      */
@@ -428,7 +428,7 @@ export type PaymentService = {
      * configured for this payment service. Fields marked as `secret`
      * (see Payment Service Definition) are not returned.
      */
-    fields?: Array<PaymentServiceFields> | undefined;
+    fields?: Array<Fields> | undefined;
     /**
      * The unique ID for a merchant account.
      */
@@ -513,13 +513,13 @@ export type PaymentService = {
 export const PaymentServiceType$ = z.nativeEnum(PaymentServiceType);
 
 /** @internal */
-export namespace PaymentServiceFields$ {
+export namespace Fields$ {
     export type Inbound = {
         key?: string | undefined;
         value?: string | undefined;
     };
 
-    export const inboundSchema: z.ZodType<PaymentServiceFields, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Fields, z.ZodTypeDef, Inbound> = z
         .object({
             key: z.string().optional(),
             value: z.string().optional(),
@@ -536,7 +536,7 @@ export namespace PaymentServiceFields$ {
         value?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentServiceFields> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Fields> = z
         .object({
             key: z.string().optional(),
             value: z.string().optional(),
@@ -1414,7 +1414,7 @@ export namespace PaymentService$ {
         active?: boolean | undefined;
         created_at?: string | undefined;
         display_name?: string | undefined;
-        fields?: Array<PaymentServiceFields$.Inbound> | undefined;
+        fields?: Array<Fields$.Inbound> | undefined;
         merchant_account_id?: string | undefined;
         merchant_profile?: MerchantProfile$.Inbound | null | undefined;
         method?: PaymentServiceMethod | undefined;
@@ -1441,7 +1441,7 @@ export namespace PaymentService$ {
                 .transform((v) => new Date(v))
                 .optional(),
             display_name: z.string().optional(),
-            fields: z.array(z.lazy(() => PaymentServiceFields$.inboundSchema)).optional(),
+            fields: z.array(z.lazy(() => Fields$.inboundSchema)).optional(),
             merchant_account_id: z.string().optional(),
             merchant_profile: z.nullable(z.lazy(() => MerchantProfile$.inboundSchema)).optional(),
             method: PaymentServiceMethod$.optional(),
@@ -1502,7 +1502,7 @@ export namespace PaymentService$ {
         active: boolean;
         created_at?: string | undefined;
         display_name?: string | undefined;
-        fields?: Array<PaymentServiceFields$.Outbound> | undefined;
+        fields?: Array<Fields$.Outbound> | undefined;
         merchant_account_id?: string | undefined;
         merchant_profile?: MerchantProfile$.Outbound | null | undefined;
         method?: PaymentServiceMethod | undefined;
@@ -1528,7 +1528,7 @@ export namespace PaymentService$ {
                 .transform((v) => v.toISOString())
                 .optional(),
             displayName: z.string().optional(),
-            fields: z.array(z.lazy(() => PaymentServiceFields$.outboundSchema)).optional(),
+            fields: z.array(z.lazy(() => Fields$.outboundSchema)).optional(),
             merchantAccountId: z.string().optional(),
             merchantProfile: z.nullable(z.lazy(() => MerchantProfile$.outboundSchema)).optional(),
             method: PaymentServiceMethod$.optional(),

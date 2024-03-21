@@ -51,7 +51,7 @@ async function run() {
         bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
-    const result = await sdk.sessions.logout();
+    const result = await sdk.apiLogs.listApiLogs();
 
     // Handle the result
     console.log(result);
@@ -65,26 +65,9 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [sessions](docs/sdks/sessions/README.md)
-
-* [logout](docs/sdks/sessions/README.md#logout) - Logout user
-
-### [apiKeyPairs](docs/sdks/apikeypairs/README.md)
-
-* [listApiKeyPairs](docs/sdks/apikeypairs/README.md#listapikeypairs) - List API key
-* [newApiKeyPair](docs/sdks/apikeypairs/README.md#newapikeypair) - Create API key
-* [updateApiKeyPair](docs/sdks/apikeypairs/README.md#updateapikeypair) - Update API key
-* [deleteApiKeyPair](docs/sdks/apikeypairs/README.md#deleteapikeypair) - Delete API key
-
 ### [apiLogs](docs/sdks/apilogs/README.md)
 
 * [listApiLogs](docs/sdks/apilogs/README.md#listapilogs) - List API error logs
-
-### [applePayCertificates](docs/sdks/applepaycertificates/README.md)
-
-* [listApplePayCertificates](docs/sdks/applepaycertificates/README.md#listapplepaycertificates) - List Apple Pay certificates
-* [newApplePayCertificate](docs/sdks/applepaycertificates/README.md#newapplepaycertificate) - New Apple Pay certificate
-* [deleteApplePayCertificate](docs/sdks/applepaycertificates/README.md#deleteapplepaycertificate) - Remove Apple Pay certificate
 
 ### [auditLogs](docs/sdks/auditlogs/README.md)
 
@@ -166,26 +149,11 @@ run();
 * [getRefund](docs/sdks/transactions/README.md#getrefund) - Get refund
 * [getTransactionSummary](docs/sdks/transactions/README.md#gettransactionsummary) - Get transaction summary
 
-### [users](docs/sdks/users/README.md)
-
-* [getCurrentUser](docs/sdks/users/README.md#getcurrentuser) - Get current user
-* [updateCurrentUser](docs/sdks/users/README.md#updatecurrentuser) - Update current user
-* [getUser](docs/sdks/users/README.md#getuser) - Get user
-* [deleteUser](docs/sdks/users/README.md#deleteuser) - Delete user
-* [listUsers](docs/sdks/users/README.md#listusers) - List users
-* [newUser](docs/sdks/users/README.md#newuser) - New user
-* [setPassword](docs/sdks/users/README.md#setpassword) - Set user password
-* [resetPassword](docs/sdks/users/README.md#resetpassword) - Reset user password
-
 ### [webhooks](docs/sdks/webhooks/README.md)
 
 * [~~inboundWebhookDeprecated~~](docs/sdks/webhooks/README.md#inboundwebhookdeprecated) - Inbound webhook :warning: **Deprecated**
 * [inboundWebhook](docs/sdks/webhooks/README.md#inboundwebhook) - Inbound webhook
 * [inboundWebhooks](docs/sdks/webhooks/README.md#inboundwebhooks) - Inbound webhook
-
-### [cardDetails](docs/sdks/carddetails/README.md)
-
-* [getCardDetails](docs/sdks/carddetails/README.md#getcarddetails) - Get card details
 
 ### [flow](docs/sdks/flow/README.md)
 
@@ -241,15 +209,6 @@ run();
 * [deleteNetworkToken](docs/sdks/tokens/README.md#deletenetworktoken) - Delete network token
 * [suspendNetworkToken](docs/sdks/tokens/README.md#suspendnetworktoken) - Suspend network token
 * [resumeNetworkToken](docs/sdks/tokens/README.md#resumenetworktoken) - Resume network token
-
-### [vaultForwardDefinitions](docs/sdks/vaultforwarddefinitions/README.md)
-
-* [listVaultForwardDefinitions](docs/sdks/vaultforwarddefinitions/README.md#listvaultforwarddefinitions) - List Vault Forward definitions
-
-### [vaultForwardConfigurations](docs/sdks/vaultforwardconfigurations/README.md)
-
-* [listVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#listvaultforwardconfig) - List configured Vault Forward endpoints
-* [deleteVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#deletevaultforwardconfig) - Remove a configured Vault Forward endpoint
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -276,7 +235,7 @@ async function run() {
 
     let result;
     try {
-        result = await sdk.sessions.logout();
+        result = await sdk.apiLogs.listApiLogs();
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -326,7 +285,7 @@ async function run() {
         bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
-    const result = await sdk.sessions.logout();
+    const result = await sdk.apiLogs.listApiLogs();
 
     // Handle the result
     console.log(result);
@@ -354,7 +313,7 @@ async function run() {
         bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
-    const result = await sdk.sessions.logout();
+    const result = await sdk.apiLogs.listApiLogs();
 
     // Handle the result
     console.log(result);
@@ -434,7 +393,7 @@ async function run() {
         bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
-    const result = await sdk.sessions.logout();
+    const result = await sdk.apiLogs.listApiLogs();
 
     // Handle the result
     console.log(result);
