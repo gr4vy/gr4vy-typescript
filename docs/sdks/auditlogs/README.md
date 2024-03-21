@@ -50,7 +50,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListAuditLogsResponse](../../models/operations/listauditlogsresponse.md)>**
+**Promise<[components.AuditLogs](../../models/components/auditlogs.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

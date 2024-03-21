@@ -1,9 +1,0 @@
-# GenerateDownloadUrlResponse
-
-
-## Fields
-
-| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `httpMeta`                                                                                     | [components.HTTPMetadata](../../models/components/httpmetadata.md)                             | :heavy_check_mark:                                                                             | N/A                                                                                            |
-| `reportExecutionUrl`                                                                           | [components.ReportExecutionUrl](../../models/components/reportexecutionurl.md)                 | :heavy_minus_sign:                                                                             | Returns the signed download URL of a report execution result and its<br/>expiration date and time. |

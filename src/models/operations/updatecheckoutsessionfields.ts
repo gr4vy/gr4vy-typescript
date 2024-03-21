@@ -13,14 +13,6 @@ export type UpdateCheckoutSessionFieldsRequest = {
     checkoutSessionSecureFieldsUpdate?: components.CheckoutSessionSecureFieldsUpdate | undefined;
 };
 
-export type UpdateCheckoutSessionFieldsResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
-
 /** @internal */
 export namespace UpdateCheckoutSessionFieldsRequest$ {
     export type Inbound = {
@@ -72,51 +64,6 @@ export namespace UpdateCheckoutSessionFieldsRequest$ {
                 ...(v.checkoutSessionSecureFieldsUpdate === undefined
                     ? null
                     : { CheckoutSessionSecureFieldsUpdate: v.checkoutSessionSecureFieldsUpdate }),
-            };
-        });
-}
-
-/** @internal */
-export namespace UpdateCheckoutSessionFieldsResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<
-        UpdateCheckoutSessionFieldsResponse,
-        z.ZodTypeDef,
-        Inbound
-    > = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        UpdateCheckoutSessionFieldsResponse
-    > = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
             };
         });
 }

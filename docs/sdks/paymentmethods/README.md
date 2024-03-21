@@ -65,7 +65,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListBuyerPaymentMethodsResponse](../../models/operations/listbuyerpaymentmethodsresponse.md)>**
+**Promise<[components.PaymentMethodsTokenized](../../models/components/paymentmethodstokenized.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -119,7 +119,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPaymentMethodsResponse](../../models/operations/listpaymentmethodsresponse.md)>**
+**Promise<[components.PaymentMethods](../../models/components/paymentmethods.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -163,7 +163,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPaymentMethodResponse](../../models/operations/getpaymentmethodresponse.md)>**
+**Promise<[components.PaymentMethod](../../models/components/paymentmethod.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

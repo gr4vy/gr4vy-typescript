@@ -12,17 +12,7 @@ export type GetMerchantAccountRequest = {
     merchantAccountId: string;
 };
 
-export type GetMerchantAccountResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns a merchant account.
-     */
-    merchantAccount?: components.MerchantAccount | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type GetMerchantAccountResponse = components.ErrorGeneric | components.MerchantAccount;
 
 /** @internal */
 export namespace GetMerchantAccountRequest$ {
@@ -57,47 +47,17 @@ export namespace GetMerchantAccountRequest$ {
 
 /** @internal */
 export namespace GetMerchantAccountResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        MerchantAccount?: components.MerchantAccount$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ErrorGeneric$.Inbound | components.MerchantAccount$.Inbound;
 
-    export const inboundSchema: z.ZodType<GetMerchantAccountResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            MerchantAccount: components.MerchantAccount$.inboundSchema.optional(),
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.MerchantAccount === undefined
-                    ? null
-                    : { merchantAccount: v.MerchantAccount }),
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        MerchantAccount?: components.MerchantAccount$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMerchantAccountResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            merchantAccount: components.MerchantAccount$.outboundSchema.optional(),
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.merchantAccount === undefined
-                    ? null
-                    : { MerchantAccount: v.merchantAccount }),
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-            };
-        });
+    export type Outbound = components.ErrorGeneric$.Outbound | components.MerchantAccount$.Outbound;
+    export const inboundSchema: z.ZodType<GetMerchantAccountResponse, z.ZodTypeDef, Inbound> =
+        z.union([
+            components.ErrorGeneric$.inboundSchema,
+            components.MerchantAccount$.inboundSchema,
+        ]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMerchantAccountResponse> =
+        z.union([
+            components.ErrorGeneric$.outboundSchema,
+            components.MerchantAccount$.outboundSchema,
+        ]);
 }

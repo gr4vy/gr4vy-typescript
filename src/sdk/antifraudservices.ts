@@ -117,10 +117,7 @@ export class AntiFraudServices extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetAntiFraudServiceResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AntiFraudService: val$,
-                    });
+                    return operations.GetAntiFraudServiceResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -156,16 +153,14 @@ export class AntiFraudServices extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetAntiFraudServiceResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.GetAntiFraudServiceResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -273,7 +268,8 @@ export class AntiFraudServices extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

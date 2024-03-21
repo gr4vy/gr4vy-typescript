@@ -43,7 +43,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListConnectionDefinitionsResponse](../../models/operations/listconnectiondefinitionsresponse.md)>**
+**Promise<[components.ConnectionDefinitions](../../models/components/connectiondefinitions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

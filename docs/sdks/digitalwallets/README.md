@@ -52,7 +52,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListDigitalWalletsResponse](../../models/operations/listdigitalwalletsresponse.md)>**
+**Promise<[components.DigitalWallets](../../models/components/digitalwallets.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -96,7 +96,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetDigitalWalletResponse](../../models/operations/getdigitalwalletresponse.md)>**
+**Promise<[components.DigitalWallet](../../models/components/digitalwallet.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListMerchantAccountsResponse](../../models/operations/listmerchantaccountsresponse.md)>**
+**Promise<[components.MerchantAccounts](../../models/components/merchantaccounts.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

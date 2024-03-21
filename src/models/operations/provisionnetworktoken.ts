@@ -13,14 +13,6 @@ export type ProvisionNetworkTokenRequest = {
     networkTokenRequest?: components.NetworkTokenRequest | undefined;
 };
 
-export type ProvisionNetworkTokenResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns the created network token.
-     */
-    networkToken?: components.NetworkToken | undefined;
-};
-
 /** @internal */
 export namespace ProvisionNetworkTokenRequest$ {
     export type Inbound = {
@@ -60,42 +52,4 @@ export namespace ProvisionNetworkTokenRequest$ {
                     : { NetworkTokenRequest: v.networkTokenRequest }),
             };
         });
-}
-
-/** @internal */
-export namespace ProvisionNetworkTokenResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        NetworkToken?: components.NetworkToken$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ProvisionNetworkTokenResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            NetworkToken: components.NetworkToken$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.NetworkToken === undefined ? null : { networkToken: v.NetworkToken }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        NetworkToken?: components.NetworkToken$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ProvisionNetworkTokenResponse> =
-        z
-            .object({
-                httpMeta: components.HTTPMetadata$.outboundSchema,
-                networkToken: components.NetworkToken$.outboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    HttpMeta: v.httpMeta,
-                    ...(v.networkToken === undefined ? null : { NetworkToken: v.networkToken }),
-                };
-            });
 }

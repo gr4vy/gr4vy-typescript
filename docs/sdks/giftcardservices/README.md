@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetGiftCardServiceResponse](../../models/operations/getgiftcardserviceresponse.md)>**
+**Promise<[components.GiftCardService](../../models/components/giftcardservice.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

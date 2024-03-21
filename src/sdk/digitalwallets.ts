@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -44,9 +45,7 @@ export class DigitalWallets extends ClientSDK {
      * @remarks
      * Returns a list of all registered digital wallets.
      */
-    async listDigitalWallets(
-        options?: RequestOptions
-    ): Promise<operations.ListDigitalWalletsResponse> {
+    async listDigitalWallets(options?: RequestOptions): Promise<components.DigitalWallets> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -96,10 +95,7 @@ export class DigitalWallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListDigitalWalletsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        DigitalWallets: val$,
-                    });
+                    return components.DigitalWallets$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -118,7 +114,8 @@ export class DigitalWallets extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -131,7 +128,7 @@ export class DigitalWallets extends ClientSDK {
     async getDigitalWallet(
         digitalWalletId: string,
         options?: RequestOptions
-    ): Promise<operations.GetDigitalWalletResponse> {
+    ): Promise<components.DigitalWallet> {
         const input$: operations.GetDigitalWalletRequest = {
             digitalWalletId: digitalWalletId,
         };
@@ -200,10 +197,7 @@ export class DigitalWallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetDigitalWalletResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        DigitalWallet: val$,
-                    });
+                    return components.DigitalWallet$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -235,7 +229,8 @@ export class DigitalWallets extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -348,7 +343,8 @@ export class DigitalWallets extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

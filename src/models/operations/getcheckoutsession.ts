@@ -12,17 +12,7 @@ export type GetCheckoutSessionRequest = {
     checkoutSessionId: string;
 };
 
-export type GetCheckoutSessionResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns details about a current Checkout Session.
-     */
-    checkoutSession?: components.CheckoutSession | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type GetCheckoutSessionResponse = components.ErrorGeneric | components.CheckoutSession;
 
 /** @internal */
 export namespace GetCheckoutSessionRequest$ {
@@ -57,47 +47,17 @@ export namespace GetCheckoutSessionRequest$ {
 
 /** @internal */
 export namespace GetCheckoutSessionResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CheckoutSession?: components.CheckoutSession$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ErrorGeneric$.Inbound | components.CheckoutSession$.Inbound;
 
-    export const inboundSchema: z.ZodType<GetCheckoutSessionResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CheckoutSession: components.CheckoutSession$.inboundSchema.optional(),
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CheckoutSession === undefined
-                    ? null
-                    : { checkoutSession: v.CheckoutSession }),
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CheckoutSession?: components.CheckoutSession$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCheckoutSessionResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            checkoutSession: components.CheckoutSession$.outboundSchema.optional(),
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.checkoutSession === undefined
-                    ? null
-                    : { CheckoutSession: v.checkoutSession }),
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-            };
-        });
+    export type Outbound = components.ErrorGeneric$.Outbound | components.CheckoutSession$.Outbound;
+    export const inboundSchema: z.ZodType<GetCheckoutSessionResponse, z.ZodTypeDef, Inbound> =
+        z.union([
+            components.ErrorGeneric$.inboundSchema,
+            components.CheckoutSession$.inboundSchema,
+        ]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCheckoutSessionResponse> =
+        z.union([
+            components.ErrorGeneric$.outboundSchema,
+            components.CheckoutSession$.outboundSchema,
+        ]);
 }

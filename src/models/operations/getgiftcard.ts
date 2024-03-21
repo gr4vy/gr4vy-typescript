@@ -12,17 +12,7 @@ export type GetGiftCardRequest = {
     giftCardId: string;
 };
 
-export type GetGiftCardResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns a stored gift card.
-     */
-    giftCard?: components.GiftCard | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type GetGiftCardResponse = components.ErrorGeneric | components.GiftCard;
 
 /** @internal */
 export namespace GetGiftCardRequest$ {
@@ -57,43 +47,15 @@ export namespace GetGiftCardRequest$ {
 
 /** @internal */
 export namespace GetGiftCardResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        GiftCard?: components.GiftCard$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ErrorGeneric$.Inbound | components.GiftCard$.Inbound;
 
-    export const inboundSchema: z.ZodType<GetGiftCardResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            GiftCard: components.GiftCard$.inboundSchema.optional(),
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.GiftCard === undefined ? null : { giftCard: v.GiftCard }),
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        GiftCard?: components.GiftCard$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetGiftCardResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            giftCard: components.GiftCard$.outboundSchema.optional(),
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.giftCard === undefined ? null : { GiftCard: v.giftCard }),
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-            };
-        });
+    export type Outbound = components.ErrorGeneric$.Outbound | components.GiftCard$.Outbound;
+    export const inboundSchema: z.ZodType<GetGiftCardResponse, z.ZodTypeDef, Inbound> = z.union([
+        components.ErrorGeneric$.inboundSchema,
+        components.GiftCard$.inboundSchema,
+    ]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetGiftCardResponse> = z.union([
+        components.ErrorGeneric$.outboundSchema,
+        components.GiftCard$.outboundSchema,
+    ]);
 }

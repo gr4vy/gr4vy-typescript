@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPaymentServiceTokensResponse](../../models/operations/getpaymentservicetokensresponse.md)>**
+**Promise<[components.PaymentServiceTokens](../../models/components/paymentservicetokens.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -106,7 +106,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ProvisionPaymentServiceTokenResponse](../../models/operations/provisionpaymentservicetokenresponse.md)>**
+**Promise<[components.PaymentServiceToken](../../models/components/paymentservicetoken.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -293,7 +293,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetNetworkTokensResponse](../../models/operations/getnetworktokensresponse.md)>**
+**Promise<[components.NetworkTokens](../../models/components/networktokens.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -345,7 +345,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ProvisionNetworkTokenResponse](../../models/operations/provisionnetworktokenresponse.md)>**
+**Promise<[components.NetworkToken](../../models/components/networktoken.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -440,7 +440,7 @@ run();
 
 ### Response
 
-**Promise<[operations.SuspendNetworkTokenResponse](../../models/operations/suspendnetworktokenresponse.md)>**
+**Promise<[components.NetworkToken](../../models/components/networktoken.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -488,7 +488,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ResumeNetworkTokenResponse](../../models/operations/resumenetworktokenresponse.md)>**
+**Promise<[components.NetworkToken](../../models/components/networktoken.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

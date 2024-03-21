@@ -22,17 +22,7 @@ export type GetBuyerBillingDetailsRequest = {
     buyerExternalIdentifier?: string | undefined;
 };
 
-export type GetBuyerBillingDetailsResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns the information about a buyer's billing details.
-     */
-    billingDetails?: components.BillingDetails | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type GetBuyerBillingDetailsResponse = components.ErrorGeneric | components.BillingDetails;
 
 /** @internal */
 export namespace GetBuyerBillingDetailsRequest$ {
@@ -78,46 +68,14 @@ export namespace GetBuyerBillingDetailsRequest$ {
 
 /** @internal */
 export namespace GetBuyerBillingDetailsResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        BillingDetails?: components.BillingDetails$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ErrorGeneric$.Inbound | components.BillingDetails$.Inbound;
 
-    export const inboundSchema: z.ZodType<GetBuyerBillingDetailsResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            BillingDetails: components.BillingDetails$.inboundSchema.optional(),
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.BillingDetails === undefined ? null : { billingDetails: v.BillingDetails }),
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        BillingDetails?: components.BillingDetails$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
+    export type Outbound = components.ErrorGeneric$.Outbound | components.BillingDetails$.Outbound;
+    export const inboundSchema: z.ZodType<GetBuyerBillingDetailsResponse, z.ZodTypeDef, Inbound> =
+        z.union([components.ErrorGeneric$.inboundSchema, components.BillingDetails$.inboundSchema]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetBuyerBillingDetailsResponse> =
-        z
-            .object({
-                httpMeta: components.HTTPMetadata$.outboundSchema,
-                billingDetails: components.BillingDetails$.outboundSchema.optional(),
-                errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    HttpMeta: v.httpMeta,
-                    ...(v.billingDetails === undefined
-                        ? null
-                        : { BillingDetails: v.billingDetails }),
-                    ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-                };
-            });
+        z.union([
+            components.ErrorGeneric$.outboundSchema,
+            components.BillingDetails$.outboundSchema,
+        ]);
 }

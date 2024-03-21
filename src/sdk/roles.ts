@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -48,7 +49,7 @@ export class Roles extends ClientSDK {
         limit?: number | undefined,
         cursor?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListRolesResponse> {
+    ): Promise<components.Roles> {
         const input$: operations.ListRolesRequest = {
             limit: limit,
             cursor: cursor,
@@ -115,10 +116,7 @@ export class Roles extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListRolesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Roles: val$,
-                    });
+                    return components.Roles$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -137,7 +135,8 @@ export class Roles extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -154,7 +153,7 @@ export class Roles extends ClientSDK {
     async listRoleAssignments(
         input: operations.ListRoleAssignmentsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListRoleAssignmentsResponse> {
+    ): Promise<components.RoleAssignments> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -229,10 +228,7 @@ export class Roles extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListRoleAssignmentsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        RoleAssignments: val$,
-                    });
+                    return components.RoleAssignments$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -251,7 +247,8 @@ export class Roles extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -359,7 +356,8 @@ export class Roles extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -50,7 +51,7 @@ export class Buyers extends ClientSDK {
         limit?: number | undefined,
         cursor?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListBuyersResponse> {
+    ): Promise<components.Buyers> {
         const input$: operations.ListBuyersRequest = {
             search: search,
             externalIdentifier: externalIdentifier,
@@ -124,10 +125,7 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBuyersResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Buyers: val$,
-                    });
+                    return components.Buyers$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -146,7 +144,8 @@ export class Buyers extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -226,10 +225,7 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Buyer: val$,
-                    });
+                    return operations.GetBuyerResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -265,16 +261,14 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.GetBuyerResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -379,7 +373,8 @@ export class Buyers extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -465,10 +460,7 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBuyerShippingDetailsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippingDetails: val$,
-                    });
+                    return operations.ListBuyerShippingDetailsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -491,16 +483,14 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBuyerShippingDetailsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.ListBuyerShippingDetailsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -613,7 +603,8 @@ export class Buyers extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -709,10 +700,7 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerBillingDetailsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BillingDetails: val$,
-                    });
+                    return operations.GetBuyerBillingDetailsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -748,16 +736,14 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerBillingDetailsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.GetBuyerBillingDetailsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

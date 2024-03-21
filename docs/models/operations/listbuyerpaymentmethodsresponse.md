@@ -1,9 +1,0 @@
-# ListBuyerPaymentMethodsResponse
-
-
-## Fields
-
-| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `httpMeta`                                                                                                | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                        | :heavy_check_mark:                                                                                        | N/A                                                                                                       |
-| `paymentMethodsTokenized`                                                                                 | [components.PaymentMethodsTokenized](../../models/components/paymentmethodstokenized.md)                  | :heavy_minus_sign:                                                                                        | Returns a list of available payment methods for a buyer, filtered by the<br/>given currency and country code. |

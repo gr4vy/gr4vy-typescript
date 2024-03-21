@@ -87,7 +87,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListAllReportExecutionsResponse](../../models/operations/listallreportexecutionsresponse.md)>**
+**Promise<[components.ReportExecutions](../../models/components/reportexecutions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -131,7 +131,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetReportExecutionResponse](../../models/operations/getreportexecutionresponse.md)>**
+**Promise<[components.ReportExecution](../../models/components/reportexecution.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -184,7 +184,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListReportsResponse](../../models/operations/listreportsresponse.md)>**
+**Promise<[components.Reports](../../models/components/reports.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -228,7 +228,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetReportResponse](../../models/operations/getreportresponse.md)>**
+**Promise<[components.Report](../../models/components/report.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -279,7 +279,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListReportExecutionsResponse](../../models/operations/listreportexecutionsresponse.md)>**
+**Promise<[components.ReportExecutions](../../models/components/reportexecutions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -326,7 +326,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GenerateDownloadUrlResponse](../../models/operations/generatedownloadurlresponse.md)>**
+**Promise<[components.ReportExecutionUrl](../../models/components/reportexecutionurl.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

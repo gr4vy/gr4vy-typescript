@@ -7,8 +7,8 @@ import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
-import * as operations from "../models/operations";
 
 export class ConnectionDefinitions extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -45,7 +45,7 @@ export class ConnectionDefinitions extends ClientSDK {
      */
     async listConnectionDefinitions(
         options?: RequestOptions
-    ): Promise<operations.ListConnectionDefinitionsResponse> {
+    ): Promise<components.ConnectionDefinitions> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -95,10 +95,7 @@ export class ConnectionDefinitions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListConnectionDefinitionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectionDefinitions: val$,
-                    });
+                    return components.ConnectionDefinitions$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -117,7 +114,8 @@ export class ConnectionDefinitions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

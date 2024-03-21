@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -47,7 +48,7 @@ export class Transactions extends ClientSDK {
     async listTransactions(
         input: operations.ListTransactionsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListTransactionsResponse> {
+    ): Promise<components.Transactions> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -207,10 +208,7 @@ export class Transactions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListTransactionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Transactions: val$,
-                    });
+                    return components.Transactions$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -229,7 +227,8 @@ export class Transactions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -242,7 +241,7 @@ export class Transactions extends ClientSDK {
     async getTransactionActions(
         transactionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetTransactionActionsResponse> {
+    ): Promise<components.Actions> {
         const input$: operations.GetTransactionActionsRequest = {
             transactionId: transactionId,
         };
@@ -311,10 +310,7 @@ export class Transactions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetTransactionActionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Actions: val$,
-                    });
+                    return components.Actions$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -346,7 +342,8 @@ export class Transactions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -359,7 +356,7 @@ export class Transactions extends ClientSDK {
     async listTransactionRefunds(
         transactionId: string,
         options?: RequestOptions
-    ): Promise<operations.ListTransactionRefundsResponse> {
+    ): Promise<components.Refunds> {
         const input$: operations.ListTransactionRefundsRequest = {
             transactionId: transactionId,
         };
@@ -428,10 +425,7 @@ export class Transactions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListTransactionRefundsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Refunds: val$,
-                    });
+                    return components.Refunds$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -463,7 +457,8 @@ export class Transactions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -477,7 +472,7 @@ export class Transactions extends ClientSDK {
         transactionId: string,
         refundId: string,
         options?: RequestOptions
-    ): Promise<operations.GetRefundResponse> {
+    ): Promise<components.Refund> {
         const input$: operations.GetRefundRequest = {
             transactionId: transactionId,
             refundId: refundId,
@@ -551,10 +546,7 @@ export class Transactions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetRefundResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Refund: val$,
-                    });
+                    return components.Refund$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -586,7 +578,8 @@ export class Transactions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -599,7 +592,7 @@ export class Transactions extends ClientSDK {
     async getTransactionSummary(
         transactionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetTransactionSummaryResponse> {
+    ): Promise<components.TransactionStatusSummary> {
         const input$: operations.GetTransactionSummaryRequest = {
             transactionId: transactionId,
         };
@@ -668,10 +661,7 @@ export class Transactions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetTransactionSummaryResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransactionStatusSummary: val$,
-                    });
+                    return components.TransactionStatusSummary$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -703,7 +693,8 @@ export class Transactions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

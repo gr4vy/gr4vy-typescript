@@ -94,17 +94,13 @@ export class Webhooks extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
+        const responseFields$ = {};
 
         if (this.matchStatusCode(response, 200)) {
             // fallthrough
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -167,17 +163,13 @@ export class Webhooks extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
+        const responseFields$ = {};
 
         if (this.matchStatusCode(response, 200)) {
             // fallthrough
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -245,17 +237,13 @@ export class Webhooks extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
+        const responseFields$ = {};
 
         if (this.matchStatusCode(response, 200)) {
             // fallthrough
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

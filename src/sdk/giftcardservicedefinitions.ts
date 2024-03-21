@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -47,7 +48,7 @@ export class GiftCardServiceDefinitions extends ClientSDK {
     async getGiftCardServiceDefinition(
         giftCardServiceDefinitionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetGiftCardServiceDefinitionResponse> {
+    ): Promise<components.GiftCardServiceDefinition> {
         const input$: operations.GetGiftCardServiceDefinitionRequest = {
             giftCardServiceDefinitionId: giftCardServiceDefinitionId,
         };
@@ -118,10 +119,7 @@ export class GiftCardServiceDefinitions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetGiftCardServiceDefinitionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GiftCardServiceDefinition: val$,
-                    });
+                    return components.GiftCardServiceDefinition$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -140,7 +138,8 @@ export class GiftCardServiceDefinitions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

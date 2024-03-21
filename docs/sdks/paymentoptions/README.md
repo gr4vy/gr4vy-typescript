@@ -62,7 +62,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPaymentOptionsResponse](../../models/operations/listpaymentoptionsresponse.md)>**
+**Promise<[components.PaymentOptions](../../models/components/paymentoptions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -137,7 +137,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PostListPaymentOptionsResponse](../../models/operations/postlistpaymentoptionsresponse.md)>**
+**Promise<[components.PaymentOptions](../../models/components/paymentoptions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

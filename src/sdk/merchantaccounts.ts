@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -44,9 +45,7 @@ export class MerchantAccounts extends ClientSDK {
      * @remarks
      * Lists all merchant accounts in an instance.
      */
-    async listMerchantAccounts(
-        options?: RequestOptions
-    ): Promise<operations.ListMerchantAccountsResponse> {
+    async listMerchantAccounts(options?: RequestOptions): Promise<components.MerchantAccounts> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -96,10 +95,7 @@ export class MerchantAccounts extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListMerchantAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        MerchantAccounts: val$,
-                    });
+                    return components.MerchantAccounts$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -118,7 +114,8 @@ export class MerchantAccounts extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -201,10 +198,7 @@ export class MerchantAccounts extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetMerchantAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        MerchantAccount: val$,
-                    });
+                    return operations.GetMerchantAccountResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -240,16 +234,14 @@ export class MerchantAccounts extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetMerchantAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.GetMerchantAccountResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -356,7 +348,8 @@ export class MerchantAccounts extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

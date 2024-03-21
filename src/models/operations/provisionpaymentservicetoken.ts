@@ -13,14 +13,6 @@ export type ProvisionPaymentServiceTokenRequest = {
     paymentServiceTokenRequest?: components.PaymentServiceTokenRequest | undefined;
 };
 
-export type ProvisionPaymentServiceTokenResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns the created payment service token.
-     */
-    paymentServiceToken?: components.PaymentServiceToken | undefined;
-};
-
 /** @internal */
 export namespace ProvisionPaymentServiceTokenRequest$ {
     export type Inbound = {
@@ -68,55 +60,6 @@ export namespace ProvisionPaymentServiceTokenRequest$ {
                 ...(v.paymentServiceTokenRequest === undefined
                     ? null
                     : { PaymentServiceTokenRequest: v.paymentServiceTokenRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace ProvisionPaymentServiceTokenResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        PaymentServiceToken?: components.PaymentServiceToken$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<
-        ProvisionPaymentServiceTokenResponse,
-        z.ZodTypeDef,
-        Inbound
-    > = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            PaymentServiceToken: components.PaymentServiceToken$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.PaymentServiceToken === undefined
-                    ? null
-                    : { paymentServiceToken: v.PaymentServiceToken }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        PaymentServiceToken?: components.PaymentServiceToken$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        ProvisionPaymentServiceTokenResponse
-    > = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            paymentServiceToken: components.PaymentServiceToken$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.paymentServiceToken === undefined
-                    ? null
-                    : { PaymentServiceToken: v.paymentServiceToken }),
             };
         });
 }

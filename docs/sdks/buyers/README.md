@@ -65,7 +65,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListBuyersResponse](../../models/operations/listbuyersresponse.md)>**
+**Promise<[components.Buyers](../../models/components/buyers.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

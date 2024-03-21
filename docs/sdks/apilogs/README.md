@@ -43,7 +43,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListApiLogsResponse](../../models/operations/listapilogsresponse.md)>**
+**Promise<[components.ApiLogs](../../models/components/apilogs.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

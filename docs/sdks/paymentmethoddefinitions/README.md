@@ -42,7 +42,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPaymentMethodDefinitionsResponse](../../models/operations/listpaymentmethoddefinitionsresponse.md)>**
+**Promise<[components.PaymentMethodDefinitions](../../models/components/paymentmethoddefinitions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

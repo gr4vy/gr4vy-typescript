@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -48,7 +49,7 @@ export class PaymentServiceDefinitions extends ClientSDK {
         limit?: number | undefined,
         cursor?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListPaymentServiceDefinitionsResponse> {
+    ): Promise<components.PaymentServiceDefinitions> {
         const input$: operations.ListPaymentServiceDefinitionsRequest = {
             limit: limit,
             cursor: cursor,
@@ -116,10 +117,7 @@ export class PaymentServiceDefinitions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListPaymentServiceDefinitionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentServiceDefinitions: val$,
-                    });
+                    return components.PaymentServiceDefinitions$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -138,7 +136,8 @@ export class PaymentServiceDefinitions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -151,7 +150,7 @@ export class PaymentServiceDefinitions extends ClientSDK {
     async getPaymentServiceDefinition(
         paymentServiceDefinitionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetPaymentServiceDefinitionResponse> {
+    ): Promise<components.PaymentServiceDefinition> {
         const input$: operations.GetPaymentServiceDefinitionRequest = {
             paymentServiceDefinitionId: paymentServiceDefinitionId,
         };
@@ -221,10 +220,7 @@ export class PaymentServiceDefinitions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPaymentServiceDefinitionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentServiceDefinition: val$,
-                    });
+                    return components.PaymentServiceDefinition$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -256,7 +252,8 @@ export class PaymentServiceDefinitions extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

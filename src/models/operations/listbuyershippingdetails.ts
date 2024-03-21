@@ -12,17 +12,7 @@ export type ListBuyerShippingDetailsRequest = {
     buyerId: string;
 };
 
-export type ListBuyerShippingDetailsResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns all associated shipping details.
-     */
-    shippingDetails?: components.ShippingDetails | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type ListBuyerShippingDetailsResponse = components.ShippingDetails | components.ErrorGeneric;
 
 /** @internal */
 export namespace ListBuyerShippingDetailsRequest$ {
@@ -62,52 +52,20 @@ export namespace ListBuyerShippingDetailsRequest$ {
 
 /** @internal */
 export namespace ListBuyerShippingDetailsResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        ShippingDetails?: components.ShippingDetails$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ShippingDetails$.Inbound | components.ErrorGeneric$.Inbound;
 
+    export type Outbound = components.ShippingDetails$.Outbound | components.ErrorGeneric$.Outbound;
     export const inboundSchema: z.ZodType<ListBuyerShippingDetailsResponse, z.ZodTypeDef, Inbound> =
-        z
-            .object({
-                HttpMeta: components.HTTPMetadata$.inboundSchema,
-                ShippingDetails: components.ShippingDetails$.inboundSchema.optional(),
-                ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    httpMeta: v.HttpMeta,
-                    ...(v.ShippingDetails === undefined
-                        ? null
-                        : { shippingDetails: v.ShippingDetails }),
-                    ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-                };
-            });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        ShippingDetails?: components.ShippingDetails$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
+        z.union([
+            components.ShippingDetails$.inboundSchema,
+            components.ErrorGeneric$.inboundSchema,
+        ]);
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         ListBuyerShippingDetailsResponse
-    > = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            shippingDetails: components.ShippingDetails$.outboundSchema.optional(),
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.shippingDetails === undefined
-                    ? null
-                    : { ShippingDetails: v.shippingDetails }),
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-            };
-        });
+    > = z.union([
+        components.ShippingDetails$.outboundSchema,
+        components.ErrorGeneric$.outboundSchema,
+    ]);
 }

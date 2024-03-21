@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -47,7 +48,7 @@ export class AuditLogs extends ClientSDK {
     async listAuditLogs(
         input: operations.ListAuditLogsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListAuditLogsResponse> {
+    ): Promise<components.AuditLogs> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -119,10 +120,7 @@ export class AuditLogs extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListAuditLogsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AuditLogs: val$,
-                    });
+                    return components.AuditLogs$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -141,7 +139,8 @@ export class AuditLogs extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

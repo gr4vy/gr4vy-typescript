@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -47,7 +48,7 @@ export class Reports extends ClientSDK {
     async listAllReportExecutions(
         input: operations.ListAllReportExecutionsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListAllReportExecutionsResponse> {
+    ): Promise<components.ReportExecutions> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -127,10 +128,7 @@ export class Reports extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListAllReportExecutionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReportExecutions: val$,
-                    });
+                    return components.ReportExecutions$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -149,7 +147,8 @@ export class Reports extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -162,7 +161,7 @@ export class Reports extends ClientSDK {
     async getReportExecution(
         reportExecutionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetReportExecutionResponse> {
+    ): Promise<components.ReportExecution> {
         const input$: operations.GetReportExecutionRequest = {
             reportExecutionId: reportExecutionId,
         };
@@ -232,10 +231,7 @@ export class Reports extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetReportExecutionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReportExecution: val$,
-                    });
+                    return components.ReportExecution$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -267,7 +263,8 @@ export class Reports extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -280,7 +277,7 @@ export class Reports extends ClientSDK {
     async listReports(
         input: operations.ListReportsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListReportsResponse> {
+    ): Promise<components.Reports> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -352,10 +349,7 @@ export class Reports extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListReportsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Reports: val$,
-                    });
+                    return components.Reports$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -374,7 +368,8 @@ export class Reports extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -384,10 +379,7 @@ export class Reports extends ClientSDK {
      * @remarks
      * Retrieves the details of a single report.
      */
-    async getReport(
-        reportId: string,
-        options?: RequestOptions
-    ): Promise<operations.GetReportResponse> {
+    async getReport(reportId: string, options?: RequestOptions): Promise<components.Report> {
         const input$: operations.GetReportRequest = {
             reportId: reportId,
         };
@@ -454,10 +446,7 @@ export class Reports extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetReportResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Report: val$,
-                    });
+                    return components.Report$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -489,7 +478,8 @@ export class Reports extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -506,7 +496,7 @@ export class Reports extends ClientSDK {
         cursor?: string | undefined,
         limit?: number | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListReportExecutionsResponse> {
+    ): Promise<components.ReportExecutions> {
         const input$: operations.ListReportExecutionsRequest = {
             reportId: reportId,
             cursor: cursor,
@@ -580,10 +570,7 @@ export class Reports extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListReportExecutionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReportExecutions: val$,
-                    });
+                    return components.ReportExecutions$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -602,7 +589,8 @@ export class Reports extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -617,7 +605,7 @@ export class Reports extends ClientSDK {
         reportId: string,
         reportExecutionId: string,
         options?: RequestOptions
-    ): Promise<operations.GenerateDownloadUrlResponse> {
+    ): Promise<components.ReportExecutionUrl> {
         const input$: operations.GenerateDownloadUrlRequest = {
             reportId: reportId,
             reportExecutionId: reportExecutionId,
@@ -692,10 +680,7 @@ export class Reports extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GenerateDownloadUrlResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReportExecutionUrl: val$,
-                    });
+                    return components.ReportExecutionUrl$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -727,7 +712,8 @@ export class Reports extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

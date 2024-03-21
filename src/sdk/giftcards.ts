@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -52,7 +53,7 @@ export class GiftCards extends ClientSDK {
         buyerId?: string | undefined,
         buyerExternalIdentifier?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListBuyerGiftCardsResponse> {
+    ): Promise<components.GiftCardsSummary> {
         const input$: operations.ListBuyerGiftCardsRequest = {
             buyerId: buyerId,
             buyerExternalIdentifier: buyerExternalIdentifier,
@@ -125,10 +126,7 @@ export class GiftCards extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBuyerGiftCardsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        "GiftCards--Summary": val$,
-                    });
+                    return components.GiftCardsSummary$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -160,7 +158,8 @@ export class GiftCards extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -176,7 +175,7 @@ export class GiftCards extends ClientSDK {
         limit?: number | undefined,
         cursor?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListGiftCardsResponse> {
+    ): Promise<components.GiftCards> {
         const input$: operations.ListGiftCardsRequest = {
             buyerId: buyerId,
             buyerExternalIdentifier: buyerExternalIdentifier,
@@ -253,10 +252,7 @@ export class GiftCards extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListGiftCardsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GiftCards: val$,
-                    });
+                    return components.GiftCards$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -275,7 +271,8 @@ export class GiftCards extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -355,10 +352,7 @@ export class GiftCards extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetGiftCardResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GiftCard: val$,
-                    });
+                    return operations.GetGiftCardResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -394,16 +388,14 @@ export class GiftCards extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetGiftCardResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.GetGiftCardResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -507,7 +499,8 @@ export class GiftCards extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

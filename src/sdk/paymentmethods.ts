@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -52,7 +53,7 @@ export class PaymentMethods extends ClientSDK {
         country?: string | undefined,
         currency?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListBuyerPaymentMethodsResponse> {
+    ): Promise<components.PaymentMethodsTokenized> {
         const input$: operations.ListBuyerPaymentMethodsRequest = {
             buyerId: buyerId,
             buyerExternalIdentifier: buyerExternalIdentifier,
@@ -135,10 +136,7 @@ export class PaymentMethods extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBuyerPaymentMethodsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        "PaymentMethods--Tokenized": val$,
-                    });
+                    return components.PaymentMethodsTokenized$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -170,7 +168,8 @@ export class PaymentMethods extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -183,7 +182,7 @@ export class PaymentMethods extends ClientSDK {
     async listPaymentMethods(
         input: operations.ListPaymentMethodsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListPaymentMethodsResponse> {
+    ): Promise<components.PaymentMethods> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -259,10 +258,7 @@ export class PaymentMethods extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListPaymentMethodsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentMethods: val$,
-                    });
+                    return components.PaymentMethods$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -281,7 +277,8 @@ export class PaymentMethods extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -294,7 +291,7 @@ export class PaymentMethods extends ClientSDK {
     async getPaymentMethod(
         paymentMethodId: string,
         options?: RequestOptions
-    ): Promise<operations.GetPaymentMethodResponse> {
+    ): Promise<components.PaymentMethod> {
         const input$: operations.GetPaymentMethodRequest = {
             paymentMethodId: paymentMethodId,
         };
@@ -363,10 +360,7 @@ export class PaymentMethods extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPaymentMethodResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentMethod: val$,
-                    });
+                    return components.PaymentMethod$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -398,7 +392,8 @@ export class PaymentMethods extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -504,7 +499,8 @@ export class PaymentMethods extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

@@ -61,17 +61,7 @@ export type GetFlowRuleRequest = {
     ruleId: string;
 };
 
-export type GetFlowRuleResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns the flow rule.
-     */
-    flowRule?: components.FlowRule | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type GetFlowRuleResponse = components.ErrorGeneric | components.FlowRule;
 
 /** @internal */
 export const GetFlowRulePathParamFlow$ = z.nativeEnum(GetFlowRulePathParamFlow);
@@ -124,43 +114,15 @@ export namespace GetFlowRuleRequest$ {
 
 /** @internal */
 export namespace GetFlowRuleResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        FlowRule?: components.FlowRule$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ErrorGeneric$.Inbound | components.FlowRule$.Inbound;
 
-    export const inboundSchema: z.ZodType<GetFlowRuleResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            FlowRule: components.FlowRule$.inboundSchema.optional(),
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.FlowRule === undefined ? null : { flowRule: v.FlowRule }),
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        FlowRule?: components.FlowRule$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetFlowRuleResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            flowRule: components.FlowRule$.outboundSchema.optional(),
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.flowRule === undefined ? null : { FlowRule: v.flowRule }),
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-            };
-        });
+    export type Outbound = components.ErrorGeneric$.Outbound | components.FlowRule$.Outbound;
+    export const inboundSchema: z.ZodType<GetFlowRuleResponse, z.ZodTypeDef, Inbound> = z.union([
+        components.ErrorGeneric$.inboundSchema,
+        components.FlowRule$.inboundSchema,
+    ]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetFlowRuleResponse> = z.union([
+        components.ErrorGeneric$.outboundSchema,
+        components.FlowRule$.outboundSchema,
+    ]);
 }

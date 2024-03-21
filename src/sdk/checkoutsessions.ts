@@ -109,10 +109,7 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CheckoutSession: val$,
-                    });
+                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -148,16 +145,14 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -240,10 +235,7 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CheckoutSession: val$,
-                    });
+                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -279,16 +271,14 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -301,7 +291,7 @@ export class CheckoutSessions extends ClientSDK {
     async deleteCheckoutSession(
         checkoutSessionId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteCheckoutSessionResponse> {
+    ): Promise<components.ErrorGeneric> {
         const input$: operations.DeleteCheckoutSessionRequest = {
             checkoutSessionId: checkoutSessionId,
         };
@@ -399,21 +389,19 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.DeleteCheckoutSessionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return components.ErrorGeneric$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
             undefined,
-            () => operations.DeleteCheckoutSessionResponse$.inboundSchema.parse(responseFields$),
+            () => components.ErrorGeneric$.inboundSchema.parse(responseFields$),
             "Response validation failed"
         );
     }
@@ -430,7 +418,7 @@ export class CheckoutSessions extends ClientSDK {
             | components.CheckoutSessionSecureFieldsUpdate
             | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateCheckoutSessionFieldsResponse> {
+    ): Promise<components.ErrorGeneric> {
         const input$: operations.UpdateCheckoutSessionFieldsRequest = {
             checkoutSessionId: checkoutSessionId,
             checkoutSessionSecureFieldsUpdate: checkoutSessionSecureFieldsUpdate,
@@ -545,24 +533,19 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateCheckoutSessionFieldsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return components.ErrorGeneric$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
             undefined,
-            () =>
-                operations.UpdateCheckoutSessionFieldsResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
+            () => components.ErrorGeneric$.inboundSchema.parse(responseFields$),
             "Response validation failed"
         );
     }

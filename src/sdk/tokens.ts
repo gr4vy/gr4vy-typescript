@@ -48,7 +48,7 @@ export class Tokens extends ClientSDK {
     async getPaymentServiceTokens(
         paymentMethodId?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetPaymentServiceTokensResponse> {
+    ): Promise<components.PaymentServiceTokens> {
         const input$: operations.GetPaymentServiceTokensRequest = {
             paymentMethodId: paymentMethodId,
         };
@@ -118,10 +118,7 @@ export class Tokens extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPaymentServiceTokensResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentServiceTokens: val$,
-                    });
+                    return components.PaymentServiceTokens$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -153,7 +150,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -168,7 +166,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         paymentServiceTokenRequest?: components.PaymentServiceTokenRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.ProvisionPaymentServiceTokenResponse> {
+    ): Promise<components.PaymentServiceToken> {
         const input$: operations.ProvisionPaymentServiceTokenRequest = {
             paymentMethodId: paymentMethodId,
             paymentServiceTokenRequest: paymentServiceTokenRequest,
@@ -242,10 +240,7 @@ export class Tokens extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ProvisionPaymentServiceTokenResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentServiceToken: val$,
-                    });
+                    return components.PaymentServiceToken$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -290,7 +285,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -403,7 +399,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -524,7 +521,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -647,7 +645,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -669,7 +668,7 @@ export class Tokens extends ClientSDK {
     async getNetworkTokens(
         paymentMethodId?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetNetworkTokensResponse> {
+    ): Promise<components.NetworkTokens> {
         const input$: operations.GetNetworkTokensRequest = {
             paymentMethodId: paymentMethodId,
         };
@@ -739,10 +738,7 @@ export class Tokens extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetNetworkTokensResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        NetworkTokens: val$,
-                    });
+                    return components.NetworkTokens$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -774,7 +770,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -789,7 +786,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         networkTokenRequest?: components.NetworkTokenRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.ProvisionNetworkTokenResponse> {
+    ): Promise<components.NetworkToken> {
         const input$: operations.ProvisionNetworkTokenRequest = {
             paymentMethodId: paymentMethodId,
             networkTokenRequest: networkTokenRequest,
@@ -860,10 +857,7 @@ export class Tokens extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ProvisionNetworkTokenResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        NetworkToken: val$,
-                    });
+                    return components.NetworkToken$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -908,7 +902,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -1020,7 +1015,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -1040,7 +1036,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         networkTokenId: string,
         options?: RequestOptions
-    ): Promise<operations.SuspendNetworkTokenResponse> {
+    ): Promise<components.NetworkToken> {
         const input$: operations.SuspendNetworkTokenRequest = {
             paymentMethodId: paymentMethodId,
             networkTokenId: networkTokenId,
@@ -1114,10 +1110,7 @@ export class Tokens extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.SuspendNetworkTokenResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        NetworkToken: val$,
-                    });
+                    return components.NetworkToken$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1162,7 +1155,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -1176,7 +1170,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         networkTokenId: string,
         options?: RequestOptions
-    ): Promise<operations.ResumeNetworkTokenResponse> {
+    ): Promise<components.NetworkToken> {
         const input$: operations.ResumeNetworkTokenRequest = {
             paymentMethodId: paymentMethodId,
             networkTokenId: networkTokenId,
@@ -1250,10 +1244,7 @@ export class Tokens extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ResumeNetworkTokenResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        NetworkToken: val$,
-                    });
+                    return components.NetworkToken$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1298,7 +1289,8 @@ export class Tokens extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

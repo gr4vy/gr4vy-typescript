@@ -50,7 +50,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListFlowRulesResponse](../../models/operations/listflowrulesresponse.md)>**
+**Promise<[components.FlowRules](../../models/components/flowrules.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -199,7 +199,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListFlowOutcomesResponse](../../models/operations/listflowoutcomesresponse.md)>**
+**Promise<[components.FlowRuleOutcomes](../../models/components/flowruleoutcomes.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

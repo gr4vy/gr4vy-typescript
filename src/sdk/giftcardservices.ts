@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -47,7 +48,7 @@ export class GiftCardServices extends ClientSDK {
     async getGiftCardService(
         giftCardServiceId: string,
         options?: RequestOptions
-    ): Promise<operations.GetGiftCardServiceResponse> {
+    ): Promise<components.GiftCardService> {
         const input$: operations.GetGiftCardServiceRequest = {
             giftCardServiceId: giftCardServiceId,
         };
@@ -117,10 +118,7 @@ export class GiftCardServices extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetGiftCardServiceResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GiftCardService: val$,
-                    });
+                    return components.GiftCardService$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -152,7 +150,8 @@ export class GiftCardServices extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -259,7 +258,8 @@ export class GiftCardServices extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(

@@ -12,17 +12,7 @@ export type GetBuyerRequest = {
     buyerId: string;
 };
 
-export type GetBuyerResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns the information about a buyer.
-     */
-    buyer?: components.Buyer | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type GetBuyerResponse = components.ErrorGeneric | components.Buyer;
 
 /** @internal */
 export namespace GetBuyerRequest$ {
@@ -57,43 +47,15 @@ export namespace GetBuyerRequest$ {
 
 /** @internal */
 export namespace GetBuyerResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Buyer?: components.Buyer$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ErrorGeneric$.Inbound | components.Buyer$.Inbound;
 
-    export const inboundSchema: z.ZodType<GetBuyerResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Buyer: components.Buyer$.inboundSchema.optional(),
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Buyer === undefined ? null : { buyer: v.Buyer }),
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Buyer?: components.Buyer$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetBuyerResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            buyer: components.Buyer$.outboundSchema.optional(),
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.buyer === undefined ? null : { Buyer: v.buyer }),
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-            };
-        });
+    export type Outbound = components.ErrorGeneric$.Outbound | components.Buyer$.Outbound;
+    export const inboundSchema: z.ZodType<GetBuyerResponse, z.ZodTypeDef, Inbound> = z.union([
+        components.ErrorGeneric$.inboundSchema,
+        components.Buyer$.inboundSchema,
+    ]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetBuyerResponse> = z.union([
+        components.ErrorGeneric$.outboundSchema,
+        components.Buyer$.outboundSchema,
+    ]);
 }

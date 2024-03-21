@@ -7,8 +7,8 @@ import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
-import * as operations from "../models/operations";
 
 export class APILogs extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -43,7 +43,7 @@ export class APILogs extends ClientSDK {
      * @remarks
      * Returns a list of API 4XX and 5XX logs.
      */
-    async listApiLogs(options?: RequestOptions): Promise<operations.ListApiLogsResponse> {
+    async listApiLogs(options?: RequestOptions): Promise<components.ApiLogs> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -93,10 +93,7 @@ export class APILogs extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListApiLogsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ApiLogs: val$,
-                    });
+                    return components.ApiLogs$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -115,7 +112,8 @@ export class APILogs extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

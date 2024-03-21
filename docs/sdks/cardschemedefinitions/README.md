@@ -42,7 +42,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListCardSchemeDefinitionsResponse](../../models/operations/listcardschemedefinitionsresponse.md)>**
+**Promise<[components.CardSchemeDefinitions](../../models/components/cardschemedefinitions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

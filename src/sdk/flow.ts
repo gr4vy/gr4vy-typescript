@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -48,7 +49,7 @@ export class Flow extends ClientSDK {
     async listFlowRules(
         flow: operations.Flow,
         options?: RequestOptions
-    ): Promise<operations.ListFlowRulesResponse> {
+    ): Promise<components.FlowRules> {
         const input$: operations.ListFlowRulesRequest = {
             flow: flow,
         };
@@ -115,10 +116,7 @@ export class Flow extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListFlowRulesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        FlowRules: val$,
-                    });
+                    return components.FlowRules$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -137,7 +135,8 @@ export class Flow extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -231,10 +230,7 @@ export class Flow extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetFlowRuleResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        FlowRule: val$,
-                    });
+                    return operations.GetFlowRuleResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -270,16 +266,14 @@ export class Flow extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetFlowRuleResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorGeneric: val$,
-                    });
+                    return operations.GetFlowRuleResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -397,7 +391,8 @@ export class Flow extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
         return schemas$.parse(
@@ -418,7 +413,7 @@ export class Flow extends ClientSDK {
         action: operations.ListFlowOutcomesPathParamAction,
         locale?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListFlowOutcomesResponse> {
+    ): Promise<components.FlowRuleOutcomes> {
         const input$: operations.ListFlowOutcomesRequest = {
             flow: flow,
             action: action,
@@ -497,10 +492,7 @@ export class Flow extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListFlowOutcomesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        FlowRuleOutcomes: val$,
-                    });
+                    return components.FlowRuleOutcomes$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -519,7 +511,8 @@ export class Flow extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

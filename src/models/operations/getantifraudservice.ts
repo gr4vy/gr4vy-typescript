@@ -12,17 +12,7 @@ export type GetAntiFraudServiceRequest = {
     antiFraudServiceId: string;
 };
 
-export type GetAntiFraudServiceResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Returns the information about a anti-fraud service.
-     */
-    antiFraudService?: components.AntiFraudService | undefined;
-    /**
-     * Returns a generic error.
-     */
-    errorGeneric?: components.ErrorGeneric | undefined;
-};
+export type GetAntiFraudServiceResponse = components.ErrorGeneric | components.AntiFraudService;
 
 /** @internal */
 export namespace GetAntiFraudServiceRequest$ {
@@ -57,47 +47,19 @@ export namespace GetAntiFraudServiceRequest$ {
 
 /** @internal */
 export namespace GetAntiFraudServiceResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        AntiFraudService?: components.AntiFraudService$.Inbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Inbound | undefined;
-    };
+    export type Inbound = components.ErrorGeneric$.Inbound | components.AntiFraudService$.Inbound;
 
-    export const inboundSchema: z.ZodType<GetAntiFraudServiceResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            AntiFraudService: components.AntiFraudService$.inboundSchema.optional(),
-            ErrorGeneric: components.ErrorGeneric$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.AntiFraudService === undefined
-                    ? null
-                    : { antiFraudService: v.AntiFraudService }),
-                ...(v.ErrorGeneric === undefined ? null : { errorGeneric: v.ErrorGeneric }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        AntiFraudService?: components.AntiFraudService$.Outbound | undefined;
-        ErrorGeneric?: components.ErrorGeneric$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetAntiFraudServiceResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            antiFraudService: components.AntiFraudService$.outboundSchema.optional(),
-            errorGeneric: components.ErrorGeneric$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.antiFraudService === undefined
-                    ? null
-                    : { AntiFraudService: v.antiFraudService }),
-                ...(v.errorGeneric === undefined ? null : { ErrorGeneric: v.errorGeneric }),
-            };
-        });
+    export type Outbound =
+        | components.ErrorGeneric$.Outbound
+        | components.AntiFraudService$.Outbound;
+    export const inboundSchema: z.ZodType<GetAntiFraudServiceResponse, z.ZodTypeDef, Inbound> =
+        z.union([
+            components.ErrorGeneric$.inboundSchema,
+            components.AntiFraudService$.inboundSchema,
+        ]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetAntiFraudServiceResponse> =
+        z.union([
+            components.ErrorGeneric$.outboundSchema,
+            components.AntiFraudService$.outboundSchema,
+        ]);
 }

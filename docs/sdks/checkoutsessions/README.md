@@ -159,7 +159,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteCheckoutSessionResponse](../../models/operations/deletecheckoutsessionresponse.md)>**
+**Promise<[components.ErrorGeneric](../../models/components/errorgeneric.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -213,7 +213,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateCheckoutSessionFieldsResponse](../../models/operations/updatecheckoutsessionfieldsresponse.md)>**
+**Promise<[components.ErrorGeneric](../../models/components/errorgeneric.md)>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |

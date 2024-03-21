@@ -71,7 +71,6 @@ export * from "./giftcardservicedefinition";
 export * from "./giftcardsnapshot";
 export * from "./giftcardssummary";
 export * from "./giftcardsummary";
-export * from "./httpmetadata";
 export * from "./merchantaccount";
 export * from "./merchantaccounts";
 export * from "./networktoken";

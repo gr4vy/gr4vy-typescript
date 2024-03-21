@@ -61,7 +61,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPaymentServicesResponse](../../models/operations/listpaymentservicesresponse.md)>**
+**Promise<[components.PaymentServices](../../models/components/paymentservices.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -105,7 +105,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPaymentServiceResponse](../../models/operations/getpaymentserviceresponse.md)>**
+**Promise<[components.PaymentService](../../models/components/paymentservice.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

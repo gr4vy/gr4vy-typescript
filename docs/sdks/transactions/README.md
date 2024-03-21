@@ -98,7 +98,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)>**
+**Promise<[components.Transactions](../../models/components/transactions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -142,7 +142,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransactionActionsResponse](../../models/operations/gettransactionactionsresponse.md)>**
+**Promise<[components.Actions](../../models/components/actions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -187,7 +187,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTransactionRefundsResponse](../../models/operations/listtransactionrefundsresponse.md)>**
+**Promise<[components.Refunds](../../models/components/refunds.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -234,7 +234,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetRefundResponse](../../models/operations/getrefundresponse.md)>**
+**Promise<[components.Refund](../../models/components/refund.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -279,7 +279,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransactionSummaryResponse](../../models/operations/gettransactionsummaryresponse.md)>**
+**Promise<[components.TransactionStatusSummary](../../models/components/transactionstatussummary.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

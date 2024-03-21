@@ -49,7 +49,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPaymentServiceDefinitionsResponse](../../models/operations/listpaymentservicedefinitionsresponse.md)>**
+**Promise<[components.PaymentServiceDefinitions](../../models/components/paymentservicedefinitions.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -93,7 +93,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPaymentServiceDefinitionResponse](../../models/operations/getpaymentservicedefinitionresponse.md)>**
+**Promise<[components.PaymentServiceDefinition](../../models/components/paymentservicedefinition.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

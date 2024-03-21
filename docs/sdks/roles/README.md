@@ -50,7 +50,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListRolesResponse](../../models/operations/listrolesresponse.md)>**
+**Promise<[components.Roles](../../models/components/roles.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -103,7 +103,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListRoleAssignmentsResponse](../../models/operations/listroleassignmentsresponse.md)>**
+**Promise<[components.RoleAssignments](../../models/components/roleassignments.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

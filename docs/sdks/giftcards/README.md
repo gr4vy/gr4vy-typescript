@@ -55,7 +55,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListBuyerGiftCardsResponse](../../models/operations/listbuyergiftcardsresponse.md)>**
+**Promise<[components.GiftCardsSummary](../../models/components/giftcardssummary.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -106,7 +106,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListGiftCardsResponse](../../models/operations/listgiftcardsresponse.md)>**
+**Promise<[components.GiftCards](../../models/components/giftcards.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
