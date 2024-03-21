@@ -30,7 +30,7 @@ service in that region are shown.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -81,8 +81,8 @@ Returns a list of stored payment methods.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { Status } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { Status } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -134,7 +134,7 @@ Gets the details for a stored payment method.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -179,7 +179,7 @@ Removes a stored payment method.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({

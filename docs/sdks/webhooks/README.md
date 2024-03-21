@@ -27,7 +27,7 @@ service definition.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy();
@@ -71,7 +71,7 @@ service definition.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy();
@@ -116,8 +116,8 @@ The response code and payload depends on external service.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { Resource } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { Resource } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy();

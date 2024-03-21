@@ -20,8 +20,8 @@ associated action, conditions, and outcome.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { Flow } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { Flow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -65,8 +65,8 @@ Returns a configured rule that triggers an action in a flow.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { GetFlowRulePathParamAction, GetFlowRulePathParamFlow } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { GetFlowRulePathParamAction, GetFlowRulePathParamFlow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -115,8 +115,8 @@ Deletes a given rule from the system.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { DeleteFlowRulePathParamAction, DeleteFlowRulePathParamFlow } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { DeleteFlowRulePathParamAction, DeleteFlowRulePathParamFlow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -165,8 +165,8 @@ Returns a list of possible outcomes for a given flow action.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { ListFlowOutcomesPathParamAction, ListFlowOutcomesPathParamFlow } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { ListFlowOutcomesPathParamAction, ListFlowOutcomesPathParamFlow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({

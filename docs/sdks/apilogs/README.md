@@ -17,7 +17,7 @@ Returns a list of API 4XX and 5XX logs.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({

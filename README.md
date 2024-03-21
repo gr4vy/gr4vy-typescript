@@ -44,7 +44,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new Gr4vy({
@@ -225,8 +225,8 @@ Validation errors can also occur when either method arguments or data returned f
 
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import * as errors from "@gr4vy/node/models/errors";
+import { Gr4vy } from "@gr4vy/sdk";
+import * as errors from "@gr4vy/sdk/models/errors";
 
 async function run() {
     const sdk = new Gr4vy({
@@ -277,7 +277,7 @@ You can override the default server globally by passing a server name to the `se
 | `sandbox` | `https://api.sandbox.{gr4vy_id}.gr4vy.app` | `gr4vy_id` (default is `plantly`) |
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new Gr4vy({
@@ -305,7 +305,7 @@ Some of the server options above contain variables. If you want to set the value
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new Gr4vy({
@@ -342,8 +342,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { HTTPClient } from "@gr4vy/node/lib/http";
+import { Gr4vy } from "@gr4vy/sdk";
+import { HTTPClient } from "@gr4vy/sdk/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -386,7 +386,7 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new Gr4vy({

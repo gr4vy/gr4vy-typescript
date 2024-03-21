@@ -19,7 +19,7 @@ Returns a list of roles.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -69,8 +69,8 @@ both the `assignee_type` and `assignee_id` parameters.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { AssigneeType } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { AssigneeType } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -119,7 +119,7 @@ assigned the role.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({

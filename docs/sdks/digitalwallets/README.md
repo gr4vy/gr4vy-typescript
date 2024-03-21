@@ -26,7 +26,7 @@ Returns a list of all registered digital wallets.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -67,7 +67,7 @@ Returns a registered digital wallet.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -119,7 +119,7 @@ are deleted alongside the Apple digital wallet's record.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({

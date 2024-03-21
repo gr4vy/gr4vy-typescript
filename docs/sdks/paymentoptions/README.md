@@ -29,7 +29,7 @@ Checkout flow rules are used to limit these result.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -84,8 +84,8 @@ Checkout flow rules are used to limit these result.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { ProductType } from "@gr4vy/node/models/components";
+import { Gr4vy } from "@gr4vy/sdk";
+import { ProductType } from "@gr4vy/sdk/models/components";
 
 async function run() {
   const sdk = new Gr4vy({

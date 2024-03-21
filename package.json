@@ -1,6 +1,6 @@
 {
-  "name": "@gr4vy/node",
-  "version": "0.2.1",
+  "name": "@gr4vy/sdk",
+  "version": "0.0.1",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,

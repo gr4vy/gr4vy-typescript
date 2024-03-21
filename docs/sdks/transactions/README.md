@@ -27,8 +27,8 @@ Lists all transactions for an account. Sorted by last updated at.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { QueryParamMethod, QueryParamStatus } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { QueryParamMethod, QueryParamStatus } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -113,7 +113,7 @@ Gets actions for a given transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -158,7 +158,7 @@ Lists all refunds associated with a certain transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -203,7 +203,7 @@ Gets information about a refund associated with a certain transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -250,7 +250,7 @@ Gets summary for a given transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({

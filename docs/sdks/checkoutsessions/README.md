@@ -20,8 +20,8 @@ Creates a new Checkout Session.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { ProductType } from "@gr4vy/node/models/components";
+import { Gr4vy } from "@gr4vy/sdk";
+import { ProductType } from "@gr4vy/sdk/models/components";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -85,7 +85,7 @@ Gets details about a current Checkout Session.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -130,7 +130,7 @@ Deletes a Checkout Session.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -175,8 +175,8 @@ Updates the Secure Fields of the Checkout Session.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { CheckoutSessionFieldsClickToPayPaymentMethodMethod } from "@gr4vy/node/models/components";
+import { Gr4vy } from "@gr4vy/sdk";
+import { CheckoutSessionFieldsClickToPayPaymentMethodMethod } from "@gr4vy/sdk/models/components";
 
 async function run() {
   const sdk = new Gr4vy({

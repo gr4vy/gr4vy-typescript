@@ -16,8 +16,8 @@ Returns a list of audit logs.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { Action } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { Action } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({

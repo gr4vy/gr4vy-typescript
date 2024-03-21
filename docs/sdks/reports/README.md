@@ -46,8 +46,8 @@ Returns a list of executions belonging to any report.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { ListAllReportExecutionsQueryParamStatus } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { ListAllReportExecutionsQueryParamStatus } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -102,7 +102,7 @@ Retrieves the details of a single report execution.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -147,8 +147,8 @@ Returns a list of reports.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
-import { Schedule } from "@gr4vy/node/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+import { Schedule } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -199,7 +199,7 @@ Retrieves the details of a single report.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -246,7 +246,7 @@ there may be more.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({
@@ -295,7 +295,7 @@ execution.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/node";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new Gr4vy({

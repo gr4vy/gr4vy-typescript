@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.2.1
+  version: 0.0.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -31,6 +31,6 @@ typescript:
   inputModelSuffix: input
   maxMethodParams: 4
   outputModelSuffix: output
-  packageName: '@gr4vy/node'
+  packageName: '@gr4vy/sdk'
   responseFormat: flat
   templateVersion: v2
