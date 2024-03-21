@@ -32,5 +32,5 @@ typescript:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: '@gr4vy/node'
-  responseFormat: envelope-http
+  responseFormat: flat
   templateVersion: v2
