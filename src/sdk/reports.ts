@@ -86,18 +86,15 @@ export class Reports extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "list-all-report-executions",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -189,18 +186,15 @@ export class Reports extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "get-report-execution",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -307,18 +301,15 @@ export class Reports extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "list-reports",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -404,18 +395,15 @@ export class Reports extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "get-report",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -528,18 +516,15 @@ export class Reports extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "list-report-executions",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -638,18 +623,15 @@ export class Reports extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "generate-download-url",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 

@@ -4,3 +4,4 @@
 
 export * from "./sdk";
 export * from "./lib/config";
+export { getBearerToken, withBearerToken } from "./lib/auth"

@@ -83,18 +83,15 @@ export class Buyers extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "list-buyers",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -183,18 +180,15 @@ export class Buyers extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "get-buyer",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -307,18 +301,15 @@ export class Buyers extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "delete-buyer",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -418,18 +409,15 @@ export class Buyers extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "list-buyer-shipping-details",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -537,18 +525,15 @@ export class Buyers extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "delete-buyer-shipping-detail",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -658,18 +643,15 @@ export class Buyers extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.bearerAuth === "function") {
-            security$ = { bearerAuth: await this.options$.bearerAuth() };
-        } else if (this.options$.bearerAuth) {
-            security$ = { bearerAuth: this.options$.bearerAuth };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "get-buyer-billing-details",
             oAuth2Scopes: [],
-            securitySource: this.options$.bearerAuth,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 

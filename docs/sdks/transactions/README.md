@@ -27,12 +27,14 @@ Lists all transactions for an account. Sorted by last updated at.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { QueryParamMethod, QueryParamStatus } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const result = await sdk.transactions.listTransactions({
@@ -113,11 +115,13 @@ Gets actions for a given transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
@@ -158,11 +162,13 @@ Lists all refunds associated with a certain transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
@@ -203,11 +209,13 @@ Gets information about a refund associated with a certain transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
@@ -250,11 +258,13 @@ Gets summary for a given transaction.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";

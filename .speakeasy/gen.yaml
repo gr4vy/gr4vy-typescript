@@ -1,6 +1,6 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: gr4vy
+  sdkClassName: SDK
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
@@ -12,14 +12,21 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.0.1
+  version: 0.0.4
   additionalDependencies:
-    dependencies: {}
-    devDependencies: {}
+    dependencies:
+      '@trust/keyto': ^1.0.1
+      jsonwebtoken: ^9.0.2
+      jwk-thumbprint: ^0.1.4
+      uuid: ^9.0.1
+    devDependencies:
+      '@types/jsonwebtoken': ^9.0.6
+      '@types/trust__keyto': ^1.0.4
+      '@types/uuid': ^9.0.8
     peerDependencies: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
-  flattenGlobalSecurity: true
+  flattenGlobalSecurity: false
   imports:
     option: openapi
     paths:

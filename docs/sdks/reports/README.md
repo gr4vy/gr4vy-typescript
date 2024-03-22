@@ -46,12 +46,14 @@ Returns a list of executions belonging to any report.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { ListAllReportExecutionsQueryParamStatus } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const result = await sdk.reports.listAllReportExecutions({
@@ -102,11 +104,13 @@ Retrieves the details of a single report execution.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const reportExecutionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
@@ -147,12 +151,14 @@ Returns a list of reports.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { Schedule } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const result = await sdk.reports.listReports({
@@ -199,11 +205,13 @@ Retrieves the details of a single report.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
@@ -246,11 +254,13 @@ there may be more.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
@@ -295,11 +305,13 @@ execution.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";

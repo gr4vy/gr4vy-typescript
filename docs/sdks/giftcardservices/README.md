@@ -18,11 +18,13 @@ Retrieves the details of a single configured gift card service.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const giftCardServiceId = "541b126f-44c5-4c5e-a06b-d0e0d54c7d3f";
@@ -63,11 +65,13 @@ Deletes a specific gift card service.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const giftCardServiceId = "541b126f-44c5-4c5e-a06b-d0e0d54c7d3f";

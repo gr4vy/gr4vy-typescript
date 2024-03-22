@@ -25,11 +25,13 @@ Get all payment service tokens for a given payment method and payment service.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -71,11 +73,13 @@ Tokenize stored card against a payment service.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -123,11 +127,13 @@ Deletes a specific payment service token.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -170,11 +176,13 @@ Approves a specific payment service token.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -217,11 +225,13 @@ Approves a specific payment service token.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -264,11 +274,13 @@ Get stored network tokens for the given payment method.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -310,11 +322,13 @@ Provision a network token for a stored card.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -362,11 +376,13 @@ Deletes a specific network token.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -409,11 +425,13 @@ Suspends a specific network token.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -457,11 +475,13 @@ Resumes a specific network token.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";

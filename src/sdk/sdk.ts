@@ -31,7 +31,7 @@ import { Tokens } from "./tokens";
 import { Transactions } from "./transactions";
 import { Webhooks } from "./webhooks";
 
-export class Gr4vy extends ClientSDK {
+export class SDK extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
 
     constructor(options: SDKOptions = {}) {

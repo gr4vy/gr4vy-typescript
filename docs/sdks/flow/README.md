@@ -20,12 +20,14 @@ associated action, conditions, and outcome.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { Flow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const flow = Flow.Checkout;
@@ -65,12 +67,14 @@ Returns a configured rule that triggers an action in a flow.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { GetFlowRulePathParamAction, GetFlowRulePathParamFlow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const flow = GetFlowRulePathParamFlow.Checkout;
@@ -115,12 +119,14 @@ Deletes a given rule from the system.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { DeleteFlowRulePathParamAction, DeleteFlowRulePathParamFlow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const flow = DeleteFlowRulePathParamFlow.Checkout;
@@ -165,12 +171,14 @@ Returns a list of possible outcomes for a given flow action.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { ListFlowOutcomesPathParamAction, ListFlowOutcomesPathParamFlow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+  const sdk = new SDK({
+    security: {
+      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    },
   });
 
   const flow = ListFlowOutcomesPathParamFlow.Checkout;

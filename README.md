@@ -1,9 +1,9 @@
-# @gr4vy/node
+# @gr4vy/js
 
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
     <a href="https://opensource.org/licenses/MIT">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&labelColor=black" style="width: 100px; height: 28px;" />
     </a>
 </div>
 
@@ -44,11 +44,13 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-    const sdk = new Gr4vy({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    const sdk = new SDK({
+        security: {
+            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        },
     });
 
     const result = await sdk.apiLogs.listApiLogs();
@@ -225,12 +227,14 @@ Validation errors can also occur when either method arguments or data returned f
 
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import * as errors from "@gr4vy/sdk/models/errors";
 
 async function run() {
-    const sdk = new Gr4vy({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    const sdk = new SDK({
+        security: {
+            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        },
     });
 
     let result;
@@ -277,12 +281,14 @@ You can override the default server globally by passing a server name to the `se
 | `sandbox` | `https://api.sandbox.{gr4vy_id}.gr4vy.app` | `gr4vy_id` (default is `plantly`) |
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-    const sdk = new Gr4vy({
+    const sdk = new SDK({
         server: "sandbox",
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        security: {
+            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        },
     });
 
     const result = await sdk.apiLogs.listApiLogs();
@@ -305,12 +311,14 @@ Some of the server options above contain variables. If you want to set the value
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-    const sdk = new Gr4vy({
+    const sdk = new SDK({
         serverURL: "https://api.{gr4vy_id}.gr4vy.app",
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        security: {
+            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        },
     });
 
     const result = await sdk.apiLogs.listApiLogs();
@@ -342,7 +350,7 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { HTTPClient } from "@gr4vy/sdk/lib/http";
 
 const httpClient = new HTTPClient({
@@ -369,7 +377,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Gr4vy({ httpClient });
+const sdk = new SDK({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -384,13 +392,15 @@ This SDK supports the following security scheme globally:
 | ------------ | ------------ | ------------ |
 | `bearerAuth` | http         | HTTP Bearer  |
 
-To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-    const sdk = new Gr4vy({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    const sdk = new SDK({
+        security: {
+            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        },
     });
 
     const result = await sdk.apiLogs.listApiLogs();

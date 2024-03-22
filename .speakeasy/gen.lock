@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: f0f2fdc0825402fb35cd9ed358800824
+  docChecksum: 19f1d81c364946cbebea73a3d3e134a7
   docVersion: 1.1.0-beta
-  speakeasyVersion: 1.215.1
-  generationVersion: 2.286.4
-  releaseVersion: 0.0.1
-  configChecksum: d3a7cf5ec4fe035683caa4d033ef7887
+  speakeasyVersion: 1.220.0
+  generationVersion: 2.286.7
+  releaseVersion: 0.0.4
+  configChecksum: 17a23556d88f2c980f5ac868d21794c0
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
 features:
@@ -52,7 +52,6 @@ generatedFiles:
   - .npmignore
   - RUNTIMES.md
   - package.json
-  - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/encodings.ts
@@ -756,7 +755,7 @@ generatedFiles:
   - docs/models/operations/deletenetworktokenresponse.md
   - docs/models/operations/suspendnetworktokenrequest.md
   - docs/models/operations/resumenetworktokenrequest.md
-  - docs/sdks/gr4vy/README.md
+  - docs/sdks/sdk/README.md
   - docs/sdks/apilogs/README.md
   - docs/sdks/auditlogs/README.md
   - docs/sdks/buyers/README.md
