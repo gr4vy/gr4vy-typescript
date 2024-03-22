@@ -27,10 +27,10 @@ service definition.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy();
+  const sdk = new SDK();
 
   const hook = "e4f7797af7cc56edb85cde7f94745a13";
   
@@ -71,10 +71,10 @@ service definition.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-  const sdk = new Gr4vy();
+  const sdk = new SDK();
 
   const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";
   const signature = "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM";
@@ -116,11 +116,11 @@ The response code and payload depends on external service.
 ### Example Usage
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 import { Resource } from "@gr4vy/sdk/models/operations";
 
 async function run() {
-  const sdk = new Gr4vy();
+  const sdk = new SDK();
 
   const resource = Resource.Ps;
   const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";

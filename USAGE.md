@@ -1,10 +1,12 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { SDK } from "@gr4vy/sdk";
 
 async function run() {
-    const sdk = new Gr4vy({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    const sdk = new SDK({
+        security: {
+            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        },
     });
 
     const result = await sdk.apiLogs.listApiLogs();
