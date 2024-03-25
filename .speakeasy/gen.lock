@@ -3,10 +3,10 @@ id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
   docChecksum: 19f1d81c364946cbebea73a3d3e134a7
   docVersion: 1.1.0-beta
-  speakeasyVersion: 1.220.0
-  generationVersion: 2.286.7
-  releaseVersion: 0.0.4
-  configChecksum: 17a23556d88f2c980f5ac868d21794c0
+  speakeasyVersion: 1.221.0
+  generationVersion: 2.287.0
+  releaseVersion: 0.0.5
+  configChecksum: ef8f353f04447b532a12c8350625ecb5
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
 features:
