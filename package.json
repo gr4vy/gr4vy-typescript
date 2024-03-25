@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
@@ -34,6 +34,7 @@
     "@trust/keyto": "^1.0.1",
     "jsonwebtoken": "^9.0.2",
     "jwk-thumbprint": "^0.1.4",
+    "snakecase-keys": "^6.0.0",
     "uuid": "^9.0.1"
   }
 }
