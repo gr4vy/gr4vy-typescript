@@ -12,7 +12,7 @@ const issuer = `Gr4vy Node SDK ${SDK_METADATA.sdkVersion} - ${ua}`;
 /**
  * Helper method for generating a bearer token for use with the SDK
  */
-export const withBearerAuth = (options: {
+export const withToken = (options: {
   privateKey: string;
   scopes?: JWTScope[] | string[];
   expiresIn?: string;
@@ -24,7 +24,7 @@ export const withBearerAuth = (options: {
   } = options;
 
   return async (): Promise<string> => {
-    const bearerAuth = await getBearerAuth({ privateKey, scopes, expiresIn });
+    const bearerAuth = await getToken({ privateKey, scopes, expiresIn });
     return bearerAuth;
   };
 };
@@ -32,7 +32,7 @@ export const withBearerAuth = (options: {
 /**
  * Helper method for generating a bearer token for use with and without the SDK
  */
-export const getBearerAuth = async (options: {
+export const getToken = async (options: {
   privateKey: string;
   expiresIn?: string;
   scopes?: JWTScope[] | string[];

@@ -5,5 +5,5 @@
 export * from "./sdk";
 export * from "./lib/config";
 
-export { getBearerAuth, withBearerAuth, JWTScope } from "./lib/auth"
+export { getToken, withToken, JWTScope } from "./lib/auth"
 export type { EmbedParams } from "./lib/auth"

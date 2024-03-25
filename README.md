@@ -38,20 +38,22 @@ yarn add https://github.com/gr4vy/gr4vy-js
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- End Requirements [requirements] -->
 
-<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
 ### Example
 
 ```typescript
+import fs from "fs";
 import { SDK } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new SDK({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+        bearerAuth: withToken({
+          privateKey: fs.readFileSync("private_key.pem", "utf8"),
+        }),
     });
 
-    const result = await sdk.apiLogs.listApiLogs();
+    const result = await sdk.transactions.listTransactions({});
 
     // Handle the result
     console.log(result);
@@ -60,7 +62,6 @@ async function run() {
 run();
 
 ```
-<!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
