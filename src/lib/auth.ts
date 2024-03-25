@@ -42,7 +42,7 @@ const issuer = `Gr4vy Node SDK ${SDK_METADATA.sdkVersion} - ${ua}`;
 export const withBearerToken = (options: {
   client?: HTTPClient;
   privateKey: string;
-  scopes?: JWTScope[];
+  scopes?: JWTScope[] | string[];
   expiresIn?: string;
 }): (() => Promise<Security>) => {
   const {
@@ -60,7 +60,7 @@ export const withBearerToken = (options: {
 export async function getBearerToken(
   privateKey: string,
   options: {
-    scopes: JWTScope[];
+    scopes: JWTScope[] | string[];
     expiresIn: string;
     embedParams?: EmbedParams;
     checkoutSessionId?: string;
@@ -77,7 +77,7 @@ export async function getBearerToken(
 
   if (scopes.includes(JWTScope.Embed) && embedParams) {
     const connOptions =
-      embedParams.connectionOptions || embedParams["connection_options"];
+      embedParams.connectionOptions || embedParams["connectionOptions"];
     claims["embed"] = snakeCaseKeys(embedParams, { exclude: ["metadata"] });
     claims["embed"]["connection_options"] = connOptions;
   }
@@ -89,35 +89,6 @@ export async function getBearerToken(
     expiresIn,
     notBefore: "0s",
     issuer,
-  });
-}
-
-export async function updateBearerToken(
-  privateKey: string,
-  token: string,
-  options: {
-    expiresIn: string;
-    embedParams?: EmbedParams;
-  }
-): Promise<string> {
-  const { expiresIn = "30s", embedParams } = options;
-
-  const payload = jwt.verify(token, privateKey, {
-    algorithms: ["ES512"],
-    ignoreExpiration: true,
-  });
-
-  if (typeof payload !== "object") {
-    throw new Error("Invalid JWS payload");
-  }
-
-  const { scopes, checkout_session_id: checkoutSessionId, embed } = payload;
-
-  return getBearerToken(privateKey, {
-    scopes,
-    expiresIn,
-    embedParams: embedParams ?? embed,
-    checkoutSessionId,
   });
 }
 
@@ -157,16 +128,43 @@ export enum JWTScope {
   ReadAll = "*.read",
   WriteAll = "*.write",
   Embed = "embed",
+  AntiFraudServiceDefinitionsRead = "anti-fraud-service-definitions.read",
+  AntiFraudServiceDefinitionsWrite = "anti-fraud-service-definitions.write",
+  AntiFraudServicesRead = "anti-fraud-services.read",
+  AntiFraudServicesWrite = "anti-fraud-services.write",
+  AuditLogsRead = "audit-logs.read",
   BuyersRead = "buyers.read",
   BuyersWrite = "buyers.write",
+  BuyersBillingDetailsRead = "buyers.billingDetails.read",
+  BuyersBillingDetailsWrite = "buyers.billingDetails.write",
+  CardSchemeDefinitionsRead = "card-scheme-definitions.read",
+  CheckoutSessionsRead = "checkout-sessions.read",
+  CheckoutSessionsWrite = "checkout-sessions.write",
+  ConnectionsRead = "connections.read",
+  ConnectionsWrite =  "connections.write",
+  DigitalWalletsRead = "digital-wallets.read",
+  DigitalWalletsWrite = "digital-wallets.write",
+  FlowsRead = "flows.read",
+  FlowsWrite = "flows.write",
+  GiftCardServiceDefinitionsRead = "gift-card-service-definitions.read",
+  GiftCardServicesRead = "gift-card-services.read",
+  GiftCardServicesWrite = "gift-card-services.write",
+  GiftCardsRead = "gift-cards.read",
+  GiftCardsWrite = "gift-cards.write",
+  MerchantAccountRead = "merchant-accounts.reads",
+  MerchantAccountWrite = "merchant-accounts.write",
+  PaymentMethodDefinitionsRead = "payment-method-definitions.read",
   PaymentMethodRead = "payment-methods.read",
   PaymentMethodWrite = "payment-methods.write",
   PaymentOptionsRead = "payment-options.read",
   PaymentServiceDefinitionsRead = "payment-service-definitions.read",
   PaymentServicesRead = "payment-services.read",
   PaymentServicesWrite = "payment-services.write",
+  ReportsRead = "reports.read",
+  ReportsWrite = "reports.write",
   TransactionsRead = "transactions.read",
   TransactionsWrite = "transactions.write",
+  VaultForwardWrite = "vault-forward.write",
 }
 
 export type EmbedParams = {
@@ -178,12 +176,10 @@ export type EmbedParams = {
   cartItems?: Array<CartItem>;
   merchantAccountId?: string;
   connectionOptions?: Record<string, any>;
-  /** @deprecated use `connectionOptions` instead */
-  connection_options?: Record<string, any>;
 };
 
 type Claims = {
-  scopes: JWTScope[];
+  scopes: JWTScope[] | string[];
   checkout_session_id?: string;
   embed?: Record<string, unknown>;
 };
