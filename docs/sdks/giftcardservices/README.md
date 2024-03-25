@@ -22,9 +22,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const giftCardServiceId = "541b126f-44c5-4c5e-a06b-d0e0d54c7d3f";
@@ -69,9 +67,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const giftCardServiceId = "541b126f-44c5-4c5e-a06b-d0e0d54c7d3f";

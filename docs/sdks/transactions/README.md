@@ -32,9 +32,7 @@ import { QueryParamMethod, QueryParamStatus } from "@gr4vy/sdk/models/operations
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const result = await sdk.transactions.listTransactions({
@@ -119,9 +117,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
@@ -166,9 +162,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
@@ -213,9 +207,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
@@ -262,9 +254,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const transactionId = "fe26475d-ec3e-4884-9553-f7356683f7f9";

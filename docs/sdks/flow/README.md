@@ -25,9 +25,7 @@ import { Flow } from "@gr4vy/sdk/models/operations";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const flow = Flow.Checkout;
@@ -72,9 +70,7 @@ import { GetFlowRulePathParamAction, GetFlowRulePathParamFlow } from "@gr4vy/sdk
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const flow = GetFlowRulePathParamFlow.Checkout;
@@ -124,9 +120,7 @@ import { DeleteFlowRulePathParamAction, DeleteFlowRulePathParamFlow } from "@gr4
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const flow = DeleteFlowRulePathParamFlow.Checkout;
@@ -176,9 +170,7 @@ import { ListFlowOutcomesPathParamAction, ListFlowOutcomesPathParamFlow } from "
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const flow = ListFlowOutcomesPathParamFlow.Checkout;

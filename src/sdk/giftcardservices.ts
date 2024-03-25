@@ -76,15 +76,18 @@ export class GiftCardServices extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "get-gift-card-service",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -189,15 +192,18 @@ export class GiftCardServices extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "delete-gift-card-service",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 

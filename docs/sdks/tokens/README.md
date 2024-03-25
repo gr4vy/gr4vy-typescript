@@ -29,9 +29,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -77,9 +75,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -131,9 +127,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -180,9 +174,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -229,9 +221,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -278,9 +268,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -326,9 +314,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -380,9 +366,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -429,9 +413,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
@@ -479,9 +461,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";

@@ -22,9 +22,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const limit = 1;
@@ -70,9 +68,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const paymentServiceDefinitionId = "stripe-card";

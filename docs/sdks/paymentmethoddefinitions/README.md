@@ -20,9 +20,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const result = await sdk.paymentMethodDefinitions.listPaymentMethodDefinitions();

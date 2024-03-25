@@ -75,15 +75,18 @@ export class PaymentServiceDefinitions extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "list-payment-service-definitions",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -175,15 +178,18 @@ export class PaymentServiceDefinitions extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "get-payment-service-definition",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 

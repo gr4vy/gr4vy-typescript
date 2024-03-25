@@ -76,15 +76,18 @@ export class Tokens extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "get-payment-service-tokens",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -195,15 +198,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "provision-payment-service-token",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -327,15 +333,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "delete-payment-service-token",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -446,15 +455,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "approve-payment-service-token-get",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -567,15 +579,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "approve-payment-service-token-post",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -681,15 +696,18 @@ export class Tokens extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "get-network-tokens",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -797,15 +815,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "provision-network-token",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -928,15 +949,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "delete-network-token",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1044,15 +1068,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "suspend-network-token",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1175,15 +1202,18 @@ export class Tokens extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "resume-network-token",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 

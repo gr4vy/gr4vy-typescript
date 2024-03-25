@@ -25,9 +25,7 @@ import { ProductType } from "@gr4vy/sdk/models/components";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const result = await sdk.checkoutSessions.newCheckoutSession({
@@ -91,9 +89,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const checkoutSessionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
@@ -138,9 +134,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const checkoutSessionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
@@ -186,9 +180,7 @@ import { CheckoutSessionFieldsClickToPayPaymentMethodMethod } from "@gr4vy/sdk/m
 
 async function run() {
   const sdk = new SDK({
-    security: {
-      bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    },
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   const checkoutSessionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";

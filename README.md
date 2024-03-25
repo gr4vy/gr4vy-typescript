@@ -48,9 +48,7 @@ import { SDK } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new SDK({
-        security: {
-            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-        },
+        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
     const result = await sdk.apiLogs.listApiLogs();
@@ -232,9 +230,7 @@ import * as errors from "@gr4vy/sdk/models/errors";
 
 async function run() {
     const sdk = new SDK({
-        security: {
-            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-        },
+        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
     let result;
@@ -286,9 +282,7 @@ import { SDK } from "@gr4vy/sdk";
 async function run() {
     const sdk = new SDK({
         server: "sandbox",
-        security: {
-            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-        },
+        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
     const result = await sdk.apiLogs.listApiLogs();
@@ -316,9 +310,7 @@ import { SDK } from "@gr4vy/sdk";
 async function run() {
     const sdk = new SDK({
         serverURL: "https://api.{gr4vy_id}.gr4vy.app",
-        security: {
-            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-        },
+        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
     const result = await sdk.apiLogs.listApiLogs();
@@ -392,15 +384,13 @@ This SDK supports the following security scheme globally:
 | ------------ | ------------ | ------------ |
 | `bearerAuth` | http         | HTTP Bearer  |
 
-You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
+To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new SDK({
-        security: {
-            bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-        },
+        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
     });
 
     const result = await sdk.apiLogs.listApiLogs();

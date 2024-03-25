@@ -74,15 +74,18 @@ export class Flow extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "list-flow-rules",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -185,15 +188,18 @@ export class Flow extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "get-flow-rule",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -319,15 +325,18 @@ export class Flow extends ClientSDK {
 
         const query$ = "";
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "delete-flow-rule",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -441,15 +450,18 @@ export class Flow extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        const security$ =
-            typeof this.options$.security === "function"
-                ? await this.options$.security()
-                : this.options$.security;
-
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
         const context = {
             operationID: "list-flow-outcomes",
             oAuth2Scopes: [],
-            securitySource: this.options$.security,
+            securitySource: this.options$.bearerAuth,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 

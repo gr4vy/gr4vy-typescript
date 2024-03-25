@@ -1,72 +1,51 @@
-import keyto from "@trust/keyto";
 import jwt from "jsonwebtoken";
-import { jwkThumbprintByEncoding } from "jwk-thumbprint";
 import snakeCaseKeys from "snakecase-keys";
 import { v4 as uuid } from "uuid";
 
 import { SDK_METADATA } from "./config";
-import { Security } from "../models/components/security";
 import { CartItem } from "../models/components/cartitem";
-import { HTTPClient } from "./http";
-
-/**
- * Attempts to detect the JS runtime and its version based on available globals.
- */
-function getRuntime() {
-  if (
-    typeof navigator !== "undefined" &&
-    typeof navigator.userAgent === "string"
-  ) {
-    return navigator.userAgent;
-  }
-
-  const gt: unknown = globalThis;
-  if (
-    typeof gt === "object" &&
-    gt != null &&
-    "process" in gt &&
-    typeof gt.process === "object" &&
-    gt.process != null &&
-    "version" in gt.process &&
-    typeof gt.process.version === "string"
-  ) {
-    return `Node.js/${gt.process.version}`;
-  }
-
-  return "<unknown-runtime>";
-}
+import { getKeyId, getRuntime } from "./helpers";
 
 const ua = getRuntime();
 const issuer = `Gr4vy Node SDK ${SDK_METADATA.sdkVersion} - ${ua}`;
 
-export const withBearerToken = (options: {
-  client?: HTTPClient;
+/**
+ * Helper method for generating a bearer token for use with the SDK
+ */
+export const withBearerAuth = (options: {
   privateKey: string;
   scopes?: JWTScope[] | string[];
   expiresIn?: string;
-}): (() => Promise<Security>) => {
+}): (() => Promise<string>) => {
   const {
     privateKey,
     scopes = [JWTScope.ReadAll, JWTScope.WriteAll],
     expiresIn = "30s",
   } = options;
 
-  return async (): Promise<Security> => {
-    const bearerAuth = await getBearerToken(privateKey, { scopes, expiresIn });
-    return { bearerAuth };
+  return async (): Promise<string> => {
+    const bearerAuth = await getBearerAuth({ privateKey, scopes, expiresIn });
+    return bearerAuth;
   };
 };
 
-export async function getBearerToken(
-  privateKey: string,
-  options: {
-    scopes: JWTScope[] | string[];
-    expiresIn: string;
-    embedParams?: EmbedParams;
-    checkoutSessionId?: string;
-  }
-): Promise<string> {
-  const { scopes, expiresIn, embedParams, checkoutSessionId } = options;
+/**
+ * Helper method for generating a bearer token for use with and without the SDK
+ */
+export const getBearerAuth = async (options: {
+  privateKey: string;
+  expiresIn?: string;
+  scopes?: JWTScope[] | string[];
+  embedParams?: EmbedParams;
+  checkoutSessionId?: string;
+}): Promise<string> => {
+  const {
+    privateKey,
+    checkoutSessionId,
+    embedParams,
+    scopes = [JWTScope.ReadAll, JWTScope.WriteAll],
+    expiresIn = "30s",
+  } = options;
 
   const keyid = await getKeyId(privateKey);
   const claims: Claims = { scopes };
@@ -90,40 +69,11 @@ export async function getBearerToken(
     notBefore: "0s",
     issuer,
   });
-}
+};
 
-async function getKeyId(privateKey: string): Promise<string> {
-  const jwk = keyto.from(privateKey, "pem").toJwk("private");
-
-  const keyid = jwkThumbprintByEncoding(
-    stripUndefined(jwk),
-    "SHA-256",
-    "base64url"
-  );
-  if (keyid == null) {
-    throw new Error("Failed to generate jwk thumbprint");
-  }
-
-  return keyid;
-}
-
-function stripUndefined<T extends {}>(
-  obj: T
-): { [K in keyof T]?: Exclude<T[K], undefined> } {
-  const newObj: { [K in keyof T]?: Exclude<T[K], undefined> } = {};
-  const target: Record<string, unknown> = newObj;
-
-  for (const entry of Object.entries(obj)) {
-    const [key, value] = entry;
-
-    if (typeof value !== "undefined") {
-      target[key] = value;
-    }
-  }
-
-  return newObj;
-}
-
+/**
+ * Short hands for scopes. Strings can be used as well.
+ */
 export enum JWTScope {
   ReadAll = "*.read",
   WriteAll = "*.write",
@@ -141,7 +91,7 @@ export enum JWTScope {
   CheckoutSessionsRead = "checkout-sessions.read",
   CheckoutSessionsWrite = "checkout-sessions.write",
   ConnectionsRead = "connections.read",
-  ConnectionsWrite =  "connections.write",
+  ConnectionsWrite = "connections.write",
   DigitalWalletsRead = "digital-wallets.read",
   DigitalWalletsWrite = "digital-wallets.write",
   FlowsRead = "flows.read",
@@ -167,6 +117,9 @@ export enum JWTScope {
   VaultForwardWrite = "vault-forward.write",
 }
 
+/**
+ * Parameters that can be pinned using Embed
+ */
 export type EmbedParams = {
   amount: number;
   currency: string;
@@ -178,6 +131,9 @@ export type EmbedParams = {
   connectionOptions?: Record<string, any>;
 };
 
+/**
+ * Claims that can be embedded in the JWT
+ */
 type Claims = {
   scopes: JWTScope[] | string[];
   checkout_session_id?: string;
