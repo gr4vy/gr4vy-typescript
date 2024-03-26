@@ -1,4 +1,4 @@
-# PaymentServiceSnapshotType
+# TransactionSummaryPaymentServiceType
 
 The type of this resource.
 

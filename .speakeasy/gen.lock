@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 19f1d81c364946cbebea73a3d3e134a7
+  docChecksum: 745a08f9a7a7bdf5712ca7590f317be1
   docVersion: 1.1.0-beta
-  speakeasyVersion: 1.220.0
-  generationVersion: 2.286.7
-  releaseVersion: 0.0.6
-  configChecksum: df15b906882e41cf0a8a05cb284d240b
+  speakeasyVersion: 1.222.0
+  generationVersion: 2.287.0
+  releaseVersion: 0.1.9
+  configChecksum: d8cfb7363ab7f4863b53ee6b1229ba49
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
 features:
@@ -19,6 +19,7 @@ features:
     globalSecurity: 2.82.8
     globalServerURLs: 2.82.4
     ignores: 2.81.1
+    pagination: 2.82.1
     responseFormat: 0.2.2
     serverIDs: 2.81.2
     unions: 2.85.3
@@ -120,8 +121,6 @@ generatedFiles:
   - src/models/components/digitalwalletclicktopayfields.ts
   - src/models/components/transactions.ts
   - src/models/components/transactionsummary.ts
-  - src/models/components/paymentservicesnapshot.ts
-  - src/models/components/paymentmethodsnapshot.ts
   - src/models/components/giftcardredemption.ts
   - src/models/components/giftcardsnapshot.ts
   - src/models/components/actions.ts
@@ -413,16 +412,18 @@ generatedFiles:
   - docs/models/components/instrumenttype.md
   - docs/models/components/intent.md
   - docs/models/components/transactionsummarymethod.md
+  - docs/models/components/transactionsummarypaymentmethodtype.md
+  - docs/models/components/transactionsummaryapprovaltarget.md
+  - docs/models/components/transactionsummarycardtype.md
+  - docs/models/components/card.md
+  - docs/models/components/transactionsummarypaymentmethodmethod.md
+  - docs/models/components/transactionsummaryscheme.md
+  - docs/models/components/paymentmethodsnapshot.md
+  - docs/models/components/transactionsummarypaymentservicetype.md
+  - docs/models/components/transactionsummarypaymentservicemethod.md
+  - docs/models/components/apaymentservice.md
   - docs/models/components/transactionsummarystatus.md
   - docs/models/components/transactionsummary.md
-  - docs/models/components/paymentservicesnapshottype.md
-  - docs/models/components/paymentservicesnapshotmethod.md
-  - docs/models/components/paymentservicesnapshot.md
-  - docs/models/components/paymentmethodsnapshottype.md
-  - docs/models/components/paymentmethodsnapshotapprovaltarget.md
-  - docs/models/components/paymentmethodsnapshotmethod.md
-  - docs/models/components/paymentmethodsnapshotscheme.md
-  - docs/models/components/paymentmethodsnapshot.md
   - docs/models/components/giftcardredemptiontype.md
   - docs/models/components/giftcardredemptionstatus.md
   - docs/models/components/errorcode.md
@@ -692,6 +693,7 @@ generatedFiles:
   - docs/models/operations/queryparammethod.md
   - docs/models/operations/queryparamstatus.md
   - docs/models/operations/listtransactionsrequest.md
+  - docs/models/operations/listtransactionsresponse.md
   - docs/models/operations/gettransactionactionsrequest.md
   - docs/models/operations/listtransactionrefundsrequest.md
   - docs/models/operations/getrefundrequest.md

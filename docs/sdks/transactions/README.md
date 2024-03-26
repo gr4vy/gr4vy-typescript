@@ -80,8 +80,9 @@ async function run() {
     updatedAtLte: new Date("2022-01-01T12:00:00+08:00"),
   });
 
-  // Handle the result
-  console.log(result)
+  for await (const page of result) {
+    // handle page
+  }
 }
 
 run();
@@ -98,7 +99,7 @@ run();
 
 ### Response
 
-**Promise<[components.Transactions](../../models/components/transactions.md)>**
+**Promise<[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

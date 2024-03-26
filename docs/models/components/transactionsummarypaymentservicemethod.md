@@ -1,6 +1,6 @@
-# PaymentOptionMethod
+# TransactionSummaryPaymentServiceMethod
 
-The type of payment method that is available.
+The payment method that this services handles.
 
 
 ## Values
