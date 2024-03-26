@@ -1,4 +1,4 @@
-# PaymentMethodSnapshotType
+# TransactionSummaryPaymentMethodType
 
 `payment-method`.
 

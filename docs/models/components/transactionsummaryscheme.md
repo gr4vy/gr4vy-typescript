@@ -1,4 +1,4 @@
-# PaymentMethodSnapshotScheme
+# TransactionSummaryScheme
 
 An additional label used to differentiate different sub-types of a payment
 method. Most notably this can include the type of card used in a

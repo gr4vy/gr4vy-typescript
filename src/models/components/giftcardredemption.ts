@@ -16,6 +16,7 @@ export enum GiftCardRedemptionType {
  * The status of the gift card redemption for the `payment_method`.
  */
 export enum GiftCardRedemptionStatus {
+    Created = "created",
     Succeeded = "succeeded",
     Failed = "failed",
     Skipped = "skipped",
@@ -75,7 +76,7 @@ export type GiftCardRedemption = {
     /**
      * The gift card service's unique ID for the redemption.
      */
-    giftCardServiceRedemptionId?: string | undefined;
+    giftCardServiceRedemptionId?: string | null | undefined;
     /**
      * If this gift card redemption resulted in an error, this will
      *
@@ -120,7 +121,7 @@ export namespace GiftCardRedemption$ {
         status?: GiftCardRedemptionStatus | undefined;
         amount?: number | undefined;
         refunded_amount?: number | undefined;
-        gift_card_service_redemption_id?: string | undefined;
+        gift_card_service_redemption_id?: string | null | undefined;
         error_code?: ErrorCode | null | undefined;
         raw_error_code?: string | null | undefined;
         raw_error_message?: string | null | undefined;
@@ -134,7 +135,7 @@ export namespace GiftCardRedemption$ {
             status: GiftCardRedemptionStatus$.optional(),
             amount: z.number().int().optional(),
             refunded_amount: z.number().int().optional(),
-            gift_card_service_redemption_id: z.string().optional(),
+            gift_card_service_redemption_id: z.nullable(z.string()).optional(),
             error_code: z.nullable(ErrorCode$).optional(),
             raw_error_code: z.nullable(z.string()).optional(),
             raw_error_message: z.nullable(z.string()).optional(),
@@ -165,7 +166,7 @@ export namespace GiftCardRedemption$ {
         status?: GiftCardRedemptionStatus | undefined;
         amount?: number | undefined;
         refunded_amount?: number | undefined;
-        gift_card_service_redemption_id?: string | undefined;
+        gift_card_service_redemption_id?: string | null | undefined;
         error_code?: ErrorCode | null | undefined;
         raw_error_code?: string | null | undefined;
         raw_error_message?: string | null | undefined;
@@ -179,7 +180,7 @@ export namespace GiftCardRedemption$ {
             status: GiftCardRedemptionStatus$.optional(),
             amount: z.number().int().optional(),
             refundedAmount: z.number().int().optional(),
-            giftCardServiceRedemptionId: z.string().optional(),
+            giftCardServiceRedemptionId: z.nullable(z.string()).optional(),
             errorCode: z.nullable(ErrorCode$).optional(),
             rawErrorCode: z.nullable(z.string()).optional(),
             rawErrorMessage: z.nullable(z.string()).optional(),

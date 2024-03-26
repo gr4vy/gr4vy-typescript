@@ -3,8 +3,6 @@
  */
 
 import { GiftCardRedemption, GiftCardRedemption$ } from "./giftcardredemption";
-import { PaymentMethodSnapshot, PaymentMethodSnapshot$ } from "./paymentmethodsnapshot";
-import { PaymentServiceSnapshot, PaymentServiceSnapshot$ } from "./paymentservicesnapshot";
 import * as z from "zod";
 
 /**
@@ -245,33 +243,30 @@ export enum TransactionSummaryMethod {
     Alipayhk = "alipayhk",
     Applepay = "applepay",
     Bacs = "bacs",
-    Bancontact = "bancontact",
     Banked = "banked",
     Becs = "becs",
     Bitpay = "bitpay",
     Boleto = "boleto",
     Boost = "boost",
     Card = "card",
-    CheckoutSession = "checkout-session",
-    ClickToPay = "click-to-pay",
+    Cashapp = "cashapp",
+    Chaseorbital = "chaseorbital",
     Clearpay = "clearpay",
+    ClickToPay = "click-to-pay",
     Dana = "dana",
     Dcb = "dcb",
-    Eps = "eps",
-    Fortumo = "fortumo",
+    Dlocal = "dlocal",
+    Ebanx = "ebanx",
     Gcash = "gcash",
     Giropay = "giropay",
-    Givingblock = "givingblock",
     Gocardless = "gocardless",
     Googlepay = "googlepay",
     Gopay = "gopay",
     Grabpay = "grabpay",
     Ideal = "ideal",
-    Id = "id",
     Kakaopay = "kakaopay",
     Klarna = "klarna",
     Laybuy = "laybuy",
-    Linepay = "linepay",
     Linkaja = "linkaja",
     Maybankqrpay = "maybankqrpay",
     Multibanco = "multibanco",
@@ -282,12 +277,14 @@ export enum TransactionSummaryMethod {
     Oney12x = "oney_12x",
     Ovo = "ovo",
     Oxxo = "oxxo",
+    Payid = "payid",
     Paymaya = "paymaya",
     Paypal = "paypal",
     Paypalpaylater = "paypalpaylater",
+    Payto = "payto",
+    Venmo = "venmo",
     Pix = "pix",
     Rabbitlinepay = "rabbitlinepay",
-    Razorpay = "razorpay",
     Scalapay = "scalapay",
     Sepa = "sepa",
     Shopeepay = "shopeepay",
@@ -298,11 +295,399 @@ export enum TransactionSummaryMethod {
     Touchngo = "touchngo",
     Truemoney = "truemoney",
     Trustly = "trustly",
-    Venmo = "venmo",
-    Waave = "waave",
+    Trustlyeurope = "trustlyeurope",
+    Givingblock = "givingblock",
     Wechat = "wechat",
     Zippay = "zippay",
+    Bancontact = "bancontact",
+    Eps = "eps",
+    Linepay = "linepay",
+    Razorpay = "razorpay",
+    Multipago = "multipago",
+    Waave = "waave",
+    Smartpay = "smartpay",
+    Vipps = "vipps",
 }
+
+/**
+ * `payment-method`.
+ */
+export enum TransactionSummaryPaymentMethodType {
+    PaymentMethod = "payment-method",
+}
+
+/**
+ * The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.
+ */
+export enum TransactionSummaryApprovalTarget {
+    Any = "any",
+    NewWindow = "new_window",
+}
+
+/**
+ * The type of card, one of `credit`, `debit` or `prepaid`.
+ */
+export enum TransactionSummaryCardType {
+    Credit = "credit",
+    Debit = "debit",
+    Prepaid = "prepaid",
+}
+
+/**
+ * A credit or debit card payment method.
+ */
+export type Card = {
+    /**
+     * The type of card, one of `credit`, `debit` or `prepaid`.
+     */
+    cardType?: TransactionSummaryCardType | undefined;
+    /**
+     * The first 6 digits of the full card number (the BIN).
+     */
+    bin?: string | undefined;
+};
+
+/**
+ * The type of this payment method.
+ */
+export enum TransactionSummaryPaymentMethodMethod {
+    Afterpay = "afterpay",
+    Alipay = "alipay",
+    Alipayhk = "alipayhk",
+    Applepay = "applepay",
+    Bacs = "bacs",
+    Banked = "banked",
+    Becs = "becs",
+    Bitpay = "bitpay",
+    Boleto = "boleto",
+    Boost = "boost",
+    Card = "card",
+    Cashapp = "cashapp",
+    Chaseorbital = "chaseorbital",
+    Clearpay = "clearpay",
+    ClickToPay = "click-to-pay",
+    Dana = "dana",
+    Dcb = "dcb",
+    Dlocal = "dlocal",
+    Ebanx = "ebanx",
+    Gcash = "gcash",
+    Giropay = "giropay",
+    Gocardless = "gocardless",
+    Googlepay = "googlepay",
+    Gopay = "gopay",
+    Grabpay = "grabpay",
+    Ideal = "ideal",
+    Kakaopay = "kakaopay",
+    Klarna = "klarna",
+    Laybuy = "laybuy",
+    Linkaja = "linkaja",
+    Maybankqrpay = "maybankqrpay",
+    Multibanco = "multibanco",
+    Oney3x = "oney_3x",
+    Oney4x = "oney_4x",
+    Oney6x = "oney_6x",
+    Oney10x = "oney_10x",
+    Oney12x = "oney_12x",
+    Ovo = "ovo",
+    Oxxo = "oxxo",
+    Payid = "payid",
+    Paymaya = "paymaya",
+    Paypal = "paypal",
+    Paypalpaylater = "paypalpaylater",
+    Payto = "payto",
+    Venmo = "venmo",
+    Pix = "pix",
+    Rabbitlinepay = "rabbitlinepay",
+    Scalapay = "scalapay",
+    Sepa = "sepa",
+    Shopeepay = "shopeepay",
+    Singteldash = "singteldash",
+    Sofort = "sofort",
+    Stripedd = "stripedd",
+    Thaiqr = "thaiqr",
+    Touchngo = "touchngo",
+    Truemoney = "truemoney",
+    Trustly = "trustly",
+    Trustlyeurope = "trustlyeurope",
+    Givingblock = "givingblock",
+    Wechat = "wechat",
+    Zippay = "zippay",
+    Bancontact = "bancontact",
+    Eps = "eps",
+    Linepay = "linepay",
+    Razorpay = "razorpay",
+    Multipago = "multipago",
+    Waave = "waave",
+    Smartpay = "smartpay",
+    Vipps = "vipps",
+}
+
+/**
+ * An additional label used to differentiate different sub-types of a payment
+ *
+ * @remarks
+ * method. Most notably this can include the type of card used in a
+ * transaction. This field is `null` for the non-card payment methods.
+ * This represents the card scheme sent to the connector and it could be different from the
+ * actual card scheme that is being used by the PSP to process the transaction
+ * in the following situations: 1. `use_additional_scheme` transformation is used
+ * with the `PAN` instrument but we already have a PSP token for the card.
+ * 2. `use_additional_scheme` transformation is used but PSP has fallen back to the
+ * main card scheme internally.
+ */
+export enum TransactionSummaryScheme {
+    Accel = "accel",
+    Amex = "amex",
+    Bancontact = "bancontact",
+    CarteBancaire = "carte-bancaire",
+    Cirrus = "cirrus",
+    Culiance = "culiance",
+    Dankort = "dankort",
+    DinersClub = "diners-club",
+    Discover = "discover",
+    EftposAustralia = "eftpos-australia",
+    Elo = "elo",
+    Hipercard = "hipercard",
+    Jcb = "jcb",
+    Maestro = "maestro",
+    Mastercard = "mastercard",
+    Mir = "mir",
+    Nyce = "nyce",
+    Other = "other",
+    Pulse = "pulse",
+    Rupay = "rupay",
+    Star = "star",
+    Uatp = "uatp",
+    Unionpay = "unionpay",
+    Visa = "visa",
+}
+
+/**
+ * The payment method used for this transaction.
+ */
+export type PaymentMethodSnapshot = {
+    /**
+     * `payment-method`.
+     */
+    type?: TransactionSummaryPaymentMethodType | undefined;
+    /**
+     * The unique ID of the payment method.
+     */
+    id?: string | null | undefined;
+    /**
+     * The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.
+     */
+    approvalTarget?: TransactionSummaryApprovalTarget | null | undefined;
+    /**
+     * The optional URL that the buyer needs to be redirected to to further authorize their payment.
+     */
+    approvalUrl?: string | null | undefined;
+    /**
+     * The 2-letter ISO code of the country this payment method can
+     *
+     * @remarks
+     * be used for. If this value is `null` the payment method may be
+     * used in multiple countries.
+     */
+    country?: string | null | undefined;
+    /**
+     * The ISO-4217 currency code that this payment method can be
+     *
+     * @remarks
+     * used for. If this value is `null` the payment method may be
+     * used for multiple currencies.
+     */
+    currency?: string | null | undefined;
+    details?: Card | null | undefined;
+    /**
+     * The expiration date for this payment method. This is mostly used by cards
+     *
+     * @remarks
+     * where the card might have an expiration date.
+     */
+    expirationDate?: string | null | undefined;
+    /**
+     * An external identifier that can be used to match the payment method
+     *
+     * @remarks
+     * against your own records.
+     */
+    externalIdentifier?: string | null | undefined;
+    /**
+     * A label for the payment method. This can be the last 4 digits for a card,
+     *
+     * @remarks
+     * or the email address for an alternative payment method.
+     */
+    label?: string | null | undefined;
+    /**
+     * The date and time when this card was last replaced.
+     *
+     * @remarks
+     *
+     * When the Account Updater determines that new card details are available, existing details are not
+     * changed immediately. There are three scenarios in which the actual replacement occurs:
+     *
+     * 1. When this card has expired.
+     * 2. When only the expiration date changed.
+     * 3. When a transaction using this card is declined with any of the following codes:
+     *     * `canceled_payment_method`
+     *     * `expired_payment_method`
+     *     * `unavailable_payment_method`
+     *     * `unknown_payment_method`
+     *
+     * When the replacement is applied, this field is updated.
+     * For non-card payment methods, the value of this field is always set to `null`.
+     */
+    lastReplacedAt?: Date | null | undefined;
+    /**
+     * The type of this payment method.
+     */
+    method?: TransactionSummaryPaymentMethodMethod | undefined;
+    /**
+     * The payment account reference (PAR) returned by the card scheme. This is a unique
+     *
+     * @remarks
+     * reference to the underlying account that has been used to fund this payment method.
+     * This value will be unique if the same underlying account was used, regardless of
+     * the actual payment method used. For example, a network token or an Apple Pay device
+     * token will return the same PAR when possible.
+     *
+     * The uniqueness of this value will depend on the card scheme, please refer to their documentation
+     * for further details. The availability of the PAR in our API depends on the availability
+     * of its value in the API of the payment service used for the transaction.
+     */
+    paymentAccountReference?: string | null | undefined;
+    /**
+     * An additional label used to differentiate different sub-types of a payment
+     *
+     * @remarks
+     * method. Most notably this can include the type of card used in a
+     * transaction. This field is `null` for the non-card payment methods.
+     * This represents the card scheme sent to the connector and it could be different from the
+     * actual card scheme that is being used by the PSP to process the transaction
+     * in the following situations: 1. `use_additional_scheme` transformation is used
+     * with the `PAN` instrument but we already have a PSP token for the card.
+     * 2. `use_additional_scheme` transformation is used but PSP has fallen back to the
+     * main card scheme internally.
+     */
+    scheme?: TransactionSummaryScheme | null | undefined;
+    /**
+     * The unique hash derived from the payment method identifier (e.g. card number).
+     */
+    fingerprint?: string | null | undefined;
+};
+
+/**
+ * The type of this resource.
+ */
+export enum TransactionSummaryPaymentServiceType {
+    PaymentService = "payment-service",
+}
+
+/**
+ * The payment method that this services handles.
+ */
+export enum TransactionSummaryPaymentServiceMethod {
+    Afterpay = "afterpay",
+    Alipay = "alipay",
+    Alipayhk = "alipayhk",
+    Applepay = "applepay",
+    Bacs = "bacs",
+    Banked = "banked",
+    Becs = "becs",
+    Bitpay = "bitpay",
+    Boleto = "boleto",
+    Boost = "boost",
+    Card = "card",
+    Cashapp = "cashapp",
+    Chaseorbital = "chaseorbital",
+    Clearpay = "clearpay",
+    ClickToPay = "click-to-pay",
+    Dana = "dana",
+    Dcb = "dcb",
+    Dlocal = "dlocal",
+    Ebanx = "ebanx",
+    Gcash = "gcash",
+    Giropay = "giropay",
+    Gocardless = "gocardless",
+    Googlepay = "googlepay",
+    Gopay = "gopay",
+    Grabpay = "grabpay",
+    Ideal = "ideal",
+    Kakaopay = "kakaopay",
+    Klarna = "klarna",
+    Laybuy = "laybuy",
+    Linkaja = "linkaja",
+    Maybankqrpay = "maybankqrpay",
+    Multibanco = "multibanco",
+    Oney3x = "oney_3x",
+    Oney4x = "oney_4x",
+    Oney6x = "oney_6x",
+    Oney10x = "oney_10x",
+    Oney12x = "oney_12x",
+    Ovo = "ovo",
+    Oxxo = "oxxo",
+    Payid = "payid",
+    Paymaya = "paymaya",
+    Paypal = "paypal",
+    Paypalpaylater = "paypalpaylater",
+    Payto = "payto",
+    Venmo = "venmo",
+    Pix = "pix",
+    Rabbitlinepay = "rabbitlinepay",
+    Scalapay = "scalapay",
+    Sepa = "sepa",
+    Shopeepay = "shopeepay",
+    Singteldash = "singteldash",
+    Sofort = "sofort",
+    Stripedd = "stripedd",
+    Thaiqr = "thaiqr",
+    Touchngo = "touchngo",
+    Truemoney = "truemoney",
+    Trustly = "trustly",
+    Trustlyeurope = "trustlyeurope",
+    Givingblock = "givingblock",
+    Wechat = "wechat",
+    Zippay = "zippay",
+    Bancontact = "bancontact",
+    Eps = "eps",
+    Linepay = "linepay",
+    Razorpay = "razorpay",
+    Multipago = "multipago",
+    Waave = "waave",
+    Smartpay = "smartpay",
+    Vipps = "vipps",
+}
+
+/**
+ * The payment service used for this transaction.
+ */
+export type APaymentService = {
+    /**
+     * The type of this resource.
+     */
+    type?: TransactionSummaryPaymentServiceType | undefined;
+    /**
+     * The ID of this payment service.
+     */
+    id?: string | undefined;
+    /**
+     * The custom name set for this service.
+     */
+    displayName?: string | undefined;
+    /**
+     * The payment method that this services handles.
+     */
+    method?: TransactionSummaryPaymentServiceMethod | undefined;
+    /**
+     * The ID of the payment service definition used to create this service.
+     *
+     * @remarks
+     *
+     */
+    paymentServiceDefinitionId?: string | undefined;
+};
 
 /**
  * The status of the transaction. The status may change over time as
@@ -362,7 +747,7 @@ export type TransactionSummary = {
     /**
      * The identifier for the checkout session this transaction is associated with.
      */
-    checkoutSessionId?: string | undefined;
+    checkoutSessionId?: string | null | undefined;
     /**
      * The 2-letter ISO code of the country of the transaction.
      *
@@ -406,15 +791,15 @@ export type TransactionSummary = {
      * The ID of the merchant account to which this transaction belongs to.
      */
     merchantAccountId?: string | undefined;
-    method?: TransactionSummaryMethod | undefined;
+    method?: TransactionSummaryMethod | null | undefined;
     /**
      * The payment method used for this transaction.
      */
-    paymentMethod?: PaymentMethodSnapshot | undefined;
+    paymentMethod?: PaymentMethodSnapshot | null | undefined;
     /**
      * The payment service used for this transaction.
      */
-    paymentService?: PaymentServiceSnapshot | undefined;
+    paymentService?: APaymentService | null | undefined;
     /**
      * Whether a manual review is pending.
      */
@@ -748,6 +1133,263 @@ export const Intent$ = z.nativeEnum(Intent);
 export const TransactionSummaryMethod$ = z.nativeEnum(TransactionSummaryMethod);
 
 /** @internal */
+export const TransactionSummaryPaymentMethodType$ = z.nativeEnum(
+    TransactionSummaryPaymentMethodType
+);
+
+/** @internal */
+export const TransactionSummaryApprovalTarget$ = z.nativeEnum(TransactionSummaryApprovalTarget);
+
+/** @internal */
+export const TransactionSummaryCardType$ = z.nativeEnum(TransactionSummaryCardType);
+
+/** @internal */
+export namespace Card$ {
+    export type Inbound = {
+        card_type?: TransactionSummaryCardType | undefined;
+        bin?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<Card, z.ZodTypeDef, Inbound> = z
+        .object({
+            card_type: TransactionSummaryCardType$.optional(),
+            bin: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.card_type === undefined ? null : { cardType: v.card_type }),
+                ...(v.bin === undefined ? null : { bin: v.bin }),
+            };
+        });
+
+    export type Outbound = {
+        card_type?: TransactionSummaryCardType | undefined;
+        bin?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Card> = z
+        .object({
+            cardType: TransactionSummaryCardType$.optional(),
+            bin: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.cardType === undefined ? null : { card_type: v.cardType }),
+                ...(v.bin === undefined ? null : { bin: v.bin }),
+            };
+        });
+}
+
+/** @internal */
+export const TransactionSummaryPaymentMethodMethod$ = z.nativeEnum(
+    TransactionSummaryPaymentMethodMethod
+);
+
+/** @internal */
+export const TransactionSummaryScheme$ = z.nativeEnum(TransactionSummaryScheme);
+
+/** @internal */
+export namespace PaymentMethodSnapshot$ {
+    export type Inbound = {
+        type?: TransactionSummaryPaymentMethodType | undefined;
+        id?: string | null | undefined;
+        approval_target?: TransactionSummaryApprovalTarget | null | undefined;
+        approval_url?: string | null | undefined;
+        country?: string | null | undefined;
+        currency?: string | null | undefined;
+        details?: Card$.Inbound | null | undefined;
+        expiration_date?: string | null | undefined;
+        external_identifier?: string | null | undefined;
+        label?: string | null | undefined;
+        last_replaced_at?: string | null | undefined;
+        method?: TransactionSummaryPaymentMethodMethod | undefined;
+        payment_account_reference?: string | null | undefined;
+        scheme?: TransactionSummaryScheme | null | undefined;
+        fingerprint?: string | null | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<PaymentMethodSnapshot, z.ZodTypeDef, Inbound> = z
+        .object({
+            type: TransactionSummaryPaymentMethodType$.optional(),
+            id: z.nullable(z.string()).optional(),
+            approval_target: z.nullable(TransactionSummaryApprovalTarget$).optional(),
+            approval_url: z.nullable(z.string()).optional(),
+            country: z.nullable(z.string()).optional(),
+            currency: z.nullable(z.string()).optional(),
+            details: z.nullable(z.lazy(() => Card$.inboundSchema)).optional(),
+            expiration_date: z.nullable(z.string()).optional(),
+            external_identifier: z.nullable(z.string()).optional(),
+            label: z.nullable(z.string()).optional(),
+            last_replaced_at: z
+                .nullable(
+                    z
+                        .string()
+                        .datetime({ offset: true })
+                        .transform((v) => new Date(v))
+                )
+                .optional(),
+            method: TransactionSummaryPaymentMethodMethod$.optional(),
+            payment_account_reference: z.nullable(z.string()).optional(),
+            scheme: z.nullable(TransactionSummaryScheme$).optional(),
+            fingerprint: z.nullable(z.string()).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.approval_target === undefined ? null : { approvalTarget: v.approval_target }),
+                ...(v.approval_url === undefined ? null : { approvalUrl: v.approval_url }),
+                ...(v.country === undefined ? null : { country: v.country }),
+                ...(v.currency === undefined ? null : { currency: v.currency }),
+                ...(v.details === undefined ? null : { details: v.details }),
+                ...(v.expiration_date === undefined ? null : { expirationDate: v.expiration_date }),
+                ...(v.external_identifier === undefined
+                    ? null
+                    : { externalIdentifier: v.external_identifier }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.last_replaced_at === undefined
+                    ? null
+                    : { lastReplacedAt: v.last_replaced_at }),
+                ...(v.method === undefined ? null : { method: v.method }),
+                ...(v.payment_account_reference === undefined
+                    ? null
+                    : { paymentAccountReference: v.payment_account_reference }),
+                ...(v.scheme === undefined ? null : { scheme: v.scheme }),
+                ...(v.fingerprint === undefined ? null : { fingerprint: v.fingerprint }),
+            };
+        });
+
+    export type Outbound = {
+        type?: TransactionSummaryPaymentMethodType | undefined;
+        id?: string | null | undefined;
+        approval_target?: TransactionSummaryApprovalTarget | null | undefined;
+        approval_url?: string | null | undefined;
+        country?: string | null | undefined;
+        currency?: string | null | undefined;
+        details?: Card$.Outbound | null | undefined;
+        expiration_date?: string | null | undefined;
+        external_identifier?: string | null | undefined;
+        label?: string | null | undefined;
+        last_replaced_at?: string | null | undefined;
+        method?: TransactionSummaryPaymentMethodMethod | undefined;
+        payment_account_reference?: string | null | undefined;
+        scheme?: TransactionSummaryScheme | null | undefined;
+        fingerprint?: string | null | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentMethodSnapshot> = z
+        .object({
+            type: TransactionSummaryPaymentMethodType$.optional(),
+            id: z.nullable(z.string()).optional(),
+            approvalTarget: z.nullable(TransactionSummaryApprovalTarget$).optional(),
+            approvalUrl: z.nullable(z.string()).optional(),
+            country: z.nullable(z.string()).optional(),
+            currency: z.nullable(z.string()).optional(),
+            details: z.nullable(z.lazy(() => Card$.outboundSchema)).optional(),
+            expirationDate: z.nullable(z.string()).optional(),
+            externalIdentifier: z.nullable(z.string()).optional(),
+            label: z.nullable(z.string()).optional(),
+            lastReplacedAt: z.nullable(z.date().transform((v) => v.toISOString())).optional(),
+            method: TransactionSummaryPaymentMethodMethod$.optional(),
+            paymentAccountReference: z.nullable(z.string()).optional(),
+            scheme: z.nullable(TransactionSummaryScheme$).optional(),
+            fingerprint: z.nullable(z.string()).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.approvalTarget === undefined ? null : { approval_target: v.approvalTarget }),
+                ...(v.approvalUrl === undefined ? null : { approval_url: v.approvalUrl }),
+                ...(v.country === undefined ? null : { country: v.country }),
+                ...(v.currency === undefined ? null : { currency: v.currency }),
+                ...(v.details === undefined ? null : { details: v.details }),
+                ...(v.expirationDate === undefined ? null : { expiration_date: v.expirationDate }),
+                ...(v.externalIdentifier === undefined
+                    ? null
+                    : { external_identifier: v.externalIdentifier }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.lastReplacedAt === undefined ? null : { last_replaced_at: v.lastReplacedAt }),
+                ...(v.method === undefined ? null : { method: v.method }),
+                ...(v.paymentAccountReference === undefined
+                    ? null
+                    : { payment_account_reference: v.paymentAccountReference }),
+                ...(v.scheme === undefined ? null : { scheme: v.scheme }),
+                ...(v.fingerprint === undefined ? null : { fingerprint: v.fingerprint }),
+            };
+        });
+}
+
+/** @internal */
+export const TransactionSummaryPaymentServiceType$ = z.nativeEnum(
+    TransactionSummaryPaymentServiceType
+);
+
+/** @internal */
+export const TransactionSummaryPaymentServiceMethod$ = z.nativeEnum(
+    TransactionSummaryPaymentServiceMethod
+);
+
+/** @internal */
+export namespace APaymentService$ {
+    export type Inbound = {
+        type?: TransactionSummaryPaymentServiceType | undefined;
+        id?: string | undefined;
+        display_name?: string | undefined;
+        method?: TransactionSummaryPaymentServiceMethod | undefined;
+        payment_service_definition_id?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<APaymentService, z.ZodTypeDef, Inbound> = z
+        .object({
+            type: TransactionSummaryPaymentServiceType$.optional(),
+            id: z.string().optional(),
+            display_name: z.string().optional(),
+            method: TransactionSummaryPaymentServiceMethod$.optional(),
+            payment_service_definition_id: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.display_name === undefined ? null : { displayName: v.display_name }),
+                ...(v.method === undefined ? null : { method: v.method }),
+                ...(v.payment_service_definition_id === undefined
+                    ? null
+                    : { paymentServiceDefinitionId: v.payment_service_definition_id }),
+            };
+        });
+
+    export type Outbound = {
+        type?: TransactionSummaryPaymentServiceType | undefined;
+        id?: string | undefined;
+        display_name?: string | undefined;
+        method?: TransactionSummaryPaymentServiceMethod | undefined;
+        payment_service_definition_id?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, APaymentService> = z
+        .object({
+            type: TransactionSummaryPaymentServiceType$.optional(),
+            id: z.string().optional(),
+            displayName: z.string().optional(),
+            method: TransactionSummaryPaymentServiceMethod$.optional(),
+            paymentServiceDefinitionId: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.displayName === undefined ? null : { display_name: v.displayName }),
+                ...(v.method === undefined ? null : { method: v.method }),
+                ...(v.paymentServiceDefinitionId === undefined
+                    ? null
+                    : { payment_service_definition_id: v.paymentServiceDefinitionId }),
+            };
+        });
+}
+
+/** @internal */
 export const TransactionSummaryStatus$ = z.nativeEnum(TransactionSummaryStatus);
 
 /** @internal */
@@ -759,7 +1401,7 @@ export namespace TransactionSummary$ {
         authorized_amount?: number | undefined;
         buyer?: BuyerSnapshot$.Inbound | null | undefined;
         captured_amount?: number | undefined;
-        checkout_session_id?: string | undefined;
+        checkout_session_id?: string | null | undefined;
         country?: string | null | undefined;
         created_at?: string | undefined;
         currency?: string | undefined;
@@ -768,9 +1410,9 @@ export namespace TransactionSummary$ {
         instrument_type?: InstrumentType | null | undefined;
         intent?: Intent | undefined;
         merchant_account_id?: string | undefined;
-        method?: TransactionSummaryMethod | undefined;
-        payment_method?: PaymentMethodSnapshot$.Inbound | undefined;
-        payment_service?: PaymentServiceSnapshot$.Inbound | undefined;
+        method?: TransactionSummaryMethod | null | undefined;
+        payment_method?: PaymentMethodSnapshot$.Inbound | null | undefined;
+        payment_service?: APaymentService$.Inbound | null | undefined;
         pending_review?: boolean | undefined;
         raw_response_code?: string | null | undefined;
         raw_response_description?: string | null | undefined;
@@ -788,7 +1430,7 @@ export namespace TransactionSummary$ {
             authorized_amount: z.number().int().optional(),
             buyer: z.nullable(z.lazy(() => BuyerSnapshot$.inboundSchema)).optional(),
             captured_amount: z.number().int().optional(),
-            checkout_session_id: z.string().optional(),
+            checkout_session_id: z.nullable(z.string()).optional(),
             country: z.nullable(z.string()).optional(),
             created_at: z
                 .string()
@@ -801,9 +1443,11 @@ export namespace TransactionSummary$ {
             instrument_type: z.nullable(InstrumentType$).optional(),
             intent: Intent$.optional(),
             merchant_account_id: z.string().optional(),
-            method: TransactionSummaryMethod$.optional(),
-            payment_method: PaymentMethodSnapshot$.inboundSchema.optional(),
-            payment_service: PaymentServiceSnapshot$.inboundSchema.optional(),
+            method: z.nullable(TransactionSummaryMethod$).optional(),
+            payment_method: z
+                .nullable(z.lazy(() => PaymentMethodSnapshot$.inboundSchema))
+                .optional(),
+            payment_service: z.nullable(z.lazy(() => APaymentService$.inboundSchema)).optional(),
             pending_review: z.boolean().optional(),
             raw_response_code: z.nullable(z.string()).optional(),
             raw_response_description: z.nullable(z.string()).optional(),
@@ -869,7 +1513,7 @@ export namespace TransactionSummary$ {
         authorized_amount?: number | undefined;
         buyer?: BuyerSnapshot$.Outbound | null | undefined;
         captured_amount?: number | undefined;
-        checkout_session_id?: string | undefined;
+        checkout_session_id?: string | null | undefined;
         country?: string | null | undefined;
         created_at?: string | undefined;
         currency?: string | undefined;
@@ -878,9 +1522,9 @@ export namespace TransactionSummary$ {
         instrument_type?: InstrumentType | null | undefined;
         intent?: Intent | undefined;
         merchant_account_id?: string | undefined;
-        method?: TransactionSummaryMethod | undefined;
-        payment_method?: PaymentMethodSnapshot$.Outbound | undefined;
-        payment_service?: PaymentServiceSnapshot$.Outbound | undefined;
+        method?: TransactionSummaryMethod | null | undefined;
+        payment_method?: PaymentMethodSnapshot$.Outbound | null | undefined;
+        payment_service?: APaymentService$.Outbound | null | undefined;
         pending_review?: boolean | undefined;
         raw_response_code?: string | null | undefined;
         raw_response_description?: string | null | undefined;
@@ -898,7 +1542,7 @@ export namespace TransactionSummary$ {
             authorizedAmount: z.number().int().optional(),
             buyer: z.nullable(z.lazy(() => BuyerSnapshot$.outboundSchema)).optional(),
             capturedAmount: z.number().int().optional(),
-            checkoutSessionId: z.string().optional(),
+            checkoutSessionId: z.nullable(z.string()).optional(),
             country: z.nullable(z.string()).optional(),
             createdAt: z
                 .date()
@@ -910,9 +1554,11 @@ export namespace TransactionSummary$ {
             instrumentType: z.nullable(InstrumentType$).optional(),
             intent: Intent$.optional(),
             merchantAccountId: z.string().optional(),
-            method: TransactionSummaryMethod$.optional(),
-            paymentMethod: PaymentMethodSnapshot$.outboundSchema.optional(),
-            paymentService: PaymentServiceSnapshot$.outboundSchema.optional(),
+            method: z.nullable(TransactionSummaryMethod$).optional(),
+            paymentMethod: z
+                .nullable(z.lazy(() => PaymentMethodSnapshot$.outboundSchema))
+                .optional(),
+            paymentService: z.nullable(z.lazy(() => APaymentService$.outboundSchema)).optional(),
             pendingReview: z.boolean().optional(),
             rawResponseCode: z.nullable(z.string()).optional(),
             rawResponseDescription: z.nullable(z.string()).optional(),

@@ -11,6 +11,8 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import { createPageIterator, PageIterator, Paginator } from "../types";
+import jp from "jsonpath";
 
 export class Transactions extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -48,7 +50,7 @@ export class Transactions extends ClientSDK {
     async listTransactions(
         input: operations.ListTransactionsRequest,
         options?: RequestOptions
-    ): Promise<components.Transactions> {
+    ): Promise<PageIterator<operations.ListTransactionsResponse>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -196,6 +198,24 @@ export class Transactions extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
+        const nextFunc = (
+            responseData: unknown
+        ): Paginator<operations.ListTransactionsResponse> => {
+            const nextCursor = jp.value(responseData, "$.next_cursor");
+            if (nextCursor == null) {
+                return () => null;
+            }
+
+            return () =>
+                this.listTransactions(
+                    {
+                        ...input,
+                        cursor: nextCursor,
+                    },
+                    options
+                );
+        };
+
         const responseFields$ = {
             HttpMeta: {
                 Response: response,
@@ -205,13 +225,19 @@ export class Transactions extends ClientSDK {
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
-            const result = schemas$.parse(
+            const parsed = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return components.Transactions$.inboundSchema.parse(val$);
+                    return operations.ListTransactionsResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        Result: val$,
+                    });
                 },
                 "Response validation failed"
             );
+            const next$ = nextFunc(responseBody);
+            const page$ = { ...parsed, next: next$ };
+            const result = { ...page$, ...createPageIterator(page$) };
             return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();

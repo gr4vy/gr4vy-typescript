@@ -16,21 +16,19 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
 
-<!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
 ### NPM
 
 ```bash
-npm add https://github.com/gr4vy/gr4vy-js
+yarn add @gr4vy/sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/gr4vy/gr4vy-js
+yarn add @gr4vy/sdk
 ```
-<!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
 ## Requirements
@@ -62,6 +60,25 @@ async function run() {
 run();
 
 ```
+
+Alternatively, create a token once for use with the SDK or with your own client library.
+
+```js
+async function run() {
+    const sdk = new SDK({
+        bearerAuth: await getToken({
+          privateKey: fs.readFileSync("private_key.pem", "utf8"),
+        }),
+    });
+
+    const result = await sdk.transactions.listTransactions({});
+
+    console.log(result);
+}
+```
+
+> **Note:** This will only create a token once. Use `withToken` to dynamically generate a token
+> for every request.
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
@@ -404,6 +421,109 @@ run();
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+### NPM
+
+```bash
+npm add https://github.com/gr4vy/gr4vy-js
+```
+
+### Yarn
+
+```bash
+yarn add https://github.com/gr4vy/gr4vy-js
+```
+<!-- End SDK Installation [installation] -->
+
+<!-- Start SDK Example Usage [usage] -->
+## SDK Example Usage
+
+### Example
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+async function run() {
+    const sdk = new SDK({
+        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    });
+
+    const result = await sdk.apiLogs.listApiLogs();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End SDK Example Usage [usage] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you
+make your SDK calls as usual, but the returned response object will also be an
+async iterable that can be consumed using the [`for await...of`][for-await-of]
+syntax.
+
+[for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
+
+Here's an example of one such pagination call:
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { QueryParamMethod, QueryParamStatus } from "@gr4vy/sdk/models/operations";
+
+async function run() {
+    const sdk = new SDK({
+        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    });
+
+    const result = await sdk.transactions.listTransactions({
+        buyerExternalIdentifier: "user-12345",
+        buyerId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+        cursor: "ZXhhbXBsZTE",
+        limit: 1,
+        amountEq: 500,
+        amountGte: 500,
+        amountLte: 500,
+        checkoutSessionId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+        createdAtGte: new Date("2022-01-01T12:00:00+08:00"),
+        createdAtLte: new Date("2022-01-01T12:00:00+08:00"),
+        currency: ["USD", "GBP"],
+        externalIdentifier: "user-12345",
+        giftCardId: "be828248-56de-481e-a580-44b6e1d4df81",
+        giftCardLast4: "7890",
+        hasGiftCardRedemptions: true,
+        hasRefunds: true,
+        id: "be828248-56de-481e-a580-44b6e1d4df81",
+        metadata: ['{"key": "value"}', '{"key_one": "value", "key_two": "value"}'],
+        method: [QueryParamMethod.Card],
+        paymentMethodId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+        paymentMethodLabel: "1234",
+        paymentServiceId: ["46973e9d-88a7-44a6-abfe-be4ff0134ff4"],
+        paymentServiceTransactionId: "transaction_123",
+        pendingReview: true,
+        reconciliationId: "7EgeeeTX0DS45RBDNt4AEY",
+        search: "be828248-56de-481e-a580-44b6e1d4df81",
+        status: [QueryParamStatus.CaptureSucceeded, QueryParamStatus.Processing],
+        updatedAtGte: new Date("2022-01-01T12:00:00+08:00"),
+        updatedAtLte: new Date("2022-01-01T12:00:00+08:00"),
+    });
+
+    for await (const page of result) {
+        // handle page
+    }
+}
+
+run();
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
