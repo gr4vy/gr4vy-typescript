@@ -4,7 +4,7 @@
 
 import { HTTPClient } from "./http";
 import { RetryConfig } from "./retries";
-import { pathToFunc } from "./url";
+import { Params, pathToFunc } from "./url";
 
 export const ServerProduction = "production";
 export const ServerSandbox = "sandbox";
@@ -41,16 +41,16 @@ export type SDKOptions = {
 export function serverURLFromOptions(options: SDKOptions): URL | null {
     let serverURL = options.serverURL;
 
-    const serverParams = {
+    const serverParams: Record<string, Params> = {
         production: {
-            gr4vy_id: options.gr4vyId?.toString() ?? "plantly",
+            gr4vy_id: options.gr4vyId ?? "plantly",
         },
         sandbox: {
-            gr4vy_id: options.gr4vyId?.toString() ?? "plantly",
+            gr4vy_id: options.gr4vyId ?? "plantly",
         },
     };
 
-    let params: Record<string, string> = {};
+    let params: Params = {};
 
     if (!serverURL) {
         const server = options.server ?? ServerProduction;
@@ -62,10 +62,10 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
     return new URL(u);
 }
 
-export const SDK_METADATA = Object.freeze({
+export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "1.1.0-beta",
-    sdkVersion: "0.1.9",
-    genVersion: "2.287.0",
-    userAgent: "speakeasy-sdk/typescript 0.1.9 2.287.0 1.1.0-beta @gr4vy/sdk",
-});
+    sdkVersion: "0.2.0",
+    genVersion: "2.314.0",
+    userAgent: "speakeasy-sdk/typescript 0.2.0 2.314.0 1.1.0-beta @gr4vy/sdk",
+} as const;

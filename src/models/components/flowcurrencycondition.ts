@@ -38,10 +38,12 @@ export type FlowCurrencyCondition = {
 };
 
 /** @internal */
-export const FlowCurrencyConditionName$ = z.nativeEnum(FlowCurrencyConditionName);
+export const FlowCurrencyConditionName$: z.ZodNativeEnum<typeof FlowCurrencyConditionName> =
+    z.nativeEnum(FlowCurrencyConditionName);
 
 /** @internal */
-export const FlowCurrencyConditionOperator$ = z.nativeEnum(FlowCurrencyConditionOperator);
+export const FlowCurrencyConditionOperator$: z.ZodNativeEnum<typeof FlowCurrencyConditionOperator> =
+    z.nativeEnum(FlowCurrencyConditionOperator);
 
 /** @internal */
 export namespace FlowCurrencyCondition$ {

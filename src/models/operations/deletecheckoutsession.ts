@@ -11,6 +11,8 @@ export type DeleteCheckoutSessionRequest = {
     checkoutSessionId: string;
 };
 
+export type DeleteCheckoutSessionResponse = {};
+
 /** @internal */
 export namespace DeleteCheckoutSessionRequest$ {
     export type Inbound = {
@@ -40,4 +42,17 @@ export namespace DeleteCheckoutSessionRequest$ {
                 checkout_session_id: v.checkoutSessionId,
             };
         });
+}
+
+/** @internal */
+export namespace DeleteCheckoutSessionResponse$ {
+    export type Inbound = {};
+
+    export const inboundSchema: z.ZodType<DeleteCheckoutSessionResponse, z.ZodTypeDef, Inbound> =
+        z.object({});
+
+    export type Outbound = {};
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteCheckoutSessionResponse> =
+        z.object({});
 }

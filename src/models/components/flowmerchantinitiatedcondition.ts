@@ -37,12 +37,14 @@ export type FlowMerchantInitiatedCondition = {
 };
 
 /** @internal */
-export const FlowMerchantInitiatedConditionName$ = z.nativeEnum(FlowMerchantInitiatedConditionName);
+export const FlowMerchantInitiatedConditionName$: z.ZodNativeEnum<
+    typeof FlowMerchantInitiatedConditionName
+> = z.nativeEnum(FlowMerchantInitiatedConditionName);
 
 /** @internal */
-export const FlowMerchantInitiatedConditionOperator$ = z.nativeEnum(
-    FlowMerchantInitiatedConditionOperator
-);
+export const FlowMerchantInitiatedConditionOperator$: z.ZodNativeEnum<
+    typeof FlowMerchantInitiatedConditionOperator
+> = z.nativeEnum(FlowMerchantInitiatedConditionOperator);
 
 /** @internal */
 export namespace FlowMerchantInitiatedCondition$ {

@@ -19,6 +19,7 @@ export enum QueryParamMethod {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -329,10 +330,12 @@ export type ListTransactionsResponse = {
 };
 
 /** @internal */
-export const QueryParamMethod$ = z.nativeEnum(QueryParamMethod);
+export const QueryParamMethod$: z.ZodNativeEnum<typeof QueryParamMethod> =
+    z.nativeEnum(QueryParamMethod);
 
 /** @internal */
-export const QueryParamStatus$ = z.nativeEnum(QueryParamStatus);
+export const QueryParamStatus$: z.ZodNativeEnum<typeof QueryParamStatus> =
+    z.nativeEnum(QueryParamStatus);
 
 /** @internal */
 export namespace ListTransactionsRequest$ {

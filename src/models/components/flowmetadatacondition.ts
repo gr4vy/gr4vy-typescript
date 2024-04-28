@@ -51,10 +51,12 @@ export type FlowMetadataCondition = {
 };
 
 /** @internal */
-export const FlowMetadataConditionName$ = z.nativeEnum(FlowMetadataConditionName);
+export const FlowMetadataConditionName$: z.ZodNativeEnum<typeof FlowMetadataConditionName> =
+    z.nativeEnum(FlowMetadataConditionName);
 
 /** @internal */
-export const FlowMetadataConditionOperator$ = z.nativeEnum(FlowMetadataConditionOperator);
+export const FlowMetadataConditionOperator$: z.ZodNativeEnum<typeof FlowMetadataConditionOperator> =
+    z.nativeEnum(FlowMetadataConditionOperator);
 
 /** @internal */
 export namespace FlowMetadataConditionValueValue$ {

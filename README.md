@@ -83,6 +83,10 @@ async function run() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+### [accountUpdater](docs/sdks/accountupdater/README.md)
+
+* [newAccountUpdaterJob](docs/sdks/accountupdater/README.md#newaccountupdaterjob) - Create Account Updater job
+
 ### [apiLogs](docs/sdks/apilogs/README.md)
 
 * [listApiLogs](docs/sdks/apilogs/README.md#listapilogs) - List API error logs
@@ -94,23 +98,31 @@ async function run() {
 ### [buyers](docs/sdks/buyers/README.md)
 
 * [listBuyers](docs/sdks/buyers/README.md#listbuyers) - List buyers
+* [newBuyer](docs/sdks/buyers/README.md#newbuyer) - New buyer
 * [getBuyer](docs/sdks/buyers/README.md#getbuyer) - Get buyer
+* [updateBuyer](docs/sdks/buyers/README.md#updatebuyer) - Update buyer
 * [deleteBuyer](docs/sdks/buyers/README.md#deletebuyer) - Delete buyer
 * [listBuyerShippingDetails](docs/sdks/buyers/README.md#listbuyershippingdetails) - List buyer shipping details
+* [newBuyerShippingDetail](docs/sdks/buyers/README.md#newbuyershippingdetail) - New buyer shipping detail
+* [updateBuyerShippingDetail](docs/sdks/buyers/README.md#updatebuyershippingdetail) - Update buyer shipping details
 * [deleteBuyerShippingDetail](docs/sdks/buyers/README.md#deletebuyershippingdetail) - Delete buyer shipping detail
 * [getBuyerBillingDetails](docs/sdks/buyers/README.md#getbuyerbillingdetails) - Get buyer billing details
+* [updateBuyerBillingDetails](docs/sdks/buyers/README.md#updatebuyerbillingdetails) - Update buyer billing details
 
 ### [giftCards](docs/sdks/giftcards/README.md)
 
 * [listBuyerGiftCards](docs/sdks/giftcards/README.md#listbuyergiftcards) - List gift cards buyer
 * [listGiftCards](docs/sdks/giftcards/README.md#listgiftcards) - List gift cards
+* [storeGiftCard](docs/sdks/giftcards/README.md#storegiftcard) - Store gift card
 * [getGiftCard](docs/sdks/giftcards/README.md#getgiftcard) - Get gift card
 * [deleteGiftCard](docs/sdks/giftcards/README.md#deletegiftcard) - Delete gift card
+* [checkGiftCardBalances](docs/sdks/giftcards/README.md#checkgiftcardbalances) - Verify and check gift card balances
 
 ### [paymentMethods](docs/sdks/paymentmethods/README.md)
 
 * [listBuyerPaymentMethods](docs/sdks/paymentmethods/README.md#listbuyerpaymentmethods) - List payment methods for buyer
 * [listPaymentMethods](docs/sdks/paymentmethods/README.md#listpaymentmethods) - List payment methods
+* [newPaymentMethod](docs/sdks/paymentmethods/README.md#newpaymentmethod) - New payment method
 * [getPaymentMethod](docs/sdks/paymentmethods/README.md#getpaymentmethod) - Get payment method
 * [deletePaymentMethod](docs/sdks/paymentmethods/README.md#deletepaymentmethod) - Delete payment method
 
@@ -131,6 +143,7 @@ async function run() {
 * [newCheckoutSession](docs/sdks/checkoutsessions/README.md#newcheckoutsession) - New checkout session
 * [getCheckoutSession](docs/sdks/checkoutsessions/README.md#getcheckoutsession) - Get checkout session
 * [deleteCheckoutSession](docs/sdks/checkoutsessions/README.md#deletecheckoutsession) - Delete checkout session
+* [updateCheckoutSession](docs/sdks/checkoutsessions/README.md#updatecheckoutsession) - Update checkout session
 * [updateCheckoutSessionFields](docs/sdks/checkoutsessions/README.md#updatecheckoutsessionfields) - Update fields for checkout session
 
 ### [paymentMethodDefinitions](docs/sdks/paymentmethoddefinitions/README.md)
@@ -145,8 +158,11 @@ async function run() {
 ### [paymentServices](docs/sdks/paymentservices/README.md)
 
 * [listPaymentServices](docs/sdks/paymentservices/README.md#listpaymentservices) - List payment services
+* [newPaymentService](docs/sdks/paymentservices/README.md#newpaymentservice) - New payment service
 * [getPaymentService](docs/sdks/paymentservices/README.md#getpaymentservice) - Get payment service
+* [updatePaymentService](docs/sdks/paymentservices/README.md#updatepaymentservice) - Update payment service
 * [deletePaymentService](docs/sdks/paymentservices/README.md#deletepaymentservice) - Delete payment service
+* [verifyPaymentService](docs/sdks/paymentservices/README.md#verifypaymentservice) - Verify payment service credentials
 
 ### [paymentServiceDefinitions](docs/sdks/paymentservicedefinitions/README.md)
 
@@ -155,17 +171,32 @@ async function run() {
 
 ### [digitalWallets](docs/sdks/digitalwallets/README.md)
 
+* [newDigitalWallet](docs/sdks/digitalwallets/README.md#newdigitalwallet) - Register digital wallet
 * [listDigitalWallets](docs/sdks/digitalwallets/README.md#listdigitalwallets) - List digital wallets
 * [getDigitalWallet](docs/sdks/digitalwallets/README.md#getdigitalwallet) - Get digital wallet
+* [updateDigitalWallet](docs/sdks/digitalwallets/README.md#updatedigitalwallet) - Update digital wallet
 * [deleteDigitalWallet](docs/sdks/digitalwallets/README.md#deletedigitalwallet) - De-register digital wallet
+* [addDigitalWalletDomainName](docs/sdks/digitalwallets/README.md#adddigitalwalletdomainname) - Add digital wallet domain name
+* [deleteDigitalWalletDomainName](docs/sdks/digitalwallets/README.md#deletedigitalwalletdomainname) - Remove digital wallet domain name
+* [newApplePaySession](docs/sdks/digitalwallets/README.md#newapplepaysession) - New Apple Pay session
+* [newClickToPaySession](docs/sdks/digitalwallets/README.md#newclicktopaysession) - New Click to Pay session
+* [newGooglePaySession](docs/sdks/digitalwallets/README.md#newgooglepaysession) - New Google Pay session
 
 ### [transactions](docs/sdks/transactions/README.md)
 
 * [listTransactions](docs/sdks/transactions/README.md#listtransactions) - List transactions
+* [newTransaction](docs/sdks/transactions/README.md#newtransaction) - New transaction
+* [getTransaction](docs/sdks/transactions/README.md#gettransaction) - Get transaction
 * [getTransactionActions](docs/sdks/transactions/README.md#gettransactionactions) - List actions for transaction
+* [captureTransaction](docs/sdks/transactions/README.md#capturetransaction) - Capture transaction
+* [getTransactionEvents](docs/sdks/transactions/README.md#gettransactionevents) - List events for transaction
 * [listTransactionRefunds](docs/sdks/transactions/README.md#listtransactionrefunds) - List refunds
+* [newRefund](docs/sdks/transactions/README.md#newrefund) - Refund transaction
+* [refundAll](docs/sdks/transactions/README.md#refundall) - Refund all instruments in a transaction
 * [getRefund](docs/sdks/transactions/README.md#getrefund) - Get refund
+* [getSingleRefund](docs/sdks/transactions/README.md#getsinglerefund) - Get refund
 * [getTransactionSummary](docs/sdks/transactions/README.md#gettransactionsummary) - Get transaction summary
+* [voidTransaction](docs/sdks/transactions/README.md#voidtransaction) - Void transaction
 
 ### [webhooks](docs/sdks/webhooks/README.md)
 
@@ -176,14 +207,19 @@ async function run() {
 ### [flow](docs/sdks/flow/README.md)
 
 * [listFlowRules](docs/sdks/flow/README.md#listflowrules) - List flow rules
+* [newFlowRule](docs/sdks/flow/README.md#newflowrule) - Create flow rule
 * [getFlowRule](docs/sdks/flow/README.md#getflowrule) - Get rule
+* [updateFlowRule](docs/sdks/flow/README.md#updateflowrule) - Update flow rule
 * [deleteFlowRule](docs/sdks/flow/README.md#deleteflowrule) - Delete flow rule
 * [listFlowOutcomes](docs/sdks/flow/README.md#listflowoutcomes) - List flow outcomes
 
 ### [giftCardServices](docs/sdks/giftcardservices/README.md)
 
+* [newGiftCardService](docs/sdks/giftcardservices/README.md#newgiftcardservice) - New gift card service
 * [getGiftCardService](docs/sdks/giftcardservices/README.md#getgiftcardservice) - Get gift card service
+* [updateGiftCardService](docs/sdks/giftcardservices/README.md#updategiftcardservice) - Update gift card service
 * [deleteGiftCardService](docs/sdks/giftcardservices/README.md#deletegiftcardservice) - Delete gift card service
+* [verifyGiftCardService](docs/sdks/giftcardservices/README.md#verifygiftcardservice) - Verify gift card service credentials
 
 ### [giftCardServiceDefinitions](docs/sdks/giftcardservicedefinitions/README.md)
 
@@ -191,15 +227,19 @@ async function run() {
 
 ### [antiFraudServices](docs/sdks/antifraudservices/README.md)
 
+* [newAntiFraudService](docs/sdks/antifraudservices/README.md#newantifraudservice) - New anti-fraud service
 * [getAntiFraudService](docs/sdks/antifraudservices/README.md#getantifraudservice) - Get anti-fraud service
+* [updateAntiFraudService](docs/sdks/antifraudservices/README.md#updateantifraudservice) - Update anti-fraud service
 * [deleteAntiFraudService](docs/sdks/antifraudservices/README.md#deleteantifraudservice) - Delete anti-fraud service
 
 ### [reports](docs/sdks/reports/README.md)
 
 * [listAllReportExecutions](docs/sdks/reports/README.md#listallreportexecutions) - List all report executions
 * [getReportExecution](docs/sdks/reports/README.md#getreportexecution) - Get report execution
+* [newReport](docs/sdks/reports/README.md#newreport) - New report
 * [listReports](docs/sdks/reports/README.md#listreports) - List reports
 * [getReport](docs/sdks/reports/README.md#getreport) - Get report
+* [updateReport](docs/sdks/reports/README.md#updatereport) - Update report
 * [listReportExecutions](docs/sdks/reports/README.md#listreportexecutions) - List executions for report
 * [generateDownloadUrl](docs/sdks/reports/README.md#generatedownloadurl) - Generate report download URL
 
@@ -207,12 +247,15 @@ async function run() {
 
 * [listRoles](docs/sdks/roles/README.md#listroles) - List roles
 * [listRoleAssignments](docs/sdks/roles/README.md#listroleassignments) - List role assignments
+* [newRoleAssignment](docs/sdks/roles/README.md#newroleassignment) - New role assignment
 * [deleteRoleAssignment](docs/sdks/roles/README.md#deleteroleassignment) - Delete role assignment
 
 ### [merchantAccounts](docs/sdks/merchantaccounts/README.md)
 
 * [listMerchantAccounts](docs/sdks/merchantaccounts/README.md#listmerchantaccounts) - List merchant accounts
+* [newMerchantAccount](docs/sdks/merchantaccounts/README.md#newmerchantaccount) - New merchant account
 * [getMerchantAccount](docs/sdks/merchantaccounts/README.md#getmerchantaccount) - Get merchant account
+* [updateMerchantAccount](docs/sdks/merchantaccounts/README.md#updatemerchantaccount) - Update merchant account
 * [deleteMerchantAccuont](docs/sdks/merchantaccounts/README.md#deletemerchantaccuont) - Delete merchant account
 
 ### [tokens](docs/sdks/tokens/README.md)
@@ -225,8 +268,13 @@ async function run() {
 * [getNetworkTokens](docs/sdks/tokens/README.md#getnetworktokens) - Get network tokens
 * [provisionNetworkToken](docs/sdks/tokens/README.md#provisionnetworktoken) - Provision network token
 * [deleteNetworkToken](docs/sdks/tokens/README.md#deletenetworktoken) - Delete network token
+* [issueCryptogram](docs/sdks/tokens/README.md#issuecryptogram) - Issue cryptogram
 * [suspendNetworkToken](docs/sdks/tokens/README.md#suspendnetworktoken) - Suspend network token
 * [resumeNetworkToken](docs/sdks/tokens/README.md#resumenetworktoken) - Resume network token
+
+### [vaultForward](docs/sdks/vaultforward/README.md)
+
+* [makeVaultForward](docs/sdks/vaultforward/README.md#makevaultforward) - Forward PCI data
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -236,6 +284,7 @@ All SDK methods return a response object or throw an error. If Error objects are
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
@@ -246,14 +295,16 @@ Validation errors can also occur when either method arguments or data returned f
 import { SDK } from "@gr4vy/sdk";
 import * as errors from "@gr4vy/sdk/models/errors";
 
-async function run() {
-    const sdk = new SDK({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
     let result;
     try {
-        result = await sdk.apiLogs.listApiLogs();
+        result = await sdk.accountUpdater.newAccountUpdaterJob({
+            paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+        });
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -261,6 +312,10 @@ async function run() {
                 console.error(err.pretty());
                 // Raw value may also be inspected
                 console.error(err.rawValue);
+                return;
+            }
+            case err instanceof errors.Error400BadRequest: {
+                console.error(err); // handle exception
                 return;
             }
             case err instanceof errors.Error401Unauthorized: {
@@ -297,13 +352,15 @@ You can override the default server globally by passing a server name to the `se
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-    const sdk = new SDK({
-        server: "sandbox",
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    server: "sandbox",
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-    const result = await sdk.apiLogs.listApiLogs();
+async function run() {
+    const result = await sdk.accountUpdater.newAccountUpdaterJob({
+        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    });
 
     // Handle the result
     console.log(result);
@@ -325,13 +382,15 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-    const sdk = new SDK({
-        serverURL: "https://api.{gr4vy_id}.gr4vy.app",
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    serverURL: "https://api.{gr4vy_id}.gr4vy.app",
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-    const result = await sdk.apiLogs.listApiLogs();
+async function run() {
+    const result = await sdk.accountUpdater.newAccountUpdaterJob({
+        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    });
 
     // Handle the result
     console.log(result);
@@ -406,12 +465,14 @@ To authenticate with the API the `bearerAuth` parameter must be set when initial
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-    const sdk = new SDK({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-    const result = await sdk.apiLogs.listApiLogs();
+async function run() {
+    const result = await sdk.accountUpdater.newAccountUpdaterJob({
+        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    });
 
     // Handle the result
     console.log(result);
@@ -446,12 +507,14 @@ yarn add https://github.com/gr4vy/gr4vy-js
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-    const sdk = new SDK({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-    const result = await sdk.apiLogs.listApiLogs();
+async function run() {
+    const result = await sdk.accountUpdater.newAccountUpdaterJob({
+        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    });
 
     // Handle the result
     console.log(result);
@@ -478,11 +541,11 @@ Here's an example of one such pagination call:
 import { SDK } from "@gr4vy/sdk";
 import { QueryParamMethod, QueryParamStatus } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-    const sdk = new SDK({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
     const result = await sdk.transactions.listTransactions({
         buyerExternalIdentifier: "user-12345",
         buyerId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",

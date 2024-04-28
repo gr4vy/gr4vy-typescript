@@ -37,10 +37,13 @@ export type FlowAmountZeroCondition = {
 };
 
 /** @internal */
-export const FlowAmountZeroConditionName$ = z.nativeEnum(FlowAmountZeroConditionName);
+export const FlowAmountZeroConditionName$: z.ZodNativeEnum<typeof FlowAmountZeroConditionName> =
+    z.nativeEnum(FlowAmountZeroConditionName);
 
 /** @internal */
-export const FlowAmountZeroConditionOperator$ = z.nativeEnum(FlowAmountZeroConditionOperator);
+export const FlowAmountZeroConditionOperator$: z.ZodNativeEnum<
+    typeof FlowAmountZeroConditionOperator
+> = z.nativeEnum(FlowAmountZeroConditionOperator);
 
 /** @internal */
 export namespace FlowAmountZeroCondition$ {

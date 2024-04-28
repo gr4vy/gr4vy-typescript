@@ -37,14 +37,14 @@ export type FlowIsSubsequentPaymentCondition = {
 };
 
 /** @internal */
-export const FlowIsSubsequentPaymentConditionName$ = z.nativeEnum(
-    FlowIsSubsequentPaymentConditionName
-);
+export const FlowIsSubsequentPaymentConditionName$: z.ZodNativeEnum<
+    typeof FlowIsSubsequentPaymentConditionName
+> = z.nativeEnum(FlowIsSubsequentPaymentConditionName);
 
 /** @internal */
-export const FlowIsSubsequentPaymentConditionOperator$ = z.nativeEnum(
-    FlowIsSubsequentPaymentConditionOperator
-);
+export const FlowIsSubsequentPaymentConditionOperator$: z.ZodNativeEnum<
+    typeof FlowIsSubsequentPaymentConditionOperator
+> = z.nativeEnum(FlowIsSubsequentPaymentConditionOperator);
 
 /** @internal */
 export namespace FlowIsSubsequentPaymentCondition$ {

@@ -29,7 +29,8 @@ export type FlowRuleBooleanOutcome = {
 };
 
 /** @internal */
-export const FlowRuleBooleanOutcomeType$ = z.nativeEnum(FlowRuleBooleanOutcomeType);
+export const FlowRuleBooleanOutcomeType$: z.ZodNativeEnum<typeof FlowRuleBooleanOutcomeType> =
+    z.nativeEnum(FlowRuleBooleanOutcomeType);
 
 /** @internal */
 export namespace FlowRuleBooleanOutcome$ {

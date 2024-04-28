@@ -138,10 +138,12 @@ export type MerchantAccount = {
 };
 
 /** @internal */
-export const MerchantAccountType$ = z.nativeEnum(MerchantAccountType);
+export const MerchantAccountType$: z.ZodNativeEnum<typeof MerchantAccountType> =
+    z.nativeEnum(MerchantAccountType);
 
 /** @internal */
-export const LoonAcceptedSchemes$ = z.nativeEnum(LoonAcceptedSchemes);
+export const LoonAcceptedSchemes$: z.ZodNativeEnum<typeof LoonAcceptedSchemes> =
+    z.nativeEnum(LoonAcceptedSchemes);
 
 /** @internal */
 export namespace MerchantAccount$ {

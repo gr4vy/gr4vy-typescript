@@ -31,7 +31,8 @@ export type PaymentServiceDefinitionConfiguration = {
 };
 
 /** @internal */
-export const ApprovalUiTarget$ = z.nativeEnum(ApprovalUiTarget);
+export const ApprovalUiTarget$: z.ZodNativeEnum<typeof ApprovalUiTarget> =
+    z.nativeEnum(ApprovalUiTarget);
 
 /** @internal */
 export namespace PaymentServiceDefinitionConfiguration$ {

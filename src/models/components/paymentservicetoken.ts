@@ -85,10 +85,12 @@ export type PaymentServiceToken = {
 };
 
 /** @internal */
-export const PaymentServiceTokenType$ = z.nativeEnum(PaymentServiceTokenType);
+export const PaymentServiceTokenType$: z.ZodNativeEnum<typeof PaymentServiceTokenType> =
+    z.nativeEnum(PaymentServiceTokenType);
 
 /** @internal */
-export const PaymentServiceTokenStatus$ = z.nativeEnum(PaymentServiceTokenStatus);
+export const PaymentServiceTokenStatus$: z.ZodNativeEnum<typeof PaymentServiceTokenStatus> =
+    z.nativeEnum(PaymentServiceTokenStatus);
 
 /** @internal */
 export namespace PaymentServiceToken$ {

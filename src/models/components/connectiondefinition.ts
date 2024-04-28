@@ -54,10 +54,10 @@ export type ConnectionDefinition = {
 };
 
 /** @internal */
-export const Group$ = z.nativeEnum(Group);
+export const Group$: z.ZodNativeEnum<typeof Group> = z.nativeEnum(Group);
 
 /** @internal */
-export const Category$ = z.nativeEnum(Category);
+export const Category$: z.ZodNativeEnum<typeof Category> = z.nativeEnum(Category);
 
 /** @internal */
 export namespace ConnectionDefinition$ {

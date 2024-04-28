@@ -40,6 +40,127 @@ export class GiftCardServices extends ClientSDK {
     }
 
     /**
+     * New gift card service
+     *
+     * @remarks
+     * Adds a new gift card service by providing a custom name and a value for each of the required fields.
+     */
+    async newGiftCardService(
+        input: components.GiftCardServiceCreateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.GiftCardService> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) =>
+                components.GiftCardServiceCreateRequest$.outboundSchema.optional().parse(value$),
+            "Input validation failed"
+        );
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/gift-card-services")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "new-gift-card-service",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "409", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 201, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return components.GiftCardService$.inboundSchema.parse(val$);
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 409, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error409DuplicateRecord$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
      * Get gift card service
      *
      * @remarks
@@ -93,6 +214,7 @@ export class GiftCardServices extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -156,6 +278,154 @@ export class GiftCardServices extends ClientSDK {
     }
 
     /**
+     * Update gift card service
+     *
+     * @remarks
+     * Updates an existing gift card service. Allows all fields to be changed except for the service ID.
+     */
+    async updateGiftCardService(
+        giftCardServiceId: string,
+        giftCardServiceUpdateRequest?: components.GiftCardServiceUpdateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.GiftCardService> {
+        const input$: operations.UpdateGiftCardServiceRequest = {
+            giftCardServiceId: giftCardServiceId,
+            giftCardServiceUpdateRequest: giftCardServiceUpdateRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.UpdateGiftCardServiceRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.GiftCardServiceUpdateRequest, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            gift_card_service_id: enc$.encodeSimple(
+                "gift_card_service_id",
+                payload$.gift_card_service_id,
+                { explode: false, charEncoding: "percent" }
+            ),
+        };
+        const path$ = this.templateURLComponent("/gift-card-services/{gift_card_service_id}")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "update-gift-card-service",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "409", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 201, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return components.GiftCardService$.inboundSchema.parse(val$);
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 404, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error404NotFound$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 409, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error409DuplicateRecord$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
      * Delete gift card service
      *
      * @remarks
@@ -164,7 +434,7 @@ export class GiftCardServices extends ClientSDK {
     async deleteGiftCardService(
         giftCardServiceId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteGiftCardServiceResponse> {
+    ): Promise<operations.DeleteGiftCardServiceResponse | void> {
         const input$: operations.DeleteGiftCardServiceRequest = {
             giftCardServiceId: giftCardServiceId,
         };
@@ -209,6 +479,7 @@ export class GiftCardServices extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -230,7 +501,7 @@ export class GiftCardServices extends ClientSDK {
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -261,11 +532,118 @@ export class GiftCardServices extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
+    }
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteGiftCardServiceResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
+    /**
+     * Verify gift card service credentials
+     *
+     * @remarks
+     * Verifies a set of credentials against a gift card service.
+     */
+    async verifyGiftCardService(
+        input: components.GiftCardServiceVerifyRequest | undefined,
+        options?: RequestOptions
+    ): Promise<operations.VerifyGiftCardServiceResponse | void> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) =>
+                components.GiftCardServiceVerifyRequest$.outboundSchema.optional().parse(value$),
+            "Input validation failed"
         );
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/gift-card-services/verify")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "verify-gift-card-service",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchStatusCode(response, 200)) {
+            return;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 404, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error404NotFound$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
     }
 }

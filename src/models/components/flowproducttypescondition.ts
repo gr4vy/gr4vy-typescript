@@ -50,13 +50,18 @@ export type FlowProductTypesCondition = {
 };
 
 /** @internal */
-export const FlowProductTypesConditionName$ = z.nativeEnum(FlowProductTypesConditionName);
+export const FlowProductTypesConditionName$: z.ZodNativeEnum<typeof FlowProductTypesConditionName> =
+    z.nativeEnum(FlowProductTypesConditionName);
 
 /** @internal */
-export const FlowProductTypesConditionOperator$ = z.nativeEnum(FlowProductTypesConditionOperator);
+export const FlowProductTypesConditionOperator$: z.ZodNativeEnum<
+    typeof FlowProductTypesConditionOperator
+> = z.nativeEnum(FlowProductTypesConditionOperator);
 
 /** @internal */
-export const FlowProductTypesConditionValue$ = z.nativeEnum(FlowProductTypesConditionValue);
+export const FlowProductTypesConditionValue$: z.ZodNativeEnum<
+    typeof FlowProductTypesConditionValue
+> = z.nativeEnum(FlowProductTypesConditionValue);
 
 /** @internal */
 export namespace FlowProductTypesCondition$ {

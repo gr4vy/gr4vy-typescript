@@ -36,7 +36,7 @@ export type InboundWebhooksRequest = {
 export type InboundWebhooksResponse = {};
 
 /** @internal */
-export const Resource$ = z.nativeEnum(Resource);
+export const Resource$: z.ZodNativeEnum<typeof Resource> = z.nativeEnum(Resource);
 
 /** @internal */
 export namespace InboundWebhooksRequest$ {

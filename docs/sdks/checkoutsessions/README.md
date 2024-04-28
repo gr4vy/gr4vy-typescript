@@ -11,6 +11,7 @@ through an online checkout.
 * [newCheckoutSession](#newcheckoutsession) - New checkout session
 * [getCheckoutSession](#getcheckoutsession) - Get checkout session
 * [deleteCheckoutSession](#deletecheckoutsession) - Delete checkout session
+* [updateCheckoutSession](#updatecheckoutsession) - Update checkout session
 * [updateCheckoutSessionFields](#updatecheckoutsessionfields) - Update fields for checkout session
 
 ## newCheckoutSession
@@ -23,11 +24,11 @@ Creates a new Checkout Session.
 import { SDK } from "@gr4vy/sdk";
 import { ProductType } from "@gr4vy/sdk/models/components";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.checkoutSessions.newCheckoutSession({
     cartItems: [
       {
@@ -69,7 +70,7 @@ run();
 
 ### Response
 
-**Promise<[operations.NewCheckoutSessionResponse](../../models/operations/newcheckoutsessionresponse.md)>**
+**Promise<[components.CheckoutSession](../../models/components/checkoutsession.md)>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -87,11 +88,11 @@ Gets details about a current Checkout Session.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const checkoutSessionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   
   const result = await sdk.checkoutSessions.getCheckoutSession(checkoutSessionId);
@@ -114,7 +115,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetCheckoutSessionResponse](../../models/operations/getcheckoutsessionresponse.md)>**
+**Promise<[components.CheckoutSession](../../models/components/checkoutsession.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -132,11 +133,11 @@ Deletes a Checkout Session.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const checkoutSessionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   
   const result = await sdk.checkoutSessions.deleteCheckoutSession(checkoutSessionId);
@@ -159,7 +160,7 @@ run();
 
 ### Response
 
-**Promise<[components.ErrorGeneric](../../models/components/errorgeneric.md)>**
+**Promise<[operations.DeleteCheckoutSessionResponse](../../models/operations/deletecheckoutsessionresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -167,6 +168,77 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## updateCheckoutSession
+
+Updates a Checkout Session.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { ProductType } from "@gr4vy/sdk/models/components";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const checkoutSessionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
+  const checkoutSessionUpdateRequest = {
+    cartItems: [
+      {
+        name: "GoPro HERO9 Camcorder",
+        quantity: 1,
+        unitAmount: 37999,
+        discountAmount: 0,
+        taxAmount: 0,
+        externalIdentifier: "item-789123",
+        sku: "sku-789123",
+        productUrl: "https://example.com/items/gopro",
+        imageUrl: "https://example.com/images/items/gopro.png",
+        categories: [
+          "<value>",
+        ],
+        productType: ProductType.Physical,
+      },
+    ],
+    metadata: {
+      "key": "value",
+    },
+  };
+  
+  const result = await sdk.checkoutSessions.updateCheckoutSession(checkoutSessionId, checkoutSessionUpdateRequest);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `checkoutSessionId`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique ID for a Checkout Session.                                                                                                                                          | [object Object]                                                                                                                                                                |
+| `checkoutSessionUpdateRequest`                                                                                                                                                 | [components.CheckoutSessionUpdateRequest](../../models/components/checkoutsessionupdaterequest.md)                                                                             | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[components.CheckoutSession](../../models/components/checkoutsession.md)>**
+### Errors
+
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.Error400BadRequest      | 400                            | application/json               |
+| errors.Error401Unauthorized    | 401                            | application/json               |
+| errors.Error404NotFound        | 404                            | application/json               |
+| errors.Error409DuplicateRecord | 409                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 ## updateCheckoutSessionFields
 
@@ -178,11 +250,11 @@ Updates the Secure Fields of the Checkout Session.
 import { SDK } from "@gr4vy/sdk";
 import { CheckoutSessionFieldsClickToPayPaymentMethodMethod } from "@gr4vy/sdk/models/components";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const checkoutSessionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   const checkoutSessionSecureFieldsUpdate = {
   paymentMethod:     {
@@ -213,7 +285,7 @@ run();
 
 ### Response
 
-**Promise<[components.ErrorGeneric](../../models/components/errorgeneric.md)>**
+**Promise<[operations.UpdateCheckoutSessionFieldsResponse](../../models/operations/updatecheckoutsessionfieldsresponse.md)>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |

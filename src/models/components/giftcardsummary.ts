@@ -103,10 +103,12 @@ export type GiftCardSummary = {
 };
 
 /** @internal */
-export const GiftCardSummaryType$ = z.nativeEnum(GiftCardSummaryType);
+export const GiftCardSummaryType$: z.ZodNativeEnum<typeof GiftCardSummaryType> =
+    z.nativeEnum(GiftCardSummaryType);
 
 /** @internal */
-export const BalanceErrorCode$ = z.nativeEnum(BalanceErrorCode);
+export const BalanceErrorCode$: z.ZodNativeEnum<typeof BalanceErrorCode> =
+    z.nativeEnum(BalanceErrorCode);
 
 /** @internal */
 export namespace GiftCardSummary$ {

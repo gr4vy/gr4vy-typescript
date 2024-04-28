@@ -39,12 +39,14 @@ export type FlowProductCategoriesCondition = {
 };
 
 /** @internal */
-export const FlowProductCategoriesConditionName$ = z.nativeEnum(FlowProductCategoriesConditionName);
+export const FlowProductCategoriesConditionName$: z.ZodNativeEnum<
+    typeof FlowProductCategoriesConditionName
+> = z.nativeEnum(FlowProductCategoriesConditionName);
 
 /** @internal */
-export const FlowProductCategoriesConditionOperator$ = z.nativeEnum(
-    FlowProductCategoriesConditionOperator
-);
+export const FlowProductCategoriesConditionOperator$: z.ZodNativeEnum<
+    typeof FlowProductCategoriesConditionOperator
+> = z.nativeEnum(FlowProductCategoriesConditionOperator);
 
 /** @internal */
 export namespace FlowProductCategoriesCondition$ {

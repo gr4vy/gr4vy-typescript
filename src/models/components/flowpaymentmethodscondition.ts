@@ -33,6 +33,7 @@ export enum FlowPaymentMethodsConditionValue {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -113,15 +114,19 @@ export type FlowPaymentMethodsCondition = {
 };
 
 /** @internal */
-export const FlowPaymentMethodsConditionName$ = z.nativeEnum(FlowPaymentMethodsConditionName);
+export const FlowPaymentMethodsConditionName$: z.ZodNativeEnum<
+    typeof FlowPaymentMethodsConditionName
+> = z.nativeEnum(FlowPaymentMethodsConditionName);
 
 /** @internal */
-export const FlowPaymentMethodsConditionOperator$ = z.nativeEnum(
-    FlowPaymentMethodsConditionOperator
-);
+export const FlowPaymentMethodsConditionOperator$: z.ZodNativeEnum<
+    typeof FlowPaymentMethodsConditionOperator
+> = z.nativeEnum(FlowPaymentMethodsConditionOperator);
 
 /** @internal */
-export const FlowPaymentMethodsConditionValue$ = z.nativeEnum(FlowPaymentMethodsConditionValue);
+export const FlowPaymentMethodsConditionValue$: z.ZodNativeEnum<
+    typeof FlowPaymentMethodsConditionValue
+> = z.nativeEnum(FlowPaymentMethodsConditionValue);
 
 /** @internal */
 export namespace FlowPaymentMethodsCondition$ {

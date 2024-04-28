@@ -165,6 +165,7 @@ export enum FlowRuleMethodOutcomeOutcomeResult {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -310,18 +311,18 @@ export type Action = {
 };
 
 /** @internal */
-export const ActionType$ = z.nativeEnum(ActionType);
+export const ActionType$: z.ZodNativeEnum<typeof ActionType> = z.nativeEnum(ActionType);
 
 /** @internal */
-export const Id$ = z.nativeEnum(Id);
+export const Id$: z.ZodNativeEnum<typeof Id> = z.nativeEnum(Id);
 
 /** @internal */
-export const Flow$ = z.nativeEnum(Flow);
+export const Flow$: z.ZodNativeEnum<typeof Flow> = z.nativeEnum(Flow);
 
 /** @internal */
-export const FlowRuleUUIDsListOutcomeOutcomeType$ = z.nativeEnum(
-    FlowRuleUUIDsListOutcomeOutcomeType
-);
+export const FlowRuleUUIDsListOutcomeOutcomeType$: z.ZodNativeEnum<
+    typeof FlowRuleUUIDsListOutcomeOutcomeType
+> = z.nativeEnum(FlowRuleUUIDsListOutcomeOutcomeType);
 
 /** @internal */
 export namespace UUIDsListOutcome$ {
@@ -361,13 +362,16 @@ export namespace UUIDsListOutcome$ {
 }
 
 /** @internal */
-export const FlowRuleServiceOutcomeOutcomeType$ = z.nativeEnum(FlowRuleServiceOutcomeOutcomeType);
+export const FlowRuleServiceOutcomeOutcomeType$: z.ZodNativeEnum<
+    typeof FlowRuleServiceOutcomeOutcomeType
+> = z.nativeEnum(FlowRuleServiceOutcomeOutcomeType);
 
 /** @internal */
-export const OutcomeInstrument$ = z.nativeEnum(OutcomeInstrument);
+export const OutcomeInstrument$: z.ZodNativeEnum<typeof OutcomeInstrument> =
+    z.nativeEnum(OutcomeInstrument);
 
 /** @internal */
-export const OutcomeName$ = z.nativeEnum(OutcomeName);
+export const OutcomeName$: z.ZodNativeEnum<typeof OutcomeName> = z.nativeEnum(OutcomeName);
 
 /** @internal */
 export namespace OutcomeTransformations$ {
@@ -456,7 +460,7 @@ export namespace OutcomeResult$ {
 }
 
 /** @internal */
-export const OutcomeVersion$ = z.nativeEnum(OutcomeVersion);
+export const OutcomeVersion$: z.ZodNativeEnum<typeof OutcomeVersion> = z.nativeEnum(OutcomeVersion);
 
 /** @internal */
 export namespace PaymentServiceOutcome$ {
@@ -502,10 +506,14 @@ export namespace PaymentServiceOutcome$ {
 }
 
 /** @internal */
-export const FlowRuleMethodOutcomeOutcomeType$ = z.nativeEnum(FlowRuleMethodOutcomeOutcomeType);
+export const FlowRuleMethodOutcomeOutcomeType$: z.ZodNativeEnum<
+    typeof FlowRuleMethodOutcomeOutcomeType
+> = z.nativeEnum(FlowRuleMethodOutcomeOutcomeType);
 
 /** @internal */
-export const FlowRuleMethodOutcomeOutcomeResult$ = z.nativeEnum(FlowRuleMethodOutcomeOutcomeResult);
+export const FlowRuleMethodOutcomeOutcomeResult$: z.ZodNativeEnum<
+    typeof FlowRuleMethodOutcomeOutcomeResult
+> = z.nativeEnum(FlowRuleMethodOutcomeOutcomeResult);
 
 /** @internal */
 export namespace PaymentMethodOutcome$ {
@@ -545,7 +553,7 @@ export namespace PaymentMethodOutcome$ {
 }
 
 /** @internal */
-export const OutcomeType$ = z.nativeEnum(OutcomeType);
+export const OutcomeType$: z.ZodNativeEnum<typeof OutcomeType> = z.nativeEnum(OutcomeType);
 
 /** @internal */
 export namespace BooleanOutcome$ {

@@ -77,10 +77,12 @@ export type NetworkToken = {
 };
 
 /** @internal */
-export const NetworkTokenType$ = z.nativeEnum(NetworkTokenType);
+export const NetworkTokenType$: z.ZodNativeEnum<typeof NetworkTokenType> =
+    z.nativeEnum(NetworkTokenType);
 
 /** @internal */
-export const NetworkTokenStatus$ = z.nativeEnum(NetworkTokenStatus);
+export const NetworkTokenStatus$: z.ZodNativeEnum<typeof NetworkTokenStatus> =
+    z.nativeEnum(NetworkTokenStatus);
 
 /** @internal */
 export namespace NetworkToken$ {

@@ -13,6 +13,8 @@ export type UpdateCheckoutSessionFieldsRequest = {
     checkoutSessionSecureFieldsUpdate?: components.CheckoutSessionSecureFieldsUpdate | undefined;
 };
 
+export type UpdateCheckoutSessionFieldsResponse = {};
+
 /** @internal */
 export namespace UpdateCheckoutSessionFieldsRequest$ {
     export type Inbound = {
@@ -66,4 +68,23 @@ export namespace UpdateCheckoutSessionFieldsRequest$ {
                     : { CheckoutSessionSecureFieldsUpdate: v.checkoutSessionSecureFieldsUpdate }),
             };
         });
+}
+
+/** @internal */
+export namespace UpdateCheckoutSessionFieldsResponse$ {
+    export type Inbound = {};
+
+    export const inboundSchema: z.ZodType<
+        UpdateCheckoutSessionFieldsResponse,
+        z.ZodTypeDef,
+        Inbound
+    > = z.object({});
+
+    export type Outbound = {};
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        UpdateCheckoutSessionFieldsResponse
+    > = z.object({});
 }

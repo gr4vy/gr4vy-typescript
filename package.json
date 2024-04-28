@@ -1,7 +1,7 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.1.9",
-  "author": "Speakeasy",
+  "version": "0.2.0",
+  "author": "Speakeasy",  
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
@@ -13,7 +13,6 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "keywords": [],
   "peerDependencies": {
     "zod": ">= 3"
   },
@@ -22,13 +21,13 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/trust__keyto": "^1.0.4",
     "@types/uuid": "^9.0.8",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.0",
-    "typescript": "^5.3.3",
-    "zod": "^3.22.4"
+    "eslint-plugin-import": "^2.29.1",
+    "typescript": "^5.4.5",
+    "zod": "^3.23.4"
   },
   "dependencies": {
     "@trust/keyto": "^1.0.1",

@@ -104,7 +104,8 @@ export type ShippingDetail = {
 };
 
 /** @internal */
-export const ShippingDetailType$ = z.nativeEnum(ShippingDetailType);
+export const ShippingDetailType$: z.ZodNativeEnum<typeof ShippingDetailType> =
+    z.nativeEnum(ShippingDetailType);
 
 /** @internal */
 export namespace ShippingDetailAddress$ {

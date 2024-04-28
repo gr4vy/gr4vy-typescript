@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK } from "../lib/sdks";
+import { AccountUpdater } from "./accountupdater";
 import { AntiFraudServices } from "./antifraudservices";
 import { APILogs } from "./apilogs";
 import { AuditLogs } from "./auditlogs";
@@ -29,6 +30,7 @@ import { Reports } from "./reports";
 import { Roles } from "./roles";
 import { Tokens } from "./tokens";
 import { Transactions } from "./transactions";
+import { VaultForward } from "./vaultforward";
 import { Webhooks } from "./webhooks";
 
 export class SDK extends ClientSDK {
@@ -58,123 +60,133 @@ export class SDK extends ClientSDK {
         void this.options$;
     }
 
+    private _accountUpdater?: AccountUpdater;
+    get accountUpdater(): AccountUpdater {
+        return (this._accountUpdater ??= new AccountUpdater(this.options$));
+    }
+
     private _apiLogs?: APILogs;
-    get apiLogs() {
+    get apiLogs(): APILogs {
         return (this._apiLogs ??= new APILogs(this.options$));
     }
 
     private _auditLogs?: AuditLogs;
-    get auditLogs() {
+    get auditLogs(): AuditLogs {
         return (this._auditLogs ??= new AuditLogs(this.options$));
     }
 
     private _buyers?: Buyers;
-    get buyers() {
+    get buyers(): Buyers {
         return (this._buyers ??= new Buyers(this.options$));
     }
 
     private _giftCards?: GiftCards;
-    get giftCards() {
+    get giftCards(): GiftCards {
         return (this._giftCards ??= new GiftCards(this.options$));
     }
 
     private _paymentMethods?: PaymentMethods;
-    get paymentMethods() {
+    get paymentMethods(): PaymentMethods {
         return (this._paymentMethods ??= new PaymentMethods(this.options$));
     }
 
     private _cardSchemeDefinitions?: CardSchemeDefinitions;
-    get cardSchemeDefinitions() {
+    get cardSchemeDefinitions(): CardSchemeDefinitions {
         return (this._cardSchemeDefinitions ??= new CardSchemeDefinitions(this.options$));
     }
 
     private _connections?: Connections;
-    get connections() {
+    get connections(): Connections {
         return (this._connections ??= new Connections(this.options$));
     }
 
     private _connectionDefinitions?: ConnectionDefinitions;
-    get connectionDefinitions() {
+    get connectionDefinitions(): ConnectionDefinitions {
         return (this._connectionDefinitions ??= new ConnectionDefinitions(this.options$));
     }
 
     private _checkoutSessions?: CheckoutSessions;
-    get checkoutSessions() {
+    get checkoutSessions(): CheckoutSessions {
         return (this._checkoutSessions ??= new CheckoutSessions(this.options$));
     }
 
     private _paymentMethodDefinitions?: PaymentMethodDefinitions;
-    get paymentMethodDefinitions() {
+    get paymentMethodDefinitions(): PaymentMethodDefinitions {
         return (this._paymentMethodDefinitions ??= new PaymentMethodDefinitions(this.options$));
     }
 
     private _paymentOptions?: PaymentOptions;
-    get paymentOptions() {
+    get paymentOptions(): PaymentOptions {
         return (this._paymentOptions ??= new PaymentOptions(this.options$));
     }
 
     private _paymentServices?: PaymentServices;
-    get paymentServices() {
+    get paymentServices(): PaymentServices {
         return (this._paymentServices ??= new PaymentServices(this.options$));
     }
 
     private _paymentServiceDefinitions?: PaymentServiceDefinitions;
-    get paymentServiceDefinitions() {
+    get paymentServiceDefinitions(): PaymentServiceDefinitions {
         return (this._paymentServiceDefinitions ??= new PaymentServiceDefinitions(this.options$));
     }
 
     private _digitalWallets?: DigitalWallets;
-    get digitalWallets() {
+    get digitalWallets(): DigitalWallets {
         return (this._digitalWallets ??= new DigitalWallets(this.options$));
     }
 
     private _transactions?: Transactions;
-    get transactions() {
+    get transactions(): Transactions {
         return (this._transactions ??= new Transactions(this.options$));
     }
 
     private _webhooks?: Webhooks;
-    get webhooks() {
+    get webhooks(): Webhooks {
         return (this._webhooks ??= new Webhooks(this.options$));
     }
 
     private _flow?: Flow;
-    get flow() {
+    get flow(): Flow {
         return (this._flow ??= new Flow(this.options$));
     }
 
     private _giftCardServices?: GiftCardServices;
-    get giftCardServices() {
+    get giftCardServices(): GiftCardServices {
         return (this._giftCardServices ??= new GiftCardServices(this.options$));
     }
 
     private _giftCardServiceDefinitions?: GiftCardServiceDefinitions;
-    get giftCardServiceDefinitions() {
+    get giftCardServiceDefinitions(): GiftCardServiceDefinitions {
         return (this._giftCardServiceDefinitions ??= new GiftCardServiceDefinitions(this.options$));
     }
 
     private _antiFraudServices?: AntiFraudServices;
-    get antiFraudServices() {
+    get antiFraudServices(): AntiFraudServices {
         return (this._antiFraudServices ??= new AntiFraudServices(this.options$));
     }
 
     private _reports?: Reports;
-    get reports() {
+    get reports(): Reports {
         return (this._reports ??= new Reports(this.options$));
     }
 
     private _roles?: Roles;
-    get roles() {
+    get roles(): Roles {
         return (this._roles ??= new Roles(this.options$));
     }
 
     private _merchantAccounts?: MerchantAccounts;
-    get merchantAccounts() {
+    get merchantAccounts(): MerchantAccounts {
         return (this._merchantAccounts ??= new MerchantAccounts(this.options$));
     }
 
     private _tokens?: Tokens;
-    get tokens() {
+    get tokens(): Tokens {
         return (this._tokens ??= new Tokens(this.options$));
+    }
+
+    private _vaultForward?: VaultForward;
+    get vaultForward(): VaultForward {
+        return (this._vaultForward ??= new VaultForward(this.options$));
     }
 }

@@ -4,6 +4,7 @@
 
 export * from "./error400badrequest";
 export * from "./error401unauthorized";
+export * from "./error403forbidden";
 export * from "./error404notfound";
 export * from "./error409duplicaterecord";
 export * from "./error429toomanyrequests";

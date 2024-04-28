@@ -34,7 +34,8 @@ export type CardSchemeDefinition = {
 };
 
 /** @internal */
-export const CardSchemeDefinitionType$ = z.nativeEnum(CardSchemeDefinitionType);
+export const CardSchemeDefinitionType$: z.ZodNativeEnum<typeof CardSchemeDefinitionType> =
+    z.nativeEnum(CardSchemeDefinitionType);
 
 /** @internal */
 export namespace CardSchemeDefinition$ {

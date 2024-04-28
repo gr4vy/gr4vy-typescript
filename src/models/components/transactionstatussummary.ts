@@ -51,10 +51,13 @@ export type TransactionStatusSummary = {
 };
 
 /** @internal */
-export const TransactionStatusSummaryType$ = z.nativeEnum(TransactionStatusSummaryType);
+export const TransactionStatusSummaryType$: z.ZodNativeEnum<typeof TransactionStatusSummaryType> =
+    z.nativeEnum(TransactionStatusSummaryType);
 
 /** @internal */
-export const TransactionStatusSummaryStatus$ = z.nativeEnum(TransactionStatusSummaryStatus);
+export const TransactionStatusSummaryStatus$: z.ZodNativeEnum<
+    typeof TransactionStatusSummaryStatus
+> = z.nativeEnum(TransactionStatusSummaryStatus);
 
 /** @internal */
 export namespace TransactionStatusSummary$ {

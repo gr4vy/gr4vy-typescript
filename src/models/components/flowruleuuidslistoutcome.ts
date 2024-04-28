@@ -34,7 +34,8 @@ export type FlowRuleUUIDsListOutcome = {
 };
 
 /** @internal */
-export const FlowRuleUUIDsListOutcomeType$ = z.nativeEnum(FlowRuleUUIDsListOutcomeType);
+export const FlowRuleUUIDsListOutcomeType$: z.ZodNativeEnum<typeof FlowRuleUUIDsListOutcomeType> =
+    z.nativeEnum(FlowRuleUUIDsListOutcomeType);
 
 /** @internal */
 export namespace FlowRuleUUIDsListOutcome$ {

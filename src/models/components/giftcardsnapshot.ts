@@ -41,7 +41,8 @@ export type GiftCardSnapshot = {
 };
 
 /** @internal */
-export const GiftCardSnapshotType$ = z.nativeEnum(GiftCardSnapshotType);
+export const GiftCardSnapshotType$: z.ZodNativeEnum<typeof GiftCardSnapshotType> =
+    z.nativeEnum(GiftCardSnapshotType);
 
 /** @internal */
 export namespace GiftCardSnapshot$ {

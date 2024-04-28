@@ -1,0 +1,14 @@
+speakeasyVersion: 1.276.0
+sources: {}
+targets: {}
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        openapi:
+            inputs:
+                - location: https://gr4vy.github.io/gr4vy-openapi/openapi.v1.json
+    targets:
+        first-target:
+            target: typescript
+            source: openapi

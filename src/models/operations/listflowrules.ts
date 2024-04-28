@@ -30,7 +30,7 @@ export type ListFlowRulesRequest = {
 };
 
 /** @internal */
-export const Flow$ = z.nativeEnum(Flow);
+export const Flow$: z.ZodNativeEnum<typeof Flow> = z.nativeEnum(Flow);
 
 /** @internal */
 export namespace ListFlowRulesRequest$ {

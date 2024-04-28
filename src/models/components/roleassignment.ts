@@ -50,10 +50,12 @@ export type RoleAssignment = {
 };
 
 /** @internal */
-export const RoleAssignmentType$ = z.nativeEnum(RoleAssignmentType);
+export const RoleAssignmentType$: z.ZodNativeEnum<typeof RoleAssignmentType> =
+    z.nativeEnum(RoleAssignmentType);
 
 /** @internal */
-export const RoleAssignmentAssigneeType$ = z.nativeEnum(RoleAssignmentAssigneeType);
+export const RoleAssignmentAssigneeType$: z.ZodNativeEnum<typeof RoleAssignmentAssigneeType> =
+    z.nativeEnum(RoleAssignmentAssigneeType);
 
 /** @internal */
 export namespace Assignee$ {

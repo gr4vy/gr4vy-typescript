@@ -20,11 +20,11 @@ Returns a list of all available payment service definitions.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const limit = 1;
   const cursor = "ZXhhbXBsZTE";
   
@@ -66,11 +66,11 @@ Gets the definition for a payment service.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const paymentServiceDefinitionId = "stripe-card";
   
   const result = await sdk.paymentServiceDefinitions.getPaymentServiceDefinition(paymentServiceDefinitionId);

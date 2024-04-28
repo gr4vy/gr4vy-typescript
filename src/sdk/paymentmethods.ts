@@ -111,6 +111,7 @@ export class PaymentMethods extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -233,6 +234,7 @@ export class PaymentMethods extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -269,6 +271,133 @@ export class PaymentMethods extends ClientSDK {
                 responseBody,
                 (val$) => {
                     return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
+     * New payment method
+     *
+     * @remarks
+     * Stores and vaults a new payment method.
+     *
+     * Vaulting a card only stores its information but doesn't validate it against any
+     * PSP, so ephemeral data like the security code, often referred to as the CVV or
+     * CVD, won't be used. In order to validate the card data, a CIT (Customer Initiated
+     * Transaction) must be done, even if it's a zero-value one.
+     *
+     */
+    async newPaymentMethod(
+        input: operations.NewPaymentMethodRequestBody | undefined,
+        options?: RequestOptions
+    ): Promise<components.PaymentMethod> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) =>
+                operations.NewPaymentMethodRequestBody$.outboundSchema.optional().parse(value$),
+            "Input validation failed"
+        );
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/payment-methods")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "new-payment-method",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "409", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 201, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return components.PaymentMethod$.inboundSchema.parse(val$);
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 409, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error409DuplicateRecord$.inboundSchema.parse({
                         ...responseFields$,
                         ...val$,
                     });
@@ -335,6 +464,7 @@ export class PaymentMethods extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -406,7 +536,7 @@ export class PaymentMethods extends ClientSDK {
     async deletePaymentMethod(
         paymentMethodId: string,
         options?: RequestOptions
-    ): Promise<operations.DeletePaymentMethodResponse> {
+    ): Promise<operations.DeletePaymentMethodResponse | void> {
         const input$: operations.DeletePaymentMethodRequest = {
             paymentMethodId: paymentMethodId,
         };
@@ -450,6 +580,7 @@ export class PaymentMethods extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -471,7 +602,7 @@ export class PaymentMethods extends ClientSDK {
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -502,11 +633,5 @@ export class PaymentMethods extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeletePaymentMethodResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 }

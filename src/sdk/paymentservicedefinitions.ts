@@ -92,6 +92,7 @@ export class PaymentServiceDefinitions extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -195,6 +196,7 @@ export class PaymentServiceDefinitions extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",

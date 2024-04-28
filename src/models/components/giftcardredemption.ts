@@ -105,13 +105,15 @@ export type GiftCardRedemption = {
 };
 
 /** @internal */
-export const GiftCardRedemptionType$ = z.nativeEnum(GiftCardRedemptionType);
+export const GiftCardRedemptionType$: z.ZodNativeEnum<typeof GiftCardRedemptionType> =
+    z.nativeEnum(GiftCardRedemptionType);
 
 /** @internal */
-export const GiftCardRedemptionStatus$ = z.nativeEnum(GiftCardRedemptionStatus);
+export const GiftCardRedemptionStatus$: z.ZodNativeEnum<typeof GiftCardRedemptionStatus> =
+    z.nativeEnum(GiftCardRedemptionStatus);
 
 /** @internal */
-export const ErrorCode$ = z.nativeEnum(ErrorCode);
+export const ErrorCode$: z.ZodNativeEnum<typeof ErrorCode> = z.nativeEnum(ErrorCode);
 
 /** @internal */
 export namespace GiftCardRedemption$ {

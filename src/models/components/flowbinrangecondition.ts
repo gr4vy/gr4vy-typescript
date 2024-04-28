@@ -41,10 +41,12 @@ export type FlowBINRangeCondition = {
 };
 
 /** @internal */
-export const FlowBINRangeConditionName$ = z.nativeEnum(FlowBINRangeConditionName);
+export const FlowBINRangeConditionName$: z.ZodNativeEnum<typeof FlowBINRangeConditionName> =
+    z.nativeEnum(FlowBINRangeConditionName);
 
 /** @internal */
-export const FlowBINRangeConditionOperator$ = z.nativeEnum(FlowBINRangeConditionOperator);
+export const FlowBINRangeConditionOperator$: z.ZodNativeEnum<typeof FlowBINRangeConditionOperator> =
+    z.nativeEnum(FlowBINRangeConditionOperator);
 
 /** @internal */
 export namespace FlowBINRangeCondition$ {

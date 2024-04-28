@@ -48,7 +48,7 @@ export class CheckoutSessions extends ClientSDK {
     async newCheckoutSession(
         input: components.CheckoutSessionCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.NewCheckoutSessionResponse> {
+    ): Promise<components.CheckoutSession> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
@@ -84,6 +84,7 @@ export class CheckoutSessions extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "409", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -109,7 +110,7 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse(val$);
+                    return components.CheckoutSession$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -140,16 +141,6 @@ export class CheckoutSessions extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -165,7 +156,7 @@ export class CheckoutSessions extends ClientSDK {
     async getCheckoutSession(
         checkoutSessionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetCheckoutSessionResponse> {
+    ): Promise<components.CheckoutSession> {
         const input$: operations.GetCheckoutSessionRequest = {
             checkoutSessionId: checkoutSessionId,
         };
@@ -210,6 +201,7 @@ export class CheckoutSessions extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -235,7 +227,7 @@ export class CheckoutSessions extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse(val$);
+                    return components.CheckoutSession$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -266,16 +258,6 @@ export class CheckoutSessions extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -291,7 +273,7 @@ export class CheckoutSessions extends ClientSDK {
     async deleteCheckoutSession(
         checkoutSessionId: string,
         options?: RequestOptions
-    ): Promise<components.ErrorGeneric> {
+    ): Promise<operations.DeleteCheckoutSessionResponse | void> {
         const input$: operations.DeleteCheckoutSessionRequest = {
             checkoutSessionId: checkoutSessionId,
         };
@@ -336,6 +318,7 @@ export class CheckoutSessions extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -357,7 +340,7 @@ export class CheckoutSessions extends ClientSDK {
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -384,26 +367,158 @@ export class CheckoutSessions extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ErrorGeneric$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
+    }
 
-        return schemas$.parse(
-            undefined,
-            () => components.ErrorGeneric$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
+    /**
+     * Update checkout session
+     *
+     * @remarks
+     * Updates a Checkout Session.
+     */
+    async updateCheckoutSession(
+        checkoutSessionId: string,
+        checkoutSessionUpdateRequest?: components.CheckoutSessionUpdateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.CheckoutSession> {
+        const input$: operations.UpdateCheckoutSessionRequest = {
+            checkoutSessionId: checkoutSessionId,
+            checkoutSessionUpdateRequest: checkoutSessionUpdateRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.UpdateCheckoutSessionRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
         );
+        const body$ = enc$.encodeJSON("body", payload$.CheckoutSessionUpdateRequest, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            checkout_session_id: enc$.encodeSimple(
+                "checkout_session_id",
+                payload$.checkout_session_id,
+                { explode: false, charEncoding: "percent" }
+            ),
+        };
+        const path$ = this.templateURLComponent("/checkout/sessions/{checkout_session_id}")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "update-checkout-session",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "409", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return components.CheckoutSession$.inboundSchema.parse(val$);
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 404, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error404NotFound$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 409, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error409DuplicateRecord$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
     }
 
     /**
@@ -418,7 +533,7 @@ export class CheckoutSessions extends ClientSDK {
             | components.CheckoutSessionSecureFieldsUpdate
             | undefined,
         options?: RequestOptions
-    ): Promise<components.ErrorGeneric> {
+    ): Promise<operations.UpdateCheckoutSessionFieldsResponse | void> {
         const input$: operations.UpdateCheckoutSessionFieldsRequest = {
             checkoutSessionId: checkoutSessionId,
             checkoutSessionSecureFieldsUpdate: checkoutSessionSecureFieldsUpdate,
@@ -467,6 +582,7 @@ export class CheckoutSessions extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "429", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PUT",
@@ -488,7 +604,7 @@ export class CheckoutSessions extends ClientSDK {
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -528,25 +644,9 @@ export class CheckoutSessions extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ErrorGeneric$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => components.ErrorGeneric$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 }

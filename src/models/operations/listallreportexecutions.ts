@@ -79,9 +79,9 @@ export type ListAllReportExecutionsRequest = {
 };
 
 /** @internal */
-export const ListAllReportExecutionsQueryParamStatus$ = z.nativeEnum(
-    ListAllReportExecutionsQueryParamStatus
-);
+export const ListAllReportExecutionsQueryParamStatus$: z.ZodNativeEnum<
+    typeof ListAllReportExecutionsQueryParamStatus
+> = z.nativeEnum(ListAllReportExecutionsQueryParamStatus);
 
 /** @internal */
 export namespace ListAllReportExecutionsRequest$ {

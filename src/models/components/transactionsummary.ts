@@ -251,6 +251,7 @@ export enum TransactionSummaryMethod {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -364,6 +365,7 @@ export enum TransactionSummaryPaymentMethodMethod {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -602,6 +604,7 @@ export enum TransactionSummaryPaymentServiceMethod {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -853,15 +856,17 @@ export type TransactionSummary = {
 };
 
 /** @internal */
-export const TransactionSummaryType$ = z.nativeEnum(TransactionSummaryType);
+export const TransactionSummaryType$: z.ZodNativeEnum<typeof TransactionSummaryType> =
+    z.nativeEnum(TransactionSummaryType);
 
 /** @internal */
-export const TransactionSummaryBuyerType$ = z.nativeEnum(TransactionSummaryBuyerType);
+export const TransactionSummaryBuyerType$: z.ZodNativeEnum<typeof TransactionSummaryBuyerType> =
+    z.nativeEnum(TransactionSummaryBuyerType);
 
 /** @internal */
-export const TransactionSummaryBuyerBillingDetailsType$ = z.nativeEnum(
-    TransactionSummaryBuyerBillingDetailsType
-);
+export const TransactionSummaryBuyerBillingDetailsType$: z.ZodNativeEnum<
+    typeof TransactionSummaryBuyerBillingDetailsType
+> = z.nativeEnum(TransactionSummaryBuyerBillingDetailsType);
 
 /** @internal */
 export namespace TransactionSummaryAddress$ {
@@ -947,7 +952,8 @@ export namespace TransactionSummaryAddress$ {
 }
 
 /** @internal */
-export const TransactionSummaryKind$ = z.nativeEnum(TransactionSummaryKind);
+export const TransactionSummaryKind$: z.ZodNativeEnum<typeof TransactionSummaryKind> =
+    z.nativeEnum(TransactionSummaryKind);
 
 /** @internal */
 export namespace TransactionSummaryTaxID$ {
@@ -1124,24 +1130,28 @@ export namespace BuyerSnapshot$ {
 }
 
 /** @internal */
-export const InstrumentType$ = z.nativeEnum(InstrumentType);
+export const InstrumentType$: z.ZodNativeEnum<typeof InstrumentType> = z.nativeEnum(InstrumentType);
 
 /** @internal */
-export const Intent$ = z.nativeEnum(Intent);
+export const Intent$: z.ZodNativeEnum<typeof Intent> = z.nativeEnum(Intent);
 
 /** @internal */
-export const TransactionSummaryMethod$ = z.nativeEnum(TransactionSummaryMethod);
+export const TransactionSummaryMethod$: z.ZodNativeEnum<typeof TransactionSummaryMethod> =
+    z.nativeEnum(TransactionSummaryMethod);
 
 /** @internal */
-export const TransactionSummaryPaymentMethodType$ = z.nativeEnum(
-    TransactionSummaryPaymentMethodType
-);
+export const TransactionSummaryPaymentMethodType$: z.ZodNativeEnum<
+    typeof TransactionSummaryPaymentMethodType
+> = z.nativeEnum(TransactionSummaryPaymentMethodType);
 
 /** @internal */
-export const TransactionSummaryApprovalTarget$ = z.nativeEnum(TransactionSummaryApprovalTarget);
+export const TransactionSummaryApprovalTarget$: z.ZodNativeEnum<
+    typeof TransactionSummaryApprovalTarget
+> = z.nativeEnum(TransactionSummaryApprovalTarget);
 
 /** @internal */
-export const TransactionSummaryCardType$ = z.nativeEnum(TransactionSummaryCardType);
+export const TransactionSummaryCardType$: z.ZodNativeEnum<typeof TransactionSummaryCardType> =
+    z.nativeEnum(TransactionSummaryCardType);
 
 /** @internal */
 export namespace Card$ {
@@ -1181,12 +1191,13 @@ export namespace Card$ {
 }
 
 /** @internal */
-export const TransactionSummaryPaymentMethodMethod$ = z.nativeEnum(
-    TransactionSummaryPaymentMethodMethod
-);
+export const TransactionSummaryPaymentMethodMethod$: z.ZodNativeEnum<
+    typeof TransactionSummaryPaymentMethodMethod
+> = z.nativeEnum(TransactionSummaryPaymentMethodMethod);
 
 /** @internal */
-export const TransactionSummaryScheme$ = z.nativeEnum(TransactionSummaryScheme);
+export const TransactionSummaryScheme$: z.ZodNativeEnum<typeof TransactionSummaryScheme> =
+    z.nativeEnum(TransactionSummaryScheme);
 
 /** @internal */
 export namespace PaymentMethodSnapshot$ {
@@ -1321,14 +1332,14 @@ export namespace PaymentMethodSnapshot$ {
 }
 
 /** @internal */
-export const TransactionSummaryPaymentServiceType$ = z.nativeEnum(
-    TransactionSummaryPaymentServiceType
-);
+export const TransactionSummaryPaymentServiceType$: z.ZodNativeEnum<
+    typeof TransactionSummaryPaymentServiceType
+> = z.nativeEnum(TransactionSummaryPaymentServiceType);
 
 /** @internal */
-export const TransactionSummaryPaymentServiceMethod$ = z.nativeEnum(
-    TransactionSummaryPaymentServiceMethod
-);
+export const TransactionSummaryPaymentServiceMethod$: z.ZodNativeEnum<
+    typeof TransactionSummaryPaymentServiceMethod
+> = z.nativeEnum(TransactionSummaryPaymentServiceMethod);
 
 /** @internal */
 export namespace APaymentService$ {
@@ -1390,7 +1401,8 @@ export namespace APaymentService$ {
 }
 
 /** @internal */
-export const TransactionSummaryStatus$ = z.nativeEnum(TransactionSummaryStatus);
+export const TransactionSummaryStatus$: z.ZodNativeEnum<typeof TransactionSummaryStatus> =
+    z.nativeEnum(TransactionSummaryStatus);
 
 /** @internal */
 export namespace TransactionSummary$ {

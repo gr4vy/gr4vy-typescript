@@ -72,7 +72,8 @@ export type GiftCardService = {
 };
 
 /** @internal */
-export const GiftCardServiceType$ = z.nativeEnum(GiftCardServiceType);
+export const GiftCardServiceType$: z.ZodNativeEnum<typeof GiftCardServiceType> =
+    z.nativeEnum(GiftCardServiceType);
 
 /** @internal */
 export namespace GiftCardServiceFields$ {

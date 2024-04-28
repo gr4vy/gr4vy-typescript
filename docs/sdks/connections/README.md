@@ -19,11 +19,11 @@ Returns a list of all configured connections.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.connections.listConnections();
 
   // Handle the result

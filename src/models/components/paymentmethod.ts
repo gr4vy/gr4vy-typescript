@@ -274,6 +274,7 @@ export enum PaymentMethodMethod {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -383,7 +384,7 @@ export enum PaymentMethodScheme {
  * - `succeeded` - The payment method is stored and has been used.
  * - `failed` - The payment method could not be stored, or failed first use.
  */
-export enum PaymentMethodStatus {
+export enum Status {
     Processing = "processing",
     BuyerApprovalRequired = "buyer_approval_required",
     Succeeded = "succeeded",
@@ -532,7 +533,7 @@ export type PaymentMethod = {
      * - `succeeded` - The payment method is stored and has been used.
      * - `failed` - The payment method could not be stored, or failed first use.
      */
-    status?: PaymentMethodStatus | undefined;
+    status?: Status | undefined;
     /**
      * The date and time when this payment method was last updated in our system.
      */
@@ -544,21 +545,26 @@ export type PaymentMethod = {
 };
 
 /** @internal */
-export const PaymentMethodType$ = z.nativeEnum(PaymentMethodType);
+export const PaymentMethodType$: z.ZodNativeEnum<typeof PaymentMethodType> =
+    z.nativeEnum(PaymentMethodType);
 
 /** @internal */
-export const PaymentMethodAdditionalSchemes$ = z.nativeEnum(PaymentMethodAdditionalSchemes);
+export const PaymentMethodAdditionalSchemes$: z.ZodNativeEnum<
+    typeof PaymentMethodAdditionalSchemes
+> = z.nativeEnum(PaymentMethodAdditionalSchemes);
 
 /** @internal */
-export const PaymentMethodApprovalTarget$ = z.nativeEnum(PaymentMethodApprovalTarget);
+export const PaymentMethodApprovalTarget$: z.ZodNativeEnum<typeof PaymentMethodApprovalTarget> =
+    z.nativeEnum(PaymentMethodApprovalTarget);
 
 /** @internal */
-export const PaymentMethodBuyerType$ = z.nativeEnum(PaymentMethodBuyerType);
+export const PaymentMethodBuyerType$: z.ZodNativeEnum<typeof PaymentMethodBuyerType> =
+    z.nativeEnum(PaymentMethodBuyerType);
 
 /** @internal */
-export const PaymentMethodBuyerBillingDetailsType$ = z.nativeEnum(
-    PaymentMethodBuyerBillingDetailsType
-);
+export const PaymentMethodBuyerBillingDetailsType$: z.ZodNativeEnum<
+    typeof PaymentMethodBuyerBillingDetailsType
+> = z.nativeEnum(PaymentMethodBuyerBillingDetailsType);
 
 /** @internal */
 export namespace PaymentMethodAddress$ {
@@ -644,7 +650,8 @@ export namespace PaymentMethodAddress$ {
 }
 
 /** @internal */
-export const PaymentMethodKind$ = z.nativeEnum(PaymentMethodKind);
+export const PaymentMethodKind$: z.ZodNativeEnum<typeof PaymentMethodKind> =
+    z.nativeEnum(PaymentMethodKind);
 
 /** @internal */
 export namespace PaymentMethodTaxID$ {
@@ -850,16 +857,18 @@ export namespace PaymentMethodBuyer$ {
 }
 
 /** @internal */
-export const PaymentMethodMethod$ = z.nativeEnum(PaymentMethodMethod);
+export const PaymentMethodMethod$: z.ZodNativeEnum<typeof PaymentMethodMethod> =
+    z.nativeEnum(PaymentMethodMethod);
 
 /** @internal */
-export const Mode$ = z.nativeEnum(Mode);
+export const Mode$: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(Mode);
 
 /** @internal */
-export const PaymentMethodScheme$ = z.nativeEnum(PaymentMethodScheme);
+export const PaymentMethodScheme$: z.ZodNativeEnum<typeof PaymentMethodScheme> =
+    z.nativeEnum(PaymentMethodScheme);
 
 /** @internal */
-export const PaymentMethodStatus$ = z.nativeEnum(PaymentMethodStatus);
+export const Status$: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
 
 /** @internal */
 export namespace PaymentMethod$ {
@@ -883,7 +892,7 @@ export namespace PaymentMethod$ {
         method?: PaymentMethodMethod | undefined;
         mode?: Mode | undefined;
         scheme?: PaymentMethodScheme | null | undefined;
-        status?: PaymentMethodStatus | undefined;
+        status?: Status | undefined;
         updated_at?: string | undefined;
         fingerprint?: string | null | undefined;
     };
@@ -920,7 +929,7 @@ export namespace PaymentMethod$ {
             method: PaymentMethodMethod$.optional(),
             mode: Mode$.optional(),
             scheme: z.nullable(PaymentMethodScheme$).optional(),
-            status: PaymentMethodStatus$.optional(),
+            status: Status$.optional(),
             updated_at: z
                 .string()
                 .datetime({ offset: true })
@@ -983,7 +992,7 @@ export namespace PaymentMethod$ {
         method?: PaymentMethodMethod | undefined;
         mode?: Mode | undefined;
         scheme?: PaymentMethodScheme | null | undefined;
-        status?: PaymentMethodStatus | undefined;
+        status?: Status | undefined;
         updated_at?: string | undefined;
         fingerprint?: string | null | undefined;
     };
@@ -1012,7 +1021,7 @@ export namespace PaymentMethod$ {
             method: PaymentMethodMethod$.optional(),
             mode: Mode$.optional(),
             scheme: z.nullable(PaymentMethodScheme$).optional(),
-            status: PaymentMethodStatus$.optional(),
+            status: Status$.optional(),
             updatedAt: z
                 .date()
                 .transform((v) => v.toISOString())

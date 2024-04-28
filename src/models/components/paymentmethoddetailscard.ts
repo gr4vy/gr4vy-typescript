@@ -28,7 +28,7 @@ export type PaymentMethodDetailsCard = {
 };
 
 /** @internal */
-export const CardType$ = z.nativeEnum(CardType);
+export const CardType$: z.ZodNativeEnum<typeof CardType> = z.nativeEnum(CardType);
 
 /** @internal */
 export namespace PaymentMethodDetailsCard$ {

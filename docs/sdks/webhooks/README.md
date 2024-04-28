@@ -29,9 +29,9 @@ service definition.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK();
+const sdk = new SDK();
 
+async function run() {
   const hook = "e4f7797af7cc56edb85cde7f94745a13";
   
   const result = await sdk.webhooks.inboundWebhookDeprecated(hook);
@@ -73,9 +73,9 @@ service definition.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK();
+const sdk = new SDK();
 
+async function run() {
   const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";
   const signature = "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM";
   
@@ -119,9 +119,9 @@ The response code and payload depends on external service.
 import { SDK } from "@gr4vy/sdk";
 import { Resource } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK();
+const sdk = new SDK();
 
+async function run() {
   const resource = Resource.Ps;
   const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";
   const signature = "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM";

@@ -91,6 +91,7 @@ export class Flow extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -141,6 +142,132 @@ export class Flow extends ClientSDK {
     }
 
     /**
+     * Create flow rule
+     *
+     * @remarks
+     * Adds a rule for a given flow and action.
+     *
+     */
+    async newFlowRule(
+        flow: operations.PathParamFlow,
+        action: operations.PathParamAction,
+        flowRuleCreateRequest?: components.FlowRuleCreateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.FlowRule> {
+        const input$: operations.NewFlowRuleRequest = {
+            flow: flow,
+            action: action,
+            flowRuleCreateRequest: flowRuleCreateRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.NewFlowRuleRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.FlowRuleCreateRequest, { explode: true });
+
+        const pathParams$ = {
+            action: enc$.encodeSimple("action", payload$.action, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            flow: enc$.encodeSimple("flow", payload$.flow, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/flows/{flow}/actions/{action}/rules")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "new-flow-rule",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 201, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return components.FlowRule$.inboundSchema.parse(val$);
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
      * Get rule
      *
      * @remarks
@@ -151,7 +278,7 @@ export class Flow extends ClientSDK {
         action: operations.GetFlowRulePathParamAction,
         ruleId: string,
         options?: RequestOptions
-    ): Promise<operations.GetFlowRuleResponse> {
+    ): Promise<components.FlowRule> {
         const input$: operations.GetFlowRuleRequest = {
             flow: flow,
             action: action,
@@ -205,6 +332,7 @@ export class Flow extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -230,7 +358,7 @@ export class Flow extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetFlowRuleResponse$.inboundSchema.parse(val$);
+                    return components.FlowRule$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -261,16 +389,151 @@ export class Flow extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
+     * Update flow rule
+     *
+     * @remarks
+     * Updates a given flow rule.
+     *
+     */
+    async updateFlowRule(
+        flow: operations.UpdateFlowRulePathParamFlow,
+        action: operations.UpdateFlowRulePathParamAction,
+        ruleId: string,
+        flowRuleUpdateRequest?: components.FlowRuleUpdateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.FlowRule> {
+        const input$: operations.UpdateFlowRuleRequest = {
+            flow: flow,
+            action: action,
+            ruleId: ruleId,
+            flowRuleUpdateRequest: flowRuleUpdateRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.UpdateFlowRuleRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.FlowRuleUpdateRequest, { explode: true });
+
+        const pathParams$ = {
+            action: enc$.encodeSimple("action", payload$.action, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            flow: enc$.encodeSimple("flow", payload$.flow, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            rule_id: enc$.encodeSimple("rule_id", payload$.rule_id, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/flows/{flow}/actions/{action}/rules/{rule_id}")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "update-flow-rule",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetFlowRuleResponse$.inboundSchema.parse(val$);
+                    return components.FlowRule$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 404, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error404NotFound$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -288,7 +551,7 @@ export class Flow extends ClientSDK {
         action: operations.DeleteFlowRulePathParamAction,
         ruleId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteFlowRuleResponse> {
+    ): Promise<operations.DeleteFlowRuleResponse | void> {
         const input$: operations.DeleteFlowRuleRequest = {
             flow: flow,
             action: action,
@@ -342,6 +605,7 @@ export class Flow extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -363,7 +627,7 @@ export class Flow extends ClientSDK {
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -394,12 +658,6 @@ export class Flow extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteFlowRuleResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -467,6 +725,7 @@ export class Flow extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",

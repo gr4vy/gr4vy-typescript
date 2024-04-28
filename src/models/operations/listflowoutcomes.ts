@@ -64,10 +64,13 @@ export type ListFlowOutcomesRequest = {
 };
 
 /** @internal */
-export const ListFlowOutcomesPathParamFlow$ = z.nativeEnum(ListFlowOutcomesPathParamFlow);
+export const ListFlowOutcomesPathParamFlow$: z.ZodNativeEnum<typeof ListFlowOutcomesPathParamFlow> =
+    z.nativeEnum(ListFlowOutcomesPathParamFlow);
 
 /** @internal */
-export const ListFlowOutcomesPathParamAction$ = z.nativeEnum(ListFlowOutcomesPathParamAction);
+export const ListFlowOutcomesPathParamAction$: z.ZodNativeEnum<
+    typeof ListFlowOutcomesPathParamAction
+> = z.nativeEnum(ListFlowOutcomesPathParamAction);
 
 /** @internal */
 export namespace ListFlowOutcomesRequest$ {

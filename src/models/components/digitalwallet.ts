@@ -91,10 +91,12 @@ export type DigitalWallet = {
 };
 
 /** @internal */
-export const DigitalWalletType$ = z.nativeEnum(DigitalWalletType);
+export const DigitalWalletType$: z.ZodNativeEnum<typeof DigitalWalletType> =
+    z.nativeEnum(DigitalWalletType);
 
 /** @internal */
-export const DigitalWalletProvider$ = z.nativeEnum(DigitalWalletProvider);
+export const DigitalWalletProvider$: z.ZodNativeEnum<typeof DigitalWalletProvider> =
+    z.nativeEnum(DigitalWalletProvider);
 
 /** @internal */
 export namespace DigitalWallet$ {

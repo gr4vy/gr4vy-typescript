@@ -41,7 +41,7 @@ export type ErrorDetail = {
 };
 
 /** @internal */
-export const Location$ = z.nativeEnum(Location);
+export const Location$: z.ZodNativeEnum<typeof Location> = z.nativeEnum(Location);
 
 /** @internal */
 export namespace ErrorDetail$ {

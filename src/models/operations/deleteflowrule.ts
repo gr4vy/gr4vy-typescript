@@ -63,10 +63,12 @@ export type DeleteFlowRuleRequest = {
 export type DeleteFlowRuleResponse = {};
 
 /** @internal */
-export const DeleteFlowRulePathParamFlow$ = z.nativeEnum(DeleteFlowRulePathParamFlow);
+export const DeleteFlowRulePathParamFlow$: z.ZodNativeEnum<typeof DeleteFlowRulePathParamFlow> =
+    z.nativeEnum(DeleteFlowRulePathParamFlow);
 
 /** @internal */
-export const DeleteFlowRulePathParamAction$ = z.nativeEnum(DeleteFlowRulePathParamAction);
+export const DeleteFlowRulePathParamAction$: z.ZodNativeEnum<typeof DeleteFlowRulePathParamAction> =
+    z.nativeEnum(DeleteFlowRulePathParamAction);
 
 /** @internal */
 export namespace DeleteFlowRuleRequest$ {

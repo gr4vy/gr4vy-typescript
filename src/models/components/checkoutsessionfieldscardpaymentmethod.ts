@@ -43,9 +43,9 @@ export type CheckoutSessionFieldsCardPaymentMethod = {
 };
 
 /** @internal */
-export const CheckoutSessionFieldsCardPaymentMethodMethod$ = z.nativeEnum(
-    CheckoutSessionFieldsCardPaymentMethodMethod
-);
+export const CheckoutSessionFieldsCardPaymentMethodMethod$: z.ZodNativeEnum<
+    typeof CheckoutSessionFieldsCardPaymentMethodMethod
+> = z.nativeEnum(CheckoutSessionFieldsCardPaymentMethodMethod);
 
 /** @internal */
 export namespace CheckoutSessionFieldsCardPaymentMethod$ {

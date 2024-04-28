@@ -164,7 +164,8 @@ export type BillingDetails = {
 };
 
 /** @internal */
-export const BillingDetailsType$ = z.nativeEnum(BillingDetailsType);
+export const BillingDetailsType$: z.ZodNativeEnum<typeof BillingDetailsType> =
+    z.nativeEnum(BillingDetailsType);
 
 /** @internal */
 export namespace BillingDetailsAddress$ {
@@ -250,7 +251,7 @@ export namespace BillingDetailsAddress$ {
 }
 
 /** @internal */
-export const Kind$ = z.nativeEnum(Kind);
+export const Kind$: z.ZodNativeEnum<typeof Kind> = z.nativeEnum(Kind);
 
 /** @internal */
 export namespace TaxID$ {

@@ -28,6 +28,7 @@ export enum Method {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -258,19 +259,21 @@ export type PaymentMethodTokenized = {
 };
 
 /** @internal */
-export const PaymentMethodTokenizedType$ = z.nativeEnum(PaymentMethodTokenizedType);
+export const PaymentMethodTokenizedType$: z.ZodNativeEnum<typeof PaymentMethodTokenizedType> =
+    z.nativeEnum(PaymentMethodTokenizedType);
 
 /** @internal */
-export const Method$ = z.nativeEnum(Method);
+export const Method$: z.ZodNativeEnum<typeof Method> = z.nativeEnum(Method);
 
 /** @internal */
-export const Scheme$ = z.nativeEnum(Scheme);
+export const Scheme$: z.ZodNativeEnum<typeof Scheme> = z.nativeEnum(Scheme);
 
 /** @internal */
-export const AdditionalSchemes$ = z.nativeEnum(AdditionalSchemes);
+export const AdditionalSchemes$: z.ZodNativeEnum<typeof AdditionalSchemes> =
+    z.nativeEnum(AdditionalSchemes);
 
 /** @internal */
-export const ApprovalTarget$ = z.nativeEnum(ApprovalTarget);
+export const ApprovalTarget$: z.ZodNativeEnum<typeof ApprovalTarget> = z.nativeEnum(ApprovalTarget);
 
 /** @internal */
 export namespace PaymentMethodTokenized$ {

@@ -13,10 +13,12 @@ export enum Type {
 }
 
 /**
- * `bad_request`.
+ * A short code that describes the reason for the error.
  */
 export enum Code {
     BadRequest = "bad_request",
+    IncorrectJson = "incorrect_json",
+    InvalidCredentials = "invalid_credentials",
 }
 
 /**
@@ -35,7 +37,7 @@ export type Error400BadRequestData = {
      */
     type?: Type | undefined;
     /**
-     * `bad_request`.
+     * A short code that describes the reason for the error.
      */
     code?: Code | undefined;
     /**
@@ -43,10 +45,7 @@ export type Error400BadRequestData = {
      */
     status?: Status | undefined;
     /**
-     * Describes the fields that are missing or incorrectly formatted in the API
-     *
-     * @remarks
-     * request.
+     * A human-readable reason for the error.
      */
     message?: string | undefined;
     /**
@@ -64,7 +63,7 @@ export class Error400BadRequest extends Error {
      */
     type?: Type | undefined;
     /**
-     * `bad_request`.
+     * A short code that describes the reason for the error.
      */
     code?: Code | undefined;
     /**
@@ -106,13 +105,13 @@ export class Error400BadRequest extends Error {
 }
 
 /** @internal */
-export const Type$ = z.nativeEnum(Type);
+export const Type$: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
 
 /** @internal */
-export const Code$ = z.nativeEnum(Code);
+export const Code$: z.ZodNativeEnum<typeof Code> = z.nativeEnum(Code);
 
 /** @internal */
-export const Status$ = z.nativeEnum(Status);
+export const Status$: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
 
 /** @internal */
 export namespace Error400BadRequest$ {

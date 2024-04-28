@@ -57,7 +57,7 @@ export type ListAuditLogsRequest = {
 };
 
 /** @internal */
-export const Action$ = z.nativeEnum(Action);
+export const Action$: z.ZodNativeEnum<typeof Action> = z.nativeEnum(Action);
 
 /** @internal */
 export namespace ListAuditLogsRequest$ {

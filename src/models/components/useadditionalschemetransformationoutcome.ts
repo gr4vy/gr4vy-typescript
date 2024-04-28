@@ -32,9 +32,9 @@ export type UseAdditionalSchemeTransformationOutcome = {
 };
 
 /** @internal */
-export const UseAdditionalSchemeTransformationOutcomeName$ = z.nativeEnum(
-    UseAdditionalSchemeTransformationOutcomeName
-);
+export const UseAdditionalSchemeTransformationOutcomeName$: z.ZodNativeEnum<
+    typeof UseAdditionalSchemeTransformationOutcomeName
+> = z.nativeEnum(UseAdditionalSchemeTransformationOutcomeName);
 
 /** @internal */
 export namespace UseAdditionalSchemeTransformationOutcome$ {

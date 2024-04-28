@@ -48,7 +48,8 @@ export type FlowPaymentOptionOutcome = {
 };
 
 /** @internal */
-export const FlowPaymentOptionOutcomeType$ = z.nativeEnum(FlowPaymentOptionOutcomeType);
+export const FlowPaymentOptionOutcomeType$: z.ZodNativeEnum<typeof FlowPaymentOptionOutcomeType> =
+    z.nativeEnum(FlowPaymentOptionOutcomeType);
 
 /** @internal */
 export namespace FlowPaymentOptionOutcome$ {

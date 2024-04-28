@@ -100,12 +100,12 @@ export type FlowCardTransactionRoutingOutcome = {
 };
 
 /** @internal */
-export const FlowCardTransactionRoutingOutcomeType$ = z.nativeEnum(
-    FlowCardTransactionRoutingOutcomeType
-);
+export const FlowCardTransactionRoutingOutcomeType$: z.ZodNativeEnum<
+    typeof FlowCardTransactionRoutingOutcomeType
+> = z.nativeEnum(FlowCardTransactionRoutingOutcomeType);
 
 /** @internal */
-export const Instruments$ = z.nativeEnum(Instruments);
+export const Instruments$: z.ZodNativeEnum<typeof Instruments> = z.nativeEnum(Instruments);
 
 /** @internal */
 export namespace Transformations$ {

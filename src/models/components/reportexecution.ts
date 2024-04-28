@@ -133,10 +133,12 @@ export type ReportExecution = {
 };
 
 /** @internal */
-export const ReportExecutionType$ = z.nativeEnum(ReportExecutionType);
+export const ReportExecutionType$: z.ZodNativeEnum<typeof ReportExecutionType> =
+    z.nativeEnum(ReportExecutionType);
 
 /** @internal */
-export const ReportExecutionStatus$ = z.nativeEnum(ReportExecutionStatus);
+export const ReportExecutionStatus$: z.ZodNativeEnum<typeof ReportExecutionStatus> =
+    z.nativeEnum(ReportExecutionStatus);
 
 /** @internal */
 export namespace ReportExecutionContext$ {
@@ -191,10 +193,12 @@ export namespace ReportExecutionContext$ {
 }
 
 /** @internal */
-export const ReportExecutionReportType$ = z.nativeEnum(ReportExecutionReportType);
+export const ReportExecutionReportType$: z.ZodNativeEnum<typeof ReportExecutionReportType> =
+    z.nativeEnum(ReportExecutionReportType);
 
 /** @internal */
-export const ReportExecutionCreatorType$ = z.nativeEnum(ReportExecutionCreatorType);
+export const ReportExecutionCreatorType$: z.ZodNativeEnum<typeof ReportExecutionCreatorType> =
+    z.nativeEnum(ReportExecutionCreatorType);
 
 /** @internal */
 export namespace ReportSummary$ {

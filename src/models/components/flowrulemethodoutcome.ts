@@ -25,6 +25,7 @@ export enum FlowRuleMethodOutcomeResult {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -101,10 +102,12 @@ export type FlowRuleMethodOutcome = {
 };
 
 /** @internal */
-export const FlowRuleMethodOutcomeType$ = z.nativeEnum(FlowRuleMethodOutcomeType);
+export const FlowRuleMethodOutcomeType$: z.ZodNativeEnum<typeof FlowRuleMethodOutcomeType> =
+    z.nativeEnum(FlowRuleMethodOutcomeType);
 
 /** @internal */
-export const FlowRuleMethodOutcomeResult$ = z.nativeEnum(FlowRuleMethodOutcomeResult);
+export const FlowRuleMethodOutcomeResult$: z.ZodNativeEnum<typeof FlowRuleMethodOutcomeResult> =
+    z.nativeEnum(FlowRuleMethodOutcomeResult);
 
 /** @internal */
 export namespace FlowRuleMethodOutcome$ {

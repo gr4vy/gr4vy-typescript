@@ -79,10 +79,13 @@ export type GiftCardServiceDefinition = {
 };
 
 /** @internal */
-export const GiftCardServiceDefinitionType$ = z.nativeEnum(GiftCardServiceDefinitionType);
+export const GiftCardServiceDefinitionType$: z.ZodNativeEnum<typeof GiftCardServiceDefinitionType> =
+    z.nativeEnum(GiftCardServiceDefinitionType);
 
 /** @internal */
-export const GiftCardServiceDefinitionFormat$ = z.nativeEnum(GiftCardServiceDefinitionFormat);
+export const GiftCardServiceDefinitionFormat$: z.ZodNativeEnum<
+    typeof GiftCardServiceDefinitionFormat
+> = z.nativeEnum(GiftCardServiceDefinitionFormat);
 
 /** @internal */
 export namespace GiftCardServiceDefinitionFields$ {

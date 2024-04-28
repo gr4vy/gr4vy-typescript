@@ -116,16 +116,19 @@ export class Error401Unauthorized extends Error {
 }
 
 /** @internal */
-export const Error401UnauthorizedType$ = z.nativeEnum(Error401UnauthorizedType);
+export const Error401UnauthorizedType$: z.ZodNativeEnum<typeof Error401UnauthorizedType> =
+    z.nativeEnum(Error401UnauthorizedType);
 
 /** @internal */
-export const Error401UnauthorizedCode$ = z.nativeEnum(Error401UnauthorizedCode);
+export const Error401UnauthorizedCode$: z.ZodNativeEnum<typeof Error401UnauthorizedCode> =
+    z.nativeEnum(Error401UnauthorizedCode);
 
 /** @internal */
-export const Error401UnauthorizedStatus$ = z.nativeEnum(Error401UnauthorizedStatus);
+export const Error401UnauthorizedStatus$: z.ZodNativeEnum<typeof Error401UnauthorizedStatus> =
+    z.nativeEnum(Error401UnauthorizedStatus);
 
 /** @internal */
-export const Message$ = z.nativeEnum(Message);
+export const Message$: z.ZodNativeEnum<typeof Message> = z.nativeEnum(Message);
 
 /** @internal */
 export namespace Error401Unauthorized$ {

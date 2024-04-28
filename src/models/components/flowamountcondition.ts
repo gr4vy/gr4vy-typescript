@@ -52,10 +52,11 @@ export type FlowAmountCondition = {
 };
 
 /** @internal */
-export const FlowAmountConditionName$ = z.nativeEnum(FlowAmountConditionName);
+export const FlowAmountConditionName$: z.ZodNativeEnum<typeof FlowAmountConditionName> =
+    z.nativeEnum(FlowAmountConditionName);
 
 /** @internal */
-export const Operator$ = z.nativeEnum(Operator);
+export const Operator$: z.ZodNativeEnum<typeof Operator> = z.nativeEnum(Operator);
 
 /** @internal */
 export namespace Value$ {

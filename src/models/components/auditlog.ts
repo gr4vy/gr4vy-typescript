@@ -108,13 +108,13 @@ export type AuditLog = {
 };
 
 /** @internal */
-export const AuditLogType$ = z.nativeEnum(AuditLogType);
+export const AuditLogType$: z.ZodNativeEnum<typeof AuditLogType> = z.nativeEnum(AuditLogType);
 
 /** @internal */
-export const AuditLogAction$ = z.nativeEnum(AuditLogAction);
+export const AuditLogAction$: z.ZodNativeEnum<typeof AuditLogAction> = z.nativeEnum(AuditLogAction);
 
 /** @internal */
-export const AuditLogStatus$ = z.nativeEnum(AuditLogStatus);
+export const AuditLogStatus$: z.ZodNativeEnum<typeof AuditLogStatus> = z.nativeEnum(AuditLogStatus);
 
 /** @internal */
 export namespace User$ {

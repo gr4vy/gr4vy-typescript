@@ -18,11 +18,11 @@ Returns a list of all available payment method definitions.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.paymentMethodDefinitions.listPaymentMethodDefinitions();
 
   // Handle the result

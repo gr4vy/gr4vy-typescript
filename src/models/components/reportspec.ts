@@ -162,10 +162,11 @@ export type ReportSpec = {
 };
 
 /** @internal */
-export const Model$ = z.nativeEnum(Model);
+export const Model$: z.ZodNativeEnum<typeof Model> = z.nativeEnum(Model);
 
 /** @internal */
-export const ReportSpecFields$ = z.nativeEnum(ReportSpecFields);
+export const ReportSpecFields$: z.ZodNativeEnum<typeof ReportSpecFields> =
+    z.nativeEnum(ReportSpecFields);
 
 /** @internal */
 export namespace Filters$ {

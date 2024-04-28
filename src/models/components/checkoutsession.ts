@@ -133,16 +133,20 @@ export type CheckoutSession = {
 };
 
 /** @internal */
-export const CheckoutSessionType$ = z.nativeEnum(CheckoutSessionType);
+export const CheckoutSessionType$: z.ZodNativeEnum<typeof CheckoutSessionType> =
+    z.nativeEnum(CheckoutSessionType);
 
 /** @internal */
-export const CheckoutSessionMethod$ = z.nativeEnum(CheckoutSessionMethod);
+export const CheckoutSessionMethod$: z.ZodNativeEnum<typeof CheckoutSessionMethod> =
+    z.nativeEnum(CheckoutSessionMethod);
 
 /** @internal */
-export const CheckoutSessionScheme$ = z.nativeEnum(CheckoutSessionScheme);
+export const CheckoutSessionScheme$: z.ZodNativeEnum<typeof CheckoutSessionScheme> =
+    z.nativeEnum(CheckoutSessionScheme);
 
 /** @internal */
-export const CheckoutSessionCardType$ = z.nativeEnum(CheckoutSessionCardType);
+export const CheckoutSessionCardType$: z.ZodNativeEnum<typeof CheckoutSessionCardType> =
+    z.nativeEnum(CheckoutSessionCardType);
 
 /** @internal */
 export namespace CheckoutSessionDetails$ {

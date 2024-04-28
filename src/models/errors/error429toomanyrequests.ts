@@ -109,13 +109,16 @@ export class Error429TooManyRequests extends Error {
 }
 
 /** @internal */
-export const Error429TooManyRequestsType$ = z.nativeEnum(Error429TooManyRequestsType);
+export const Error429TooManyRequestsType$: z.ZodNativeEnum<typeof Error429TooManyRequestsType> =
+    z.nativeEnum(Error429TooManyRequestsType);
 
 /** @internal */
-export const Error429TooManyRequestsCode$ = z.nativeEnum(Error429TooManyRequestsCode);
+export const Error429TooManyRequestsCode$: z.ZodNativeEnum<typeof Error429TooManyRequestsCode> =
+    z.nativeEnum(Error429TooManyRequestsCode);
 
 /** @internal */
-export const Error429TooManyRequestsStatus$ = z.nativeEnum(Error429TooManyRequestsStatus);
+export const Error429TooManyRequestsStatus$: z.ZodNativeEnum<typeof Error429TooManyRequestsStatus> =
+    z.nativeEnum(Error429TooManyRequestsStatus);
 
 /** @internal */
 export namespace Error429TooManyRequests$ {

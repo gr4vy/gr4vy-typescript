@@ -44,13 +44,17 @@ export type FlowCardSourceCondition = {
 };
 
 /** @internal */
-export const FlowCardSourceConditionName$ = z.nativeEnum(FlowCardSourceConditionName);
+export const FlowCardSourceConditionName$: z.ZodNativeEnum<typeof FlowCardSourceConditionName> =
+    z.nativeEnum(FlowCardSourceConditionName);
 
 /** @internal */
-export const FlowCardSourceConditionOperator$ = z.nativeEnum(FlowCardSourceConditionOperator);
+export const FlowCardSourceConditionOperator$: z.ZodNativeEnum<
+    typeof FlowCardSourceConditionOperator
+> = z.nativeEnum(FlowCardSourceConditionOperator);
 
 /** @internal */
-export const FlowCardSourceConditionValue$ = z.nativeEnum(FlowCardSourceConditionValue);
+export const FlowCardSourceConditionValue$: z.ZodNativeEnum<typeof FlowCardSourceConditionValue> =
+    z.nativeEnum(FlowCardSourceConditionValue);
 
 /** @internal */
 export namespace FlowCardSourceCondition$ {

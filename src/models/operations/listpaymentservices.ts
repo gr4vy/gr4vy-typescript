@@ -24,6 +24,7 @@ export enum Method {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -116,7 +117,7 @@ export type ListPaymentServicesRequest = {
 };
 
 /** @internal */
-export const Method$ = z.nativeEnum(Method);
+export const Method$: z.ZodNativeEnum<typeof Method> = z.nativeEnum(Method);
 
 /** @internal */
 export namespace ListPaymentServicesRequest$ {

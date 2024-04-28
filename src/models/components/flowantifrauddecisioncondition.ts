@@ -47,17 +47,19 @@ export type FlowAntiFraudDecisionCondition = {
 };
 
 /** @internal */
-export const FlowAntiFraudDecisionConditionName$ = z.nativeEnum(FlowAntiFraudDecisionConditionName);
+export const FlowAntiFraudDecisionConditionName$: z.ZodNativeEnum<
+    typeof FlowAntiFraudDecisionConditionName
+> = z.nativeEnum(FlowAntiFraudDecisionConditionName);
 
 /** @internal */
-export const FlowAntiFraudDecisionConditionOperator$ = z.nativeEnum(
-    FlowAntiFraudDecisionConditionOperator
-);
+export const FlowAntiFraudDecisionConditionOperator$: z.ZodNativeEnum<
+    typeof FlowAntiFraudDecisionConditionOperator
+> = z.nativeEnum(FlowAntiFraudDecisionConditionOperator);
 
 /** @internal */
-export const FlowAntiFraudDecisionConditionValue$ = z.nativeEnum(
-    FlowAntiFraudDecisionConditionValue
-);
+export const FlowAntiFraudDecisionConditionValue$: z.ZodNativeEnum<
+    typeof FlowAntiFraudDecisionConditionValue
+> = z.nativeEnum(FlowAntiFraudDecisionConditionValue);
 
 /** @internal */
 export namespace FlowAntiFraudDecisionCondition$ {

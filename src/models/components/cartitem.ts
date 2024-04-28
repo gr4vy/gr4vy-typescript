@@ -133,7 +133,7 @@ export type CartItem = {
 };
 
 /** @internal */
-export const ProductType$ = z.nativeEnum(ProductType);
+export const ProductType$: z.ZodNativeEnum<typeof ProductType> = z.nativeEnum(ProductType);
 
 /** @internal */
 export namespace CartItem$ {

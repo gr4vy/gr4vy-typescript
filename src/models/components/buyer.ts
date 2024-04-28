@@ -212,10 +212,11 @@ export type Buyer = {
 };
 
 /** @internal */
-export const BuyerType$ = z.nativeEnum(BuyerType);
+export const BuyerType$: z.ZodNativeEnum<typeof BuyerType> = z.nativeEnum(BuyerType);
 
 /** @internal */
-export const BuyerBillingDetailsType$ = z.nativeEnum(BuyerBillingDetailsType);
+export const BuyerBillingDetailsType$: z.ZodNativeEnum<typeof BuyerBillingDetailsType> =
+    z.nativeEnum(BuyerBillingDetailsType);
 
 /** @internal */
 export namespace BuyerAddress$ {
@@ -301,7 +302,7 @@ export namespace BuyerAddress$ {
 }
 
 /** @internal */
-export const BuyerKind$ = z.nativeEnum(BuyerKind);
+export const BuyerKind$: z.ZodNativeEnum<typeof BuyerKind> = z.nativeEnum(BuyerKind);
 
 /** @internal */
 export namespace BuyerTaxID$ {

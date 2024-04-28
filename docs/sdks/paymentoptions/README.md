@@ -31,11 +31,11 @@ Checkout flow rules are used to limit these result.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.paymentOptions.listPaymentOptions({
     country: "US",
     currency: "USD",
@@ -87,11 +87,11 @@ Checkout flow rules are used to limit these result.
 import { SDK } from "@gr4vy/sdk";
 import { ProductType } from "@gr4vy/sdk/models/components";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.paymentOptions.postListPaymentOptions({
     amount: 1299,
     locale: "en-US",

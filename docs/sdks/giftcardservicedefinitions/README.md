@@ -19,11 +19,11 @@ Gets the definition for a gift card service.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const giftCardServiceDefinitionId = "qwikcilver-gift-card";
   
   const result = await sdk.giftCardServiceDefinitions.getGiftCardServiceDefinition(giftCardServiceDefinitionId);

@@ -30,6 +30,7 @@ export enum PaymentOptionMethod {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -180,13 +181,16 @@ export type PaymentOption = {
 };
 
 /** @internal */
-export const PaymentOptionType$ = z.nativeEnum(PaymentOptionType);
+export const PaymentOptionType$: z.ZodNativeEnum<typeof PaymentOptionType> =
+    z.nativeEnum(PaymentOptionType);
 
 /** @internal */
-export const PaymentOptionMethod$ = z.nativeEnum(PaymentOptionMethod);
+export const PaymentOptionMethod$: z.ZodNativeEnum<typeof PaymentOptionMethod> =
+    z.nativeEnum(PaymentOptionMethod);
 
 /** @internal */
-export const PaymentOptionMode$ = z.nativeEnum(PaymentOptionMode);
+export const PaymentOptionMode$: z.ZodNativeEnum<typeof PaymentOptionMode> =
+    z.nativeEnum(PaymentOptionMode);
 
 /** @internal */
 export namespace Context$ {

@@ -35,10 +35,14 @@ export type FlowRuleThreeDSecureOutcome = {
 };
 
 /** @internal */
-export const FlowRuleThreeDSecureOutcomeType$ = z.nativeEnum(FlowRuleThreeDSecureOutcomeType);
+export const FlowRuleThreeDSecureOutcomeType$: z.ZodNativeEnum<
+    typeof FlowRuleThreeDSecureOutcomeType
+> = z.nativeEnum(FlowRuleThreeDSecureOutcomeType);
 
 /** @internal */
-export const FlowRuleThreeDSecureOutcomeResult$ = z.nativeEnum(FlowRuleThreeDSecureOutcomeResult);
+export const FlowRuleThreeDSecureOutcomeResult$: z.ZodNativeEnum<
+    typeof FlowRuleThreeDSecureOutcomeResult
+> = z.nativeEnum(FlowRuleThreeDSecureOutcomeResult);
 
 /** @internal */
 export namespace FlowRuleThreeDSecureOutcome$ {

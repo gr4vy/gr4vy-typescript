@@ -46,7 +46,7 @@ export type ListRoleAssignmentsRequest = {
 };
 
 /** @internal */
-export const AssigneeType$ = z.nativeEnum(AssigneeType);
+export const AssigneeType$: z.ZodNativeEnum<typeof AssigneeType> = z.nativeEnum(AssigneeType);
 
 /** @internal */
 export namespace ListRoleAssignmentsRequest$ {

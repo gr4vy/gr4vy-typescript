@@ -55,10 +55,13 @@ export type FlowAmountRangeCondition = {
 };
 
 /** @internal */
-export const FlowAmountRangeConditionName$ = z.nativeEnum(FlowAmountRangeConditionName);
+export const FlowAmountRangeConditionName$: z.ZodNativeEnum<typeof FlowAmountRangeConditionName> =
+    z.nativeEnum(FlowAmountRangeConditionName);
 
 /** @internal */
-export const FlowAmountRangeConditionOperator$ = z.nativeEnum(FlowAmountRangeConditionOperator);
+export const FlowAmountRangeConditionOperator$: z.ZodNativeEnum<
+    typeof FlowAmountRangeConditionOperator
+> = z.nativeEnum(FlowAmountRangeConditionOperator);
 
 /** @internal */
 export namespace FlowAmountRangeConditionValue$ {

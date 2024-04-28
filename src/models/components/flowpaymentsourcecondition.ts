@@ -46,13 +46,19 @@ export type FlowPaymentSourceCondition = {
 };
 
 /** @internal */
-export const FlowPaymentSourceConditionName$ = z.nativeEnum(FlowPaymentSourceConditionName);
+export const FlowPaymentSourceConditionName$: z.ZodNativeEnum<
+    typeof FlowPaymentSourceConditionName
+> = z.nativeEnum(FlowPaymentSourceConditionName);
 
 /** @internal */
-export const FlowPaymentSourceConditionOperator$ = z.nativeEnum(FlowPaymentSourceConditionOperator);
+export const FlowPaymentSourceConditionOperator$: z.ZodNativeEnum<
+    typeof FlowPaymentSourceConditionOperator
+> = z.nativeEnum(FlowPaymentSourceConditionOperator);
 
 /** @internal */
-export const FlowPaymentSourceConditionValue$ = z.nativeEnum(FlowPaymentSourceConditionValue);
+export const FlowPaymentSourceConditionValue$: z.ZodNativeEnum<
+    typeof FlowPaymentSourceConditionValue
+> = z.nativeEnum(FlowPaymentSourceConditionValue);
 
 /** @internal */
 export namespace FlowPaymentSourceCondition$ {

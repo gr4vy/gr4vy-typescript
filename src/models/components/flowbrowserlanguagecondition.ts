@@ -38,12 +38,14 @@ export type FlowBrowserLanguageCondition = {
 };
 
 /** @internal */
-export const FlowBrowserLanguageConditionName$ = z.nativeEnum(FlowBrowserLanguageConditionName);
+export const FlowBrowserLanguageConditionName$: z.ZodNativeEnum<
+    typeof FlowBrowserLanguageConditionName
+> = z.nativeEnum(FlowBrowserLanguageConditionName);
 
 /** @internal */
-export const FlowBrowserLanguageConditionOperator$ = z.nativeEnum(
-    FlowBrowserLanguageConditionOperator
-);
+export const FlowBrowserLanguageConditionOperator$: z.ZodNativeEnum<
+    typeof FlowBrowserLanguageConditionOperator
+> = z.nativeEnum(FlowBrowserLanguageConditionOperator);
 
 /** @internal */
 export namespace FlowBrowserLanguageCondition$ {

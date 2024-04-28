@@ -49,7 +49,7 @@ export type ListReportsRequest = {
 };
 
 /** @internal */
-export const Schedule$ = z.nativeEnum(Schedule);
+export const Schedule$: z.ZodNativeEnum<typeof Schedule> = z.nativeEnum(Schedule);
 
 /** @internal */
 export namespace ListReportsRequest$ {

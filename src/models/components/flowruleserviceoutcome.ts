@@ -90,13 +90,15 @@ export type FlowRuleServiceOutcome = {
 };
 
 /** @internal */
-export const FlowRuleServiceOutcomeType$ = z.nativeEnum(FlowRuleServiceOutcomeType);
+export const FlowRuleServiceOutcomeType$: z.ZodNativeEnum<typeof FlowRuleServiceOutcomeType> =
+    z.nativeEnum(FlowRuleServiceOutcomeType);
 
 /** @internal */
-export const Instrument$ = z.nativeEnum(Instrument);
+export const Instrument$: z.ZodNativeEnum<typeof Instrument> = z.nativeEnum(Instrument);
 
 /** @internal */
-export const FlowRuleServiceOutcomeName$ = z.nativeEnum(FlowRuleServiceOutcomeName);
+export const FlowRuleServiceOutcomeName$: z.ZodNativeEnum<typeof FlowRuleServiceOutcomeName> =
+    z.nativeEnum(FlowRuleServiceOutcomeName);
 
 /** @internal */
 export namespace FlowRuleServiceOutcomeTransformations$ {
@@ -193,7 +195,7 @@ export namespace Result$ {
 }
 
 /** @internal */
-export const Version$ = z.nativeEnum(Version);
+export const Version$: z.ZodNativeEnum<typeof Version> = z.nativeEnum(Version);
 
 /** @internal */
 export namespace FlowRuleServiceOutcome$ {

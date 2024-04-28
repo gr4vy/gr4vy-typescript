@@ -89,6 +89,13 @@ export type Refund = {
      */
     amount?: number | undefined;
     /**
+     * The reason for this refund.
+     *
+     * @remarks
+     * Could be a multiline string.
+     */
+    reason?: string | null | undefined;
+    /**
      * The date and time when this refund was created.
      */
     createdAt?: Date | undefined;
@@ -110,13 +117,13 @@ export type Refund = {
 };
 
 /** @internal */
-export const RefundType$ = z.nativeEnum(RefundType);
+export const RefundType$: z.ZodNativeEnum<typeof RefundType> = z.nativeEnum(RefundType);
 
 /** @internal */
-export const RefundStatus$ = z.nativeEnum(RefundStatus);
+export const RefundStatus$: z.ZodNativeEnum<typeof RefundStatus> = z.nativeEnum(RefundStatus);
 
 /** @internal */
-export const TargetType$ = z.nativeEnum(TargetType);
+export const TargetType$: z.ZodNativeEnum<typeof TargetType> = z.nativeEnum(TargetType);
 
 /** @internal */
 export namespace Refund$ {
@@ -128,6 +135,7 @@ export namespace Refund$ {
         status?: RefundStatus | undefined;
         currency?: string | undefined;
         amount?: number | undefined;
+        reason?: string | null | undefined;
         created_at?: string | undefined;
         updated_at?: string | undefined;
         target_type?: TargetType | undefined;
@@ -143,6 +151,7 @@ export namespace Refund$ {
             status: RefundStatus$.optional(),
             currency: z.string().optional(),
             amount: z.number().int().optional(),
+            reason: z.nullable(z.string()).default(null),
             created_at: z
                 .string()
                 .datetime({ offset: true })
@@ -167,6 +176,7 @@ export namespace Refund$ {
                 ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.currency === undefined ? null : { currency: v.currency }),
                 ...(v.amount === undefined ? null : { amount: v.amount }),
+                reason: v.reason,
                 ...(v.created_at === undefined ? null : { createdAt: v.created_at }),
                 ...(v.updated_at === undefined ? null : { updatedAt: v.updated_at }),
                 ...(v.target_type === undefined ? null : { targetType: v.target_type }),
@@ -182,6 +192,7 @@ export namespace Refund$ {
         status?: RefundStatus | undefined;
         currency?: string | undefined;
         amount?: number | undefined;
+        reason: string | null;
         created_at?: string | undefined;
         updated_at?: string | undefined;
         target_type?: TargetType | undefined;
@@ -197,6 +208,7 @@ export namespace Refund$ {
             status: RefundStatus$.optional(),
             currency: z.string().optional(),
             amount: z.number().int().optional(),
+            reason: z.nullable(z.string()).default(null),
             createdAt: z
                 .date()
                 .transform((v) => v.toISOString())
@@ -219,6 +231,7 @@ export namespace Refund$ {
                 ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.currency === undefined ? null : { currency: v.currency }),
                 ...(v.amount === undefined ? null : { amount: v.amount }),
+                reason: v.reason,
                 ...(v.createdAt === undefined ? null : { created_at: v.createdAt }),
                 ...(v.updatedAt === undefined ? null : { updated_at: v.updatedAt }),
                 ...(v.targetType === undefined ? null : { target_type: v.targetType }),

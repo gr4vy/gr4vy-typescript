@@ -32,6 +32,7 @@ export enum PaymentServiceDefinitionMethod {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
@@ -282,13 +283,16 @@ export type PaymentServiceDefinition = {
 };
 
 /** @internal */
-export const PaymentServiceDefinitionType$ = z.nativeEnum(PaymentServiceDefinitionType);
+export const PaymentServiceDefinitionType$: z.ZodNativeEnum<typeof PaymentServiceDefinitionType> =
+    z.nativeEnum(PaymentServiceDefinitionType);
 
 /** @internal */
-export const PaymentServiceDefinitionMethod$ = z.nativeEnum(PaymentServiceDefinitionMethod);
+export const PaymentServiceDefinitionMethod$: z.ZodNativeEnum<
+    typeof PaymentServiceDefinitionMethod
+> = z.nativeEnum(PaymentServiceDefinitionMethod);
 
 /** @internal */
-export const Format$ = z.nativeEnum(Format);
+export const Format$: z.ZodNativeEnum<typeof Format> = z.nativeEnum(Format);
 
 /** @internal */
 export namespace PaymentServiceDefinitionFields$ {
@@ -347,7 +351,8 @@ export namespace PaymentServiceDefinitionFields$ {
 }
 
 /** @internal */
-export const PaymentServiceDefinitionMode$ = z.nativeEnum(PaymentServiceDefinitionMode);
+export const PaymentServiceDefinitionMode$: z.ZodNativeEnum<typeof PaymentServiceDefinitionMode> =
+    z.nativeEnum(PaymentServiceDefinitionMode);
 
 /** @internal */
 export namespace SupportedFeatures$ {

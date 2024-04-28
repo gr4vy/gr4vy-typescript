@@ -96,12 +96,13 @@ export type AntiFraudService = {
 };
 
 /** @internal */
-export const AntiFraudServiceType$ = z.nativeEnum(AntiFraudServiceType);
+export const AntiFraudServiceType$: z.ZodNativeEnum<typeof AntiFraudServiceType> =
+    z.nativeEnum(AntiFraudServiceType);
 
 /** @internal */
-export const AntiFraudServiceAntiFraudServiceDefinitionId$ = z.nativeEnum(
-    AntiFraudServiceAntiFraudServiceDefinitionId
-);
+export const AntiFraudServiceAntiFraudServiceDefinitionId$: z.ZodNativeEnum<
+    typeof AntiFraudServiceAntiFraudServiceDefinitionId
+> = z.nativeEnum(AntiFraudServiceAntiFraudServiceDefinitionId);
 
 /** @internal */
 export namespace AntiFraudServiceFields$ {

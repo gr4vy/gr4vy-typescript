@@ -220,19 +220,20 @@ export type Report = {
 };
 
 /** @internal */
-export const ReportType$ = z.nativeEnum(ReportType);
+export const ReportType$: z.ZodNativeEnum<typeof ReportType> = z.nativeEnum(ReportType);
 
 /** @internal */
-export const CreatorType$ = z.nativeEnum(CreatorType);
+export const CreatorType$: z.ZodNativeEnum<typeof CreatorType> = z.nativeEnum(CreatorType);
 
 /** @internal */
-export const ReportSchedule$ = z.nativeEnum(ReportSchedule);
+export const ReportSchedule$: z.ZodNativeEnum<typeof ReportSchedule> = z.nativeEnum(ReportSchedule);
 
 /** @internal */
-export const ReportLatestExecutionType$ = z.nativeEnum(ReportLatestExecutionType);
+export const ReportLatestExecutionType$: z.ZodNativeEnum<typeof ReportLatestExecutionType> =
+    z.nativeEnum(ReportLatestExecutionType);
 
 /** @internal */
-export const ReportStatus$ = z.nativeEnum(ReportStatus);
+export const ReportStatus$: z.ZodNativeEnum<typeof ReportStatus> = z.nativeEnum(ReportStatus);
 
 /** @internal */
 export namespace ReportContext$ {

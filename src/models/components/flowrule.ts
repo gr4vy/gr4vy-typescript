@@ -224,13 +224,13 @@ export type FlowRule = {
 };
 
 /** @internal */
-export const FlowRuleType$ = z.nativeEnum(FlowRuleType);
+export const FlowRuleType$: z.ZodNativeEnum<typeof FlowRuleType> = z.nativeEnum(FlowRuleType);
 
 /** @internal */
-export const FlowRuleFlow$ = z.nativeEnum(FlowRuleFlow);
+export const FlowRuleFlow$: z.ZodNativeEnum<typeof FlowRuleFlow> = z.nativeEnum(FlowRuleFlow);
 
 /** @internal */
-export const FlowRuleAction$ = z.nativeEnum(FlowRuleAction);
+export const FlowRuleAction$: z.ZodNativeEnum<typeof FlowRuleAction> = z.nativeEnum(FlowRuleAction);
 
 /** @internal */
 export namespace Conditions$ {

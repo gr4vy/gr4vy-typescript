@@ -277,13 +277,16 @@ export type GiftCard = {
 };
 
 /** @internal */
-export const GiftCardType$ = z.nativeEnum(GiftCardType);
+export const GiftCardType$: z.ZodNativeEnum<typeof GiftCardType> = z.nativeEnum(GiftCardType);
 
 /** @internal */
-export const GiftCardBuyerType$ = z.nativeEnum(GiftCardBuyerType);
+export const GiftCardBuyerType$: z.ZodNativeEnum<typeof GiftCardBuyerType> =
+    z.nativeEnum(GiftCardBuyerType);
 
 /** @internal */
-export const GiftCardBuyerBillingDetailsType$ = z.nativeEnum(GiftCardBuyerBillingDetailsType);
+export const GiftCardBuyerBillingDetailsType$: z.ZodNativeEnum<
+    typeof GiftCardBuyerBillingDetailsType
+> = z.nativeEnum(GiftCardBuyerBillingDetailsType);
 
 /** @internal */
 export namespace GiftCardAddress$ {
@@ -369,7 +372,7 @@ export namespace GiftCardAddress$ {
 }
 
 /** @internal */
-export const GiftCardKind$ = z.nativeEnum(GiftCardKind);
+export const GiftCardKind$: z.ZodNativeEnum<typeof GiftCardKind> = z.nativeEnum(GiftCardKind);
 
 /** @internal */
 export namespace GiftCardTaxID$ {

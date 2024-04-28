@@ -100,6 +100,7 @@ export class Buyers extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -150,15 +151,134 @@ export class Buyers extends ClientSDK {
     }
 
     /**
+     * New buyer
+     *
+     * @remarks
+     * Adds a buyer, allowing for payment methods and transactions to be associated
+     * to this buyer.
+     *
+     */
+    async newBuyer(
+        input: components.BuyerRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.Buyer> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => components.BuyerRequest$.outboundSchema.optional().parse(value$),
+            "Input validation failed"
+        );
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/buyers")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "new-buyer",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "409", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 201, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return components.Buyer$.inboundSchema.parse(val$);
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 409, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error409DuplicateRecord$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
      * Get buyer
      *
      * @remarks
      * Gets the information about a buyer.
      */
-    async getBuyer(
-        buyerId: string,
-        options?: RequestOptions
-    ): Promise<operations.GetBuyerResponse> {
+    async getBuyer(buyerId: string, options?: RequestOptions): Promise<components.Buyer> {
         const input$: operations.GetBuyerRequest = {
             buyerId: buyerId,
         };
@@ -200,6 +320,7 @@ export class Buyers extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -225,7 +346,7 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerResponse$.inboundSchema.parse(val$);
+                    return components.Buyer$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -256,16 +377,150 @@ export class Buyers extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
+     * Update buyer
+     *
+     * @remarks
+     * Updates a buyer's details.
+     *
+     */
+    async updateBuyer(
+        buyerId: string,
+        buyerUpdate?: components.BuyerUpdate | undefined,
+        options?: RequestOptions
+    ): Promise<components.Buyer> {
+        const input$: operations.UpdateBuyerRequest = {
+            buyerId: buyerId,
+            buyerUpdate: buyerUpdate,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.UpdateBuyerRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.BuyerUpdate, { explode: true });
+
+        const pathParams$ = {
+            buyer_id: enc$.encodeSimple("buyer_id", payload$.buyer_id, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/buyers/{buyer_id}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "update-buyer",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "409", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerResponse$.inboundSchema.parse(val$);
+                    return components.Buyer$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 404, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error404NotFound$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 409, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error409DuplicateRecord$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -282,7 +537,7 @@ export class Buyers extends ClientSDK {
     async deleteBuyer(
         buyerId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteBuyerResponse> {
+    ): Promise<operations.DeleteBuyerResponse | void> {
         const input$: operations.DeleteBuyerRequest = {
             buyerId: buyerId,
         };
@@ -324,6 +579,7 @@ export class Buyers extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -345,7 +601,7 @@ export class Buyers extends ClientSDK {
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -376,12 +632,6 @@ export class Buyers extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteBuyerResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -393,7 +643,7 @@ export class Buyers extends ClientSDK {
     async listBuyerShippingDetails(
         buyerId: string,
         options?: RequestOptions
-    ): Promise<operations.ListBuyerShippingDetailsResponse> {
+    ): Promise<components.ShippingDetails> {
         const input$: operations.ListBuyerShippingDetailsRequest = {
             buyerId: buyerId,
         };
@@ -435,6 +685,7 @@ export class Buyers extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -460,7 +711,7 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBuyerShippingDetailsResponse$.inboundSchema.parse(val$);
+                    return components.ShippingDetails$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -478,16 +729,264 @@ export class Buyers extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
+     * New buyer shipping detail
+     *
+     * @remarks
+     * Adds a buyer shipping detail.
+     */
+    async newBuyerShippingDetail(
+        buyerId: string,
+        shippingDetailRequest?: components.ShippingDetailRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.ShippingDetail> {
+        const input$: operations.NewBuyerShippingDetailRequest = {
+            buyerId: buyerId,
+            shippingDetailRequest: shippingDetailRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.NewBuyerShippingDetailRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.ShippingDetailRequest, { explode: true });
+
+        const pathParams$ = {
+            buyer_id: enc$.encodeSimple("buyer_id", payload$.buyer_id, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/buyers/{buyer_id}/shipping-details")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "new-buyer-shipping-detail",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBuyerShippingDetailsResponse$.inboundSchema.parse(val$);
+                    return components.ShippingDetail$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
+     * Update buyer shipping details
+     *
+     * @remarks
+     * Updates shipping detail for a buyer.
+     */
+    async updateBuyerShippingDetail(
+        buyerId: string,
+        shippingDetailId: string,
+        shippingDetailUpdateRequest?: components.ShippingDetailUpdateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.ShippingDetail> {
+        const input$: operations.UpdateBuyerShippingDetailRequest = {
+            buyerId: buyerId,
+            shippingDetailId: shippingDetailId,
+            shippingDetailUpdateRequest: shippingDetailUpdateRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.UpdateBuyerShippingDetailRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.ShippingDetailUpdateRequest, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            buyer_id: enc$.encodeSimple("buyer_id", payload$.buyer_id, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            shipping_detail_id: enc$.encodeSimple(
+                "shipping_detail_id",
+                payload$.shipping_detail_id,
+                { explode: false, charEncoding: "percent" }
+            ),
+        };
+        const path$ = this.templateURLComponent(
+            "/buyers/{buyer_id}/shipping-details/{shipping_detail_id}"
+        )(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "update-buyer-shipping-detail",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return components.ShippingDetail$.inboundSchema.parse(val$);
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 404, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error404NotFound$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -504,7 +1003,7 @@ export class Buyers extends ClientSDK {
         buyerId: string,
         shippingDetailId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteBuyerShippingDetailResponse> {
+    ): Promise<operations.DeleteBuyerShippingDetailResponse | void> {
         const input$: operations.DeleteBuyerShippingDetailRequest = {
             buyerId: buyerId,
             shippingDetailId: shippingDetailId,
@@ -554,6 +1053,7 @@ export class Buyers extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -575,7 +1075,7 @@ export class Buyers extends ClientSDK {
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -606,13 +1106,6 @@ export class Buyers extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.DeleteBuyerShippingDetailResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -627,7 +1120,7 @@ export class Buyers extends ClientSDK {
         buyerId?: string | undefined,
         buyerExternalIdentifier?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetBuyerBillingDetailsResponse> {
+    ): Promise<components.BillingDetails> {
         const input$: operations.GetBuyerBillingDetailsRequest = {
             buyerId: buyerId,
             buyerExternalIdentifier: buyerExternalIdentifier,
@@ -675,6 +1168,7 @@ export class Buyers extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -700,7 +1194,7 @@ export class Buyers extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerBillingDetailsResponse$.inboundSchema.parse(val$);
+                    return components.BillingDetails$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -731,16 +1225,147 @@ export class Buyers extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
+     * Update buyer billing details
+     *
+     * @remarks
+     * Updates the billing details of a buyer. Note that only one of either
+     * buyer's ID or external identifier may be passed as a query
+     * parameter, and not both.
+     */
+    async updateBuyerBillingDetails(
+        buyerId?: string | undefined,
+        buyerExternalIdentifier?: string | undefined,
+        billingDetailsUpdateRequest?: components.BillingDetailsUpdateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.BillingDetails> {
+        const input$: operations.UpdateBuyerBillingDetailsRequest = {
+            buyerId: buyerId,
+            buyerExternalIdentifier: buyerExternalIdentifier,
+            billingDetailsUpdateRequest: billingDetailsUpdateRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.UpdateBuyerBillingDetailsRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.BillingDetailsUpdateRequest, {
+            explode: true,
+        });
+
+        const path$ = this.templateURLComponent("/buyers/billing-details")();
+
+        const query$ = [
+            enc$.encodeForm("buyer_external_identifier", payload$.buyer_external_identifier, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("buyer_id", payload$.buyer_id, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "update-buyer-billing-details",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBuyerBillingDetailsResponse$.inboundSchema.parse(val$);
+                    return components.BillingDetails$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, 400, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error400BadRequest$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 401, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error401Unauthorized$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else if (this.matchResponse(response, 404, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.Error404NotFound$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);

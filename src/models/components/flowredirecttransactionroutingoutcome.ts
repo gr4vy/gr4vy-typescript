@@ -49,9 +49,9 @@ export type FlowRedirectTransactionRoutingOutcome = {
 };
 
 /** @internal */
-export const FlowRedirectTransactionRoutingOutcomeType$ = z.nativeEnum(
-    FlowRedirectTransactionRoutingOutcomeType
-);
+export const FlowRedirectTransactionRoutingOutcomeType$: z.ZodNativeEnum<
+    typeof FlowRedirectTransactionRoutingOutcomeType
+> = z.nativeEnum(FlowRedirectTransactionRoutingOutcomeType);
 
 /** @internal */
 export namespace FlowRedirectTransactionRoutingOutcome$ {

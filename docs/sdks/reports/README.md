@@ -34,8 +34,10 @@ in CSV format.
 
 * [listAllReportExecutions](#listallreportexecutions) - List all report executions
 * [getReportExecution](#getreportexecution) - Get report execution
+* [newReport](#newreport) - New report
 * [listReports](#listreports) - List reports
 * [getReport](#getreport) - Get report
+* [updateReport](#updatereport) - Update report
 * [listReportExecutions](#listreportexecutions) - List executions for report
 * [generateDownloadUrl](#generatedownloadurl) - Generate report download URL
 
@@ -49,11 +51,11 @@ Returns a list of executions belonging to any report.
 import { SDK } from "@gr4vy/sdk";
 import { ListAllReportExecutionsQueryParamStatus } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reports.listAllReportExecutions({
     cursor: "ZXhhbXBsZTE",
     limit: 1,
@@ -104,11 +106,11 @@ Retrieves the details of a single report execution.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const reportExecutionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   
   const result = await sdk.reports.getReportExecution(reportExecutionId);
@@ -140,6 +142,98 @@ run();
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
+## newReport
+
+Creates a new report.
+
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { ReportCreateFields, ReportCreateModel, Schedule } from "@gr4vy/sdk/models/components";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.reports.newReport({
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    schedule: Schedule.Monthly,
+    scheduleEnabled: true,
+    scheduleTimezone: "Europe/London",
+    spec: {
+      model: ReportCreateModel.Transactions,
+      params: {
+        fields: [
+          ReportCreateFields.Id,
+          ReportCreateFields.ExternalIdentifier,
+        ],
+        filters: {
+          status: [
+            "authorization_failed",
+          ],
+          currency: [
+            "GBP",
+          ],
+          method: [
+            "card",
+          ],
+          scheme: [
+            "visa",
+          ],
+          metadata: [
+            "<value>",
+          ],
+          threeDSecureStatus: [
+            "<value>",
+          ],
+          threeDSecureEci: [
+            "05",
+          ],
+          threeDSecureAuthResp: [
+            "N",
+          ],
+        },
+        sort: [
+          {},
+        ],
+        additionalProperties: {
+          "key": "<value>",
+        },
+      },
+    },
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.ReportCreate](../../models/components/reportcreate.md)                                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[components.Report](../../models/components/report.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
 ## listReports
 
 Returns a list of reports.
@@ -150,11 +244,11 @@ Returns a list of reports.
 import { SDK } from "@gr4vy/sdk";
 import { Schedule } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reports.listReports({
     cursor: "ZXhhbXBsZTE",
     limit: 1,
@@ -201,11 +295,11 @@ Retrieves the details of a single report.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   
   const result = await sdk.reports.getReport(reportId);
@@ -237,6 +331,58 @@ run();
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
+## updateReport
+
+Updates a report. This is mostly used with scheduled reports.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
+  const reportUpdate = {
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    scheduleEnabled: true,
+  };
+  
+  const result = await sdk.reports.updateReport(reportId, reportUpdate);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `reportId`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique ID for a report.                                                                                                                                                    | [object Object]                                                                                                                                                                |
+| `reportUpdate`                                                                                                                                                                 | [components.ReportUpdate](../../models/components/reportupdate.md)                                                                                                             | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[components.Report](../../models/components/report.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
 ## listReportExecutions
 
 Returns a list of executions for a report. For a
@@ -248,11 +394,11 @@ there may be more.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   const cursor = "ZXhhbXBsZTE";
   const limit = 1;
@@ -297,11 +443,11 @@ execution.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   const reportExecutionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   

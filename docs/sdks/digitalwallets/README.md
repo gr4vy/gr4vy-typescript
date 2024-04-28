@@ -15,9 +15,71 @@ The digital wallets API can be used to:
 
 ### Available Operations
 
+* [newDigitalWallet](#newdigitalwallet) - Register digital wallet
 * [listDigitalWallets](#listdigitalwallets) - List digital wallets
 * [getDigitalWallet](#getdigitalwallet) - Get digital wallet
+* [updateDigitalWallet](#updatedigitalwallet) - Update digital wallet
 * [deleteDigitalWallet](#deletedigitalwallet) - De-register digital wallet
+* [addDigitalWalletDomainName](#adddigitalwalletdomainname) - Add digital wallet domain name
+* [deleteDigitalWalletDomainName](#deletedigitalwalletdomainname) - Remove digital wallet domain name
+* [newApplePaySession](#newapplepaysession) - New Apple Pay session
+* [newClickToPaySession](#newclicktopaysession) - New Click to Pay session
+* [newGooglePaySession](#newgooglepaysession) - New Google Pay session
+
+## newDigitalWallet
+
+Register with a digital wallet provider.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { Provider } from "@gr4vy/sdk/models/components";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.digitalWallets.newDigitalWallet({
+    provider: Provider.Apple,
+    merchantName: "Gr4vy",
+    merchantUrl: "https://example.com",
+    merchantDisplayName: "Gr4vy",
+    merchantCountryCode: "US",
+    domainNames: [
+      "example.com",
+    ],
+    acceptTermsAndConditions: true,
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.DigitalWalletRequest](../../models/components/digitalwalletrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[components.DigitalWallet](../../models/components/digitalwallet.md)>**
+### Errors
+
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.Error400BadRequest      | 400                            | application/json               |
+| errors.Error401Unauthorized    | 401                            | application/json               |
+| errors.Error409DuplicateRecord | 409                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 ## listDigitalWallets
 
@@ -28,11 +90,11 @@ Returns a list of all registered digital wallets.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.digitalWallets.listDigitalWallets();
 
   // Handle the result
@@ -69,11 +131,11 @@ Returns a registered digital wallet.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const digitalWalletId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
   
   const result = await sdk.digitalWallets.getDigitalWallet(digitalWalletId);
@@ -105,6 +167,62 @@ run();
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
+## updateDigitalWallet
+
+Updates the values a digital wallet was registered with.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const digitalWalletId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
+  const digitalWalletUpdate = {
+    merchantName: "Gr4vy",
+    domainNames: [
+      "example.com",
+    ],
+    merchantDisplayName: "Gr4vy",
+    merchantCountryCode: "US",
+    merchantUrl: "https://example.com",
+  };
+  
+  const result = await sdk.digitalWallets.updateDigitalWallet(digitalWalletId, digitalWalletUpdate);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `digitalWalletId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the registered digital wallet.                                                                                                                                       | [object Object]                                                                                                                                                                |
+| `digitalWalletUpdate`                                                                                                                                                          | [components.DigitalWalletUpdate](../../models/components/digitalwalletupdate.md)                                                                                               | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[components.DigitalWallet](../../models/components/digitalwallet.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
 ## deleteDigitalWallet
 
 De-registers a digital wallet with a provider. Upon successful
@@ -121,11 +239,11 @@ are deleted alongside the Apple digital wallet's record.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const digitalWalletId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
   
   const result = await sdk.digitalWallets.deleteDigitalWallet(digitalWalletId);
@@ -153,6 +271,251 @@ run();
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## addDigitalWalletDomainName
+
+Adds new domain for given digital wallet.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const digitalWalletId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
+  const digitalWalletDomain = {
+    domainName: "example.com",
+  };
+  
+  const result = await sdk.digitalWallets.addDigitalWalletDomainName(digitalWalletId, digitalWalletDomain);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `digitalWalletId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the registered digital wallet.                                                                                                                                       | [object Object]                                                                                                                                                                |
+| `digitalWalletDomain`                                                                                                                                                          | [components.DigitalWalletDomain](../../models/components/digitalwalletdomain.md)                                                                                               | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.AddDigitalWalletDomainNameResponse](../../models/operations/adddigitalwalletdomainnameresponse.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## deleteDigitalWalletDomainName
+
+Removes domain for given digital wallet.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const digitalWalletId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
+  const digitalWalletDomain = {
+    domainName: "example.com",
+  };
+  
+  const result = await sdk.digitalWallets.deleteDigitalWalletDomainName(digitalWalletId, digitalWalletDomain);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `digitalWalletId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the registered digital wallet.                                                                                                                                       | [object Object]                                                                                                                                                                |
+| `digitalWalletDomain`                                                                                                                                                          | [components.DigitalWalletDomain](../../models/components/digitalwalletdomain.md)                                                                                               | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.DeleteDigitalWalletDomainNameResponse](../../models/operations/deletedigitalwalletdomainnameresponse.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## newApplePaySession
+
+Initiates a new session with Apple Pay. This can be used when implementing
+Apple Pay without our SDK.
+
+This endpoint returns an opaque object that can be directly passed to the
+Apple Pay SDK. The format of this object may change when the format returned by
+the Apple Pay API changes.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.digitalWallets.newApplePaySession({
+    validationUrl: "http://instructive-dog.com",
+    domainName: "disgusting-seafood.org",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.ApplePaySessionRequest](../../models/components/applepaysessionrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[Record<string, any>](../../models/.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## newClickToPaySession
+
+Returns digital payment application ID & name for use with Click to Pay.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.digitalWallets.newClickToPaySession({
+    checkoutSessionId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.ClickToPaySessionRequest](../../models/components/clicktopaysessionrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[components.ClickToPaySession](../../models/components/clicktopaysession.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## newGooglePaySession
+
+Initiates a new session with Google Pay. This can be used when implementing
+Google Pay without our SDK.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.digitalWallets.newGooglePaySession({
+    originDomain: "<value>",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.GooglePaySessionRequest](../../models/components/googlepaysessionrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[components.GooglePaySession](../../models/components/googlepaysession.md)>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |

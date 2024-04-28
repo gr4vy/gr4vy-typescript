@@ -98,7 +98,7 @@ export type ApiLog = {
 };
 
 /** @internal */
-export const ApiLogType$ = z.nativeEnum(ApiLogType);
+export const ApiLogType$: z.ZodNativeEnum<typeof ApiLogType> = z.nativeEnum(ApiLogType);
 
 /** @internal */
 export namespace Details$ {

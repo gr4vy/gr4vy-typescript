@@ -32,7 +32,9 @@ export type ForceMITTransformationOutcome = {
 };
 
 /** @internal */
-export const ForceMITTransformationOutcomeName$ = z.nativeEnum(ForceMITTransformationOutcomeName);
+export const ForceMITTransformationOutcomeName$: z.ZodNativeEnum<
+    typeof ForceMITTransformationOutcomeName
+> = z.nativeEnum(ForceMITTransformationOutcomeName);
 
 /** @internal */
 export namespace ForceMITTransformationOutcome$ {

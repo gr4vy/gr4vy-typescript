@@ -39,10 +39,12 @@ export type FlowSKUsCondition = {
 };
 
 /** @internal */
-export const FlowSKUsConditionName$ = z.nativeEnum(FlowSKUsConditionName);
+export const FlowSKUsConditionName$: z.ZodNativeEnum<typeof FlowSKUsConditionName> =
+    z.nativeEnum(FlowSKUsConditionName);
 
 /** @internal */
-export const FlowSKUsConditionOperator$ = z.nativeEnum(FlowSKUsConditionOperator);
+export const FlowSKUsConditionOperator$: z.ZodNativeEnum<typeof FlowSKUsConditionOperator> =
+    z.nativeEnum(FlowSKUsConditionOperator);
 
 /** @internal */
 export namespace FlowSKUsCondition$ {

@@ -109,13 +109,16 @@ export class Error409DuplicateRecord extends Error {
 }
 
 /** @internal */
-export const Error409DuplicateRecordType$ = z.nativeEnum(Error409DuplicateRecordType);
+export const Error409DuplicateRecordType$: z.ZodNativeEnum<typeof Error409DuplicateRecordType> =
+    z.nativeEnum(Error409DuplicateRecordType);
 
 /** @internal */
-export const Error409DuplicateRecordCode$ = z.nativeEnum(Error409DuplicateRecordCode);
+export const Error409DuplicateRecordCode$: z.ZodNativeEnum<typeof Error409DuplicateRecordCode> =
+    z.nativeEnum(Error409DuplicateRecordCode);
 
 /** @internal */
-export const Error409DuplicateRecordStatus$ = z.nativeEnum(Error409DuplicateRecordStatus);
+export const Error409DuplicateRecordStatus$: z.ZodNativeEnum<typeof Error409DuplicateRecordStatus> =
+    z.nativeEnum(Error409DuplicateRecordStatus);
 
 /** @internal */
 export namespace Error409DuplicateRecord$ {
