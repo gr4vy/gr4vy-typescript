@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class GiftCards extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -40,14 +41,16 @@ export class GiftCards extends ClientSDK {
     }
 
     /**
-     * List gift cards buyer
+     * List gift cards for buyer
      *
      * @remarks
      * Returns a list of all stored, not-expired gift cards and
-     * their balances for a buyer in a summarized format.
+     * their balances for a buyer in a summarized format. Any
+     * expired or empty gift cards will be automatically filtered
+     * out and removed from the list of returned cards.
      *
-     * All stored gift cards are returned, even if we were not able
-     * to fetch the latest balance.
+     * If we were not able to fetch the latest balance then all
+     * stored gift cards are returned.
      */
     async listBuyerGiftCards(
         buyerId?: string | undefined,
@@ -100,7 +103,8 @@ export class GiftCards extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -112,55 +116,20 @@ export class GiftCards extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.GiftCardsSummary$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.GiftCardsSummary>()
+            .json(200, components.GiftCardsSummary$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -226,7 +195,8 @@ export class GiftCards extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -238,42 +208,106 @@ export class GiftCards extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.GiftCards$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
+        const [result$] = await this.matcher<components.GiftCards>()
+            .json(200, components.GiftCards$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
+    }
+
+    /**
+     * Store gift card
+     *
+     * @remarks
+     * Stores a gift card.
+     *
+     * Vaulting a gift card stores and validate it against the active gift card
+     * service.
+     *
+     * It is only possible to store a gift card against a buyer if the same card is
+     * not already stored on the buyer and the gift card has not expired yet.
+     *
+     * Buyers by default can only have a maximum limit of 10 gift cards stored against
+     * them. Please contact our team to change this limit. To clear out any expired or
+     * empty gift cards, you can call the `GET /buyers/gift-cards` endpoint which will
+     * automatically archive any of those cards and allow new cards to be stored.
+     *
+     */
+    async storeGiftCard(
+        request?: components.GiftCardStoreRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.GiftCard> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.GiftCardStoreRequest$.outboundSchema.optional().parse(value$),
+            "Input validation failed"
+        );
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/gift-cards")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
         } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            security$ = {};
         }
+        const context = {
+            operationID: "store-gift-card",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "409", "429", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
+        const [result$] = await this.matcher<components.GiftCard>()
+            .json(201, components.GiftCard$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(409, errors.Error409DuplicateRecord$, { err: true })
+            .json(429, errors.Error429TooManyRequests$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -282,10 +316,7 @@ export class GiftCards extends ClientSDK {
      * @remarks
      * Retrieves details of a stored gift card.
      */
-    async getGiftCard(
-        giftCardId: string,
-        options?: RequestOptions
-    ): Promise<operations.GetGiftCardResponse> {
+    async getGiftCard(giftCardId: string, options?: RequestOptions): Promise<components.GiftCard> {
         const input$: operations.GetGiftCardRequest = {
             giftCardId: giftCardId,
         };
@@ -326,7 +357,8 @@ export class GiftCards extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -338,65 +370,20 @@ export class GiftCards extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetGiftCardResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetGiftCardResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.GiftCard>()
+            .json(200, components.GiftCard$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -405,10 +392,7 @@ export class GiftCards extends ClientSDK {
      * @remarks
      * Removes a stored gift card.
      */
-    async deleteGiftCard(
-        giftCardId: string,
-        options?: RequestOptions
-    ): Promise<operations.DeleteGiftCardResponse> {
+    async deleteGiftCard(giftCardId: string, options?: RequestOptions): Promise<void> {
         const input$: operations.DeleteGiftCardRequest = {
             giftCardId: giftCardId,
         };
@@ -449,7 +433,8 @@ export class GiftCards extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -461,52 +446,100 @@ export class GiftCards extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteGiftCardResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
+        return result$;
+    }
+
+    /**
+     * Verify and check gift card balances
+     *
+     * @remarks
+     * Verify gift cards are enrolled and fetch their balances.
+     *
+     * This verifies a list of gift cards are enrolled for your gift card programme,
+     * if this feature is available via your gift card service. It then also fetches each card's
+     * current balance.
+     *
+     * Duplicated gift card numbers are not supported. This includes both stored gift
+     * cards, as well as those directly provided via the request.
+     */
+    async checkGiftCardBalances(
+        request?: components.GiftCardBalancesRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.GiftCardsSummary> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.GiftCardBalancesRequest$.outboundSchema.optional().parse(value$),
+            "Input validation failed"
         );
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/gift-cards/balances")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "check-gift-card-balances",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "429", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
+        const [result$] = await this.matcher<components.GiftCardsSummary>()
+            .json(200, components.GiftCardsSummary$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(429, errors.Error429TooManyRequests$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 }

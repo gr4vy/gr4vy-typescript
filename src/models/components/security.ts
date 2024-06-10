@@ -10,31 +10,15 @@ export type Security = {
 
 /** @internal */
 export namespace Security$ {
-    export type Inbound = {
-        bearerAuth: string;
-    };
-
-    export const inboundSchema: z.ZodType<Security, z.ZodTypeDef, Inbound> = z
-        .object({
-            bearerAuth: z.string(),
-        })
-        .transform((v) => {
-            return {
-                bearerAuth: v.bearerAuth,
-            };
-        });
+    export const inboundSchema: z.ZodType<Security, z.ZodTypeDef, unknown> = z.object({
+        bearerAuth: z.string(),
+    });
 
     export type Outbound = {
         bearerAuth: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Security> = z
-        .object({
-            bearerAuth: z.string(),
-        })
-        .transform((v) => {
-            return {
-                bearerAuth: v.bearerAuth,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Security> = z.object({
+        bearerAuth: z.string(),
+    });
 }

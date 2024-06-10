@@ -35,44 +35,33 @@ export type FlowRuleThreeDSecureOutcome = {
 };
 
 /** @internal */
-export const FlowRuleThreeDSecureOutcomeType$ = z.nativeEnum(FlowRuleThreeDSecureOutcomeType);
+export namespace FlowRuleThreeDSecureOutcomeType$ {
+    export const inboundSchema = z.nativeEnum(FlowRuleThreeDSecureOutcomeType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowRuleThreeDSecureOutcomeResult$ = z.nativeEnum(FlowRuleThreeDSecureOutcomeResult);
+export namespace FlowRuleThreeDSecureOutcomeResult$ {
+    export const inboundSchema = z.nativeEnum(FlowRuleThreeDSecureOutcomeResult);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowRuleThreeDSecureOutcome$ {
-    export type Inbound = {
-        type: FlowRuleThreeDSecureOutcomeType;
-        result: FlowRuleThreeDSecureOutcomeResult;
-    };
-
-    export const inboundSchema: z.ZodType<FlowRuleThreeDSecureOutcome, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: FlowRuleThreeDSecureOutcomeType$,
-            result: FlowRuleThreeDSecureOutcomeResult$,
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
+    export const inboundSchema: z.ZodType<FlowRuleThreeDSecureOutcome, z.ZodTypeDef, unknown> =
+        z.object({
+            type: FlowRuleThreeDSecureOutcomeType$.inboundSchema,
+            result: FlowRuleThreeDSecureOutcomeResult$.inboundSchema,
         });
 
     export type Outbound = {
-        type: FlowRuleThreeDSecureOutcomeType;
-        result: FlowRuleThreeDSecureOutcomeResult;
+        type: string;
+        result: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleThreeDSecureOutcome> = z
-        .object({
-            type: FlowRuleThreeDSecureOutcomeType$,
-            result: FlowRuleThreeDSecureOutcomeResult$,
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleThreeDSecureOutcome> =
+        z.object({
+            type: FlowRuleThreeDSecureOutcomeType$.outboundSchema,
+            result: FlowRuleThreeDSecureOutcomeResult$.outboundSchema,
         });
 }

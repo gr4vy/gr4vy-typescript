@@ -19,14 +19,12 @@ Gets the definition for a gift card service.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const giftCardServiceDefinitionId = "qwikcilver-gift-card";
-  
-  const result = await sdk.giftCardServiceDefinitions.getGiftCardServiceDefinition(giftCardServiceDefinitionId);
+async function run() {
+  const result = await sdk.giftCardServiceDefinitions.getGiftCardServiceDefinition("qwikcilver-gift-card");
 
   // Handle the result
   console.log(result)
@@ -46,7 +44,7 @@ run();
 
 ### Response
 
-**Promise<[components.GiftCardServiceDefinition](../../models/components/giftcardservicedefinition.md)>**
+**Promise\<[components.GiftCardServiceDefinition](../../models/components/giftcardservicedefinition.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

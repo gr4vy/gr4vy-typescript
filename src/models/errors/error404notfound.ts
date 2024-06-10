@@ -13,10 +13,11 @@ export enum Error404NotFoundType {
 }
 
 /**
- * `not_found`.
+ * The reason code for the error.
  */
 export enum Error404NotFoundCode {
     NotFound = "not_found",
+    PendingCreation = "pending_creation",
 }
 
 /**
@@ -24,13 +25,6 @@ export enum Error404NotFoundCode {
  */
 export enum Error404NotFoundStatus {
     FourHundredAndFour = 404,
-}
-
-/**
- * The resource could not be found.
- */
-export enum Error404NotFoundMessage {
-    TheResourceCouldNotBeFound = "The resource could not be found",
 }
 
 /**
@@ -42,7 +36,7 @@ export type Error404NotFoundData = {
      */
     type?: Error404NotFoundType | undefined;
     /**
-     * `not_found`.
+     * The reason code for the error.
      */
     code?: Error404NotFoundCode | undefined;
     /**
@@ -50,9 +44,9 @@ export type Error404NotFoundData = {
      */
     status?: Error404NotFoundStatus | undefined;
     /**
-     * The resource could not be found.
+     * The human readable reason for the error.
      */
-    message?: Error404NotFoundMessage | undefined;
+    message?: string | undefined;
     /**
      * A list of detail objects that further clarify the reason for the error.
      *
@@ -71,7 +65,7 @@ export class Error404NotFound extends Error {
      */
     type?: Error404NotFoundType | undefined;
     /**
-     * `not_found`.
+     * The reason code for the error.
      */
     code?: Error404NotFoundCode | undefined;
     /**
@@ -116,50 +110,42 @@ export class Error404NotFound extends Error {
 }
 
 /** @internal */
-export const Error404NotFoundType$ = z.nativeEnum(Error404NotFoundType);
+export namespace Error404NotFoundType$ {
+    export const inboundSchema = z.nativeEnum(Error404NotFoundType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error404NotFoundCode$ = z.nativeEnum(Error404NotFoundCode);
+export namespace Error404NotFoundCode$ {
+    export const inboundSchema = z.nativeEnum(Error404NotFoundCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error404NotFoundStatus$ = z.nativeEnum(Error404NotFoundStatus);
-
-/** @internal */
-export const Error404NotFoundMessage$ = z.nativeEnum(Error404NotFoundMessage);
+export namespace Error404NotFoundStatus$ {
+    export const inboundSchema = z.nativeEnum(Error404NotFoundStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Error404NotFound$ {
-    export type Inbound = {
-        type?: Error404NotFoundType | undefined;
-        code?: Error404NotFoundCode | undefined;
-        status?: Error404NotFoundStatus | undefined;
-        message?: Error404NotFoundMessage | undefined;
-        details?: Array<components.ErrorDetail$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Error404NotFound, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Error404NotFound, z.ZodTypeDef, unknown> = z
         .object({
-            type: Error404NotFoundType$.optional(),
-            code: Error404NotFoundCode$.optional(),
-            status: Error404NotFoundStatus$.optional(),
-            message: Error404NotFoundMessage$.optional(),
+            type: Error404NotFoundType$.inboundSchema.optional(),
+            code: Error404NotFoundCode$.inboundSchema.optional(),
+            status: Error404NotFoundStatus$.inboundSchema.optional(),
+            message: z.string().optional(),
             details: z.array(components.ErrorDetail$.inboundSchema).optional(),
         })
         .transform((v) => {
-            return new Error404NotFound({
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.message === undefined ? null : { message: v.message }),
-                ...(v.details === undefined ? null : { details: v.details }),
-            });
+            return new Error404NotFound(v);
         });
 
     export type Outbound = {
-        type?: Error404NotFoundType | undefined;
-        code?: Error404NotFoundCode | undefined;
-        status?: Error404NotFoundStatus | undefined;
-        message?: Error404NotFoundMessage | undefined;
+        type?: string | undefined;
+        code?: string | undefined;
+        status?: number | undefined;
+        message?: string | undefined;
         details?: Array<components.ErrorDetail$.Outbound> | undefined;
     };
 
@@ -167,22 +153,12 @@ export namespace Error404NotFound$ {
         .instanceof(Error404NotFound)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    type: Error404NotFoundType$.optional(),
-                    code: Error404NotFoundCode$.optional(),
-                    status: Error404NotFoundStatus$.optional(),
-                    message: Error404NotFoundMessage$.optional(),
-                    details: z.array(components.ErrorDetail$.outboundSchema).optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.type === undefined ? null : { type: v.type }),
-                        ...(v.code === undefined ? null : { code: v.code }),
-                        ...(v.status === undefined ? null : { status: v.status }),
-                        ...(v.message === undefined ? null : { message: v.message }),
-                        ...(v.details === undefined ? null : { details: v.details }),
-                    };
-                })
+            z.object({
+                type: Error404NotFoundType$.outboundSchema.optional(),
+                code: Error404NotFoundCode$.outboundSchema.optional(),
+                status: Error404NotFoundStatus$.outboundSchema.optional(),
+                message: z.string().optional(),
+                details: z.array(components.ErrorDetail$.outboundSchema).optional(),
+            })
         );
 }

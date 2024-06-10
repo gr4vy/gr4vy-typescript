@@ -30,35 +30,24 @@ export type ListFlowRulesRequest = {
 };
 
 /** @internal */
-export const Flow$ = z.nativeEnum(Flow);
+export namespace Flow$ {
+    export const inboundSchema = z.nativeEnum(Flow);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ListFlowRulesRequest$ {
-    export type Inbound = {
-        flow: Flow;
-    };
-
-    export const inboundSchema: z.ZodType<ListFlowRulesRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            flow: Flow$,
-        })
-        .transform((v) => {
-            return {
-                flow: v.flow,
-            };
-        });
+    export const inboundSchema: z.ZodType<ListFlowRulesRequest, z.ZodTypeDef, unknown> = z.object({
+        flow: Flow$.inboundSchema,
+    });
 
     export type Outbound = {
-        flow: Flow;
+        flow: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListFlowRulesRequest> = z
-        .object({
-            flow: Flow$,
-        })
-        .transform((v) => {
-            return {
-                flow: v.flow,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListFlowRulesRequest> = z.object(
+        {
+            flow: Flow$.outboundSchema,
+        }
+    );
 }

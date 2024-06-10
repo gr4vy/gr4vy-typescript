@@ -32,36 +32,24 @@ export type ForceMITTransformationOutcome = {
 };
 
 /** @internal */
-export const ForceMITTransformationOutcomeName$ = z.nativeEnum(ForceMITTransformationOutcomeName);
+export namespace ForceMITTransformationOutcomeName$ {
+    export const inboundSchema = z.nativeEnum(ForceMITTransformationOutcomeName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ForceMITTransformationOutcome$ {
-    export type Inbound = {
-        name?: ForceMITTransformationOutcomeName | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ForceMITTransformationOutcome, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: ForceMITTransformationOutcomeName$.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
+    export const inboundSchema: z.ZodType<ForceMITTransformationOutcome, z.ZodTypeDef, unknown> =
+        z.object({
+            name: ForceMITTransformationOutcomeName$.inboundSchema.optional(),
         });
 
     export type Outbound = {
-        name?: ForceMITTransformationOutcomeName | undefined;
+        name?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ForceMITTransformationOutcome> =
-        z
-            .object({
-                name: ForceMITTransformationOutcomeName$.optional(),
-            })
-            .transform((v) => {
-                return {
-                    ...(v.name === undefined ? null : { name: v.name }),
-                };
-            });
+        z.object({
+            name: ForceMITTransformationOutcomeName$.outboundSchema.optional(),
+        });
 }

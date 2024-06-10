@@ -39,53 +39,36 @@ export type FlowProductCategoriesCondition = {
 };
 
 /** @internal */
-export const FlowProductCategoriesConditionName$ = z.nativeEnum(FlowProductCategoriesConditionName);
+export namespace FlowProductCategoriesConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowProductCategoriesConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowProductCategoriesConditionOperator$ = z.nativeEnum(
-    FlowProductCategoriesConditionOperator
-);
+export namespace FlowProductCategoriesConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowProductCategoriesConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowProductCategoriesCondition$ {
-    export type Inbound = {
-        name: FlowProductCategoriesConditionName;
-        operator: FlowProductCategoriesConditionOperator;
-        value: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowProductCategoriesCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowProductCategoriesConditionName$,
-            operator: FlowProductCategoriesConditionOperator$,
+    export const inboundSchema: z.ZodType<FlowProductCategoriesCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowProductCategoriesConditionName$.inboundSchema,
+            operator: FlowProductCategoriesConditionOperator$.inboundSchema,
             value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 
     export type Outbound = {
-        name: FlowProductCategoriesConditionName;
-        operator: FlowProductCategoriesConditionOperator;
+        name: string;
+        operator: string;
         value: Array<string>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowProductCategoriesCondition> =
-        z
-            .object({
-                name: FlowProductCategoriesConditionName$,
-                operator: FlowProductCategoriesConditionOperator$,
-                value: z.array(z.string()),
-            })
-            .transform((v) => {
-                return {
-                    name: v.name,
-                    operator: v.operator,
-                    value: v.value,
-                };
-            });
+        z.object({
+            name: FlowProductCategoriesConditionName$.outboundSchema,
+            operator: FlowProductCategoriesConditionOperator$.outboundSchema,
+            value: z.array(z.string()),
+        });
 }

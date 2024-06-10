@@ -25,26 +25,14 @@ export type ListPaymentServiceDefinitionsRequest = {
 
 /** @internal */
 export namespace ListPaymentServiceDefinitionsRequest$ {
-    export type Inbound = {
-        limit?: number | undefined;
-        cursor?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         ListPaymentServiceDefinitionsRequest,
         z.ZodTypeDef,
-        Inbound
-    > = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
+        unknown
+    > = z.object({
+        limit: z.number().int().default(20),
+        cursor: z.string().optional(),
+    });
 
     export type Outbound = {
         limit: number;
@@ -55,15 +43,8 @@ export namespace ListPaymentServiceDefinitionsRequest$ {
         Outbound,
         z.ZodTypeDef,
         ListPaymentServiceDefinitionsRequest
-    > = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
+    > = z.object({
+        limit: z.number().int().default(20),
+        cursor: z.string().optional(),
+    });
 }

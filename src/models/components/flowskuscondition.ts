@@ -39,50 +39,34 @@ export type FlowSKUsCondition = {
 };
 
 /** @internal */
-export const FlowSKUsConditionName$ = z.nativeEnum(FlowSKUsConditionName);
+export namespace FlowSKUsConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowSKUsConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowSKUsConditionOperator$ = z.nativeEnum(FlowSKUsConditionOperator);
+export namespace FlowSKUsConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowSKUsConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowSKUsCondition$ {
-    export type Inbound = {
-        name: FlowSKUsConditionName;
-        operator: FlowSKUsConditionOperator;
-        value: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowSKUsCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowSKUsConditionName$,
-            operator: FlowSKUsConditionOperator$,
-            value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    export const inboundSchema: z.ZodType<FlowSKUsCondition, z.ZodTypeDef, unknown> = z.object({
+        name: FlowSKUsConditionName$.inboundSchema,
+        operator: FlowSKUsConditionOperator$.inboundSchema,
+        value: z.array(z.string()),
+    });
 
     export type Outbound = {
-        name: FlowSKUsConditionName;
-        operator: FlowSKUsConditionOperator;
+        name: string;
+        operator: string;
         value: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowSKUsCondition> = z
-        .object({
-            name: FlowSKUsConditionName$,
-            operator: FlowSKUsConditionOperator$,
-            value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowSKUsCondition> = z.object({
+        name: FlowSKUsConditionName$.outboundSchema,
+        operator: FlowSKUsConditionOperator$.outboundSchema,
+        value: z.array(z.string()),
+    });
 }

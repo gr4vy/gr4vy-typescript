@@ -15,6 +15,7 @@ Endpoints related to the Gr4vy tokenization service.
 * [getNetworkTokens](#getnetworktokens) - Get network tokens
 * [provisionNetworkToken](#provisionnetworktoken) - Provision network token
 * [deleteNetworkToken](#deletenetworktoken) - Delete network token
+* [issueCryptogram](#issuecryptogram) - Issue cryptogram
 * [suspendNetworkToken](#suspendnetworktoken) - Suspend network token
 * [resumeNetworkToken](#resumenetworktoken) - Resume network token
 
@@ -27,14 +28,12 @@ Get all payment service tokens for a given payment method and payment service.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  
-  const result = await sdk.tokens.getPaymentServiceTokens(paymentMethodId);
+async function run() {
+  const result = await sdk.tokens.getPaymentServiceTokens("46973e9d-88a7-44a6-abfe-be4ff0134ff4");
 
   // Handle the result
   console.log(result)
@@ -54,7 +53,7 @@ run();
 
 ### Response
 
-**Promise<[components.PaymentServiceTokens](../../models/components/paymentservicetokens.md)>**
+**Promise\<[components.PaymentServiceTokens](../../models/components/paymentservicetokens.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -73,19 +72,16 @@ Tokenize stored card against a payment service.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const paymentServiceTokenRequest = {
+async function run() {
+  const result = await sdk.tokens.provisionPaymentServiceToken("46973e9d-88a7-44a6-abfe-be4ff0134ff4", {
     securityCode: "123",
     paymentServiceId: "a7d6b829-aea5-407d-ab7f-138784b5ad2c",
     redirectUrl: "https://example.com/callback",
-  };
-  
-  const result = await sdk.tokens.provisionPaymentServiceToken(paymentMethodId, paymentServiceTokenRequest);
+  });
 
   // Handle the result
   console.log(result)
@@ -106,7 +102,7 @@ run();
 
 ### Response
 
-**Promise<[components.PaymentServiceToken](../../models/components/paymentservicetoken.md)>**
+**Promise\<[components.PaymentServiceToken](../../models/components/paymentservicetoken.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -125,18 +121,14 @@ Deletes a specific payment service token.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await sdk.tokens.deletePaymentServiceToken("46973e9d-88a7-44a6-abfe-be4ff0134ff4", "7e7ede54-616a-422e-8f58-89a79ae2baea");
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const paymentServiceTokenId = "7e7ede54-616a-422e-8f58-89a79ae2baea";
   
-  const result = await sdk.tokens.deletePaymentServiceToken(paymentMethodId, paymentServiceTokenId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -154,7 +146,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeletePaymentServiceTokenResponse](../../models/operations/deletepaymentservicetokenresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -172,18 +164,14 @@ Approves a specific payment service token.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await sdk.tokens.approvePaymentServiceTokenGet("46973e9d-88a7-44a6-abfe-be4ff0134ff4", "7e7ede54-616a-422e-8f58-89a79ae2baea");
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const paymentServiceTokenId = "7e7ede54-616a-422e-8f58-89a79ae2baea";
   
-  const result = await sdk.tokens.approvePaymentServiceTokenGet(paymentMethodId, paymentServiceTokenId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -201,7 +189,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ApprovePaymentServiceTokenGetResponse](../../models/operations/approvepaymentservicetokengetresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -219,18 +207,14 @@ Approves a specific payment service token.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await sdk.tokens.approvePaymentServiceTokenPost("46973e9d-88a7-44a6-abfe-be4ff0134ff4", "7e7ede54-616a-422e-8f58-89a79ae2baea");
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const paymentServiceTokenId = "7e7ede54-616a-422e-8f58-89a79ae2baea";
   
-  const result = await sdk.tokens.approvePaymentServiceTokenPost(paymentMethodId, paymentServiceTokenId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -248,7 +232,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ApprovePaymentServiceTokenPostResponse](../../models/operations/approvepaymentservicetokenpostresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -266,14 +250,12 @@ Get stored network tokens for the given payment method.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  
-  const result = await sdk.tokens.getNetworkTokens(paymentMethodId);
+async function run() {
+  const result = await sdk.tokens.getNetworkTokens("46973e9d-88a7-44a6-abfe-be4ff0134ff4");
 
   // Handle the result
   console.log(result)
@@ -293,7 +275,7 @@ run();
 
 ### Response
 
-**Promise<[components.NetworkTokens](../../models/components/networktokens.md)>**
+**Promise\<[components.NetworkTokens](../../models/components/networktokens.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -312,19 +294,16 @@ Provision a network token for a stored card.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const networkTokenRequest = {
+async function run() {
+  const result = await sdk.tokens.provisionNetworkToken("46973e9d-88a7-44a6-abfe-be4ff0134ff4", {
     securityCode: "123",
     merchantInitiated: false,
     isSubsequentPayment: true,
-  };
-  
-  const result = await sdk.tokens.provisionNetworkToken(paymentMethodId, networkTokenRequest);
+  });
 
   // Handle the result
   console.log(result)
@@ -345,7 +324,7 @@ run();
 
 ### Response
 
-**Promise<[components.NetworkToken](../../models/components/networktoken.md)>**
+**Promise\<[components.NetworkToken](../../models/components/networktoken.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -364,18 +343,14 @@ Deletes a specific network token.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await sdk.tokens.deleteNetworkToken("46973e9d-88a7-44a6-abfe-be4ff0134ff4", "454f6a32-a572-4dda-b885-3e8674086123");
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const networkTokenId = "454f6a32-a572-4dda-b885-3e8674086123";
   
-  const result = await sdk.tokens.deleteNetworkToken(paymentMethodId, networkTokenId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -393,12 +368,63 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteNetworkTokenResponse](../../models/operations/deletenetworktokenresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## issueCryptogram
+
+Issue a cryptogram for a stored network token of a stored card.
+The endpoint is disabled by default, please contact our team for more information on enablement.
+
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.tokens.issueCryptogram("46973e9d-88a7-44a6-abfe-be4ff0134ff4", "454f6a32-a572-4dda-b885-3e8674086123", {
+    merchantInitiated: false,
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `paymentMethodId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the payment method.                                                                                                                                                  | [object Object]                                                                                                                                                                |
+| `networkTokenId`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the network token.                                                                                                                                                   | [object Object]                                                                                                                                                                |
+| `issueCryptogramRequest`                                                                                                                                                       | [components.IssueCryptogramRequest](../../models/components/issuecryptogramrequest.md)                                                                                         | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise\<[components.Cryptogram](../../models/components/cryptogram.md)\>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error403Forbidden    | 403                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
@@ -411,15 +437,12 @@ Suspends a specific network token.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const networkTokenId = "454f6a32-a572-4dda-b885-3e8674086123";
-  
-  const result = await sdk.tokens.suspendNetworkToken(paymentMethodId, networkTokenId);
+async function run() {
+  const result = await sdk.tokens.suspendNetworkToken("46973e9d-88a7-44a6-abfe-be4ff0134ff4", "454f6a32-a572-4dda-b885-3e8674086123");
 
   // Handle the result
   console.log(result)
@@ -440,7 +463,7 @@ run();
 
 ### Response
 
-**Promise<[components.NetworkToken](../../models/components/networktoken.md)>**
+**Promise\<[components.NetworkToken](../../models/components/networktoken.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -459,15 +482,12 @@ Resumes a specific network token.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  const networkTokenId = "454f6a32-a572-4dda-b885-3e8674086123";
-  
-  const result = await sdk.tokens.resumeNetworkToken(paymentMethodId, networkTokenId);
+async function run() {
+  const result = await sdk.tokens.resumeNetworkToken("46973e9d-88a7-44a6-abfe-be4ff0134ff4", "454f6a32-a572-4dda-b885-3e8674086123");
 
   // Handle the result
   console.log(result)
@@ -488,7 +508,7 @@ run();
 
 ### Response
 
-**Promise<[components.NetworkToken](../../models/components/networktoken.md)>**
+**Promise\<[components.NetworkToken](../../models/components/networktoken.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

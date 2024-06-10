@@ -21,55 +21,21 @@ export type InboundWebhookRequest = {
     signature: string;
 };
 
-export type InboundWebhookResponse = {};
-
 /** @internal */
 export namespace InboundWebhookRequest$ {
-    export type Inbound = {
-        payload: string;
-        signature: string;
-    };
-
-    export const inboundSchema: z.ZodType<InboundWebhookRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            payload: z.string(),
-            signature: z.string(),
-        })
-        .transform((v) => {
-            return {
-                payload: v.payload,
-                signature: v.signature,
-            };
-        });
+    export const inboundSchema: z.ZodType<InboundWebhookRequest, z.ZodTypeDef, unknown> = z.object({
+        payload: z.string(),
+        signature: z.string(),
+    });
 
     export type Outbound = {
         payload: string;
         signature: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhookRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhookRequest> =
+        z.object({
             payload: z.string(),
             signature: z.string(),
-        })
-        .transform((v) => {
-            return {
-                payload: v.payload,
-                signature: v.signature,
-            };
         });
-}
-
-/** @internal */
-export namespace InboundWebhookResponse$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<InboundWebhookResponse, z.ZodTypeDef, Inbound> = z.object(
-        {}
-    );
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhookResponse> =
-        z.object({});
 }

@@ -31,11 +31,11 @@ Checkout flow rules are used to limit these result.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.paymentOptions.listPaymentOptions({
     country: "US",
     currency: "USD",
@@ -62,7 +62,7 @@ run();
 
 ### Response
 
-**Promise<[components.PaymentOptions](../../models/components/paymentoptions.md)>**
+**Promise\<[components.PaymentOptions](../../models/components/paymentoptions.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -87,11 +87,11 @@ Checkout flow rules are used to limit these result.
 import { SDK } from "@gr4vy/sdk";
 import { ProductType } from "@gr4vy/sdk/models/components";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.paymentOptions.postListPaymentOptions({
     amount: 1299,
     locale: "en-US",
@@ -111,9 +111,6 @@ async function run() {
         sku: "sku-789123",
         productUrl: "https://example.com/items/gopro",
         imageUrl: "https://example.com/images/items/gopro.png",
-        categories: [
-          "<value>",
-        ],
         productType: ProductType.Physical,
       },
     ],
@@ -137,7 +134,7 @@ run();
 
 ### Response
 
-**Promise<[components.PaymentOptions](../../models/components/paymentoptions.md)>**
+**Promise\<[components.PaymentOptions](../../models/components/paymentoptions.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

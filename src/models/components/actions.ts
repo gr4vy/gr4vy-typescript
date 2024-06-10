@@ -17,31 +17,15 @@ export type Actions = {
 
 /** @internal */
 export namespace Actions$ {
-    export type Inbound = {
-        items?: Array<Action$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Actions, z.ZodTypeDef, Inbound> = z
-        .object({
-            items: z.array(Action$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Actions, z.ZodTypeDef, unknown> = z.object({
+        items: z.array(Action$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         items?: Array<Action$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Actions> = z
-        .object({
-            items: z.array(Action$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Actions> = z.object({
+        items: z.array(Action$.outboundSchema).optional(),
+    });
 }

@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class CheckoutSessions extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -46,16 +47,17 @@ export class CheckoutSessions extends ClientSDK {
      * Creates a new Checkout Session.
      */
     async newCheckoutSession(
-        input: components.CheckoutSessionCreateRequest | undefined,
+        request?: components.CheckoutSessionCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.NewCheckoutSessionResponse> {
+    ): Promise<components.CheckoutSession> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) =>
                 components.CheckoutSessionCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
@@ -83,7 +85,8 @@ export class CheckoutSessions extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "409", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -95,65 +98,20 @@ export class CheckoutSessions extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 409, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error409DuplicateRecord$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.NewCheckoutSessionResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.CheckoutSession>()
+            .json(201, components.CheckoutSession$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(409, errors.Error409DuplicateRecord$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -165,7 +123,7 @@ export class CheckoutSessions extends ClientSDK {
     async getCheckoutSession(
         checkoutSessionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetCheckoutSessionResponse> {
+    ): Promise<components.CheckoutSession> {
         const input$: operations.GetCheckoutSessionRequest = {
             checkoutSessionId: checkoutSessionId,
         };
@@ -209,7 +167,8 @@ export class CheckoutSessions extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -221,65 +180,20 @@ export class CheckoutSessions extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetCheckoutSessionResponse$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.CheckoutSession>()
+            .json(200, components.CheckoutSession$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -291,7 +205,7 @@ export class CheckoutSessions extends ClientSDK {
     async deleteCheckoutSession(
         checkoutSessionId: string,
         options?: RequestOptions
-    ): Promise<components.ErrorGeneric> {
+    ): Promise<void> {
         const input$: operations.DeleteCheckoutSessionRequest = {
             checkoutSessionId: checkoutSessionId,
         };
@@ -335,7 +249,8 @@ export class CheckoutSessions extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -347,63 +262,109 @@ export class CheckoutSessions extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ErrorGeneric$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => components.ErrorGeneric$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
+        return result$;
+    }
+
+    /**
+     * Update checkout session
+     *
+     * @remarks
+     * Updates a Checkout Session.
+     */
+    async updateCheckoutSession(
+        checkoutSessionId: string,
+        checkoutSessionUpdateRequest?: components.CheckoutSessionUpdateRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.CheckoutSession> {
+        const input$: operations.UpdateCheckoutSessionRequest = {
+            checkoutSessionId: checkoutSessionId,
+            checkoutSessionUpdateRequest: checkoutSessionUpdateRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.UpdateCheckoutSessionRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
         );
+        const body$ = enc$.encodeJSON("body", payload$.CheckoutSessionUpdateRequest, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            checkout_session_id: enc$.encodeSimple(
+                "checkout_session_id",
+                payload$.checkout_session_id,
+                { explode: false, charEncoding: "percent" }
+            ),
+        };
+        const path$ = this.templateURLComponent("/checkout/sessions/{checkout_session_id}")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "update-checkout-session",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "409", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
+        const [result$] = await this.matcher<components.CheckoutSession>()
+            .json(200, components.CheckoutSession$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .json(409, errors.Error409DuplicateRecord$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -418,7 +379,7 @@ export class CheckoutSessions extends ClientSDK {
             | components.CheckoutSessionSecureFieldsUpdate
             | undefined,
         options?: RequestOptions
-    ): Promise<components.ErrorGeneric> {
+    ): Promise<void> {
         const input$: operations.UpdateCheckoutSessionFieldsRequest = {
             checkoutSessionId: checkoutSessionId,
             checkoutSessionSecureFieldsUpdate: checkoutSessionSecureFieldsUpdate,
@@ -466,7 +427,8 @@ export class CheckoutSessions extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "429", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PUT",
@@ -478,75 +440,20 @@ export class CheckoutSessions extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 429, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error429TooManyRequests$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ErrorGeneric$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .json(429, errors.Error429TooManyRequests$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => components.ErrorGeneric$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 }

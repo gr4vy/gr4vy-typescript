@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class Roles extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -90,7 +91,8 @@ export class Roles extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -102,42 +104,19 @@ export class Roles extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.Roles$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.Roles>()
+            .json(200, components.Roles$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -151,15 +130,16 @@ export class Roles extends ClientSDK {
      * both the `assignee_type` and `assignee_id` parameters.
      */
     async listRoleAssignments(
-        input: operations.ListRoleAssignmentsRequest,
+        request: operations.ListRoleAssignmentsRequest,
         options?: RequestOptions
     ): Promise<components.RoleAssignments> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListRoleAssignmentsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -202,7 +182,8 @@ export class Roles extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -214,42 +195,94 @@ export class Roles extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.RoleAssignments$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
+        const [result$] = await this.matcher<components.RoleAssignments>()
+            .json(200, components.RoleAssignments$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
+    }
+
+    /**
+     * New role assignment
+     *
+     * @remarks
+     * Adds a role assignment, in effect applying a role to the given assignee.
+     *
+     */
+    async newRoleAssignment(
+        request?: components.RoleAssignmentRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.RoleAssignment> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.RoleAssignmentRequest$.outboundSchema.optional().parse(value$),
+            "Input validation failed"
+        );
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/roles/assignments")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
         } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            security$ = {};
         }
+        const context = {
+            operationID: "new-role-assignment",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "409", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
+        const [result$] = await this.matcher<components.RoleAssignment>()
+            .json(201, components.RoleAssignment$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(409, errors.Error409DuplicateRecord$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -259,10 +292,7 @@ export class Roles extends ClientSDK {
      * Deletes a role assignment. The associated assignee will no longer be
      * assigned the role.
      */
-    async deleteRoleAssignment(
-        roleAssignmentId: string,
-        options?: RequestOptions
-    ): Promise<operations.DeleteRoleAssignmentResponse> {
+    async deleteRoleAssignment(roleAssignmentId: string, options?: RequestOptions): Promise<void> {
         const input$: operations.DeleteRoleAssignmentRequest = {
             roleAssignmentId: roleAssignmentId,
         };
@@ -306,7 +336,8 @@ export class Roles extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -318,52 +349,19 @@ export class Roles extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteRoleAssignmentResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 }

@@ -41,50 +41,35 @@ export type FlowBINRangeCondition = {
 };
 
 /** @internal */
-export const FlowBINRangeConditionName$ = z.nativeEnum(FlowBINRangeConditionName);
+export namespace FlowBINRangeConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowBINRangeConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowBINRangeConditionOperator$ = z.nativeEnum(FlowBINRangeConditionOperator);
+export namespace FlowBINRangeConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowBINRangeConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowBINRangeCondition$ {
-    export type Inbound = {
-        name: FlowBINRangeConditionName;
-        operator: FlowBINRangeConditionOperator;
-        value: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowBINRangeCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowBINRangeConditionName$,
-            operator: FlowBINRangeConditionOperator$,
-            value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    export const inboundSchema: z.ZodType<FlowBINRangeCondition, z.ZodTypeDef, unknown> = z.object({
+        name: FlowBINRangeConditionName$.inboundSchema,
+        operator: FlowBINRangeConditionOperator$.inboundSchema,
+        value: z.array(z.string()),
+    });
 
     export type Outbound = {
-        name: FlowBINRangeConditionName;
-        operator: FlowBINRangeConditionOperator;
+        name: string;
+        operator: string;
         value: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowBINRangeCondition> = z
-        .object({
-            name: FlowBINRangeConditionName$,
-            operator: FlowBINRangeConditionOperator$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowBINRangeCondition> =
+        z.object({
+            name: FlowBINRangeConditionName$.outboundSchema,
+            operator: FlowBINRangeConditionOperator$.outboundSchema,
             value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 }

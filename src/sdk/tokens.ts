@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class Tokens extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -92,7 +93,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -104,55 +106,20 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.PaymentServiceTokens$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.PaymentServiceTokens>()
+            .json(200, components.PaymentServiceTokens$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -214,7 +181,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -226,68 +194,21 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.PaymentServiceToken$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error400BadRequest$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.PaymentServiceToken>()
+            .json(201, components.PaymentServiceToken$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -300,7 +221,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         paymentServiceTokenId: string,
         options?: RequestOptions
-    ): Promise<operations.DeletePaymentServiceTokenResponse> {
+    ): Promise<void> {
         const input$: operations.DeletePaymentServiceTokenRequest = {
             paymentMethodId: paymentMethodId,
             paymentServiceTokenId: paymentServiceTokenId,
@@ -349,7 +270,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -361,54 +283,20 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.DeletePaymentServiceTokenResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -421,7 +309,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         paymentServiceTokenId: string,
         options?: RequestOptions
-    ): Promise<operations.ApprovePaymentServiceTokenGetResponse> {
+    ): Promise<void> {
         const input$: operations.ApprovePaymentServiceTokenGetRequest = {
             paymentMethodId: paymentMethodId,
             paymentServiceTokenId: paymentServiceTokenId,
@@ -471,7 +359,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -483,56 +372,20 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 307)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(307, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.ApprovePaymentServiceTokenGetResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -545,7 +398,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         paymentServiceTokenId: string,
         options?: RequestOptions
-    ): Promise<operations.ApprovePaymentServiceTokenPostResponse> {
+    ): Promise<void> {
         const input$: operations.ApprovePaymentServiceTokenPostRequest = {
             paymentMethodId: paymentMethodId,
             paymentServiceTokenId: paymentServiceTokenId,
@@ -595,7 +448,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -607,56 +461,20 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 307)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(307, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.ApprovePaymentServiceTokenPostResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -712,7 +530,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -724,55 +543,20 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.NetworkTokens$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.NetworkTokens>()
+            .json(200, components.NetworkTokens$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -831,7 +615,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -843,68 +628,21 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.NetworkToken$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error400BadRequest$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.NetworkToken>()
+            .json(201, components.NetworkToken$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -917,7 +655,7 @@ export class Tokens extends ClientSDK {
         paymentMethodId: string,
         networkTokenId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteNetworkTokenResponse> {
+    ): Promise<void> {
         const input$: operations.DeleteNetworkTokenRequest = {
             paymentMethodId: paymentMethodId,
             networkTokenId: networkTokenId,
@@ -965,7 +703,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -977,53 +716,114 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteNetworkTokenResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
+        return result$;
+    }
+
+    /**
+     * Issue cryptogram
+     *
+     * @remarks
+     * Issue a cryptogram for a stored network token of a stored card.
+     * The endpoint is disabled by default, please contact our team for more information on enablement.
+     *
+     */
+    async issueCryptogram(
+        paymentMethodId: string,
+        networkTokenId: string,
+        issueCryptogramRequest?: components.IssueCryptogramRequest | undefined,
+        options?: RequestOptions
+    ): Promise<components.Cryptogram> {
+        const input$: operations.IssueCryptogramRequest = {
+            paymentMethodId: paymentMethodId,
+            networkTokenId: networkTokenId,
+            issueCryptogramRequest: issueCryptogramRequest,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.IssueCryptogramRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
         );
+        const body$ = enc$.encodeJSON("body", payload$.IssueCryptogramRequest, { explode: true });
+
+        const pathParams$ = {
+            network_token_id: enc$.encodeSimple("network_token_id", payload$.network_token_id, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            payment_method_id: enc$.encodeSimple("payment_method_id", payload$.payment_method_id, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent(
+            "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/cryptogram"
+        )(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "issue-cryptogram",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "403", "404", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
+        const [result$] = await this.matcher<components.Cryptogram>()
+            .json(201, components.Cryptogram$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(403, errors.Error403Forbidden$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1084,7 +884,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -1096,68 +897,21 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.NetworkToken$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error400BadRequest$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.NetworkToken>()
+            .json(200, components.NetworkToken$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1218,7 +972,8 @@ export class Tokens extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -1230,67 +985,20 @@ export class Tokens extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.NetworkToken$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error400BadRequest$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.NetworkToken>()
+            .json(200, components.NetworkToken$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 }

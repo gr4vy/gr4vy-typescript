@@ -25,37 +25,18 @@ export type ListRolesRequest = {
 
 /** @internal */
 export namespace ListRolesRequest$ {
-    export type Inbound = {
-        limit?: number | undefined;
-        cursor?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListRolesRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ListRolesRequest, z.ZodTypeDef, unknown> = z.object({
+        limit: z.number().int().default(20),
+        cursor: z.string().optional(),
+    });
 
     export type Outbound = {
         limit: number;
         cursor?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListRolesRequest> = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListRolesRequest> = z.object({
+        limit: z.number().int().default(20),
+        cursor: z.string().optional(),
+    });
 }

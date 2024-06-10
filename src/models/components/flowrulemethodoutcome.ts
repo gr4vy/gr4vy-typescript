@@ -25,12 +25,14 @@ export enum FlowRuleMethodOutcomeResult {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
     Dcb = "dcb",
     Dlocal = "dlocal",
     Ebanx = "ebanx",
+    Everydaypay = "everydaypay",
     Gcash = "gcash",
     Giropay = "giropay",
     Gocardless = "gocardless",
@@ -70,6 +72,7 @@ export enum FlowRuleMethodOutcomeResult {
     Truemoney = "truemoney",
     Trustly = "trustly",
     Trustlyeurope = "trustlyeurope",
+    NetworkToken = "network-token",
     Givingblock = "givingblock",
     Wechat = "wechat",
     Zippay = "zippay",
@@ -101,44 +104,32 @@ export type FlowRuleMethodOutcome = {
 };
 
 /** @internal */
-export const FlowRuleMethodOutcomeType$ = z.nativeEnum(FlowRuleMethodOutcomeType);
+export namespace FlowRuleMethodOutcomeType$ {
+    export const inboundSchema = z.nativeEnum(FlowRuleMethodOutcomeType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowRuleMethodOutcomeResult$ = z.nativeEnum(FlowRuleMethodOutcomeResult);
+export namespace FlowRuleMethodOutcomeResult$ {
+    export const inboundSchema = z.nativeEnum(FlowRuleMethodOutcomeResult);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowRuleMethodOutcome$ {
-    export type Inbound = {
-        type: FlowRuleMethodOutcomeType;
-        result: Array<FlowRuleMethodOutcomeResult>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowRuleMethodOutcome, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: FlowRuleMethodOutcomeType$,
-            result: z.array(FlowRuleMethodOutcomeResult$),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
-        });
+    export const inboundSchema: z.ZodType<FlowRuleMethodOutcome, z.ZodTypeDef, unknown> = z.object({
+        type: FlowRuleMethodOutcomeType$.inboundSchema,
+        result: z.array(FlowRuleMethodOutcomeResult$.inboundSchema),
+    });
 
     export type Outbound = {
-        type: FlowRuleMethodOutcomeType;
-        result: Array<FlowRuleMethodOutcomeResult>;
+        type: string;
+        result: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleMethodOutcome> = z
-        .object({
-            type: FlowRuleMethodOutcomeType$,
-            result: z.array(FlowRuleMethodOutcomeResult$),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleMethodOutcome> =
+        z.object({
+            type: FlowRuleMethodOutcomeType$.outboundSchema,
+            result: z.array(FlowRuleMethodOutcomeResult$.outboundSchema),
         });
 }

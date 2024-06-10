@@ -91,7 +91,8 @@ export class PaymentServiceDefinitions extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -103,42 +104,19 @@ export class PaymentServiceDefinitions extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.PaymentServiceDefinitions$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
+        const [result$] = await this.matcher<components.PaymentServiceDefinitions>()
+            .json(200, components.PaymentServiceDefinitions$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -194,7 +172,8 @@ export class PaymentServiceDefinitions extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -206,54 +185,113 @@ export class PaymentServiceDefinitions extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.PaymentServiceDefinition$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error401Unauthorized$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.Error404NotFound$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
+        const [result$] = await this.matcher<components.PaymentServiceDefinition>()
+            .json(200, components.PaymentServiceDefinition$)
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
+    }
+
+    /**
+     * Create a session for a payment service
+     *
+     * @remarks
+     * Creates a session for a payment service. This endpoint directly
+     * passes the request through to the relevant payment service for processing,
+     * and so the schema will differ based on the service used.
+     *
+     * If the downstream service returns an error, this API will return a successful response
+     * with the status code in the response.
+     */
+    async createPaymentServiceDefinitionSession(
+        paymentServiceDefinitionId: string,
+        requestBody?: { [k: string]: any } | undefined,
+        options?: RequestOptions
+    ): Promise<components.PaymentServiceSession> {
+        const input$: operations.CreatePaymentServiceDefinitionSessionRequest = {
+            paymentServiceDefinitionId: paymentServiceDefinitionId,
+            requestBody: requestBody,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.CreatePaymentServiceDefinitionSessionRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+
+        const pathParams$ = {
+            payment_service_definition_id: enc$.encodeSimple(
+                "payment_service_definition_id",
+                payload$.payment_service_definition_id,
+                { explode: false, charEncoding: "percent" }
+            ),
+        };
+        const path$ = this.templateURLComponent(
+            "/payment-service-definitions/{payment_service_definition_id}/sessions"
+        )(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.bearerAuth === "function") {
+            security$ = { bearerAuth: await this.options$.bearerAuth() };
+        } else if (this.options$.bearerAuth) {
+            security$ = { bearerAuth: this.options$.bearerAuth };
         } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            security$ = {};
         }
+        const context = {
+            operationID: "create-payment-service-definition-session",
+            oAuth2Scopes: [],
+            securitySource: this.options$.bearerAuth,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
+        const [result$] = await this.matcher<components.PaymentServiceSession>()
+            .json(200, components.PaymentServiceSession$)
+            .json(400, errors.Error400BadRequest$, { err: true })
+            .json(401, errors.Error401Unauthorized$, { err: true })
+            .json(404, errors.Error404NotFound$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 }

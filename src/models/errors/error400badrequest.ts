@@ -13,10 +13,12 @@ export enum Type {
 }
 
 /**
- * `bad_request`.
+ * A short code that describes the reason for the error.
  */
 export enum Code {
     BadRequest = "bad_request",
+    IncorrectJson = "incorrect_json",
+    InvalidCredentials = "invalid_credentials",
 }
 
 /**
@@ -35,7 +37,7 @@ export type Error400BadRequestData = {
      */
     type?: Type | undefined;
     /**
-     * `bad_request`.
+     * A short code that describes the reason for the error.
      */
     code?: Code | undefined;
     /**
@@ -43,10 +45,7 @@ export type Error400BadRequestData = {
      */
     status?: Status | undefined;
     /**
-     * Describes the fields that are missing or incorrectly formatted in the API
-     *
-     * @remarks
-     * request.
+     * A human-readable reason for the error.
      */
     message?: string | undefined;
     /**
@@ -64,7 +63,7 @@ export class Error400BadRequest extends Error {
      */
     type?: Type | undefined;
     /**
-     * `bad_request`.
+     * A short code that describes the reason for the error.
      */
     code?: Code | undefined;
     /**
@@ -106,46 +105,41 @@ export class Error400BadRequest extends Error {
 }
 
 /** @internal */
-export const Type$ = z.nativeEnum(Type);
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Code$ = z.nativeEnum(Code);
+export namespace Code$ {
+    export const inboundSchema = z.nativeEnum(Code);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Status$ = z.nativeEnum(Status);
+export namespace Status$ {
+    export const inboundSchema = z.nativeEnum(Status);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Error400BadRequest$ {
-    export type Inbound = {
-        type?: Type | undefined;
-        code?: Code | undefined;
-        status?: Status | undefined;
-        message?: string | undefined;
-        details?: Array<components.ErrorDetail$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Error400BadRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Error400BadRequest, z.ZodTypeDef, unknown> = z
         .object({
-            type: Type$.optional(),
-            code: Code$.optional(),
-            status: Status$.optional(),
+            type: Type$.inboundSchema.optional(),
+            code: Code$.inboundSchema.optional(),
+            status: Status$.inboundSchema.optional(),
             message: z.string().optional(),
             details: z.array(components.ErrorDetail$.inboundSchema).optional(),
         })
         .transform((v) => {
-            return new Error400BadRequest({
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.message === undefined ? null : { message: v.message }),
-                ...(v.details === undefined ? null : { details: v.details }),
-            });
+            return new Error400BadRequest(v);
         });
 
     export type Outbound = {
-        type?: Type | undefined;
-        code?: Code | undefined;
-        status?: Status | undefined;
+        type?: string | undefined;
+        code?: string | undefined;
+        status?: number | undefined;
         message?: string | undefined;
         details?: Array<components.ErrorDetail$.Outbound> | undefined;
     };
@@ -154,22 +148,12 @@ export namespace Error400BadRequest$ {
         .instanceof(Error400BadRequest)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    type: Type$.optional(),
-                    code: Code$.optional(),
-                    status: Status$.optional(),
-                    message: z.string().optional(),
-                    details: z.array(components.ErrorDetail$.outboundSchema).optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.type === undefined ? null : { type: v.type }),
-                        ...(v.code === undefined ? null : { code: v.code }),
-                        ...(v.status === undefined ? null : { status: v.status }),
-                        ...(v.message === undefined ? null : { message: v.message }),
-                        ...(v.details === undefined ? null : { details: v.details }),
-                    };
-                })
+            z.object({
+                type: Type$.outboundSchema.optional(),
+                code: Code$.outboundSchema.optional(),
+                status: Status$.outboundSchema.optional(),
+                message: z.string().optional(),
+                details: z.array(components.ErrorDetail$.outboundSchema).optional(),
+            })
         );
 }

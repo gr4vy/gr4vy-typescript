@@ -17,31 +17,15 @@ export type GiftCardsSummary = {
 
 /** @internal */
 export namespace GiftCardsSummary$ {
-    export type Inbound = {
-        items?: Array<GiftCardSummary$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GiftCardsSummary, z.ZodTypeDef, Inbound> = z
-        .object({
-            items: z.array(GiftCardSummary$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const inboundSchema: z.ZodType<GiftCardsSummary, z.ZodTypeDef, unknown> = z.object({
+        items: z.array(GiftCardSummary$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         items?: Array<GiftCardSummary$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GiftCardsSummary> = z
-        .object({
-            items: z.array(GiftCardSummary$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GiftCardsSummary> = z.object({
+        items: z.array(GiftCardSummary$.outboundSchema).optional(),
+    });
 }

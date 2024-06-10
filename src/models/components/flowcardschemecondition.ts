@@ -65,53 +65,42 @@ export type FlowCardSchemeCondition = {
 };
 
 /** @internal */
-export const FlowCardSchemeConditionName$ = z.nativeEnum(FlowCardSchemeConditionName);
+export namespace FlowCardSchemeConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowCardSchemeConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowCardSchemeConditionOperator$ = z.nativeEnum(FlowCardSchemeConditionOperator);
+export namespace FlowCardSchemeConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowCardSchemeConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowCardSchemeConditionValue$ = z.nativeEnum(FlowCardSchemeConditionValue);
+export namespace FlowCardSchemeConditionValue$ {
+    export const inboundSchema = z.nativeEnum(FlowCardSchemeConditionValue);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowCardSchemeCondition$ {
-    export type Inbound = {
-        name: FlowCardSchemeConditionName;
-        operator: FlowCardSchemeConditionOperator;
-        value: Array<FlowCardSchemeConditionValue>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowCardSchemeCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowCardSchemeConditionName$,
-            operator: FlowCardSchemeConditionOperator$,
-            value: z.array(FlowCardSchemeConditionValue$),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
+    export const inboundSchema: z.ZodType<FlowCardSchemeCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowCardSchemeConditionName$.inboundSchema,
+            operator: FlowCardSchemeConditionOperator$.inboundSchema,
+            value: z.array(FlowCardSchemeConditionValue$.inboundSchema),
         });
 
     export type Outbound = {
-        name: FlowCardSchemeConditionName;
-        operator: FlowCardSchemeConditionOperator;
-        value: Array<FlowCardSchemeConditionValue>;
+        name: string;
+        operator: string;
+        value: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowCardSchemeCondition> = z
-        .object({
-            name: FlowCardSchemeConditionName$,
-            operator: FlowCardSchemeConditionOperator$,
-            value: z.array(FlowCardSchemeConditionValue$),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowCardSchemeCondition> =
+        z.object({
+            name: FlowCardSchemeConditionName$.outboundSchema,
+            operator: FlowCardSchemeConditionOperator$.outboundSchema,
+            value: z.array(FlowCardSchemeConditionValue$.outboundSchema),
         });
 }

@@ -17,31 +17,17 @@ export type PaymentMethodsTokenized = {
 
 /** @internal */
 export namespace PaymentMethodsTokenized$ {
-    export type Inbound = {
-        items?: Array<PaymentMethodTokenized$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentMethodsTokenized, z.ZodTypeDef, Inbound> = z
-        .object({
+    export const inboundSchema: z.ZodType<PaymentMethodsTokenized, z.ZodTypeDef, unknown> =
+        z.object({
             items: z.array(PaymentMethodTokenized$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
         });
 
     export type Outbound = {
         items?: Array<PaymentMethodTokenized$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentMethodsTokenized> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentMethodsTokenized> =
+        z.object({
             items: z.array(PaymentMethodTokenized$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
         });
 }

@@ -51,18 +51,23 @@ export type FlowMetadataCondition = {
 };
 
 /** @internal */
-export const FlowMetadataConditionName$ = z.nativeEnum(FlowMetadataConditionName);
+export namespace FlowMetadataConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowMetadataConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowMetadataConditionOperator$ = z.nativeEnum(FlowMetadataConditionOperator);
+export namespace FlowMetadataConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowMetadataConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowMetadataConditionValueValue$ {
-    export type Inbound = Array<string> | string;
+    export const inboundSchema: z.ZodType<FlowMetadataConditionValueValue, z.ZodTypeDef, unknown> =
+        z.union([z.array(z.string()), z.string()]);
 
     export type Outbound = Array<string> | string;
-    export const inboundSchema: z.ZodType<FlowMetadataConditionValueValue, z.ZodTypeDef, Inbound> =
-        z.union([z.array(z.string()), z.string()]);
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
@@ -72,21 +77,10 @@ export namespace FlowMetadataConditionValueValue$ {
 
 /** @internal */
 export namespace FlowMetadataConditionValue$ {
-    export type Inbound = {
-        key?: string | undefined;
-        value?: Array<string> | string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<FlowMetadataConditionValue, z.ZodTypeDef, Inbound> = z
-        .object({
+    export const inboundSchema: z.ZodType<FlowMetadataConditionValue, z.ZodTypeDef, unknown> =
+        z.object({
             key: z.string().optional(),
             value: z.union([z.array(z.string()), z.string()]).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.value === undefined ? null : { value: v.value }),
-            };
         });
 
     export type Outbound = {
@@ -94,58 +88,31 @@ export namespace FlowMetadataConditionValue$ {
         value?: Array<string> | string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowMetadataConditionValue> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowMetadataConditionValue> =
+        z.object({
             key: z.string().optional(),
             value: z.union([z.array(z.string()), z.string()]).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.value === undefined ? null : { value: v.value }),
-            };
         });
 }
 
 /** @internal */
 export namespace FlowMetadataCondition$ {
-    export type Inbound = {
-        name: FlowMetadataConditionName;
-        operator: FlowMetadataConditionOperator;
-        value: FlowMetadataConditionValue$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<FlowMetadataCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowMetadataConditionName$,
-            operator: FlowMetadataConditionOperator$,
-            value: z.lazy(() => FlowMetadataConditionValue$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    export const inboundSchema: z.ZodType<FlowMetadataCondition, z.ZodTypeDef, unknown> = z.object({
+        name: FlowMetadataConditionName$.inboundSchema,
+        operator: FlowMetadataConditionOperator$.inboundSchema,
+        value: z.lazy(() => FlowMetadataConditionValue$.inboundSchema),
+    });
 
     export type Outbound = {
-        name: FlowMetadataConditionName;
-        operator: FlowMetadataConditionOperator;
+        name: string;
+        operator: string;
         value: FlowMetadataConditionValue$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowMetadataCondition> = z
-        .object({
-            name: FlowMetadataConditionName$,
-            operator: FlowMetadataConditionOperator$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowMetadataCondition> =
+        z.object({
+            name: FlowMetadataConditionName$.outboundSchema,
+            operator: FlowMetadataConditionOperator$.outboundSchema,
             value: z.lazy(() => FlowMetadataConditionValue$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 }

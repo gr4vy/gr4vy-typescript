@@ -37,31 +37,13 @@ export type Connection = {
 
 /** @internal */
 export namespace Connection$ {
-    export type Inbound = {
-        id?: string | undefined;
-        type?: string | undefined;
-        name?: string | undefined;
-        active?: boolean | undefined;
-        definition?: ConnectionDefinition$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Connection, z.ZodTypeDef, Inbound> = z
-        .object({
-            id: z.string().optional(),
-            type: z.string().default("connection"),
-            name: z.string().optional(),
-            active: z.boolean().optional(),
-            definition: ConnectionDefinition$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                type: v.type,
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.active === undefined ? null : { active: v.active }),
-                ...(v.definition === undefined ? null : { definition: v.definition }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Connection, z.ZodTypeDef, unknown> = z.object({
+        id: z.string().optional(),
+        type: z.string().default("connection"),
+        name: z.string().optional(),
+        active: z.boolean().optional(),
+        definition: ConnectionDefinition$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         id?: string | undefined;
@@ -71,21 +53,11 @@ export namespace Connection$ {
         definition?: ConnectionDefinition$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Connection> = z
-        .object({
-            id: z.string().optional(),
-            type: z.string().default("connection"),
-            name: z.string().optional(),
-            active: z.boolean().optional(),
-            definition: ConnectionDefinition$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                type: v.type,
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.active === undefined ? null : { active: v.active }),
-                ...(v.definition === undefined ? null : { definition: v.definition }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Connection> = z.object({
+        id: z.string().optional(),
+        type: z.string().default("connection"),
+        name: z.string().optional(),
+        active: z.boolean().optional(),
+        definition: ConnectionDefinition$.outboundSchema.optional(),
+    });
 }

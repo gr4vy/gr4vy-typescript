@@ -42,30 +42,13 @@ export type ListPaymentOptionsRequest = {
 
 /** @internal */
 export namespace ListPaymentOptionsRequest$ {
-    export type Inbound = {
-        country?: string | undefined;
-        currency?: string | undefined;
-        amount?: number | undefined;
-        metadata?: string | undefined;
-        locale?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListPaymentOptionsRequest, z.ZodTypeDef, Inbound> = z
-        .object({
+    export const inboundSchema: z.ZodType<ListPaymentOptionsRequest, z.ZodTypeDef, unknown> =
+        z.object({
             country: z.string().optional(),
             currency: z.string().optional(),
             amount: z.number().int().optional(),
             metadata: z.string().optional(),
             locale: z.string().default("en"),
-        })
-        .transform((v) => {
-            return {
-                ...(v.country === undefined ? null : { country: v.country }),
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                locale: v.locale,
-            };
         });
 
     export type Outbound = {
@@ -76,21 +59,12 @@ export namespace ListPaymentOptionsRequest$ {
         locale: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPaymentOptionsRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPaymentOptionsRequest> =
+        z.object({
             country: z.string().optional(),
             currency: z.string().optional(),
             amount: z.number().int().optional(),
             metadata: z.string().optional(),
             locale: z.string().default("en"),
-        })
-        .transform((v) => {
-            return {
-                ...(v.country === undefined ? null : { country: v.country }),
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                locale: v.locale,
-            };
         });
 }

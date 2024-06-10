@@ -24,12 +24,14 @@ export enum Method {
     Card = "card",
     Cashapp = "cashapp",
     Chaseorbital = "chaseorbital",
+    CheckoutSession = "checkout-session",
     Clearpay = "clearpay",
     ClickToPay = "click-to-pay",
     Dana = "dana",
     Dcb = "dcb",
     Dlocal = "dlocal",
     Ebanx = "ebanx",
+    Everydaypay = "everydaypay",
     Gcash = "gcash",
     Giropay = "giropay",
     Gocardless = "gocardless",
@@ -69,6 +71,7 @@ export enum Method {
     Truemoney = "truemoney",
     Trustly = "trustly",
     Trustlyeurope = "trustlyeurope",
+    NetworkToken = "network-token",
     Givingblock = "givingblock",
     Wechat = "wechat",
     Zippay = "zippay",
@@ -116,53 +119,33 @@ export type ListPaymentServicesRequest = {
 };
 
 /** @internal */
-export const Method$ = z.nativeEnum(Method);
+export namespace Method$ {
+    export const inboundSchema = z.nativeEnum(Method);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ListPaymentServicesRequest$ {
-    export type Inbound = {
-        limit?: number | undefined;
-        cursor?: string | undefined;
-        method?: Method | undefined;
-        deleted?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListPaymentServicesRequest, z.ZodTypeDef, Inbound> = z
-        .object({
+    export const inboundSchema: z.ZodType<ListPaymentServicesRequest, z.ZodTypeDef, unknown> =
+        z.object({
             limit: z.number().int().default(20),
             cursor: z.string().optional(),
-            method: Method$.optional(),
+            method: Method$.inboundSchema.optional(),
             deleted: z.boolean().default(false),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.method === undefined ? null : { method: v.method }),
-                deleted: v.deleted,
-            };
         });
 
     export type Outbound = {
         limit: number;
         cursor?: string | undefined;
-        method?: Method | undefined;
+        method?: string | undefined;
         deleted: boolean;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPaymentServicesRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPaymentServicesRequest> =
+        z.object({
             limit: z.number().int().default(20),
             cursor: z.string().optional(),
-            method: Method$.optional(),
+            method: Method$.outboundSchema.optional(),
             deleted: z.boolean().default(false),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.method === undefined ? null : { method: v.method }),
-                deleted: v.deleted,
-            };
         });
 }

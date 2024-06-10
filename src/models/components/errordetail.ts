@@ -41,53 +41,31 @@ export type ErrorDetail = {
 };
 
 /** @internal */
-export const Location$ = z.nativeEnum(Location);
+export namespace Location$ {
+    export const inboundSchema = z.nativeEnum(Location);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ErrorDetail$ {
-    export type Inbound = {
-        location?: Location | undefined;
-        type?: string | undefined;
-        pointer?: string | undefined;
-        message?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ErrorDetail, z.ZodTypeDef, Inbound> = z
-        .object({
-            location: Location$.optional(),
-            type: z.string().optional(),
-            pointer: z.string().optional(),
-            message: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.location === undefined ? null : { location: v.location }),
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.pointer === undefined ? null : { pointer: v.pointer }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ErrorDetail, z.ZodTypeDef, unknown> = z.object({
+        location: Location$.inboundSchema.optional(),
+        type: z.string().optional(),
+        pointer: z.string().optional(),
+        message: z.string().optional(),
+    });
 
     export type Outbound = {
-        location?: Location | undefined;
+        location?: string | undefined;
         type?: string | undefined;
         pointer?: string | undefined;
         message?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ErrorDetail> = z
-        .object({
-            location: Location$.optional(),
-            type: z.string().optional(),
-            pointer: z.string().optional(),
-            message: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.location === undefined ? null : { location: v.location }),
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.pointer === undefined ? null : { pointer: v.pointer }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ErrorDetail> = z.object({
+        location: Location$.outboundSchema.optional(),
+        type: z.string().optional(),
+        pointer: z.string().optional(),
+        message: z.string().optional(),
+    });
 }

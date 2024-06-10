@@ -36,59 +36,34 @@ export type Role = {
 };
 
 /** @internal */
-export const RoleType$ = z.nativeEnum(RoleType);
+export namespace RoleType$ {
+    export const inboundSchema = z.nativeEnum(RoleType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Role$ {
-    export type Inbound = {
-        type?: RoleType | undefined;
-        id?: string | undefined;
-        name?: string | undefined;
-        description?: string | undefined;
-        permissions?: RolePermissions$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Role, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: RoleType$.optional(),
-            id: z.string().optional(),
-            name: z.string().optional(),
-            description: z.string().optional(),
-            permissions: RolePermissions$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.description === undefined ? null : { description: v.description }),
-                ...(v.permissions === undefined ? null : { permissions: v.permissions }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z.object({
+        type: RoleType$.inboundSchema.optional(),
+        id: z.string().optional(),
+        name: z.string().optional(),
+        description: z.string().optional(),
+        permissions: RolePermissions$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
-        type?: RoleType | undefined;
+        type?: string | undefined;
         id?: string | undefined;
         name?: string | undefined;
         description?: string | undefined;
         permissions?: RolePermissions$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Role> = z
-        .object({
-            type: RoleType$.optional(),
-            id: z.string().optional(),
-            name: z.string().optional(),
-            description: z.string().optional(),
-            permissions: RolePermissions$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.description === undefined ? null : { description: v.description }),
-                ...(v.permissions === undefined ? null : { permissions: v.permissions }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Role> = z.object({
+        type: RoleType$.outboundSchema.optional(),
+        id: z.string().optional(),
+        name: z.string().optional(),
+        description: z.string().optional(),
+        permissions: RolePermissions$.outboundSchema.optional(),
+    });
 }

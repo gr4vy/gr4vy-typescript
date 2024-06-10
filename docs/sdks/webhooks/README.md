@@ -29,15 +29,12 @@ service definition.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK();
+
 async function run() {
-  const sdk = new SDK();
+  await sdk.webhooks.inboundWebhookDeprecated("e4f7797af7cc56edb85cde7f94745a13");
 
-  const hook = "e4f7797af7cc56edb85cde7f94745a13";
   
-  const result = await sdk.webhooks.inboundWebhookDeprecated(hook);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -54,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InboundWebhookDeprecatedResponse](../../models/operations/inboundwebhookdeprecatedresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -73,16 +70,12 @@ service definition.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK();
+
 async function run() {
-  const sdk = new SDK();
+  await sdk.webhooks.inboundWebhook("zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk", "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM");
 
-  const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";
-  const signature = "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM";
   
-  const result = await sdk.webhooks.inboundWebhook(payload, signature);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -100,7 +93,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InboundWebhookResponse](../../models/operations/inboundwebhookresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -119,17 +112,12 @@ The response code and payload depends on external service.
 import { SDK } from "@gr4vy/sdk";
 import { Resource } from "@gr4vy/sdk/models/operations";
 
+const sdk = new SDK();
+
 async function run() {
-  const sdk = new SDK();
+  await sdk.webhooks.inboundWebhooks(Resource.Ps, "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk", "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM");
 
-  const resource = Resource.Ps;
-  const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";
-  const signature = "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM";
   
-  const result = await sdk.webhooks.inboundWebhooks(resource, payload, signature);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -148,7 +136,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InboundWebhooksResponse](../../models/operations/inboundwebhooksresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

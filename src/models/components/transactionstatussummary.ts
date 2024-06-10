@@ -51,50 +51,36 @@ export type TransactionStatusSummary = {
 };
 
 /** @internal */
-export const TransactionStatusSummaryType$ = z.nativeEnum(TransactionStatusSummaryType);
+export namespace TransactionStatusSummaryType$ {
+    export const inboundSchema = z.nativeEnum(TransactionStatusSummaryType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const TransactionStatusSummaryStatus$ = z.nativeEnum(TransactionStatusSummaryStatus);
+export namespace TransactionStatusSummaryStatus$ {
+    export const inboundSchema = z.nativeEnum(TransactionStatusSummaryStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace TransactionStatusSummary$ {
-    export type Inbound = {
-        type?: TransactionStatusSummaryType | undefined;
-        id?: string | undefined;
-        status?: TransactionStatusSummaryStatus | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TransactionStatusSummary, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: TransactionStatusSummaryType$.optional(),
+    export const inboundSchema: z.ZodType<TransactionStatusSummary, z.ZodTypeDef, unknown> =
+        z.object({
+            type: TransactionStatusSummaryType$.inboundSchema.optional(),
             id: z.string().optional(),
-            status: TransactionStatusSummaryStatus$.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
+            status: TransactionStatusSummaryStatus$.inboundSchema.optional(),
         });
 
     export type Outbound = {
-        type?: TransactionStatusSummaryType | undefined;
+        type?: string | undefined;
         id?: string | undefined;
-        status?: TransactionStatusSummaryStatus | undefined;
+        status?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionStatusSummary> = z
-        .object({
-            type: TransactionStatusSummaryType$.optional(),
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionStatusSummary> =
+        z.object({
+            type: TransactionStatusSummaryType$.outboundSchema.optional(),
             id: z.string().optional(),
-            status: TransactionStatusSummaryStatus$.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
+            status: TransactionStatusSummaryStatus$.outboundSchema.optional(),
         });
 }

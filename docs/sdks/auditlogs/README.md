@@ -19,11 +19,11 @@ Returns a list of audit logs.
 import { SDK } from "@gr4vy/sdk";
 import { Action } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.auditLogs.listAuditLogs({
     limit: 1,
     cursor: "ZXhhbXBsZTE",
@@ -50,7 +50,7 @@ run();
 
 ### Response
 
-**Promise<[components.AuditLogs](../../models/components/auditlogs.md)>**
+**Promise\<[components.AuditLogs](../../models/components/auditlogs.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

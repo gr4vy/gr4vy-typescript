@@ -14,31 +14,16 @@ export type CardSchemeDefinitions = {
 
 /** @internal */
 export namespace CardSchemeDefinitions$ {
-    export type Inbound = {
-        items?: Array<CardSchemeDefinition$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CardSchemeDefinitions, z.ZodTypeDef, Inbound> = z
-        .object({
-            items: z.array(CardSchemeDefinition$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const inboundSchema: z.ZodType<CardSchemeDefinitions, z.ZodTypeDef, unknown> = z.object({
+        items: z.array(CardSchemeDefinition$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         items?: Array<CardSchemeDefinition$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CardSchemeDefinitions> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CardSchemeDefinitions> =
+        z.object({
             items: z.array(CardSchemeDefinition$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
         });
 }

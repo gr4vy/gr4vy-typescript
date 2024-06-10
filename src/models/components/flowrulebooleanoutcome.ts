@@ -29,41 +29,28 @@ export type FlowRuleBooleanOutcome = {
 };
 
 /** @internal */
-export const FlowRuleBooleanOutcomeType$ = z.nativeEnum(FlowRuleBooleanOutcomeType);
+export namespace FlowRuleBooleanOutcomeType$ {
+    export const inboundSchema = z.nativeEnum(FlowRuleBooleanOutcomeType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowRuleBooleanOutcome$ {
-    export type Inbound = {
-        type: FlowRuleBooleanOutcomeType;
-        result: boolean;
-    };
-
-    export const inboundSchema: z.ZodType<FlowRuleBooleanOutcome, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: FlowRuleBooleanOutcomeType$,
+    export const inboundSchema: z.ZodType<FlowRuleBooleanOutcome, z.ZodTypeDef, unknown> = z.object(
+        {
+            type: FlowRuleBooleanOutcomeType$.inboundSchema,
             result: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
-        });
+        }
+    );
 
     export type Outbound = {
-        type: FlowRuleBooleanOutcomeType;
+        type: string;
         result: boolean;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleBooleanOutcome> = z
-        .object({
-            type: FlowRuleBooleanOutcomeType$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleBooleanOutcome> =
+        z.object({
+            type: FlowRuleBooleanOutcomeType$.outboundSchema,
             result: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
         });
 }

@@ -16,31 +16,15 @@ export type RolePermissions = {
 
 /** @internal */
 export namespace RolePermissions$ {
-    export type Inbound = {
-        allow?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RolePermissions, z.ZodTypeDef, Inbound> = z
-        .object({
-            allow: z.array(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.allow === undefined ? null : { allow: v.allow }),
-            };
-        });
+    export const inboundSchema: z.ZodType<RolePermissions, z.ZodTypeDef, unknown> = z.object({
+        allow: z.array(z.string()).optional(),
+    });
 
     export type Outbound = {
         allow?: Array<string> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RolePermissions> = z
-        .object({
-            allow: z.array(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.allow === undefined ? null : { allow: v.allow }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RolePermissions> = z.object({
+        allow: z.array(z.string()).optional(),
+    });
 }

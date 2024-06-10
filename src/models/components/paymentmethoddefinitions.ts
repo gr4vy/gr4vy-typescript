@@ -14,31 +14,17 @@ export type PaymentMethodDefinitions = {
 
 /** @internal */
 export namespace PaymentMethodDefinitions$ {
-    export type Inbound = {
-        items?: Array<PaymentMethodDefinition$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentMethodDefinitions, z.ZodTypeDef, Inbound> = z
-        .object({
+    export const inboundSchema: z.ZodType<PaymentMethodDefinitions, z.ZodTypeDef, unknown> =
+        z.object({
             items: z.array(PaymentMethodDefinition$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
         });
 
     export type Outbound = {
         items?: Array<PaymentMethodDefinition$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentMethodDefinitions> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentMethodDefinitions> =
+        z.object({
             items: z.array(PaymentMethodDefinition$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
         });
 }

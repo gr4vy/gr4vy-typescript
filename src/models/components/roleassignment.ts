@@ -50,93 +50,55 @@ export type RoleAssignment = {
 };
 
 /** @internal */
-export const RoleAssignmentType$ = z.nativeEnum(RoleAssignmentType);
+export namespace RoleAssignmentType$ {
+    export const inboundSchema = z.nativeEnum(RoleAssignmentType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const RoleAssignmentAssigneeType$ = z.nativeEnum(RoleAssignmentAssigneeType);
+export namespace RoleAssignmentAssigneeType$ {
+    export const inboundSchema = z.nativeEnum(RoleAssignmentAssigneeType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Assignee$ {
-    export type Inbound = {
-        type?: RoleAssignmentAssigneeType | undefined;
-        id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Assignee, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: RoleAssignmentAssigneeType$.optional(),
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Assignee, z.ZodTypeDef, unknown> = z.object({
+        type: RoleAssignmentAssigneeType$.inboundSchema.optional(),
+        id: z.string().optional(),
+    });
 
     export type Outbound = {
-        type?: RoleAssignmentAssigneeType | undefined;
+        type?: string | undefined;
         id?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Assignee> = z
-        .object({
-            type: RoleAssignmentAssigneeType$.optional(),
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Assignee> = z.object({
+        type: RoleAssignmentAssigneeType$.outboundSchema.optional(),
+        id: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace RoleAssignment$ {
-    export type Inbound = {
-        type?: RoleAssignmentType | undefined;
-        id?: string | undefined;
-        role?: Role$.Inbound | undefined;
-        assignee?: Assignee$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RoleAssignment, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: RoleAssignmentType$.optional(),
-            id: z.string().optional(),
-            role: Role$.inboundSchema.optional(),
-            assignee: z.lazy(() => Assignee$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.role === undefined ? null : { role: v.role }),
-                ...(v.assignee === undefined ? null : { assignee: v.assignee }),
-            };
-        });
+    export const inboundSchema: z.ZodType<RoleAssignment, z.ZodTypeDef, unknown> = z.object({
+        type: RoleAssignmentType$.inboundSchema.optional(),
+        id: z.string().optional(),
+        role: Role$.inboundSchema.optional(),
+        assignee: z.lazy(() => Assignee$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
-        type?: RoleAssignmentType | undefined;
+        type?: string | undefined;
         id?: string | undefined;
         role?: Role$.Outbound | undefined;
         assignee?: Assignee$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RoleAssignment> = z
-        .object({
-            type: RoleAssignmentType$.optional(),
-            id: z.string().optional(),
-            role: Role$.outboundSchema.optional(),
-            assignee: z.lazy(() => Assignee$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.role === undefined ? null : { role: v.role }),
-                ...(v.assignee === undefined ? null : { assignee: v.assignee }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RoleAssignment> = z.object({
+        type: RoleAssignmentType$.outboundSchema.optional(),
+        id: z.string().optional(),
+        role: Role$.outboundSchema.optional(),
+        assignee: z.lazy(() => Assignee$.outboundSchema).optional(),
+    });
 }

@@ -20,21 +20,10 @@ export type PaymentOptionApprovalUI = {
 
 /** @internal */
 export namespace PaymentOptionApprovalUI$ {
-    export type Inbound = {
-        height?: string | undefined;
-        width?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentOptionApprovalUI, z.ZodTypeDef, Inbound> = z
-        .object({
+    export const inboundSchema: z.ZodType<PaymentOptionApprovalUI, z.ZodTypeDef, unknown> =
+        z.object({
             height: z.string().optional(),
             width: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.height === undefined ? null : { height: v.height }),
-                ...(v.width === undefined ? null : { width: v.width }),
-            };
         });
 
     export type Outbound = {
@@ -42,15 +31,9 @@ export namespace PaymentOptionApprovalUI$ {
         width?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentOptionApprovalUI> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentOptionApprovalUI> =
+        z.object({
             height: z.string().optional(),
             width: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.height === undefined ? null : { height: v.height }),
-                ...(v.width === undefined ? null : { width: v.width }),
-            };
         });
 }

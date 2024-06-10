@@ -37,53 +37,36 @@ export type FlowMerchantInitiatedCondition = {
 };
 
 /** @internal */
-export const FlowMerchantInitiatedConditionName$ = z.nativeEnum(FlowMerchantInitiatedConditionName);
+export namespace FlowMerchantInitiatedConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowMerchantInitiatedConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowMerchantInitiatedConditionOperator$ = z.nativeEnum(
-    FlowMerchantInitiatedConditionOperator
-);
+export namespace FlowMerchantInitiatedConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowMerchantInitiatedConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowMerchantInitiatedCondition$ {
-    export type Inbound = {
-        name: FlowMerchantInitiatedConditionName;
-        operator: FlowMerchantInitiatedConditionOperator;
-        value: boolean;
-    };
-
-    export const inboundSchema: z.ZodType<FlowMerchantInitiatedCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowMerchantInitiatedConditionName$,
-            operator: FlowMerchantInitiatedConditionOperator$,
+    export const inboundSchema: z.ZodType<FlowMerchantInitiatedCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowMerchantInitiatedConditionName$.inboundSchema,
+            operator: FlowMerchantInitiatedConditionOperator$.inboundSchema,
             value: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 
     export type Outbound = {
-        name: FlowMerchantInitiatedConditionName;
-        operator: FlowMerchantInitiatedConditionOperator;
+        name: string;
+        operator: string;
         value: boolean;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowMerchantInitiatedCondition> =
-        z
-            .object({
-                name: FlowMerchantInitiatedConditionName$,
-                operator: FlowMerchantInitiatedConditionOperator$,
-                value: z.boolean(),
-            })
-            .transform((v) => {
-                return {
-                    name: v.name,
-                    operator: v.operator,
-                    value: v.value,
-                };
-            });
+        z.object({
+            name: FlowMerchantInitiatedConditionName$.outboundSchema,
+            operator: FlowMerchantInitiatedConditionOperator$.outboundSchema,
+            value: z.boolean(),
+        });
 }

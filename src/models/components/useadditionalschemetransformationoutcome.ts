@@ -32,45 +32,30 @@ export type UseAdditionalSchemeTransformationOutcome = {
 };
 
 /** @internal */
-export const UseAdditionalSchemeTransformationOutcomeName$ = z.nativeEnum(
-    UseAdditionalSchemeTransformationOutcomeName
-);
+export namespace UseAdditionalSchemeTransformationOutcomeName$ {
+    export const inboundSchema = z.nativeEnum(UseAdditionalSchemeTransformationOutcomeName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace UseAdditionalSchemeTransformationOutcome$ {
-    export type Inbound = {
-        name?: UseAdditionalSchemeTransformationOutcomeName | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         UseAdditionalSchemeTransformationOutcome,
         z.ZodTypeDef,
-        Inbound
-    > = z
-        .object({
-            name: UseAdditionalSchemeTransformationOutcomeName$.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+        unknown
+    > = z.object({
+        name: UseAdditionalSchemeTransformationOutcomeName$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
-        name?: UseAdditionalSchemeTransformationOutcomeName | undefined;
+        name?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         UseAdditionalSchemeTransformationOutcome
-    > = z
-        .object({
-            name: UseAdditionalSchemeTransformationOutcomeName$.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+    > = z.object({
+        name: UseAdditionalSchemeTransformationOutcomeName$.outboundSchema.optional(),
+    });
 }

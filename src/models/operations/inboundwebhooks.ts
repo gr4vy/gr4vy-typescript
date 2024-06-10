@@ -33,63 +33,32 @@ export type InboundWebhooksRequest = {
     signature: string;
 };
 
-export type InboundWebhooksResponse = {};
-
 /** @internal */
-export const Resource$ = z.nativeEnum(Resource);
-
-/** @internal */
-export namespace InboundWebhooksRequest$ {
-    export type Inbound = {
-        resource: Resource;
-        payload: string;
-        signature: string;
-    };
-
-    export const inboundSchema: z.ZodType<InboundWebhooksRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            resource: Resource$,
-            payload: z.string(),
-            signature: z.string(),
-        })
-        .transform((v) => {
-            return {
-                resource: v.resource,
-                payload: v.payload,
-                signature: v.signature,
-            };
-        });
-
-    export type Outbound = {
-        resource: Resource;
-        payload: string;
-        signature: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhooksRequest> = z
-        .object({
-            resource: Resource$,
-            payload: z.string(),
-            signature: z.string(),
-        })
-        .transform((v) => {
-            return {
-                resource: v.resource,
-                payload: v.payload,
-                signature: v.signature,
-            };
-        });
+export namespace Resource$ {
+    export const inboundSchema = z.nativeEnum(Resource);
+    export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace InboundWebhooksResponse$ {
-    export type Inbound = {};
+export namespace InboundWebhooksRequest$ {
+    export const inboundSchema: z.ZodType<InboundWebhooksRequest, z.ZodTypeDef, unknown> = z.object(
+        {
+            resource: Resource$.inboundSchema,
+            payload: z.string(),
+            signature: z.string(),
+        }
+    );
 
-    export const inboundSchema: z.ZodType<InboundWebhooksResponse, z.ZodTypeDef, Inbound> =
-        z.object({});
+    export type Outbound = {
+        resource: string;
+        payload: string;
+        signature: string;
+    };
 
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhooksResponse> =
-        z.object({});
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhooksRequest> =
+        z.object({
+            resource: Resource$.outboundSchema,
+            payload: z.string(),
+            signature: z.string(),
+        });
 }

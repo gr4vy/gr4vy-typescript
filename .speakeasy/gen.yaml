@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.1.9
+  version: 0.2.0
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -25,8 +25,10 @@ typescript:
       '@types/trust__keyto': ^1.0.4
       '@types/uuid': ^9.0.8
     peerDependencies: {}
+  additionalPackageJSON: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
+  enumFormat: enum
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -38,6 +40,7 @@ typescript:
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 4
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: '@gr4vy/sdk'
   responseFormat: flat

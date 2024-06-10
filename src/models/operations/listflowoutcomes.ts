@@ -64,50 +64,36 @@ export type ListFlowOutcomesRequest = {
 };
 
 /** @internal */
-export const ListFlowOutcomesPathParamFlow$ = z.nativeEnum(ListFlowOutcomesPathParamFlow);
+export namespace ListFlowOutcomesPathParamFlow$ {
+    export const inboundSchema = z.nativeEnum(ListFlowOutcomesPathParamFlow);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ListFlowOutcomesPathParamAction$ = z.nativeEnum(ListFlowOutcomesPathParamAction);
+export namespace ListFlowOutcomesPathParamAction$ {
+    export const inboundSchema = z.nativeEnum(ListFlowOutcomesPathParamAction);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ListFlowOutcomesRequest$ {
-    export type Inbound = {
-        flow: ListFlowOutcomesPathParamFlow;
-        action: ListFlowOutcomesPathParamAction;
-        locale?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListFlowOutcomesRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            flow: ListFlowOutcomesPathParamFlow$,
-            action: ListFlowOutcomesPathParamAction$,
+    export const inboundSchema: z.ZodType<ListFlowOutcomesRequest, z.ZodTypeDef, unknown> =
+        z.object({
+            flow: ListFlowOutcomesPathParamFlow$.inboundSchema,
+            action: ListFlowOutcomesPathParamAction$.inboundSchema,
             locale: z.string().default("en"),
-        })
-        .transform((v) => {
-            return {
-                flow: v.flow,
-                action: v.action,
-                locale: v.locale,
-            };
         });
 
     export type Outbound = {
-        flow: ListFlowOutcomesPathParamFlow;
-        action: ListFlowOutcomesPathParamAction;
+        flow: string;
+        action: string;
         locale: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListFlowOutcomesRequest> = z
-        .object({
-            flow: ListFlowOutcomesPathParamFlow$,
-            action: ListFlowOutcomesPathParamAction$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListFlowOutcomesRequest> =
+        z.object({
+            flow: ListFlowOutcomesPathParamFlow$.outboundSchema,
+            action: ListFlowOutcomesPathParamAction$.outboundSchema,
             locale: z.string().default("en"),
-        })
-        .transform((v) => {
-            return {
-                flow: v.flow,
-                action: v.action,
-                locale: v.locale,
-            };
         });
 }

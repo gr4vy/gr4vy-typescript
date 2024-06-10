@@ -16,8 +16,72 @@ The anti-fraud services API can be used to:
 
 ### Available Operations
 
+* [newAntiFraudService](#newantifraudservice) - New anti-fraud service
 * [getAntiFraudService](#getantifraudservice) - Get anti-fraud service
+* [updateAntiFraudService](#updateantifraudservice) - Update anti-fraud service
 * [deleteAntiFraudService](#deleteantifraudservice) - Delete anti-fraud service
+
+## newAntiFraudService
+
+Adds an anti-fraud service, enabling merchants to determine risky transactions
+and prevent chargebacks.
+
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { AntiFraudServiceDefinitionId } from "@gr4vy/sdk/models/components";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.antiFraudServices.newAntiFraudService({
+    antiFraudServiceDefinitionId: AntiFraudServiceDefinitionId.SiftAntiFraud,
+    displayName: "Sift Anti-Fraud Service.",
+    active: true,
+    reviewsEnabled: false,
+    fields: [
+      {
+        key: "api_key",
+        value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+      },
+      {
+        key: "account_id",
+        value: "26PHem9AhJZvU623DfE1x4sd",
+      },
+    ],
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.AntiFraudServiceCreate](../../models/components/antifraudservicecreate.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise\<[components.AntiFraudService](../../models/components/antifraudservice.md)\>**
+### Errors
+
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.Error400BadRequest      | 400                            | application/json               |
+| errors.Error401Unauthorized    | 401                            | application/json               |
+| errors.Error409DuplicateRecord | 409                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 ## getAntiFraudService
 
@@ -28,14 +92,12 @@ Gets information about an anti-fraud service.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const antiFraudServiceId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  
-  const result = await sdk.antiFraudServices.getAntiFraudService(antiFraudServiceId);
+async function run() {
+  const result = await sdk.antiFraudServices.getAntiFraudService("8724fd24-5489-4a5d-90fd-0604df7d3b83");
 
   // Handle the result
   console.log(result)
@@ -55,7 +117,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetAntiFraudServiceResponse](../../models/operations/getantifraudserviceresponse.md)>**
+**Promise\<[components.AntiFraudService](../../models/components/antifraudservice.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -63,6 +125,69 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## updateAntiFraudService
+
+Update an anti-fraud service, enabling merchants to determine
+risky transactions and prevent chargebacks.
+
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { AntiFraudServiceUpdateAntiFraudServiceDefinitionId } from "@gr4vy/sdk/models/components";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.antiFraudServices.updateAntiFraudService("8724fd24-5489-4a5d-90fd-0604df7d3b83", {
+    antiFraudServiceDefinitionId: AntiFraudServiceUpdateAntiFraudServiceDefinitionId.SiftAntiFraud,
+    displayName: "Sift Anti-Fraud Service.",
+    active: true,
+    reviewsEnabled: false,
+    fields: [
+      {
+        key: "api_key",
+        value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+      },
+      {
+        key: "account_id",
+        value: "26PHem9AhJZvU623DfE1x4sd",
+      },
+    ],
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `antiFraudServiceId`                                                                                                                                                           | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique ID for an anti-fraud service.                                                                                                                                       | [object Object]                                                                                                                                                                |
+| `antiFraudServiceUpdate`                                                                                                                                                       | [components.AntiFraudServiceUpdate](../../models/components/antifraudserviceupdate.md)                                                                                         | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise\<[components.AntiFraudService](../../models/components/antifraudservice.md)\>**
+### Errors
+
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.Error400BadRequest      | 400                            | application/json               |
+| errors.Error401Unauthorized    | 401                            | application/json               |
+| errors.Error409DuplicateRecord | 409                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 ## deleteAntiFraudService
 
@@ -74,17 +199,14 @@ will also be deleted.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await sdk.antiFraudServices.deleteAntiFraudService("8724fd24-5489-4a5d-90fd-0604df7d3b83");
 
-  const antiFraudServiceId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   
-  const result = await sdk.antiFraudServices.deleteAntiFraudService(antiFraudServiceId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -101,7 +223,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteAntiFraudServiceResponse](../../models/operations/deleteantifraudserviceresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

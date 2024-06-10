@@ -34,41 +34,27 @@ export type FlowRuleUUIDsListOutcome = {
 };
 
 /** @internal */
-export const FlowRuleUUIDsListOutcomeType$ = z.nativeEnum(FlowRuleUUIDsListOutcomeType);
+export namespace FlowRuleUUIDsListOutcomeType$ {
+    export const inboundSchema = z.nativeEnum(FlowRuleUUIDsListOutcomeType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowRuleUUIDsListOutcome$ {
-    export type Inbound = {
-        type: FlowRuleUUIDsListOutcomeType;
-        result: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowRuleUUIDsListOutcome, z.ZodTypeDef, Inbound> = z
-        .object({
-            type: FlowRuleUUIDsListOutcomeType$,
+    export const inboundSchema: z.ZodType<FlowRuleUUIDsListOutcome, z.ZodTypeDef, unknown> =
+        z.object({
+            type: FlowRuleUUIDsListOutcomeType$.inboundSchema,
             result: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
         });
 
     export type Outbound = {
-        type: FlowRuleUUIDsListOutcomeType;
+        type: string;
         result: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleUUIDsListOutcome> = z
-        .object({
-            type: FlowRuleUUIDsListOutcomeType$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleUUIDsListOutcome> =
+        z.object({
+            type: FlowRuleUUIDsListOutcomeType$.outboundSchema,
             result: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                result: v.result,
-            };
         });
 }

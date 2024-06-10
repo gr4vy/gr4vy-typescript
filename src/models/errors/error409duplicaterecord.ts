@@ -109,46 +109,41 @@ export class Error409DuplicateRecord extends Error {
 }
 
 /** @internal */
-export const Error409DuplicateRecordType$ = z.nativeEnum(Error409DuplicateRecordType);
+export namespace Error409DuplicateRecordType$ {
+    export const inboundSchema = z.nativeEnum(Error409DuplicateRecordType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error409DuplicateRecordCode$ = z.nativeEnum(Error409DuplicateRecordCode);
+export namespace Error409DuplicateRecordCode$ {
+    export const inboundSchema = z.nativeEnum(Error409DuplicateRecordCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error409DuplicateRecordStatus$ = z.nativeEnum(Error409DuplicateRecordStatus);
+export namespace Error409DuplicateRecordStatus$ {
+    export const inboundSchema = z.nativeEnum(Error409DuplicateRecordStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Error409DuplicateRecord$ {
-    export type Inbound = {
-        type?: Error409DuplicateRecordType | undefined;
-        code?: Error409DuplicateRecordCode | undefined;
-        status?: Error409DuplicateRecordStatus | undefined;
-        message?: string | undefined;
-        details?: Array<components.ErrorDetail$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Error409DuplicateRecord, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Error409DuplicateRecord, z.ZodTypeDef, unknown> = z
         .object({
-            type: Error409DuplicateRecordType$.optional(),
-            code: Error409DuplicateRecordCode$.optional(),
-            status: Error409DuplicateRecordStatus$.optional(),
+            type: Error409DuplicateRecordType$.inboundSchema.optional(),
+            code: Error409DuplicateRecordCode$.inboundSchema.optional(),
+            status: Error409DuplicateRecordStatus$.inboundSchema.optional(),
             message: z.string().optional(),
             details: z.array(components.ErrorDetail$.inboundSchema).optional(),
         })
         .transform((v) => {
-            return new Error409DuplicateRecord({
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.message === undefined ? null : { message: v.message }),
-                ...(v.details === undefined ? null : { details: v.details }),
-            });
+            return new Error409DuplicateRecord(v);
         });
 
     export type Outbound = {
-        type?: Error409DuplicateRecordType | undefined;
-        code?: Error409DuplicateRecordCode | undefined;
-        status?: Error409DuplicateRecordStatus | undefined;
+        type?: string | undefined;
+        code?: string | undefined;
+        status?: number | undefined;
         message?: string | undefined;
         details?: Array<components.ErrorDetail$.Outbound> | undefined;
     };
@@ -157,22 +152,12 @@ export namespace Error409DuplicateRecord$ {
         .instanceof(Error409DuplicateRecord)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    type: Error409DuplicateRecordType$.optional(),
-                    code: Error409DuplicateRecordCode$.optional(),
-                    status: Error409DuplicateRecordStatus$.optional(),
-                    message: z.string().optional(),
-                    details: z.array(components.ErrorDetail$.outboundSchema).optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.type === undefined ? null : { type: v.type }),
-                        ...(v.code === undefined ? null : { code: v.code }),
-                        ...(v.status === undefined ? null : { status: v.status }),
-                        ...(v.message === undefined ? null : { message: v.message }),
-                        ...(v.details === undefined ? null : { details: v.details }),
-                    };
-                })
+            z.object({
+                type: Error409DuplicateRecordType$.outboundSchema.optional(),
+                code: Error409DuplicateRecordCode$.outboundSchema.optional(),
+                status: Error409DuplicateRecordStatus$.outboundSchema.optional(),
+                message: z.string().optional(),
+                details: z.array(components.ErrorDetail$.outboundSchema).optional(),
+            })
         );
 }

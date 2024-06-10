@@ -14,31 +14,15 @@ export type Connections = {
 
 /** @internal */
 export namespace Connections$ {
-    export type Inbound = {
-        items?: Array<Connection$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Connections, z.ZodTypeDef, Inbound> = z
-        .object({
-            items: z.array(Connection$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Connections, z.ZodTypeDef, unknown> = z.object({
+        items: z.array(Connection$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         items?: Array<Connection$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Connections> = z
-        .object({
-            items: z.array(Connection$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Connections> = z.object({
+        items: z.array(Connection$.outboundSchema).optional(),
+    });
 }

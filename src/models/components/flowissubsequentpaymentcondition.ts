@@ -37,41 +37,29 @@ export type FlowIsSubsequentPaymentCondition = {
 };
 
 /** @internal */
-export const FlowIsSubsequentPaymentConditionName$ = z.nativeEnum(
-    FlowIsSubsequentPaymentConditionName
-);
+export namespace FlowIsSubsequentPaymentConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowIsSubsequentPaymentConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowIsSubsequentPaymentConditionOperator$ = z.nativeEnum(
-    FlowIsSubsequentPaymentConditionOperator
-);
+export namespace FlowIsSubsequentPaymentConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowIsSubsequentPaymentConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowIsSubsequentPaymentCondition$ {
-    export type Inbound = {
-        name: FlowIsSubsequentPaymentConditionName;
-        operator: FlowIsSubsequentPaymentConditionOperator;
-        value: boolean;
-    };
-
-    export const inboundSchema: z.ZodType<FlowIsSubsequentPaymentCondition, z.ZodTypeDef, Inbound> =
-        z
-            .object({
-                name: FlowIsSubsequentPaymentConditionName$,
-                operator: FlowIsSubsequentPaymentConditionOperator$,
-                value: z.boolean(),
-            })
-            .transform((v) => {
-                return {
-                    name: v.name,
-                    operator: v.operator,
-                    value: v.value,
-                };
-            });
+    export const inboundSchema: z.ZodType<FlowIsSubsequentPaymentCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowIsSubsequentPaymentConditionName$.inboundSchema,
+            operator: FlowIsSubsequentPaymentConditionOperator$.inboundSchema,
+            value: z.boolean(),
+        });
 
     export type Outbound = {
-        name: FlowIsSubsequentPaymentConditionName;
-        operator: FlowIsSubsequentPaymentConditionOperator;
+        name: string;
+        operator: string;
         value: boolean;
     };
 
@@ -79,17 +67,9 @@ export namespace FlowIsSubsequentPaymentCondition$ {
         Outbound,
         z.ZodTypeDef,
         FlowIsSubsequentPaymentCondition
-    > = z
-        .object({
-            name: FlowIsSubsequentPaymentConditionName$,
-            operator: FlowIsSubsequentPaymentConditionOperator$,
-            value: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    > = z.object({
+        name: FlowIsSubsequentPaymentConditionName$.outboundSchema,
+        operator: FlowIsSubsequentPaymentConditionOperator$.outboundSchema,
+        value: z.boolean(),
+    });
 }

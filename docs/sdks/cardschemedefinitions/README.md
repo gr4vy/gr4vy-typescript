@@ -18,11 +18,11 @@ Returns a list of all available card scheme definitions.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.cardSchemeDefinitions.listCardSchemeDefinitions();
 
   // Handle the result
@@ -42,7 +42,7 @@ run();
 
 ### Response
 
-**Promise<[components.CardSchemeDefinitions](../../models/components/cardschemedefinitions.md)>**
+**Promise\<[components.CardSchemeDefinitions](../../models/components/cardschemedefinitions.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

@@ -37,50 +37,36 @@ export type FlowAmountZeroCondition = {
 };
 
 /** @internal */
-export const FlowAmountZeroConditionName$ = z.nativeEnum(FlowAmountZeroConditionName);
+export namespace FlowAmountZeroConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowAmountZeroConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowAmountZeroConditionOperator$ = z.nativeEnum(FlowAmountZeroConditionOperator);
+export namespace FlowAmountZeroConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowAmountZeroConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowAmountZeroCondition$ {
-    export type Inbound = {
-        name: FlowAmountZeroConditionName;
-        operator: FlowAmountZeroConditionOperator;
-        value: number;
-    };
-
-    export const inboundSchema: z.ZodType<FlowAmountZeroCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowAmountZeroConditionName$,
-            operator: FlowAmountZeroConditionOperator$,
+    export const inboundSchema: z.ZodType<FlowAmountZeroCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowAmountZeroConditionName$.inboundSchema,
+            operator: FlowAmountZeroConditionOperator$.inboundSchema,
             value: z.number(),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 
     export type Outbound = {
-        name: FlowAmountZeroConditionName;
-        operator: FlowAmountZeroConditionOperator;
+        name: string;
+        operator: string;
         value: number;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAmountZeroCondition> = z
-        .object({
-            name: FlowAmountZeroConditionName$,
-            operator: FlowAmountZeroConditionOperator$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAmountZeroCondition> =
+        z.object({
+            name: FlowAmountZeroConditionName$.outboundSchema,
+            operator: FlowAmountZeroConditionOperator$.outboundSchema,
             value: z.number(),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 }

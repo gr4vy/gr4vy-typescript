@@ -8,8 +8,8 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class Webhooks extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -52,10 +52,7 @@ export class Webhooks extends ClientSDK {
      *
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    async inboundWebhookDeprecated(
-        hook: string,
-        options?: RequestOptions
-    ): Promise<operations.InboundWebhookDeprecatedResponse> {
+    async inboundWebhookDeprecated(hook: string, options?: RequestOptions): Promise<void> {
         const input$: operations.InboundWebhookDeprecatedRequest = {
             hook: hook,
         };
@@ -87,27 +84,20 @@ export class Webhooks extends ClientSDK {
         };
 
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {};
+        const [result$] = await this.matcher<void>()
+            .void(200, z.void())
+            .fail(["4XX", "5XX"])
+            .match(response);
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.InboundWebhookDeprecatedResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -123,7 +113,7 @@ export class Webhooks extends ClientSDK {
         payload: string,
         signature: string,
         options?: RequestOptions
-    ): Promise<operations.InboundWebhookResponse> {
+    ): Promise<void> {
         const input$: operations.InboundWebhookRequest = {
             payload: payload,
             signature: signature,
@@ -156,27 +146,20 @@ export class Webhooks extends ClientSDK {
         const context = { operationID: "inbound-webhook", oAuth2Scopes: [], securitySource: null };
 
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {};
+        const [result$] = await this.matcher<void>()
+            .void(200, z.void())
+            .fail(["4XX", "5XX"])
+            .match(response);
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.InboundWebhookResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -192,7 +175,7 @@ export class Webhooks extends ClientSDK {
         payload: string,
         signature: string,
         options?: RequestOptions
-    ): Promise<operations.InboundWebhooksResponse> {
+    ): Promise<void> {
         const input$: operations.InboundWebhooksRequest = {
             resource: resource,
             payload: payload,
@@ -230,26 +213,19 @@ export class Webhooks extends ClientSDK {
         const context = { operationID: "inbound-webhooks", oAuth2Scopes: [], securitySource: null };
 
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {};
+        const [result$] = await this.matcher<void>()
+            .void(200, z.void())
+            .fail(["4XX", "5XX"])
+            .match(response);
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.InboundWebhooksResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 }

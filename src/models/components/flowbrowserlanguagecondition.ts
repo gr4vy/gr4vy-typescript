@@ -38,52 +38,36 @@ export type FlowBrowserLanguageCondition = {
 };
 
 /** @internal */
-export const FlowBrowserLanguageConditionName$ = z.nativeEnum(FlowBrowserLanguageConditionName);
+export namespace FlowBrowserLanguageConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowBrowserLanguageConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowBrowserLanguageConditionOperator$ = z.nativeEnum(
-    FlowBrowserLanguageConditionOperator
-);
+export namespace FlowBrowserLanguageConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowBrowserLanguageConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowBrowserLanguageCondition$ {
-    export type Inbound = {
-        name: FlowBrowserLanguageConditionName;
-        operator: FlowBrowserLanguageConditionOperator;
-        value: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowBrowserLanguageCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowBrowserLanguageConditionName$,
-            operator: FlowBrowserLanguageConditionOperator$,
+    export const inboundSchema: z.ZodType<FlowBrowserLanguageCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowBrowserLanguageConditionName$.inboundSchema,
+            operator: FlowBrowserLanguageConditionOperator$.inboundSchema,
             value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 
     export type Outbound = {
-        name: FlowBrowserLanguageConditionName;
-        operator: FlowBrowserLanguageConditionOperator;
+        name: string;
+        operator: string;
         value: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowBrowserLanguageCondition> = z
-        .object({
-            name: FlowBrowserLanguageConditionName$,
-            operator: FlowBrowserLanguageConditionOperator$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowBrowserLanguageCondition> =
+        z.object({
+            name: FlowBrowserLanguageConditionName$.outboundSchema,
+            operator: FlowBrowserLanguageConditionOperator$.outboundSchema,
             value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 }

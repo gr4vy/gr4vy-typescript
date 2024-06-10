@@ -52,87 +52,52 @@ export type FlowAmountCondition = {
 };
 
 /** @internal */
-export const FlowAmountConditionName$ = z.nativeEnum(FlowAmountConditionName);
+export namespace FlowAmountConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowAmountConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Operator$ = z.nativeEnum(Operator);
+export namespace Operator$ {
+    export const inboundSchema = z.nativeEnum(Operator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Value$ {
-    export type Inbound = {
-        currency?: string | undefined;
-        value?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Value, z.ZodTypeDef, Inbound> = z
-        .object({
-            currency: z.string().optional(),
-            value: z.number().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.value === undefined ? null : { value: v.value }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z.object({
+        currency: z.string().optional(),
+        value: z.number().optional(),
+    });
 
     export type Outbound = {
         currency?: string | undefined;
         value?: number | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Value> = z
-        .object({
-            currency: z.string().optional(),
-            value: z.number().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.value === undefined ? null : { value: v.value }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Value> = z.object({
+        currency: z.string().optional(),
+        value: z.number().optional(),
+    });
 }
 
 /** @internal */
 export namespace FlowAmountCondition$ {
-    export type Inbound = {
-        name: FlowAmountConditionName;
-        operator: Operator;
-        value: Value$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<FlowAmountCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowAmountConditionName$,
-            operator: Operator$,
-            value: z.lazy(() => Value$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    export const inboundSchema: z.ZodType<FlowAmountCondition, z.ZodTypeDef, unknown> = z.object({
+        name: FlowAmountConditionName$.inboundSchema,
+        operator: Operator$.inboundSchema,
+        value: z.lazy(() => Value$.inboundSchema),
+    });
 
     export type Outbound = {
-        name: FlowAmountConditionName;
-        operator: Operator;
+        name: string;
+        operator: string;
         value: Value$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAmountCondition> = z
-        .object({
-            name: FlowAmountConditionName$,
-            operator: Operator$,
-            value: z.lazy(() => Value$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAmountCondition> = z.object({
+        name: FlowAmountConditionName$.outboundSchema,
+        operator: Operator$.outboundSchema,
+        value: z.lazy(() => Value$.outboundSchema),
+    });
 }

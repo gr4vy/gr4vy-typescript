@@ -17,31 +17,15 @@ export type ShippingDetails = {
 
 /** @internal */
 export namespace ShippingDetails$ {
-    export type Inbound = {
-        items?: Array<ShippingDetail$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ShippingDetails, z.ZodTypeDef, Inbound> = z
-        .object({
-            items: z.array(ShippingDetail$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ShippingDetails, z.ZodTypeDef, unknown> = z.object({
+        items: z.array(ShippingDetail$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         items?: Array<ShippingDetail$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShippingDetails> = z
-        .object({
-            items: z.array(ShippingDetail$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShippingDetails> = z.object({
+        items: z.array(ShippingDetail$.outboundSchema).optional(),
+    });
 }

@@ -47,58 +47,42 @@ export type FlowAntiFraudDecisionCondition = {
 };
 
 /** @internal */
-export const FlowAntiFraudDecisionConditionName$ = z.nativeEnum(FlowAntiFraudDecisionConditionName);
+export namespace FlowAntiFraudDecisionConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowAntiFraudDecisionConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowAntiFraudDecisionConditionOperator$ = z.nativeEnum(
-    FlowAntiFraudDecisionConditionOperator
-);
+export namespace FlowAntiFraudDecisionConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowAntiFraudDecisionConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowAntiFraudDecisionConditionValue$ = z.nativeEnum(
-    FlowAntiFraudDecisionConditionValue
-);
+export namespace FlowAntiFraudDecisionConditionValue$ {
+    export const inboundSchema = z.nativeEnum(FlowAntiFraudDecisionConditionValue);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowAntiFraudDecisionCondition$ {
-    export type Inbound = {
-        name: FlowAntiFraudDecisionConditionName;
-        operator: FlowAntiFraudDecisionConditionOperator;
-        value: Array<FlowAntiFraudDecisionConditionValue>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowAntiFraudDecisionCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowAntiFraudDecisionConditionName$,
-            operator: FlowAntiFraudDecisionConditionOperator$,
-            value: z.array(FlowAntiFraudDecisionConditionValue$),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
+    export const inboundSchema: z.ZodType<FlowAntiFraudDecisionCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowAntiFraudDecisionConditionName$.inboundSchema,
+            operator: FlowAntiFraudDecisionConditionOperator$.inboundSchema,
+            value: z.array(FlowAntiFraudDecisionConditionValue$.inboundSchema),
         });
 
     export type Outbound = {
-        name: FlowAntiFraudDecisionConditionName;
-        operator: FlowAntiFraudDecisionConditionOperator;
-        value: Array<FlowAntiFraudDecisionConditionValue>;
+        name: string;
+        operator: string;
+        value: Array<string>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAntiFraudDecisionCondition> =
-        z
-            .object({
-                name: FlowAntiFraudDecisionConditionName$,
-                operator: FlowAntiFraudDecisionConditionOperator$,
-                value: z.array(FlowAntiFraudDecisionConditionValue$),
-            })
-            .transform((v) => {
-                return {
-                    name: v.name,
-                    operator: v.operator,
-                    value: v.value,
-                };
-            });
+        z.object({
+            name: FlowAntiFraudDecisionConditionName$.outboundSchema,
+            operator: FlowAntiFraudDecisionConditionOperator$.outboundSchema,
+            value: z.array(FlowAntiFraudDecisionConditionValue$.outboundSchema),
+        });
 }

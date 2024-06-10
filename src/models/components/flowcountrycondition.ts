@@ -38,50 +38,36 @@ export type FlowCountryCondition = {
 };
 
 /** @internal */
-export const FlowCountryConditionName$ = z.nativeEnum(FlowCountryConditionName);
+export namespace FlowCountryConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowCountryConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowCountryConditionOperator$ = z.nativeEnum(FlowCountryConditionOperator);
+export namespace FlowCountryConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowCountryConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowCountryCondition$ {
-    export type Inbound = {
-        name: FlowCountryConditionName;
-        operator: FlowCountryConditionOperator;
-        value: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<FlowCountryCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowCountryConditionName$,
-            operator: FlowCountryConditionOperator$,
-            value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+    export const inboundSchema: z.ZodType<FlowCountryCondition, z.ZodTypeDef, unknown> = z.object({
+        name: FlowCountryConditionName$.inboundSchema,
+        operator: FlowCountryConditionOperator$.inboundSchema,
+        value: z.array(z.string()),
+    });
 
     export type Outbound = {
-        name: FlowCountryConditionName;
-        operator: FlowCountryConditionOperator;
+        name: string;
+        operator: string;
         value: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowCountryCondition> = z
-        .object({
-            name: FlowCountryConditionName$,
-            operator: FlowCountryConditionOperator$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowCountryCondition> = z.object(
+        {
+            name: FlowCountryConditionName$.outboundSchema,
+            operator: FlowCountryConditionOperator$.outboundSchema,
             value: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
-        });
+        }
+    );
 }

@@ -17,31 +17,15 @@ export type FlowRules = {
 
 /** @internal */
 export namespace FlowRules$ {
-    export type Inbound = {
-        items?: Array<FlowRule$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<FlowRules, z.ZodTypeDef, Inbound> = z
-        .object({
-            items: z.array(FlowRule$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const inboundSchema: z.ZodType<FlowRules, z.ZodTypeDef, unknown> = z.object({
+        items: z.array(FlowRule$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         items?: Array<FlowRule$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRules> = z
-        .object({
-            items: z.array(FlowRule$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRules> = z.object({
+        items: z.array(FlowRule$.outboundSchema).optional(),
+    });
 }

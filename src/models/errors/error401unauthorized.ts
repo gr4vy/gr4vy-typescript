@@ -116,50 +116,48 @@ export class Error401Unauthorized extends Error {
 }
 
 /** @internal */
-export const Error401UnauthorizedType$ = z.nativeEnum(Error401UnauthorizedType);
+export namespace Error401UnauthorizedType$ {
+    export const inboundSchema = z.nativeEnum(Error401UnauthorizedType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error401UnauthorizedCode$ = z.nativeEnum(Error401UnauthorizedCode);
+export namespace Error401UnauthorizedCode$ {
+    export const inboundSchema = z.nativeEnum(Error401UnauthorizedCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error401UnauthorizedStatus$ = z.nativeEnum(Error401UnauthorizedStatus);
+export namespace Error401UnauthorizedStatus$ {
+    export const inboundSchema = z.nativeEnum(Error401UnauthorizedStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Message$ = z.nativeEnum(Message);
+export namespace Message$ {
+    export const inboundSchema = z.nativeEnum(Message);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Error401Unauthorized$ {
-    export type Inbound = {
-        type?: Error401UnauthorizedType | undefined;
-        code?: Error401UnauthorizedCode | undefined;
-        status?: Error401UnauthorizedStatus | undefined;
-        message?: Message | undefined;
-        details?: Array<components.ErrorDetail$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Error401Unauthorized, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Error401Unauthorized, z.ZodTypeDef, unknown> = z
         .object({
-            type: Error401UnauthorizedType$.optional(),
-            code: Error401UnauthorizedCode$.optional(),
-            status: Error401UnauthorizedStatus$.optional(),
-            message: Message$.optional(),
+            type: Error401UnauthorizedType$.inboundSchema.optional(),
+            code: Error401UnauthorizedCode$.inboundSchema.optional(),
+            status: Error401UnauthorizedStatus$.inboundSchema.optional(),
+            message: Message$.inboundSchema.optional(),
             details: z.array(components.ErrorDetail$.inboundSchema).optional(),
         })
         .transform((v) => {
-            return new Error401Unauthorized({
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.message === undefined ? null : { message: v.message }),
-                ...(v.details === undefined ? null : { details: v.details }),
-            });
+            return new Error401Unauthorized(v);
         });
 
     export type Outbound = {
-        type?: Error401UnauthorizedType | undefined;
-        code?: Error401UnauthorizedCode | undefined;
-        status?: Error401UnauthorizedStatus | undefined;
-        message?: Message | undefined;
+        type?: string | undefined;
+        code?: string | undefined;
+        status?: number | undefined;
+        message?: string | undefined;
         details?: Array<components.ErrorDetail$.Outbound> | undefined;
     };
 
@@ -167,22 +165,12 @@ export namespace Error401Unauthorized$ {
         .instanceof(Error401Unauthorized)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    type: Error401UnauthorizedType$.optional(),
-                    code: Error401UnauthorizedCode$.optional(),
-                    status: Error401UnauthorizedStatus$.optional(),
-                    message: Message$.optional(),
-                    details: z.array(components.ErrorDetail$.outboundSchema).optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.type === undefined ? null : { type: v.type }),
-                        ...(v.code === undefined ? null : { code: v.code }),
-                        ...(v.status === undefined ? null : { status: v.status }),
-                        ...(v.message === undefined ? null : { message: v.message }),
-                        ...(v.details === undefined ? null : { details: v.details }),
-                    };
-                })
+            z.object({
+                type: Error401UnauthorizedType$.outboundSchema.optional(),
+                code: Error401UnauthorizedCode$.outboundSchema.optional(),
+                status: Error401UnauthorizedStatus$.outboundSchema.optional(),
+                message: Message$.outboundSchema.optional(),
+                details: z.array(components.ErrorDetail$.outboundSchema).optional(),
+            })
         );
 }

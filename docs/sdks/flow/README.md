@@ -8,7 +8,9 @@ In Gr4vy, a rule can be created that triggers actions anywhere in the payment fl
 ### Available Operations
 
 * [listFlowRules](#listflowrules) - List flow rules
+* [newFlowRule](#newflowrule) - Create flow rule
 * [getFlowRule](#getflowrule) - Get rule
+* [updateFlowRule](#updateflowrule) - Update flow rule
 * [deleteFlowRule](#deleteflowrule) - Delete flow rule
 * [listFlowOutcomes](#listflowoutcomes) - List flow outcomes
 
@@ -23,14 +25,12 @@ associated action, conditions, and outcome.
 import { SDK } from "@gr4vy/sdk";
 import { Flow } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const flow = Flow.Checkout;
-  
-  const result = await sdk.flow.listFlowRules(flow);
+async function run() {
+  const result = await sdk.flow.listFlowRules(Flow.Checkout);
 
   // Handle the result
   console.log(result)
@@ -50,11 +50,83 @@ run();
 
 ### Response
 
-**Promise<[components.FlowRules](../../models/components/flowrules.md)>**
+**Promise\<[components.FlowRules](../../models/components/flowrules.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## newFlowRule
+
+Adds a rule for a given flow and action.
+
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { FlowAmountConditionName, FlowRuleBooleanOutcomeType, Operator } from "@gr4vy/sdk/models/components";
+import { PathParamAction, PathParamFlow } from "@gr4vy/sdk/models/operations";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.flow.newFlowRule(PathParamFlow.Checkout, PathParamAction.SelectPaymentOptions, {
+    description: "example rule description.",
+    conditions: [
+        {
+          name: FlowAmountConditionName.Amount,
+          operator: Operator.LessThan,
+          value: {
+            currency: "USD",
+            value: 1,
+          },
+        },
+        {
+          name: FlowAmountConditionName.Amount,
+          operator: Operator.GreaterThan,
+          value: {
+            currency: "USD",
+            value: 1,
+          },
+        },
+    ],
+  outcome:     {
+        type: FlowRuleBooleanOutcomeType.Boolean,
+        result: true,
+      },
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `flow`                                                                                                                                                                                                                                                                                                                                                                                                                          | [operations.PathParamFlow](../../models/operations/pathparamflow.md)                                                                                                                                                                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                              | The flow name. This can be one of the following.<br/><br/>- `checkout` - Applies during checkout to determine what payment options are shown.<br/>- `card-transaction` - Applies when processing a card transaction.<br/>- `non-card-transaction` - Applies when processing a gift card only transaction, or a<br/>redirect transaction using the `decline-early` action.<br/>- `redirect-transaction` - Applies when processing any other transaction. | [object Object]                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `action`                                                                                                                                                                                                                                                                                                                                                                                                                        | [operations.PathParamAction](../../models/operations/pathparamaction.md)                                                                                                                                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                              | The flow action.                                                                                                                                                                                                                                                                                                                                                                                                                | [object Object]                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `flowRuleCreateRequest`                                                                                                                                                                                                                                                                                                                                                                                                         | [components.FlowRuleCreateRequest](../../models/components/flowrulecreaterequest.md)                                                                                                                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | N/A                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `options`                                                                                                                                                                                                                                                                                                                                                                                                                       | RequestOptions                                                                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Used to set various options for making HTTP requests.                                                                                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+
+
+### Response
+
+**Promise\<[components.FlowRule](../../models/components/flowrule.md)\>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
@@ -68,16 +140,12 @@ Returns a configured rule that triggers an action in a flow.
 import { SDK } from "@gr4vy/sdk";
 import { GetFlowRulePathParamAction, GetFlowRulePathParamFlow } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const flow = GetFlowRulePathParamFlow.Checkout;
-  const action = GetFlowRulePathParamAction.SelectPaymentOptions;
-  const ruleId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  
-  const result = await sdk.flow.getFlowRule(flow, action, ruleId);
+async function run() {
+  const result = await sdk.flow.getFlowRule(GetFlowRulePathParamFlow.Checkout, GetFlowRulePathParamAction.SelectPaymentOptions, "8724fd24-5489-4a5d-90fd-0604df7d3b83");
 
   // Handle the result
   console.log(result)
@@ -99,11 +167,83 @@ run();
 
 ### Response
 
-**Promise<[operations.GetFlowRuleResponse](../../models/operations/getflowruleresponse.md)>**
+**Promise\<[components.FlowRule](../../models/components/flowrule.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## updateFlowRule
+
+Updates a given flow rule.
+
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import {
+  FlowProductTypesConditionName,
+  FlowProductTypesConditionOperator,
+  FlowProductTypesConditionValue,
+  FlowRuleBooleanOutcomeType,
+} from "@gr4vy/sdk/models/components";
+import { UpdateFlowRulePathParamAction, UpdateFlowRulePathParamFlow } from "@gr4vy/sdk/models/operations";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.flow.updateFlowRule(UpdateFlowRulePathParamFlow.Checkout, UpdateFlowRulePathParamAction.SelectPaymentOptions, "8724fd24-5489-4a5d-90fd-0604df7d3b83", {
+    description: "example description update.",
+    conditions: [
+        {
+          name: FlowProductTypesConditionName.ProductTypes,
+          operator: FlowProductTypesConditionOperator.IncludesAll,
+          value: [
+            FlowProductTypesConditionValue.ShippingFee,
+            FlowProductTypesConditionValue.SalesTax,
+          ],
+        },
+    ],
+  outcome:     {
+        type: FlowRuleBooleanOutcomeType.Boolean,
+        result: false,
+      },
+    position: 1,
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `flow`                                                                                                                                                                                                                                                                                                                                                                                                                          | [operations.UpdateFlowRulePathParamFlow](../../models/operations/updateflowrulepathparamflow.md)                                                                                                                                                                                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                              | The flow name. This can be one of the following.<br/><br/>- `checkout` - Applies during checkout to determine what payment options are shown.<br/>- `card-transaction` - Applies when processing a card transaction.<br/>- `non-card-transaction` - Applies when processing a gift card only transaction, or a<br/>redirect transaction using the `decline-early` action.<br/>- `redirect-transaction` - Applies when processing any other transaction. | [object Object]                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `action`                                                                                                                                                                                                                                                                                                                                                                                                                        | [operations.UpdateFlowRulePathParamAction](../../models/operations/updateflowrulepathparamaction.md)                                                                                                                                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                              | The flow action.                                                                                                                                                                                                                                                                                                                                                                                                                | [object Object]                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `ruleId`                                                                                                                                                                                                                                                                                                                                                                                                                        | *string*                                                                                                                                                                                                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                              | The unique ID for a rule.                                                                                                                                                                                                                                                                                                                                                                                                       | [object Object]                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `flowRuleUpdateRequest`                                                                                                                                                                                                                                                                                                                                                                                                         | [components.FlowRuleUpdateRequest](../../models/components/flowruleupdaterequest.md)                                                                                                                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | N/A                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `options`                                                                                                                                                                                                                                                                                                                                                                                                                       | RequestOptions                                                                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Used to set various options for making HTTP requests.                                                                                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+
+
+### Response
+
+**Promise\<[components.FlowRule](../../models/components/flowrule.md)\>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
@@ -118,19 +258,14 @@ Deletes a given rule from the system.
 import { SDK } from "@gr4vy/sdk";
 import { DeleteFlowRulePathParamAction, DeleteFlowRulePathParamFlow } from "@gr4vy/sdk/models/operations";
 
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await sdk.flow.deleteFlowRule(DeleteFlowRulePathParamFlow.Checkout, DeleteFlowRulePathParamAction.SelectPaymentOptions, "8724fd24-5489-4a5d-90fd-0604df7d3b83");
 
-  const flow = DeleteFlowRulePathParamFlow.Checkout;
-  const action = DeleteFlowRulePathParamAction.SelectPaymentOptions;
-  const ruleId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
   
-  const result = await sdk.flow.deleteFlowRule(flow, action, ruleId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -149,7 +284,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteFlowRuleResponse](../../models/operations/deleteflowruleresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -168,16 +303,12 @@ Returns a list of possible outcomes for a given flow action.
 import { SDK } from "@gr4vy/sdk";
 import { ListFlowOutcomesPathParamAction, ListFlowOutcomesPathParamFlow } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const flow = ListFlowOutcomesPathParamFlow.Checkout;
-  const action = ListFlowOutcomesPathParamAction.SelectPaymentOptions;
-  const locale = "en-US";
-  
-  const result = await sdk.flow.listFlowOutcomes(flow, action, locale);
+async function run() {
+  const result = await sdk.flow.listFlowOutcomes(ListFlowOutcomesPathParamFlow.Checkout, ListFlowOutcomesPathParamAction.SelectPaymentOptions, "en-US");
 
   // Handle the result
   console.log(result)
@@ -199,7 +330,7 @@ run();
 
 ### Response
 
-**Promise<[components.FlowRuleOutcomes](../../models/components/flowruleoutcomes.md)>**
+**Promise\<[components.FlowRuleOutcomes](../../models/components/flowruleoutcomes.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

@@ -1,0 +1,9 @@
+# UpdateMerchantAccountRequest
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `merchantAccountId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | The unique ID for a merchant account.                                                | plantly-uk                                                                           |
+| `merchantAccountUpdate`                                                              | [components.MerchantAccountUpdate](../../models/components/merchantaccountupdate.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |

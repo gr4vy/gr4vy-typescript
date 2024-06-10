@@ -14,24 +14,12 @@ export type InboundWebhookDeprecatedRequest = {
     hook: string;
 };
 
-export type InboundWebhookDeprecatedResponse = {};
-
 /** @internal */
 export namespace InboundWebhookDeprecatedRequest$ {
-    export type Inbound = {
-        hook: string;
-    };
-
-    export const inboundSchema: z.ZodType<InboundWebhookDeprecatedRequest, z.ZodTypeDef, Inbound> =
-        z
-            .object({
-                hook: z.string(),
-            })
-            .transform((v) => {
-                return {
-                    hook: v.hook,
-                };
-            });
+    export const inboundSchema: z.ZodType<InboundWebhookDeprecatedRequest, z.ZodTypeDef, unknown> =
+        z.object({
+            hook: z.string(),
+        });
 
     export type Outbound = {
         hook: string;
@@ -41,29 +29,7 @@ export namespace InboundWebhookDeprecatedRequest$ {
         Outbound,
         z.ZodTypeDef,
         InboundWebhookDeprecatedRequest
-    > = z
-        .object({
-            hook: z.string(),
-        })
-        .transform((v) => {
-            return {
-                hook: v.hook,
-            };
-        });
-}
-
-/** @internal */
-export namespace InboundWebhookDeprecatedResponse$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<InboundWebhookDeprecatedResponse, z.ZodTypeDef, Inbound> =
-        z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        InboundWebhookDeprecatedResponse
-    > = z.object({});
+    > = z.object({
+        hook: z.string(),
+    });
 }

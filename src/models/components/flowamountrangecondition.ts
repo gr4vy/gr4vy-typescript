@@ -55,31 +55,24 @@ export type FlowAmountRangeCondition = {
 };
 
 /** @internal */
-export const FlowAmountRangeConditionName$ = z.nativeEnum(FlowAmountRangeConditionName);
+export namespace FlowAmountRangeConditionName$ {
+    export const inboundSchema = z.nativeEnum(FlowAmountRangeConditionName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const FlowAmountRangeConditionOperator$ = z.nativeEnum(FlowAmountRangeConditionOperator);
+export namespace FlowAmountRangeConditionOperator$ {
+    export const inboundSchema = z.nativeEnum(FlowAmountRangeConditionOperator);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace FlowAmountRangeConditionValue$ {
-    export type Inbound = {
-        currency?: string | undefined;
-        min?: number | undefined;
-        max?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<FlowAmountRangeConditionValue, z.ZodTypeDef, Inbound> = z
-        .object({
+    export const inboundSchema: z.ZodType<FlowAmountRangeConditionValue, z.ZodTypeDef, unknown> =
+        z.object({
             currency: z.string().optional(),
             min: z.number().optional(),
             max: z.number().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.min === undefined ? null : { min: v.min }),
-                ...(v.max === undefined ? null : { max: v.max }),
-            };
         });
 
     export type Outbound = {
@@ -89,60 +82,32 @@ export namespace FlowAmountRangeConditionValue$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAmountRangeConditionValue> =
-        z
-            .object({
-                currency: z.string().optional(),
-                min: z.number().optional(),
-                max: z.number().optional(),
-            })
-            .transform((v) => {
-                return {
-                    ...(v.currency === undefined ? null : { currency: v.currency }),
-                    ...(v.min === undefined ? null : { min: v.min }),
-                    ...(v.max === undefined ? null : { max: v.max }),
-                };
-            });
+        z.object({
+            currency: z.string().optional(),
+            min: z.number().optional(),
+            max: z.number().optional(),
+        });
 }
 
 /** @internal */
 export namespace FlowAmountRangeCondition$ {
-    export type Inbound = {
-        name: FlowAmountRangeConditionName;
-        operator: FlowAmountRangeConditionOperator;
-        value: FlowAmountRangeConditionValue$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<FlowAmountRangeCondition, z.ZodTypeDef, Inbound> = z
-        .object({
-            name: FlowAmountRangeConditionName$,
-            operator: FlowAmountRangeConditionOperator$,
+    export const inboundSchema: z.ZodType<FlowAmountRangeCondition, z.ZodTypeDef, unknown> =
+        z.object({
+            name: FlowAmountRangeConditionName$.inboundSchema,
+            operator: FlowAmountRangeConditionOperator$.inboundSchema,
             value: z.lazy(() => FlowAmountRangeConditionValue$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 
     export type Outbound = {
-        name: FlowAmountRangeConditionName;
-        operator: FlowAmountRangeConditionOperator;
+        name: string;
+        operator: string;
         value: FlowAmountRangeConditionValue$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAmountRangeCondition> = z
-        .object({
-            name: FlowAmountRangeConditionName$,
-            operator: FlowAmountRangeConditionOperator$,
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowAmountRangeCondition> =
+        z.object({
+            name: FlowAmountRangeConditionName$.outboundSchema,
+            operator: FlowAmountRangeConditionOperator$.outboundSchema,
             value: z.lazy(() => FlowAmountRangeConditionValue$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                operator: v.operator,
-                value: v.value,
-            };
         });
 }

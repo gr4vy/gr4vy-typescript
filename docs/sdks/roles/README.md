@@ -10,6 +10,7 @@ to perform certain actions by being assigned one or more roles.
 
 * [listRoles](#listroles) - List roles
 * [listRoleAssignments](#listroleassignments) - List role assignments
+* [newRoleAssignment](#newroleassignment) - New role assignment
 * [deleteRoleAssignment](#deleteroleassignment) - Delete role assignment
 
 ## listRoles
@@ -21,15 +22,12 @@ Returns a list of roles.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
-  const limit = 1;
-  const cursor = "ZXhhbXBsZTE";
-  
-  const result = await sdk.roles.listRoles(limit, cursor);
+async function run() {
+  const result = await sdk.roles.listRoles(1, "ZXhhbXBsZTE");
 
   // Handle the result
   console.log(result)
@@ -50,7 +48,7 @@ run();
 
 ### Response
 
-**Promise<[components.Roles](../../models/components/roles.md)>**
+**Promise\<[components.Roles](../../models/components/roles.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -72,11 +70,11 @@ both the `assignee_type` and `assignee_id` parameters.
 import { SDK } from "@gr4vy/sdk";
 import { AssigneeType } from "@gr4vy/sdk/models/operations";
 
-async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.roles.listRoleAssignments({
     roleId: "be828248-56de-481e-a580-44b6e1d4df81",
     assigneeType: AssigneeType.User,
@@ -103,13 +101,67 @@ run();
 
 ### Response
 
-**Promise<[components.RoleAssignments](../../models/components/roleassignments.md)>**
+**Promise\<[components.RoleAssignments](../../models/components/roleassignments.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## newRoleAssignment
+
+Adds a role assignment, in effect applying a role to the given assignee.
+
+
+### Example Usage
+
+```typescript
+import { SDK } from "@gr4vy/sdk";
+import { RoleAssignmentRequestType } from "@gr4vy/sdk/models/components";
+
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.roles.newRoleAssignment({
+    role: {
+      id: "462ab2e2-3e29-44bd-b39f-e4d1293affbb",
+    },
+    assignee: {
+      type: RoleAssignmentRequestType.User,
+      id: "42aae896-8ce2-4a60-b80a-5f6ae1dfbbd4",
+    },
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.RoleAssignmentRequest](../../models/components/roleassignmentrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise\<[components.RoleAssignment](../../models/components/roleassignment.md)\>**
+### Errors
+
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.Error400BadRequest      | 400                            | application/json               |
+| errors.Error401Unauthorized    | 401                            | application/json               |
+| errors.Error409DuplicateRecord | 409                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 ## deleteRoleAssignment
 
@@ -121,17 +173,14 @@ assigned the role.
 ```typescript
 import { SDK } from "@gr4vy/sdk";
 
+const sdk = new SDK({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await sdk.roles.deleteRoleAssignment("1cdac457-400f-4866-8da6-5c193a8db158");
 
-  const roleAssignmentId = "1cdac457-400f-4866-8da6-5c193a8db158";
   
-  const result = await sdk.roles.deleteRoleAssignment(roleAssignmentId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -148,7 +197,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteRoleAssignmentResponse](../../models/operations/deleteroleassignmentresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

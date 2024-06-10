@@ -109,46 +109,41 @@ export class Error429TooManyRequests extends Error {
 }
 
 /** @internal */
-export const Error429TooManyRequestsType$ = z.nativeEnum(Error429TooManyRequestsType);
+export namespace Error429TooManyRequestsType$ {
+    export const inboundSchema = z.nativeEnum(Error429TooManyRequestsType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error429TooManyRequestsCode$ = z.nativeEnum(Error429TooManyRequestsCode);
+export namespace Error429TooManyRequestsCode$ {
+    export const inboundSchema = z.nativeEnum(Error429TooManyRequestsCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Error429TooManyRequestsStatus$ = z.nativeEnum(Error429TooManyRequestsStatus);
+export namespace Error429TooManyRequestsStatus$ {
+    export const inboundSchema = z.nativeEnum(Error429TooManyRequestsStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Error429TooManyRequests$ {
-    export type Inbound = {
-        type?: Error429TooManyRequestsType | undefined;
-        code?: Error429TooManyRequestsCode | undefined;
-        status?: Error429TooManyRequestsStatus | undefined;
-        message?: string | undefined;
-        details?: Array<components.ErrorDetail$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Error429TooManyRequests, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Error429TooManyRequests, z.ZodTypeDef, unknown> = z
         .object({
-            type: Error429TooManyRequestsType$.optional(),
-            code: Error429TooManyRequestsCode$.optional(),
-            status: Error429TooManyRequestsStatus$.optional(),
+            type: Error429TooManyRequestsType$.inboundSchema.optional(),
+            code: Error429TooManyRequestsCode$.inboundSchema.optional(),
+            status: Error429TooManyRequestsStatus$.inboundSchema.optional(),
             message: z.string().optional(),
             details: z.array(components.ErrorDetail$.inboundSchema).optional(),
         })
         .transform((v) => {
-            return new Error429TooManyRequests({
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.message === undefined ? null : { message: v.message }),
-                ...(v.details === undefined ? null : { details: v.details }),
-            });
+            return new Error429TooManyRequests(v);
         });
 
     export type Outbound = {
-        type?: Error429TooManyRequestsType | undefined;
-        code?: Error429TooManyRequestsCode | undefined;
-        status?: Error429TooManyRequestsStatus | undefined;
+        type?: string | undefined;
+        code?: string | undefined;
+        status?: number | undefined;
         message?: string | undefined;
         details?: Array<components.ErrorDetail$.Outbound> | undefined;
     };
@@ -157,22 +152,12 @@ export namespace Error429TooManyRequests$ {
         .instanceof(Error429TooManyRequests)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    type: Error429TooManyRequestsType$.optional(),
-                    code: Error429TooManyRequestsCode$.optional(),
-                    status: Error429TooManyRequestsStatus$.optional(),
-                    message: z.string().optional(),
-                    details: z.array(components.ErrorDetail$.outboundSchema).optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.type === undefined ? null : { type: v.type }),
-                        ...(v.code === undefined ? null : { code: v.code }),
-                        ...(v.status === undefined ? null : { status: v.status }),
-                        ...(v.message === undefined ? null : { message: v.message }),
-                        ...(v.details === undefined ? null : { details: v.details }),
-                    };
-                })
+            z.object({
+                type: Error429TooManyRequestsType$.outboundSchema.optional(),
+                code: Error429TooManyRequestsCode$.outboundSchema.optional(),
+                status: Error429TooManyRequestsStatus$.outboundSchema.optional(),
+                message: z.string().optional(),
+                details: z.array(components.ErrorDetail$.outboundSchema).optional(),
+            })
         );
 }
