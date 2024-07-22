@@ -18,6 +18,7 @@ and country.
 
 * [listBuyerPaymentMethods](#listbuyerpaymentmethods) - List payment methods for buyer
 * [listPaymentMethods](#listpaymentmethods) - List payment methods
+* [newPaymentMethod](#newpaymentmethod) - New payment method
 * [getPaymentMethod](#getpaymentmethod) - Get payment method
 * [deletePaymentMethod](#deletepaymentmethod) - Delete payment method
 
@@ -30,19 +31,14 @@ service in that region are shown.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const buyerId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  const buyerExternalIdentifier = "user-12345";
-  const country = "US";
-  const currency = "USD";
-  
-  const result = await sdk.paymentMethods.listBuyerPaymentMethods(buyerId, buyerExternalIdentifier, country, currency);
+  const result = await gr4vy.paymentMethods.listBuyerPaymentMethods("8724fd24-5489-4a5d-90fd-0604df7d3b83", "user-12345", "US", "USD");
 
   // Handle the result
   console.log(result)
@@ -61,11 +57,12 @@ run();
 | `currency`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Filters the results to only the items which support this currency code. A<br/>currency is formatted as 3-letter ISO currency code.                                             | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[components.PaymentMethodsTokenized](../../models/components/paymentmethodstokenized.md)>**
+**Promise\<[components.PaymentMethodsTokenized](../../models/components/paymentmethodstokenized.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -81,20 +78,19 @@ Returns a list of stored payment methods.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
-import { Status } from "@gr4vy/sdk/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const result = await sdk.paymentMethods.listPaymentMethods({
+  const result = await gr4vy.paymentMethods.listPaymentMethods({
     buyerId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
     buyerExternalIdentifier: "user-12345",
     status: [
-      Status.Succeeded,
-      Status.Processing,
+      "succeeded",
+      "processing",
     ],
     externalIdentifier: "xid123",
     limit: 1,
@@ -115,17 +111,78 @@ run();
 | `request`                                                                                                                                                                      | [operations.ListPaymentMethodsRequest](../../models/operations/listpaymentmethodsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 
 ### Response
 
-**Promise<[components.PaymentMethods](../../models/components/paymentmethods.md)>**
+**Promise\<[components.PaymentMethods](../../models/components/paymentmethods.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## newPaymentMethod
+
+Stores and vaults a new payment method.
+
+Vaulting a card only stores its information but doesn't validate it against any
+PSP, so ephemeral data like the security code, often referred to as the CVV or
+CVD, won't be used. In order to validate the card data, a CIT (Customer Initiated
+Transaction) must be done, even if it's a zero-value one.
+
+
+### Example Usage
+
+```typescript
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await gr4vy.paymentMethods.newPaymentMethod({
+      method: "card",
+      number: "4111111111111111",
+      expirationDate: "11/25",
+      securityCode: "123",
+      externalIdentifier: "card-323444",
+      buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+      buyerExternalIdentifier: "user-789123",
+      redirectUrl: "https://example.com/callback",
+    });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.NewPaymentMethodRequestBody](../../models/operations/newpaymentmethodrequestbody.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+
+### Response
+
+**Promise\<[components.PaymentMethod](../../models/components/paymentmethod.md)\>**
+### Errors
+
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.Error400BadRequest      | 400                            | application/json               |
+| errors.Error401Unauthorized    | 401                            | application/json               |
+| errors.Error409DuplicateRecord | 409                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 ## getPaymentMethod
 
@@ -134,16 +191,14 @@ Gets the details for a stored payment method.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
-  
-  const result = await sdk.paymentMethods.getPaymentMethod(paymentMethodId);
+  const result = await gr4vy.paymentMethods.getPaymentMethod("46973e9d-88a7-44a6-abfe-be4ff0134ff4");
 
   // Handle the result
   console.log(result)
@@ -159,11 +214,12 @@ run();
 | `paymentMethodId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the payment method.                                                                                                                                                  | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[components.PaymentMethod](../../models/components/paymentmethod.md)>**
+**Promise\<[components.PaymentMethod](../../models/components/paymentmethod.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -179,19 +235,16 @@ Removes a stored payment method.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  await gr4vy.paymentMethods.deletePaymentMethod("46973e9d-88a7-44a6-abfe-be4ff0134ff4");
 
-  const paymentMethodId = "46973e9d-88a7-44a6-abfe-be4ff0134ff4";
   
-  const result = await sdk.paymentMethods.deletePaymentMethod(paymentMethodId);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -204,11 +257,12 @@ run();
 | `paymentMethodId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the payment method.                                                                                                                                                  | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[operations.DeletePaymentMethodResponse](../../models/operations/deletepaymentmethodresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

@@ -4,13 +4,22 @@
 
 import {
     FlowCardTransactionRoutingOutcome,
-    FlowCardTransactionRoutingOutcome$,
-} from "./flowcardtransactionroutingoutcome";
-import { FlowPaymentOptionOutcome, FlowPaymentOptionOutcome$ } from "./flowpaymentoptionoutcome";
+    FlowCardTransactionRoutingOutcome$inboundSchema,
+    FlowCardTransactionRoutingOutcome$Outbound,
+    FlowCardTransactionRoutingOutcome$outboundSchema,
+} from "./flowcardtransactionroutingoutcome.js";
+import {
+    FlowPaymentOptionOutcome,
+    FlowPaymentOptionOutcome$inboundSchema,
+    FlowPaymentOptionOutcome$Outbound,
+    FlowPaymentOptionOutcome$outboundSchema,
+} from "./flowpaymentoptionoutcome.js";
 import {
     FlowRedirectTransactionRoutingOutcome,
-    FlowRedirectTransactionRoutingOutcome$,
-} from "./flowredirecttransactionroutingoutcome";
+    FlowRedirectTransactionRoutingOutcome$inboundSchema,
+    FlowRedirectTransactionRoutingOutcome$Outbound,
+    FlowRedirectTransactionRoutingOutcome$outboundSchema,
+} from "./flowredirecttransactionroutingoutcome.js";
 import * as z from "zod";
 
 export type FlowRuleOutcomesItems =
@@ -40,85 +49,97 @@ export type FlowRuleOutcomes = {
 };
 
 /** @internal */
-export namespace FlowRuleOutcomesItems$ {
-    export type Inbound =
-        | FlowPaymentOptionOutcome$.Inbound
-        | FlowRedirectTransactionRoutingOutcome$.Inbound
-        | FlowCardTransactionRoutingOutcome$.Inbound;
+export const FlowRuleOutcomesItems$inboundSchema: z.ZodType<
+    FlowRuleOutcomesItems,
+    z.ZodTypeDef,
+    unknown
+> = z.union([
+    FlowPaymentOptionOutcome$inboundSchema,
+    FlowRedirectTransactionRoutingOutcome$inboundSchema,
+    FlowCardTransactionRoutingOutcome$inboundSchema,
+]);
 
-    export type Outbound =
-        | FlowPaymentOptionOutcome$.Outbound
-        | FlowRedirectTransactionRoutingOutcome$.Outbound
-        | FlowCardTransactionRoutingOutcome$.Outbound;
-    export const inboundSchema: z.ZodType<FlowRuleOutcomesItems, z.ZodTypeDef, Inbound> = z.union([
-        FlowPaymentOptionOutcome$.inboundSchema,
-        FlowRedirectTransactionRoutingOutcome$.inboundSchema,
-        FlowCardTransactionRoutingOutcome$.inboundSchema,
-    ]);
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleOutcomesItems> = z.union(
-        [
-            FlowPaymentOptionOutcome$.outboundSchema,
-            FlowRedirectTransactionRoutingOutcome$.outboundSchema,
-            FlowCardTransactionRoutingOutcome$.outboundSchema,
-        ]
-    );
+/** @internal */
+export type FlowRuleOutcomesItems$Outbound =
+    | FlowPaymentOptionOutcome$Outbound
+    | FlowRedirectTransactionRoutingOutcome$Outbound
+    | FlowCardTransactionRoutingOutcome$Outbound;
+
+/** @internal */
+export const FlowRuleOutcomesItems$outboundSchema: z.ZodType<
+    FlowRuleOutcomesItems$Outbound,
+    z.ZodTypeDef,
+    FlowRuleOutcomesItems
+> = z.union([
+    FlowPaymentOptionOutcome$outboundSchema,
+    FlowRedirectTransactionRoutingOutcome$outboundSchema,
+    FlowCardTransactionRoutingOutcome$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace FlowRuleOutcomesItems$ {
+    /** @deprecated use `FlowRuleOutcomesItems$inboundSchema` instead. */
+    export const inboundSchema = FlowRuleOutcomesItems$inboundSchema;
+    /** @deprecated use `FlowRuleOutcomesItems$outboundSchema` instead. */
+    export const outboundSchema = FlowRuleOutcomesItems$outboundSchema;
+    /** @deprecated use `FlowRuleOutcomesItems$Outbound` instead. */
+    export type Outbound = FlowRuleOutcomesItems$Outbound;
 }
 
 /** @internal */
+export const FlowRuleOutcomes$inboundSchema: z.ZodType<FlowRuleOutcomes, z.ZodTypeDef, unknown> =
+    z.object({
+        items: z
+            .array(
+                z.union([
+                    FlowPaymentOptionOutcome$inboundSchema,
+                    FlowRedirectTransactionRoutingOutcome$inboundSchema,
+                    FlowCardTransactionRoutingOutcome$inboundSchema,
+                ])
+            )
+            .optional(),
+    });
+
+/** @internal */
+export type FlowRuleOutcomes$Outbound = {
+    items?:
+        | Array<
+              | FlowPaymentOptionOutcome$Outbound
+              | FlowRedirectTransactionRoutingOutcome$Outbound
+              | FlowCardTransactionRoutingOutcome$Outbound
+          >
+        | undefined;
+};
+
+/** @internal */
+export const FlowRuleOutcomes$outboundSchema: z.ZodType<
+    FlowRuleOutcomes$Outbound,
+    z.ZodTypeDef,
+    FlowRuleOutcomes
+> = z.object({
+    items: z
+        .array(
+            z.union([
+                FlowPaymentOptionOutcome$outboundSchema,
+                FlowRedirectTransactionRoutingOutcome$outboundSchema,
+                FlowCardTransactionRoutingOutcome$outboundSchema,
+            ])
+        )
+        .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FlowRuleOutcomes$ {
-    export type Inbound = {
-        items?:
-            | Array<
-                  | FlowPaymentOptionOutcome$.Inbound
-                  | FlowRedirectTransactionRoutingOutcome$.Inbound
-                  | FlowCardTransactionRoutingOutcome$.Inbound
-              >
-            | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<FlowRuleOutcomes, z.ZodTypeDef, Inbound> = z
-        .object({
-            items: z
-                .array(
-                    z.union([
-                        FlowPaymentOptionOutcome$.inboundSchema,
-                        FlowRedirectTransactionRoutingOutcome$.inboundSchema,
-                        FlowCardTransactionRoutingOutcome$.inboundSchema,
-                    ])
-                )
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
-
-    export type Outbound = {
-        items?:
-            | Array<
-                  | FlowPaymentOptionOutcome$.Outbound
-                  | FlowRedirectTransactionRoutingOutcome$.Outbound
-                  | FlowCardTransactionRoutingOutcome$.Outbound
-              >
-            | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FlowRuleOutcomes> = z
-        .object({
-            items: z
-                .array(
-                    z.union([
-                        FlowPaymentOptionOutcome$.outboundSchema,
-                        FlowRedirectTransactionRoutingOutcome$.outboundSchema,
-                        FlowCardTransactionRoutingOutcome$.outboundSchema,
-                    ])
-                )
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.items === undefined ? null : { items: v.items }),
-            };
-        });
+    /** @deprecated use `FlowRuleOutcomes$inboundSchema` instead. */
+    export const inboundSchema = FlowRuleOutcomes$inboundSchema;
+    /** @deprecated use `FlowRuleOutcomes$outboundSchema` instead. */
+    export const outboundSchema = FlowRuleOutcomes$outboundSchema;
+    /** @deprecated use `FlowRuleOutcomes$Outbound` instead. */
+    export type Outbound = FlowRuleOutcomes$Outbound;
 }

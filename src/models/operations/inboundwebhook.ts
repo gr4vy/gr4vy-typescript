@@ -21,55 +21,41 @@ export type InboundWebhookRequest = {
     signature: string;
 };
 
-export type InboundWebhookResponse = {};
+/** @internal */
+export const InboundWebhookRequest$inboundSchema: z.ZodType<
+    InboundWebhookRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    payload: z.string(),
+    signature: z.string(),
+});
 
 /** @internal */
+export type InboundWebhookRequest$Outbound = {
+    payload: string;
+    signature: string;
+};
+
+/** @internal */
+export const InboundWebhookRequest$outboundSchema: z.ZodType<
+    InboundWebhookRequest$Outbound,
+    z.ZodTypeDef,
+    InboundWebhookRequest
+> = z.object({
+    payload: z.string(),
+    signature: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace InboundWebhookRequest$ {
-    export type Inbound = {
-        payload: string;
-        signature: string;
-    };
-
-    export const inboundSchema: z.ZodType<InboundWebhookRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            payload: z.string(),
-            signature: z.string(),
-        })
-        .transform((v) => {
-            return {
-                payload: v.payload,
-                signature: v.signature,
-            };
-        });
-
-    export type Outbound = {
-        payload: string;
-        signature: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhookRequest> = z
-        .object({
-            payload: z.string(),
-            signature: z.string(),
-        })
-        .transform((v) => {
-            return {
-                payload: v.payload,
-                signature: v.signature,
-            };
-        });
-}
-
-/** @internal */
-export namespace InboundWebhookResponse$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<InboundWebhookResponse, z.ZodTypeDef, Inbound> = z.object(
-        {}
-    );
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InboundWebhookResponse> =
-        z.object({});
+    /** @deprecated use `InboundWebhookRequest$inboundSchema` instead. */
+    export const inboundSchema = InboundWebhookRequest$inboundSchema;
+    /** @deprecated use `InboundWebhookRequest$outboundSchema` instead. */
+    export const outboundSchema = InboundWebhookRequest$outboundSchema;
+    /** @deprecated use `InboundWebhookRequest$Outbound` instead. */
+    export type Outbound = InboundWebhookRequest$Outbound;
 }

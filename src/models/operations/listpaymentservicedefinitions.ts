@@ -24,46 +24,40 @@ export type ListPaymentServiceDefinitionsRequest = {
 };
 
 /** @internal */
+export const ListPaymentServiceDefinitionsRequest$inboundSchema: z.ZodType<
+    ListPaymentServiceDefinitionsRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    limit: z.number().int().default(20),
+    cursor: z.string().optional(),
+});
+
+/** @internal */
+export type ListPaymentServiceDefinitionsRequest$Outbound = {
+    limit: number;
+    cursor?: string | undefined;
+};
+
+/** @internal */
+export const ListPaymentServiceDefinitionsRequest$outboundSchema: z.ZodType<
+    ListPaymentServiceDefinitionsRequest$Outbound,
+    z.ZodTypeDef,
+    ListPaymentServiceDefinitionsRequest
+> = z.object({
+    limit: z.number().int().default(20),
+    cursor: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ListPaymentServiceDefinitionsRequest$ {
-    export type Inbound = {
-        limit?: number | undefined;
-        cursor?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<
-        ListPaymentServiceDefinitionsRequest,
-        z.ZodTypeDef,
-        Inbound
-    > = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
-
-    export type Outbound = {
-        limit: number;
-        cursor?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        ListPaymentServiceDefinitionsRequest
-    > = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
+    /** @deprecated use `ListPaymentServiceDefinitionsRequest$inboundSchema` instead. */
+    export const inboundSchema = ListPaymentServiceDefinitionsRequest$inboundSchema;
+    /** @deprecated use `ListPaymentServiceDefinitionsRequest$outboundSchema` instead. */
+    export const outboundSchema = ListPaymentServiceDefinitionsRequest$outboundSchema;
+    /** @deprecated use `ListPaymentServiceDefinitionsRequest$Outbound` instead. */
+    export type Outbound = ListPaymentServiceDefinitionsRequest$Outbound;
 }

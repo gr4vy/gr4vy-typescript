@@ -27,17 +27,14 @@ service definition.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy();
 
 async function run() {
-  const sdk = new SDK();
+  await gr4vy.webhooks.inboundWebhookDeprecated("e4f7797af7cc56edb85cde7f94745a13");
 
-  const hook = "e4f7797af7cc56edb85cde7f94745a13";
   
-  const result = await sdk.webhooks.inboundWebhookDeprecated(hook);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -50,11 +47,12 @@ run();
 | `hook`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Opaque token representing the payment service associated with<br/>the webhook endpoint.                                                                                        | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[operations.InboundWebhookDeprecatedResponse](../../models/operations/inboundwebhookdeprecatedresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -71,18 +69,14 @@ service definition.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy();
 
 async function run() {
-  const sdk = new SDK();
+  await gr4vy.webhooks.inboundWebhook("zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk", "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM");
 
-  const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";
-  const signature = "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM";
   
-  const result = await sdk.webhooks.inboundWebhook(payload, signature);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -96,11 +90,12 @@ run();
 | `signature`                                                                                                                                                                    | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Signature of the opaque data with the service information<br/>used for the webhook endpoint.                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[operations.InboundWebhookResponse](../../models/operations/inboundwebhookresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -116,20 +111,14 @@ The response code and payload depends on external service.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
-import { Resource } from "@gr4vy/sdk/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy();
 
 async function run() {
-  const sdk = new SDK();
+  await gr4vy.webhooks.inboundWebhooks("ps", "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk", "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM");
 
-  const resource = Resource.Ps;
-  const payload = "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk";
-  const signature = "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM";
   
-  const result = await sdk.webhooks.inboundWebhooks(resource, payload, signature);
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -144,11 +133,12 @@ run();
 | `signature`                                                                                                                                                                    | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Signature of the opaque data with the service information<br/>used for the webhook endpoint.                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[operations.InboundWebhooksResponse](../../models/operations/inboundwebhooksresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

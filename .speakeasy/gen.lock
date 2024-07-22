@@ -1,29 +1,36 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 745a08f9a7a7bdf5712ca7590f317be1
+  docChecksum: 3ea196ed8eac47483eef4e6599d1891f
   docVersion: 1.1.0-beta
-  speakeasyVersion: 1.222.0
-  generationVersion: 2.287.0
-  releaseVersion: 0.1.9
-  configChecksum: d8cfb7363ab7f4863b53ee6b1229ba49
+  speakeasyVersion: 1.344.1
+  generationVersion: 2.376.2
+  releaseVersion: 0.2.1
+  configChecksum: 2dace8f5b0b0798afc403d67a3195838
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
 features:
   typescript:
-    additionalProperties: 0.1.1
+    additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.6.3
+    core: 3.11.7
+    defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     flattening: 2.81.1
-    globalSecurity: 2.82.8
+    globalSecurity: 2.82.9
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     ignores: 2.81.1
-    pagination: 2.82.1
-    responseFormat: 0.2.2
+    nullables: 0.1.0
+    pagination: 2.82.6
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.1.0
     serverIDs: 2.81.2
-    unions: 2.85.3
+    unions: 2.85.6
 generatedFiles:
+  - src/sdk/accountupdater.ts
   - src/sdk/apilogs.ts
   - src/sdk/auditlogs.ts
   - src/sdk/buyers.ts
@@ -44,19 +51,26 @@ generatedFiles:
   - src/sdk/giftcardservices.ts
   - src/sdk/giftcardservicedefinitions.ts
   - src/sdk/antifraudservices.ts
+  - src/sdk/antifraudservicedefinitions.ts
   - src/sdk/reports.ts
   - src/sdk/roles.ts
   - src/sdk/merchantaccounts.ts
   - src/sdk/tokens.ts
+  - src/sdk/vaultforward.ts
+  - src/sdk/healthdashboard.ts
   - src/sdk/sdk.ts
-  - .eslintrc.js
+  - .eslintrc.cjs
   - .npmignore
   - RUNTIMES.md
+  - jsr.json
   - package.json
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
   - src/lib/sdks.ts
@@ -66,31 +80,46 @@ generatedFiles:
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
+  - src/types/enums.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
+  - src/models/components/accountupdaterjob.ts
+  - src/models/components/accountupdaterinquirysummary.ts
+  - src/models/components/errordetail.ts
+  - src/models/components/accountupdaterjobcreate.ts
   - src/models/components/apilogs.ts
   - src/models/components/apilog.ts
-  - src/models/components/errordetail.ts
   - src/models/components/auditlogs.ts
   - src/models/components/auditlog.ts
   - src/models/components/buyers.ts
   - src/models/components/buyer.ts
-  - src/models/components/errorgeneric.ts
+  - src/models/components/buyerrequest.ts
+  - src/models/components/buyerupdate.ts
   - src/models/components/shippingdetails.ts
   - src/models/components/shippingdetail.ts
+  - src/models/components/shippingdetailrequest.ts
+  - src/models/components/shippingdetailupdaterequest.ts
   - src/models/components/billingdetails.ts
+  - src/models/components/billingdetailsupdaterequest.ts
   - src/models/components/giftcardssummary.ts
   - src/models/components/giftcardsummary.ts
   - src/models/components/giftcards.ts
   - src/models/components/giftcard.ts
   - src/models/components/giftcardservice.ts
+  - src/models/components/giftcardstorerequest.ts
+  - src/models/components/giftcardbalancesrequest.ts
+  - src/models/components/giftcardbalancenewrequest.ts
+  - src/models/components/giftcardbalancestoredrequest.ts
   - src/models/components/paymentmethodstokenized.ts
   - src/models/components/paymentmethodtokenized.ts
   - src/models/components/paymentmethods.ts
   - src/models/components/paymentmethod.ts
   - src/models/components/paymentmethoddetailscard.ts
+  - src/models/components/cardrequest.ts
+  - src/models/components/redirectrequest.ts
+  - src/models/components/checkoutsessionrequest.ts
   - src/models/components/cardschemedefinitions.ts
   - src/models/components/cardschemedefinition.ts
   - src/models/components/connections.ts
@@ -100,6 +129,7 @@ generatedFiles:
   - src/models/components/checkoutsession.ts
   - src/models/components/cartitem.ts
   - src/models/components/checkoutsessioncreaterequest.ts
+  - src/models/components/checkoutsessionupdaterequest.ts
   - src/models/components/checkoutsessionsecurefieldsupdate.ts
   - src/models/components/checkoutsessionfieldscardpaymentmethod.ts
   - src/models/components/checkoutsessionfieldsclicktopaypaymentmethod.ts
@@ -113,20 +143,79 @@ generatedFiles:
   - src/models/components/paymentoptionsrequest.ts
   - src/models/components/paymentservices.ts
   - src/models/components/paymentservice.ts
+  - src/models/components/paymentservicerequest.ts
+  - src/models/components/paymentserviceupdate.ts
+  - src/models/components/paymentservicesession.ts
+  - src/models/components/paymentserviceverify.ts
   - src/models/components/paymentservicedefinitions.ts
   - src/models/components/paymentservicedefinition.ts
   - src/models/components/paymentservicedefinitionconfiguration.ts
-  - src/models/components/digitalwallets.ts
   - src/models/components/digitalwallet.ts
   - src/models/components/digitalwalletclicktopayfields.ts
+  - src/models/components/digitalwalletrequest.ts
+  - src/models/components/digitalwallets.ts
+  - src/models/components/digitalwalletupdate.ts
+  - src/models/components/digitalwalletdomain.ts
+  - src/models/components/applepaysessionrequest.ts
+  - src/models/components/clicktopaysession.ts
+  - src/models/components/clicktopaysessionrequest.ts
+  - src/models/components/googlepaysession.ts
+  - src/models/components/googlepaysessionrequest.ts
   - src/models/components/transactions.ts
   - src/models/components/transactionsummary.ts
   - src/models/components/giftcardredemption.ts
   - src/models/components/giftcardsnapshot.ts
+  - src/models/components/transaction.ts
+  - src/models/components/threedsecuresummary.ts
+  - src/models/components/giftcardservicesnapshot.ts
+  - src/models/components/transactionrequest.ts
+  - src/models/components/threedsecuredatav1.ts
+  - src/models/components/threedsecuredatav2.ts
+  - src/models/components/transactiongiftcardnewrequest.ts
+  - src/models/components/transactiongiftcardstoredrequest.ts
   - src/models/components/actions.ts
   - src/models/components/action.ts
+  - src/models/components/transactioncapturerequest.ts
+  - src/models/components/transactionhistoryevents.ts
+  - src/models/components/binlookuprequest.ts
+  - src/models/components/threedsecureauthenticationrequestevent.ts
+  - src/models/components/threedsecuresuccessevent.ts
+  - src/models/components/threedsecurerequesterrorevent.ts
+  - src/models/components/threedsecurepreparationrequestevent.ts
+  - src/models/components/threedsecureresultrequestevent.ts
+  - src/models/components/antifrauddecisionevent.ts
+  - src/models/components/antifrauddecisionerrorevent.ts
+  - src/models/components/antifrauddecisionskippedevent.ts
+  - src/models/components/antifrauddecisionupdateevent.ts
+  - src/models/components/antifrauddecisionupdateerrorevent.ts
+  - src/models/components/antifraudtransactionstatusupdateevent.ts
+  - src/models/components/antifraudtransactionstatusupdateerrorevent.ts
+  - src/models/components/antifraudwebhookevent.ts
+  - src/models/components/digitalwalletapplepaytokendecrypted.ts
+  - src/models/components/digitalwalletclicktopaytokendecrypted.ts
+  - src/models/components/digitalwalletgooglepaytokendecrypted.ts
+  - src/models/components/giftcardredemptionfailed.ts
+  - src/models/components/giftcardredemptionsucceeded.ts
+  - src/models/components/giftcardrefundfailed.ts
+  - src/models/components/giftcardrefundsucceeded.ts
+  - src/models/components/networktokencryptogramprovisionfailed.ts
+  - src/models/components/networktokencryptogramprovisionsucceeded.ts
+  - src/models/components/networktokenprovisionfailed.ts
+  - src/models/components/networktokenprovisionsucceeded.ts
+  - src/models/components/paymentconnectorresponsetransactionauthorizationsucceededevent.ts
+  - src/models/components/paymentconnectorresponsetransactiondeclinedevent.ts
+  - src/models/components/paymentconnectorresponsetransactionauthorizationfailedevent.ts
+  - src/models/components/paymentconnectorresponsetransactioncapturedeclinedevent.ts
+  - src/models/components/paymentconnectorresponsetransactioncapturefailedevent.ts
+  - src/models/components/paymentconnectorresponsetransactioncapturesucceededevent.ts
+  - src/models/components/paymentconnectorresponsetransactionvoiddeclinedevent.ts
+  - src/models/components/paymentconnectorresponsetransactionvoidfailedevent.ts
+  - src/models/components/paymentconnectorresponsetransactionvoidsucceededevent.ts
+  - src/models/components/paymentconnectorexternaltransactionrequest.ts
   - src/models/components/refunds.ts
   - src/models/components/refund.ts
+  - src/models/components/transactionrefundrequest.ts
+  - src/models/components/transactionrefundallrequest.ts
   - src/models/components/transactionstatussummary.ts
   - src/models/components/flowrules.ts
   - src/models/components/flowrule.ts
@@ -156,93 +245,140 @@ generatedFiles:
   - src/models/components/flowproductcategoriescondition.ts
   - src/models/components/flowproducttypescondition.ts
   - src/models/components/flowskuscondition.ts
+  - src/models/components/flowrulecreaterequest.ts
+  - src/models/components/flowgiftcardbincondition.ts
+  - src/models/components/flowhasgiftcardscondition.ts
+  - src/models/components/flowruleupdaterequest.ts
   - src/models/components/flowruleoutcomes.ts
   - src/models/components/flowpaymentoptionoutcome.ts
   - src/models/components/flowcardtransactionroutingoutcome.ts
   - src/models/components/forcemittransformationoutcome.ts
   - src/models/components/useadditionalschemetransformationoutcome.ts
   - src/models/components/flowredirecttransactionroutingoutcome.ts
+  - src/models/components/giftcardservicecreaterequest.ts
+  - src/models/components/giftcardserviceupdaterequest.ts
+  - src/models/components/giftcardserviceverifyrequest.ts
   - src/models/components/giftcardservicedefinition.ts
   - src/models/components/antifraudservice.ts
+  - src/models/components/antifraudservicecreate.ts
+  - src/models/components/antifraudserviceupdate.ts
+  - src/models/components/antifraudservicedefinition.ts
   - src/models/components/reportexecutions.ts
   - src/models/components/reportexecution.ts
-  - src/models/components/reports.ts
   - src/models/components/report.ts
   - src/models/components/reportspec.ts
+  - src/models/components/reportcreate.ts
+  - src/models/components/reports.ts
+  - src/models/components/reportupdate.ts
   - src/models/components/reportexecutionurl.ts
   - src/models/components/roles.ts
   - src/models/components/role.ts
   - src/models/components/rolepermissions.ts
   - src/models/components/roleassignments.ts
   - src/models/components/roleassignment.ts
+  - src/models/components/roleassignmentrequest.ts
   - src/models/components/merchantaccounts.ts
   - src/models/components/merchantaccount.ts
+  - src/models/components/merchantaccountcreate.ts
+  - src/models/components/merchantaccountupdate.ts
   - src/models/components/paymentservicetokens.ts
   - src/models/components/paymentservicetoken.ts
   - src/models/components/paymentservicetokenrequest.ts
   - src/models/components/networktokens.ts
   - src/models/components/networktoken.ts
   - src/models/components/networktokenrequest.ts
+  - src/models/components/cryptogram.ts
+  - src/models/components/issuecryptogramrequest.ts
+  - src/models/components/healthdashboardstatus.ts
+  - src/models/components/healthdashboardtotal.ts
+  - src/models/components/healthdashboardtotalvolume.ts
   - src/models/components/security.ts
-  - src/models/errors/error401unauthorized.ts
-  - src/models/errors/error404notfound.ts
-  - src/models/errors/error409duplicaterecord.ts
-  - src/models/errors/error429toomanyrequests.ts
   - src/models/errors/error400badrequest.ts
+  - src/models/errors/error401unauthorized.ts
+  - src/models/errors/error409duplicaterecord.ts
+  - src/models/errors/error404notfound.ts
+  - src/models/errors/error429toomanyrequests.ts
+  - src/models/errors/error403forbidden.ts
   - src/models/operations/listauditlogs.ts
   - src/models/operations/listbuyers.ts
   - src/models/operations/getbuyer.ts
+  - src/models/operations/updatebuyer.ts
   - src/models/operations/deletebuyer.ts
   - src/models/operations/listbuyershippingdetails.ts
+  - src/models/operations/newbuyershippingdetail.ts
+  - src/models/operations/updatebuyershippingdetail.ts
   - src/models/operations/deletebuyershippingdetail.ts
   - src/models/operations/getbuyerbillingdetails.ts
+  - src/models/operations/updatebuyerbillingdetails.ts
   - src/models/operations/listbuyergiftcards.ts
   - src/models/operations/listgiftcards.ts
   - src/models/operations/getgiftcard.ts
   - src/models/operations/deletegiftcard.ts
   - src/models/operations/listbuyerpaymentmethods.ts
   - src/models/operations/listpaymentmethods.ts
+  - src/models/operations/newpaymentmethod.ts
   - src/models/operations/getpaymentmethod.ts
   - src/models/operations/deletepaymentmethod.ts
-  - src/models/operations/newcheckoutsession.ts
   - src/models/operations/getcheckoutsession.ts
   - src/models/operations/deletecheckoutsession.ts
+  - src/models/operations/updatecheckoutsession.ts
   - src/models/operations/updatecheckoutsessionfields.ts
   - src/models/operations/listpaymentoptions.ts
   - src/models/operations/listpaymentservices.ts
   - src/models/operations/getpaymentservice.ts
+  - src/models/operations/updatepaymentservice.ts
   - src/models/operations/deletepaymentservice.ts
+  - src/models/operations/createpaymentservicesession.ts
   - src/models/operations/listpaymentservicedefinitions.ts
   - src/models/operations/getpaymentservicedefinition.ts
+  - src/models/operations/createpaymentservicedefinitionsession.ts
   - src/models/operations/getdigitalwallet.ts
+  - src/models/operations/updatedigitalwallet.ts
   - src/models/operations/deletedigitalwallet.ts
+  - src/models/operations/adddigitalwalletdomainname.ts
+  - src/models/operations/deletedigitalwalletdomainname.ts
   - src/models/operations/listtransactions.ts
+  - src/models/operations/newtransaction.ts
+  - src/models/operations/gettransaction.ts
   - src/models/operations/gettransactionactions.ts
+  - src/models/operations/capturetransaction.ts
+  - src/models/operations/gettransactionevents.ts
   - src/models/operations/listtransactionrefunds.ts
+  - src/models/operations/newrefund.ts
+  - src/models/operations/refundall.ts
   - src/models/operations/getrefund.ts
+  - src/models/operations/getsinglerefund.ts
   - src/models/operations/gettransactionsummary.ts
+  - src/models/operations/voidtransaction.ts
   - src/models/operations/inboundwebhookdeprecated.ts
   - src/models/operations/inboundwebhook.ts
   - src/models/operations/inboundwebhooks.ts
   - src/models/operations/listflowrules.ts
+  - src/models/operations/newflowrule.ts
   - src/models/operations/getflowrule.ts
+  - src/models/operations/updateflowrule.ts
   - src/models/operations/deleteflowrule.ts
   - src/models/operations/listflowoutcomes.ts
   - src/models/operations/getgiftcardservice.ts
+  - src/models/operations/updategiftcardservice.ts
   - src/models/operations/deletegiftcardservice.ts
   - src/models/operations/getgiftcardservicedefinition.ts
   - src/models/operations/getantifraudservice.ts
+  - src/models/operations/updateantifraudservice.ts
   - src/models/operations/deleteantifraudservice.ts
+  - src/models/operations/getantifraudservicedefinition.ts
   - src/models/operations/listallreportexecutions.ts
   - src/models/operations/getreportexecution.ts
   - src/models/operations/listreports.ts
   - src/models/operations/getreport.ts
+  - src/models/operations/updatereport.ts
   - src/models/operations/listreportexecutions.ts
   - src/models/operations/generatedownloadurl.ts
   - src/models/operations/listroles.ts
   - src/models/operations/listroleassignments.ts
   - src/models/operations/deleteroleassignment.ts
   - src/models/operations/getmerchantaccount.ts
+  - src/models/operations/updatemerchantaccount.ts
   - src/models/operations/deletemerchantaccuont.ts
   - src/models/operations/getpaymentservicetokens.ts
   - src/models/operations/provisionpaymentservicetoken.ts
@@ -252,18 +388,27 @@ generatedFiles:
   - src/models/operations/getnetworktokens.ts
   - src/models/operations/provisionnetworktoken.ts
   - src/models/operations/deletenetworktoken.ts
+  - src/models/operations/issuecryptogram.ts
   - src/models/operations/suspendnetworktoken.ts
   - src/models/operations/resumenetworktoken.ts
+  - src/models/operations/makevaultforward.ts
+  - src/models/operations/gethealthdashboardtotal.ts
+  - src/models/operations/gethealthdashboardtotalvolume.ts
   - src/models/errors/index.ts
   - src/models/components/index.ts
   - src/models/operations/index.ts
+  - docs/models/components/type.md
+  - docs/models/components/accountupdaterjob.md
+  - docs/models/components/accountupdaterinquirysummarytype.md
+  - docs/models/components/accountupdaterinquirysummary.md
+  - docs/models/components/location.md
+  - docs/models/components/errordetail.md
+  - docs/models/components/accountupdaterjobcreate.md
   - docs/models/components/apilogs.md
   - docs/models/components/apilogtype.md
   - docs/models/components/details.md
   - docs/models/components/responsebody.md
   - docs/models/components/apilog.md
-  - docs/models/components/location.md
-  - docs/models/components/errordetail.md
   - docs/models/components/auditlogs.md
   - docs/models/components/auditlogtype.md
   - docs/models/components/auditlogaction.md
@@ -279,17 +424,33 @@ generatedFiles:
   - docs/models/components/buyertaxid.md
   - docs/models/components/buyerbillingdetails.md
   - docs/models/components/buyer.md
-  - docs/models/components/errorgenerictype.md
-  - docs/models/components/errorgeneric.md
+  - docs/models/components/buyerrequestaddress.md
+  - docs/models/components/buyerrequestkind.md
+  - docs/models/components/buyerrequesttaxid.md
+  - docs/models/components/billingdetailscreate.md
+  - docs/models/components/buyerrequest.md
+  - docs/models/components/buyerupdateaddress.md
+  - docs/models/components/buyerupdatekind.md
+  - docs/models/components/buyerupdatetaxid.md
+  - docs/models/components/billingdetailsupdate.md
+  - docs/models/components/buyerupdate.md
   - docs/models/components/shippingdetails.md
   - docs/models/components/shippingdetailtype.md
   - docs/models/components/shippingdetailaddress.md
   - docs/models/components/shippingdetail.md
+  - docs/models/components/shippingdetailrequestaddress.md
+  - docs/models/components/shippingdetailrequest.md
+  - docs/models/components/shippingdetailupdaterequestaddress.md
+  - docs/models/components/shippingdetailupdaterequest.md
   - docs/models/components/billingdetailstype.md
   - docs/models/components/billingdetailsaddress.md
   - docs/models/components/kind.md
   - docs/models/components/taxid.md
   - docs/models/components/billingdetails.md
+  - docs/models/components/billingdetailsupdaterequestaddress.md
+  - docs/models/components/billingdetailsupdaterequestkind.md
+  - docs/models/components/billingdetailsupdaterequesttaxid.md
+  - docs/models/components/billingdetailsupdaterequest.md
   - docs/models/components/giftcardssummary.md
   - docs/models/components/giftcardsummarytype.md
   - docs/models/components/balanceerrorcode.md
@@ -307,6 +468,11 @@ generatedFiles:
   - docs/models/components/giftcardservicetype.md
   - docs/models/components/giftcardservicefields.md
   - docs/models/components/giftcardservice.md
+  - docs/models/components/giftcardstorerequest.md
+  - docs/models/components/giftcardbalancesrequestitems.md
+  - docs/models/components/giftcardbalancesrequest.md
+  - docs/models/components/giftcardbalancenewrequest.md
+  - docs/models/components/giftcardbalancestoredrequest.md
   - docs/models/components/paymentmethodstokenized.md
   - docs/models/components/paymentmethodtokenizedtype.md
   - docs/models/components/method.md
@@ -328,10 +494,16 @@ generatedFiles:
   - docs/models/components/paymentmethodmethod.md
   - docs/models/components/mode.md
   - docs/models/components/paymentmethodscheme.md
-  - docs/models/components/paymentmethodstatus.md
+  - docs/models/components/status.md
   - docs/models/components/paymentmethod.md
   - docs/models/components/cardtype.md
   - docs/models/components/paymentmethoddetailscard.md
+  - docs/models/components/cardrequestmethod.md
+  - docs/models/components/cardrequest.md
+  - docs/models/components/redirectrequestmethod.md
+  - docs/models/components/redirectrequest.md
+  - docs/models/components/checkoutsessionrequestmethod.md
+  - docs/models/components/checkoutsessionrequest.md
   - docs/models/components/cardschemedefinitions.md
   - docs/models/components/cardschemedefinitiontype.md
   - docs/models/components/cardschemedefinition.md
@@ -351,6 +523,7 @@ generatedFiles:
   - docs/models/components/producttype.md
   - docs/models/components/cartitem.md
   - docs/models/components/checkoutsessioncreaterequest.md
+  - docs/models/components/checkoutsessionupdaterequest.md
   - docs/models/components/checkoutsessionsecurefieldsupdatepaymentmethod.md
   - docs/models/components/checkoutsessionsecurefieldsupdate.md
   - docs/models/components/checkoutsessionfieldscardpaymentmethodmethod.md
@@ -385,6 +558,31 @@ generatedFiles:
   - docs/models/components/paymentservicemethod.md
   - docs/models/components/paymentservicestatus.md
   - docs/models/components/paymentservice.md
+  - docs/models/components/paymentservicerequestfields.md
+  - docs/models/components/paymentservicerequestmerchantprofilesinglescheme.md
+  - docs/models/components/paymentservicerequestmerchantprofilemerchantprofilesinglescheme.md
+  - docs/models/components/paymentservicerequestmerchantprofilediscovermerchantprofilesinglescheme.md
+  - docs/models/components/paymentservicerequestmerchantprofilejcbmerchantprofilesinglescheme.md
+  - docs/models/components/paymentservicerequestmerchantprofilemastercardmerchantprofilesinglescheme.md
+  - docs/models/components/paymentservicerequestmerchantprofileunionpaymerchantprofilesinglescheme.md
+  - docs/models/components/paymentservicerequestmerchantprofilevisamerchantprofilesinglescheme.md
+  - docs/models/components/paymentservicerequestmerchantprofile.md
+  - docs/models/components/paymentservicerequest.md
+  - docs/models/components/paymentserviceupdatefields.md
+  - docs/models/components/paymentserviceupdatemerchantprofilesinglescheme.md
+  - docs/models/components/paymentserviceupdatemerchantprofilemerchantprofilesinglescheme.md
+  - docs/models/components/paymentserviceupdatemerchantprofilediscovermerchantprofilesinglescheme.md
+  - docs/models/components/paymentserviceupdatemerchantprofilejcbmerchantprofilesinglescheme.md
+  - docs/models/components/paymentserviceupdatemerchantprofilemastercardmerchantprofilesinglescheme.md
+  - docs/models/components/paymentserviceupdatemerchantprofileunionpaymerchantprofilesinglescheme.md
+  - docs/models/components/paymentserviceupdatemerchantprofilevisamerchantprofilesinglescheme.md
+  - docs/models/components/paymentserviceupdatemerchantprofile.md
+  - docs/models/components/paymentserviceupdate.md
+  - docs/models/components/paymentservicesessiontype.md
+  - docs/models/components/paymentservicesessionstatus.md
+  - docs/models/components/paymentservicesession.md
+  - docs/models/components/paymentserviceverifyfields.md
+  - docs/models/components/paymentserviceverify.md
   - docs/models/components/paymentservicedefinitions.md
   - docs/models/components/paymentservicedefinitiontype.md
   - docs/models/components/paymentservicedefinitionmethod.md
@@ -395,11 +593,20 @@ generatedFiles:
   - docs/models/components/paymentservicedefinition.md
   - docs/models/components/approvaluitarget.md
   - docs/models/components/paymentservicedefinitionconfiguration.md
-  - docs/models/components/digitalwallets.md
   - docs/models/components/digitalwallettype.md
   - docs/models/components/digitalwalletprovider.md
   - docs/models/components/digitalwallet.md
   - docs/models/components/digitalwalletclicktopayfields.md
+  - docs/models/components/provider.md
+  - docs/models/components/digitalwalletrequest.md
+  - docs/models/components/digitalwallets.md
+  - docs/models/components/digitalwalletupdate.md
+  - docs/models/components/digitalwalletdomain.md
+  - docs/models/components/applepaysessionrequest.md
+  - docs/models/components/clicktopaysession.md
+  - docs/models/components/clicktopaysessionrequest.md
+  - docs/models/components/googlepaysession.md
+  - docs/models/components/googlepaysessionrequest.md
   - docs/models/components/transactions.md
   - docs/models/components/transactionsummarytype.md
   - docs/models/components/transactionsummarybuyertype.md
@@ -430,6 +637,113 @@ generatedFiles:
   - docs/models/components/giftcardredemption.md
   - docs/models/components/giftcardsnapshottype.md
   - docs/models/components/giftcardsnapshot.md
+  - docs/models/components/transactiontype.md
+  - docs/models/components/avsresponsecode.md
+  - docs/models/components/transactionbuyertype.md
+  - docs/models/components/transactionbuyerbillingdetailstype.md
+  - docs/models/components/transactionbuyeraddress.md
+  - docs/models/components/transactionkind.md
+  - docs/models/components/transactiontaxid.md
+  - docs/models/components/transactionbillingdetails.md
+  - docs/models/components/transactionbuyersnapshot.md
+  - docs/models/components/cvvresponsecode.md
+  - docs/models/components/transactioninstrumenttype.md
+  - docs/models/components/transactionintent.md
+  - docs/models/components/intentoutcome.md
+  - docs/models/components/transactionmethod.md
+  - docs/models/components/transactionpaymentmethodtype.md
+  - docs/models/components/transactionapprovaltarget.md
+  - docs/models/components/transactioncardtype.md
+  - docs/models/components/transactioncard.md
+  - docs/models/components/transactionpaymentmethodmethod.md
+  - docs/models/components/transactionscheme.md
+  - docs/models/components/transactionpaymentmethodsnapshot.md
+  - docs/models/components/transactionpaymentservicetype.md
+  - docs/models/components/transactionpaymentservicemethod.md
+  - docs/models/components/transactionapaymentservice.md
+  - docs/models/components/transactionpaymentsource.md
+  - docs/models/components/transactionshippingdetailstype.md
+  - docs/models/components/transactionaddress.md
+  - docs/models/components/transactionshippingdetail.md
+  - docs/models/components/transactionstatementdescriptor.md
+  - docs/models/components/transactionstatus.md
+  - docs/models/components/transaction.md
+  - docs/models/components/threedsecuresummarystatus.md
+  - docs/models/components/threedsecuresummarymethod.md
+  - docs/models/components/threedsecureerrordata.md
+  - docs/models/components/responsedataauthenticationresponse.md
+  - docs/models/components/responsedatadirectoryresponse.md
+  - docs/models/components/threedsecuredataversion2.md
+  - docs/models/components/responsedatascheme.md
+  - docs/models/components/threedsecuredataversion1.md
+  - docs/models/components/responsedata.md
+  - docs/models/components/threedsecuresummary.md
+  - docs/models/components/giftcardservicesnapshottype.md
+  - docs/models/components/giftcardservicesnapshot.md
+  - docs/models/components/transactionnetworktokengooglepayrequestpaymentmethodmethod.md
+  - docs/models/components/paymentmethodcardsource.md
+  - docs/models/components/googlepaydecryptedtoken.md
+  - docs/models/components/transactionnetworktokenapplepayrequestpaymentmethodmethod.md
+  - docs/models/components/cardsource.md
+  - docs/models/components/applepaydecryptedtoken.md
+  - docs/models/components/transactionnetworktokenrequestpaymentmethodmethod.md
+  - docs/models/components/networktokenpaymentmethodrequest.md
+  - docs/models/components/transactioncheckoutsessionrequestpaymentmethodmethod.md
+  - docs/models/components/paymentmethodcheckoutsession.md
+  - docs/models/components/googlepayrequestpaymentmethodmethod.md
+  - docs/models/components/assurancedetails.md
+  - docs/models/components/googlepaypaymentmethodrequest.md
+  - docs/models/components/applepayrequestpaymentmethodmethod.md
+  - docs/models/components/token.md
+  - docs/models/components/applepaypaymentmethodrequest.md
+  - docs/models/components/tokenizedrequestpaymentmethodmethod.md
+  - docs/models/components/storedpaymentmethodrequest.md
+  - docs/models/components/transactionredirectrequestpaymentmethodmethod.md
+  - docs/models/components/redirect.md
+  - docs/models/components/transactioncardrequestpaymentmethodmethod.md
+  - docs/models/components/paymentmethodcard.md
+  - docs/models/components/transactionrequestpaymentmethod.md
+  - docs/models/components/userdevice.md
+  - docs/models/components/browserinfo.md
+  - docs/models/components/cybersourcecard.md
+  - docs/models/components/cybersourceantifraud.md
+  - docs/models/components/givingblockgivingblock.md
+  - docs/models/components/deliverytype.md
+  - docs/models/components/transactionrequesttype.md
+  - docs/models/components/basicitemdata.md
+  - docs/models/components/transactionrequestdeliverytype.md
+  - docs/models/components/deliverydetails.md
+  - docs/models/components/personaldetails.md
+  - docs/models/components/transactionrequestaddress.md
+  - docs/models/components/phone.md
+  - docs/models/components/comments.md
+  - docs/models/components/beneficiaries.md
+  - docs/models/components/cartitems.md
+  - docs/models/components/coupondiscountamount.md
+  - docs/models/components/totaldiscount.md
+  - docs/models/components/forterantifraud.md
+  - docs/models/components/adyencard.md
+  - docs/models/components/additionaldata.md
+  - docs/models/components/paypalpaypal.md
+  - docs/models/components/transactionrequestadditionaldata.md
+  - docs/models/components/paypalpaypalpaylater.md
+  - docs/models/components/stripeconnect.md
+  - docs/models/components/stripecard.md
+  - docs/models/components/connectionoptions.md
+  - docs/models/components/transactionrequestgiftcards.md
+  - docs/models/components/transactionrequestintent.md
+  - docs/models/components/paymentsource.md
+  - docs/models/components/statementdescriptor.md
+  - docs/models/components/threedsecuredata.md
+  - docs/models/components/transactionrequest.md
+  - docs/models/components/threedsecuredatav1scheme.md
+  - docs/models/components/threedsecuredatav1.md
+  - docs/models/components/directoryresponse.md
+  - docs/models/components/threedsecuredatav2scheme.md
+  - docs/models/components/authenticationresponse.md
+  - docs/models/components/threedsecuredatav2.md
+  - docs/models/components/transactiongiftcardnewrequest.md
+  - docs/models/components/transactiongiftcardstoredrequest.md
   - docs/models/components/actions.md
   - docs/models/components/actiontype.md
   - docs/models/components/id.md
@@ -450,11 +764,191 @@ generatedFiles:
   - docs/models/components/booleanoutcome.md
   - docs/models/components/outcome.md
   - docs/models/components/action.md
+  - docs/models/components/transactioncapturerequest.md
+  - docs/models/components/items.md
+  - docs/models/components/transactionhistoryevents.md
+  - docs/models/components/binlookuprequesttype.md
+  - docs/models/components/name.md
+  - docs/models/components/binlookuprequestscheme.md
+  - docs/models/components/binlookuprequestadditionalschemes.md
+  - docs/models/components/binlookuprequestcontext.md
+  - docs/models/components/binlookuprequest.md
+  - docs/models/components/threedsecureauthenticationrequesteventtype.md
+  - docs/models/components/threedsecureauthenticationrequesteventname.md
+  - docs/models/components/threedsecureauthenticationrequesteventcontext.md
+  - docs/models/components/threedsecureauthenticationrequestevent.md
+  - docs/models/components/threedsecuresuccesseventtype.md
+  - docs/models/components/threedsecuresuccesseventname.md
+  - docs/models/components/threedsecuresuccesseventmethod.md
+  - docs/models/components/threedsecuresuccesseventcontext.md
+  - docs/models/components/threedsecuresuccessevent.md
+  - docs/models/components/threedsecurerequesterroreventtype.md
+  - docs/models/components/threedsecurerequesterroreventname.md
+  - docs/models/components/threedsecurerequesterroreventcontext.md
+  - docs/models/components/threedsecurerequesterrorevent.md
+  - docs/models/components/threedsecurepreparationrequesteventtype.md
+  - docs/models/components/threedsecurepreparationrequesteventname.md
+  - docs/models/components/threedsecurepreparationrequesteventcontext.md
+  - docs/models/components/threedsecurepreparationrequestevent.md
+  - docs/models/components/threedsecureresultrequesteventtype.md
+  - docs/models/components/threedsecureresultrequesteventname.md
+  - docs/models/components/threedsecureresultrequesteventcontext.md
+  - docs/models/components/threedsecureresultrequestevent.md
+  - docs/models/components/antifrauddecisioneventtype.md
+  - docs/models/components/antifrauddecisioneventname.md
+  - docs/models/components/antifrauddecisioneventcontext.md
+  - docs/models/components/antifrauddecisionevent.md
+  - docs/models/components/antifrauddecisionerroreventtype.md
+  - docs/models/components/antifrauddecisionerroreventname.md
+  - docs/models/components/antifrauddecisionerroreventcontext.md
+  - docs/models/components/antifrauddecisionerrorevent.md
+  - docs/models/components/antifrauddecisionskippedeventtype.md
+  - docs/models/components/antifrauddecisionskippedeventname.md
+  - docs/models/components/antifrauddecisionskippedeventcontext.md
+  - docs/models/components/antifrauddecisionskippedevent.md
+  - docs/models/components/antifrauddecisionupdateeventtype.md
+  - docs/models/components/antifrauddecisionupdateeventname.md
+  - docs/models/components/antifrauddecisionupdateeventcontext.md
+  - docs/models/components/antifrauddecisionupdateevent.md
+  - docs/models/components/antifrauddecisionupdateerroreventtype.md
+  - docs/models/components/antifrauddecisionupdateerroreventname.md
+  - docs/models/components/antifrauddecisionupdateerroreventcontext.md
+  - docs/models/components/antifrauddecisionupdateerrorevent.md
+  - docs/models/components/antifraudtransactionstatusupdateeventtype.md
+  - docs/models/components/antifraudtransactionstatusupdateeventname.md
+  - docs/models/components/antifraudtransactionstatusupdateeventcontext.md
+  - docs/models/components/antifraudtransactionstatusupdateevent.md
+  - docs/models/components/antifraudtransactionstatusupdateerroreventtype.md
+  - docs/models/components/antifraudtransactionstatusupdateerroreventname.md
+  - docs/models/components/antifraudtransactionstatusupdateerroreventcontext.md
+  - docs/models/components/antifraudtransactionstatusupdateerrorevent.md
+  - docs/models/components/antifraudwebhookeventtype.md
+  - docs/models/components/antifraudwebhookeventname.md
+  - docs/models/components/antifraudwebhookeventcontext.md
+  - docs/models/components/antifraudwebhookevent.md
+  - docs/models/components/digitalwalletapplepaytokendecryptedtype.md
+  - docs/models/components/digitalwalletapplepaytokendecryptedname.md
+  - docs/models/components/digitalwalletapplepaytokendecryptedcontexttype.md
+  - docs/models/components/digitalwalletapplepaytokendecryptedcontext.md
+  - docs/models/components/digitalwalletapplepaytokendecrypted.md
+  - docs/models/components/digitalwalletclicktopaytokendecryptedtype.md
+  - docs/models/components/digitalwalletclicktopaytokendecryptedname.md
+  - docs/models/components/digitalwalletclicktopaytokendecryptedcontexttype.md
+  - docs/models/components/digitalwalletclicktopaytokendecryptedcontext.md
+  - docs/models/components/digitalwalletclicktopaytokendecrypted.md
+  - docs/models/components/digitalwalletgooglepaytokendecryptedtype.md
+  - docs/models/components/digitalwalletgooglepaytokendecryptedname.md
+  - docs/models/components/digitalwalletgooglepaytokendecryptedcontexttype.md
+  - docs/models/components/digitalwalletgooglepaytokendecryptedcontext.md
+  - docs/models/components/digitalwalletgooglepaytokendecrypted.md
+  - docs/models/components/giftcardredemptionfailedtype.md
+  - docs/models/components/giftcardredemptionfailedname.md
+  - docs/models/components/giftcardredemptionfailedcontext.md
+  - docs/models/components/giftcardredemptionfailed.md
+  - docs/models/components/giftcardredemptionsucceededtype.md
+  - docs/models/components/giftcardredemptionsucceededname.md
+  - docs/models/components/giftcardredemptionsucceededcontext.md
+  - docs/models/components/giftcardredemptionsucceeded.md
+  - docs/models/components/giftcardrefundfailedtype.md
+  - docs/models/components/giftcardrefundfailedname.md
+  - docs/models/components/giftcardrefundfailedcontext.md
+  - docs/models/components/giftcardrefundfailed.md
+  - docs/models/components/giftcardrefundsucceededtype.md
+  - docs/models/components/giftcardrefundsucceededname.md
+  - docs/models/components/giftcardrefundsucceededcontext.md
+  - docs/models/components/giftcardrefundsucceeded.md
+  - docs/models/components/networktokencryptogramprovisionfailedtype.md
+  - docs/models/components/networktokencryptogramprovisionfailedname.md
+  - docs/models/components/networktokencryptogramprovisionfailedcontext.md
+  - docs/models/components/networktokencryptogramprovisionfailed.md
+  - docs/models/components/networktokencryptogramprovisionsucceededtype.md
+  - docs/models/components/networktokencryptogramprovisionsucceededname.md
+  - docs/models/components/networktokencryptogramprovisionsucceededcontext.md
+  - docs/models/components/networktokencryptogramprovisionsucceeded.md
+  - docs/models/components/networktokenprovisionfailedtype.md
+  - docs/models/components/networktokenprovisionfailedname.md
+  - docs/models/components/networktokenprovisionfailedcontext.md
+  - docs/models/components/networktokenprovisionfailed.md
+  - docs/models/components/networktokenprovisionsucceededtype.md
+  - docs/models/components/networktokenprovisionsucceededname.md
+  - docs/models/components/networktokenprovisionsucceededcontext.md
+  - docs/models/components/networktokenprovisionsucceeded.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventname.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventstatus.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventinstrumenttype.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventavsresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventcvvresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventpaymentmethodscheme.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationsucceededevent.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventname.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventstatus.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventinstrumenttype.md
+  - docs/models/components/retryrule.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventavsresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventcvvresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventpaymentmethodscheme.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactiondeclinedevent.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventname.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventstatus.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventinstrumenttype.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventretryrule.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventavsresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventcvvresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventpaymentmethodscheme.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactionauthorizationfailedevent.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturedeclinedeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturedeclinedeventname.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturedeclinedeventavsresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturedeclinedeventcvvresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturedeclinedeventpaymentmethodscheme.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturedeclinedeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturedeclinedevent.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturefailedeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturefailedeventname.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturefailedeventavsresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturefailedeventcvvresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturefailedeventpaymentmethodscheme.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturefailedeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturefailedevent.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventname.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventstatus.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventinstrumenttype.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventavsresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventcvvresponsecode.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventpaymentmethodscheme.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactioncapturesucceededevent.md
+  - docs/models/components/paymentconnectorresponsetransactionvoiddeclinedeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactionvoiddeclinedeventname.md
+  - docs/models/components/paymentconnectorresponsetransactionvoiddeclinedeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactionvoiddeclinedevent.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidfailedeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidfailedeventname.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidfailedeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidfailedevent.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidsucceededeventtype.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidsucceededeventname.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidsucceededeventcontext.md
+  - docs/models/components/paymentconnectorresponsetransactionvoidsucceededevent.md
+  - docs/models/components/paymentconnectorexternaltransactionrequesttype.md
+  - docs/models/components/paymentconnectorexternaltransactionrequestname.md
+  - docs/models/components/paymentconnectorexternaltransactionrequestcontext.md
+  - docs/models/components/paymentconnectorexternaltransactionrequest.md
   - docs/models/components/refunds.md
   - docs/models/components/refundtype.md
   - docs/models/components/refundstatus.md
   - docs/models/components/targettype.md
   - docs/models/components/refund.md
+  - docs/models/components/transactionrefundrequesttargettype.md
+  - docs/models/components/transactionrefundrequest.md
+  - docs/models/components/transactionrefundallrequest.md
   - docs/models/components/transactionstatussummarytype.md
   - docs/models/components/transactionstatussummarystatus.md
   - docs/models/components/transactionstatussummary.md
@@ -557,6 +1051,18 @@ generatedFiles:
   - docs/models/components/flowskusconditionname.md
   - docs/models/components/flowskusconditionoperator.md
   - docs/models/components/flowskuscondition.md
+  - docs/models/components/flowrulecreaterequestconditions.md
+  - docs/models/components/flowrulecreaterequestoutcome.md
+  - docs/models/components/flowrulecreaterequest.md
+  - docs/models/components/flowgiftcardbinconditionname.md
+  - docs/models/components/flowgiftcardbinconditionoperator.md
+  - docs/models/components/flowgiftcardbincondition.md
+  - docs/models/components/flowhasgiftcardsconditionname.md
+  - docs/models/components/flowhasgiftcardsconditionoperator.md
+  - docs/models/components/flowhasgiftcardscondition.md
+  - docs/models/components/flowruleupdaterequestconditions.md
+  - docs/models/components/flowruleupdaterequestoutcome.md
+  - docs/models/components/flowruleupdaterequest.md
   - docs/models/components/flowruleoutcomesitems.md
   - docs/models/components/flowruleoutcomes.md
   - docs/models/components/flowpaymentoptionoutcometype.md
@@ -571,6 +1077,12 @@ generatedFiles:
   - docs/models/components/useadditionalschemetransformationoutcome.md
   - docs/models/components/flowredirecttransactionroutingoutcometype.md
   - docs/models/components/flowredirecttransactionroutingoutcome.md
+  - docs/models/components/giftcardservicecreaterequestfields.md
+  - docs/models/components/giftcardservicecreaterequest.md
+  - docs/models/components/giftcardserviceupdaterequestfields.md
+  - docs/models/components/giftcardserviceupdaterequest.md
+  - docs/models/components/giftcardserviceverifyrequestfields.md
+  - docs/models/components/giftcardserviceverifyrequest.md
   - docs/models/components/giftcardservicedefinitiontype.md
   - docs/models/components/giftcardservicedefinitionformat.md
   - docs/models/components/giftcardservicedefinitionfields.md
@@ -579,6 +1091,16 @@ generatedFiles:
   - docs/models/components/antifraudserviceantifraudservicedefinitionid.md
   - docs/models/components/antifraudservicefields.md
   - docs/models/components/antifraudservice.md
+  - docs/models/components/antifraudservicedefinitionid.md
+  - docs/models/components/antifraudservicecreatefields.md
+  - docs/models/components/antifraudservicecreate.md
+  - docs/models/components/antifraudserviceupdateantifraudservicedefinitionid.md
+  - docs/models/components/antifraudserviceupdatefields.md
+  - docs/models/components/antifraudserviceupdate.md
+  - docs/models/components/antifraudservicedefinitiontype.md
+  - docs/models/components/antifraudservicedefinitionformat.md
+  - docs/models/components/antifraudservicedefinitionfields.md
+  - docs/models/components/antifraudservicedefinition.md
   - docs/models/components/reportexecutions.md
   - docs/models/components/reportexecutiontype.md
   - docs/models/components/reportexecutionstatus.md
@@ -587,7 +1109,6 @@ generatedFiles:
   - docs/models/components/reportexecutioncreatortype.md
   - docs/models/components/reportsummary.md
   - docs/models/components/reportexecution.md
-  - docs/models/components/reports.md
   - docs/models/components/reporttype.md
   - docs/models/components/creatortype.md
   - docs/models/components/reportschedule.md
@@ -602,6 +1123,16 @@ generatedFiles:
   - docs/models/components/sort.md
   - docs/models/components/params.md
   - docs/models/components/reportspec.md
+  - docs/models/components/schedule.md
+  - docs/models/components/reportcreatemodel.md
+  - docs/models/components/reportcreatefields.md
+  - docs/models/components/reportcreatefilters.md
+  - docs/models/components/reportcreatesort.md
+  - docs/models/components/reportcreateparams.md
+  - docs/models/components/reportspecification.md
+  - docs/models/components/reportcreate.md
+  - docs/models/components/reports.md
+  - docs/models/components/reportupdate.md
   - docs/models/components/reportexecutionurl.md
   - docs/models/components/roles.md
   - docs/models/components/roletype.md
@@ -612,10 +1143,18 @@ generatedFiles:
   - docs/models/components/roleassignmentassigneetype.md
   - docs/models/components/assignee.md
   - docs/models/components/roleassignment.md
+  - docs/models/components/roleassignmentrequestrole.md
+  - docs/models/components/roleassignmentrequesttype.md
+  - docs/models/components/roleassignmentrequestassignee.md
+  - docs/models/components/roleassignmentrequest.md
   - docs/models/components/merchantaccounts.md
   - docs/models/components/merchantaccounttype.md
   - docs/models/components/loonacceptedschemes.md
   - docs/models/components/merchantaccount.md
+  - docs/models/components/merchantaccountcreateloonacceptedschemes.md
+  - docs/models/components/merchantaccountcreate.md
+  - docs/models/components/merchantaccountupdateloonacceptedschemes.md
+  - docs/models/components/merchantaccountupdate.md
   - docs/models/components/paymentservicetokens.md
   - docs/models/components/paymentservicetokentype.md
   - docs/models/components/paymentservicetokenstatus.md
@@ -626,138 +1165,172 @@ generatedFiles:
   - docs/models/components/networktokenstatus.md
   - docs/models/components/networktoken.md
   - docs/models/components/networktokenrequest.md
+  - docs/models/components/cryptogram.md
+  - docs/models/components/issuecryptogramrequest.md
+  - docs/models/components/healthdashboardstatustype.md
+  - docs/models/components/latestexecution.md
+  - docs/models/components/healthdashboardstatus.md
+  - docs/models/components/healthdashboardtotaltype.md
+  - docs/models/components/summary.md
+  - docs/models/components/current.md
+  - docs/models/components/previous.md
+  - docs/models/components/series.md
+  - docs/models/components/healthdashboardtotal.md
+  - docs/models/components/healthdashboardtotalvolumetype.md
+  - docs/models/components/healthdashboardtotalvolumesummary.md
+  - docs/models/components/healthdashboardtotalvolumecurrent.md
+  - docs/models/components/healthdashboardtotalvolumeprevious.md
+  - docs/models/components/healthdashboardtotalvolumeseries.md
+  - docs/models/components/healthdashboardtotalvolume.md
   - docs/models/components/security.md
+  - docs/models/errors/type.md
+  - docs/models/errors/code.md
+  - docs/models/errors/status.md
+  - docs/models/errors/error400badrequest.md
   - docs/models/errors/error401unauthorizedtype.md
   - docs/models/errors/error401unauthorizedcode.md
   - docs/models/errors/error401unauthorizedstatus.md
   - docs/models/errors/message.md
   - docs/models/errors/error401unauthorized.md
-  - docs/models/errors/error404notfoundtype.md
-  - docs/models/errors/error404notfoundcode.md
-  - docs/models/errors/error404notfoundstatus.md
-  - docs/models/errors/error404notfoundmessage.md
-  - docs/models/errors/error404notfound.md
   - docs/models/errors/error409duplicaterecordtype.md
   - docs/models/errors/error409duplicaterecordcode.md
   - docs/models/errors/error409duplicaterecordstatus.md
   - docs/models/errors/error409duplicaterecord.md
+  - docs/models/errors/error404notfoundtype.md
+  - docs/models/errors/error404notfoundcode.md
+  - docs/models/errors/error404notfoundstatus.md
+  - docs/models/errors/error404notfound.md
   - docs/models/errors/error429toomanyrequeststype.md
   - docs/models/errors/error429toomanyrequestscode.md
   - docs/models/errors/error429toomanyrequestsstatus.md
   - docs/models/errors/error429toomanyrequests.md
-  - docs/models/errors/type.md
-  - docs/models/errors/code.md
-  - docs/models/errors/status.md
-  - docs/models/errors/error400badrequest.md
+  - docs/models/errors/error403forbiddentype.md
+  - docs/models/errors/error403forbiddencode.md
+  - docs/models/errors/error403forbiddenstatus.md
+  - docs/models/errors/error403forbiddenmessage.md
+  - docs/models/errors/error403forbidden.md
   - docs/models/operations/action.md
   - docs/models/operations/listauditlogsrequest.md
   - docs/models/operations/listbuyersrequest.md
   - docs/models/operations/getbuyerrequest.md
-  - docs/models/operations/getbuyerresponse.md
+  - docs/models/operations/updatebuyerrequest.md
   - docs/models/operations/deletebuyerrequest.md
-  - docs/models/operations/deletebuyerresponse.md
   - docs/models/operations/listbuyershippingdetailsrequest.md
-  - docs/models/operations/listbuyershippingdetailsresponse.md
+  - docs/models/operations/newbuyershippingdetailrequest.md
+  - docs/models/operations/updatebuyershippingdetailrequest.md
   - docs/models/operations/deletebuyershippingdetailrequest.md
-  - docs/models/operations/deletebuyershippingdetailresponse.md
   - docs/models/operations/getbuyerbillingdetailsrequest.md
-  - docs/models/operations/getbuyerbillingdetailsresponse.md
+  - docs/models/operations/updatebuyerbillingdetailsrequest.md
   - docs/models/operations/listbuyergiftcardsrequest.md
   - docs/models/operations/listgiftcardsrequest.md
   - docs/models/operations/getgiftcardrequest.md
-  - docs/models/operations/getgiftcardresponse.md
   - docs/models/operations/deletegiftcardrequest.md
-  - docs/models/operations/deletegiftcardresponse.md
   - docs/models/operations/listbuyerpaymentmethodsrequest.md
   - docs/models/operations/status.md
   - docs/models/operations/listpaymentmethodsrequest.md
+  - docs/models/operations/newpaymentmethodrequestbody.md
   - docs/models/operations/getpaymentmethodrequest.md
   - docs/models/operations/deletepaymentmethodrequest.md
-  - docs/models/operations/deletepaymentmethodresponse.md
-  - docs/models/operations/newcheckoutsessionresponse.md
   - docs/models/operations/getcheckoutsessionrequest.md
-  - docs/models/operations/getcheckoutsessionresponse.md
   - docs/models/operations/deletecheckoutsessionrequest.md
+  - docs/models/operations/updatecheckoutsessionrequest.md
   - docs/models/operations/updatecheckoutsessionfieldsrequest.md
   - docs/models/operations/listpaymentoptionsrequest.md
   - docs/models/operations/method.md
   - docs/models/operations/listpaymentservicesrequest.md
   - docs/models/operations/getpaymentservicerequest.md
+  - docs/models/operations/updatepaymentservicerequest.md
   - docs/models/operations/deletepaymentservicerequest.md
-  - docs/models/operations/deletepaymentserviceresponse.md
+  - docs/models/operations/createpaymentservicesessionrequest.md
   - docs/models/operations/listpaymentservicedefinitionsrequest.md
   - docs/models/operations/getpaymentservicedefinitionrequest.md
+  - docs/models/operations/createpaymentservicedefinitionsessionrequest.md
   - docs/models/operations/getdigitalwalletrequest.md
+  - docs/models/operations/updatedigitalwalletrequest.md
   - docs/models/operations/deletedigitalwalletrequest.md
-  - docs/models/operations/deletedigitalwalletresponse.md
+  - docs/models/operations/adddigitalwalletdomainnamerequest.md
+  - docs/models/operations/deletedigitalwalletdomainnamerequest.md
   - docs/models/operations/queryparammethod.md
   - docs/models/operations/queryparamstatus.md
   - docs/models/operations/listtransactionsrequest.md
   - docs/models/operations/listtransactionsresponse.md
+  - docs/models/operations/newtransactionrequest.md
+  - docs/models/operations/gettransactionrequest.md
   - docs/models/operations/gettransactionactionsrequest.md
+  - docs/models/operations/capturetransactionrequest.md
+  - docs/models/operations/gettransactioneventsrequest.md
   - docs/models/operations/listtransactionrefundsrequest.md
+  - docs/models/operations/newrefundrequest.md
+  - docs/models/operations/refundallrequest.md
   - docs/models/operations/getrefundrequest.md
+  - docs/models/operations/getsinglerefundrequest.md
   - docs/models/operations/gettransactionsummaryrequest.md
+  - docs/models/operations/voidtransactionrequest.md
   - docs/models/operations/inboundwebhookdeprecatedrequest.md
-  - docs/models/operations/inboundwebhookdeprecatedresponse.md
   - docs/models/operations/inboundwebhookrequest.md
-  - docs/models/operations/inboundwebhookresponse.md
   - docs/models/operations/resource.md
   - docs/models/operations/inboundwebhooksrequest.md
-  - docs/models/operations/inboundwebhooksresponse.md
   - docs/models/operations/flow.md
   - docs/models/operations/listflowrulesrequest.md
+  - docs/models/operations/pathparamflow.md
+  - docs/models/operations/pathparamaction.md
+  - docs/models/operations/newflowrulerequest.md
   - docs/models/operations/getflowrulepathparamflow.md
   - docs/models/operations/getflowrulepathparamaction.md
   - docs/models/operations/getflowrulerequest.md
-  - docs/models/operations/getflowruleresponse.md
+  - docs/models/operations/updateflowrulepathparamflow.md
+  - docs/models/operations/updateflowrulepathparamaction.md
+  - docs/models/operations/updateflowrulerequest.md
   - docs/models/operations/deleteflowrulepathparamflow.md
   - docs/models/operations/deleteflowrulepathparamaction.md
   - docs/models/operations/deleteflowrulerequest.md
-  - docs/models/operations/deleteflowruleresponse.md
   - docs/models/operations/listflowoutcomespathparamflow.md
   - docs/models/operations/listflowoutcomespathparamaction.md
   - docs/models/operations/listflowoutcomesrequest.md
   - docs/models/operations/getgiftcardservicerequest.md
+  - docs/models/operations/updategiftcardservicerequest.md
   - docs/models/operations/deletegiftcardservicerequest.md
-  - docs/models/operations/deletegiftcardserviceresponse.md
   - docs/models/operations/getgiftcardservicedefinitionrequest.md
   - docs/models/operations/getantifraudservicerequest.md
-  - docs/models/operations/getantifraudserviceresponse.md
+  - docs/models/operations/updateantifraudservicerequest.md
   - docs/models/operations/deleteantifraudservicerequest.md
-  - docs/models/operations/deleteantifraudserviceresponse.md
+  - docs/models/operations/getantifraudservicedefinitionrequest.md
   - docs/models/operations/listallreportexecutionsqueryparamstatus.md
   - docs/models/operations/listallreportexecutionsrequest.md
   - docs/models/operations/getreportexecutionrequest.md
   - docs/models/operations/schedule.md
   - docs/models/operations/listreportsrequest.md
   - docs/models/operations/getreportrequest.md
+  - docs/models/operations/updatereportrequest.md
   - docs/models/operations/listreportexecutionsrequest.md
   - docs/models/operations/generatedownloadurlrequest.md
   - docs/models/operations/listrolesrequest.md
   - docs/models/operations/assigneetype.md
   - docs/models/operations/listroleassignmentsrequest.md
   - docs/models/operations/deleteroleassignmentrequest.md
-  - docs/models/operations/deleteroleassignmentresponse.md
   - docs/models/operations/getmerchantaccountrequest.md
-  - docs/models/operations/getmerchantaccountresponse.md
+  - docs/models/operations/updatemerchantaccountrequest.md
   - docs/models/operations/deletemerchantaccuontrequest.md
-  - docs/models/operations/deletemerchantaccuontresponse.md
   - docs/models/operations/getpaymentservicetokensrequest.md
   - docs/models/operations/provisionpaymentservicetokenrequest.md
   - docs/models/operations/deletepaymentservicetokenrequest.md
-  - docs/models/operations/deletepaymentservicetokenresponse.md
   - docs/models/operations/approvepaymentservicetokengetrequest.md
-  - docs/models/operations/approvepaymentservicetokengetresponse.md
   - docs/models/operations/approvepaymentservicetokenpostrequest.md
-  - docs/models/operations/approvepaymentservicetokenpostresponse.md
   - docs/models/operations/getnetworktokensrequest.md
   - docs/models/operations/provisionnetworktokenrequest.md
   - docs/models/operations/deletenetworktokenrequest.md
-  - docs/models/operations/deletenetworktokenresponse.md
+  - docs/models/operations/issuecryptogramrequest.md
   - docs/models/operations/suspendnetworktokenrequest.md
   - docs/models/operations/resumenetworktokenrequest.md
-  - docs/sdks/sdk/README.md
+  - docs/models/operations/xvaultforwardhttpmethod.md
+  - docs/models/operations/makevaultforwardrequest.md
+  - docs/models/operations/period.md
+  - docs/models/operations/gethealthdashboardtotalrequest.md
+  - docs/models/operations/queryparamperiod.md
+  - docs/models/operations/gethealthdashboardtotalvolumerequest.md
+  - docs/sdks/gr4vy/README.md
+  - docs/lib/utils/retryconfig.md
+  - docs/sdks/accountupdater/README.md
   - docs/sdks/apilogs/README.md
   - docs/sdks/auditlogs/README.md
   - docs/sdks/buyers/README.md
@@ -778,12 +1351,16 @@ generatedFiles:
   - docs/sdks/giftcardservices/README.md
   - docs/sdks/giftcardservicedefinitions/README.md
   - docs/sdks/antifraudservices/README.md
+  - docs/sdks/antifraudservicedefinitions/README.md
   - docs/sdks/reports/README.md
   - docs/sdks/roles/README.md
   - docs/sdks/merchantaccounts/README.md
   - docs/sdks/tokens/README.md
+  - docs/sdks/vaultforward/README.md
+  - docs/sdks/healthdashboard/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - CONTRIBUTING.md

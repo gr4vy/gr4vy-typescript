@@ -1,9 +1,15 @@
 workflowVersion: 1.0.0
+speakeasyVersion: latest
 sources:
     openapi:
         inputs:
             - location: https://gr4vy.github.io/gr4vy-openapi/openapi.v1.json
+        registry:
+            location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:
     first-target:
         target: typescript
         source: openapi
+        publish:
+            npm:
+                token: $npm_token

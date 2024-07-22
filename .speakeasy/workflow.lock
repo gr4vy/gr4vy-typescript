@@ -1,0 +1,28 @@
+speakeasyVersion: 1.344.1
+sources:
+    openapi:
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:6ff1837fd850051e081ba0a693211b50393ead0a08ef34b4ffdf4f0507c0704b
+        sourceBlobDigest: sha256:794f9ca22823badeafa54c3b11c7a45460678ccf41f57e0d5bb4fcc583df6735
+        tags:
+            - latest
+targets:
+    first-target:
+        source: openapi
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:6ff1837fd850051e081ba0a693211b50393ead0a08ef34b4ffdf4f0507c0704b
+        sourceBlobDigest: sha256:794f9ca22823badeafa54c3b11c7a45460678ccf41f57e0d5bb4fcc583df6735
+        outLocation: /Users/cbetta/code/gr4vy-org/gr4vy-js
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        openapi:
+            inputs:
+                - location: https://gr4vy.github.io/gr4vy-openapi/openapi.v1.json
+            registry:
+                location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
+    targets:
+        first-target:
+            target: typescript
+            source: openapi

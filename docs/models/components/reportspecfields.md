@@ -27,6 +27,9 @@
 | `RawResponseCode`                            | raw_response_code                            |
 | `RawResponseDescription`                     | raw_response_description                     |
 | `Metadata`                                   | metadata                                     |
+| `IsSubsequentPayment`                        | is_subsequent_payment                        |
+| `MerchantInitiated`                          | merchant_initiated                           |
+| `PaymentSource`                              | payment_source                               |
 | `ThreeDSecureStatus`                         | three_d_secure_status                        |
 | `ThreeDSecureEci`                            | three_d_secure_eci                           |
 | `ThreeDSecureAuthResp`                       | three_d_secure_auth_resp                     |
