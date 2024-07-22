@@ -19,38 +19,40 @@ export type PaymentOptionApprovalUI = {
 };
 
 /** @internal */
+export const PaymentOptionApprovalUI$inboundSchema: z.ZodType<
+    PaymentOptionApprovalUI,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    height: z.string().optional(),
+    width: z.string().optional(),
+});
+
+/** @internal */
+export type PaymentOptionApprovalUI$Outbound = {
+    height?: string | undefined;
+    width?: string | undefined;
+};
+
+/** @internal */
+export const PaymentOptionApprovalUI$outboundSchema: z.ZodType<
+    PaymentOptionApprovalUI$Outbound,
+    z.ZodTypeDef,
+    PaymentOptionApprovalUI
+> = z.object({
+    height: z.string().optional(),
+    width: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PaymentOptionApprovalUI$ {
-    export type Inbound = {
-        height?: string | undefined;
-        width?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentOptionApprovalUI, z.ZodTypeDef, Inbound> = z
-        .object({
-            height: z.string().optional(),
-            width: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.height === undefined ? null : { height: v.height }),
-                ...(v.width === undefined ? null : { width: v.width }),
-            };
-        });
-
-    export type Outbound = {
-        height?: string | undefined;
-        width?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentOptionApprovalUI> = z
-        .object({
-            height: z.string().optional(),
-            width: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.height === undefined ? null : { height: v.height }),
-                ...(v.width === undefined ? null : { width: v.width }),
-            };
-        });
+    /** @deprecated use `PaymentOptionApprovalUI$inboundSchema` instead. */
+    export const inboundSchema = PaymentOptionApprovalUI$inboundSchema;
+    /** @deprecated use `PaymentOptionApprovalUI$outboundSchema` instead. */
+    export const outboundSchema = PaymentOptionApprovalUI$outboundSchema;
+    /** @deprecated use `PaymentOptionApprovalUI$Outbound` instead. */
+    export type Outbound = PaymentOptionApprovalUI$Outbound;
 }

@@ -15,32 +15,34 @@ export type RolePermissions = {
 };
 
 /** @internal */
+export const RolePermissions$inboundSchema: z.ZodType<RolePermissions, z.ZodTypeDef, unknown> =
+    z.object({
+        allow: z.array(z.string()).optional(),
+    });
+
+/** @internal */
+export type RolePermissions$Outbound = {
+    allow?: Array<string> | undefined;
+};
+
+/** @internal */
+export const RolePermissions$outboundSchema: z.ZodType<
+    RolePermissions$Outbound,
+    z.ZodTypeDef,
+    RolePermissions
+> = z.object({
+    allow: z.array(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace RolePermissions$ {
-    export type Inbound = {
-        allow?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RolePermissions, z.ZodTypeDef, Inbound> = z
-        .object({
-            allow: z.array(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.allow === undefined ? null : { allow: v.allow }),
-            };
-        });
-
-    export type Outbound = {
-        allow?: Array<string> | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RolePermissions> = z
-        .object({
-            allow: z.array(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.allow === undefined ? null : { allow: v.allow }),
-            };
-        });
+    /** @deprecated use `RolePermissions$inboundSchema` instead. */
+    export const inboundSchema = RolePermissions$inboundSchema;
+    /** @deprecated use `RolePermissions$outboundSchema` instead. */
+    export const outboundSchema = RolePermissions$outboundSchema;
+    /** @deprecated use `RolePermissions$Outbound` instead. */
+    export type Outbound = RolePermissions$Outbound;
 }

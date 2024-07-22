@@ -1,13 +1,15 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-    const sdk = new SDK({
-        bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    const result = await gr4vy.accountUpdater.newAccountUpdaterJob({
+        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
     });
-
-    const result = await sdk.apiLogs.listApiLogs();
 
     // Handle the result
     console.log(result);

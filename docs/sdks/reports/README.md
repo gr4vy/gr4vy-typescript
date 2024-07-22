@@ -34,8 +34,10 @@ in CSV format.
 
 * [listAllReportExecutions](#listallreportexecutions) - List all report executions
 * [getReportExecution](#getreportexecution) - Get report execution
+* [newReport](#newreport) - New report
 * [listReports](#listreports) - List reports
 * [getReport](#getreport) - Get report
+* [updateReport](#updatereport) - Update report
 * [listReportExecutions](#listreportexecutions) - List executions for report
 * [generateDownloadUrl](#generatedownloadurl) - Generate report download URL
 
@@ -46,23 +48,22 @@ Returns a list of executions belonging to any report.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
-import { ListAllReportExecutionsQueryParamStatus } from "@gr4vy/sdk/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const result = await sdk.reports.listAllReportExecutions({
+  const result = await gr4vy.reports.listAllReportExecutions({
     cursor: "ZXhhbXBsZTE",
     limit: 1,
     createdAtGte: "2022-01-01T12:00:00+08:00",
     createdAtLte: "2022-01-01T12:00:00+08:00",
     reportName: "Failed+Authorizations+042022",
     status: [
-      ListAllReportExecutionsQueryParamStatus.Succeeded,
-      ListAllReportExecutionsQueryParamStatus.Failed,
+      "succeeded",
+      "failed",
     ],
     creatorId: [
       "dba3bc4c-c5f2-477f-bfb0-abd61f89f979",
@@ -83,11 +84,12 @@ run();
 | `request`                                                                                                                                                                      | [operations.ListAllReportExecutionsRequest](../../models/operations/listallreportexecutionsrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 
 ### Response
 
-**Promise<[components.ReportExecutions](../../models/components/reportexecutions.md)>**
+**Promise\<[components.ReportExecutions](../../models/components/reportexecutions.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -102,16 +104,14 @@ Retrieves the details of a single report execution.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const reportExecutionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  
-  const result = await sdk.reports.getReportExecution(reportExecutionId);
+  const result = await gr4vy.reports.getReportExecution("8724fd24-5489-4a5d-90fd-0604df7d3b83");
 
   // Handle the result
   console.log(result)
@@ -127,17 +127,101 @@ run();
 | `reportExecutionId`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique ID for a report execution.                                                                                                                                          | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[components.ReportExecution](../../models/components/reportexecution.md)>**
+**Promise\<[components.ReportExecution](../../models/components/reportexecution.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## newReport
+
+Creates a new report.
+
+
+### Example Usage
+
+```typescript
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await gr4vy.reports.newReport({
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    schedule: "monthly",
+    scheduleEnabled: true,
+    scheduleTimezone: "Europe/London",
+    spec: {
+      model: "transactions",
+      params: {
+        fields: [
+          "id",
+          "external_identifier",
+        ],
+        filters: {
+          status: [
+            "authorization_failed",
+          ],
+          currency: [
+            "GBP",
+          ],
+          method: [
+            "card",
+          ],
+          scheme: [
+            "visa",
+          ],
+          threeDSecureEci: [
+            "05",
+          ],
+          threeDSecureAuthResp: [
+            "N",
+          ],
+        },
+        sort: [
+          {},
+        ],
+      },
+    },
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.ReportCreate](../../models/components/reportcreate.md)                                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+
+### Response
+
+**Promise\<[components.Report](../../models/components/report.md)\>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
+| errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## listReports
@@ -147,21 +231,20 @@ Returns a list of reports.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
-import { Schedule } from "@gr4vy/sdk/models/operations";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const result = await sdk.reports.listReports({
+  const result = await gr4vy.reports.listReports({
     cursor: "ZXhhbXBsZTE",
     limit: 1,
     name: "Failed+Authorizations+042022",
     schedule: [
-      Schedule.Once,
-      Schedule.Monthly,
+      "once",
+      "monthly",
     ],
     scheduleEnabled: true,
   });
@@ -180,11 +263,12 @@ run();
 | `request`                                                                                                                                                                      | [operations.ListReportsRequest](../../models/operations/listreportsrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 
 ### Response
 
-**Promise<[components.Reports](../../models/components/reports.md)>**
+**Promise\<[components.Reports](../../models/components/reports.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -199,16 +283,14 @@ Retrieves the details of a single report.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  
-  const result = await sdk.reports.getReport(reportId);
+  const result = await gr4vy.reports.getReport("8724fd24-5489-4a5d-90fd-0604df7d3b83");
 
   // Handle the result
   console.log(result)
@@ -224,15 +306,66 @@ run();
 | `reportId`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique ID for a report.                                                                                                                                                    | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[components.Report](../../models/components/report.md)>**
+**Promise\<[components.Report](../../models/components/report.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| errors.Error401Unauthorized | 401                         | application/json            |
+| errors.Error404NotFound     | 404                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
+
+## updateReport
+
+Updates a report. This is mostly used with scheduled reports.
+
+### Example Usage
+
+```typescript
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await gr4vy.reports.updateReport("8724fd24-5489-4a5d-90fd-0604df7d3b83", {
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    scheduleEnabled: true,
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `reportId`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique ID for a report.                                                                                                                                                    | [object Object]                                                                                                                                                                |
+| `reportUpdate`                                                                                                                                                                 | [components.ReportUpdate](../../models/components/reportupdate.md)                                                                                                             | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise\<[components.Report](../../models/components/report.md)\>**
+### Errors
+
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
@@ -246,18 +379,14 @@ there may be more.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  const cursor = "ZXhhbXBsZTE";
-  const limit = 1;
-  
-  const result = await sdk.reports.listReportExecutions(reportId, cursor, limit);
+  const result = await gr4vy.reports.listReportExecutions("8724fd24-5489-4a5d-90fd-0604df7d3b83", "ZXhhbXBsZTE", 1);
 
   // Handle the result
   console.log(result)
@@ -275,11 +404,12 @@ run();
 | `limit`                                                                                                                                                                                                                                                                                                                                     | *number*                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                          | Defines the maximum number of items to return for this request.                                                                                                                                                                                                                                                                             | [object Object]                                                                                                                                                                                                                                                                                                                             |
 | `options`                                                                                                                                                                                                                                                                                                                                   | RequestOptions                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                          | Used to set various options for making HTTP requests.                                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                             |
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                      | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                          | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                             |
+| `options.retries`                                                                                                                                                                                                                                                                                                                           | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                          | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                             |
 
 
 ### Response
 
-**Promise<[components.ReportExecutions](../../models/components/reportexecutions.md)>**
+**Promise\<[components.ReportExecutions](../../models/components/reportexecutions.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -295,17 +425,14 @@ execution.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const reportId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  const reportExecutionId = "8724fd24-5489-4a5d-90fd-0604df7d3b83";
-  
-  const result = await sdk.reports.generateDownloadUrl(reportId, reportExecutionId);
+  const result = await gr4vy.reports.generateDownloadUrl("8724fd24-5489-4a5d-90fd-0604df7d3b83", "8724fd24-5489-4a5d-90fd-0604df7d3b83");
 
   // Handle the result
   console.log(result)
@@ -322,11 +449,12 @@ run();
 | `reportExecutionId`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique ID for a report execution.                                                                                                                                          | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise<[components.ReportExecutionUrl](../../models/components/reportexecutionurl.md)>**
+**Promise\<[components.ReportExecutionUrl](../../models/components/reportexecutionurl.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

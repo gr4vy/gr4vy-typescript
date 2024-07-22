@@ -29,14 +29,14 @@ Checkout flow rules are used to limit these result.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const result = await sdk.paymentOptions.listPaymentOptions({
+  const result = await gr4vy.paymentOptions.listPaymentOptions({
     country: "US",
     currency: "USD",
     amount: 500,
@@ -58,11 +58,12 @@ run();
 | `request`                                                                                                                                                                      | [operations.ListPaymentOptionsRequest](../../models/operations/listpaymentoptionsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 
 ### Response
 
-**Promise<[components.PaymentOptions](../../models/components/paymentoptions.md)>**
+**Promise\<[components.PaymentOptions](../../models/components/paymentoptions.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -84,15 +85,14 @@ Checkout flow rules are used to limit these result.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@gr4vy/sdk";
-import { ProductType } from "@gr4vy/sdk/models/components";
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
 
 async function run() {
-  const sdk = new SDK({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
-  });
-
-  const result = await sdk.paymentOptions.postListPaymentOptions({
+  const result = await gr4vy.paymentOptions.postListPaymentOptions({
     amount: 1299,
     locale: "en-US",
     currency: "USD",
@@ -111,10 +111,7 @@ async function run() {
         sku: "sku-789123",
         productUrl: "https://example.com/items/gopro",
         imageUrl: "https://example.com/images/items/gopro.png",
-        categories: [
-          "<value>",
-        ],
-        productType: ProductType.Physical,
+        productType: "physical",
       },
     ],
   });
@@ -133,11 +130,12 @@ run();
 | `request`                                                                                                                                                                      | [components.PaymentOptionsRequest](../../models/components/paymentoptionsrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 
 ### Response
 
-**Promise<[components.PaymentOptions](../../models/components/paymentoptions.md)>**
+**Promise\<[components.PaymentOptions](../../models/components/paymentoptions.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

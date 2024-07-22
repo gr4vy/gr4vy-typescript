@@ -14,56 +14,38 @@ export type InboundWebhookDeprecatedRequest = {
     hook: string;
 };
 
-export type InboundWebhookDeprecatedResponse = {};
+/** @internal */
+export const InboundWebhookDeprecatedRequest$inboundSchema: z.ZodType<
+    InboundWebhookDeprecatedRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    hook: z.string(),
+});
 
 /** @internal */
+export type InboundWebhookDeprecatedRequest$Outbound = {
+    hook: string;
+};
+
+/** @internal */
+export const InboundWebhookDeprecatedRequest$outboundSchema: z.ZodType<
+    InboundWebhookDeprecatedRequest$Outbound,
+    z.ZodTypeDef,
+    InboundWebhookDeprecatedRequest
+> = z.object({
+    hook: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace InboundWebhookDeprecatedRequest$ {
-    export type Inbound = {
-        hook: string;
-    };
-
-    export const inboundSchema: z.ZodType<InboundWebhookDeprecatedRequest, z.ZodTypeDef, Inbound> =
-        z
-            .object({
-                hook: z.string(),
-            })
-            .transform((v) => {
-                return {
-                    hook: v.hook,
-                };
-            });
-
-    export type Outbound = {
-        hook: string;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        InboundWebhookDeprecatedRequest
-    > = z
-        .object({
-            hook: z.string(),
-        })
-        .transform((v) => {
-            return {
-                hook: v.hook,
-            };
-        });
-}
-
-/** @internal */
-export namespace InboundWebhookDeprecatedResponse$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<InboundWebhookDeprecatedResponse, z.ZodTypeDef, Inbound> =
-        z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        InboundWebhookDeprecatedResponse
-    > = z.object({});
+    /** @deprecated use `InboundWebhookDeprecatedRequest$inboundSchema` instead. */
+    export const inboundSchema = InboundWebhookDeprecatedRequest$inboundSchema;
+    /** @deprecated use `InboundWebhookDeprecatedRequest$outboundSchema` instead. */
+    export const outboundSchema = InboundWebhookDeprecatedRequest$outboundSchema;
+    /** @deprecated use `InboundWebhookDeprecatedRequest$Outbound` instead. */
+    export type Outbound = InboundWebhookDeprecatedRequest$Outbound;
 }

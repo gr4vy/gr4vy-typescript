@@ -24,38 +24,37 @@ export type ListRolesRequest = {
 };
 
 /** @internal */
+export const ListRolesRequest$inboundSchema: z.ZodType<ListRolesRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        limit: z.number().int().default(20),
+        cursor: z.string().optional(),
+    });
+
+/** @internal */
+export type ListRolesRequest$Outbound = {
+    limit: number;
+    cursor?: string | undefined;
+};
+
+/** @internal */
+export const ListRolesRequest$outboundSchema: z.ZodType<
+    ListRolesRequest$Outbound,
+    z.ZodTypeDef,
+    ListRolesRequest
+> = z.object({
+    limit: z.number().int().default(20),
+    cursor: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ListRolesRequest$ {
-    export type Inbound = {
-        limit?: number | undefined;
-        cursor?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListRolesRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
-
-    export type Outbound = {
-        limit: number;
-        cursor?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListRolesRequest> = z
-        .object({
-            limit: z.number().int().default(20),
-            cursor: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                limit: v.limit,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-            };
-        });
+    /** @deprecated use `ListRolesRequest$inboundSchema` instead. */
+    export const inboundSchema = ListRolesRequest$inboundSchema;
+    /** @deprecated use `ListRolesRequest$outboundSchema` instead. */
+    export const outboundSchema = ListRolesRequest$outboundSchema;
+    /** @deprecated use `ListRolesRequest$Outbound` instead. */
+    export type Outbound = ListRolesRequest$Outbound;
 }
