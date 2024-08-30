@@ -2,6 +2,24 @@
 
 The result after decrypting an Apple Pay token.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletApplePayTokenDecrypted } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletApplePayTokenDecrypted = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "digital-wallet-apple-pay-token-decrypted",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        version: "EC_v1",
+        type: "dpan",
+        currencyCode: "840",
+        paymentDataType: "3DSecure",
+    },
+};
+```
 
 ## Fields
 

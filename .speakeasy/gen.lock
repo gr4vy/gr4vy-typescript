@@ -1,23 +1,25 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 3ea196ed8eac47483eef4e6599d1891f
+  docChecksum: dd9de5cda28873ab1246c4b99ef9a6d5
   docVersion: 1.1.0-beta
-  speakeasyVersion: 1.344.1
-  generationVersion: 2.376.2
-  releaseVersion: 0.2.1
-  configChecksum: 2dace8f5b0b0798afc403d67a3195838
+  speakeasyVersion: 1.383.2
+  generationVersion: 2.407.0
+  releaseVersion: 0.3.0
+  configChecksum: 9a3d42944e6cb24cb500990504dcf700
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.5
-    core: 3.11.7
+    constsAndDefaults: 0.1.11
+    core: 3.14.1
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
+    envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -28,8 +30,139 @@ features:
     retries: 2.83.0
     sdkHooks: 0.1.0
     serverIDs: 2.81.2
-    unions: 2.85.6
+    unions: 2.85.7
 generatedFiles:
+  - src/funcs/accountUpdaterNewAccountUpdaterJob.ts
+  - src/funcs/apiLogsListAPILogs.ts
+  - src/funcs/auditLogsListAuditLogs.ts
+  - src/funcs/buyersListBuyers.ts
+  - src/funcs/buyersNewBuyer.ts
+  - src/funcs/buyersGetBuyer.ts
+  - src/funcs/buyersUpdateBuyer.ts
+  - src/funcs/buyersDeleteBuyer.ts
+  - src/funcs/buyersListBuyerShippingDetails.ts
+  - src/funcs/buyersNewBuyerShippingDetail.ts
+  - src/funcs/buyersUpdateBuyerShippingDetail.ts
+  - src/funcs/buyersDeleteBuyerShippingDetail.ts
+  - src/funcs/buyersGetBuyerBillingDetails.ts
+  - src/funcs/buyersUpdateBuyerBillingDetails.ts
+  - src/funcs/giftCardsListBuyerGiftCards.ts
+  - src/funcs/giftCardsListGiftCards.ts
+  - src/funcs/giftCardsStoreGiftCard.ts
+  - src/funcs/giftCardsGetGiftCard.ts
+  - src/funcs/giftCardsDeleteGiftCard.ts
+  - src/funcs/giftCardsCheckGiftCardBalances.ts
+  - src/funcs/paymentMethodsListBuyerPaymentMethods.ts
+  - src/funcs/paymentMethodsListPaymentMethods.ts
+  - src/funcs/paymentMethodsNewPaymentMethod.ts
+  - src/funcs/paymentMethodsGetPaymentMethod.ts
+  - src/funcs/paymentMethodsDeletePaymentMethod.ts
+  - src/funcs/cardSchemeDefinitionsListCardSchemeDefinitions.ts
+  - src/funcs/connectionsListConnections.ts
+  - src/funcs/connectionDefinitionsListConnectionDefinitions.ts
+  - src/funcs/checkoutSessionsNewCheckoutSession.ts
+  - src/funcs/checkoutSessionsGetCheckoutSession.ts
+  - src/funcs/checkoutSessionsDeleteCheckoutSession.ts
+  - src/funcs/checkoutSessionsUpdateCheckoutSession.ts
+  - src/funcs/checkoutSessionsUpdateCheckoutSessionFields.ts
+  - src/funcs/paymentMethodDefinitionsListPaymentMethodDefinitions.ts
+  - src/funcs/paymentOptionsListPaymentOptions.ts
+  - src/funcs/paymentOptionsPostListPaymentOptions.ts
+  - src/funcs/paymentServicesListPaymentServices.ts
+  - src/funcs/paymentServicesNewPaymentService.ts
+  - src/funcs/paymentServicesGetPaymentService.ts
+  - src/funcs/paymentServicesUpdatePaymentService.ts
+  - src/funcs/paymentServicesDeletePaymentService.ts
+  - src/funcs/paymentServicesCreatePaymentServiceSession.ts
+  - src/funcs/paymentServicesVerifyPaymentService.ts
+  - src/funcs/paymentServiceDefinitionsListPaymentServiceDefinitions.ts
+  - src/funcs/paymentServiceDefinitionsGetPaymentServiceDefinition.ts
+  - src/funcs/paymentServiceDefinitionsCreatePaymentServiceDefinitionSession.ts
+  - src/funcs/digitalWalletsNewDigitalWallet.ts
+  - src/funcs/digitalWalletsListDigitalWallets.ts
+  - src/funcs/digitalWalletsGetDigitalWallet.ts
+  - src/funcs/digitalWalletsUpdateDigitalWallet.ts
+  - src/funcs/digitalWalletsDeleteDigitalWallet.ts
+  - src/funcs/digitalWalletsAddDigitalWalletDomainName.ts
+  - src/funcs/digitalWalletsDeleteDigitalWalletDomainName.ts
+  - src/funcs/digitalWalletsNewApplePaySession.ts
+  - src/funcs/digitalWalletsNewClickToPaySession.ts
+  - src/funcs/digitalWalletsNewGooglePaySession.ts
+  - src/funcs/transactionsListTransactions.ts
+  - src/funcs/transactionsNewTransaction.ts
+  - src/funcs/transactionsGetTransaction.ts
+  - src/funcs/transactionsGetTransactionActions.ts
+  - src/funcs/transactionsCaptureTransaction.ts
+  - src/funcs/transactionsGetTransactionEvents.ts
+  - src/funcs/transactionsListTransactionRefunds.ts
+  - src/funcs/transactionsNewRefund.ts
+  - src/funcs/transactionsRefundAll.ts
+  - src/funcs/transactionsGetRefund.ts
+  - src/funcs/transactionsGetSingleRefund.ts
+  - src/funcs/transactionsGetTransactionSummary.ts
+  - src/funcs/transactionsVoidTransaction.ts
+  - src/funcs/webhooksInboundWebhookDeprecated.ts
+  - src/funcs/webhooksInboundWebhook.ts
+  - src/funcs/webhooksInboundWebhooks.ts
+  - src/funcs/flowListFlowRules.ts
+  - src/funcs/flowNewFlowRule.ts
+  - src/funcs/flowGetFlowRule.ts
+  - src/funcs/flowUpdateFlowRule.ts
+  - src/funcs/flowDeleteFlowRule.ts
+  - src/funcs/flowListFlowOutcomes.ts
+  - src/funcs/giftCardServicesNewGiftCardService.ts
+  - src/funcs/giftCardServicesGetGiftCardService.ts
+  - src/funcs/giftCardServicesUpdateGiftCardService.ts
+  - src/funcs/giftCardServicesDeleteGiftCardService.ts
+  - src/funcs/giftCardServicesVerifyGiftCardService.ts
+  - src/funcs/giftCardServiceDefinitionsGetGiftCardServiceDefinition.ts
+  - src/funcs/antiFraudServicesNewAntiFraudService.ts
+  - src/funcs/antiFraudServicesGetAntiFraudService.ts
+  - src/funcs/antiFraudServicesUpdateAntiFraudService.ts
+  - src/funcs/antiFraudServicesDeleteAntiFraudService.ts
+  - src/funcs/antiFraudServiceDefinitionsGetAntiFraudServiceDefinition.ts
+  - src/funcs/reportsListAllReportExecutions.ts
+  - src/funcs/reportsGetReportExecution.ts
+  - src/funcs/reportsNewReport.ts
+  - src/funcs/reportsListReports.ts
+  - src/funcs/reportsGetReport.ts
+  - src/funcs/reportsUpdateReport.ts
+  - src/funcs/reportsListReportExecutions.ts
+  - src/funcs/reportsGenerateDownloadUrl.ts
+  - src/funcs/rolesListRoles.ts
+  - src/funcs/rolesListRoleAssignments.ts
+  - src/funcs/rolesNewRoleAssignment.ts
+  - src/funcs/rolesDeleteRoleAssignment.ts
+  - src/funcs/merchantAccountsListMerchantAccounts.ts
+  - src/funcs/merchantAccountsNewMerchantAccount.ts
+  - src/funcs/merchantAccountsGetMerchantAccount.ts
+  - src/funcs/merchantAccountsUpdateMerchantAccount.ts
+  - src/funcs/merchantAccountsDeleteMerchantAccuont.ts
+  - src/funcs/tokensGetPaymentServiceTokens.ts
+  - src/funcs/tokensProvisionPaymentServiceToken.ts
+  - src/funcs/tokensDeletePaymentServiceToken.ts
+  - src/funcs/tokensApprovePaymentServiceTokenGet.ts
+  - src/funcs/tokensApprovePaymentServiceTokenPost.ts
+  - src/funcs/tokensGetNetworkTokens.ts
+  - src/funcs/tokensProvisionNetworkToken.ts
+  - src/funcs/tokensDeleteNetworkToken.ts
+  - src/funcs/tokensIssueCryptogram.ts
+  - src/funcs/tokensSuspendNetworkToken.ts
+  - src/funcs/tokensResumeNetworkToken.ts
+  - src/funcs/vaultForwardDefinitionsListVaultForwardDefinitions.ts
+  - src/funcs/vaultForwardConfigurationsListVaultForwardConfig.ts
+  - src/funcs/vaultForwardConfigurationsNewVaultForwardConfig.ts
+  - src/funcs/vaultForwardConfigurationsGetVaultForwardConfig.ts
+  - src/funcs/vaultForwardConfigurationsDeleteVaultForwardConfig.ts
+  - src/funcs/vaultForwardConfigurationsListVaultForwardConfigAuthentication.ts
+  - src/funcs/vaultForwardConfigurationsAddVaultForwardConfigAuthentication.ts
+  - src/funcs/vaultForwardConfigurationsGetVaultForwardConfigAuthentication.ts
+  - src/funcs/vaultForwardConfigurationsUpdateVaultForwardConfigAuthentication.ts
+  - src/funcs/vaultForwardConfigurationsDeleteVaultForwardConfigAuthentication.ts
+  - src/funcs/vaultForwardMakeVaultForward.ts
+  - src/funcs/healthDashboardGetHealthDashboardStatus.ts
+  - src/funcs/healthDashboardGetHealthDashboardTotal.ts
+  - src/funcs/healthDashboardGetHealthDashboardTotalVolume.ts
   - src/sdk/accountupdater.ts
   - src/sdk/apilogs.ts
   - src/sdk/auditlogs.ts
@@ -56,20 +189,26 @@ generatedFiles:
   - src/sdk/roles.ts
   - src/sdk/merchantaccounts.ts
   - src/sdk/tokens.ts
+  - src/sdk/vaultforwarddefinitions.ts
+  - src/sdk/vaultforwardconfigurations.ts
   - src/sdk/vaultforward.ts
   - src/sdk/healthdashboard.ts
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
+  - FUNCTIONS.md
   - RUNTIMES.md
   - jsr.json
   - package.json
+  - src/core.ts
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -77,10 +216,13 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/models/errors/httpclienterrors.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
+  - src/types/constdatetime.ts
   - src/types/enums.ts
+  - src/types/fp.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
@@ -289,6 +431,16 @@ generatedFiles:
   - src/models/components/networktokenrequest.ts
   - src/models/components/cryptogram.ts
   - src/models/components/issuecryptogramrequest.ts
+  - src/models/components/pciforwarddefinitions.ts
+  - src/models/components/pciforwarddefinition.ts
+  - src/models/components/pciforwardauthenticationdefinition.ts
+  - src/models/components/pciforwardconfigs.ts
+  - src/models/components/pciforwardconfig.ts
+  - src/models/components/pciforwardconfigauthentication.ts
+  - src/models/components/pciforwardconfigrequest.ts
+  - src/models/components/pciforwardconfigauthentications.ts
+  - src/models/components/pciforwardconfigauthenticationrequest.ts
+  - src/models/components/pciforwardconfigauthenticationupdate.ts
   - src/models/components/healthdashboardstatus.ts
   - src/models/components/healthdashboardtotal.ts
   - src/models/components/healthdashboardtotalvolume.ts
@@ -391,6 +543,14 @@ generatedFiles:
   - src/models/operations/issuecryptogram.ts
   - src/models/operations/suspendnetworktoken.ts
   - src/models/operations/resumenetworktoken.ts
+  - src/models/operations/listvaultforwardconfig.ts
+  - src/models/operations/getvaultforwardconfig.ts
+  - src/models/operations/deletevaultforwardconfig.ts
+  - src/models/operations/listvaultforwardconfigauthentication.ts
+  - src/models/operations/addvaultforwardconfigauthentication.ts
+  - src/models/operations/getvaultforwardconfigauthentication.ts
+  - src/models/operations/updatevaultforwardconfigauthentication.ts
+  - src/models/operations/deletevaultforwardconfigauthentication.ts
   - src/models/operations/makevaultforward.ts
   - src/models/operations/gethealthdashboardtotal.ts
   - src/models/operations/gethealthdashboardtotalvolume.ts
@@ -444,7 +604,7 @@ generatedFiles:
   - docs/models/components/shippingdetailupdaterequest.md
   - docs/models/components/billingdetailstype.md
   - docs/models/components/billingdetailsaddress.md
-  - docs/models/components/kind.md
+  - docs/models/components/billingdetailskind.md
   - docs/models/components/taxid.md
   - docs/models/components/billingdetails.md
   - docs/models/components/billingdetailsupdaterequestaddress.md
@@ -706,6 +866,8 @@ generatedFiles:
   - docs/models/components/userdevice.md
   - docs/models/components/browserinfo.md
   - docs/models/components/cybersourcecard.md
+  - docs/models/components/cybersourcekcp.md
+  - docs/models/components/cybersourceideal.md
   - docs/models/components/cybersourceantifraud.md
   - docs/models/components/givingblockgivingblock.md
   - docs/models/components/deliverytype.md
@@ -1167,6 +1329,26 @@ generatedFiles:
   - docs/models/components/networktokenrequest.md
   - docs/models/components/cryptogram.md
   - docs/models/components/issuecryptogramrequest.md
+  - docs/models/components/pciforwarddefinitions.md
+  - docs/models/components/pciforwarddefinition.md
+  - docs/models/components/kind.md
+  - docs/models/components/pciforwardauthenticationdefinitionformat.md
+  - docs/models/components/pciforwardauthenticationdefinitionfields.md
+  - docs/models/components/pciforwardauthenticationdefinition.md
+  - docs/models/components/pciforwardconfigs.md
+  - docs/models/components/pciforwardconfigcreator.md
+  - docs/models/components/pciforwardconfig.md
+  - docs/models/components/pciforwardconfigauthenticationkind.md
+  - docs/models/components/pciforwardconfigauthenticationfields.md
+  - docs/models/components/creator.md
+  - docs/models/components/pciforwardconfigauthentication.md
+  - docs/models/components/pciforwardconfigrequest.md
+  - docs/models/components/pciforwardconfigauthentications.md
+  - docs/models/components/pciforwardconfigauthenticationrequestkind.md
+  - docs/models/components/pciforwardconfigauthenticationrequestfields.md
+  - docs/models/components/pciforwardconfigauthenticationrequest.md
+  - docs/models/components/pciforwardconfigauthenticationupdatefields.md
+  - docs/models/components/pciforwardconfigauthenticationupdate.md
   - docs/models/components/healthdashboardstatustype.md
   - docs/models/components/latestexecution.md
   - docs/models/components/healthdashboardstatus.md
@@ -1322,6 +1504,14 @@ generatedFiles:
   - docs/models/operations/issuecryptogramrequest.md
   - docs/models/operations/suspendnetworktokenrequest.md
   - docs/models/operations/resumenetworktokenrequest.md
+  - docs/models/operations/listvaultforwardconfigrequest.md
+  - docs/models/operations/getvaultforwardconfigrequest.md
+  - docs/models/operations/deletevaultforwardconfigrequest.md
+  - docs/models/operations/listvaultforwardconfigauthenticationrequest.md
+  - docs/models/operations/addvaultforwardconfigauthenticationrequest.md
+  - docs/models/operations/getvaultforwardconfigauthenticationrequest.md
+  - docs/models/operations/updatevaultforwardconfigauthenticationrequest.md
+  - docs/models/operations/deletevaultforwardconfigauthenticationrequest.md
   - docs/models/operations/xvaultforwardhttpmethod.md
   - docs/models/operations/makevaultforwardrequest.md
   - docs/models/operations/period.md
@@ -1356,6 +1546,8 @@ generatedFiles:
   - docs/sdks/roles/README.md
   - docs/sdks/merchantaccounts/README.md
   - docs/sdks/tokens/README.md
+  - docs/sdks/vaultforwarddefinitions/README.md
+  - docs/sdks/vaultforwardconfigurations/README.md
   - docs/sdks/vaultforward/README.md
   - docs/sdks/healthdashboard/README.md
   - USAGE.md

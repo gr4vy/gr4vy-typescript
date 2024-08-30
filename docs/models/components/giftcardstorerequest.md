@@ -2,6 +2,18 @@
 
 The gift card details to store.
 
+## Example Usage
+
+```typescript
+import { GiftCardStoreRequest } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardStoreRequest = {
+    number: "4123455541234561234",
+    pin: "1234",
+    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    buyerExternalIdentifier: "user-789123",
+};
+```
 
 ## Fields
 

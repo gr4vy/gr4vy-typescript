@@ -2,6 +2,28 @@
 
 An configured gift card service.
 
+## Example Usage
+
+```typescript
+import { GiftCardService } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardService = {
+    type: "gift-card-service",
+    id: "6c020bf3-179b-4f4f-858d-84e39e196e0f",
+    merchantAccountId: "default",
+    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+    displayName: "Qwikcilver UK",
+    active: true,
+    fields: [
+        {
+            key: "secret_key",
+            value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+    createdAt: new Date("2012-12-12T10:53:43+00:00"),
+    updatedAt: new Date("2012-12-12T10:53:43+00:00"),
+};
+```
 
 ## Fields
 

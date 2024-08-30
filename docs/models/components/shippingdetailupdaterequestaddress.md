@@ -2,6 +2,23 @@
 
 The physical shipping address associated to this buyer.
 
+## Example Usage
+
+```typescript
+import { ShippingDetailUpdateRequestAddress } from "@gr4vy/sdk/models/components";
+
+let value: ShippingDetailUpdateRequestAddress = {
+    city: "London",
+    country: "GB",
+    postalCode: "789123",
+    state: "Greater London",
+    stateCode: "GB-LND",
+    houseNumberOrName: "10",
+    line1: "10 Oxford Street",
+    line2: "New Oxford Court",
+    organization: "Gr4vy",
+};
+```
 
 ## Fields
 

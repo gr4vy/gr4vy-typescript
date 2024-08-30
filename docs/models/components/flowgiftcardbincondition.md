@@ -2,6 +2,17 @@
 
 Gift card BIN range conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowGiftCardBINCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowGiftCardBINCondition = {
+    name: "gift_card_bin",
+    operator: "is_one_of",
+    value: ["414100000-424299999"],
+};
+```
 
 ## Fields
 

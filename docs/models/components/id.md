@@ -2,11 +2,16 @@
 
 The identifier for the action.
 
+## Example Usage
+
+```typescript
+import { Id } from "@gr4vy/sdk/models/components";
+
+let value: Id = "route-transaction";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `DeclineEarly`     | decline-early      |
-| `RouteTransaction` | route-transaction  |
-| `Skip3ds`          | skip-3ds           |
+```typescript
+"decline-early" | "route-transaction" | "skip-3ds"
+```

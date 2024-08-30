@@ -1,5 +1,16 @@
 # ListBuyersRequest
 
+## Example Usage
+
+```typescript
+import { ListBuyersRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListBuyersRequest = {
+    externalIdentifier: "user-12345",
+    limit: 1,
+    cursor: "ZXhhbXBsZTE",
+};
+```
 
 ## Fields
 

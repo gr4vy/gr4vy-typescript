@@ -3,6 +3,16 @@
 Defines the outcome of a rule in a flow where the result
 is a boolean.
 
+## Example Usage
+
+```typescript
+import { BooleanOutcome } from "@gr4vy/sdk/models/components";
+
+let value: BooleanOutcome = {
+    type: "boolean",
+    result: false,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # FlowRuleCreateRequestOutcome
 
+## Example Usage
+
+```typescript
+import { FlowRuleCreateRequestOutcome } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleCreateRequestOutcome = {
+    type: "three-d-secure",
+    result: "attempt",
+};
+```
 
 ## Supported Types
 

@@ -1,5 +1,12 @@
 # AdditionalData
 
+## Example Usage
+
+```typescript
+import { AdditionalData } from "@gr4vy/sdk/models/components";
+
+let value: AdditionalData = {};
+```
 
 ## Fields
 

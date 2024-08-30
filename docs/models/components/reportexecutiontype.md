@@ -2,9 +2,16 @@
 
 The type of this resource. Is always `report-execution`.
 
+## Example Usage
+
+```typescript
+import { ReportExecutionType } from "@gr4vy/sdk/models/components";
+
+let value: ReportExecutionType = "report-execution";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `ReportExecution` | report-execution  |
+```typescript
+"report-execution"
+```

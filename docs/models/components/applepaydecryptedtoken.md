@@ -2,6 +2,20 @@
 
 Details for an Apple Pay decrypted token payment method.
 
+## Example Usage
+
+```typescript
+import { ApplePayDecryptedToken } from "@gr4vy/sdk/models/components";
+
+let value: ApplePayDecryptedToken = {
+    method: "network-token",
+    token: "<value>",
+    expirationDate: "11/25",
+    eci: "05",
+    cardSource: "apple-pay",
+    cardSuffix: "1234",
+};
+```
 
 ## Fields
 

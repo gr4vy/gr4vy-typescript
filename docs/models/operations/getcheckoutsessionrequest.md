@@ -1,5 +1,14 @@
 # GetCheckoutSessionRequest
 
+## Example Usage
+
+```typescript
+import { GetCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetCheckoutSessionRequest = {
+    checkoutSessionId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+};
+```
 
 ## Fields
 

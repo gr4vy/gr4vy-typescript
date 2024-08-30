@@ -1,5 +1,14 @@
 # GetPaymentServiceDefinitionRequest
 
+## Example Usage
+
+```typescript
+import { GetPaymentServiceDefinitionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetPaymentServiceDefinitionRequest = {
+    paymentServiceDefinitionId: "stripe-card",
+};
+```
 
 ## Fields
 

@@ -2,9 +2,16 @@
 
 The type of this resource. Is always `account-updater-job`.
 
+## Example Usage
+
+```typescript
+import { Type } from "@gr4vy/sdk/models/components";
+
+let value: Type = "account-updater-job";
+```
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `AccountUpdaterJob` | account-updater-job |
+```typescript
+"account-updater-job"
+```

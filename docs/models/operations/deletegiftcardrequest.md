@@ -1,5 +1,14 @@
 # DeleteGiftCardRequest
 
+## Example Usage
+
+```typescript
+import { DeleteGiftCardRequest } from "@gr4vy/sdk/models/operations";
+
+let value: DeleteGiftCardRequest = {
+    giftCardId: "e6cdf979-87e2-4796-8ff6-9784d5aed893",
+};
+```
 
 ## Fields
 

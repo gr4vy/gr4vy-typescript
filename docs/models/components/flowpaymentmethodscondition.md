@@ -3,6 +3,17 @@
 Payment methods condition with a name, operator, and value. This
 condition is only for use with the `decline-early` action.
 
+## Example Usage
+
+```typescript
+import { FlowPaymentMethodsCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowPaymentMethodsCondition = {
+    name: "payment_method",
+    operator: "is_one_of",
+    value: ["paypal", "shopeepay"],
+};
+```
 
 ## Fields
 

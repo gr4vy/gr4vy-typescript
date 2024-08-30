@@ -1,5 +1,17 @@
 # CaptureTransactionRequest
 
+## Example Usage
+
+```typescript
+import { CaptureTransactionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: CaptureTransactionRequest = {
+    transactionId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    transactionCaptureRequest: {
+        amount: 1299,
+    },
+};
+```
 
 ## Fields
 

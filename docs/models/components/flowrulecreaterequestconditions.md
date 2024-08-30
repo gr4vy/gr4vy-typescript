@@ -1,5 +1,16 @@
 # FlowRuleCreateRequestConditions
 
+## Example Usage
+
+```typescript
+import { FlowRuleCreateRequestConditions } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleCreateRequestConditions = {
+    name: "payment_method",
+    operator: "is_one_of",
+    value: ["paypal", "shopeepay"],
+};
+```
 
 ## Supported Types
 

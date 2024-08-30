@@ -1,11 +1,15 @@
 # Group
 
+## Example Usage
+
+```typescript
+import { Group } from "@gr4vy/sdk/models/components";
+
+let value: Group = "payment-service";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `AntiFraudService` | anti-fraud-service |
-| `DigitalWallet`    | digital-wallet     |
-| `GiftCardService`  | gift-card-service  |
-| `PaymentService`   | payment-service    |
+```typescript
+"anti-fraud-service" | "digital-wallet" | "gift-card-service" | "payment-service"
+```

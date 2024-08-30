@@ -3,6 +3,13 @@
 Additional options to be passed through to Stripe when processing
 transactions.
 
+## Example Usage
+
+```typescript
+import { StripeCard } from "@gr4vy/sdk/models/components";
+
+let value: StripeCard = {};
+```
 
 ## Fields
 

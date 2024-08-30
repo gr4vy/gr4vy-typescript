@@ -2,6 +2,16 @@
 
 The assignee to associate with the role assignment.
 
+## Example Usage
+
+```typescript
+import { RoleAssignmentRequestAssignee } from "@gr4vy/sdk/models/components";
+
+let value: RoleAssignmentRequestAssignee = {
+    type: "user",
+    id: "42aae896-8ce2-4a60-b80a-5f6ae1dfbbd4",
+};
+```
 
 ## Fields
 

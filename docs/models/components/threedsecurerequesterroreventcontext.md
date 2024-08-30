@@ -2,6 +2,16 @@
 
 3DS post-authentication context.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureRequestErrorEventContext } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureRequestErrorEventContext = {
+    url: "https://3dserver.example/auth",
+    reason: "TIMEOUT",
+};
+```
 
 ## Fields
 

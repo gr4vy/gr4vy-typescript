@@ -2,6 +2,16 @@
 
 Defines the outcome of a rule in a flow for 3DS.
 
+## Example Usage
+
+```typescript
+import { FlowRuleThreeDSecureOutcome } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleThreeDSecureOutcome = {
+    type: "three-d-secure",
+    result: "attempt",
+};
+```
 
 ## Fields
 

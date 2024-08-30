@@ -13,12 +13,16 @@ flows that support them.
 the `route-transaction` action.
 
 
+## Example Usage
+
+```typescript
+import { PathParamAction } from "@gr4vy/sdk/models/operations";
+
+let value: PathParamAction = "select-payment-options";
+```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `SelectPaymentOptions` | select-payment-options |
-| `DeclineEarly`         | decline-early          |
-| `RouteTransaction`     | route-transaction      |
-| `Skip3ds`              | skip-3ds               |
+```typescript
+"select-payment-options" | "decline-early" | "route-transaction" | "skip-3ds"
+```

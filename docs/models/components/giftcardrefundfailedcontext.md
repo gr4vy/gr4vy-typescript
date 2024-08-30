@@ -2,6 +2,15 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { GiftCardRefundFailedContext } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardRefundFailedContext = {
+    reason: "Network Error",
+};
+```
 
 ## Fields
 

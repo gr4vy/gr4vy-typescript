@@ -2,9 +2,16 @@
 
 `400`.
 
+## Example Usage
+
+```typescript
+import { Status } from "@gr4vy/sdk/models/errors";
+
+let value: Status = 400;
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `FourHundred` | 400           |
+```typescript
+400
+```

@@ -2,6 +2,13 @@
 
 Merchant profile for Dankort.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequestMerchantProfileMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequestMerchantProfileMerchantProfileSingleScheme = {};
+```
 
 ## Fields
 

@@ -1,5 +1,16 @@
 # FlowRuleUpdateRequestConditions
 
+## Example Usage
+
+```typescript
+import { FlowRuleUpdateRequestConditions } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleUpdateRequestConditions = {
+    name: "payment_method",
+    operator: "equal_to",
+    value: "card",
+};
+```
 
 ## Supported Types
 

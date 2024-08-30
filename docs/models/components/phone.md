@@ -1,5 +1,14 @@
 # Phone
 
+## Example Usage
+
+```typescript
+import { Phone } from "@gr4vy/sdk/models/components";
+
+let value: Phone = {
+    phone: "15557654321",
+};
+```
 
 ## Fields
 

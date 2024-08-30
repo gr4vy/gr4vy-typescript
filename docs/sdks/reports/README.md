@@ -77,6 +77,49 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsListAllReportExecutions } from "@gr4vy/sdk/funcs/reportsListAllReportExecutions.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsListAllReportExecutions(gr4vy, {
+    cursor: "ZXhhbXBsZTE",
+    limit: 1,
+    createdAtGte: "2022-01-01T12:00:00+08:00",
+    createdAtLte: "2022-01-01T12:00:00+08:00",
+    reportName: "Failed+Authorizations+042022",
+    status: [
+      "succeeded",
+      "failed",
+    ],
+    creatorId: [
+      "dba3bc4c-c5f2-477f-bfb0-abd61f89f979",
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -86,16 +129,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.ReportExecutions](../../models/components/reportexecutions.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## getReportExecution
 
@@ -120,6 +164,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsGetReportExecution } from "@gr4vy/sdk/funcs/reportsGetReportExecution.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsGetReportExecution(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -129,10 +203,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.ReportExecution](../../models/components/reportexecution.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -140,6 +214,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## newReport
 
@@ -203,6 +278,74 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsNewReport } from "@gr4vy/sdk/funcs/reportsNewReport.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsNewReport(gr4vy, {
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    schedule: "monthly",
+    scheduleEnabled: true,
+    scheduleTimezone: "Europe/London",
+    spec: {
+      model: "transactions",
+      params: {
+        fields: [
+          "id",
+          "external_identifier",
+        ],
+        filters: {
+          status: [
+            "authorization_failed",
+          ],
+          currency: [
+            "GBP",
+          ],
+          method: [
+            "card",
+          ],
+          scheme: [
+            "visa",
+          ],
+          threeDSecureEci: [
+            "05",
+          ],
+          threeDSecureAuthResp: [
+            "N",
+          ],
+        },
+        sort: [
+          {},
+        ],
+      },
+    },
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -212,10 +355,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.Report](../../models/components/report.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -223,6 +366,7 @@ run();
 | errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## listReports
 
@@ -256,6 +400,45 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsListReports } from "@gr4vy/sdk/funcs/reportsListReports.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsListReports(gr4vy, {
+    cursor: "ZXhhbXBsZTE",
+    limit: 1,
+    name: "Failed+Authorizations+042022",
+    schedule: [
+      "once",
+      "monthly",
+    ],
+    scheduleEnabled: true,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -265,16 +448,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.Reports](../../models/components/reports.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## getReport
 
@@ -299,6 +483,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsGetReport } from "@gr4vy/sdk/funcs/reportsGetReport.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsGetReport(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -308,10 +522,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.Report](../../models/components/report.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -319,6 +533,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## updateReport
 
@@ -347,6 +562,40 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsUpdateReport } from "@gr4vy/sdk/funcs/reportsUpdateReport.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsUpdateReport(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83", {
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    scheduleEnabled: true,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -357,10 +606,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.Report](../../models/components/report.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -369,6 +618,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## listReportExecutions
 
@@ -395,6 +645,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsListReportExecutions } from "@gr4vy/sdk/funcs/reportsListReportExecutions.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsListReportExecutions(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83", "ZXhhbXBsZTE", 1);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                                                                                                                                                                                   | Type                                                                                                                                                                                                                                                                                                                                        | Required                                                                                                                                                                                                                                                                                                                                    | Description                                                                                                                                                                                                                                                                                                                                 | Example                                                                                                                                                                                                                                                                                                                                     |
@@ -406,16 +686,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                      | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                          | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                             |
 | `options.retries`                                                                                                                                                                                                                                                                                                                           | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                          | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                             |
 
-
 ### Response
 
 **Promise\<[components.ReportExecutions](../../models/components/reportexecutions.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## generateDownloadUrl
 
@@ -441,6 +722,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { reportsGenerateDownloadUrl } from "@gr4vy/sdk/funcs/reportsGenerateDownloadUrl.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await reportsGenerateDownloadUrl(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83", "8724fd24-5489-4a5d-90fd-0604df7d3b83");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -451,10 +762,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.ReportExecutionUrl](../../models/components/reportexecutionurl.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

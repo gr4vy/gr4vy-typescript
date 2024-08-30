@@ -4,6 +4,21 @@ Pass through 3-D Secure data to support external 3-D Secure authorisation.
 If using an external 3-D Secure provider, you should not pass
 a `redirect_url` in the `payment_method` object for a transaction.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureData } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureData = {
+    cavv: "3q2+78r+ur7erb7vyv66vv8=",
+    eci: "05",
+    version: "<value>",
+    directoryResponse: "C",
+    scheme: "visa",
+    authenticationResponse: "Y",
+    directoryTransactionId: "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+};
+```
 
 ## Supported Types
 

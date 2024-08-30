@@ -2,9 +2,16 @@
 
 The type of action outcome for the given rule.
 
+## Example Usage
+
+```typescript
+import { FlowRuleMethodOutcomeType } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleMethodOutcomeType = "list";
+```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `List` | list   |
+```typescript
+"list"
+```

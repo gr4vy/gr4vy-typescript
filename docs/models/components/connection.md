@@ -2,6 +2,28 @@
 
 A configured connection.
 
+## Example Usage
+
+```typescript
+import { Connection } from "@gr4vy/sdk/models/components";
+
+let value: Connection = {
+    id: "7b5e02bd-fa53-4ef0-b11e-1609d0f48cc5",
+    type: "connection",
+    name: "My Connection",
+    active: true,
+    definition: {
+        id: "stripe-card",
+        type: "connection-definition",
+        name: "Stripe",
+        count: 1,
+        group: "payment-service",
+        category: "card",
+        iconUrl: "https://cdn.gr4vy.app/stripe.svg",
+        provider: "Stripe",
+    },
+};
+```
 
 ## Fields
 

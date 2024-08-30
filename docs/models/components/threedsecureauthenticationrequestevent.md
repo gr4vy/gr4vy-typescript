@@ -2,6 +2,29 @@
 
 The result and raw data for a 3DS authorization call.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureAuthenticationRequestEvent } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureAuthenticationRequestEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "three-d-secure-authentication-request",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        url: "https://3dserver.example/auth",
+        request: "{}",
+        response: "{}",
+        responseStatusCode: 200,
+        cavv: "+9YDsoSIbiEgO+PFMdgGSF17Uqk=",
+        eci: "05",
+        directoryResponse: "C",
+        directoryTransactionId: "8875884a-ac2f-42cb-b3f0-09b3ea3c0042",
+        version: "2.2.0",
+    },
+};
+```
 
 ## Fields
 

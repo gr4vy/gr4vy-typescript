@@ -1,5 +1,14 @@
 # FlowRuleServiceOutcomeTransformations
 
+## Example Usage
+
+```typescript
+import { FlowRuleServiceOutcomeTransformations } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleServiceOutcomeTransformations = {
+    name: "force_mit",
+};
+```
 
 ## Fields
 

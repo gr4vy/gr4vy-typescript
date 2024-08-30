@@ -2,6 +2,17 @@
 
 Card type condition with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowCardTypeCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowCardTypeCondition = {
+    name: "card_type",
+    operator: "is_one_of",
+    value: ["credit"],
+};
+```
 
 ## Fields
 

@@ -2,6 +2,20 @@
 
 Card payment method details to use in a transaction.
 
+## Example Usage
+
+```typescript
+import { PaymentMethodCard } from "@gr4vy/sdk/models/components";
+
+let value: PaymentMethodCard = {
+    method: "card",
+    number: "4111111111111111",
+    expirationDate: "11/25",
+    securityCode: "123",
+    externalIdentifier: "card-323444",
+    redirectUrl: "https://example.com/callback",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,21 @@
 
 Amount range conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowAmountRangeCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowAmountRangeCondition = {
+    name: "amount",
+    operator: "is_between",
+    value: {
+        currency: "USD",
+        min: 1,
+        max: 200,
+    },
+};
+```
 
 ## Fields
 

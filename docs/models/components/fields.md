@@ -1,5 +1,15 @@
 # Fields
 
+## Example Usage
+
+```typescript
+import { Fields } from "@gr4vy/sdk/models/components";
+
+let value: Fields = {
+    key: "secret_key",
+    value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+};
+```
 
 ## Fields
 

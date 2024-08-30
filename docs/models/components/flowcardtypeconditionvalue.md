@@ -1,10 +1,15 @@
 # FlowCardTypeConditionValue
 
+## Example Usage
+
+```typescript
+import { FlowCardTypeConditionValue } from "@gr4vy/sdk/models/components";
+
+let value: FlowCardTypeConditionValue = "prepaid";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Credit`  | credit    |
-| `Debit`   | debit     |
-| `Prepaid` | prepaid   |
+```typescript
+"credit" | "debit" | "prepaid"
+```

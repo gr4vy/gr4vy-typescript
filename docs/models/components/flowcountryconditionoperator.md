@@ -2,10 +2,16 @@
 
 The comparison to make on the country code `value`.
 
+## Example Usage
+
+```typescript
+import { FlowCountryConditionOperator } from "@gr4vy/sdk/models/components";
+
+let value: FlowCountryConditionOperator = "is_one_of";
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `IsOneOf`     | is_one_of     |
-| `IsNotOneOf`  | is_not_one_of |
+```typescript
+"is_one_of" | "is_not_one_of"
+```

@@ -2,6 +2,20 @@
 
 Summary of the aggregated data.
 
+## Example Usage
+
+```typescript
+import { HealthDashboardTotalVolumeSummary } from "@gr4vy/sdk/models/components";
+
+let value: HealthDashboardTotalVolumeSummary = {
+    transactionsAuthorized: 7890,
+    transactionsAuthorizedDeltaPct: -5,
+    transactionsAuthorizedRate: 89,
+    transactionsAuthorizedRateDelta: 15,
+    refunds: 590,
+    refundsDeltaPct: 7,
+};
+```
 
 ## Fields
 

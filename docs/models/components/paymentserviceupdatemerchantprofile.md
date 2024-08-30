@@ -5,6 +5,13 @@ When updating a Payment Service, a key not being present will
 indicate no updates to be done on that scheme, whereas an object being
 sent as Null for a key will empty the configuration for that scheme.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceUpdateMerchantProfile } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceUpdateMerchantProfile = {};
+```
 
 ## Fields
 

@@ -2,6 +2,16 @@
 
 The tax information associated with the billing details.
 
+## Example Usage
+
+```typescript
+import { GiftCardTaxID } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardTaxID = {
+    value: "12345678931",
+    kind: "gb.vat",
+};
+```
 
 ## Fields
 

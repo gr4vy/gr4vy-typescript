@@ -2,6 +2,30 @@
 
 A redemption of a gift card used in a transaction.
 
+## Example Usage
+
+```typescript
+import { GiftCardRedemption } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardRedemption = {
+    type: "gift-card-redemption",
+    id: "bc3f0d5a-3529-4d31-b2b4-848d14926bbc",
+    status: "succeeded",
+    amount: 1299,
+    refundedAmount: 1299,
+    giftCardServiceRedemptionId: "xYqd43gySMtori",
+    errorCode: "expired_card",
+    rawErrorCode: "10001",
+    rawErrorMessage: "Card expired.",
+    giftCard: {
+        type: "gift-card",
+        id: "e6cdf979-87e2-4796-8ff6-9784d5aed893",
+        bin: "412345",
+        subBin: "554",
+        last4: "1234",
+    },
+};
+```
 
 ## Fields
 

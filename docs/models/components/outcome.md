@@ -2,6 +2,16 @@
 
 The outcome of the action.
 
+## Example Usage
+
+```typescript
+import { Outcome } from "@gr4vy/sdk/models/components";
+
+let value: Outcome = {
+    type: "list",
+    result: ["card", "paypal"],
+};
+```
 
 ## Supported Types
 

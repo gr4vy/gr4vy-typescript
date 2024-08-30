@@ -2,6 +2,18 @@
 
 Definitions of a card scheme including icon, label, etc.
 
+## Example Usage
+
+```typescript
+import { CardSchemeDefinition } from "@gr4vy/sdk/models/components";
+
+let value: CardSchemeDefinition = {
+    type: "card-scheme-definition",
+    id: "visa",
+    iconUrl: "https://api.sandbox.example.gr4vy.app/assets/card-scheme-definitions/visa.svg",
+    displayName: "Visa",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,46 @@
 
 A request to create a flow rule.
 
+## Example Usage
+
+```typescript
+import { FlowRuleCreateRequest } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleCreateRequest = {
+    description: "example rule.",
+    conditions: [
+        {
+            name: "country",
+            operator: "is_one_of",
+            value: ["US", "DE"],
+        },
+    ],
+    outcome: {
+        type: "card-routing",
+        result: [
+            {
+                paymentServiceId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+                instrument: "network_token",
+                transformations: [
+                    {
+                        name: "force_mit",
+                    },
+                ],
+            },
+            {
+                paymentServiceId: "d88aca32-07fb-46cd-a43f-86da02b73c21",
+                instrument: "pan",
+                transformations: [
+                    {
+                        name: "force_mit",
+                    },
+                ],
+            },
+        ],
+        version: 2,
+    },
+};
+```
 
 ## Fields
 

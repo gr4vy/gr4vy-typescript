@@ -3,6 +3,17 @@
 Payment method conditions with a name, operator, and value. This
 condition is only for use with the `route-transaction` action.
 
+## Example Usage
+
+```typescript
+import { FlowPaymentMethodCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowPaymentMethodCondition = {
+    name: "payment_method",
+    operator: "equal_to",
+    value: "card",
+};
+```
 
 ## Fields
 

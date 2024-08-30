@@ -2,6 +2,19 @@
 
 Additional options for Cybersource payment gateway.
 
+## Example Usage
+
+```typescript
+import { CybersourceCard } from "@gr4vy/sdk/models/components";
+
+let value: CybersourceCard = {
+    merchantDefinedInformation: {
+        "1": "John Doe",
+        "2": "trusted",
+        "99": "recurring",
+    },
+};
+```
 
 ## Fields
 

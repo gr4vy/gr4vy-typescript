@@ -1,5 +1,15 @@
 # ClickToPaySession
 
+## Example Usage
+
+```typescript
+import { ClickToPaySession } from "@gr4vy/sdk/models/components";
+
+let value: ClickToPaySession = {
+    digitalPaymentApplicationId: "a0b093e4-028a-4310-93fb-4ed0afc813fb",
+    digitalPaymentApplicationName: "Plantly T4JUU1",
+};
+```
 
 ## Fields
 

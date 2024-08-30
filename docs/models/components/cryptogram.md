@@ -2,6 +2,13 @@
 
 A network token cryptogram.
 
+## Example Usage
+
+```typescript
+import { Cryptogram } from "@gr4vy/sdk/models/components";
+
+let value: Cryptogram = {};
+```
 
 ## Fields
 

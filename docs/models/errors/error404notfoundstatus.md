@@ -2,9 +2,16 @@
 
 `404`.
 
+## Example Usage
+
+```typescript
+import { Error404NotFoundStatus } from "@gr4vy/sdk/models/errors";
+
+let value: Error404NotFoundStatus = 404;
+```
 
 ## Values
 
-| Name                 | Value                |
-| -------------------- | -------------------- |
-| `FourHundredAndFour` | 404                  |
+```typescript
+404
+```

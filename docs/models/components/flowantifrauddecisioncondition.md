@@ -2,6 +2,17 @@
 
 Anti-fraud decision condition with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowAntiFraudDecisionCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowAntiFraudDecisionCondition = {
+    name: "anti_fraud_decision",
+    operator: "is_one_of",
+    value: ["exception"],
+};
+```
 
 ## Fields
 

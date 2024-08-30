@@ -2,6 +2,16 @@
 
 Create a transaction with a stored gift card.
 
+## Example Usage
+
+```typescript
+import { TransactionGiftCardStoredRequest } from "@gr4vy/sdk/models/components";
+
+let value: TransactionGiftCardStoredRequest = {
+    id: "e6cdf979-87e2-4796-8ff6-9784d5aed893",
+    amount: 1299,
+};
+```
 
 ## Fields
 

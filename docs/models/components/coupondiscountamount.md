@@ -2,6 +2,17 @@
 
 A monetary amount in USD or local currency.
 
+## Example Usage
+
+```typescript
+import { CouponDiscountAmount } from "@gr4vy/sdk/models/components";
+
+let value: CouponDiscountAmount = {
+    amountUsd: "99.95",
+    amountLocalCurrency: "105.55",
+    currency: "CAD",
+};
+```
 
 ## Fields
 

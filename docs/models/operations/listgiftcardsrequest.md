@@ -1,5 +1,17 @@
 # ListGiftCardsRequest
 
+## Example Usage
+
+```typescript
+import { ListGiftCardsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListGiftCardsRequest = {
+    buyerId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+    buyerExternalIdentifier: "user-12345",
+    limit: 1,
+    cursor: "ZXhhbXBsZTE",
+};
+```
 
 ## Fields
 

@@ -3,6 +3,24 @@
 Parameters used to configure the report. Acceptable values for
 this property depend on the value specified for `model`.
 
+## Example Usage
+
+```typescript
+import { ReportCreateParams } from "@gr4vy/sdk/models/components";
+
+let value: ReportCreateParams = {
+    fields: ["id", "external_identifier"],
+    filters: {
+        status: ["authorization_failed"],
+        currency: ["GBP"],
+        method: ["card"],
+        scheme: ["visa"],
+        threeDSecureEci: ["05"],
+        threeDSecureAuthResp: ["N"],
+    },
+    sort: [{}],
+};
+```
 
 ## Fields
 

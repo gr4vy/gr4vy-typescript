@@ -1,5 +1,18 @@
 # ListReportsRequest
 
+## Example Usage
+
+```typescript
+import { ListReportsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListReportsRequest = {
+    cursor: "ZXhhbXBsZTE",
+    limit: 1,
+    name: "Failed+Authorizations+042022",
+    schedule: ["once", "monthly"],
+    scheduleEnabled: true,
+};
+```
 
 ## Fields
 

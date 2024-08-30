@@ -1,5 +1,15 @@
 # DeletePaymentServiceTokenRequest
 
+## Example Usage
+
+```typescript
+import { DeletePaymentServiceTokenRequest } from "@gr4vy/sdk/models/operations";
+
+let value: DeletePaymentServiceTokenRequest = {
+    paymentMethodId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+    paymentServiceTokenId: "7e7ede54-616a-422e-8f58-89a79ae2baea",
+};
+```
 
 ## Fields
 

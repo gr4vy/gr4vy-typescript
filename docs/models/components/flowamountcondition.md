@@ -2,6 +2,20 @@
 
 Amount conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowAmountCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowAmountCondition = {
+    name: "amount",
+    operator: "less_than",
+    value: {
+        currency: "USD",
+        value: 1,
+    },
+};
+```
 
 ## Fields
 

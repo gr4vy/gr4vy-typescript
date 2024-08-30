@@ -2,6 +2,33 @@
 
 The billing details of the buyer.
 
+## Example Usage
+
+```typescript
+import { BillingDetailsUpdate } from "@gr4vy/sdk/models/components";
+
+let value: BillingDetailsUpdate = {
+    firstName: "John",
+    lastName: "Lunn",
+    emailAddress: "john@example.com",
+    phoneNumber: "+1234567890",
+    address: {
+        city: "London",
+        country: "GB",
+        postalCode: "789123",
+        state: "Greater London",
+        stateCode: "GB-LND",
+        houseNumberOrName: "10",
+        line1: "10 Oxford Street",
+        line2: "New Oxford Court",
+        organization: "Gr4vy",
+    },
+    taxId: {
+        value: "12345678931",
+        kind: "gb.vat",
+    },
+};
+```
 
 ## Fields
 

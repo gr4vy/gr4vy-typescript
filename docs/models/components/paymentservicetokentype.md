@@ -2,9 +2,16 @@
 
 The type of this resource.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceTokenType } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceTokenType = "payment-service-token";
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `PaymentServiceToken` | payment-service-token |
+```typescript
+"payment-service-token"
+```

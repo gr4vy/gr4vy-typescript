@@ -1,5 +1,16 @@
 # ListReportExecutionsRequest
 
+## Example Usage
+
+```typescript
+import { ListReportExecutionsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListReportExecutionsRequest = {
+    reportId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+    cursor: "ZXhhbXBsZTE",
+    limit: 1,
+};
+```
 
 ## Fields
 

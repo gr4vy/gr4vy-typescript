@@ -2,80 +2,16 @@
 
 The payment method that this service handles.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceMethod } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceMethod = "card";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `Afterpay`        | afterpay          |
-| `Alipay`          | alipay            |
-| `Alipayhk`        | alipayhk          |
-| `Applepay`        | applepay          |
-| `Bacs`            | bacs              |
-| `Bancontact`      | bancontact        |
-| `Banked`          | banked            |
-| `Becs`            | becs              |
-| `Bitpay`          | bitpay            |
-| `Boleto`          | boleto            |
-| `Boost`           | boost             |
-| `Card`            | card              |
-| `Cashapp`         | cashapp           |
-| `Chaseorbital`    | chaseorbital      |
-| `CheckoutSession` | checkout-session  |
-| `Clearpay`        | clearpay          |
-| `ClickToPay`      | click-to-pay      |
-| `Dana`            | dana              |
-| `Dcb`             | dcb               |
-| `Dlocal`          | dlocal            |
-| `Ebanx`           | ebanx             |
-| `Eps`             | eps               |
-| `Everydaypay`     | everydaypay       |
-| `Gcash`           | gcash             |
-| `Giropay`         | giropay           |
-| `Givingblock`     | givingblock       |
-| `Gocardless`      | gocardless        |
-| `Googlepay`       | googlepay         |
-| `Gopay`           | gopay             |
-| `Grabpay`         | grabpay           |
-| `Ideal`           | ideal             |
-| `Kakaopay`        | kakaopay          |
-| `Klarna`          | klarna            |
-| `Laybuy`          | laybuy            |
-| `Linepay`         | linepay           |
-| `Linkaja`         | linkaja           |
-| `Maybankqrpay`    | maybankqrpay      |
-| `Multibanco`      | multibanco        |
-| `Multipago`       | multipago         |
-| `NetworkToken`    | network-token     |
-| `Oney3x`          | oney_3x           |
-| `Oney4x`          | oney_4x           |
-| `Oney6x`          | oney_6x           |
-| `Oney10x`         | oney_10x          |
-| `Oney12x`         | oney_12x          |
-| `Ovo`             | ovo               |
-| `Oxxo`            | oxxo              |
-| `Payid`           | payid             |
-| `Paymaya`         | paymaya           |
-| `Paypal`          | paypal            |
-| `Paypalpaylater`  | paypalpaylater    |
-| `Payto`           | payto             |
-| `Venmo`           | venmo             |
-| `Pix`             | pix               |
-| `Rabbitlinepay`   | rabbitlinepay     |
-| `Razorpay`        | razorpay          |
-| `Scalapay`        | scalapay          |
-| `Sepa`            | sepa              |
-| `Shopeepay`       | shopeepay         |
-| `Singteldash`     | singteldash       |
-| `Smartpay`        | smartpay          |
-| `Sofort`          | sofort            |
-| `Stripedd`        | stripedd          |
-| `Thaiqr`          | thaiqr            |
-| `Touchngo`        | touchngo          |
-| `Truemoney`       | truemoney         |
-| `Trustly`         | trustly           |
-| `Trustlyeurope`   | trustlyeurope     |
-| `Vipps`           | vipps             |
-| `Waave`           | waave             |
-| `Wechat`          | wechat            |
-| `Zippay`          | zippay            |
+```typescript
+"afterpay" | "alipay" | "alipayhk" | "applepay" | "bacs" | "bancontact" | "banked" | "becs" | "bitpay" | "boleto" | "boost" | "card" | "cashapp" | "chaseorbital" | "checkout-session" | "clearpay" | "click-to-pay" | "dana" | "dcb" | "dlocal" | "ebanx" | "eps" | "everydaypay" | "gcash" | "giropay" | "givingblock" | "gocardless" | "googlepay" | "gopay" | "grabpay" | "ideal" | "kakaopay" | "kcp" | "klarna" | "laybuy" | "linepay" | "linkaja" | "maybankqrpay" | "multibanco" | "multipago" | "network-token" | "oney_3x" | "oney_4x" | "oney_6x" | "oney_10x" | "oney_12x" | "ovo" | "oxxo" | "payid" | "paymaya" | "paypal" | "paypalpaylater" | "payto" | "venmo" | "pix" | "rabbitlinepay" | "razorpay" | "scalapay" | "sepa" | "shopeepay" | "singteldash" | "smartpay" | "sofort" | "spei" | "stripedd" | "thaiqr" | "touchngo" | "truemoney" | "trustly" | "trustlyeurope" | "vipps" | "waave" | "wechat" | "zippay"
+```

@@ -59,6 +59,46 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsNewDigitalWallet } from "@gr4vy/sdk/funcs/digitalWalletsNewDigitalWallet.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsNewDigitalWallet(gr4vy, {
+    provider: "apple",
+    merchantName: "Gr4vy",
+    merchantUrl: "https://example.com",
+    merchantDisplayName: "Gr4vy",
+    merchantCountryCode: "US",
+    domainNames: [
+      "example.com",
+    ],
+    acceptTermsAndConditions: true,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -68,10 +108,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.DigitalWallet](../../models/components/digitalwallet.md)\>**
+
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -80,6 +120,7 @@ run();
 | errors.Error401Unauthorized    | 401                            | application/json               |
 | errors.Error409DuplicateRecord | 409                            | application/json               |
 | errors.SDKError                | 4xx-5xx                        | */*                            |
+
 
 ## listDigitalWallets
 
@@ -104,6 +145,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsListDigitalWallets } from "@gr4vy/sdk/funcs/digitalWalletsListDigitalWallets.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsListDigitalWallets(gr4vy);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -112,16 +183,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.DigitalWallets](../../models/components/digitalwallets.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## getDigitalWallet
 
@@ -146,6 +218,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsGetDigitalWallet } from "@gr4vy/sdk/funcs/digitalWalletsGetDigitalWallet.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsGetDigitalWallet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -155,10 +257,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.DigitalWallet](../../models/components/digitalwallet.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -166,6 +268,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## updateDigitalWallet
 
@@ -198,6 +301,44 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsUpdateDigitalWallet } from "@gr4vy/sdk/funcs/digitalWalletsUpdateDigitalWallet.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsUpdateDigitalWallet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", {
+    merchantName: "Gr4vy",
+    domainNames: [
+      "example.com",
+    ],
+    merchantDisplayName: "Gr4vy",
+    merchantCountryCode: "US",
+    merchantUrl: "https://example.com",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -208,10 +349,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.DigitalWallet](../../models/components/digitalwallet.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -220,6 +361,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## deleteDigitalWallet
 
@@ -250,6 +392,35 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsDeleteDigitalWallet } from "@gr4vy/sdk/funcs/digitalWalletsDeleteDigitalWallet.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsDeleteDigitalWallet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -259,10 +430,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -270,6 +441,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## addDigitalWalletDomainName
 
@@ -295,6 +467,37 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsAddDigitalWalletDomainName } from "@gr4vy/sdk/funcs/digitalWalletsAddDigitalWalletDomainName.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsAddDigitalWalletDomainName(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", {
+    domainName: "example.com",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -305,10 +508,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -317,6 +520,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## deleteDigitalWalletDomainName
 
@@ -342,6 +546,37 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsDeleteDigitalWalletDomainName } from "@gr4vy/sdk/funcs/digitalWalletsDeleteDigitalWalletDomainName.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsDeleteDigitalWalletDomainName(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", {
+    domainName: "example.com",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -352,10 +587,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -364,6 +599,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## newApplePaySession
 
@@ -384,10 +620,37 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.digitalWallets.newApplePaySession({
-    validationUrl: "http://instructive-dog.com",
-    domainName: "disgusting-seafood.org",
-  });
+  const result = await gr4vy.digitalWallets.newApplePaySession();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsNewApplePaySession } from "@gr4vy/sdk/funcs/digitalWalletsNewApplePaySession.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsNewApplePaySession(gr4vy);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -405,10 +668,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[{ [k: string]: any }](../../models/.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -417,6 +680,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## newClickToPaySession
 
@@ -443,6 +707,38 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsNewClickToPaySession } from "@gr4vy/sdk/funcs/digitalWalletsNewClickToPaySession.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsNewClickToPaySession(gr4vy, {
+    checkoutSessionId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -452,10 +748,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.ClickToPaySession](../../models/components/clicktopaysession.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -464,6 +760,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## newGooglePaySession
 
@@ -480,9 +777,37 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.digitalWallets.newGooglePaySession({
-    originDomain: "<value>",
-  });
+  const result = await gr4vy.digitalWallets.newGooglePaySession();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { digitalWalletsNewGooglePaySession } from "@gr4vy/sdk/funcs/digitalWalletsNewGooglePaySession.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await digitalWalletsNewGooglePaySession(gr4vy);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -500,10 +825,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.GooglePaySession](../../models/components/googlepaysession.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

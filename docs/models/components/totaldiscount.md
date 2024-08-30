@@ -3,6 +3,22 @@
 The `totalDiscount` object that's sent to Forter's validation API.
 It represents the discount that was given to the customer.
 
+## Example Usage
+
+```typescript
+import { TotalDiscount } from "@gr4vy/sdk/models/components";
+
+let value: TotalDiscount = {
+    couponCodeUsed: "FATHERSDAY2015",
+    discountType: "COUPON",
+    couponDiscountAmount: {
+        amountUsd: "99.95",
+        amountLocalCurrency: "105.55",
+        currency: "CAD",
+    },
+    couponDiscountPercent: "20%",
+};
+```
 
 ## Fields
 

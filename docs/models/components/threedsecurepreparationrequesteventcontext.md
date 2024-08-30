@@ -2,6 +2,20 @@
 
 3DS pre-authentication context.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecurePreparationRequestEventContext } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecurePreparationRequestEventContext = {
+    url: "https://3dserver.example/auth",
+    request: "{}",
+    response: "{}",
+    responseStatusCode: 200,
+    isEnrolled: true,
+    version: "2.2.0",
+};
+```
 
 ## Fields
 

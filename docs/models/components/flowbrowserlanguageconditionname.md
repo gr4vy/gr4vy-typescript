@@ -2,9 +2,16 @@
 
 The type of match made for this rule.
 
+## Example Usage
+
+```typescript
+import { FlowBrowserLanguageConditionName } from "@gr4vy/sdk/models/components";
+
+let value: FlowBrowserLanguageConditionName = "browser_language";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `BrowserLanguage` | browser_language  |
+```typescript
+"browser_language"
+```

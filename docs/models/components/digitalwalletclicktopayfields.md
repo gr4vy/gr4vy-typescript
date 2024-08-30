@@ -1,5 +1,12 @@
 # DigitalWalletClickToPayFields
 
+## Example Usage
+
+```typescript
+import { DigitalWalletClickToPayFields } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletClickToPayFields = {};
+```
 
 ## Fields
 

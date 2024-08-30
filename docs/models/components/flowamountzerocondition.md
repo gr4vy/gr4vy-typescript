@@ -2,6 +2,17 @@
 
 Amount conditions matching a value of 0 in any currency.
 
+## Example Usage
+
+```typescript
+import { FlowAmountZeroCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowAmountZeroCondition = {
+    name: "amount_zero",
+    operator: "equal_to",
+    value: 0,
+};
+```
 
 ## Fields
 

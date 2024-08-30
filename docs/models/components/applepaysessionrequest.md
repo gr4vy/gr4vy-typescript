@@ -2,6 +2,16 @@
 
 Initiates a new session with Apple Pay.
 
+## Example Usage
+
+```typescript
+import { ApplePaySessionRequest } from "@gr4vy/sdk/models/components";
+
+let value: ApplePaySessionRequest = {
+    validationUrl: "https://moral-star.info",
+    domainName: "physical-pegboard.info",
+};
+```
 
 ## Fields
 

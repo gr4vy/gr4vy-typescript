@@ -3,6 +3,22 @@
 This event logs the exact details parsed details for an external
 transaction request.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorExternalTransactionRequest } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorExternalTransactionRequest = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "payment-connector-external-transaction-request",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        connectorRequestId: "76f5ed52-8675-491f-b52d-731ca894ed80",
+        request: "",
+    },
+};
+```
 
 ## Fields
 

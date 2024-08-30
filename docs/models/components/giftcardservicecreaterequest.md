@@ -2,6 +2,23 @@
 
 Request body for activating a gift card service.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceCreateRequest } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceCreateRequest = {
+    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+    displayName: "Qwikcilver UK",
+    fields: [
+        {
+            key: "private_key",
+            value: "pk_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+    active: true,
+};
+```
 
 ## Fields
 

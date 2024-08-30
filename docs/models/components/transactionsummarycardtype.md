@@ -2,11 +2,16 @@
 
 The type of card, one of `credit`, `debit` or `prepaid`.
 
+## Example Usage
+
+```typescript
+import { TransactionSummaryCardType } from "@gr4vy/sdk/models/components";
+
+let value: TransactionSummaryCardType = "credit";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Credit`  | credit    |
-| `Debit`   | debit     |
-| `Prepaid` | prepaid   |
+```typescript
+"credit" | "debit" | "prepaid"
+```

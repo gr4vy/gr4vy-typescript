@@ -2,6 +2,20 @@
 
 Details for a Google Pay decrypted token payment method.
 
+## Example Usage
+
+```typescript
+import { GooglePayDecryptedToken } from "@gr4vy/sdk/models/components";
+
+let value: GooglePayDecryptedToken = {
+    method: "network-token",
+    token: "<value>",
+    expirationDate: "11/25",
+    eci: "05",
+    cardSource: "google-pay",
+    cardSuffix: "1234",
+};
+```
 
 ## Fields
 

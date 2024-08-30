@@ -1,5 +1,33 @@
 # FlowRule
 
+## Example Usage
+
+```typescript
+import { FlowRule } from "@gr4vy/sdk/models/components";
+
+let value: FlowRule = {
+    type: "rule",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    merchantAccountId: "default",
+    description: "example rule.",
+    flow: "checkout",
+    action: "select-payment-options",
+    conditions: [
+        {
+            name: "payment_source",
+            operator: "is_one_of",
+            value: ["recurring", "installment"],
+        },
+    ],
+    outcome: {
+        type: "three-d-secure",
+        result: "attempt",
+    },
+    position: 2,
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

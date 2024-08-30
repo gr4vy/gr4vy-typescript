@@ -3,20 +3,16 @@
 If this gift card redemption resulted in an error, this will
 contain the internal code for the error.
 
+## Example Usage
+
+```typescript
+import { ErrorCode } from "@gr4vy/sdk/models/components";
+
+let value: ErrorCode = "expired_card";
+```
 
 ## Values
 
-| Name                          | Value                         |
-| ----------------------------- | ----------------------------- |
-| `ExpiredCard`                 | expired_card                  |
-| `InactiveCard`                | inactive_card                 |
-| `IncorrectCurrency`           | incorrect_currency            |
-| `InsufficientFunds`           | insufficient_funds            |
-| `InvalidAmount`               | invalid_amount                |
-| `InvalidGiftCard`             | invalid_gift_card             |
-| `InvalidServiceConfiguration` | invalid_service_configuration |
-| `InvalidServiceCredentials`   | invalid_service_credentials   |
-| `OperationCanceled`           | operation_canceled            |
-| `ServiceError`                | service_error                 |
-| `ServiceNetworkError`         | service_network_error         |
-| `UnknownError`                | unknown_error                 |
+```typescript
+"expired_card" | "inactive_card" | "incorrect_currency" | "insufficient_funds" | "invalid_amount" | "invalid_gift_card" | "invalid_service_configuration" | "invalid_service_credentials" | "operation_canceled" | "service_error" | "service_network_error" | "unknown_error"
+```

@@ -2,6 +2,17 @@
 
 Card source conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowCardSourceCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowCardSourceCondition = {
+    name: "card_source",
+    operator: "is_one_of",
+    value: ["raw", "applepay"],
+};
+```
 
 ## Fields
 

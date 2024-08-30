@@ -10,11 +10,16 @@ the maximum number of retries might already have been attempted.
 * `payment_method_replacement` - the transaction will be retried because a
   decline code was received that triggered a payment method replacement.
 
+## Example Usage
+
+```typescript
+import { RetryRule } from "@gr4vy/sdk/models/components";
+
+let value: RetryRule = "failure";
+```
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `Failure`                  | failure                    |
-| `RetriableDecline`         | retriable_decline          |
-| `PaymentMethodReplacement` | payment_method_replacement |
+```typescript
+"failure" | "retriable_decline" | "payment_method_replacement"
+```

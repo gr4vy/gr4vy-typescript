@@ -2,6 +2,22 @@
 
 Request body for verifying credentials against a payment service.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceVerify } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceVerify = {
+    paymentServiceDefinitionId: "stripe-card",
+    paymentServiceId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+    fields: [
+        {
+            key: "private_key",
+            value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+};
+```
 
 ## Fields
 

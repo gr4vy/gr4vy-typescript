@@ -11,12 +11,126 @@ connector. All the other keys will be snake case, for example
 `merchant_defined_data` or camel case to match an external API that the
 connector uses.
 
+## Example Usage
+
+```typescript
+import { ConnectionOptions } from "@gr4vy/sdk/models/components";
+
+let value: ConnectionOptions = {
+    cybersourceCard: {
+        merchantDefinedInformation: {
+            "1": "John Doe",
+            "2": "trusted",
+            "99": "recurring",
+        },
+    },
+    cybersourceKcp: {
+        merchantDefinedInformation: {
+            "1": "John Doe",
+            "2": "trusted",
+            "99": "recurring",
+        },
+    },
+    cybersourceIdeal: {
+        merchantDefinedInformation: {
+            "1": "John Doe",
+            "2": "trusted",
+            "99": "recurring",
+        },
+    },
+    cybersourceAntiFraud: {
+        merchantDefinedData: {
+            "1": "John Doe",
+            "2": "trusted",
+            "99": "recurring",
+        },
+    },
+    givingblockGivingblock: {
+        defaultCryptocurrency: "ETH",
+    },
+    forterAntiFraud: {
+        cartItems: [
+            {
+                basicItemData: {
+                    type: "TANGIBLE",
+                },
+                deliveryDetails: {
+                    deliveryType: "PHYSICAL",
+                    deliveryMethod: "USPS - Ground Mail",
+                },
+                beneficiaries: [
+                    {
+                        personalDetails: {
+                            firstName: "John",
+                            lastName: "Smith",
+                            email: "john@example.com",
+                        },
+                        address: {
+                            country: "US",
+                            address1: "235 Montgomery st.",
+                            address2: "Ste. 1110",
+                            zip: "94104",
+                            region: "CA",
+                            company: "Generic Corp. ltd.",
+                            city: "San Francisco",
+                        },
+                        phone: [
+                            {
+                                phone: "15557654321",
+                            },
+                        ],
+                        comments: {
+                            userCommentsToMerchant: "Please wrap with care!!",
+                            messageToBeneficiary: "Enjoy the gift John!",
+                            merchantComments: "Shipping delayed",
+                        },
+                    },
+                ],
+            },
+        ],
+        totalDiscount: {
+            couponCodeUsed: "FATHERSDAY2015",
+            discountType: "COUPON",
+            couponDiscountAmount: {
+                amountUsd: "99.95",
+                amountLocalCurrency: "105.55",
+                currency: "CAD",
+            },
+            couponDiscountPercent: "20%",
+        },
+    },
+    adyenCard: {
+        additionalData: {
+            "riskdata.operatorCode": "operatorCode,",
+            "riskdata.operatorCountry": "operatorCountry",
+        },
+    },
+    paypalPaypal: {
+        additionalData: [
+            {
+                key: "test",
+                value: "abc",
+            },
+        ],
+    },
+    paypalPaypalpaylater: {
+        additionalData: [
+            {
+                key: "test",
+                value: "abc",
+            },
+        ],
+    },
+};
+```
 
 ## Fields
 
 | Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `cybersourceCard`                                                                      | [components.CybersourceCard](../../models/components/cybersourcecard.md)               | :heavy_minus_sign:                                                                     | Additional options for Cybersource payment gateway.                                    |
+| `cybersourceKcp`                                                                       | [components.CybersourceKcp](../../models/components/cybersourcekcp.md)                 | :heavy_minus_sign:                                                                     | Additional options for Cybersource KCP APM.                                            |
+| `cybersourceIdeal`                                                                     | [components.CybersourceIdeal](../../models/components/cybersourceideal.md)             | :heavy_minus_sign:                                                                     | Additional options for Cybersource iDeal APM.                                          |
 | `cybersourceAntiFraud`                                                                 | [components.CybersourceAntiFraud](../../models/components/cybersourceantifraud.md)     | :heavy_minus_sign:                                                                     | Additional options for Cybersource Decision Manager (anti-fraud).                      |
 | `givingblockGivingblock`                                                               | [components.GivingblockGivingblock](../../models/components/givingblockgivingblock.md) | :heavy_minus_sign:                                                                     | Additional options for Giving Block connector.                                         |
 | `forterAntiFraud`                                                                      | [components.ForterAntiFraud](../../models/components/forterantifraud.md)               | :heavy_minus_sign:                                                                     | Additional options for Forter (anti-fraud).                                            |

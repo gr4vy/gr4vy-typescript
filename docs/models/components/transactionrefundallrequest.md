@@ -2,6 +2,15 @@
 
 A request to fully refund a transaction.
 
+## Example Usage
+
+```typescript
+import { TransactionRefundAllRequest } from "@gr4vy/sdk/models/components";
+
+let value: TransactionRefundAllRequest = {
+    reason: "Refund due to user request",
+};
+```
 
 ## Fields
 

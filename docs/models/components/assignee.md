@@ -2,6 +2,16 @@
 
 The assignee for this role assignment.
 
+## Example Usage
+
+```typescript
+import { Assignee } from "@gr4vy/sdk/models/components";
+
+let value: Assignee = {
+    type: "user",
+    id: "42aae896-8ce2-4a60-b80a-5f6ae1dfbbd4",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,23 @@
 
 The billing address for the buyer.
 
+## Example Usage
+
+```typescript
+import { BuyerUpdateAddress } from "@gr4vy/sdk/models/components";
+
+let value: BuyerUpdateAddress = {
+    city: "London",
+    country: "GB",
+    postalCode: "789123",
+    state: "Greater London",
+    stateCode: "GB-LND",
+    houseNumberOrName: "10",
+    line1: "10 Oxford Street",
+    line2: "New Oxford Court",
+    organization: "Gr4vy",
+};
+```
 
 ## Fields
 

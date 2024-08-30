@@ -1,5 +1,15 @@
 # GiftCardServiceFields
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceFields } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceFields = {
+    key: "secret_key",
+    value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+};
+```
 
 ## Fields
 

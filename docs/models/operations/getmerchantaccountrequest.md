@@ -1,5 +1,14 @@
 # GetMerchantAccountRequest
 
+## Example Usage
+
+```typescript
+import { GetMerchantAccountRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetMerchantAccountRequest = {
+    merchantAccountId: "plantly-uk",
+};
+```
 
 ## Fields
 

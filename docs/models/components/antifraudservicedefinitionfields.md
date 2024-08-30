@@ -3,6 +3,19 @@
 A single field that needs to be submitted for a payment service when it
 is created.
 
+## Example Usage
+
+```typescript
+import { AntiFraudServiceDefinitionFields } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudServiceDefinitionFields = {
+    key: "private_api_key",
+    displayName: "Private API key",
+    required: true,
+    format: "text",
+    secret: true,
+};
+```
 
 ## Fields
 

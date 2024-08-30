@@ -10,6 +10,15 @@ of the card instead of it's main scheme.
 If the card doesn't have any additional schemes,
 this outcome would be skipped.
 
+## Example Usage
+
+```typescript
+import { UseAdditionalSchemeTransformationOutcome } from "@gr4vy/sdk/models/components";
+
+let value: UseAdditionalSchemeTransformationOutcome = {
+    name: "use_additional_scheme",
+};
+```
 
 ## Fields
 

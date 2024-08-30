@@ -2,9 +2,16 @@
 
 The type of this resource.
 
+## Example Usage
+
+```typescript
+import { NetworkTokenType } from "@gr4vy/sdk/models/components";
+
+let value: NetworkTokenType = "network-token";
+```
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `NetworkToken` | network-token  |
+```typescript
+"network-token"
+```

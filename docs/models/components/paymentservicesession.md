@@ -3,6 +3,25 @@
 A session request for a payment session. This is an opaque object
 passed to the payment service.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceSession } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceSession = {
+    type: "payment-service-session",
+    status: "succeeded",
+    code: "UNKNOWN_ERROR",
+    statusCode: 200,
+    responseBody: {
+        data: {
+            customerType: "EXISTING",
+            walletManagementUrl: "https://example.com/session",
+        },
+        meta: {},
+    },
+};
+```
 
 ## Fields
 

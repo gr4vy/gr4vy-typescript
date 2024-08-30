@@ -2,9 +2,16 @@
 
 `duplicate_record`.
 
+## Example Usage
+
+```typescript
+import { Error409DuplicateRecordCode } from "@gr4vy/sdk/models/errors";
+
+let value: Error409DuplicateRecordCode = "duplicate_record";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `DuplicateRecord` | duplicate_record  |
+```typescript
+"duplicate_record"
+```

@@ -2,6 +2,53 @@
 
 An available payment service that can be configured.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceDefinition } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceDefinition = {
+    id: "stripe-card",
+    type: "payment-service-definition",
+    displayName: "Stripe",
+    method: "card",
+    fields: [
+        {
+            key: "private_api_key",
+            displayName: "Private API key",
+            required: true,
+            format: "text",
+            secret: true,
+        },
+    ],
+    supportedCurrencies: ["USD", "GBP", "EUR"],
+    supportedCountries: ["US", "GB", "DE"],
+    mode: "card",
+    supportedFeatures: {
+        delayedCapture: false,
+        digitalWallets: false,
+        networkTokensDefault: true,
+        networkTokensToggle: false,
+        openLoop: true,
+        openLoopToggle: false,
+        partialRefunds: false,
+        paymentMethodTokenization: true,
+        paymentMethodTokenizationToggle: false,
+        refunds: true,
+        requiresWebhookSetup: true,
+        threeDSecureHosted: true,
+        threeDSecurePassThrough: false,
+        verifyCredentials: false,
+        void: true,
+    },
+    iconUrl: "https://cdn.gr4vy.app/stripe.svg",
+    configuration: {
+        approvalUiHeight: "300px",
+        approvalUiWidth: "300px",
+        approvalUiTarget: "any",
+    },
+};
+```
 
 ## Fields
 

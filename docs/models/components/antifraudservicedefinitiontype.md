@@ -2,9 +2,16 @@
 
 `anti-fraud-service-definition`.
 
+## Example Usage
+
+```typescript
+import { AntiFraudServiceDefinitionType } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudServiceDefinitionType = "anti-fraud-service-definition";
+```
 
 ## Values
 
-| Name                          | Value                         |
-| ----------------------------- | ----------------------------- |
-| `AntiFraudServiceDefinition`  | anti-fraud-service-definition |
+```typescript
+"anti-fraud-service-definition"
+```

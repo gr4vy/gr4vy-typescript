@@ -2,6 +2,16 @@
 
 Information about the validation performed on the payment data. (See https://developers.google.com/pay/api/web/reference/response-objects#assurance-details-specifications).
 
+## Example Usage
+
+```typescript
+import { AssuranceDetails } from "@gr4vy/sdk/models/components";
+
+let value: AssuranceDetails = {
+    accountVerified: false,
+    cardHolderAuthenticated: false,
+};
+```
 
 ## Fields
 

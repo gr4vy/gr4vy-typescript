@@ -2,6 +2,16 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionVoidSucceededEventContext } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionVoidSucceededEventContext = {
+    paymentServiceTransactionId: "transaction-1234",
+    voidedAt: new Date("2013-07-16T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

@@ -2,6 +2,16 @@
 
 Check the balance for a non-stored gift card.
 
+## Example Usage
+
+```typescript
+import { GiftCardBalanceNewRequest } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardBalanceNewRequest = {
+    number: "4123455541234561234",
+    pin: "1234",
+};
+```
 
 ## Fields
 

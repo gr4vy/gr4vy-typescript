@@ -5,6 +5,16 @@ placeholders such as `month_start` and `month_end` if present in
 the report's specification. Date-time placeholders are dynamic
 timestamps that change with every report execution.
 
+## Example Usage
+
+```typescript
+import { ReportExecutionContext } from "@gr4vy/sdk/models/components";
+
+let value: ReportExecutionContext = {
+    referenceTimestamp: new Date("2013-07-16T19:23:00.000+00:00"),
+    referenceTimezone: "Europe/London",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # OutcomeTransformations
 
+## Example Usage
+
+```typescript
+import { OutcomeTransformations } from "@gr4vy/sdk/models/components";
+
+let value: OutcomeTransformations = {
+    name: "force_mit",
+};
+```
 
 ## Fields
 

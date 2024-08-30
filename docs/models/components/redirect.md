@@ -2,6 +2,19 @@
 
 Redirect payment method details to use in a transaction.
 
+## Example Usage
+
+```typescript
+import { Redirect } from "@gr4vy/sdk/models/components";
+
+let value: Redirect = {
+    method: "paypal",
+    redirectUrl: "https://example.com/callback",
+    currency: "USD",
+    country: "US",
+    externalIdentifier: "account-23423423",
+};
+```
 
 ## Fields
 

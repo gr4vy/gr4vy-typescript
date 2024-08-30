@@ -47,6 +47,46 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { giftCardServicesNewGiftCardService } from "@gr4vy/sdk/funcs/giftCardServicesNewGiftCardService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await giftCardServicesNewGiftCardService(gr4vy, {
+    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+    displayName: "Qwikcilver UK",
+    fields: [
+      {
+        key: "private_key",
+        value: "pk_26PHem9AhJZvU623DfE1x4sd",
+      },
+    ],
+    active: true,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -56,10 +96,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.GiftCardService](../../models/components/giftcardservice.md)\>**
+
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -68,6 +108,7 @@ run();
 | errors.Error401Unauthorized    | 401                            | application/json               |
 | errors.Error409DuplicateRecord | 409                            | application/json               |
 | errors.SDKError                | 4xx-5xx                        | */*                            |
+
 
 ## getGiftCardService
 
@@ -92,6 +133,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { giftCardServicesGetGiftCardService } from "@gr4vy/sdk/funcs/giftCardServicesGetGiftCardService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await giftCardServicesGetGiftCardService(gr4vy, "541b126f-44c5-4c5e-a06b-d0e0d54c7d3f");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -101,10 +172,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.GiftCardService](../../models/components/giftcardservice.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -112,6 +183,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## updateGiftCardService
 
@@ -145,6 +217,45 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { giftCardServicesUpdateGiftCardService } from "@gr4vy/sdk/funcs/giftCardServicesUpdateGiftCardService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await giftCardServicesUpdateGiftCardService(gr4vy, "541b126f-44c5-4c5e-a06b-d0e0d54c7d3f", {
+    displayName: "Qwikcilver UK",
+    fields: [
+      {
+        key: "private_key",
+        value: "pk_26PHem9AhJZvU623DfE1x4sd",
+      },
+    ],
+    active: true,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -155,10 +266,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.GiftCardService](../../models/components/giftcardservice.md)\>**
+
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -168,6 +279,7 @@ run();
 | errors.Error404NotFound        | 404                            | application/json               |
 | errors.Error409DuplicateRecord | 409                            | application/json               |
 | errors.SDKError                | 4xx-5xx                        | */*                            |
+
 
 ## deleteGiftCardService
 
@@ -191,6 +303,35 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { giftCardServicesDeleteGiftCardService } from "@gr4vy/sdk/funcs/giftCardServicesDeleteGiftCardService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await giftCardServicesDeleteGiftCardService(gr4vy, "541b126f-44c5-4c5e-a06b-d0e0d54c7d3f");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -200,10 +341,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -211,6 +352,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## verifyGiftCardService
 
@@ -243,6 +385,44 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { giftCardServicesVerifyGiftCardService } from "@gr4vy/sdk/funcs/giftCardServicesVerifyGiftCardService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await giftCardServicesVerifyGiftCardService(gr4vy, {
+    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+    giftCardServiceId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+    fields: [
+      {
+        key: "private_key",
+        value: "pk_26PHem9AhJZvU623DfE1x4sd",
+      },
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -252,10 +432,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

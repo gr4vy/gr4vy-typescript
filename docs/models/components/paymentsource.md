@@ -2,13 +2,16 @@
 
 The source of the transaction. Defaults to `ecommerce`.
 
+## Example Usage
+
+```typescript
+import { PaymentSource } from "@gr4vy/sdk/models/components";
+
+let value: PaymentSource = "recurring";
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `Ecommerce`   | ecommerce     |
-| `Moto`        | moto          |
-| `Recurring`   | recurring     |
-| `Installment` | installment   |
-| `CardOnFile`  | card_on_file  |
+```typescript
+"ecommerce" | "moto" | "recurring" | "installment" | "card_on_file"
+```

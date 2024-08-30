@@ -2,6 +2,18 @@
 
 Details for a Apple Pay payment method.
 
+## Example Usage
+
+```typescript
+import { ApplePayPaymentMethodRequest } from "@gr4vy/sdk/models/components";
+
+let value: ApplePayPaymentMethodRequest = {
+    method: "applepay",
+    token: {},
+    cardSuffix: "1234",
+    cardType: "credit",
+};
+```
 
 ## Fields
 

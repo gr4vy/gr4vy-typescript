@@ -2,6 +2,15 @@
 
 A request to create an Account Updater job.
 
+## Example Usage
+
+```typescript
+import { AccountUpdaterJobCreate } from "@gr4vy/sdk/models/components";
+
+let value: AccountUpdaterJobCreate = {
+    paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+};
+```
 
 ## Fields
 

@@ -1,5 +1,29 @@
 # NewFlowRuleRequest
 
+## Example Usage
+
+```typescript
+import { NewFlowRuleRequest } from "@gr4vy/sdk/models/operations";
+
+let value: NewFlowRuleRequest = {
+    flow: "checkout",
+    action: "select-payment-options",
+    flowRuleCreateRequest: {
+        description: "example rule.",
+        conditions: [
+            {
+                name: "has_gift_cards",
+                operator: "equal_to",
+                value: true,
+            },
+        ],
+        outcome: {
+            type: "boolean",
+            result: false,
+        },
+    },
+};
+```
 
 ## Fields
 

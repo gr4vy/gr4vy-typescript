@@ -2,6 +2,29 @@
 
 Request body for activating a payment service.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequest } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequest = {
+    paymentServiceDefinitionId: "stripe-card",
+    displayName: "Stripe (Main)",
+    fields: [
+        {
+            key: "private_key",
+            value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+    acceptedCountries: ["US", "GB", "DE"],
+    acceptedCurrencies: ["EUR", "USD", "GBP"],
+    threeDSecureEnabled: true,
+    active: true,
+    openLoop: true,
+    paymentMethodTokenizationEnabled: true,
+    networkTokensEnabled: true,
+};
+```
 
 ## Fields
 

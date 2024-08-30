@@ -2,9 +2,16 @@
 
 The name of this resource. Is always `bin-lookup-request`.
 
+## Example Usage
+
+```typescript
+import { Name } from "@gr4vy/sdk/models/components";
+
+let value: Name = "bin-lookup-request";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `BinLookupRequest` | bin-lookup-request |
+```typescript
+"bin-lookup-request"
+```

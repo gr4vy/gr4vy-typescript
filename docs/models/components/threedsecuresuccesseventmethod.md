@@ -2,10 +2,16 @@
 
 The method used for 3DS authentication for this transaction.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureSuccessEventMethod } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureSuccessEventMethod = "challenge";
+```
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `Challenge`    | challenge      |
-| `Frictionless` | frictionless   |
+```typescript
+"challenge" | "frictionless"
+```

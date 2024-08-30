@@ -2,6 +2,17 @@
 
 BIN range conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowBINRangeCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowBINRangeCondition = {
+    name: "card_bin",
+    operator: "is_one_of",
+    value: ["41410000-42429999"],
+};
+```
 
 ## Fields
 

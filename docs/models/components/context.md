@@ -3,6 +3,18 @@
 Additional context specific to the payment option.
 This is currently only returned for Apple Pay and Google Pay.
 
+## Example Usage
+
+```typescript
+import { Context } from "@gr4vy/sdk/models/components";
+
+let value: Context = {
+    approvalUi: {
+        height: "300px",
+        width: "300px",
+    },
+};
+```
 
 ## Fields
 

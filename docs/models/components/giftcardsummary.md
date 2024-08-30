@@ -2,6 +2,26 @@
 
 A gift card stored for a buyer.
 
+## Example Usage
+
+```typescript
+import { GiftCardSummary } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardSummary = {
+    type: "gift-card",
+    id: "e6cdf979-87e2-4796-8ff6-9784d5aed893",
+    merchantAccountId: "default",
+    bin: "412345",
+    subBin: "554",
+    last4: "1234",
+    expirationDate: new Date("2013-07-16T19:23:00.000+00:00"),
+    balance: 1299,
+    currency: "USD",
+    balanceErrorCode: "incorrect_currency",
+    balanceRawErrorCode: "10363",
+    balanceRawErrorMessage: "This currency is not supported by the merchant.",
+};
+```
 
 ## Fields
 

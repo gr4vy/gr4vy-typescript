@@ -12,12 +12,16 @@ executed at the start of each month.
 Note that a `weekly` schedule means that the report is executed
 at the start of every Monday.
 
+## Example Usage
+
+```typescript
+import { ReportSchedule } from "@gr4vy/sdk/models/components";
+
+let value: ReportSchedule = "monthly";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Daily`   | daily     |
-| `Monthly` | monthly   |
-| `Once`    | once      |
-| `Weekly`  | weekly    |
+```typescript
+"daily" | "monthly" | "once" | "weekly"
+```

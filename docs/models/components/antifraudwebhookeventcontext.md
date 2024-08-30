@@ -2,6 +2,19 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { AntiFraudWebhookEventContext } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudWebhookEventContext = {
+    antiFraudServiceCheckId: "decision-1234",
+    content: '{ "decision": "ACCEPT", "id": "decision-1234", "reason": "Manually verified" }',
+    contentType: "application/json",
+    decision: "ACCEPT",
+    comment: "Manually verified",
+};
+```
 
 ## Fields
 

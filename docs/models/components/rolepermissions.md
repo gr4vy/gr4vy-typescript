@@ -2,6 +2,15 @@
 
 The permissions associated with a role.
 
+## Example Usage
+
+```typescript
+import { RolePermissions } from "@gr4vy/sdk/models/components";
+
+let value: RolePermissions = {
+    allow: ["buyers.read", "payment-methods.read", "transactions.read"],
+};
+```
 
 ## Fields
 

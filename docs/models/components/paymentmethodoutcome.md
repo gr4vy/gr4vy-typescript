@@ -3,6 +3,16 @@
 Defines the outcome of a rule in a flow where the result
 is a list of payment types.
 
+## Example Usage
+
+```typescript
+import { PaymentMethodOutcome } from "@gr4vy/sdk/models/components";
+
+let value: PaymentMethodOutcome = {
+    type: "list",
+    result: ["card", "paypal"],
+};
+```
 
 ## Fields
 

@@ -8,6 +8,16 @@ may have an important meaning like the ID of a payment service to be
 used (this is the case for `redirect-transaction` flow and
 `route-transaction` action).
 
+## Example Usage
+
+```typescript
+import { FlowRuleUUIDsListOutcome } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleUUIDsListOutcome = {
+    type: "list",
+    result: ["fe26475d-ec3e-4884-9553-f7356683f7f9", "d88aca32-07fb-46cd-a43f-86da02b73c21"],
+};
+```
 
 ## Fields
 

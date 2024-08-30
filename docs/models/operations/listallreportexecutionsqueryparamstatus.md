@@ -1,12 +1,15 @@
 # ListAllReportExecutionsQueryParamStatus
 
+## Example Usage
+
+```typescript
+import { ListAllReportExecutionsQueryParamStatus } from "@gr4vy/sdk/models/operations";
+
+let value: ListAllReportExecutionsQueryParamStatus = "succeeded";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Dispatched` | dispatched   |
-| `Failed`     | failed       |
-| `Pending`    | pending      |
-| `Processing` | processing   |
-| `Succeeded`  | succeeded    |
+```typescript
+"dispatched" | "failed" | "pending" | "processing" | "succeeded"
+```

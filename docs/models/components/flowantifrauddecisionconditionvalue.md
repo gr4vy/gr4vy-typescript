@@ -1,13 +1,15 @@
 # FlowAntiFraudDecisionConditionValue
 
+## Example Usage
+
+```typescript
+import { FlowAntiFraudDecisionConditionValue } from "@gr4vy/sdk/models/components";
+
+let value: FlowAntiFraudDecisionConditionValue = "exception";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Accept`    | accept      |
-| `Error`     | error       |
-| `Reject`    | reject      |
-| `Review`    | review      |
-| `Exception` | exception   |
-| `Skipped`   | skipped     |
+```typescript
+"accept" | "error" | "reject" | "review" | "exception" | "skipped"
+```

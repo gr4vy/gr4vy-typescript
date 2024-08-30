@@ -1,5 +1,12 @@
 # TransactionRequestAdditionalData
 
+## Example Usage
+
+```typescript
+import { TransactionRequestAdditionalData } from "@gr4vy/sdk/models/components";
+
+let value: TransactionRequestAdditionalData = {};
+```
 
 ## Fields
 

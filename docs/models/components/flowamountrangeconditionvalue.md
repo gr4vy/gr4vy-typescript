@@ -2,6 +2,17 @@
 
 Amount value compare the transaction to.
 
+## Example Usage
+
+```typescript
+import { FlowAmountRangeConditionValue } from "@gr4vy/sdk/models/components";
+
+let value: FlowAmountRangeConditionValue = {
+    currency: "USD",
+    min: 1,
+    max: 200,
+};
+```
 
 ## Fields
 

@@ -2,6 +2,24 @@
 
 A list of available payment method definitions.
 
+## Example Usage
+
+```typescript
+import { PaymentMethodDefinitions } from "@gr4vy/sdk/models/components";
+
+let value: PaymentMethodDefinitions = {
+    items: [
+        {
+            id: "bank",
+            iconUrl:
+                "https://api.sandbox.example.gr4vy.app/assets/payment-method-definitions/bank.svg",
+            displayName: "Bank",
+            longDisplayName: "Bank (BACS)",
+            method: "BACS",
+        },
+    ],
+};
+```
 
 ## Fields
 

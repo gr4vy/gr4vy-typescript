@@ -2,6 +2,27 @@
 
 A request to update a rule.
 
+## Example Usage
+
+```typescript
+import { FlowRuleUpdateRequest } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleUpdateRequest = {
+    description: "example rule.",
+    conditions: [
+        {
+            name: "amount_zero",
+            operator: "equal_to",
+            value: 0,
+        },
+    ],
+    outcome: {
+        type: "list",
+        result: ["fe26475d-ec3e-4884-9553-f7356683f7f9", "d88aca32-07fb-46cd-a43f-86da02b73c21"],
+    },
+    position: 2,
+};
+```
 
 ## Fields
 

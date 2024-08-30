@@ -2,6 +2,13 @@
 
 Configuration for each supported card scheme.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequestMerchantProfile } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequestMerchantProfile = {};
+```
 
 ## Fields
 

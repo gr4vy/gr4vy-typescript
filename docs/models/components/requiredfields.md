@@ -2,6 +2,13 @@
 
 The fields that are required to process a transaction for this payment option.
 
+## Example Usage
+
+```typescript
+import { RequiredFields } from "@gr4vy/sdk/models/components";
+
+let value: RequiredFields = {};
+```
 
 ## Fields
 

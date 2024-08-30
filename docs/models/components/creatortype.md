@@ -2,10 +2,16 @@
 
 The type of the creator of this report.
 
+## Example Usage
+
+```typescript
+import { CreatorType } from "@gr4vy/sdk/models/components";
+
+let value: CreatorType = "private_key";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `User`       | user         |
-| `PrivateKey` | private_key  |
+```typescript
+"user" | "private_key"
+```

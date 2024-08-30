@@ -2,6 +2,27 @@
 
 The specification of a report.
 
+## Example Usage
+
+```typescript
+import { ReportSpec } from "@gr4vy/sdk/models/components";
+
+let value: ReportSpec = {
+    model: "transactions",
+    params: {
+        fields: ["id", "external_identifier"],
+        filters: {
+            status: ["authorization_failed"],
+            currency: ["GBP"],
+            method: ["card"],
+            scheme: ["visa"],
+            threeDSecureEci: ["05"],
+            threeDSecureAuthResp: ["N"],
+        },
+        sort: [{}],
+    },
+};
+```
 
 ## Fields
 

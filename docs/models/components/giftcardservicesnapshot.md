@@ -2,6 +2,18 @@
 
 A snapshot of a gift card service used in a transaction.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceSnapshot } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceSnapshot = {
+    type: "gift-card-service",
+    id: "6c020bf3-179b-4f4f-858d-84e39e196e0f",
+    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+    displayName: "Qwikcilver UK",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,22 @@
 
 This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a decision.
 
+## Example Usage
+
+```typescript
+import { AntiFraudDecisionUpdateEvent } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudDecisionUpdateEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "anti-fraud-decision-update",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        antiFraudServiceCheckId: "decision-1234",
+        decision: "ACCEPT",
+    },
+};
+```
 
 ## Fields
 

@@ -2,6 +2,18 @@
 
 Details for a Network Token payment method.
 
+## Example Usage
+
+```typescript
+import { NetworkTokenPaymentMethodRequest } from "@gr4vy/sdk/models/components";
+
+let value: NetworkTokenPaymentMethodRequest = {
+    method: "network-token",
+    token: "<value>",
+    expirationDate: "11/25",
+    redirectUrl: "https://example.com/callback",
+};
+```
 
 ## Fields
 

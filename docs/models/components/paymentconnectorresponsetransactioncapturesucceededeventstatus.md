@@ -3,9 +3,16 @@
 The new status code for the transaction. This is always
 set to `capture_succeeded`.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionCaptureSucceededEventStatus } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionCaptureSucceededEventStatus = "capture_succeeded";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `CaptureSucceeded` | capture_succeeded  |
+```typescript
+"capture_succeeded"
+```

@@ -1,5 +1,14 @@
 # GetTransactionRequest
 
+## Example Usage
+
+```typescript
+import { GetTransactionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetTransactionRequest = {
+    transactionId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+};
+```
 
 ## Fields
 

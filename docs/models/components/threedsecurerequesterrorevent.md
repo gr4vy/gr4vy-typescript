@@ -2,6 +2,22 @@
 
 Error details for a failed 3DS call.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureRequestErrorEvent } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureRequestErrorEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "three-d-secure-request-error",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        url: "https://3dserver.example/auth",
+        reason: "TIMEOUT",
+    },
+};
+```
 
 ## Fields
 

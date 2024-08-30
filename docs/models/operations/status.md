@@ -1,11 +1,15 @@
 # Status
 
+## Example Usage
+
+```typescript
+import { Status } from "@gr4vy/sdk/models/operations";
+
+let value: Status = "buyer_approval_required";
+```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `Processing`            | processing              |
-| `BuyerApprovalRequired` | buyer_approval_required |
-| `Succeeded`             | succeeded               |
-| `Failed`                | failed                  |
+```typescript
+"processing" | "buyer_approval_required" | "succeeded" | "failed"
+```

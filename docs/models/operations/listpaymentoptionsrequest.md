@@ -1,5 +1,18 @@
 # ListPaymentOptionsRequest
 
+## Example Usage
+
+```typescript
+import { ListPaymentOptionsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListPaymentOptionsRequest = {
+    country: "US",
+    currency: "USD",
+    amount: 500,
+    metadata: '{"restricted_items": "True"}',
+    locale: "en-US",
+};
+```
 
 ## Fields
 

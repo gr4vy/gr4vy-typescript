@@ -2,6 +2,19 @@
 
 Health Dashboard status summary.
 
+## Example Usage
+
+```typescript
+import { HealthDashboardStatus } from "@gr4vy/sdk/models/components";
+
+let value: HealthDashboardStatus = {
+    type: "health-dashboard.status",
+    latestExecution: {
+        timestamp: new Date("2023-07-26T19:23:00.000Z"),
+    },
+    currencies: ["USD", "GBP"],
+};
+```
 
 ## Fields
 

@@ -2,6 +2,17 @@
 
 Request body to update a report.
 
+## Example Usage
+
+```typescript
+import { ReportUpdate } from "@gr4vy/sdk/models/components";
+
+let value: ReportUpdate = {
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    scheduleEnabled: true,
+};
+```
 
 ## Fields
 

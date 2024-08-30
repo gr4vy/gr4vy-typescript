@@ -1,5 +1,15 @@
 # GetHealthDashboardTotalVolumeRequest
 
+## Example Usage
+
+```typescript
+import { GetHealthDashboardTotalVolumeRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetHealthDashboardTotalVolumeRequest = {
+    currency: "USD",
+    period: "7-days",
+};
+```
 
 ## Fields
 

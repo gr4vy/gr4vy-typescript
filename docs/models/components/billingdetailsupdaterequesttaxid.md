@@ -2,6 +2,16 @@
 
 The tax ID information associated with the billing details.
 
+## Example Usage
+
+```typescript
+import { BillingDetailsUpdateRequestTaxID } from "@gr4vy/sdk/models/components";
+
+let value: BillingDetailsUpdateRequestTaxID = {
+    value: "12345678931",
+    kind: "gb.vat",
+};
+```
 
 ## Fields
 

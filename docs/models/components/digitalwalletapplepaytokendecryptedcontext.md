@@ -2,6 +2,18 @@
 
 Apple Pay decrypted token context.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletApplePayTokenDecryptedContext } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletApplePayTokenDecryptedContext = {
+    version: "EC_v1",
+    type: "dpan",
+    currencyCode: "840",
+    paymentDataType: "3DSecure",
+};
+```
 
 ## Fields
 

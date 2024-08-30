@@ -2,6 +2,16 @@
 
 The metadata to compare the transaction to.
 
+## Example Usage
+
+```typescript
+import { FlowMetadataConditionValue } from "@gr4vy/sdk/models/components";
+
+let value: FlowMetadataConditionValue = {
+    key: "product",
+    value: "phone",
+};
+```
 
 ## Fields
 

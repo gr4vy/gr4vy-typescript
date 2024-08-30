@@ -2,6 +2,17 @@
 
 Card scheme conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowCardSchemeCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowCardSchemeCondition = {
+    name: "card_scheme",
+    operator: "is_one_of",
+    value: ["visa", "mastercard"],
+};
+```
 
 ## Fields
 

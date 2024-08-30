@@ -2,9 +2,16 @@
 
 The type of this resource. Is always `buyer`.
 
+## Example Usage
+
+```typescript
+import { TransactionBuyerType } from "@gr4vy/sdk/models/components";
+
+let value: TransactionBuyerType = "buyer";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Buyer` | buyer   |
+```typescript
+"buyer"
+```

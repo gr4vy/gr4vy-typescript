@@ -2,6 +2,27 @@
 
 An available anti fraud service that can be configured.
 
+## Example Usage
+
+```typescript
+import { AntiFraudServiceDefinition } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudServiceDefinition = {
+    id: "sift-anti-fraud",
+    type: "anti-fraud-service-definition",
+    displayName: "Stripe",
+    fields: [
+        {
+            key: "private_api_key",
+            displayName: "Private API key",
+            required: true,
+            format: "text",
+            secret: true,
+        },
+    ],
+    iconUrl: "https://cdn.gr4vy.app/stripe.svg",
+};
+```
 
 ## Fields
 

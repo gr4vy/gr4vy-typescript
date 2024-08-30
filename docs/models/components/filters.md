@@ -2,6 +2,20 @@
 
 The filters for the report.
 
+## Example Usage
+
+```typescript
+import { Filters } from "@gr4vy/sdk/models/components";
+
+let value: Filters = {
+    status: ["authorization_failed"],
+    currency: ["GBP"],
+    method: ["card"],
+    scheme: ["visa"],
+    threeDSecureEci: ["05"],
+    threeDSecureAuthResp: ["N"],
+};
+```
 
 ## Fields
 

@@ -2,6 +2,18 @@
 
 This event logs the request and response details of HTTP calls made to refund gift cards, in case the call succeeded.
 
+## Example Usage
+
+```typescript
+import { GiftCardRefundSucceeded } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardRefundSucceeded = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "gift-card-refund-succeeded",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

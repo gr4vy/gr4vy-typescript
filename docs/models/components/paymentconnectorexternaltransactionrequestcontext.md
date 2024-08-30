@@ -2,6 +2,16 @@
 
 Additional context for the transaction.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorExternalTransactionRequestContext } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorExternalTransactionRequestContext = {
+    connectorRequestId: "76f5ed52-8675-491f-b52d-731ca894ed80",
+    request: "",
+};
+```
 
 ## Fields
 

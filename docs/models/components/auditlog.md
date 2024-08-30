@@ -2,6 +2,31 @@
 
 A log of a change that occurred in the Gr4vy instance.
 
+## Example Usage
+
+```typescript
+import { AuditLog } from "@gr4vy/sdk/models/components";
+
+let value: AuditLog = {
+    type: "audit-log",
+    id: "8d3fe99b-1422-42e6-bbb3-932d95ae5f79",
+    timestamp: new Date("2022-01-01T00:00:00+00:00"),
+    action: "created",
+    merchantAccountId: "default",
+    user: {
+        id: "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+        name: "John L",
+        emailAddress: "john@example.com",
+        staff: false,
+        status: "active",
+    },
+    resource: {
+        type: "buyer",
+        id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+        name: "Samuel J",
+    },
+};
+```
 
 ## Fields
 

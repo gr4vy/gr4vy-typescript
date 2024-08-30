@@ -4,6 +4,35 @@ An object containing a key for each supported card scheme (Amex,
 Discover, Mastercard and Visa), and for each key an object with
 the merchant profile for this service and the corresponding scheme.
 
+## Example Usage
+
+```typescript
+import { MerchantProfile } from "@gr4vy/sdk/models/components";
+
+let value: MerchantProfile = {
+    amex: {
+        createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    },
+    dankort: {
+        createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    },
+    discover: {
+        createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    },
+    jcb: {
+        createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    },
+    mastercard: {
+        createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    },
+    unionpay: {
+        createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    },
+    visa: {
+        createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    },
+};
+```
 
 ## Fields
 

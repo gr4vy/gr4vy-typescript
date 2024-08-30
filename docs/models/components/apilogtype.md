@@ -2,9 +2,16 @@
 
 `api-log`.
 
+## Example Usage
+
+```typescript
+import { ApiLogType } from "@gr4vy/sdk/models/components";
+
+let value: ApiLogType = "api-log";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `ApiLog` | api-log  |
+```typescript
+"api-log"
+```

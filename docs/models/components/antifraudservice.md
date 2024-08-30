@@ -1,5 +1,28 @@
 # AntiFraudService
 
+## Example Usage
+
+```typescript
+import { AntiFraudService } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudService = {
+    type: "anti-fraud-service",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    merchantAccountId: "default",
+    antiFraudServiceDefinitionId: "sift-anti-fraud",
+    displayName: "Sift Anti-Fraud Service.",
+    active: true,
+    reviewsEnabled: false,
+    fields: [
+        {
+            key: "approve_decision",
+            value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

@@ -3,6 +3,19 @@
 A single field that needs to be submitted for a payment service when it
 is created.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceDefinitionFields } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceDefinitionFields = {
+    key: "private_api_key",
+    displayName: "Private API key",
+    required: true,
+    format: "text",
+    secret: true,
+};
+```
 
 ## Fields
 

@@ -2,6 +2,20 @@
 
 Details to register a new Checkout Session payment method.
 
+## Example Usage
+
+```typescript
+import { CheckoutSessionRequest } from "@gr4vy/sdk/models/components";
+
+let value: CheckoutSessionRequest = {
+    method: "checkout-session",
+    id: "8d3fe99b-1422-42e6-bbb3-932d95ae5f79",
+    redirectUrl: "https://example.com/callback",
+    externalIdentifier: "card-323444",
+    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    buyerExternalIdentifier: "user-789123",
+};
+```
 
 ## Fields
 

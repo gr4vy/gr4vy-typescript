@@ -2,6 +2,17 @@
 
 Payment source conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowPaymentSourceCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowPaymentSourceCondition = {
+    name: "payment_source",
+    operator: "is_one_of",
+    value: ["recurring", "installment"],
+};
+```
 
 ## Fields
 

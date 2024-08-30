@@ -2,6 +2,24 @@
 
 Details about the payment method for card type only.
 
+## Example Usage
+
+```typescript
+import { CheckoutSessionPaymentMethod } from "@gr4vy/sdk/models/components";
+
+let value: CheckoutSessionPaymentMethod = {
+    type: "payment_method",
+    method: "card",
+    scheme: "visa",
+    label: "4242",
+    details: {
+        bin: "411111",
+        cardType: "credit",
+        cardCountry: "US",
+    },
+    fingerprint: "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,15 @@
 
 Initiates a new session with Google Pay.
 
+## Example Usage
+
+```typescript
+import { GooglePaySessionRequest } from "@gr4vy/sdk/models/components";
+
+let value: GooglePaySessionRequest = {
+    originDomain: "<value>",
+};
+```
 
 ## Fields
 

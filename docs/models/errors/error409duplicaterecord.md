@@ -2,6 +2,13 @@
 
 Duplicate Record Error (HTTP 409).
 
+## Example Usage
+
+```typescript
+import { Error409DuplicateRecord } from "@gr4vy/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

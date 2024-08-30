@@ -1,5 +1,15 @@
 # FlowRuleOutcome
 
+## Example Usage
+
+```typescript
+import { FlowRuleOutcome } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleOutcome = {
+    type: "list",
+    result: ["card", "paypal"],
+};
+```
 
 ## Supported Types
 

@@ -5,6 +5,36 @@ is a list of dictionaries that define the payment service,
 instrument and transformation to be used to process a
 transaction.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceOutcome } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceOutcome = {
+    type: "card-routing",
+    result: [
+        {
+            paymentServiceId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+            instrument: "network_token",
+            transformations: [
+                {
+                    name: "force_mit",
+                },
+            ],
+        },
+        {
+            paymentServiceId: "d88aca32-07fb-46cd-a43f-86da02b73c21",
+            instrument: "pan",
+            transformations: [
+                {
+                    name: "force_mit",
+                },
+            ],
+        },
+    ],
+    version: 2,
+};
+```
 
 ## Fields
 

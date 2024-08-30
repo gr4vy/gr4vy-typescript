@@ -2,6 +2,18 @@
 
 Checkout Session payment method details to use in a transaction.
 
+## Example Usage
+
+```typescript
+import { PaymentMethodCheckoutSession } from "@gr4vy/sdk/models/components";
+
+let value: PaymentMethodCheckoutSession = {
+    method: "checkout-session",
+    id: "8d3fe99b-1422-42e6-bbb3-932d95ae5f79",
+    externalIdentifier: "card-323444",
+    redirectUrl: "https://example.com/callback",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,17 @@
 
 Google Pay decrypted token context.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletGooglePayTokenDecryptedContext } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletGooglePayTokenDecryptedContext = {
+    version: "ECv2",
+    type: "dpan",
+    paymentMethod: "CARD",
+};
+```
 
 ## Fields
 

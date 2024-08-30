@@ -2,6 +2,15 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { NetworkTokenProvisionFailedContext } from "@gr4vy/sdk/models/components";
+
+let value: NetworkTokenProvisionFailedContext = {
+    reason: "Network Error",
+};
+```
 
 ## Fields
 

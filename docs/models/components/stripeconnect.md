@@ -2,6 +2,13 @@
 
 Stripe Connect configuration options.
 
+## Example Usage
+
+```typescript
+import { StripeConnect } from "@gr4vy/sdk/models/components";
+
+let value: StripeConnect = {};
+```
 
 ## Fields
 

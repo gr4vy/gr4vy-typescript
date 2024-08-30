@@ -1,5 +1,16 @@
 # InboundWebhooksRequest
 
+## Example Usage
+
+```typescript
+import { InboundWebhooksRequest } from "@gr4vy/sdk/models/operations";
+
+let value: InboundWebhooksRequest = {
+    resource: "ps",
+    payload: "zian1_7ATUeO-gRKMrCbxmJyYWludHJlZS1jYXJk",
+    signature: "VKJw22zyhitK4UlofhFbktBT1esRVua1tN382mFDtrM",
+};
+```
 
 ## Fields
 

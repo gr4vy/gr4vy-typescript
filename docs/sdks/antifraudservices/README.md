@@ -61,6 +61,51 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { antiFraudServicesNewAntiFraudService } from "@gr4vy/sdk/funcs/antiFraudServicesNewAntiFraudService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await antiFraudServicesNewAntiFraudService(gr4vy, {
+    antiFraudServiceDefinitionId: "sift-anti-fraud",
+    displayName: "Sift Anti-Fraud Service.",
+    active: true,
+    reviewsEnabled: false,
+    fields: [
+      {
+        key: "api_key",
+        value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+      },
+      {
+        key: "account_id",
+        value: "26PHem9AhJZvU623DfE1x4sd",
+      },
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -70,10 +115,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.AntiFraudService](../../models/components/antifraudservice.md)\>**
+
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -82,6 +127,7 @@ run();
 | errors.Error401Unauthorized    | 401                            | application/json               |
 | errors.Error409DuplicateRecord | 409                            | application/json               |
 | errors.SDKError                | 4xx-5xx                        | */*                            |
+
 
 ## getAntiFraudService
 
@@ -106,6 +152,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { antiFraudServicesGetAntiFraudService } from "@gr4vy/sdk/funcs/antiFraudServicesGetAntiFraudService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await antiFraudServicesGetAntiFraudService(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -115,10 +191,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.AntiFraudService](../../models/components/antifraudservice.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -126,6 +202,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## updateAntiFraudService
 
@@ -167,6 +244,51 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { antiFraudServicesUpdateAntiFraudService } from "@gr4vy/sdk/funcs/antiFraudServicesUpdateAntiFraudService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await antiFraudServicesUpdateAntiFraudService(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83", {
+    antiFraudServiceDefinitionId: "sift-anti-fraud",
+    displayName: "Sift Anti-Fraud Service.",
+    active: true,
+    reviewsEnabled: false,
+    fields: [
+      {
+        key: "api_key",
+        value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+      },
+      {
+        key: "account_id",
+        value: "26PHem9AhJZvU623DfE1x4sd",
+      },
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -177,10 +299,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.AntiFraudService](../../models/components/antifraudservice.md)\>**
+
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -189,6 +311,7 @@ run();
 | errors.Error401Unauthorized    | 401                            | application/json               |
 | errors.Error409DuplicateRecord | 409                            | application/json               |
 | errors.SDKError                | 4xx-5xx                        | */*                            |
+
 
 ## deleteAntiFraudService
 
@@ -213,6 +336,35 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { antiFraudServicesDeleteAntiFraudService } from "@gr4vy/sdk/funcs/antiFraudServicesDeleteAntiFraudService.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await antiFraudServicesDeleteAntiFraudService(gr4vy, "8724fd24-5489-4a5d-90fd-0604df7d3b83");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -222,10 +374,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

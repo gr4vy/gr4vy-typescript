@@ -2,6 +2,17 @@
 
 Details to use a stored card payment method.
 
+## Example Usage
+
+```typescript
+import { CheckoutSessionFieldsIdPaymentMethod } from "@gr4vy/sdk/models/components";
+
+let value: CheckoutSessionFieldsIdPaymentMethod = {
+    method: "id",
+    id: "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+    securityCode: "123",
+};
+```
 
 ## Fields
 

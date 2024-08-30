@@ -2,6 +2,25 @@
 
 A request to update a merchant account.
 
+## Example Usage
+
+```typescript
+import { MerchantAccountUpdate } from "@gr4vy/sdk/models/components";
+
+let value: MerchantAccountUpdate = {
+    displayName: "Plantly UK",
+    outboundWebhookUrl: "https://www.example.com/webhook",
+    outboundWebhookUsername: "gr4vy",
+    outboundWebhookPassword: "super-secret-password",
+    visaNetworkTokensRequestorId: "e50fa0da-903d-4d54-aacc-4cac57d48df2",
+    visaNetworkTokensAppId: "e50fa0da-903d-4d54-aacc-4cac57d48df2",
+    amexNetworkTokensRequestorId: "e50fa0da-903d-4d54-aacc-4cac57d48df2",
+    amexNetworkTokensAppId: "e50fa0da-903d-4d54-aacc-4cac57d48df2",
+    mastercardNetworkTokensRequestorId: "e50fa0da-903d-4d54-aacc-4cac57d48df2",
+    mastercardNetworkTokensAppId: "e50fa0da-903d-4d54-aacc-4cac57d48df2",
+    loonAcceptedSchemes: ["visa"],
+};
+```
 
 ## Fields
 

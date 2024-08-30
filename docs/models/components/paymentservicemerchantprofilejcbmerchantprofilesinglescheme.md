@@ -2,6 +2,15 @@
 
 Merchant profile for JCB.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceMerchantProfileJcbMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceMerchantProfileJcbMerchantProfileSingleScheme = {
+    createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

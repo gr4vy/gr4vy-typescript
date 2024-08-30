@@ -1,5 +1,17 @@
 # ListPaymentServicesRequest
 
+## Example Usage
+
+```typescript
+import { ListPaymentServicesRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListPaymentServicesRequest = {
+    limit: 1,
+    cursor: "ZXhhbXBsZTE",
+    method: "card",
+    deleted: true,
+};
+```
 
 ## Fields
 

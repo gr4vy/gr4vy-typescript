@@ -1,5 +1,12 @@
 # FlowMetadataConditionValueValue
 
+## Example Usage
+
+```typescript
+import { FlowMetadataConditionValueValue } from "@gr4vy/sdk/models/components";
+
+let value: FlowMetadataConditionValueValue = "phone";
+```
 
 ## Supported Types
 

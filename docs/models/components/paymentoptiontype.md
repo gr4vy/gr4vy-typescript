@@ -2,9 +2,16 @@
 
 `payment-option`.
 
+## Example Usage
+
+```typescript
+import { PaymentOptionType } from "@gr4vy/sdk/models/components";
+
+let value: PaymentOptionType = "payment-option";
+```
 
 ## Values
 
-| Name            | Value           |
-| --------------- | --------------- |
-| `PaymentOption` | payment-option  |
+```typescript
+"payment-option"
+```

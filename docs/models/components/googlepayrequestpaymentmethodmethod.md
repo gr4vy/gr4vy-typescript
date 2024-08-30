@@ -2,9 +2,16 @@
 
 `googlepay`.
 
+## Example Usage
+
+```typescript
+import { GooglePayRequestPaymentMethodMethod } from "@gr4vy/sdk/models/components";
+
+let value: GooglePayRequestPaymentMethodMethod = "googlepay";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Googlepay` | googlepay   |
+```typescript
+"googlepay"
+```

@@ -2,6 +2,13 @@
 
 Not Found Error (HTTP 404).
 
+## Example Usage
+
+```typescript
+import { Error404NotFound } from "@gr4vy/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

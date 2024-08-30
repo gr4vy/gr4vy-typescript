@@ -1,5 +1,15 @@
 # GooglePaySession
 
+## Example Usage
+
+```typescript
+import { GooglePaySession } from "@gr4vy/sdk/models/components";
+
+let value: GooglePaySession = {
+    gatewayMerchantId: "app.gr4vy.sandbox.spider.default",
+    token: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoiQkNSMkRONFQ3QzNLWDZEWSIsIm1lcmNoYW50T3JpZ2luIjoiZW1iZWQuc2FuZGJveC5zcGlkZXIuZ3I0dnkuYXBwIiwiaWF0IjoxNjgzMjExMzk5fQ.Qk99p_j96aSxGmxUyyb06rNxIY7nh9-BvHJGWBrLBSFb3HkSbYRgq9YQzscWJtLHVvIJifkzSc8BgtllfAzh9A",
+};
+```
 
 ## Fields
 

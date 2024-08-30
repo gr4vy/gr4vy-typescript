@@ -2,6 +2,22 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionCaptureDeclinedEventContext } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionCaptureDeclinedEventContext = {
+  paymentServiceTransactionId: "transaction-1234",
+  code: "INVALID DATA",
+  rawResponseCode: "incorrect-zip",
+  rawResponseDescription: "The card's postal code is incorrect. Check the card's postal code or use a
+different card.",
+  avsResponseCode: "partial_match_address",
+  cvvResponseCode: "match",
+  paymentMethodScheme: "visa",
+};
+```
 
 ## Fields
 

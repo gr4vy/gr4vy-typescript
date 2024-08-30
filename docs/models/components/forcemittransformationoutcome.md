@@ -10,6 +10,15 @@ If the request to create a transaction was for MIT,
 i.e. `merchant_initiated=true`, this transformation
 won't have any effect.
 
+## Example Usage
+
+```typescript
+import { ForceMITTransformationOutcome } from "@gr4vy/sdk/models/components";
+
+let value: ForceMITTransformationOutcome = {
+    name: "force_mit",
+};
+```
 
 ## Fields
 

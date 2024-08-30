@@ -1,5 +1,14 @@
 # DeleteAntiFraudServiceRequest
 
+## Example Usage
+
+```typescript
+import { DeleteAntiFraudServiceRequest } from "@gr4vy/sdk/models/operations";
+
+let value: DeleteAntiFraudServiceRequest = {
+    antiFraudServiceId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+};
+```
 
 ## Fields
 

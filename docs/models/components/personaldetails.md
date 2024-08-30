@@ -3,6 +3,17 @@
 Personal details are those which contribute to building up a picture
 of the person as an individual, such as name, title, etc.
 
+## Example Usage
+
+```typescript
+import { PersonalDetails } from "@gr4vy/sdk/models/components";
+
+let value: PersonalDetails = {
+    firstName: "John",
+    lastName: "Smith",
+    email: "john@example.com",
+};
+```
 
 ## Fields
 

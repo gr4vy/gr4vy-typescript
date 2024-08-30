@@ -2,6 +2,15 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { AntiFraudDecisionErrorEventContext } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudDecisionErrorEventContext = {
+    reason: "Network Error",
+};
+```
 
 ## Fields
 

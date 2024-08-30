@@ -2,6 +2,23 @@
 
 The billing address of the buyer.
 
+## Example Usage
+
+```typescript
+import { PaymentMethodAddress } from "@gr4vy/sdk/models/components";
+
+let value: PaymentMethodAddress = {
+    city: "London",
+    country: "GB",
+    postalCode: "789123",
+    state: "Greater London",
+    stateCode: "GB-LND",
+    houseNumberOrName: "10",
+    line1: "10 Oxford Street",
+    line2: "New Oxford Court",
+    organization: "Gr4vy",
+};
+```
 
 ## Fields
 

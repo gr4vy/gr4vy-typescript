@@ -1,5 +1,18 @@
 # ListAuditLogsRequest
 
+## Example Usage
+
+```typescript
+import { ListAuditLogsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListAuditLogsRequest = {
+    limit: 1,
+    cursor: "ZXhhbXBsZTE",
+    userId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+    action: "created",
+    resourceType: "buyer",
+};
+```
 
 ## Fields
 

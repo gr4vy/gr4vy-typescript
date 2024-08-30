@@ -1,5 +1,17 @@
 # ListBuyerPaymentMethodsRequest
 
+## Example Usage
+
+```typescript
+import { ListBuyerPaymentMethodsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListBuyerPaymentMethodsRequest = {
+    buyerId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+    buyerExternalIdentifier: "user-12345",
+    country: "US",
+    currency: "USD",
+};
+```
 
 ## Fields
 

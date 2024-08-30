@@ -2,6 +2,17 @@
 
 Country conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowCountryCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowCountryCondition = {
+    name: "country",
+    operator: "is_one_of",
+    value: ["US", "DE"],
+};
+```
 
 ## Fields
 

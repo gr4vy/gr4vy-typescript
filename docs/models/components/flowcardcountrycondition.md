@@ -2,6 +2,17 @@
 
 Card country condition with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowCardCountryCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowCardCountryCondition = {
+    name: "card_country",
+    operator: "is_one_of",
+    value: ["ES", "GB"],
+};
+```
 
 ## Fields
 

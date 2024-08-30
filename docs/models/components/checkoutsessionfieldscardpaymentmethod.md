@@ -2,6 +2,18 @@
 
 Details to store a new card payment method.
 
+## Example Usage
+
+```typescript
+import { CheckoutSessionFieldsCardPaymentMethod } from "@gr4vy/sdk/models/components";
+
+let value: CheckoutSessionFieldsCardPaymentMethod = {
+    method: "card",
+    number: "4111111111111111",
+    expirationDate: "11/25",
+    securityCode: "123",
+};
+```
 
 ## Fields
 

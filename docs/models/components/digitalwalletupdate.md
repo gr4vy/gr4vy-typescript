@@ -2,6 +2,19 @@
 
 Request body to update a registered digital wallet's details.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletUpdate } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletUpdate = {
+    merchantName: "Gr4vy",
+    domainNames: ["example.com"],
+    merchantDisplayName: "Gr4vy",
+    merchantCountryCode: "US",
+    merchantUrl: "https://example.com",
+};
+```
 
 ## Fields
 

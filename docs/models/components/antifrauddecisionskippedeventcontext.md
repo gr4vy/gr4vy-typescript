@@ -2,6 +2,15 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { AntiFraudDecisionSkippedEventContext } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudDecisionSkippedEventContext = {
+    reason: "Missing billing address",
+};
+```
 
 ## Fields
 

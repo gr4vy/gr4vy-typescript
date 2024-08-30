@@ -2,6 +2,20 @@
 
 Metadata conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowMetadataCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowMetadataCondition = {
+    name: "metadata",
+    operator: "includes",
+    value: {
+        key: "product",
+        value: ["value1", "value2"],
+    },
+};
+```
 
 ## Fields
 

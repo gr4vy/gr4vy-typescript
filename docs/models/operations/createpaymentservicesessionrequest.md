@@ -1,5 +1,14 @@
 # CreatePaymentServiceSessionRequest
 
+## Example Usage
+
+```typescript
+import { CreatePaymentServiceSessionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: CreatePaymentServiceSessionRequest = {
+    paymentServiceId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+};
+```
 
 ## Fields
 

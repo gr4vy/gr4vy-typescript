@@ -3,6 +3,29 @@
 The 3-D Secure data that was sent to the payment
 service for the transaction.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureSummary } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureSummary = {
+    version: "2.1.0",
+    errorData: {
+        description: "Invalid ThreeDSCompInd",
+        detail: "The threeDSCompInd must be 'Y' when successful",
+        code: "305",
+        component: "C",
+    },
+    responseData: {
+        cavv: "3q2+78r+ur7erb7vyv66vv8=",
+        eci: "05",
+        authenticationResponse: "Y",
+        directoryResponse: "C",
+        directoryTransactionId: "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+        transactionReason: "05",
+    },
+};
+```
 
 ## Fields
 

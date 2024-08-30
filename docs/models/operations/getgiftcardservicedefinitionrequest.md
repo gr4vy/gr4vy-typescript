@@ -1,5 +1,14 @@
 # GetGiftCardServiceDefinitionRequest
 
+## Example Usage
+
+```typescript
+import { GetGiftCardServiceDefinitionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetGiftCardServiceDefinitionRequest = {
+    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+};
+```
 
 ## Fields
 

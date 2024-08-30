@@ -3,6 +3,20 @@
 Additional options to be passed through to PayPal when processing
 transactions.
 
+## Example Usage
+
+```typescript
+import { PaypalPaypalpaylater } from "@gr4vy/sdk/models/components";
+
+let value: PaypalPaypalpaylater = {
+    additionalData: [
+        {
+            key: "test",
+            value: "abc",
+        },
+    ],
+};
+```
 
 ## Fields
 

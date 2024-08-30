@@ -2,9 +2,16 @@
 
 `card`.
 
+## Example Usage
+
+```typescript
+import { CheckoutSessionFieldsCardPaymentMethodMethod } from "@gr4vy/sdk/models/components";
+
+let value: CheckoutSessionFieldsCardPaymentMethodMethod = "card";
+```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Card` | card   |
+```typescript
+"card"
+```

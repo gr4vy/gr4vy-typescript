@@ -2,6 +2,24 @@
 
 A request to create an anti-fraud service.
 
+## Example Usage
+
+```typescript
+import { AntiFraudServiceCreate } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudServiceCreate = {
+    antiFraudServiceDefinitionId: "sift-anti-fraud",
+    displayName: "Sift Anti-Fraud Service.",
+    active: true,
+    reviewsEnabled: false,
+    fields: [
+        {
+            key: "api_key",
+            value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+};
+```
 
 ## Fields
 

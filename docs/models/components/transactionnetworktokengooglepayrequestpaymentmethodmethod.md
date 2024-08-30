@@ -2,9 +2,16 @@
 
 `network-token`.
 
+## Example Usage
+
+```typescript
+import { TransactionNetworkTokenGooglePayRequestPaymentMethodMethod } from "@gr4vy/sdk/models/components";
+
+let value: TransactionNetworkTokenGooglePayRequestPaymentMethodMethod = "network-token";
+```
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `NetworkToken` | network-token  |
+```typescript
+"network-token"
+```

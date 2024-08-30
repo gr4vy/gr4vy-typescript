@@ -2,9 +2,16 @@
 
 `403`.
 
+## Example Usage
+
+```typescript
+import { Error403ForbiddenStatus } from "@gr4vy/sdk/models/errors";
+
+let value: Error403ForbiddenStatus = 403;
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `FourHundredAndThree` | 403                   |
+```typescript
+403
+```

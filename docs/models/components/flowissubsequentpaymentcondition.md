@@ -2,6 +2,17 @@
 
 `is_subsequent_payment` flag conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowIsSubsequentPaymentCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowIsSubsequentPaymentCondition = {
+    name: "is_subsequent_payment",
+    operator: "equal_to",
+    value: true,
+};
+```
 
 ## Fields
 

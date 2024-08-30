@@ -2,6 +2,21 @@
 
 Merchant details used to register with a digital wallet provider.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletRequest } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletRequest = {
+    provider: "apple",
+    merchantName: "Gr4vy",
+    merchantUrl: "https://example.com",
+    merchantDisplayName: "Gr4vy",
+    merchantCountryCode: "US",
+    domainNames: ["example.com"],
+    acceptTermsAndConditions: true,
+};
+```
 
 ## Fields
 

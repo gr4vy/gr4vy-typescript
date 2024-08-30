@@ -2,11 +2,16 @@
 
 The action that was performed.
 
+## Example Usage
+
+```typescript
+import { AuditLogAction } from "@gr4vy/sdk/models/components";
+
+let value: AuditLogAction = "created";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Created` | created   |
-| `Updated` | updated   |
-| `Deleted` | deleted   |
+```typescript
+"created" | "updated" | "deleted"
+```

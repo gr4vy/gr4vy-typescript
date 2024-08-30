@@ -1,5 +1,14 @@
 # ListFlowRulesRequest
 
+## Example Usage
+
+```typescript
+import { ListFlowRulesRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListFlowRulesRequest = {
+    flow: "checkout",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,20 @@
 
 The report associated with this report execution.
 
+## Example Usage
+
+```typescript
+import { ReportSummary } from "@gr4vy/sdk/models/components";
+
+let value: ReportSummary = {
+    type: "report",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    merchantAccountId: "default",
+    name: "Failed Authorizations 042022",
+    creatorId: "bd5d40d1-913b-419c-bd62-84efc46e0026",
+    creatorDisplayName: "John Doe",
+};
+```
 
 ## Fields
 

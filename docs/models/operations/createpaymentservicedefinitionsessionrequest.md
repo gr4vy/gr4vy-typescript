@@ -1,5 +1,14 @@
 # CreatePaymentServiceDefinitionSessionRequest
 
+## Example Usage
+
+```typescript
+import { CreatePaymentServiceDefinitionSessionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: CreatePaymentServiceDefinitionSessionRequest = {
+    paymentServiceDefinitionId: "stripe-card",
+};
+```
 
 ## Fields
 

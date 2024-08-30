@@ -2,9 +2,16 @@
 
 The type of this resource. Is always `transaction-event`.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionVoidSucceededEventType } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionVoidSucceededEventType = "transaction-event";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `TransactionEvent` | transaction-event  |
+```typescript
+"transaction-event"
+```

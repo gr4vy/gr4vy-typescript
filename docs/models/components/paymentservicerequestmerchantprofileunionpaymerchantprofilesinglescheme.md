@@ -2,6 +2,13 @@
 
 Merchant profile for UnionPay.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequestMerchantProfileUnionpayMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequestMerchantProfileUnionpayMerchantProfileSingleScheme = {};
+```
 
 ## Fields
 

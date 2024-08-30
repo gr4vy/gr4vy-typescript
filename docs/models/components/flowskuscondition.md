@@ -2,6 +2,17 @@
 
 Cart items' SKUs conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowSKUsCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowSKUsCondition = {
+    name: "skus",
+    operator: "includes_all",
+    value: ["YZ1234", "AB2345", "TU4567"],
+};
+```
 
 ## Fields
 

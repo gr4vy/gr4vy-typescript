@@ -1,5 +1,20 @@
 # OutcomeResult
 
+## Example Usage
+
+```typescript
+import { OutcomeResult } from "@gr4vy/sdk/models/components";
+
+let value: OutcomeResult = {
+    paymentServiceId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    instrument: "network_token",
+    transformations: [
+        {
+            name: "force_mit",
+        },
+    ],
+};
+```
 
 ## Fields
 

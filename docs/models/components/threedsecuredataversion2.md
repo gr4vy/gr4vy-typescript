@@ -1,5 +1,19 @@
 # ThreeDSecureDataVersion2
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureDataVersion2 } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureDataVersion2 = {
+    cavv: "3q2+78r+ur7erb7vyv66vv8=",
+    eci: "05",
+    authenticationResponse: "Y",
+    directoryResponse: "C",
+    directoryTransactionId: "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+    transactionReason: "05",
+};
+```
 
 ## Fields
 

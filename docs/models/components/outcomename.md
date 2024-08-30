@@ -2,10 +2,16 @@
 
 Name of the transformation.
 
+## Example Usage
+
+```typescript
+import { OutcomeName } from "@gr4vy/sdk/models/components";
+
+let value: OutcomeName = "force_mit";
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `ForceMit`            | force_mit             |
-| `UseAdditionalScheme` | use_additional_scheme |
+```typescript
+"force_mit" | "use_additional_scheme"
+```

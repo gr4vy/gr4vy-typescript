@@ -2,6 +2,21 @@
 
 Details to register a new redirect payment method.
 
+## Example Usage
+
+```typescript
+import { RedirectRequest } from "@gr4vy/sdk/models/components";
+
+let value: RedirectRequest = {
+    method: "paypal",
+    redirectUrl: "https://example.com/callback",
+    currency: "USD",
+    country: "US",
+    externalIdentifier: "account-23423423",
+    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    buyerExternalIdentifier: "user-789123",
+};
+```
 
 ## Fields
 

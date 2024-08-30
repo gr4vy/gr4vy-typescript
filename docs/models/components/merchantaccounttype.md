@@ -2,9 +2,16 @@
 
 `merchant-account`.
 
+## Example Usage
+
+```typescript
+import { MerchantAccountType } from "@gr4vy/sdk/models/components";
+
+let value: MerchantAccountType = "merchant-account";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `MerchantAccount` | merchant-account  |
+```typescript
+"merchant-account"
+```

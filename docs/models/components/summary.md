@@ -2,6 +2,20 @@
 
 Summary of the aggregated data.
 
+## Example Usage
+
+```typescript
+import { Summary } from "@gr4vy/sdk/models/components";
+
+let value: Summary = {
+    transactionsAccepted: 7890,
+    transactionsAcceptedDeltaPct: -5,
+    transactionsAuthorizedRate: 89,
+    transactionsAuthorizedRateDelta: 15,
+    refunds: 590,
+    refundsDeltaPct: 7,
+};
+```
 
 ## Fields
 

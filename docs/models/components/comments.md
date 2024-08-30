@@ -2,6 +2,17 @@
 
 Comments to merchant or beneficiary written by customer.
 
+## Example Usage
+
+```typescript
+import { Comments } from "@gr4vy/sdk/models/components";
+
+let value: Comments = {
+    userCommentsToMerchant: "Please wrap with care!!",
+    messageToBeneficiary: "Enjoy the gift John!",
+    merchantComments: "Shipping delayed",
+};
+```
 
 ## Fields
 

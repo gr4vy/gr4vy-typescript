@@ -3,6 +3,19 @@
 Outcome for redirect transactions flow/routing action.
 Each option is a Gr4vy payment service object.
 
+## Example Usage
+
+```typescript
+import { FlowRedirectTransactionRoutingOutcome } from "@gr4vy/sdk/models/components";
+
+let value: FlowRedirectTransactionRoutingOutcome = {
+    type: "outcome",
+    id: "24c8211d-b9d9-4b06-8aa9-f350fd0ffd15",
+    label: "Stripe",
+    countries: ["US", "GB"],
+    currencies: ["USD", "GBP"],
+};
+```
 
 ## Fields
 

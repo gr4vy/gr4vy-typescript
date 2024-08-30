@@ -1,5 +1,21 @@
 # UpdateDigitalWalletRequest
 
+## Example Usage
+
+```typescript
+import { UpdateDigitalWalletRequest } from "@gr4vy/sdk/models/operations";
+
+let value: UpdateDigitalWalletRequest = {
+    digitalWalletId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    digitalWalletUpdate: {
+        merchantName: "Gr4vy",
+        domainNames: ["example.com"],
+        merchantDisplayName: "Gr4vy",
+        merchantCountryCode: "US",
+        merchantUrl: "https://example.com",
+    },
+};
+```
 
 ## Fields
 

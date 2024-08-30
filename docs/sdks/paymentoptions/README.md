@@ -51,6 +51,42 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { paymentOptionsListPaymentOptions } from "@gr4vy/sdk/funcs/paymentOptionsListPaymentOptions.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await paymentOptionsListPaymentOptions(gr4vy, {
+    country: "US",
+    currency: "USD",
+    amount: 500,
+    metadata: "{\"restricted_items\": \"True\"}",
+    locale: "en-US",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -60,10 +96,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.PaymentOptions](../../models/components/paymentoptions.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -71,6 +107,7 @@ run();
 | errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## postListPaymentOptions
 
@@ -123,6 +160,58 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { paymentOptionsPostListPaymentOptions } from "@gr4vy/sdk/funcs/paymentOptionsPostListPaymentOptions.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await paymentOptionsPostListPaymentOptions(gr4vy, {
+    amount: 1299,
+    locale: "en-US",
+    currency: "USD",
+    country: "US",
+    metadata: {
+      "key": "value",
+    },
+    cartItems: [
+      {
+        name: "GoPro HERO9 Camcorder",
+        quantity: 1,
+        unitAmount: 37999,
+        discountAmount: 0,
+        taxAmount: 0,
+        externalIdentifier: "item-789123",
+        sku: "sku-789123",
+        productUrl: "https://example.com/items/gopro",
+        imageUrl: "https://example.com/images/items/gopro.png",
+        productType: "physical",
+      },
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -132,10 +221,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.PaymentOptions](../../models/components/paymentoptions.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

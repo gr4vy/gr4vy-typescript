@@ -2,6 +2,17 @@
 
 Cart items' product categories conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowProductCategoriesCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowProductCategoriesCondition = {
+    name: "product_categories",
+    operator: "includes_all",
+    value: ["electronics", "printers"],
+};
+```
 
 ## Fields
 

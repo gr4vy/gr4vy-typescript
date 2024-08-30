@@ -2,6 +2,19 @@
 
 The user who performed the action.
 
+## Example Usage
+
+```typescript
+import { User } from "@gr4vy/sdk/models/components";
+
+let value: User = {
+    id: "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+    name: "John L",
+    emailAddress: "john@example.com",
+    staff: false,
+    status: "active",
+};
+```
 
 ## Fields
 

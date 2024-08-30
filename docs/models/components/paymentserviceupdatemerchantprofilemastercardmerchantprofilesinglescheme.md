@@ -2,6 +2,13 @@
 
 Merchant profile for Mastercard.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceUpdateMerchantProfileMastercardMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceUpdateMerchantProfileMastercardMerchantProfileSingleScheme = {};
+```
 
 ## Fields
 

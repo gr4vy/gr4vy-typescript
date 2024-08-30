@@ -10,6 +10,22 @@ In case of a failure to authenticate (status `N`, `R`, or `U`) this
 field will not be populated. To see full details about the 3DS calls
 please use our transaction events API.
 
+## Example Usage
+
+```typescript
+import { ResponseData } from "@gr4vy/sdk/models/components";
+
+let value: ResponseData = {
+    cavv: "3q2+78r+ur7erb7vyv66vv8=",
+    eci: "05",
+    version: "<value>",
+    directoryResponse: "C",
+    scheme: "visa",
+    authenticationResponse: "Y",
+    cavvAlgorithm: "<value>",
+    xid: "<value>",
+};
+```
 
 ## Supported Types
 

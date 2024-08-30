@@ -3,6 +3,29 @@
 This event logs the exact details parsed details for a succeeded authorization
 as reported by our connector.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionAuthorizationSucceededEvent } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionAuthorizationSucceededEvent = {
+  type: "transaction-event",
+  id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  name: "payment-connector-response-transaction-authorization-succeeded",
+  createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+  context: {
+    paymentServiceTransactionId: "transaction-1234",
+    status: "authorization_succeeded",
+    instrumentType: "pan",
+    rawResponseCode: "incorrect-zip",
+    rawResponseDescription: "The card's postal code is incorrect. Check the card's postal code or use a
+  different card.",
+    avsResponseCode: "partial_match_address",
+    cvvResponseCode: "match",
+    paymentMethodScheme: "visa",
+  },
+};
+```
 
 ## Fields
 

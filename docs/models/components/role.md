@@ -1,5 +1,20 @@
 # Role
 
+## Example Usage
+
+```typescript
+import { Role } from "@gr4vy/sdk/models/components";
+
+let value: Role = {
+    type: "role",
+    id: "462ab2e2-3e29-44bd-b39f-e4d1293affbb",
+    name: "Support",
+    description: "Customer support agents",
+    permissions: {
+        allow: ["buyers.read", "payment-methods.read", "transactions.read"],
+    },
+};
+```
 
 ## Fields
 

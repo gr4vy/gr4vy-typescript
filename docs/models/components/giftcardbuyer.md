@@ -2,6 +2,43 @@
 
 The optional buyer for which this payment method has been stored.
 
+## Example Usage
+
+```typescript
+import { GiftCardBuyer } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardBuyer = {
+    type: "buyer",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    billingDetails: {
+        type: "billing-details",
+        firstName: "John",
+        lastName: "Lunn",
+        emailAddress: "john@example.com",
+        phoneNumber: "+1234567890",
+        address: {
+            city: "London",
+            country: "GB",
+            postalCode: "789123",
+            state: "Greater London",
+            stateCode: "GB-LND",
+            houseNumberOrName: "10",
+            line1: "10 Oxford Street",
+            line2: "New Oxford Court",
+            organization: "Gr4vy",
+        },
+        taxId: {
+            value: "12345678931",
+            kind: "gb.vat",
+        },
+    },
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    displayName: "John L.",
+    externalIdentifier: "user-789123",
+    merchantAccountId: "default",
+    updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

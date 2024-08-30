@@ -2,10 +2,16 @@
 
 The comparison to make on the payment source `value`.
 
+## Example Usage
+
+```typescript
+import { FlowPaymentSourceConditionOperator } from "@gr4vy/sdk/models/components";
+
+let value: FlowPaymentSourceConditionOperator = "is_one_of";
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `IsOneOf`     | is_one_of     |
-| `IsNotOneOf`  | is_not_one_of |
+```typescript
+"is_one_of" | "is_not_one_of"
+```

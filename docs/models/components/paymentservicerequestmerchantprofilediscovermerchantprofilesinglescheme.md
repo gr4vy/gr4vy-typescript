@@ -2,6 +2,13 @@
 
 Merchant profile for Discover.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequestMerchantProfileDiscoverMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequestMerchantProfileDiscoverMerchantProfileSingleScheme = {};
+```
 
 ## Fields
 

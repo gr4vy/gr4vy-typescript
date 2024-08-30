@@ -2,6 +2,16 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { AntiFraudDecisionEventContext } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudDecisionEventContext = {
+    antiFraudServiceCheckId: "decision-1234",
+    decision: "ACCEPT",
+};
+```
 
 ## Fields
 

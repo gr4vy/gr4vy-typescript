@@ -2,6 +2,15 @@
 
 General data regarding item such as name, price, etc.
 
+## Example Usage
+
+```typescript
+import { BasicItemData } from "@gr4vy/sdk/models/components";
+
+let value: BasicItemData = {
+    type: "TANGIBLE",
+};
+```
 
 ## Fields
 

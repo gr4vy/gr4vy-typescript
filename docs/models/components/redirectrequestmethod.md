@@ -3,13 +3,16 @@
 The method to use, this can be any of the methods that
 support redirect requests.
 
+## Example Usage
+
+```typescript
+import { RedirectRequestMethod } from "@gr4vy/sdk/models/components";
+
+let value: RedirectRequestMethod = "paypal";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Paypal`     | paypal       |
-| `Banked`     | banked       |
-| `Bitpay`     | bitpay       |
-| `Gocardless` | gocardless   |
-| `Stripedd`   | stripedd     |
+```typescript
+"paypal" | "banked" | "bitpay" | "gocardless" | "stripedd"
+```

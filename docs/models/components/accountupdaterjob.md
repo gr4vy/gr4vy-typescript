@@ -2,6 +2,26 @@
 
 An Account Updater job.
 
+## Example Usage
+
+```typescript
+import { AccountUpdaterJob } from "@gr4vy/sdk/models/components";
+
+let value: AccountUpdaterJob = {
+    type: "account-updater-job",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    merchantAccountId: "default",
+    createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    updatedAt: new Date("2023-07-26T19:23:00.000+00:00"),
+    inquiries: [
+        {
+            type: "account-updater-inquiry",
+            id: "d038f8bf-f1fd-45b3-9948-e1fbb58e8d62",
+            paymentMethodId: "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+        },
+    ],
+};
+```
 
 ## Fields
 

@@ -9,12 +9,16 @@ The state of the token.
   relevant payment services.
 - `failed` - Storing the payment method did not succeed.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceTokenStatus } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceTokenStatus = "succeeded";
+```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `Processing`            | processing              |
-| `BuyerApprovalRequired` | buyer_approval_required |
-| `Succeeded`             | succeeded               |
-| `Failed`                | failed                  |
+```typescript
+"processing" | "buyer_approval_required" | "succeeded" | "failed"
+```

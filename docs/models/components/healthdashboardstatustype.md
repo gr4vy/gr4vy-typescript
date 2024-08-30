@@ -2,9 +2,16 @@
 
 The type of this resource.
 
+## Example Usage
+
+```typescript
+import { HealthDashboardStatusType } from "@gr4vy/sdk/models/components";
+
+let value: HealthDashboardStatusType = "health-dashboard.status";
+```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `HealthDashboardStatus` | health-dashboard.status |
+```typescript
+"health-dashboard.status"
+```

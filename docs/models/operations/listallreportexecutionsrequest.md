@@ -1,5 +1,20 @@
 # ListAllReportExecutionsRequest
 
+## Example Usage
+
+```typescript
+import { ListAllReportExecutionsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListAllReportExecutionsRequest = {
+    cursor: "ZXhhbXBsZTE",
+    limit: 1,
+    createdAtGte: "2022-01-01T12:00:00+08:00",
+    createdAtLte: "2022-01-01T12:00:00+08:00",
+    reportName: "Failed+Authorizations+042022",
+    status: ["succeeded", "failed"],
+    creatorId: ["dba3bc4c-c5f2-477f-bfb0-abd61f89f979"],
+};
+```
 
 ## Fields
 

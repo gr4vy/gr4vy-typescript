@@ -2,6 +2,17 @@
 
 Create a transaction with this gift card.
 
+## Example Usage
+
+```typescript
+import { TransactionGiftCardNewRequest } from "@gr4vy/sdk/models/components";
+
+let value: TransactionGiftCardNewRequest = {
+    number: "4123455541234561234",
+    pin: "1234",
+    amount: 1299,
+};
+```
 
 ## Fields
 

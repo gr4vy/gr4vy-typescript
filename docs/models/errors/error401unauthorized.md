@@ -2,6 +2,13 @@
 
 Unauthorized Error (HTTP 401).
 
+## Example Usage
+
+```typescript
+import { Error401Unauthorized } from "@gr4vy/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

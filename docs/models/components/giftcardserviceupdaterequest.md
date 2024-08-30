@@ -2,6 +2,22 @@
 
 Request body for updating a gift card service.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceUpdateRequest } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceUpdateRequest = {
+    displayName: "Qwikcilver UK",
+    fields: [
+        {
+            key: "private_key",
+            value: "pk_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+    active: true,
+};
+```
 
 ## Fields
 

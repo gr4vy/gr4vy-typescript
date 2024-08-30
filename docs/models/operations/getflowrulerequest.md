@@ -1,5 +1,16 @@
 # GetFlowRuleRequest
 
+## Example Usage
+
+```typescript
+import { GetFlowRuleRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetFlowRuleRequest = {
+    flow: "checkout",
+    action: "select-payment-options",
+    ruleId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+};
+```
 
 ## Fields
 

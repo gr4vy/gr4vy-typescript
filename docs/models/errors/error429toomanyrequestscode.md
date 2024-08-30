@@ -2,9 +2,16 @@
 
 `too_many_requests`.
 
+## Example Usage
+
+```typescript
+import { Error429TooManyRequestsCode } from "@gr4vy/sdk/models/errors";
+
+let value: Error429TooManyRequestsCode = "too_many_requests";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `TooManyRequests` | too_many_requests |
+```typescript
+"too_many_requests"
+```

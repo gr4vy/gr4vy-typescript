@@ -2,6 +2,26 @@
 
 The result and raw data for a 3DS pre-authorization call.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecurePreparationRequestEvent } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecurePreparationRequestEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "three-d-secure-preparation-request",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        url: "https://3dserver.example/auth",
+        request: "{}",
+        response: "{}",
+        responseStatusCode: 200,
+        isEnrolled: true,
+        version: "2.2.0",
+    },
+};
+```
 
 ## Fields
 

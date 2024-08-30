@@ -2,6 +2,13 @@
 
 Merchant profile for Visa.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequestMerchantProfileVisaMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequestMerchantProfileVisaMerchantProfileSingleScheme = {};
+```
 
 ## Fields
 

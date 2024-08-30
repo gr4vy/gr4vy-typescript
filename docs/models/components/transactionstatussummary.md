@@ -2,6 +2,17 @@
 
 A transaction record.
 
+## Example Usage
+
+```typescript
+import { TransactionStatusSummary } from "@gr4vy/sdk/models/components";
+
+let value: TransactionStatusSummary = {
+    type: "transaction",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    status: "processing",
+};
+```
 
 ## Fields
 

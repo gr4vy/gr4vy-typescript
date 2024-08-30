@@ -2,11 +2,16 @@
 
 Result for a given flow action.
 
+## Example Usage
+
+```typescript
+import { FlowRuleThreeDSecureOutcomeResult } from "@gr4vy/sdk/models/components";
+
+let value: FlowRuleThreeDSecureOutcomeResult = "attempt";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Attempt` | attempt   |
-| `Force`   | force     |
-| `Skip`    | skip      |
+```typescript
+"attempt" | "force" | "skip"
+```

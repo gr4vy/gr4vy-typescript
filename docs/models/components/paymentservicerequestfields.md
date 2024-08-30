@@ -2,6 +2,16 @@
 
 A key-value pair that represents a field defined in the definition for this payment service.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequestFields } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequestFields = {
+    key: "private_key",
+    value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+};
+```
 
 ## Fields
 

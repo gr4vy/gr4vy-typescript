@@ -2,9 +2,16 @@
 
 The type of match made for this rule.
 
+## Example Usage
+
+```typescript
+import { FlowCardSourceConditionName } from "@gr4vy/sdk/models/components";
+
+let value: FlowCardSourceConditionName = "card_source";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `CardSource` | card_source  |
+```typescript
+"card_source"
+```

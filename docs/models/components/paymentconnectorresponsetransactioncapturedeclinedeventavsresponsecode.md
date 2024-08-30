@@ -13,13 +13,17 @@ AVS response code.
 The value of this field can be `null` if the payment service did not
 provide a response.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionCaptureDeclinedEventAvsResponseCode } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionCaptureDeclinedEventAvsResponseCode =
+    "partial_match_address";
+```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `NoMatch`              | no_match               |
-| `Match`                | match                  |
-| `PartialMatchAddress`  | partial_match_address  |
-| `PartialMatchPostcode` | partial_match_postcode |
-| `Unavailable`          | unavailable            |
+```typescript
+"no_match" | "match" | "partial_match_address" | "partial_match_postcode" | "unavailable"
+```

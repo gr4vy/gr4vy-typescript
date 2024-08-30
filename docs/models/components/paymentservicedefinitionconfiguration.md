@@ -2,6 +2,17 @@
 
 Configuration items for the payment service.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceDefinitionConfiguration } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceDefinitionConfiguration = {
+    approvalUiHeight: "300px",
+    approvalUiWidth: "300px",
+    approvalUiTarget: "any",
+};
+```
 
 ## Fields
 

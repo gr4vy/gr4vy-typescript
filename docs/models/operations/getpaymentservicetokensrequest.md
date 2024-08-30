@@ -1,5 +1,14 @@
 # GetPaymentServiceTokensRequest
 
+## Example Usage
+
+```typescript
+import { GetPaymentServiceTokensRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetPaymentServiceTokensRequest = {
+    paymentMethodId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,18 @@
 
 Additional detail about the part of a request body that caused an issue.
 
+## Example Usage
+
+```typescript
+import { ErrorDetail } from "@gr4vy/sdk/models/components";
+
+let value: ErrorDetail = {
+    location: "body",
+    type: "value_error.missing",
+    pointer: "/payment_method/number",
+    message: "field required",
+};
+```
 
 ## Fields
 

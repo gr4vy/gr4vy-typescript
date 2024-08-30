@@ -2,6 +2,16 @@
 
 General data regarding item such as name, price, etc.
 
+## Example Usage
+
+```typescript
+import { DeliveryDetails } from "@gr4vy/sdk/models/components";
+
+let value: DeliveryDetails = {
+    deliveryType: "PHYSICAL",
+    deliveryMethod: "USPS - Ground Mail",
+};
+```
 
 ## Fields
 

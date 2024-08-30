@@ -2,6 +2,17 @@
 
 Details to store a new Click to Pay payment method.
 
+## Example Usage
+
+```typescript
+import { CheckoutSessionFieldsClickToPayPaymentMethod } from "@gr4vy/sdk/models/components";
+
+let value: CheckoutSessionFieldsClickToPayPaymentMethod = {
+    method: "click_to_pay",
+    merchantTransactionId: "1a3f0b9.3f334ba9.v094c1c526e0e39c10491a6a947249b5a9200ed6",
+    srcCorrelationId: "34f4a24c.977cf2c2-3cv1-489e-b024-188a11a07491",
+};
+```
 
 ## Fields
 

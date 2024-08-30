@@ -2,6 +2,17 @@
 
 Currency conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowCurrencyCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowCurrencyCondition = {
+    name: "currency",
+    operator: "is_one_of",
+    value: ["USD", "EUR", "GBP"],
+};
+```
 
 ## Fields
 

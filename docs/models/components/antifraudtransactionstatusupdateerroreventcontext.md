@@ -2,6 +2,15 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { AntiFraudTransactionStatusUpdateErrorEventContext } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudTransactionStatusUpdateErrorEventContext = {
+    reason: "Network Error",
+};
+```
 
 ## Fields
 

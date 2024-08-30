@@ -2,6 +2,18 @@
 
 Details for a previously stored payment method.
 
+## Example Usage
+
+```typescript
+import { StoredPaymentMethodRequest } from "@gr4vy/sdk/models/components";
+
+let value: StoredPaymentMethodRequest = {
+    method: "id",
+    id: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+    redirectUrl: "https://example.com/callback",
+    securityCode: "123",
+};
+```
 
 ## Fields
 

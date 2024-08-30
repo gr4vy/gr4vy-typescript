@@ -1,5 +1,14 @@
 # DeleteRoleAssignmentRequest
 
+## Example Usage
+
+```typescript
+import { DeleteRoleAssignmentRequest } from "@gr4vy/sdk/models/operations";
+
+let value: DeleteRoleAssignmentRequest = {
+    roleAssignmentId: "1cdac457-400f-4866-8da6-5c193a8db158",
+};
+```
 
 ## Fields
 

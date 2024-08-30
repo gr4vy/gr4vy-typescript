@@ -2,6 +2,24 @@
 
 3DS post-authentication context.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureResultRequestEventContext } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureResultRequestEventContext = {
+    url: "https://3dserver.example/auth",
+    request: "{}",
+    response: "{}",
+    responseStatusCode: 200,
+    cavv: "+9YDsoSIbiEgO+PFMdgGSF17Uqk=",
+    eci: "05",
+    authenticationResponse: "C",
+    directoryResponse: "C",
+    directoryTransactionId: "8875884a-ac2f-42cb-b3f0-09b3ea3c0042",
+    version: "2.2.0",
+};
+```
 
 ## Fields
 

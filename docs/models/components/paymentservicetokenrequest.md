@@ -2,6 +2,17 @@
 
 Request body for provision a payment service token.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceTokenRequest } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceTokenRequest = {
+    securityCode: "123",
+    paymentServiceId: "a7d6b829-aea5-407d-ab7f-138784b5ad2c",
+    redirectUrl: "https://example.com/callback",
+};
+```
 
 ## Fields
 

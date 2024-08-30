@@ -15,6 +15,24 @@ It's highly recommended that the total amount to pay for all items
 should match the transaction's amount to reduce the risk of the
 transaction being declined by the payment service provider.
 
+## Example Usage
+
+```typescript
+import { CartItem } from "@gr4vy/sdk/models/components";
+
+let value: CartItem = {
+    name: "GoPro HERO9 Camcorder",
+    quantity: 1,
+    unitAmount: 37999,
+    discountAmount: 0,
+    taxAmount: 0,
+    externalIdentifier: "item-789123",
+    sku: "sku-789123",
+    productUrl: "https://example.com/items/gopro",
+    imageUrl: "https://example.com/images/items/gopro.png",
+    productType: "physical",
+};
+```
 
 ## Fields
 

@@ -12,11 +12,16 @@ CVV response code.
 The value of this field can be `null` if the payment service did not
 provide a response.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionCaptureDeclinedEventCvvResponseCode } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionCaptureDeclinedEventCvvResponseCode = "match";
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `NoMatch`     | no_match      |
-| `Match`       | match         |
-| `Unavailable` | unavailable   |
+```typescript
+"no_match" | "match" | "unavailable"
+```

@@ -27,11 +27,59 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.vaultForward.makeVaultForward({
     xVaultForwardPaymentMethods: "faaad066-30b4-4997-a438-242b0752d7e1,faaad066-30b4-4997-a438-242b0752d7e2",
+    xVaultForwardAuthentications: "faaad066-30b4-4997-a438-242b0752d7e1,faaad066-30b4-4997-a438-242b0752d7e2",
     xVaultForwardUrl: "https://api.amadeus.com/booking",
     xVaultForwardHttpMethod: "POST",
     xVaultForwardHEADERHEADERNAME: "x-vault-forward-header-x-frame-options",
     xVaultForwardTimeout: 10,
+    requestBody: "{
+    \"number\":\"{{CARD_NUMBER_1}}\",
+    \"expiry\":\"{{CARD_EXPIRATION_DATE_1}}\"
+  }
+  ",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { vaultForwardMakeVaultForward } from "@gr4vy/sdk/funcs/vaultForwardMakeVaultForward.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await vaultForwardMakeVaultForward(gr4vy, {
+    xVaultForwardPaymentMethods: "faaad066-30b4-4997-a438-242b0752d7e1,faaad066-30b4-4997-a438-242b0752d7e2",
+    xVaultForwardAuthentications: "faaad066-30b4-4997-a438-242b0752d7e1,faaad066-30b4-4997-a438-242b0752d7e2",
+    xVaultForwardUrl: "https://api.amadeus.com/booking",
+    xVaultForwardHttpMethod: "POST",
+    xVaultForwardHEADERHEADERNAME: "x-vault-forward-header-x-frame-options",
+    xVaultForwardTimeout: 10,
+    requestBody: "{
+    \"number\":\"{{CARD_NUMBER_1}}\",
+    \"expiry\":\"{{CARD_EXPIRATION_DATE_1}}\"
+  }
+  ",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -49,10 +97,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[string](../../models/.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

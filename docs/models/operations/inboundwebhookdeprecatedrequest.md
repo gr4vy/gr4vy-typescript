@@ -1,5 +1,14 @@
 # InboundWebhookDeprecatedRequest
 
+## Example Usage
+
+```typescript
+import { InboundWebhookDeprecatedRequest } from "@gr4vy/sdk/models/operations";
+
+let value: InboundWebhookDeprecatedRequest = {
+    hook: "e4f7797af7cc56edb85cde7f94745a13",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # DeleteMerchantAccuontRequest
 
+## Example Usage
+
+```typescript
+import { DeleteMerchantAccuontRequest } from "@gr4vy/sdk/models/operations";
+
+let value: DeleteMerchantAccuontRequest = {
+    merchantAccountId: "plantly-uk",
+};
+```
 
 ## Fields
 

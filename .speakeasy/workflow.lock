@@ -1,18 +1,19 @@
-speakeasyVersion: 1.344.1
+speakeasyVersion: 1.383.2
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:6ff1837fd850051e081ba0a693211b50393ead0a08ef34b4ffdf4f0507c0704b
-        sourceBlobDigest: sha256:794f9ca22823badeafa54c3b11c7a45460678ccf41f57e0d5bb4fcc583df6735
+        sourceRevisionDigest: sha256:17a0794e3c79869fa19465ad9faca3a987c532fe7867d140f1a5e17691f0ed4f
+        sourceBlobDigest: sha256:696aa433371b8b695435cd27fbae0fca3ee158ed052b8a57e9505389fb8c4c43
         tags:
             - latest
+            - main
 targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:6ff1837fd850051e081ba0a693211b50393ead0a08ef34b4ffdf4f0507c0704b
-        sourceBlobDigest: sha256:794f9ca22823badeafa54c3b11c7a45460678ccf41f57e0d5bb4fcc583df6735
-        outLocation: /Users/cbetta/code/gr4vy-org/gr4vy-js
+        sourceRevisionDigest: sha256:17a0794e3c79869fa19465ad9faca3a987c532fe7867d140f1a5e17691f0ed4f
+        sourceBlobDigest: sha256:696aa433371b8b695435cd27fbae0fca3ee158ed052b8a57e9505389fb8c4c43
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -26,3 +27,6 @@ workflow:
         first-target:
             target: typescript
             source: openapi
+            publish:
+                npm:
+                    token: $npm_token

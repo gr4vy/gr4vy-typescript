@@ -2,6 +2,16 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionVoidDeclinedEventContext } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionVoidDeclinedEventContext = {
+    paymentServiceTransactionId: "transaction-1234",
+    code: "INVALID DATA",
+};
+```
 
 ## Fields
 

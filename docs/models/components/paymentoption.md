@@ -2,6 +2,25 @@
 
 An available payment option for a locale.
 
+## Example Usage
+
+```typescript
+import { PaymentOption } from "@gr4vy/sdk/models/components";
+
+let value: PaymentOption = {
+    type: "payment-option",
+    method: "card",
+    iconUrl: "https://cdn.gr4vy.app/card.svg",
+    mode: "card",
+    label: "Pay by Card",
+    context: {
+        approvalUi: {
+            height: "300px",
+            width: "300px",
+        },
+    },
+};
+```
 
 ## Fields
 

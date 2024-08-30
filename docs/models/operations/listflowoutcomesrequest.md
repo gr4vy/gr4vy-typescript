@@ -1,5 +1,16 @@
 # ListFlowOutcomesRequest
 
+## Example Usage
+
+```typescript
+import { ListFlowOutcomesRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListFlowOutcomesRequest = {
+    flow: "checkout",
+    action: "select-payment-options",
+    locale: "en-US",
+};
+```
 
 ## Fields
 

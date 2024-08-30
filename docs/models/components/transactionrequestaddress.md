@@ -2,6 +2,21 @@
 
 Address details for the beneficiary.
 
+## Example Usage
+
+```typescript
+import { TransactionRequestAddress } from "@gr4vy/sdk/models/components";
+
+let value: TransactionRequestAddress = {
+    country: "US",
+    address1: "235 Montgomery st.",
+    address2: "Ste. 1110",
+    zip: "94104",
+    region: "CA",
+    company: "Generic Corp. ltd.",
+    city: "San Francisco",
+};
+```
 
 ## Fields
 

@@ -2,12 +2,16 @@
 
 The mode of this payment service.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceDefinitionMode } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceDefinitionMode = "card";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Card`      | card        |
-| `Redirect`  | redirect    |
-| `Applepay`  | applepay    |
-| `Googlepay` | googlepay   |
+```typescript
+"card" | "redirect" | "applepay" | "googlepay" | "click-to-pay" | "checkout-session"
+```

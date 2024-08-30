@@ -2,6 +2,37 @@
 
 A request to create a buyer.
 
+## Example Usage
+
+```typescript
+import { BuyerRequest } from "@gr4vy/sdk/models/components";
+
+let value: BuyerRequest = {
+    externalIdentifier: "user-789123",
+    displayName: "John L.",
+    billingDetails: {
+        firstName: "John",
+        lastName: "Lunn",
+        emailAddress: "john@example.com",
+        phoneNumber: "+1234567890",
+        address: {
+            city: "London",
+            country: "GB",
+            postalCode: "789123",
+            state: "Greater London",
+            stateCode: "GB-LND",
+            houseNumberOrName: "10",
+            line1: "10 Oxford Street",
+            line2: "New Oxford Court",
+            organization: "Gr4vy",
+        },
+        taxId: {
+            value: "12345678931",
+            kind: "gb.vat",
+        },
+    },
+};
+```
 
 ## Fields
 

@@ -9,13 +9,16 @@ It may change over time as asynchronous processing events occur.
 - `failed` - The refund could not proceed due to a technical issue.
 - `voided` - The refund was voided and will not proceed.
 
+## Example Usage
+
+```typescript
+import { RefundStatus } from "@gr4vy/sdk/models/components";
+
+let value: RefundStatus = "processing";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Processing` | processing   |
-| `Succeeded`  | succeeded    |
-| `Declined`   | declined     |
-| `Failed`     | failed       |
-| `Voided`     | voided       |
+```typescript
+"processing" | "succeeded" | "declined" | "failed" | "voided"
+```

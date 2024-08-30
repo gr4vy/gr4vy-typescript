@@ -1,5 +1,15 @@
 # ListRolesRequest
 
+## Example Usage
+
+```typescript
+import { ListRolesRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListRolesRequest = {
+    limit: 1,
+    cursor: "ZXhhbXBsZTE",
+};
+```
 
 ## Fields
 

@@ -2,9 +2,16 @@
 
 The type of this resource. Is always `refund`.
 
+## Example Usage
+
+```typescript
+import { RefundType } from "@gr4vy/sdk/models/components";
+
+let value: RefundType = "refund";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Refund` | refund   |
+```typescript
+"refund"
+```

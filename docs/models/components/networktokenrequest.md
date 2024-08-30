@@ -2,6 +2,17 @@
 
 Request body for provision a network token.
 
+## Example Usage
+
+```typescript
+import { NetworkTokenRequest } from "@gr4vy/sdk/models/components";
+
+let value: NetworkTokenRequest = {
+    securityCode: "123",
+    merchantInitiated: false,
+    isSubsequentPayment: true,
+};
+```
 
 ## Fields
 

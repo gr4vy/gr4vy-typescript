@@ -2,6 +2,25 @@
 
 Information about the browser used by the buyer.
 
+## Example Usage
+
+```typescript
+import { BrowserInfo } from "@gr4vy/sdk/models/components";
+
+let value: BrowserInfo = {
+  javaEnabled: true,
+  javascriptEnabled: true,
+  language: "en-GB",
+  colorDepth: 32,
+  screenHeight: 1080,
+  screenWidth: 1920,
+  timeZoneOffset: 60,
+  userDevice: "desktop",
+  userAgent: "Mozilla/5.0 (darwin) AppleWebKit/537.36
+(KHTML, like Gecko) jsdom/16.7.0",
+  acceptHeader: "*/*",
+};
+```
 
 ## Fields
 

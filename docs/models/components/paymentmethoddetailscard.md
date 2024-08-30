@@ -2,6 +2,16 @@
 
 A credit or debit card payment method.
 
+## Example Usage
+
+```typescript
+import { PaymentMethodDetailsCard } from "@gr4vy/sdk/models/components";
+
+let value: PaymentMethodDetailsCard = {
+    cardType: "credit",
+    bin: "412345",
+};
+```
 
 ## Fields
 

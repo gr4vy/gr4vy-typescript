@@ -2,6 +2,19 @@
 
 BIN lookup request context.
 
+## Example Usage
+
+```typescript
+import { BINLookupRequestContext } from "@gr4vy/sdk/models/components";
+
+let value: BINLookupRequestContext = {
+    response: "{}",
+    responseStatusCode: 200,
+    instrument: "pan",
+    scheme: "visa",
+    additionalSchemes: ["visa"],
+};
+```
 
 ## Fields
 

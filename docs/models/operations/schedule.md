@@ -1,11 +1,15 @@
 # Schedule
 
+## Example Usage
+
+```typescript
+import { Schedule } from "@gr4vy/sdk/models/operations";
+
+let value: Schedule = "once";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Daily`   | daily     |
-| `Monthly` | monthly   |
-| `Once`    | once      |
-| `Weekly`  | weekly    |
+```typescript
+"daily" | "monthly" | "once" | "weekly"
+```

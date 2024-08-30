@@ -1,5 +1,16 @@
 # CheckoutSessionDetails
 
+## Example Usage
+
+```typescript
+import { CheckoutSessionDetails } from "@gr4vy/sdk/models/components";
+
+let value: CheckoutSessionDetails = {
+    bin: "411111",
+    cardType: "credit",
+    cardCountry: "US",
+};
+```
 
 ## Fields
 

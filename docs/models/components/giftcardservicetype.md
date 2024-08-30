@@ -2,9 +2,16 @@
 
 The type of this resource.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceType } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceType = "gift-card-service";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `GiftCardService` | gift-card-service |
+```typescript
+"gift-card-service"
+```

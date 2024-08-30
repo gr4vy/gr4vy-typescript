@@ -1,5 +1,14 @@
 # GetHealthDashboardTotalRequest
 
+## Example Usage
+
+```typescript
+import { GetHealthDashboardTotalRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetHealthDashboardTotalRequest = {
+    period: "7-days",
+};
+```
 
 ## Fields
 

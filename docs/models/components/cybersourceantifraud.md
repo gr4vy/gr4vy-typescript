@@ -2,6 +2,19 @@
 
 Additional options for Cybersource Decision Manager (anti-fraud).
 
+## Example Usage
+
+```typescript
+import { CybersourceAntiFraud } from "@gr4vy/sdk/models/components";
+
+let value: CybersourceAntiFraud = {
+    merchantDefinedData: {
+        "1": "John Doe",
+        "2": "trusted",
+        "99": "recurring",
+    },
+};
+```
 
 ## Fields
 

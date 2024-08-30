@@ -2,6 +2,16 @@
 
 Amount value compare the transaction to.
 
+## Example Usage
+
+```typescript
+import { Value } from "@gr4vy/sdk/models/components";
+
+let value: Value = {
+    currency: "USD",
+    value: 1,
+};
+```
 
 ## Fields
 

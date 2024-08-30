@@ -3,6 +3,28 @@
 This event logs the exact details parsed details for a declined capture
 as reported by our connector.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionCaptureDeclinedEvent } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionCaptureDeclinedEvent = {
+  type: "transaction-event",
+  id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  name: "payment-connector-response-transaction-capture-declined",
+  createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+  context: {
+    paymentServiceTransactionId: "transaction-1234",
+    code: "INVALID DATA",
+    rawResponseCode: "incorrect-zip",
+    rawResponseDescription: "The card's postal code is incorrect. Check the card's postal code or use a
+  different card.",
+    avsResponseCode: "partial_match_address",
+    cvvResponseCode: "match",
+    paymentMethodScheme: "visa",
+  },
+};
+```
 
 ## Fields
 

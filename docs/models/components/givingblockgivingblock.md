@@ -2,6 +2,15 @@
 
 Additional options for Giving Block connector.
 
+## Example Usage
+
+```typescript
+import { GivingblockGivingblock } from "@gr4vy/sdk/models/components";
+
+let value: GivingblockGivingblock = {
+    defaultCryptocurrency: "ETH",
+};
+```
 
 ## Fields
 

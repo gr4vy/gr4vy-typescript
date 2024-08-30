@@ -2,6 +2,15 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { GiftCardRedemptionFailedContext } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardRedemptionFailedContext = {
+    reason: "Network Error",
+};
+```
 
 ## Fields
 

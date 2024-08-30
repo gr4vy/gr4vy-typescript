@@ -2,6 +2,15 @@
 
 Information about the latest execution to process data for the Health Dashboard. This value is null if the data has not been fully processed for the first time yet.
 
+## Example Usage
+
+```typescript
+import { LatestExecution } from "@gr4vy/sdk/models/components";
+
+let value: LatestExecution = {
+    timestamp: new Date("2023-07-26T19:23:00.000Z"),
+};
+```
 
 ## Fields
 

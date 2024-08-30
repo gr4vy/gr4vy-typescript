@@ -1,5 +1,15 @@
 # DeleteNetworkTokenRequest
 
+## Example Usage
+
+```typescript
+import { DeleteNetworkTokenRequest } from "@gr4vy/sdk/models/operations";
+
+let value: DeleteNetworkTokenRequest = {
+    paymentMethodId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+    networkTokenId: "454f6a32-a572-4dda-b885-3e8674086123",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,18 @@
 
 This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a transaction.
 
+## Example Usage
+
+```typescript
+import { AntiFraudTransactionStatusUpdateEvent } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudTransactionStatusUpdateEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "anti-fraud-transaction-status-update",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

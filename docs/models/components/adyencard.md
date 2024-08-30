@@ -3,6 +3,18 @@
 Additional options to be passed through to Adyen when processing
 card transactions.
 
+## Example Usage
+
+```typescript
+import { AdyenCard } from "@gr4vy/sdk/models/components";
+
+let value: AdyenCard = {
+    additionalData: {
+        "riskdata.operatorCode": "operatorCode,",
+        "riskdata.operatorCountry": "operatorCountry",
+    },
+};
+```
 
 ## Fields
 

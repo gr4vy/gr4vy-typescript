@@ -2,6 +2,15 @@
 
 A request to capture a transaction.
 
+## Example Usage
+
+```typescript
+import { TransactionCaptureRequest } from "@gr4vy/sdk/models/components";
+
+let value: TransactionCaptureRequest = {
+    amount: 1299,
+};
+```
 
 ## Fields
 

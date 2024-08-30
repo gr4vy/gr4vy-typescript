@@ -2,14 +2,16 @@
 
 The transaction status received as part of the authentication request.
 
+## Example Usage
+
+```typescript
+import { DirectoryResponse } from "@gr4vy/sdk/models/components";
+
+let value: DirectoryResponse = "C";
+```
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `C`   | C     |
-| `Y`   | Y     |
-| `A`   | A     |
-| `N`   | N     |
-| `R`   | R     |
-| `U`   | U     |
+```typescript
+"C" | "Y" | "A" | "N" | "R" | "U"
+```

@@ -1,14 +1,15 @@
 # Category
 
+## Example Usage
+
+```typescript
+import { Category } from "@gr4vy/sdk/models/components";
+
+let value: Category = "card";
+```
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `AntiFraud`    | anti-fraud     |
-| `Bank`         | bank           |
-| `Bnpl`         | bnpl           |
-| `Card`         | card           |
-| `Cash`         | cash           |
-| `StoredCredit` | stored-credit  |
-| `Wallet`       | wallet         |
+```typescript
+"anti-fraud" | "bank" | "bnpl" | "card" | "cash" | "stored-credit" | "wallet"
+```

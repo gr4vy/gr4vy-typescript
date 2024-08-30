@@ -2,6 +2,29 @@
 
 Features supported by the payment definition.
 
+## Example Usage
+
+```typescript
+import { SupportedFeatures } from "@gr4vy/sdk/models/components";
+
+let value: SupportedFeatures = {
+    delayedCapture: false,
+    digitalWallets: false,
+    networkTokensDefault: true,
+    networkTokensToggle: false,
+    openLoop: true,
+    openLoopToggle: false,
+    partialRefunds: false,
+    paymentMethodTokenization: true,
+    paymentMethodTokenizationToggle: false,
+    refunds: true,
+    requiresWebhookSetup: true,
+    threeDSecureHosted: true,
+    threeDSecurePassThrough: false,
+    verifyCredentials: false,
+    void: true,
+};
+```
 
 ## Fields
 

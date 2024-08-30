@@ -2,10 +2,16 @@
 
 Resource type identifier to which the webhook data is related.
 
+## Example Usage
+
+```typescript
+import { Resource } from "@gr4vy/sdk/models/operations";
+
+let value: Resource = "ps";
+```
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `Af`  | af    |
-| `Ps`  | ps    |
+```typescript
+"af" | "ps"
+```

@@ -3,6 +3,22 @@
 This event logs the exact details parsed details for a declined void
 as reported by our connector.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionVoidDeclinedEvent } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionVoidDeclinedEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "payment-connector-response-transaction-void-declined",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        paymentServiceTransactionId: "transaction-1234",
+        code: "INVALID DATA",
+    },
+};
+```
 
 ## Fields
 

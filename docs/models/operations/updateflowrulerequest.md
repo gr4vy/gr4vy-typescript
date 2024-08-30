@@ -1,5 +1,34 @@
 # UpdateFlowRuleRequest
 
+## Example Usage
+
+```typescript
+import { UpdateFlowRuleRequest } from "@gr4vy/sdk/models/operations";
+
+let value: UpdateFlowRuleRequest = {
+    flow: "checkout",
+    action: "select-payment-options",
+    ruleId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+    flowRuleUpdateRequest: {
+        description: "example rule.",
+        conditions: [
+            {
+                name: "amount",
+                operator: "less_than",
+                value: {
+                    currency: "USD",
+                    value: 1,
+                },
+            },
+        ],
+        outcome: {
+            type: "list",
+            result: ["card", "paypal"],
+        },
+        position: 2,
+    },
+};
+```
 
 ## Fields
 

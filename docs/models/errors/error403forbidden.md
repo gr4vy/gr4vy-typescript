@@ -2,6 +2,13 @@
 
 Forbidden Error (HTTP 403).
 
+## Example Usage
+
+```typescript
+import { Error403Forbidden } from "@gr4vy/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

@@ -2,6 +2,15 @@
 
 Domain name for a digital wallet.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletDomain } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletDomain = {
+    domainName: "example.com",
+};
+```
 
 ## Fields
 

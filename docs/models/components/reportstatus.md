@@ -2,13 +2,16 @@
 
 The status of this report execution.
 
+## Example Usage
+
+```typescript
+import { ReportStatus } from "@gr4vy/sdk/models/components";
+
+let value: ReportStatus = "succeeded";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Dispatched` | dispatched   |
-| `Failed`     | failed       |
-| `Pending`    | pending      |
-| `Processing` | processing   |
-| `Succeeded`  | succeeded    |
+```typescript
+"dispatched" | "failed" | "pending" | "processing" | "succeeded"
+```

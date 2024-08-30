@@ -2,6 +2,13 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { GiftCardRefundSucceededContext } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardRefundSucceededContext = {};
+```
 
 ## Fields
 

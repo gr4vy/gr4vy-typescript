@@ -278,6 +278,22 @@ async function run() {
 * [suspendNetworkToken](docs/sdks/tokens/README.md#suspendnetworktoken) - Suspend network token
 * [resumeNetworkToken](docs/sdks/tokens/README.md#resumenetworktoken) - Resume network token
 
+### [vaultForwardDefinitions](docs/sdks/vaultforwarddefinitions/README.md)
+
+* [listVaultForwardDefinitions](docs/sdks/vaultforwarddefinitions/README.md#listvaultforwarddefinitions) - List Vault Forward definitions
+
+### [vaultForwardConfigurations](docs/sdks/vaultforwardconfigurations/README.md)
+
+* [listVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#listvaultforwardconfig) - List configured Vault Forward endpoints
+* [newVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#newvaultforwardconfig) - Enable new Vault Forward endpoint
+* [getVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#getvaultforwardconfig) - Get configured Vault Forward endpoints
+* [deleteVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#deletevaultforwardconfig) - Remove a configured Vault Forward endpoint
+* [listVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#listvaultforwardconfigauthentication) - List configured Vault Forward authentication methods
+* [addVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#addvaultforwardconfigauthentication) - Adds new Vault Forward authentication method
+* [getVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#getvaultforwardconfigauthentication) - Get Vault Forward authentication method
+* [updateVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#updatevaultforwardconfigauthentication) - Update Vault Forward authentication method
+* [deleteVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#deletevaultforwardconfigauthentication) - Remove a Vault Forward authentication method
+
 ### [vaultForward](docs/sdks/vaultforward/README.md)
 
 * [makeVaultForward](docs/sdks/vaultforward/README.md#makevaultforward) - Forward PCI data
@@ -305,7 +321,11 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
-import { SDKValidationError } from "@gr4vy/sdk/models/errors";
+import {
+    Error400BadRequest,
+    Error401Unauthorized,
+    SDKValidationError,
+} from "@gr4vy/sdk/models/errors";
 
 const gr4vy = new Gr4vy({
     bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
@@ -326,12 +346,14 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof errors.Error400BadRequest: {
-                console.error(err); // handle exception
+            case err instanceof Error400BadRequest: {
+                // Handle err.data$: Error400BadRequestData
+                console.error(err);
                 return;
             }
-            case err instanceof errors.Error401Unauthorized: {
-                console.error(err); // handle exception
+            case err instanceof Error401Unauthorized: {
+                // Handle err.data$: Error401UnauthorizedData
+                console.error(err);
                 return;
             }
             default: {
@@ -498,28 +520,30 @@ run();
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
+
 ### NPM
 
 ```bash
-npm add https://github.com/gr4vy/gr4vy-js
+npm add @gr4vy/sdk
 ```
 
 ### PNPM
 
 ```bash
-pnpm add https://github.com/gr4vy/gr4vy-js
+pnpm add @gr4vy/sdk
 ```
 
 ### Bun
 
 ```bash
-bun add https://github.com/gr4vy/gr4vy-js
+bun add @gr4vy/sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/gr4vy/gr4vy-js zod
+yarn add @gr4vy/sdk zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -604,7 +628,8 @@ async function run() {
     });
 
     for await (const page of result) {
-        // handle page
+        // Handle the page
+        console.log(page);
     }
 }
 
@@ -684,6 +709,198 @@ run();
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Summary [summary] -->
+## Summary
+
+Gr4vy API: Welcome to the Gr4vy API reference documentation.
+Our API is still very much a work in product and subject to change.
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Pagination](#pagination)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [accountUpdaterNewAccountUpdaterJob](docs/sdks/accountupdater/README.md#newaccountupdaterjob)
+- [antiFraudServiceDefinitionsGetAntiFraudServiceDefinition](docs/sdks/antifraudservicedefinitions/README.md#getantifraudservicedefinition)
+- [antiFraudServicesDeleteAntiFraudService](docs/sdks/antifraudservices/README.md#deleteantifraudservice)
+- [antiFraudServicesGetAntiFraudService](docs/sdks/antifraudservices/README.md#getantifraudservice)
+- [antiFraudServicesNewAntiFraudService](docs/sdks/antifraudservices/README.md#newantifraudservice)
+- [antiFraudServicesUpdateAntiFraudService](docs/sdks/antifraudservices/README.md#updateantifraudservice)
+- [apiLogsListAPILogs](docs/sdks/apilogs/README.md#listapilogs)
+- [auditLogsListAuditLogs](docs/sdks/auditlogs/README.md#listauditlogs)
+- [buyersDeleteBuyerShippingDetail](docs/sdks/buyers/README.md#deletebuyershippingdetail)
+- [buyersDeleteBuyer](docs/sdks/buyers/README.md#deletebuyer)
+- [buyersGetBuyerBillingDetails](docs/sdks/buyers/README.md#getbuyerbillingdetails)
+- [buyersGetBuyer](docs/sdks/buyers/README.md#getbuyer)
+- [buyersListBuyerShippingDetails](docs/sdks/buyers/README.md#listbuyershippingdetails)
+- [buyersListBuyers](docs/sdks/buyers/README.md#listbuyers)
+- [buyersNewBuyerShippingDetail](docs/sdks/buyers/README.md#newbuyershippingdetail)
+- [buyersNewBuyer](docs/sdks/buyers/README.md#newbuyer)
+- [buyersUpdateBuyerBillingDetails](docs/sdks/buyers/README.md#updatebuyerbillingdetails)
+- [buyersUpdateBuyerShippingDetail](docs/sdks/buyers/README.md#updatebuyershippingdetail)
+- [buyersUpdateBuyer](docs/sdks/buyers/README.md#updatebuyer)
+- [cardSchemeDefinitionsListCardSchemeDefinitions](docs/sdks/cardschemedefinitions/README.md#listcardschemedefinitions)
+- [checkoutSessionsDeleteCheckoutSession](docs/sdks/checkoutsessions/README.md#deletecheckoutsession)
+- [checkoutSessionsGetCheckoutSession](docs/sdks/checkoutsessions/README.md#getcheckoutsession)
+- [checkoutSessionsNewCheckoutSession](docs/sdks/checkoutsessions/README.md#newcheckoutsession)
+- [checkoutSessionsUpdateCheckoutSessionFields](docs/sdks/checkoutsessions/README.md#updatecheckoutsessionfields)
+- [checkoutSessionsUpdateCheckoutSession](docs/sdks/checkoutsessions/README.md#updatecheckoutsession)
+- [connectionDefinitionsListConnectionDefinitions](docs/sdks/connectiondefinitions/README.md#listconnectiondefinitions)
+- [connectionsListConnections](docs/sdks/connections/README.md#listconnections)
+- [digitalWalletsAddDigitalWalletDomainName](docs/sdks/digitalwallets/README.md#adddigitalwalletdomainname)
+- [digitalWalletsDeleteDigitalWalletDomainName](docs/sdks/digitalwallets/README.md#deletedigitalwalletdomainname)
+- [digitalWalletsDeleteDigitalWallet](docs/sdks/digitalwallets/README.md#deletedigitalwallet)
+- [digitalWalletsGetDigitalWallet](docs/sdks/digitalwallets/README.md#getdigitalwallet)
+- [digitalWalletsListDigitalWallets](docs/sdks/digitalwallets/README.md#listdigitalwallets)
+- [digitalWalletsNewApplePaySession](docs/sdks/digitalwallets/README.md#newapplepaysession)
+- [digitalWalletsNewClickToPaySession](docs/sdks/digitalwallets/README.md#newclicktopaysession)
+- [digitalWalletsNewDigitalWallet](docs/sdks/digitalwallets/README.md#newdigitalwallet)
+- [digitalWalletsNewGooglePaySession](docs/sdks/digitalwallets/README.md#newgooglepaysession)
+- [digitalWalletsUpdateDigitalWallet](docs/sdks/digitalwallets/README.md#updatedigitalwallet)
+- [flowDeleteFlowRule](docs/sdks/flow/README.md#deleteflowrule)
+- [flowGetFlowRule](docs/sdks/flow/README.md#getflowrule)
+- [flowListFlowOutcomes](docs/sdks/flow/README.md#listflowoutcomes)
+- [flowListFlowRules](docs/sdks/flow/README.md#listflowrules)
+- [flowNewFlowRule](docs/sdks/flow/README.md#newflowrule)
+- [flowUpdateFlowRule](docs/sdks/flow/README.md#updateflowrule)
+- [giftCardServiceDefinitionsGetGiftCardServiceDefinition](docs/sdks/giftcardservicedefinitions/README.md#getgiftcardservicedefinition)
+- [giftCardServicesDeleteGiftCardService](docs/sdks/giftcardservices/README.md#deletegiftcardservice)
+- [giftCardServicesGetGiftCardService](docs/sdks/giftcardservices/README.md#getgiftcardservice)
+- [giftCardServicesNewGiftCardService](docs/sdks/giftcardservices/README.md#newgiftcardservice)
+- [giftCardServicesUpdateGiftCardService](docs/sdks/giftcardservices/README.md#updategiftcardservice)
+- [giftCardServicesVerifyGiftCardService](docs/sdks/giftcardservices/README.md#verifygiftcardservice)
+- [giftCardsCheckGiftCardBalances](docs/sdks/giftcards/README.md#checkgiftcardbalances)
+- [giftCardsDeleteGiftCard](docs/sdks/giftcards/README.md#deletegiftcard)
+- [giftCardsGetGiftCard](docs/sdks/giftcards/README.md#getgiftcard)
+- [giftCardsListBuyerGiftCards](docs/sdks/giftcards/README.md#listbuyergiftcards)
+- [giftCardsListGiftCards](docs/sdks/giftcards/README.md#listgiftcards)
+- [giftCardsStoreGiftCard](docs/sdks/giftcards/README.md#storegiftcard)
+- [healthDashboardGetHealthDashboardStatus](docs/sdks/healthdashboard/README.md#gethealthdashboardstatus)
+- [healthDashboardGetHealthDashboardTotalVolume](docs/sdks/healthdashboard/README.md#gethealthdashboardtotalvolume)
+- [healthDashboardGetHealthDashboardTotal](docs/sdks/healthdashboard/README.md#gethealthdashboardtotal)
+- [merchantAccountsDeleteMerchantAccuont](docs/sdks/merchantaccounts/README.md#deletemerchantaccuont)
+- [merchantAccountsGetMerchantAccount](docs/sdks/merchantaccounts/README.md#getmerchantaccount)
+- [merchantAccountsListMerchantAccounts](docs/sdks/merchantaccounts/README.md#listmerchantaccounts)
+- [merchantAccountsNewMerchantAccount](docs/sdks/merchantaccounts/README.md#newmerchantaccount)
+- [merchantAccountsUpdateMerchantAccount](docs/sdks/merchantaccounts/README.md#updatemerchantaccount)
+- [paymentMethodDefinitionsListPaymentMethodDefinitions](docs/sdks/paymentmethoddefinitions/README.md#listpaymentmethoddefinitions)
+- [paymentMethodsDeletePaymentMethod](docs/sdks/paymentmethods/README.md#deletepaymentmethod)
+- [paymentMethodsGetPaymentMethod](docs/sdks/paymentmethods/README.md#getpaymentmethod)
+- [paymentMethodsListBuyerPaymentMethods](docs/sdks/paymentmethods/README.md#listbuyerpaymentmethods)
+- [paymentMethodsListPaymentMethods](docs/sdks/paymentmethods/README.md#listpaymentmethods)
+- [paymentMethodsNewPaymentMethod](docs/sdks/paymentmethods/README.md#newpaymentmethod)
+- [paymentOptionsListPaymentOptions](docs/sdks/paymentoptions/README.md#listpaymentoptions)
+- [paymentOptionsPostListPaymentOptions](docs/sdks/paymentoptions/README.md#postlistpaymentoptions)
+- [paymentServiceDefinitionsCreatePaymentServiceDefinitionSession](docs/sdks/paymentservicedefinitions/README.md#createpaymentservicedefinitionsession)
+- [paymentServiceDefinitionsGetPaymentServiceDefinition](docs/sdks/paymentservicedefinitions/README.md#getpaymentservicedefinition)
+- [paymentServiceDefinitionsListPaymentServiceDefinitions](docs/sdks/paymentservicedefinitions/README.md#listpaymentservicedefinitions)
+- [paymentServicesCreatePaymentServiceSession](docs/sdks/paymentservices/README.md#createpaymentservicesession)
+- [paymentServicesDeletePaymentService](docs/sdks/paymentservices/README.md#deletepaymentservice)
+- [paymentServicesGetPaymentService](docs/sdks/paymentservices/README.md#getpaymentservice)
+- [paymentServicesListPaymentServices](docs/sdks/paymentservices/README.md#listpaymentservices)
+- [paymentServicesNewPaymentService](docs/sdks/paymentservices/README.md#newpaymentservice)
+- [paymentServicesUpdatePaymentService](docs/sdks/paymentservices/README.md#updatepaymentservice)
+- [paymentServicesVerifyPaymentService](docs/sdks/paymentservices/README.md#verifypaymentservice)
+- [reportsGenerateDownloadUrl](docs/sdks/reports/README.md#generatedownloadurl)
+- [reportsGetReportExecution](docs/sdks/reports/README.md#getreportexecution)
+- [reportsGetReport](docs/sdks/reports/README.md#getreport)
+- [reportsListAllReportExecutions](docs/sdks/reports/README.md#listallreportexecutions)
+- [reportsListReportExecutions](docs/sdks/reports/README.md#listreportexecutions)
+- [reportsListReports](docs/sdks/reports/README.md#listreports)
+- [reportsNewReport](docs/sdks/reports/README.md#newreport)
+- [reportsUpdateReport](docs/sdks/reports/README.md#updatereport)
+- [rolesDeleteRoleAssignment](docs/sdks/roles/README.md#deleteroleassignment)
+- [rolesListRoleAssignments](docs/sdks/roles/README.md#listroleassignments)
+- [rolesListRoles](docs/sdks/roles/README.md#listroles)
+- [rolesNewRoleAssignment](docs/sdks/roles/README.md#newroleassignment)
+- [tokensApprovePaymentServiceTokenGet](docs/sdks/tokens/README.md#approvepaymentservicetokenget)
+- [tokensApprovePaymentServiceTokenPost](docs/sdks/tokens/README.md#approvepaymentservicetokenpost)
+- [tokensDeleteNetworkToken](docs/sdks/tokens/README.md#deletenetworktoken)
+- [tokensDeletePaymentServiceToken](docs/sdks/tokens/README.md#deletepaymentservicetoken)
+- [tokensGetNetworkTokens](docs/sdks/tokens/README.md#getnetworktokens)
+- [tokensGetPaymentServiceTokens](docs/sdks/tokens/README.md#getpaymentservicetokens)
+- [tokensIssueCryptogram](docs/sdks/tokens/README.md#issuecryptogram)
+- [tokensProvisionNetworkToken](docs/sdks/tokens/README.md#provisionnetworktoken)
+- [tokensProvisionPaymentServiceToken](docs/sdks/tokens/README.md#provisionpaymentservicetoken)
+- [tokensResumeNetworkToken](docs/sdks/tokens/README.md#resumenetworktoken)
+- [tokensSuspendNetworkToken](docs/sdks/tokens/README.md#suspendnetworktoken)
+- [transactionsCaptureTransaction](docs/sdks/transactions/README.md#capturetransaction)
+- [transactionsGetRefund](docs/sdks/transactions/README.md#getrefund)
+- [transactionsGetSingleRefund](docs/sdks/transactions/README.md#getsinglerefund)
+- [transactionsGetTransactionActions](docs/sdks/transactions/README.md#gettransactionactions)
+- [transactionsGetTransactionEvents](docs/sdks/transactions/README.md#gettransactionevents)
+- [transactionsGetTransactionSummary](docs/sdks/transactions/README.md#gettransactionsummary)
+- [transactionsGetTransaction](docs/sdks/transactions/README.md#gettransaction)
+- [transactionsListTransactionRefunds](docs/sdks/transactions/README.md#listtransactionrefunds)
+- [transactionsListTransactions](docs/sdks/transactions/README.md#listtransactions)
+- [transactionsNewRefund](docs/sdks/transactions/README.md#newrefund)
+- [transactionsNewTransaction](docs/sdks/transactions/README.md#newtransaction)
+- [transactionsRefundAll](docs/sdks/transactions/README.md#refundall)
+- [transactionsVoidTransaction](docs/sdks/transactions/README.md#voidtransaction)
+- [vaultForwardConfigurationsAddVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#addvaultforwardconfigauthentication)
+- [vaultForwardConfigurationsDeleteVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#deletevaultforwardconfigauthentication)
+- [vaultForwardConfigurationsDeleteVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#deletevaultforwardconfig)
+- [vaultForwardConfigurationsGetVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#getvaultforwardconfigauthentication)
+- [vaultForwardConfigurationsGetVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#getvaultforwardconfig)
+- [vaultForwardConfigurationsListVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#listvaultforwardconfigauthentication)
+- [vaultForwardConfigurationsListVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#listvaultforwardconfig)
+- [vaultForwardConfigurationsNewVaultForwardConfig](docs/sdks/vaultforwardconfigurations/README.md#newvaultforwardconfig)
+- [vaultForwardConfigurationsUpdateVaultForwardConfigAuthentication](docs/sdks/vaultforwardconfigurations/README.md#updatevaultforwardconfigauthentication)
+- [vaultForwardDefinitionsListVaultForwardDefinitions](docs/sdks/vaultforwarddefinitions/README.md#listvaultforwarddefinitions)
+- [vaultForwardMakeVaultForward](docs/sdks/vaultforward/README.md#makevaultforward)
+- [webhooksInboundWebhookDeprecated](docs/sdks/webhooks/README.md#inboundwebhookdeprecated)
+- [webhooksInboundWebhook](docs/sdks/webhooks/README.md#inboundwebhook)
+- [webhooksInboundWebhooks](docs/sdks/webhooks/README.md#inboundwebhooks)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { Gr4vy } from "@gr4vy/sdk";
+
+const sdk = new Gr4vy({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

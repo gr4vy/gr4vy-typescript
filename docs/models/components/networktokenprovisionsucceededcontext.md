@@ -2,6 +2,13 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { NetworkTokenProvisionSucceededContext } from "@gr4vy/sdk/models/components";
+
+let value: NetworkTokenProvisionSucceededContext = {};
+```
 
 ## Fields
 

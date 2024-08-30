@@ -2,6 +2,22 @@
 
 Request body for verifying credentials against a gift card service.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceVerifyRequest } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceVerifyRequest = {
+    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+    giftCardServiceId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+    fields: [
+        {
+            key: "private_key",
+            value: "pk_26PHem9AhJZvU623DfE1x4sd",
+        },
+    ],
+};
+```
 
 ## Fields
 

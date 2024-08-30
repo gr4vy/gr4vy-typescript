@@ -2,9 +2,16 @@
 
 `digital-wallet`.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletType } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletType = "digital-wallet";
+```
 
 ## Values
 
-| Name            | Value           |
-| --------------- | --------------- |
-| `DigitalWallet` | digital-wallet  |
+```typescript
+"digital-wallet"
+```

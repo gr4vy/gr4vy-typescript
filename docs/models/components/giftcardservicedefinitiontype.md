@@ -2,9 +2,16 @@
 
 `gift-card-service-definition`.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceDefinitionType } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceDefinitionType = "gift-card-service-definition";
+```
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `GiftCardServiceDefinition`  | gift-card-service-definition |
+```typescript
+"gift-card-service-definition"
+```

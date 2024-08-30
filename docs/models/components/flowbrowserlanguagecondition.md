@@ -2,6 +2,17 @@
 
 Browser language conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowBrowserLanguageCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowBrowserLanguageCondition = {
+    name: "browser_language",
+    operator: "is_one_of",
+    value: ["en", "de", "fr"],
+};
+```
 
 ## Fields
 

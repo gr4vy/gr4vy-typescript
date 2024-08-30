@@ -2,11 +2,16 @@
 
 Defines the type of input that needs to be rendered for this field.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceDefinitionFormat } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceDefinitionFormat = "text";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Text`      | text        |
-| `Multiline` | multiline   |
-| `Number`    | number      |
+```typescript
+"text" | "multiline" | "number"
+```

@@ -2,6 +2,21 @@
 
 This event logs the reason why we were unable to get an anti-fraud decision.
 
+## Example Usage
+
+```typescript
+import { AntiFraudDecisionErrorEvent } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudDecisionErrorEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "anti-fraud-decision-error",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        reason: "Network Error",
+    },
+};
+```
 
 ## Fields
 

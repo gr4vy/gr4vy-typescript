@@ -2,6 +2,19 @@
 
 3DS context.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureSuccessEventContext } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureSuccessEventContext = {
+    eci: "05",
+    cavv: "3q2+78r+ur7erb7vyv66vv8=",
+    directoryResponse: "C",
+    authenticationResponse: "Y",
+    directoryTransactionId: "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+};
+```
 
 ## Fields
 

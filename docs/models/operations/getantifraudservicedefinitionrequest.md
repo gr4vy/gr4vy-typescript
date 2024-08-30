@@ -1,5 +1,14 @@
 # GetAntiFraudServiceDefinitionRequest
 
+## Example Usage
+
+```typescript
+import { GetAntiFraudServiceDefinitionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetAntiFraudServiceDefinitionRequest = {
+    antiFraudServiceDefinitionId: "sif-ati-fraud",
+};
+```
 
 ## Fields
 

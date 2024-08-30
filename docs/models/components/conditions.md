@@ -1,5 +1,19 @@
 # Conditions
 
+## Example Usage
+
+```typescript
+import { Conditions } from "@gr4vy/sdk/models/components";
+
+let value: Conditions = {
+    name: "amount",
+    operator: "less_than",
+    value: {
+        currency: "USD",
+        value: 1,
+    },
+};
+```
 
 ## Supported Types
 

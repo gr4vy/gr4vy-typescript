@@ -2,6 +2,16 @@
 
 A key-value pair that represents a field defined in the definition for this anti-fraud service.
 
+## Example Usage
+
+```typescript
+import { AntiFraudServiceFields } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudServiceFields = {
+    key: "approve_decision",
+    value: "sk_test_26PHem9AhJZvU623DfE1x4sd",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # ListRoleAssignmentsRequest
 
+## Example Usage
+
+```typescript
+import { ListRoleAssignmentsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListRoleAssignmentsRequest = {
+    roleId: "be828248-56de-481e-a580-44b6e1d4df81",
+    assigneeType: "user",
+    assigneeId: "be828248-56de-481e-a580-44b6e1d4df81",
+    limit: 1,
+    cursor: "ZXhhbXBsZTE",
+};
+```
 
 ## Fields
 

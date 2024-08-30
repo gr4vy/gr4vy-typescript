@@ -2,9 +2,16 @@
 
 No valid API authentication found.
 
+## Example Usage
+
+```typescript
+import { Message } from "@gr4vy/sdk/models/errors";
+
+let value: Message = "No valid API authentication found";
+```
 
 ## Values
 
-| Name                              | Value                             |
-| --------------------------------- | --------------------------------- |
-| `NoValidAPIAuthenticationFound`   | No valid API authentication found |
+```typescript
+"No valid API authentication found"
+```

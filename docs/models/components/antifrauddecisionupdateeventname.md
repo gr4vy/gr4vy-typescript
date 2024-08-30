@@ -2,9 +2,16 @@
 
 The name of this resource. Is always `anti-fraud-decision-update`.
 
+## Example Usage
+
+```typescript
+import { AntiFraudDecisionUpdateEventName } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudDecisionUpdateEventName = "anti-fraud-decision-update";
+```
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `AntiFraudDecisionUpdate`  | anti-fraud-decision-update |
+```typescript
+"anti-fraud-decision-update"
+```

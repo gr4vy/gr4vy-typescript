@@ -3,6 +3,18 @@
 Outcome for checkout flow/select payment options action.
 Each option is a Gr4vy payment option object.
 
+## Example Usage
+
+```typescript
+import { FlowPaymentOptionOutcome } from "@gr4vy/sdk/models/components";
+
+let value: FlowPaymentOptionOutcome = {
+    type: "action",
+    id: "card",
+    label: "Card",
+    group: "Bank",
+};
+```
 
 ## Fields
 

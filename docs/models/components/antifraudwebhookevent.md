@@ -2,6 +2,25 @@
 
 This event logs the webhook received when an anti-fraud decision is updated.
 
+## Example Usage
+
+```typescript
+import { AntiFraudWebhookEvent } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudWebhookEvent = {
+    type: "transaction-event",
+    id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    name: "anti-fraud-webhook",
+    createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    context: {
+        antiFraudServiceCheckId: "decision-1234",
+        content: '{ "decision": "ACCEPT", "id": "decision-1234", "reason": "Manually verified" }',
+        contentType: "application/json",
+        decision: "ACCEPT",
+        comment: "Manually verified",
+    },
+};
+```
 
 ## Fields
 

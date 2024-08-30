@@ -2,6 +2,23 @@
 
 Details for a Google Pay payment method.
 
+## Example Usage
+
+```typescript
+import { GooglePayPaymentMethodRequest } from "@gr4vy/sdk/models/components";
+
+let value: GooglePayPaymentMethodRequest = {
+    method: "googlepay",
+    token: "<value>",
+    cardSuffix: "1234",
+    cardType: "credit",
+    assuranceDetails: {
+        accountVerified: false,
+        cardHolderAuthenticated: false,
+    },
+    redirectUrl: "https://example.com/callback",
+};
+```
 
 ## Fields
 

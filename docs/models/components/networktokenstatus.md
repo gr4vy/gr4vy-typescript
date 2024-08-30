@@ -7,12 +7,16 @@ The state of the network token.
 - `suspended` - The network token is suspended.
 - `deleted` - The network token is deleted.
 
+## Example Usage
+
+```typescript
+import { NetworkTokenStatus } from "@gr4vy/sdk/models/components";
+
+let value: NetworkTokenStatus = "active";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Active`    | active      |
-| `Inactive`  | inactive    |
-| `Suspended` | suspended   |
-| `Deleted`   | deleted     |
+```typescript
+"active" | "inactive" | "suspended" | "deleted"
+```

@@ -2,6 +2,16 @@
 
 A key-value pair that represents a field defined in the definition for this gift card service.
 
+## Example Usage
+
+```typescript
+import { GiftCardServiceUpdateRequestFields } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardServiceUpdateRequestFields = {
+    key: "private_key",
+    value: "pk_26PHem9AhJZvU623DfE1x4sd",
+};
+```
 
 ## Fields
 

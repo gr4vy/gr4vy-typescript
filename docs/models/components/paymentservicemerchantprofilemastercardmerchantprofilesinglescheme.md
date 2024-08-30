@@ -2,6 +2,15 @@
 
 Merchant profile for Mastercard.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceMerchantProfileMastercardMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceMerchantProfileMastercardMerchantProfileSingleScheme = {
+    createdAt: new Date("2023-07-26T19:23:00.000+00:00"),
+};
+```
 
 ## Fields
 

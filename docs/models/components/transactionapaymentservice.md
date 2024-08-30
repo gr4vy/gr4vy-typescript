@@ -2,6 +2,19 @@
 
 The payment service used for this transaction.
 
+## Example Usage
+
+```typescript
+import { TransactionAPaymentService } from "@gr4vy/sdk/models/components";
+
+let value: TransactionAPaymentService = {
+    type: "payment-service",
+    id: "stripe-card-faaad066-30b4-4997-a438-242b0752d7e1",
+    displayName: "Stripe (Main)",
+    method: "card",
+    paymentServiceDefinitionId: "stripe-card",
+};
+```
 
 ## Fields
 

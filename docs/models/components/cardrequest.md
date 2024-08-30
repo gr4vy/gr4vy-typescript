@@ -2,6 +2,22 @@
 
 Details to register a new card payment method.
 
+## Example Usage
+
+```typescript
+import { CardRequest } from "@gr4vy/sdk/models/components";
+
+let value: CardRequest = {
+    method: "card",
+    number: "4111111111111111",
+    expirationDate: "11/25",
+    securityCode: "123",
+    externalIdentifier: "card-323444",
+    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    buyerExternalIdentifier: "user-789123",
+    redirectUrl: "https://example.com/callback",
+};
+```
 
 ## Fields
 

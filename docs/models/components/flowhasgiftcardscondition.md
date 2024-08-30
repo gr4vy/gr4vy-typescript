@@ -2,6 +2,17 @@
 
 `has_gift_cards` flag conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowHasGiftCardsCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowHasGiftCardsCondition = {
+    name: "has_gift_cards",
+    operator: "equal_to",
+    value: true,
+};
+```
 
 ## Fields
 

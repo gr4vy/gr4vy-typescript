@@ -2,6 +2,23 @@
 
 Additional context for this event.
 
+## Example Usage
+
+```typescript
+import { PaymentConnectorResponseTransactionAuthorizationSucceededEventContext } from "@gr4vy/sdk/models/components";
+
+let value: PaymentConnectorResponseTransactionAuthorizationSucceededEventContext = {
+  paymentServiceTransactionId: "transaction-1234",
+  status: "authorization_succeeded",
+  instrumentType: "pan",
+  rawResponseCode: "incorrect-zip",
+  rawResponseDescription: "The card's postal code is incorrect. Check the card's postal code or use a
+different card.",
+  avsResponseCode: "partial_match_address",
+  cvvResponseCode: "match",
+  paymentMethodScheme: "visa",
+};
+```
 
 ## Fields
 

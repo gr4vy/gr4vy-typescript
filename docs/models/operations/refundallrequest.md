@@ -1,5 +1,17 @@
 # RefundAllRequest
 
+## Example Usage
+
+```typescript
+import { RefundAllRequest } from "@gr4vy/sdk/models/operations";
+
+let value: RefundAllRequest = {
+    transactionId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    transactionRefundAllRequest: {
+        reason: "Refund due to user request",
+    },
+};
+```
 
 ## Fields
 

@@ -1,5 +1,41 @@
 # ListTransactionsRequest
 
+## Example Usage
+
+```typescript
+import { ListTransactionsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListTransactionsRequest = {
+    buyerExternalIdentifier: "user-12345",
+    buyerId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+    cursor: "ZXhhbXBsZTE",
+    limit: 1,
+    amountEq: 500,
+    amountGte: 500,
+    amountLte: 500,
+    checkoutSessionId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+    createdAtGte: new Date("2022-01-01T12:00:00+08:00"),
+    createdAtLte: new Date("2022-01-01T12:00:00+08:00"),
+    currency: ["USD", "GBP"],
+    externalIdentifier: "user-12345",
+    giftCardId: "be828248-56de-481e-a580-44b6e1d4df81",
+    giftCardLast4: "7890",
+    hasGiftCardRedemptions: true,
+    hasRefunds: true,
+    id: "be828248-56de-481e-a580-44b6e1d4df81",
+    metadata: ['{"key": "value"}', '{"key_one": "value", "key_two": "value"}'],
+    method: ["card"],
+    paymentMethodId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+    paymentMethodLabel: "1234",
+    paymentServiceId: ["46973e9d-88a7-44a6-abfe-be4ff0134ff4"],
+    paymentServiceTransactionId: "transaction_123",
+    pendingReview: true,
+    reconciliationId: "7EgeeeTX0DS45RBDNt4AEY",
+    status: ["capture_succeeded", "processing"],
+    updatedAtGte: new Date("2022-01-01T12:00:00+08:00"),
+    updatedAtLte: new Date("2022-01-01T12:00:00+08:00"),
+};
+```
 
 ## Fields
 

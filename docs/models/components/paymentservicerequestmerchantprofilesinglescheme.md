@@ -2,6 +2,13 @@
 
 Merchant profile for Amex.
 
+## Example Usage
+
+```typescript
+import { PaymentServiceRequestMerchantProfileSingleScheme } from "@gr4vy/sdk/models/components";
+
+let value: PaymentServiceRequestMerchantProfileSingleScheme = {};
+```
 
 ## Fields
 

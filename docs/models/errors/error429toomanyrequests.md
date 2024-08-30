@@ -2,6 +2,13 @@
 
 Too Many Requests Error (HTTP 429).
 
+## Example Usage
+
+```typescript
+import { Error429TooManyRequests } from "@gr4vy/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

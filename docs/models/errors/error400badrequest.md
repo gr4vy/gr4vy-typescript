@@ -2,6 +2,13 @@
 
 Bad Request (HTTP 400).
 
+## Example Usage
+
+```typescript
+import { Error400BadRequest } from "@gr4vy/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

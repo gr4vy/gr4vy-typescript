@@ -2,9 +2,16 @@
 
 `applepay`.
 
+## Example Usage
+
+```typescript
+import { ApplePayRequestPaymentMethodMethod } from "@gr4vy/sdk/models/components";
+
+let value: ApplePayRequestPaymentMethodMethod = "applepay";
+```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Applepay` | applepay   |
+```typescript
+"applepay"
+```

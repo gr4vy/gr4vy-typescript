@@ -1,5 +1,14 @@
 # Transformations
 
+## Example Usage
+
+```typescript
+import { Transformations } from "@gr4vy/sdk/models/components";
+
+let value: Transformations = {
+    name: "use_additional_scheme",
+};
+```
 
 ## Supported Types
 

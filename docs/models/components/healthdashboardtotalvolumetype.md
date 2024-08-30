@@ -2,9 +2,16 @@
 
 The type of this resource.
 
+## Example Usage
+
+```typescript
+import { HealthDashboardTotalVolumeType } from "@gr4vy/sdk/models/components";
+
+let value: HealthDashboardTotalVolumeType = "health-dashboard.total-volume";
+```
 
 ## Values
 
-| Name                          | Value                         |
-| ----------------------------- | ----------------------------- |
-| `HealthDashboardTotalVolume`  | health-dashboard.total-volume |
+```typescript
+"health-dashboard.total-volume"
+```

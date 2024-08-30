@@ -2,6 +2,17 @@
 
 `merchant_initiated` flag conditions with a name, operator, and value.
 
+## Example Usage
+
+```typescript
+import { FlowMerchantInitiatedCondition } from "@gr4vy/sdk/models/components";
+
+let value: FlowMerchantInitiatedCondition = {
+    name: "merchant_initiated",
+    operator: "equal_to",
+    value: true,
+};
+```
 
 ## Fields
 

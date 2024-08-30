@@ -2,9 +2,16 @@
 
 `error`.
 
+## Example Usage
+
+```typescript
+import { Error401UnauthorizedType } from "@gr4vy/sdk/models/errors";
+
+let value: Error401UnauthorizedType = "error";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Error` | error   |
+```typescript
+"error"
+```

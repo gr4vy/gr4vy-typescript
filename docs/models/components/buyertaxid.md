@@ -2,6 +2,16 @@
 
 The tax information associated with the billing details.
 
+## Example Usage
+
+```typescript
+import { BuyerTaxID } from "@gr4vy/sdk/models/components";
+
+let value: BuyerTaxID = {
+    value: "12345678931",
+    kind: "gb.vat",
+};
+```
 
 ## Fields
 

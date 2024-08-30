@@ -20,11 +20,16 @@ Please note that if any of the payment instruments are voided or refunded
 after the result reaches a `succeeded` state  then the result will remain
 unchanged.
 
+## Example Usage
+
+```typescript
+import { IntentOutcome } from "@gr4vy/sdk/models/components";
+
+let value: IntentOutcome = "pending";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Pending`   | pending     |
-| `Succeeded` | succeeded   |
-| `Failed`    | failed      |
+```typescript
+"pending" | "succeeded" | "failed"
+```

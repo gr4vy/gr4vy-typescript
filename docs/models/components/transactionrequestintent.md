@@ -8,10 +8,16 @@ transaction but does not capture the funds.
 * `capture` - Optionally approves and then authorizes and captures the
 funds of the transaction.
 
+## Example Usage
+
+```typescript
+import { TransactionRequestIntent } from "@gr4vy/sdk/models/components";
+
+let value: TransactionRequestIntent = "capture";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Authorize` | authorize   |
-| `Capture`   | capture     |
+```typescript
+"authorize" | "capture"
+```

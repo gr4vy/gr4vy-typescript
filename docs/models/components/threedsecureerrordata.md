@@ -6,6 +6,18 @@ status code of `N`, `R`, or `U`.  To see full details about
 the 3DS calls in those situations please use our transaction
 events API.
 
+## Example Usage
+
+```typescript
+import { ThreeDSecureErrorData } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureErrorData = {
+    description: "Invalid ThreeDSCompInd",
+    detail: "The threeDSCompInd must be 'Y' when successful",
+    code: "305",
+    component: "C",
+};
+```
 
 ## Fields
 

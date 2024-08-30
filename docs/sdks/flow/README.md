@@ -38,6 +38,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { flowListFlowRules } from "@gr4vy/sdk/funcs/flowListFlowRules.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await flowListFlowRules(gr4vy, "checkout");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -47,16 +77,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                                                                                                                                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-
 ### Response
 
 **Promise\<[components.FlowRules](../../models/components/flowrules.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## newFlowRule
 
@@ -76,28 +107,88 @@ async function run() {
   const result = await gr4vy.flow.newFlowRule("checkout", "select-payment-options", {
     description: "example rule description.",
     conditions: [
-        {
-          name: "amount",
-          operator: "less_than",
-          value: {
-            currency: "USD",
-            value: 1,
-          },
-        },
-        {
-          name: "amount",
-          operator: "greater_than",
-          value: {
-            currency: "USD",
-            value: 1,
-          },
-        },
-    ],
-  outcome:     {
-        type: "boolean",
-        result: true,
+      {
+        name: "currency",
+        operator: "is_one_of",
+        value: [
+          "GBP",
+          "USD",
+        ],
       },
+      {
+        name: "country",
+        operator: "is_one_of",
+        value: [
+          "GB",
+          "US",
+        ],
+      },
+    ],
+    outcome: {
+      type: "list",
+      result: [
+        "card",
+        "gocardless",
+      ],
+    },
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { flowNewFlowRule } from "@gr4vy/sdk/funcs/flowNewFlowRule.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await flowNewFlowRule(gr4vy, "checkout", "select-payment-options", {
+    description: "example rule description.",
+    conditions: [
+      {
+        name: "currency",
+        operator: "is_one_of",
+        value: [
+          "GBP",
+          "USD",
+        ],
+      },
+      {
+        name: "country",
+        operator: "is_one_of",
+        value: [
+          "GB",
+          "US",
+        ],
+      },
+    ],
+    outcome: {
+      type: "list",
+      result: [
+        "card",
+        "gocardless",
+      ],
+    },
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -117,10 +208,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                                                                                                                                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-
 ### Response
 
 **Promise\<[components.FlowRule](../../models/components/flowrule.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -128,6 +219,7 @@ run();
 | errors.Error400BadRequest   | 400                         | application/json            |
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## getFlowRule
 
@@ -152,6 +244,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { flowGetFlowRule } from "@gr4vy/sdk/funcs/flowGetFlowRule.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await flowGetFlowRule(gr4vy, "checkout", "select-payment-options", "8724fd24-5489-4a5d-90fd-0604df7d3b83");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -163,10 +285,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                                                                                                                                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-
 ### Response
 
 **Promise\<[components.FlowRule](../../models/components/flowrule.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -174,6 +296,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## updateFlowRule
 
@@ -193,21 +316,72 @@ async function run() {
   const result = await gr4vy.flow.updateFlowRule("checkout", "select-payment-options", "8724fd24-5489-4a5d-90fd-0604df7d3b83", {
     description: "example description update.",
     conditions: [
-        {
-          name: "product_types",
-          operator: "includes_all",
-          value: [
-            "shipping_fee",
-            "sales_tax",
-          ],
-        },
-    ],
-  outcome:     {
-        type: "boolean",
-        result: false,
+      {
+        name: "product_types",
+        operator: "includes_all",
+        value: [
+          "shipping_fee",
+          "sales_tax",
+        ],
       },
+    ],
+    outcome: {
+      type: "boolean",
+      result: false,
+    },
     position: 1,
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { flowUpdateFlowRule } from "@gr4vy/sdk/funcs/flowUpdateFlowRule.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await flowUpdateFlowRule(gr4vy, "checkout", "select-payment-options", "8724fd24-5489-4a5d-90fd-0604df7d3b83", {
+    description: "example description update.",
+    conditions: [
+      {
+        name: "amount",
+        operator: "is_between",
+        value: {
+          currency: "USD",
+          min: 1,
+          max: 200,
+        },
+      },
+    ],
+    outcome: {
+      type: "list",
+      result: [
+        "card",
+        "paypal",
+      ],
+    },
+    position: 1,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -228,10 +402,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                                                                                                                                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-
 ### Response
 
 **Promise\<[components.FlowRule](../../models/components/flowrule.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -240,6 +414,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## deleteFlowRule
 
@@ -263,6 +438,35 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { flowDeleteFlowRule } from "@gr4vy/sdk/funcs/flowDeleteFlowRule.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await flowDeleteFlowRule(gr4vy, "checkout", "select-payment-options", "8724fd24-5489-4a5d-90fd-0604df7d3b83");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -274,10 +478,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                                                                                                                                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -285,6 +489,7 @@ run();
 | errors.Error401Unauthorized | 401                         | application/json            |
 | errors.Error404NotFound     | 404                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## listFlowOutcomes
 
@@ -309,6 +514,36 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { flowListFlowOutcomes } from "@gr4vy/sdk/funcs/flowListFlowOutcomes.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await flowListFlowOutcomes(gr4vy, "checkout", "select-payment-options", "en-US");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -320,10 +555,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                                                                                                                                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                                                                                                                                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-
 ### Response
 
 **Promise\<[components.FlowRuleOutcomes](../../models/components/flowruleoutcomes.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

@@ -2,6 +2,19 @@
 
 Click to Pay decrypted token context.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletClickToPayTokenDecryptedContext } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletClickToPayTokenDecryptedContext = {
+    correlationId: "ba7a2034-3c9e-4d74-b0e9-d77435fd35d7",
+    merchantTransactionId: "0a4e0d3.34f4a04b.47ee82c373dd4fd5398f3980b39eb6d648b9687c",
+    type: "dpan",
+    cardBin: "424242",
+    cardType: "CREDIT",
+};
+```
 
 ## Fields
 

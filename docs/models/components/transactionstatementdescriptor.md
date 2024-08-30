@@ -8,6 +8,19 @@ the underlying PSP and bank. As a typical example, 'name' and
 then the resulting descriptor would be truncated to 22 characters by
 the issuing bank.
 
+## Example Usage
+
+```typescript
+import { TransactionStatementDescriptor } from "@gr4vy/sdk/models/components";
+
+let value: TransactionStatementDescriptor = {
+    name: "GR4VY",
+    description: "Card payment",
+    city: "London",
+    phoneNumber: "+1234567890",
+    url: "www.gr4vy.com",
+};
+```
 
 ## Fields
 

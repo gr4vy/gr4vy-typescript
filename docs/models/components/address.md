@@ -2,6 +2,13 @@
 
 The billing address of the buyer.
 
+## Example Usage
+
+```typescript
+import { Address } from "@gr4vy/sdk/models/components";
+
+let value: Address = {};
+```
 
 ## Fields
 

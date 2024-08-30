@@ -2,16 +2,16 @@
 
 The product type of the cart item.
 
+## Example Usage
+
+```typescript
+import { ProductType } from "@gr4vy/sdk/models/components";
+
+let value: ProductType = "physical";
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `Physical`    | physical      |
-| `Discount`    | discount      |
-| `ShippingFee` | shipping_fee  |
-| `SalesTax`    | sales_tax     |
-| `Digital`     | digital       |
-| `GiftCard`    | gift_card     |
-| `StoreCredit` | store_credit  |
-| `Surcharge`   | surcharge     |
+```typescript
+"physical" | "discount" | "shipping_fee" | "sales_tax" | "digital" | "gift_card" | "store_credit" | "surcharge"
+```

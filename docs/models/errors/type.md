@@ -2,9 +2,16 @@
 
 `error`.
 
+## Example Usage
+
+```typescript
+import { Type } from "@gr4vy/sdk/models/errors";
+
+let value: Type = "error";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Error` | error   |
+```typescript
+"error"
+```

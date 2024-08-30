@@ -2,6 +2,34 @@
 
 A request to create a report.
 
+## Example Usage
+
+```typescript
+import { ReportCreate } from "@gr4vy/sdk/models/components";
+
+let value: ReportCreate = {
+    name: "Failed Authorizations 042022",
+    description: "Transactions that failed to authorize in April 2022",
+    schedule: "monthly",
+    scheduleEnabled: true,
+    scheduleTimezone: "Europe/London",
+    spec: {
+        model: "transactions",
+        params: {
+            fields: ["id", "external_identifier"],
+            filters: {
+                status: ["authorization_failed"],
+                currency: ["GBP"],
+                method: ["card"],
+                scheme: ["visa"],
+                threeDSecureEci: ["05"],
+                threeDSecureAuthResp: ["N"],
+            },
+            sort: [{}],
+        },
+    },
+};
+```
 
 ## Fields
 

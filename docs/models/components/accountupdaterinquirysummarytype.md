@@ -2,9 +2,16 @@
 
 The type of this resource. Is always `account-updater-inquiry`.
 
+## Example Usage
+
+```typescript
+import { AccountUpdaterInquirySummaryType } from "@gr4vy/sdk/models/components";
+
+let value: AccountUpdaterInquirySummaryType = "account-updater-inquiry";
+```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `AccountUpdaterInquiry` | account-updater-inquiry |
+```typescript
+"account-updater-inquiry"
+```
