@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { AuditLogAction } from "@gr4vy/sdk/models/components";
 
-let value: AuditLogAction = "deleted";
+let value: AuditLogAction = "voided";
 ```
 
 ## Values

@@ -7,7 +7,7 @@ import { ConfirmApplePayCertificateRequest } from "@gr4vy/sdk/models/operations"
 import { openAsBlob } from "node:fs";
 
 let value: ConfirmApplePayCertificateRequest = {
-    applePayCertificateId: "9dfc94d6-fecd-4799-b900-66a6d2d00035",
+    applePayCertificateId: "28227b2d-3094-470b-b7a4-fa87cf535a6f",
     bodyConfirmApplePayCertificate: {
         file: await openAsBlob("./sample-file"),
     },

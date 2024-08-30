@@ -85,14 +85,13 @@ export async function browseAuthenticationVaultForwardConfigsPciForwardConfigIdA
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
         operationID:
             "browse_authentication_vault_forward_configs__pci_forward_config_id__authentications__pci_forward_config_authentication_id__get",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 

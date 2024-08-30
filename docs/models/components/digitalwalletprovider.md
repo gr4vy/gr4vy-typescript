@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { DigitalWalletProvider } from "@gr4vy/sdk/models/components";
 
-let value: DigitalWalletProvider = "apple";
+let value: DigitalWalletProvider = "google";
 ```
 
 ## Values

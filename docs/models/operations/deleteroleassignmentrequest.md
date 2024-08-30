@@ -6,7 +6,7 @@
 import { DeleteRoleAssignmentRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteRoleAssignmentRequest = {
-    id: "a97ff334-cddf-4857-a9e6-1876c6ab21d2",
+    id: "f3e07edc-c4aa-45f3-8abd-905a972e0567",
 };
 ```
 

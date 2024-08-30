@@ -6,9 +6,9 @@
 import { DeregisterDigitalWalletDomainRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeregisterDigitalWalletDomainRequest = {
-    digitalWalletId: "00ef0422-eb21-464c-b9ab-8366c723ffda",
+    digitalWalletId: "75779291-77de-4ac6-86ec-b573409e3eb1",
     digitalWalletDomain: {
-        domainName: "perky-tadpole.com",
+        domainName: "vital-fantasy.name",
     },
 };
 ```

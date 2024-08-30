@@ -6,7 +6,7 @@
 import { RefundAllTransactionMethodsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: RefundAllTransactionMethodsRequest = {
-    transactionId: "0dec001a-c802-4e2e-809f-f8f0f816ff34",
+    transactionId: "faf4b754-4e47-42e8-8285-7a5b40463a7d",
 };
 ```
 

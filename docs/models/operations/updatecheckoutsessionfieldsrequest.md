@@ -6,10 +6,11 @@
 import { UpdateCheckoutSessionFieldsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateCheckoutSessionFieldsRequest = {
-    sessionId: "9acb3ecf-da8d-40c5-89ef-03004978a61f",
+    sessionId: "4418e3bb-91c8-4d97-9e0e-8419d8f84f14",
     checkoutSessionSecureFields: {
         paymentMethod: {
-            id: "1cf20688-f77c-41ff-871d-ca163f2a3c80",
+            number: "<value>",
+            expirationDate: "<value>",
         },
     },
 };

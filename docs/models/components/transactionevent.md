@@ -8,9 +8,9 @@ Base model with JSON encoders.
 import { TransactionEvent } from "@gr4vy/sdk/models/components";
 
 let value: TransactionEvent = {
-    id: "c42e141a-ac36-46c8-9d6b-144290747477",
+    id: "0a45626d-4368-413f-96d9-f5fce6c55614",
     name: "<value>",
-    createdAt: new Date("2023-07-29T22:53:03.007Z"),
+    createdAt: new Date("2023-03-23T08:04:18.034Z"),
     context: {},
 };
 ```

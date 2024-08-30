@@ -6,7 +6,7 @@
 import { UpdatePaymentServiceRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdatePaymentServiceRequest = {
-    paymentServiceId: "055756f5-d56d-40bd-8af2-dfe13db4f62c",
+    paymentServiceId: "73e63562-a7b4-408f-85e3-d48fdaf313a1",
     paymentServiceUpdate: {
         acceptedCurrencies: ["EUR", "GBP", "USD"],
         acceptedCountries: ["DE", "GB", "US"],

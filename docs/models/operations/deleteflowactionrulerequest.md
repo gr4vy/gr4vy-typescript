@@ -7,8 +7,8 @@ import { DeleteFlowActionRuleRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteFlowActionRuleRequest = {
     flow: "redirect-transaction",
-    action: "skip-3ds",
-    ruleId: "4aa5f3ca-bd90-45a9-b2e0-56728227b2d3",
+    action: "select-payment-options",
+    ruleId: "2e550557-56f5-4d56-90bd-0af2dfe13db4",
 };
 ```
 

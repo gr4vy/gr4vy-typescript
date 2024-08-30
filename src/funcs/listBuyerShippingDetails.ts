@@ -24,7 +24,10 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * List Shipping Details For Buyer
+ * List buyer shipping details
+ *
+ * @remarks
+ * List all the shipping details for a buyer, using the buyer ID
  */
 export async function listBuyerShippingDetails(
     client$: Gr4vyCore,
@@ -71,13 +74,12 @@ export async function listBuyerShippingDetails(
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
         operationID: "list_buyer_shipping_details",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 

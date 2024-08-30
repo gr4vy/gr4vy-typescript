@@ -7,7 +7,7 @@ The way payment method information made it to this transaction.
 ```typescript
 import { TransactionPaymentSource } from "@gr4vy/sdk/models/components";
 
-let value: TransactionPaymentSource = "recurring";
+let value: TransactionPaymentSource = "ecommerce";
 ```
 
 ## Values

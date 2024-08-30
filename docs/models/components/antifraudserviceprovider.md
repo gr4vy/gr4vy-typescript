@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { AntiFraudServiceProvider } from "@gr4vy/sdk/models/components";
 
-let value: AntiFraudServiceProvider = "cybersource-anti-fraud";
+let value: AntiFraudServiceProvider = "forter-anti-fraud";
 ```
 
 ## Values

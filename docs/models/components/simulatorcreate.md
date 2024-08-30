@@ -11,10 +11,10 @@ let value: SimulatorCreate = {
     fields: [
         {
             key: "<key>",
-            value: "",
+            value: "<value>",
         },
     ],
-    displayName: "Harvey64",
+    displayName: "Maurice43",
 };
 ```
 

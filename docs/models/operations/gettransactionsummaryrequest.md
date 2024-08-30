@@ -6,7 +6,7 @@
 import { GetTransactionSummaryRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetTransactionSummaryRequest = {
-    transactionId: "af923c59-49f8-43f3-90cf-876ffb901c6e",
+    transactionId: "088d100e-fada-4200-af04-22eb2164cf9a",
 };
 ```
 

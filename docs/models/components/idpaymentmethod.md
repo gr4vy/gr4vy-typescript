@@ -8,7 +8,7 @@ Base model with JSON encoders.
 import { IdPaymentMethod } from "@gr4vy/sdk/models/components";
 
 let value: IdPaymentMethod = {
-    id: "ee17cbe6-1e6b-47b9-9bc0-ab3c20c4f378",
+    id: "562f222e-9817-4ee1-bcbe-61e6b7b95bc0",
 };
 ```
 

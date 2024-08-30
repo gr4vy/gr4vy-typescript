@@ -9,8 +9,8 @@ import {
 
 let value: DeleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDeleteRequest =
     {
-        pciForwardConfigId: "16ddca8e-f51f-4cb4-8593-ec12cdaad0ec",
-        pciForwardConfigAuthenticationId: "7afedbd8-0df4-448a-87f9-390c58880983",
+        pciForwardConfigId: "ec909304-f926-4bad-a553-819b474b0ed2",
+        pciForwardConfigAuthenticationId: "0e56248f-ff63-49a9-90ab-dcab62676696",
     };
 ```
 

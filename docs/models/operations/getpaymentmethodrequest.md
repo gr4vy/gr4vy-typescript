@@ -6,7 +6,7 @@
 import { GetPaymentMethodRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetPaymentMethodRequest = {
-    paymentMethodId: "8f3a8d8f-5c0b-42f2-bb7b-194a276b2691",
+    paymentMethodId: "17fe35b6-0eb1-4ea4-a655-5ba3c28744ed",
 };
 ```
 

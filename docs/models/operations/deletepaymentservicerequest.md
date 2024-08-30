@@ -6,7 +6,7 @@
 import { DeletePaymentServiceRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeletePaymentServiceRequest = {
-    paymentServiceId: "ba3f8941-aebc-40b8-8a69-24d3b2ecfcc8",
+    paymentServiceId: "f5fd9425-9c0b-436f-a5ea-944f3b756c11",
 };
 ```
 

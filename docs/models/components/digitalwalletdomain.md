@@ -8,7 +8,7 @@ Base model with JSON encoders.
 import { DigitalWalletDomain } from "@gr4vy/sdk/models/components";
 
 let value: DigitalWalletDomain = {
-    domainName: "fantastic-option.net",
+    domainName: "educated-surprise.info",
 };
 ```
 

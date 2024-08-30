@@ -6,8 +6,8 @@
 import { SuspendNetworkTokenRequest } from "@gr4vy/sdk/models/operations";
 
 let value: SuspendNetworkTokenRequest = {
-    paymentMethodId: "deaab585-1d6c-4645-b08b-61891baa0fe1",
-    networkTokenId: "ade008e6-f8c5-4f35-8d8c-db5a34181430",
+    paymentMethodId: "71778ff6-1d01-4747-a360-a15db6a66065",
+    networkTokenId: "9a1adeaa-b585-41d6-8645-b08b61891baa",
 };
 ```
 

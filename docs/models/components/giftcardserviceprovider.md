@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { GiftCardServiceProvider } from "@gr4vy/sdk/models/components";
 
-let value: GiftCardServiceProvider = "mock-gift-card";
+let value: GiftCardServiceProvider = "qwikcilver-gift-card";
 ```
 
 ## Values

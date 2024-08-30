@@ -25,9 +25,12 @@ import { Result } from "../types/fp.js";
 import { createPageIterator, haltIterator, PageIterator, Paginator } from "../types/operations.js";
 
 /**
- * Browse
+ * List all buyers
+ *
+ * @remarks
+ * List all buyers or search for a specific buyer.
  */
-export async function listBuyers(
+export async function buyersList(
     client$: Gr4vyCore,
     cursor?: string | undefined,
     limit?: number | undefined,
@@ -80,13 +83,12 @@ export async function listBuyers(
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
         operationID: "list_buyers",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 
@@ -163,7 +165,7 @@ export async function listBuyers(
             return () => null;
         }
 
-        return () => listBuyers(client$, nextCursor, limit, search, externalIdentifier, options);
+        return () => buyersList(client$, nextCursor, limit, search, externalIdentifier, options);
     };
 
     const page$ = { ...result$, next: nextFunc(raw$) };

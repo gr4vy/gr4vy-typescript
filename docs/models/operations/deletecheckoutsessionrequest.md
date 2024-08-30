@@ -6,7 +6,7 @@
 import { DeleteCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteCheckoutSessionRequest = {
-    sessionId: "10abdcab-6267-4669-ae1e-c00221b335d8",
+    sessionId: "bf9621a6-a4f7-47a8-bee3-e4be752c65b3",
 };
 ```
 

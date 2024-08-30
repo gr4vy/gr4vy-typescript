@@ -6,7 +6,8 @@
 import { AddPaymentMethodBody } from "@gr4vy/sdk/models/operations";
 
 let value: AddPaymentMethodBody = {
-    id: "35b60eb1-ea42-4655-9ba3-c28744ed53b8",
+    expirationDate: "<value>",
+    number: "<value>",
 };
 ```
 

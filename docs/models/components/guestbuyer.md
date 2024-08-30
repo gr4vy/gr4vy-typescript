@@ -11,15 +11,15 @@ let value: GuestBuyer = {
     billingDetails: {
         phoneNumber: "+442071838750",
         address: {
-            country: "US",
-            stateCode: "US-CA",
+            country: "DE",
+            stateCode: "GB-LND",
         },
     },
     shippingDetails: {
         phoneNumber: "+14155552671",
         address: {
             country: "US",
-            stateCode: "GB-LND",
+            stateCode: "US-CA",
         },
     },
 };

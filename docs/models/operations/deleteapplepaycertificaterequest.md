@@ -6,7 +6,7 @@
 import { DeleteApplePayCertificateRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteApplePayCertificateRequest = {
-    applePayCertificateId: "5338cec0-86fa-421e-9152-cb3119167b8e",
+    applePayCertificateId: "ae54ebf6-0c32-41f0-a3b7-5d2367fe1a0c",
 };
 ```
 

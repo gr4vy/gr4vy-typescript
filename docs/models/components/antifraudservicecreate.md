@@ -9,10 +9,10 @@ let value: AntiFraudServiceCreate = {
     fields: [
         {
             key: "<key>",
-            value: "",
+            value: "<value>",
         },
     ],
-    displayName: "Orion17",
+    displayName: "Marianne.Osinski43",
 };
 ```
 

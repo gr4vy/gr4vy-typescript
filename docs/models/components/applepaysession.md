@@ -8,8 +8,8 @@ Base model with JSON encoders.
 import { ApplePaySession } from "@gr4vy/sdk/models/components";
 
 let value: ApplePaySession = {
-    validationUrl: "https://attractive-morsel.net",
-    domainName: "enraged-wrench.org",
+    validationUrl: "http://disfigured-collapse.com",
+    domainName: "deadly-shanty.info",
 };
 ```
 

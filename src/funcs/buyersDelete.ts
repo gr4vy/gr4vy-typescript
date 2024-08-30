@@ -24,9 +24,12 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * Delete
+ * Delete a buyer
+ *
+ * @remarks
+ * Permanently removes a buyer record.
  */
-export async function deleteBuyer(
+export async function buyersDelete(
     client$: Gr4vyCore,
     buyerId: string,
     options?: RequestOptions
@@ -71,13 +74,12 @@ export async function deleteBuyer(
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
         operationID: "delete_buyer",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 

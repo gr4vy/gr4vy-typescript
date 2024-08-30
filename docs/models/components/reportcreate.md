@@ -9,7 +9,7 @@ import { ReportCreate } from "@gr4vy/sdk/models/components";
 
 let value: ReportCreate = {
     name: "<value>",
-    schedule: "monthly",
+    schedule: "daily",
     scheduleEnabled: false,
     spec: {
         params: {},

@@ -8,9 +8,9 @@ Base model with JSON encoders.
 import { ShippingDetailsUpdate } from "@gr4vy/sdk/models/components";
 
 let value: ShippingDetailsUpdate = {
-    phoneNumber: "+442071838750",
+    phoneNumber: "+14155552671",
     address: {
-        country: "US",
+        country: "DE",
         stateCode: "US-CA",
     },
 };

@@ -9,9 +9,7 @@ import { CheckoutSessionSecureFields } from "@gr4vy/sdk/models/components";
 
 let value: CheckoutSessionSecureFields = {
     paymentMethod: {
-        merchantTransactionId: "<value>",
-        srcCorrelationId: "<value>",
-        srcDpaId: "<value>",
+        id: "7e0bc717-8e47-496f-aa70-c688282aa482",
     },
 };
 ```

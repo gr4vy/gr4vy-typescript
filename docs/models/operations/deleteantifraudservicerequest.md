@@ -6,7 +6,7 @@
 import { DeleteAntiFraudServiceRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteAntiFraudServiceRequest = {
-    antiFraudServiceId: "c4ccca99-bc7f-4c0b-adce-10873e42b006",
+    antiFraudServiceId: "ebd5daea-4c50-46a8-aa94-c02644cf5e9d",
 };
 ```
 

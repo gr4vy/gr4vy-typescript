@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: c8ff3e8220e575c0ba6c877d7d22a440
+  docChecksum: db05edcac5c8c428a6db679e4e7ffda7
   docVersion: 1.0.0
-  speakeasyVersion: 1.383.2
-  generationVersion: 2.407.0
-  releaseVersion: 0.4.0
-  configChecksum: b9c3563a2e897b386a311faefe2cfd7c
+  speakeasyVersion: 1.384.0
+  generationVersion: 2.407.1
+  releaseVersion: 0.6.1
+  configChecksum: 3ee316ca86552be511be850f4623610c
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
@@ -22,6 +22,8 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
+    groups: 2.81.2
+    nameOverrides: 2.81.2
     nullables: 0.1.0
     pagination: 2.82.6
     responseFormat: 0.2.3
@@ -53,18 +55,7 @@ generatedFiles:
   - src/funcs/listGiftCards.ts
   - src/funcs/addGiftCard.ts
   - src/funcs/listBuyerGiftCards.ts
-  - src/funcs/listBuyers.ts
-  - src/funcs/addBuyer.ts
-  - src/funcs/listBuyerBillingDetails.ts
-  - src/funcs/updateBuyerBillingDetails.ts
-  - src/funcs/getBuyer.ts
-  - src/funcs/updateBuyer.ts
-  - src/funcs/deleteBuyer.ts
   - src/funcs/listBuyerShippingDetails.ts
-  - src/funcs/addBuyerShippingDetails.ts
-  - src/funcs/getBuyerShippingDetails.ts
-  - src/funcs/updateBuyerShippingDetails.ts
-  - src/funcs/deleteBuyerShippingDetails.ts
   - src/funcs/listConnections.ts
   - src/funcs/listConnectionDefinitions.ts
   - src/funcs/listCardSchemeDefinitions.ts
@@ -159,6 +150,20 @@ generatedFiles:
   - src/funcs/editAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdPut.ts
   - src/funcs/deleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDelete.ts
   - src/funcs/browseAuthenticationsVaultForwardConfigsPciForwardConfigIdAuthenticationsGet.ts
+  - src/funcs/buyersList.ts
+  - src/funcs/buyersCreate.ts
+  - src/funcs/buyersGet.ts
+  - src/funcs/buyersUpdate.ts
+  - src/funcs/buyersDelete.ts
+  - src/funcs/buyersBillingDetailsGet.ts
+  - src/funcs/buyersBillingDetailsUpdate.ts
+  - src/funcs/buyersShippingDetailsCreate.ts
+  - src/funcs/buyersShippingDetailsList.ts
+  - src/funcs/buyersShippingDetailsUpdate.ts
+  - src/funcs/buyersShippingDetailsDelete.ts
+  - src/sdk/billingdetails.ts
+  - src/sdk/shippingdetails.ts
+  - src/sdk/buyers.ts
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
@@ -171,6 +176,7 @@ generatedFiles:
   - src/lib/config.ts
   - src/lib/dlv.ts
   - src/lib/encodings.ts
+  - src/lib/env.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
   - src/lib/logger.ts
@@ -208,14 +214,6 @@ generatedFiles:
   - src/models/components/giftcardrequest.ts
   - src/models/components/giftcardstoredrequest.ts
   - src/models/components/giftcardcreate.ts
-  - src/models/components/buyercreate.ts
-  - src/models/components/billingdetails.ts
-  - src/models/components/taxid.ts
-  - src/models/components/taxidkind.ts
-  - src/models/components/address.ts
-  - src/models/components/buyerupdate.ts
-  - src/models/components/shippingdetailscreate.ts
-  - src/models/components/shippingdetailsupdate.ts
   - src/models/components/digitalwalletcreate.ts
   - src/models/components/digitalwalletprovider.ts
   - src/models/components/digitalwalletupdate.ts
@@ -236,6 +234,11 @@ generatedFiles:
   - src/models/components/giftcardtransactioncreate.ts
   - src/models/components/giftcardtokentransactioncreate.ts
   - src/models/components/guestbuyer.ts
+  - src/models/components/shippingdetailscreate.ts
+  - src/models/components/address.ts
+  - src/models/components/billingdetails.ts
+  - src/models/components/taxid.ts
+  - src/models/components/taxidkind.ts
   - src/models/components/apirouterstransactionsschemascardpaymentmethodcreate.ts
   - src/models/components/digitalwalletpanpaymentmethodcreate.ts
   - src/models/components/digitalwallettokenpaymentmethodcreate.ts
@@ -308,6 +311,9 @@ generatedFiles:
   - src/models/components/merchantaccountupdate.ts
   - src/models/components/pciforwardconfigauthenticationupdate.ts
   - src/models/components/apirouterspciforwardschemasvoidablefield.ts
+  - src/models/components/buyercreate.ts
+  - src/models/components/buyerupdate.ts
+  - src/models/components/shippingdetailsupdate.ts
   - src/models/components/security.ts
   - src/models/operations/listbuyerpaymentmethods.ts
   - src/models/operations/listpaymentmethods.ts
@@ -329,17 +335,7 @@ generatedFiles:
   - src/models/operations/deletegiftcard.ts
   - src/models/operations/listgiftcards.ts
   - src/models/operations/listbuyergiftcards.ts
-  - src/models/operations/listbuyers.ts
-  - src/models/operations/listbuyerbillingdetails.ts
-  - src/models/operations/updatebuyerbillingdetails.ts
-  - src/models/operations/getbuyer.ts
-  - src/models/operations/updatebuyer.ts
-  - src/models/operations/deletebuyer.ts
   - src/models/operations/listbuyershippingdetails.ts
-  - src/models/operations/addbuyershippingdetails.ts
-  - src/models/operations/getbuyershippingdetails.ts
-  - src/models/operations/updatebuyershippingdetails.ts
-  - src/models/operations/deletebuyershippingdetails.ts
   - src/models/operations/getappledigitalwallet.ts
   - src/models/operations/getdigitalwallet.ts
   - src/models/operations/updatedigitalwallet.ts
@@ -407,6 +403,16 @@ generatedFiles:
   - src/models/operations/editauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidput.ts
   - src/models/operations/deleteauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationiddelete.ts
   - src/models/operations/browseauthenticationsvaultforwardconfigspciforwardconfigidauthenticationsget.ts
+  - src/models/operations/listbuyers.ts
+  - src/models/operations/getbuyer.ts
+  - src/models/operations/updatebuyer.ts
+  - src/models/operations/deletebuyer.ts
+  - src/models/operations/listbillingdetails.ts
+  - src/models/operations/updatebuyerbillingdetails.ts
+  - src/models/operations/addbuyershippingdetails.ts
+  - src/models/operations/getbuyershippingdetails.ts
+  - src/models/operations/updatebuyershippingdetails.ts
+  - src/models/operations/deletebuyershippingdetails.ts
   - src/models/errors/index.ts
   - src/models/components/index.ts
   - src/models/operations/index.ts
@@ -431,14 +437,6 @@ generatedFiles:
   - docs/models/components/giftcardrequest.md
   - docs/models/components/giftcardstoredrequest.md
   - docs/models/components/giftcardcreate.md
-  - docs/models/components/buyercreate.md
-  - docs/models/components/billingdetails.md
-  - docs/models/components/taxid.md
-  - docs/models/components/taxidkind.md
-  - docs/models/components/address.md
-  - docs/models/components/buyerupdate.md
-  - docs/models/components/shippingdetailscreate.md
-  - docs/models/components/shippingdetailsupdate.md
   - docs/models/components/digitalwalletcreate.md
   - docs/models/components/digitalwalletprovider.md
   - docs/models/components/digitalwalletupdate.md
@@ -467,6 +465,11 @@ generatedFiles:
   - docs/models/components/giftcardtransactioncreate.md
   - docs/models/components/giftcardtokentransactioncreate.md
   - docs/models/components/guestbuyer.md
+  - docs/models/components/shippingdetailscreate.md
+  - docs/models/components/address.md
+  - docs/models/components/billingdetails.md
+  - docs/models/components/taxid.md
+  - docs/models/components/taxidkind.md
   - docs/models/components/apirouterstransactionsschemascardpaymentmethodcreatemethod.md
   - docs/models/components/apirouterstransactionsschemascardpaymentmethodcreate.md
   - docs/models/components/digitalwalletpanpaymentmethodcreatemethod.md
@@ -590,6 +593,9 @@ generatedFiles:
   - docs/models/components/apirouterspciforwardschemasvoidablefieldvalue2.md
   - docs/models/components/apirouterspciforwardschemasvoidablefieldvalue.md
   - docs/models/components/apirouterspciforwardschemasvoidablefield.md
+  - docs/models/components/buyercreate.md
+  - docs/models/components/buyerupdate.md
+  - docs/models/components/shippingdetailsupdate.md
   - docs/models/components/security.md
   - docs/models/operations/listbuyerpaymentmethodsrequest.md
   - docs/models/operations/listpaymentmethodsrequest.md
@@ -613,18 +619,7 @@ generatedFiles:
   - docs/models/operations/listgiftcardsrequest.md
   - docs/models/operations/listgiftcardsresponse.md
   - docs/models/operations/listbuyergiftcardsrequest.md
-  - docs/models/operations/listbuyersrequest.md
-  - docs/models/operations/listbuyersresponse.md
-  - docs/models/operations/listbuyerbillingdetailsrequest.md
-  - docs/models/operations/updatebuyerbillingdetailsrequest.md
-  - docs/models/operations/getbuyerrequest.md
-  - docs/models/operations/updatebuyerrequest.md
-  - docs/models/operations/deletebuyerrequest.md
   - docs/models/operations/listbuyershippingdetailsrequest.md
-  - docs/models/operations/addbuyershippingdetailsrequest.md
-  - docs/models/operations/getbuyershippingdetailsrequest.md
-  - docs/models/operations/updatebuyershippingdetailsrequest.md
-  - docs/models/operations/deletebuyershippingdetailsrequest.md
   - docs/models/operations/getappledigitalwalletrequest.md
   - docs/models/operations/getdigitalwalletrequest.md
   - docs/models/operations/updatedigitalwalletrequest.md
@@ -707,8 +702,22 @@ generatedFiles:
   - docs/models/operations/editauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidputrequest.md
   - docs/models/operations/deleteauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationiddeleterequest.md
   - docs/models/operations/browseauthenticationsvaultforwardconfigspciforwardconfigidauthenticationsgetrequest.md
+  - docs/models/operations/listbuyersrequest.md
+  - docs/models/operations/listbuyersresponse.md
+  - docs/models/operations/getbuyerrequest.md
+  - docs/models/operations/updatebuyerrequest.md
+  - docs/models/operations/deletebuyerrequest.md
+  - docs/models/operations/listbillingdetailsrequest.md
+  - docs/models/operations/updatebuyerbillingdetailsrequest.md
+  - docs/models/operations/addbuyershippingdetailsrequest.md
+  - docs/models/operations/getbuyershippingdetailsrequest.md
+  - docs/models/operations/updatebuyershippingdetailsrequest.md
+  - docs/models/operations/deletebuyershippingdetailsrequest.md
   - docs/lib/utils/retryconfig.md
   - docs/sdks/gr4vy/README.md
+  - docs/sdks/buyers/README.md
+  - docs/sdks/billingdetails/README.md
+  - docs/sdks/shippingdetails/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts

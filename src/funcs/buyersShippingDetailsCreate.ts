@@ -3,12 +3,13 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
     ConnectionError,
     InvalidRequestError,
@@ -24,12 +25,15 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * Get Shipping Details
+ * Add buyer shipping details
+ *
+ * @remarks
+ * Create shipping details for a buyer, using the buyer ID
  */
-export async function getBuyerShippingDetails(
+export async function buyersShippingDetailsCreate(
     client$: Gr4vyCore,
     buyerId: string,
-    shippingDetailsId: string,
+    shippingDetailsCreate: components.ShippingDetailsCreate,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -44,48 +48,42 @@ export async function getBuyerShippingDetails(
         | ConnectionError
     >
 > {
-    const input$: operations.GetBuyerShippingDetailsRequest = {
+    const input$: operations.AddBuyerShippingDetailsRequest = {
         buyerId: buyerId,
-        shippingDetailsId: shippingDetailsId,
+        shippingDetailsCreate: shippingDetailsCreate,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => operations.GetBuyerShippingDetailsRequest$outboundSchema.parse(value$),
+        (value$) => operations.AddBuyerShippingDetailsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
         return parsed$;
     }
     const payload$ = parsed$.value;
-    const body$ = null;
+    const body$ = encodeJSON$("body", payload$.ShippingDetailsCreate, { explode: true });
 
     const pathParams$ = {
         buyer_id: encodeSimple$("buyer_id", payload$.buyer_id, {
             explode: false,
             charEncoding: "percent",
         }),
-        shipping_details_id: encodeSimple$("shipping_details_id", payload$.shipping_details_id, {
-            explode: false,
-            charEncoding: "percent",
-        }),
     };
 
-    const path$ = pathToFunc("/buyers/{buyer_id}/shipping-details/{shipping_details_id}")(
-        pathParams$
-    );
+    const path$ = pathToFunc("/buyers/{buyer_id}/shipping-details")(pathParams$);
 
     const headers$ = new Headers({
+        "Content-Type": "application/json",
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
-        operationID: "get_buyer_shipping_details",
+        operationID: "add_buyer_shipping_details",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 
@@ -93,7 +91,7 @@ export async function getBuyerShippingDetails(
         context,
         {
             security: securitySettings$,
-            method: "GET",
+            method: "POST",
             path: path$,
             headers: headers$,
             body: body$,
@@ -132,7 +130,7 @@ export async function getBuyerShippingDetails(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, z.any()),
+        m$.json(201, z.any()),
         m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });

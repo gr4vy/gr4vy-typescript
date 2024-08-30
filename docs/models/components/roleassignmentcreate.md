@@ -9,11 +9,11 @@ import { RoleAssignmentCreate } from "@gr4vy/sdk/models/components";
 
 let value: RoleAssignmentCreate = {
     role: {
-        id: "9fd871f9-9dd2-4efd-921a-a6f1e674bdb0",
+        id: "ab3c20c4-f378-49fd-871f-99dd2efd121a",
     },
     assignee: {
-        type: "user",
-        id: "f1575608-2d68-4ea1-9f1d-17051339d080",
+        type: "private_key",
+        id: "6f1e674b-db04-4f15-b560-82d68ea19f1d",
     },
 };
 ```

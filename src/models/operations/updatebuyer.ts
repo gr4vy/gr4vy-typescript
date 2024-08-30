@@ -7,6 +7,9 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type UpdateBuyerRequest = {
+    /**
+     * The `id` of the buyer to update
+     */
     buyerId: string;
     buyerUpdate: components.BuyerUpdate;
 };

@@ -3,12 +3,13 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
     ConnectionError,
     InvalidRequestError,
@@ -24,12 +25,15 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * Get Billing Details
+ * Update a buyer
+ *
+ * @remarks
+ * Updates a buyer record.
  */
-export async function listBuyerBillingDetails(
+export async function buyersUpdate(
     client$: Gr4vyCore,
-    buyerId?: string | undefined,
-    buyerExternalIdentifier?: string | undefined,
+    buyerId: string,
+    buyerUpdate: components.BuyerUpdate,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -44,40 +48,42 @@ export async function listBuyerBillingDetails(
         | ConnectionError
     >
 > {
-    const input$: operations.ListBuyerBillingDetailsRequest = {
+    const input$: operations.UpdateBuyerRequest = {
         buyerId: buyerId,
-        buyerExternalIdentifier: buyerExternalIdentifier,
+        buyerUpdate: buyerUpdate,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => operations.ListBuyerBillingDetailsRequest$outboundSchema.parse(value$),
+        (value$) => operations.UpdateBuyerRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
         return parsed$;
     }
     const payload$ = parsed$.value;
-    const body$ = null;
+    const body$ = encodeJSON$("body", payload$.BuyerUpdate, { explode: true });
 
-    const path$ = pathToFunc("/buyers/billing-details")();
+    const pathParams$ = {
+        buyer_id: encodeSimple$("buyer_id", payload$.buyer_id, {
+            explode: false,
+            charEncoding: "percent",
+        }),
+    };
 
-    const query$ = encodeFormQuery$({
-        buyer_external_identifier: payload$.buyer_external_identifier,
-        buyer_id: payload$.buyer_id,
-    });
+    const path$ = pathToFunc("/buyers/{buyer_id}")(pathParams$);
 
     const headers$ = new Headers({
+        "Content-Type": "application/json",
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
-        operationID: "list_buyer_billing_details",
+        operationID: "update_buyer",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 
@@ -85,10 +91,9 @@ export async function listBuyerBillingDetails(
         context,
         {
             security: securitySettings$,
-            method: "GET",
+            method: "PUT",
             path: path$,
             headers: headers$,
-            query: query$,
             body: body$,
             timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
         },

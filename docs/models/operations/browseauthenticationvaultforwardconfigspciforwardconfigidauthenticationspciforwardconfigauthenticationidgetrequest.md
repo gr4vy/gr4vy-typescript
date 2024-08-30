@@ -9,8 +9,8 @@ import {
 
 let value: BrowseAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdGetRequest =
     {
-        pciForwardConfigId: "48e935c2-c9e8-41f3-8be3-e43202d72165",
-        pciForwardConfigAuthenticationId: "76506641-870d-49d2-9f9a-d030c4ecc11a",
+        pciForwardConfigId: "88b1c4ee-2c8c-46ce-a11f-eeb1c7cbdb6e",
+        pciForwardConfigAuthenticationId: "ec74378b-a253-4177-87dc-915ad2caf5dd",
     };
 ```
 

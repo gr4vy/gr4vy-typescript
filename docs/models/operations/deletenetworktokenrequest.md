@@ -6,8 +6,8 @@
 import { DeleteNetworkTokenRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteNetworkTokenRequest = {
-    paymentMethodId: "6c632ca3-aed0-4117-9963-12fde0477177",
-    networkTokenId: "8ff61d01-7476-4360-a15d-b6a660659a1a",
+    paymentMethodId: "fc1b4512-c103-4264-8dc2-f615199ebfd0",
+    networkTokenId: "e9fe6c63-2ca3-4aed-8117-996312fde047",
 };
 ```
 

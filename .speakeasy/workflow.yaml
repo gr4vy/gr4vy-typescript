@@ -3,8 +3,10 @@ speakeasyVersion: latest
 sources:
     openapi:
         inputs:
-            - location: https://gr4vy.github.io/gr4vy-openapi/openapi.v1.json
-            # - location: /Users/cbetta/code/core-api/openapi/openapi.json
+            # - location: https://gr4vy.github.io/gr4vy-openapi/openapi.v1.json
+            - location: /Users/cbetta/code/core-api/openapi/openapi.json
+        overlays:
+            - location: ./.speakeasy/overlays/security.yaml
         registry:
             location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:
@@ -14,3 +16,4 @@ targets:
         publish:
             npm:
                 token: $npm_token
+        

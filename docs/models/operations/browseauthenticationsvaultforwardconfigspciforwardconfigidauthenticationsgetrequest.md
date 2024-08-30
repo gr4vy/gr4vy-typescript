@@ -8,7 +8,7 @@ import {
 } from "@gr4vy/sdk/models/operations";
 
 let value: BrowseAuthenticationsVaultForwardConfigsPciForwardConfigIdAuthenticationsGetRequest = {
-    pciForwardConfigId: "dabf9ef3-ffdd-49f7-b079-af4d35724cdb",
+    pciForwardConfigId: "e1ec0022-1b33-45d8-9acb-3ecfda8d0c54",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { CreatePaymentServiceSessionRequest } from "@gr4vy/sdk/models/operations";
 
 let value: CreatePaymentServiceSessionRequest = {
-    paymentServiceId: "f895010f-5dd3-4d6f-a180-4e54c82f168a",
+    paymentServiceId: "f6c37a51-2624-4383-9bbc-05a23a45cefc",
     requestBody: {},
 };
 ```

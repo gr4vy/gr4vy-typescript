@@ -6,20 +6,20 @@
 import { UpdateCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateCheckoutSessionRequest = {
-    sessionId: "926bad25-5381-49b4-b4b0-ed20e56248ff",
+    sessionId: "3fa4a41c-480d-43f2-932a-f03102d514f4",
     checkoutSessionUpdate: {
         buyer: {
             billingDetails: {
                 phoneNumber: "+442071838750",
                 address: {
-                    country: "GB",
+                    country: "US",
                     stateCode: "GB-LND",
                 },
             },
             shippingDetails: {
                 phoneNumber: "+442071838750",
                 address: {
-                    country: "GB",
+                    country: "DE",
                     stateCode: "US-CA",
                 },
             },

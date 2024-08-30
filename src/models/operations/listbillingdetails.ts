@@ -5,14 +5,20 @@
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as z from "zod";
 
-export type ListBuyerBillingDetailsRequest = {
+export type ListBillingDetailsRequest = {
+    /**
+     * The `id` of the buyer to return billing details for
+     */
     buyerId?: string | undefined;
+    /**
+     * The `external_identifier` of the buyer to return billing details for
+     */
     buyerExternalIdentifier?: string | undefined;
 };
 
 /** @internal */
-export const ListBuyerBillingDetailsRequest$inboundSchema: z.ZodType<
-    ListBuyerBillingDetailsRequest,
+export const ListBillingDetailsRequest$inboundSchema: z.ZodType<
+    ListBillingDetailsRequest,
     z.ZodTypeDef,
     unknown
 > = z
@@ -28,16 +34,16 @@ export const ListBuyerBillingDetailsRequest$inboundSchema: z.ZodType<
     });
 
 /** @internal */
-export type ListBuyerBillingDetailsRequest$Outbound = {
+export type ListBillingDetailsRequest$Outbound = {
     buyer_id?: string | undefined;
     buyer_external_identifier?: string | undefined;
 };
 
 /** @internal */
-export const ListBuyerBillingDetailsRequest$outboundSchema: z.ZodType<
-    ListBuyerBillingDetailsRequest$Outbound,
+export const ListBillingDetailsRequest$outboundSchema: z.ZodType<
+    ListBillingDetailsRequest$Outbound,
     z.ZodTypeDef,
-    ListBuyerBillingDetailsRequest
+    ListBillingDetailsRequest
 > = z
     .object({
         buyerId: z.string().optional(),
@@ -54,11 +60,11 @@ export const ListBuyerBillingDetailsRequest$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListBuyerBillingDetailsRequest$ {
-    /** @deprecated use `ListBuyerBillingDetailsRequest$inboundSchema` instead. */
-    export const inboundSchema = ListBuyerBillingDetailsRequest$inboundSchema;
-    /** @deprecated use `ListBuyerBillingDetailsRequest$outboundSchema` instead. */
-    export const outboundSchema = ListBuyerBillingDetailsRequest$outboundSchema;
-    /** @deprecated use `ListBuyerBillingDetailsRequest$Outbound` instead. */
-    export type Outbound = ListBuyerBillingDetailsRequest$Outbound;
+export namespace ListBillingDetailsRequest$ {
+    /** @deprecated use `ListBillingDetailsRequest$inboundSchema` instead. */
+    export const inboundSchema = ListBillingDetailsRequest$inboundSchema;
+    /** @deprecated use `ListBillingDetailsRequest$outboundSchema` instead. */
+    export const outboundSchema = ListBillingDetailsRequest$outboundSchema;
+    /** @deprecated use `ListBillingDetailsRequest$Outbound` instead. */
+    export type Outbound = ListBillingDetailsRequest$Outbound;
 }

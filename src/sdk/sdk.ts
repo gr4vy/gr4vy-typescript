@@ -3,8 +3,6 @@
  */
 
 import { addApplePaySession } from "../funcs/addApplePaySession.js";
-import { addBuyer } from "../funcs/addBuyer.js";
-import { addBuyerShippingDetails } from "../funcs/addBuyerShippingDetails.js";
 import { addCheckoutSession } from "../funcs/addCheckoutSession.js";
 import { addClickToPaySession } from "../funcs/addClickToPaySession.js";
 import { addDigitalWallet } from "../funcs/addDigitalWallet.js";
@@ -36,8 +34,6 @@ import { deleteAntiFraudService } from "../funcs/deleteAntiFraudService.js";
 import { deleteApplePayCertificate } from "../funcs/deleteApplePayCertificate.js";
 import { deleteAuthSessionsDelete } from "../funcs/deleteAuthSessionsDelete.js";
 import { deleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDelete } from "../funcs/deleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDelete.js";
-import { deleteBuyer } from "../funcs/deleteBuyer.js";
-import { deleteBuyerShippingDetails } from "../funcs/deleteBuyerShippingDetails.js";
 import { deleteCheckoutSession } from "../funcs/deleteCheckoutSession.js";
 import { deleteDigitalWallet } from "../funcs/deleteDigitalWallet.js";
 import { deleteFlowActionRule } from "../funcs/deleteFlowActionRule.js";
@@ -54,8 +50,6 @@ import { generateApplePayCertificate } from "../funcs/generateApplePayCertificat
 import { generateReportExecutionUrl } from "../funcs/generateReportExecutionUrl.js";
 import { getAntiFraudService } from "../funcs/getAntiFraudService.js";
 import { getAppleDigitalWallet } from "../funcs/getAppleDigitalWallet.js";
-import { getBuyer } from "../funcs/getBuyer.js";
-import { getBuyerShippingDetails } from "../funcs/getBuyerShippingDetails.js";
 import { getCheckoutSession } from "../funcs/getCheckoutSession.js";
 import { getDigitalWallet } from "../funcs/getDigitalWallet.js";
 import { getFlow } from "../funcs/getFlow.js";
@@ -78,11 +72,9 @@ import { listAntiFraudServiceDefinitions } from "../funcs/listAntiFraudServiceDe
 import { listApiLogs } from "../funcs/listApiLogs.js";
 import { listApplePayCertificates } from "../funcs/listApplePayCertificates.js";
 import { listAuditLogs } from "../funcs/listAuditLogs.js";
-import { listBuyerBillingDetails } from "../funcs/listBuyerBillingDetails.js";
 import { listBuyerGiftCards } from "../funcs/listBuyerGiftCards.js";
 import { listBuyerPaymentMethods } from "../funcs/listBuyerPaymentMethods.js";
 import { listBuyerShippingDetails } from "../funcs/listBuyerShippingDetails.js";
-import { listBuyers } from "../funcs/listBuyers.js";
 import { listCardFlowActionRule3dsOutcomes } from "../funcs/listCardFlowActionRule3dsOutcomes.js";
 import { listCardFlowActionRuleRoutingOutcomes } from "../funcs/listCardFlowActionRuleRoutingOutcomes.js";
 import { listCardSchemeDefinitions } from "../funcs/listCardSchemeDefinitions.js";
@@ -116,9 +108,6 @@ import { registerDigitalWalletDomain } from "../funcs/registerDigitalWalletDomai
 import { resumeNetworkToken } from "../funcs/resumeNetworkToken.js";
 import { suspendNetworkToken } from "../funcs/suspendNetworkToken.js";
 import { updateAntiFraudService } from "../funcs/updateAntiFraudService.js";
-import { updateBuyer } from "../funcs/updateBuyer.js";
-import { updateBuyerBillingDetails } from "../funcs/updateBuyerBillingDetails.js";
-import { updateBuyerShippingDetails } from "../funcs/updateBuyerShippingDetails.js";
 import { updateCheckoutSession } from "../funcs/updateCheckoutSession.js";
 import { updateCheckoutSessionFields } from "../funcs/updateCheckoutSessionFields.js";
 import { updateDigitalWallet } from "../funcs/updateDigitalWallet.js";
@@ -136,8 +125,14 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
+import { Buyers } from "./buyers.js";
 
 export class Gr4vy extends ClientSDK {
+    private _buyers?: Buyers;
+    get buyers(): Buyers {
+        return (this._buyers ??= new Buyers(this.options$));
+    }
+
     /**
      * Add
      */
@@ -396,143 +391,13 @@ export class Gr4vy extends ClientSDK {
     }
 
     /**
-     * Browse
-     */
-    async listBuyers(
-        cursor?: string | undefined,
-        limit?: number | undefined,
-        search?: string | undefined,
-        externalIdentifier?: string | undefined,
-        options?: RequestOptions
-    ): Promise<PageIterator<operations.ListBuyersResponse>> {
-        return unwrapResultIterator(
-            listBuyers(this, cursor, limit, search, externalIdentifier, options)
-        );
-    }
-
-    /**
-     * Add
-     */
-    async addBuyer(request: components.BuyerCreate, options?: RequestOptions): Promise<any> {
-        return unwrapAsync(addBuyer(this, request, options));
-    }
-
-    /**
-     * Get Billing Details
-     */
-    async listBuyerBillingDetails(
-        buyerId?: string | undefined,
-        buyerExternalIdentifier?: string | undefined,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(
-            listBuyerBillingDetails(this, buyerId, buyerExternalIdentifier, options)
-        );
-    }
-
-    /**
-     * Update Billing Details
-     */
-    async updateBuyerBillingDetails(
-        billingDetails: components.BillingDetails,
-        buyerId?: string | undefined,
-        buyerExternalIdentifier?: string | undefined,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(
-            updateBuyerBillingDetails(
-                this,
-                billingDetails,
-                buyerId,
-                buyerExternalIdentifier,
-                options
-            )
-        );
-    }
-
-    /**
-     * Read
-     */
-    async getBuyer(buyerId: string, options?: RequestOptions): Promise<any> {
-        return unwrapAsync(getBuyer(this, buyerId, options));
-    }
-
-    /**
-     * Edit
-     */
-    async updateBuyer(
-        buyerId: string,
-        buyerUpdate: components.BuyerUpdate,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(updateBuyer(this, buyerId, buyerUpdate, options));
-    }
-
-    /**
-     * Delete
-     */
-    async deleteBuyer(buyerId: string, options?: RequestOptions): Promise<any> {
-        return unwrapAsync(deleteBuyer(this, buyerId, options));
-    }
-
-    /**
-     * List Shipping Details For Buyer
+     * List buyer shipping details
+     *
+     * @remarks
+     * List all the shipping details for a buyer, using the buyer ID
      */
     async listBuyerShippingDetails(buyerId: string, options?: RequestOptions): Promise<any> {
         return unwrapAsync(listBuyerShippingDetails(this, buyerId, options));
-    }
-
-    /**
-     * Add Shipping Details
-     */
-    async addBuyerShippingDetails(
-        buyerId: string,
-        shippingDetailsCreate: components.ShippingDetailsCreate,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(addBuyerShippingDetails(this, buyerId, shippingDetailsCreate, options));
-    }
-
-    /**
-     * Get Shipping Details
-     */
-    async getBuyerShippingDetails(
-        buyerId: string,
-        shippingDetailsId: string,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(getBuyerShippingDetails(this, buyerId, shippingDetailsId, options));
-    }
-
-    /**
-     * Update Shipping Details
-     */
-    async updateBuyerShippingDetails(
-        buyerId: string,
-        shippingDetailsId: string,
-        shippingDetailsUpdate: components.ShippingDetailsUpdate,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(
-            updateBuyerShippingDetails(
-                this,
-                buyerId,
-                shippingDetailsId,
-                shippingDetailsUpdate,
-                options
-            )
-        );
-    }
-
-    /**
-     * Delete Shipping Details
-     */
-    async deleteBuyerShippingDetails(
-        buyerId: string,
-        shippingDetailsId: string,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(deleteBuyerShippingDetails(this, buyerId, shippingDetailsId, options));
     }
 
     /**

@@ -6,7 +6,7 @@
 import { UpdateAntiFraudServiceRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateAntiFraudServiceRequest = {
-    antiFraudServiceId: "c495cc69-9171-4b51-81bd-b1cf4b888ebd",
+    antiFraudServiceId: "799bfbbe-6949-4fb2-bb4e-cae6c3d5db3a",
     antiFraudServiceUpdate: {},
 };
 ```

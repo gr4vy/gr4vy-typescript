@@ -28,9 +28,12 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * Update Billing Details
+ * Update buyer billing details
+ *
+ * @remarks
+ * Updates billing details for a buyer.
  */
-export async function updateBuyerBillingDetails(
+export async function buyersBillingDetailsUpdate(
     client$: Gr4vyCore,
     billingDetails: components.BillingDetails,
     buyerId?: string | undefined,
@@ -78,13 +81,12 @@ export async function updateBuyerBillingDetails(
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
         operationID: "update_buyer_billing_details",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 

@@ -6,7 +6,7 @@
 import { UpdateGiftCardServiceRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateGiftCardServiceRequest = {
-    giftCardServiceId: "eac5565d-307c-4fee-8120-6e2813fa4a41",
+    giftCardServiceId: "ff8f0f81-6ff3-4477-813e-902c14125b09",
     giftCardServiceUpdate: {},
 };
 ```

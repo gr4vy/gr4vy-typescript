@@ -6,9 +6,9 @@
 import { UpdateFlowActionRuleRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateFlowActionRuleRequest = {
-    flow: "non-card-transaction",
+    flow: "card-transaction",
     action: "decline-early",
-    ruleId: "91c8d975-e0e8-4419-98f8-4f144f3e07ed",
+    ruleId: "e6e0ac18-4c2b-49c2-87c8-8373a40e1942",
     requestBody: {},
 };
 ```

@@ -6,8 +6,8 @@
 import { GenerateReportExecutionUrlRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GenerateReportExecutionUrlRequest = {
-    reportId: "c8c6ce61-1fee-4b1c-bcbd-b6eec74378ba",
-    reportExecutionId: "25317747-dc91-45ad-acaf-5dd6723dc0f5",
+    reportId: "60a04c49-5cc6-4991-b1b5-1c1bdb1cf4b8",
+    reportExecutionId: "88ebdfc4-ccca-499b-87fc-0b2dce10873e",
 };
 ```
 

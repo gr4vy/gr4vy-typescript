@@ -10,7 +10,7 @@ Payment Method ID to use in a transaction.
 import { TokenPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: TokenPaymentMethodCreate = {
-    id: "a1108e0a-dcf4-4b92-9879-fce953f73ef7",
+    id: "9cdb1a84-22bb-4679-9232-2715bf0cbb1e",
 };
 ```
 

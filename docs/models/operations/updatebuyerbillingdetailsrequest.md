@@ -10,7 +10,7 @@ let value: UpdateBuyerBillingDetailsRequest = {
         phoneNumber: "+14155552671",
         address: {
             country: "GB",
-            stateCode: "US-CA",
+            stateCode: "GB-LND",
         },
     },
 };
@@ -20,6 +20,6 @@ let value: UpdateBuyerBillingDetailsRequest = {
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `buyerId`                                                              | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
-| `buyerExternalIdentifier`                                              | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `buyerId`                                                              | *string*                                                               | :heavy_minus_sign:                                                     | The `id` of the buyer to update billing details for                    |
+| `buyerExternalIdentifier`                                              | *string*                                                               | :heavy_minus_sign:                                                     | The `external_identifier` of the buyer to update billing details for   |
 | `billingDetails`                                                       | [components.BillingDetails](../../models/components/billingdetails.md) | :heavy_check_mark:                                                     | N/A                                                                    |

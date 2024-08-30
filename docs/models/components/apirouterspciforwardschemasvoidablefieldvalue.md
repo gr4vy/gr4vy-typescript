@@ -5,7 +5,7 @@
 ```typescript
 import { ApiRoutersPciForwardSchemasVoidableFieldValue } from "@gr4vy/sdk/models/components";
 
-let value: ApiRoutersPciForwardSchemasVoidableFieldValue = "<value>";
+let value: ApiRoutersPciForwardSchemasVoidableFieldValue = "";
 ```
 
 ## Supported Types

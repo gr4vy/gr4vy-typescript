@@ -9,7 +9,7 @@ import { TaxId } from "@gr4vy/sdk/models/components";
 
 let value: TaxId = {
     value: "<value>",
-    kind: "ca.gst_hst",
+    kind: "my.itn",
 };
 ```
 

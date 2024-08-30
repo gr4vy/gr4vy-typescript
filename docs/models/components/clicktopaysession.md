@@ -8,7 +8,7 @@ Base model with JSON encoders.
 import { ClickToPaySession } from "@gr4vy/sdk/models/components";
 
 let value: ClickToPaySession = {
-    checkoutSessionId: "8d9cbf48-6333-423f-9b77-f3a4100674eb",
+    checkoutSessionId: "fe9b90c2-8909-4b3f-a49a-8d9cbf486333",
 };
 ```
 

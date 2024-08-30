@@ -7,6 +7,9 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type AddBuyerShippingDetailsRequest = {
+    /**
+     * The `id` of the buyer to add shipping details to
+     */
     buyerId: string;
     shippingDetailsCreate: components.ShippingDetailsCreate;
 };

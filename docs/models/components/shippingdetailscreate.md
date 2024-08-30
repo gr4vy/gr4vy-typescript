@@ -10,7 +10,7 @@ import { ShippingDetailsCreate } from "@gr4vy/sdk/models/components";
 let value: ShippingDetailsCreate = {
     phoneNumber: "+14155552671",
     address: {
-        country: "US",
+        country: "DE",
         stateCode: "US-CA",
     },
 };

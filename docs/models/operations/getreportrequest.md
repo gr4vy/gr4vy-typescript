@@ -6,7 +6,7 @@
 import { GetReportRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetReportRequest = {
-    reportId: "09470bf7-a4fa-487c-b535-a6fae54ebf60",
+    reportId: "f62cba3f-8941-4aeb-80b8-0a6924d3b2ec",
 };
 ```
 

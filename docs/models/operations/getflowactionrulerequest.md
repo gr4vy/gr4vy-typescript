@@ -6,9 +6,9 @@
 import { GetFlowActionRuleRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetFlowActionRuleRequest = {
-    flow: "checkout",
-    action: "select-payment-options",
-    ruleId: "a6a4f77a-87ee-43e4-be75-2c65b34418e3",
+    flow: "card-transaction",
+    action: "skip-3ds",
+    ruleId: "fb901c6e-cbb4-4e24-bcf7-89ffafeda53e",
 };
 ```
 

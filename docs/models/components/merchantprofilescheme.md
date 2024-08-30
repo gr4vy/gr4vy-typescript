@@ -9,7 +9,7 @@ import { MerchantProfileScheme } from "@gr4vy/sdk/models/components";
 
 let value: MerchantProfileScheme = {
     merchantAcquirerBin: "<value>",
-    merchantUrl: "http://surprised-colon.name",
+    merchantUrl: "https://scornful-aftermath.com",
     merchantAcquirerId: "<value>",
     merchantName: "<value>",
     merchantCountryCode: "<value>",

@@ -6,7 +6,7 @@
 import { BrowseConfigVaultForwardConfigsPciForwardConfigIdGetRequest } from "@gr4vy/sdk/models/operations";
 
 let value: BrowseConfigVaultForwardConfigsPciForwardConfigIdGetRequest = {
-    pciForwardConfigId: "3c8db034-08d6-4d36-8ffd-455906d1263d",
+    pciForwardConfigId: "c8df79f0-a396-4d90-8364-b7c15dfbace1",
 };
 ```
 

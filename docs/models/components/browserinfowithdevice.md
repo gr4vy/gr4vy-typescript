@@ -11,12 +11,12 @@ let value: BrowserInfoWithDevice = {
     javascriptEnabled: false,
     javaEnabled: false,
     language: "<value>",
-    colorDepth: 471752,
-    screenHeight: 25662,
-    screenWidth: 711584,
-    timeZoneOffset: 207470,
+    colorDepth: 679393,
+    screenHeight: 478596,
+    screenWidth: 453697,
+    timeZoneOffset: 677082,
     userAgent: "<value>",
-    userDevice: "desktop",
+    userDevice: "mobile",
 };
 ```
 

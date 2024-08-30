@@ -7,6 +7,9 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type UpdateBuyerShippingDetailsRequest = {
+    /**
+     * The `id` of the buyer to list shipping details for
+     */
     buyerId: string;
     shippingDetailsId: string;
     shippingDetailsUpdate: components.ShippingDetailsUpdate;

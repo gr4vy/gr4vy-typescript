@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
+import { encodeJSON as encodeJSON$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -20,17 +20,18 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * Add Shipping Details
+ * Add a buyer
+ *
+ * @remarks
+ * Create a new buyer record.
  */
-export async function addBuyerShippingDetails(
+export async function buyersCreate(
     client$: Gr4vyCore,
-    buyerId: string,
-    shippingDetailsCreate: components.ShippingDetailsCreate,
+    request: components.BuyerCreate,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -45,43 +46,32 @@ export async function addBuyerShippingDetails(
         | ConnectionError
     >
 > {
-    const input$: operations.AddBuyerShippingDetailsRequest = {
-        buyerId: buyerId,
-        shippingDetailsCreate: shippingDetailsCreate,
-    };
+    const input$ = request;
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => operations.AddBuyerShippingDetailsRequest$outboundSchema.parse(value$),
+        (value$) => components.BuyerCreate$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
         return parsed$;
     }
     const payload$ = parsed$.value;
-    const body$ = encodeJSON$("body", payload$.ShippingDetailsCreate, { explode: true });
+    const body$ = encodeJSON$("body", payload$, { explode: true });
 
-    const pathParams$ = {
-        buyer_id: encodeSimple$("buyer_id", payload$.buyer_id, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-    };
-
-    const path$ = pathToFunc("/buyers/{buyer_id}/shipping-details")(pathParams$);
+    const path$ = pathToFunc("/buyers")();
 
     const headers$ = new Headers({
         "Content-Type": "application/json",
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
-        operationID: "add_buyer_shipping_details",
+        operationID: "add_buyer",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 

@@ -6,7 +6,8 @@
 import { TransactionCreatePaymentMethod } from "@gr4vy/sdk/models/components";
 
 let value: TransactionCreatePaymentMethod = {
-    id: "280d1ba7-7a89-4ebf-b37a-e4203ce5e6a9",
+    method: "googlepay",
+    token: "<value>",
 };
 ```
 

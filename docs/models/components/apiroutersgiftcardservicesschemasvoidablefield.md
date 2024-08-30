@@ -9,7 +9,7 @@ import { ApiRoutersGiftCardServicesSchemasVoidableField } from "@gr4vy/sdk/model
 
 let value: ApiRoutersGiftCardServicesSchemasVoidableField = {
     key: "<key>",
-    value: "<value>",
+    value: "",
 };
 ```
 

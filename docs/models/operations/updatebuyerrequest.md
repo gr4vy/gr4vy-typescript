@@ -6,12 +6,12 @@
 import { UpdateBuyerRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateBuyerRequest = {
-    buyerId: "b9665b85-efbd-402b-ae0b-e2d782259e3e",
+    buyerId: "c71dca16-3f2a-43c8-8a97-ff334cddf857",
     buyerUpdate: {
         billingDetails: {
             phoneNumber: "+442071838750",
             address: {
-                country: "DE",
+                country: "GB",
                 stateCode: "US-CA",
             },
         },
@@ -23,5 +23,5 @@ let value: UpdateBuyerRequest = {
 
 | Field                                                            | Type                                                             | Required                                                         | Description                                                      |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `buyerId`                                                        | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
+| `buyerId`                                                        | *string*                                                         | :heavy_check_mark:                                               | The `id` of the buyer to update                                  |
 | `buyerUpdate`                                                    | [components.BuyerUpdate](../../models/components/buyerupdate.md) | :heavy_check_mark:                                               | N/A                                                              |

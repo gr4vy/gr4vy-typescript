@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { FlowAction } from "@gr4vy/sdk/models/components";
 
-let value: FlowAction = "decline-early";
+let value: FlowAction = "skip-3ds";
 ```
 
 ## Values

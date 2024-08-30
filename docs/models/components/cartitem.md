@@ -9,8 +9,8 @@ import { CartItem } from "@gr4vy/sdk/models/components";
 
 let value: CartItem = {
     name: "<value>",
-    quantity: 730442,
-    unitAmount: 374170,
+    quantity: 896672,
+    unitAmount: 714697,
 };
 ```
 

@@ -8,7 +8,7 @@ Request body for editing a registered digital wallet
 import { DigitalWalletUpdate } from "@gr4vy/sdk/models/components";
 
 let value: DigitalWalletUpdate = {
-    merchantCountryCode: "GB",
+    merchantCountryCode: "DE",
 };
 ```
 

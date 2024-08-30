@@ -8,8 +8,8 @@ Base model with JSON encoders.
 import { GiftCardTokenTransactionCreate } from "@gr4vy/sdk/models/components";
 
 let value: GiftCardTokenTransactionCreate = {
-    id: "db1a8422-bb67-49d2-b227-15bf0cbb1e31",
-    amount: 749255,
+    id: "203ce5e6-a95d-48a0-9446-ce2af7a73cf3",
+    amount: 730856,
 };
 ```
 

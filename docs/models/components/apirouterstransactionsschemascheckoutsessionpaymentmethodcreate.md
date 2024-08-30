@@ -8,7 +8,7 @@ Base model with JSON encoders.
 import { ApiRoutersTransactionsSchemasCheckoutSessionPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: ApiRoutersTransactionsSchemasCheckoutSessionPaymentMethodCreate = {
-    id: "fbc7abd7-4dd3-49c0-b5d2-cff7c70a4562",
+    id: "31b8b90f-3443-4a11-88e0-adcf4b921879",
 };
 ```
 

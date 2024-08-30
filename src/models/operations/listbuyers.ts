@@ -6,9 +6,21 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import * as z from "zod";
 
 export type ListBuyersRequest = {
+    /**
+     * A pointer to the page of results to return.
+     */
     cursor?: string | undefined;
+    /**
+     * The maximum number of items that are at returned.
+     */
     limit?: number | undefined;
+    /**
+     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
+     */
     search?: string | undefined;
+    /**
+     * Filters the results to only the buyers for which the `external_identifier` matches this value.
+     */
     externalIdentifier?: string | undefined;
 };
 

@@ -6,8 +6,8 @@
 import { ApprovePaymentMethodRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ApprovePaymentMethodRequest = {
-    paymentMethodId: "418d1623-09fb-4092-9921-aefb9f58c4d8",
-    paymentServiceId: "6e68e4be-0560-413f-99da-757a59ecfef6",
+    paymentMethodId: "1c6c6e20-5e16-4dea-b3fe-c9578a645842",
+    paymentServiceId: "73a8418d-1623-409f-b092-9921aefb9f58",
 };
 ```
 

@@ -7,7 +7,13 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type UpdateBuyerBillingDetailsRequest = {
+    /**
+     * The `id` of the buyer to update billing details for
+     */
     buyerId?: string | undefined;
+    /**
+     * The `external_identifier` of the buyer to update billing details for
+     */
     buyerExternalIdentifier?: string | undefined;
     billingDetails: components.BillingDetails;
 };

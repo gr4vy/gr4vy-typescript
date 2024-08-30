@@ -6,7 +6,7 @@
 import { GetDigitalWalletRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetDigitalWalletRequest = {
-    digitalWalletId: "2810331f-3981-4d4c-b00b-607f3c93c73b",
+    digitalWalletId: "dbc2259b-1abd-4a8c-870e-1084cb0672d1",
 };
 ```
 

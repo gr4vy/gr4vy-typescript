@@ -8,8 +8,8 @@ Base model with JSON encoders.
 import { RoleAssignee } from "@gr4vy/sdk/models/components";
 
 let value: RoleAssignee = {
-    type: "private_key",
-    id: "6a184039-4c26-4071-b93f-5f0642dac7af",
+    type: "user",
+    id: "7051339d-0808-46a1-8403-94c26071f93f",
 };
 ```
 

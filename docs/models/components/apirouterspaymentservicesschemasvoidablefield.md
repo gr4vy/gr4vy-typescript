@@ -9,7 +9,7 @@ import { ApiRoutersPaymentServicesSchemasVoidableField } from "@gr4vy/sdk/models
 
 let value: ApiRoutersPaymentServicesSchemasVoidableField = {
     key: "<key>",
-    value: "<value>",
+    value: "",
 };
 ```
 

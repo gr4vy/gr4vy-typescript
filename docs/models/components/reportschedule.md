@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { ReportSchedule } from "@gr4vy/sdk/models/components";
 
-let value: ReportSchedule = "daily";
+let value: ReportSchedule = "once";
 ```
 
 ## Values

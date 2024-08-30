@@ -8,7 +8,7 @@ Base model with JSON encoders.
 import { ApiRoutersGiftCardServicesSchemasVerifyCredentials } from "@gr4vy/sdk/models/components";
 
 let value: ApiRoutersGiftCardServicesSchemasVerifyCredentials = {
-    giftCardServiceDefinitionId: "qwikcilver-gift-card",
+    giftCardServiceDefinitionId: "mock-gift-card",
     fields: [
         {
             key: "<key>",

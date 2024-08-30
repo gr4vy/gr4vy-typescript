@@ -6,8 +6,8 @@
 import { ListBuyerPaymentMethodsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListBuyerPaymentMethodsRequest = {
-    country: "GB",
-    currency: "USD",
+    country: "DE",
+    currency: "EUR",
 };
 ```
 

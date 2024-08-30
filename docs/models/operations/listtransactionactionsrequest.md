@@ -6,7 +6,7 @@
 import { ListTransactionActionsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListTransactionActionsRequest = {
-    transactionId: "77c13e90-2c14-4125-b096-0a668151a472",
+    transactionId: "575f1400-e764-4ad7-b34e-c1b781b36a08",
 };
 ```
 

@@ -8,14 +8,6 @@
 </div>
 
 
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
-
 ## SDK Installation
 
 ### NPM
@@ -108,18 +100,7 @@ async function run() {
 * [listGiftCards](docs/sdks/gr4vy/README.md#listgiftcards) - Browse
 * [addGiftCard](docs/sdks/gr4vy/README.md#addgiftcard) - Add
 * [listBuyerGiftCards](docs/sdks/gr4vy/README.md#listbuyergiftcards) - For Buyer
-* [listBuyers](docs/sdks/gr4vy/README.md#listbuyers) - Browse
-* [addBuyer](docs/sdks/gr4vy/README.md#addbuyer) - Add
-* [listBuyerBillingDetails](docs/sdks/gr4vy/README.md#listbuyerbillingdetails) - Get Billing Details
-* [updateBuyerBillingDetails](docs/sdks/gr4vy/README.md#updatebuyerbillingdetails) - Update Billing Details
-* [getBuyer](docs/sdks/gr4vy/README.md#getbuyer) - Read
-* [updateBuyer](docs/sdks/gr4vy/README.md#updatebuyer) - Edit
-* [deleteBuyer](docs/sdks/gr4vy/README.md#deletebuyer) - Delete
-* [listBuyerShippingDetails](docs/sdks/gr4vy/README.md#listbuyershippingdetails) - List Shipping Details For Buyer
-* [addBuyerShippingDetails](docs/sdks/gr4vy/README.md#addbuyershippingdetails) - Add Shipping Details
-* [getBuyerShippingDetails](docs/sdks/gr4vy/README.md#getbuyershippingdetails) - Get Shipping Details
-* [updateBuyerShippingDetails](docs/sdks/gr4vy/README.md#updatebuyershippingdetails) - Update Shipping Details
-* [deleteBuyerShippingDetails](docs/sdks/gr4vy/README.md#deletebuyershippingdetails) - Delete Shipping Details
+* [listBuyerShippingDetails](docs/sdks/gr4vy/README.md#listbuyershippingdetails) - List buyer shipping details
 * [listConnections](docs/sdks/gr4vy/README.md#listconnections) - Browse
 * [listConnectionDefinitions](docs/sdks/gr4vy/README.md#listconnectiondefinitions) - Browse
 * [listCardSchemeDefinitions](docs/sdks/gr4vy/README.md#listcardschemedefinitions) - Browse
@@ -214,6 +195,26 @@ async function run() {
 * [editAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdPut](docs/sdks/gr4vy/README.md#editauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidput) - Edit Authentication
 * [deleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDelete](docs/sdks/gr4vy/README.md#deleteauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationiddelete) - Delete Authentication
 * [browseAuthenticationsVaultForwardConfigsPciForwardConfigIdAuthenticationsGet](docs/sdks/gr4vy/README.md#browseauthenticationsvaultforwardconfigspciforwardconfigidauthenticationsget) - Browse Authentications
+
+### [buyers](docs/sdks/buyers/README.md)
+
+* [list](docs/sdks/buyers/README.md#list) - List all buyers
+* [create](docs/sdks/buyers/README.md#create) - Add a buyer
+* [get](docs/sdks/buyers/README.md#get) - Get a buyer
+* [update](docs/sdks/buyers/README.md#update) - Update a buyer
+* [delete](docs/sdks/buyers/README.md#delete) - Delete a buyer
+
+### [buyers.billingDetails](docs/sdks/billingdetails/README.md)
+
+* [get](docs/sdks/billingdetails/README.md#get) - Get buyer billing details
+* [update](docs/sdks/billingdetails/README.md#update) - Update buyer billing details
+
+### [buyers.shippingDetails](docs/sdks/shippingdetails/README.md)
+
+* [create](docs/sdks/shippingdetails/README.md#create) - Add buyer shipping details
+* [list](docs/sdks/shippingdetails/README.md#list) - Get buyer shipping details
+* [update](docs/sdks/shippingdetails/README.md#update) - Update buyer shipping details
+* [delete](docs/sdks/shippingdetails/README.md#delete) - Delete buyer shipping details
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -234,7 +235,7 @@ import { Gr4vy } from "@gr4vy/sdk";
 import { HTTPValidationError, SDKValidationError } from "@gr4vy/sdk/models/errors";
 
 const gr4vy = new Gr4vy({
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -289,7 +290,7 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
     server: "sandbox",
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -319,7 +320,7 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
     serverURL: "https://api.{gr4vy_id}.gr4vy.app",
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -392,16 +393,16 @@ const sdk = new Gr4vy({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name                   | Type                   | Scheme                 |
-| ---------------------- | ---------------------- | ---------------------- |
-| `oAuth2PasswordBearer` | oauth2                 | OAuth2 token           |
+| Name                 | Type                 | Scheme               | Environment Variable |
+| -------------------- | -------------------- | -------------------- | -------------------- |
+| `bearerAuth`         | http                 | HTTP Bearer          | `GR4VY_BEARER_AUTH`  |
 
-To authenticate with the API the `oAuth2PasswordBearer` parameter must be set when initializing the SDK client instance. For example:
+To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -460,7 +461,7 @@ yarn add @gr4vy/sdk zod
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -493,7 +494,7 @@ Here's an example of one such pagination call:
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -520,7 +521,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -565,7 +566,7 @@ const gr4vy = new Gr4vy({
         },
         retryConnectionErrors: false,
     },
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -622,8 +623,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [addApplePaySession](docs/sdks/gr4vy/README.md#addapplepaysession)
-- [addBuyerShippingDetails](docs/sdks/gr4vy/README.md#addbuyershippingdetails)
-- [addBuyer](docs/sdks/gr4vy/README.md#addbuyer)
 - [addCheckoutSession](docs/sdks/gr4vy/README.md#addcheckoutsession)
 - [addClickToPaySession](docs/sdks/gr4vy/README.md#addclicktopaysession)
 - [addDigitalWallet](docs/sdks/gr4vy/README.md#adddigitalwallet)
@@ -635,6 +634,17 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [browseAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdGet](docs/sdks/gr4vy/README.md#browseauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidget)
 - [browseAuthenticationsVaultForwardConfigsPciForwardConfigIdAuthenticationsGet](docs/sdks/gr4vy/README.md#browseauthenticationsvaultforwardconfigspciforwardconfigidauthenticationsget)
 - [browseConfigVaultForwardConfigsPciForwardConfigIdGet](docs/sdks/gr4vy/README.md#browseconfigvaultforwardconfigspciforwardconfigidget)
+- [buyersBillingDetailsGet](docs/sdks/billingdetails/README.md#get)
+- [buyersBillingDetailsUpdate](docs/sdks/billingdetails/README.md#update)
+- [buyersCreate](docs/sdks/buyers/README.md#create)
+- [buyersDelete](docs/sdks/buyers/README.md#delete)
+- [buyersGet](docs/sdks/buyers/README.md#get)
+- [buyersList](docs/sdks/buyers/README.md#list)
+- [buyersShippingDetailsCreate](docs/sdks/shippingdetails/README.md#create)
+- [buyersShippingDetailsDelete](docs/sdks/shippingdetails/README.md#delete)
+- [buyersShippingDetailsList](docs/sdks/shippingdetails/README.md#list)
+- [buyersShippingDetailsUpdate](docs/sdks/shippingdetails/README.md#update)
+- [buyersUpdate](docs/sdks/buyers/README.md#update)
 - [captureTransaction](docs/sdks/gr4vy/README.md#capturetransaction)
 - [confirmApplePayCertificate](docs/sdks/gr4vy/README.md#confirmapplepaycertificate)
 - [createAccountUpdaterJob](docs/sdks/gr4vy/README.md#createaccountupdaterjob)
@@ -655,8 +665,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [deleteApplePayCertificate](docs/sdks/gr4vy/README.md#deleteapplepaycertificate)
 - [deleteAuthSessionsDelete](docs/sdks/gr4vy/README.md#deleteauthsessionsdelete)
 - [deleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDelete](docs/sdks/gr4vy/README.md#deleteauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationiddelete)
-- [deleteBuyerShippingDetails](docs/sdks/gr4vy/README.md#deletebuyershippingdetails)
-- [deleteBuyer](docs/sdks/gr4vy/README.md#deletebuyer)
 - [deleteCheckoutSession](docs/sdks/gr4vy/README.md#deletecheckoutsession)
 - [deleteDigitalWallet](docs/sdks/gr4vy/README.md#deletedigitalwallet)
 - [deleteFlowActionRule](docs/sdks/gr4vy/README.md#deleteflowactionrule)
@@ -673,8 +681,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [generateReportExecutionUrl](docs/sdks/gr4vy/README.md#generatereportexecutionurl)
 - [getAntiFraudService](docs/sdks/gr4vy/README.md#getantifraudservice)
 - [getAppleDigitalWallet](docs/sdks/gr4vy/README.md#getappledigitalwallet)
-- [getBuyerShippingDetails](docs/sdks/gr4vy/README.md#getbuyershippingdetails)
-- [getBuyer](docs/sdks/gr4vy/README.md#getbuyer)
 - [getCheckoutSession](docs/sdks/gr4vy/README.md#getcheckoutsession)
 - [getDigitalWallet](docs/sdks/gr4vy/README.md#getdigitalwallet)
 - [getFlowActionRule](docs/sdks/gr4vy/README.md#getflowactionrule)
@@ -697,11 +703,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [listApiLogs](docs/sdks/gr4vy/README.md#listapilogs)
 - [listApplePayCertificates](docs/sdks/gr4vy/README.md#listapplepaycertificates)
 - [listAuditLogs](docs/sdks/gr4vy/README.md#listauditlogs)
-- [listBuyerBillingDetails](docs/sdks/gr4vy/README.md#listbuyerbillingdetails)
 - [listBuyerGiftCards](docs/sdks/gr4vy/README.md#listbuyergiftcards)
 - [listBuyerPaymentMethods](docs/sdks/gr4vy/README.md#listbuyerpaymentmethods)
 - [listBuyerShippingDetails](docs/sdks/gr4vy/README.md#listbuyershippingdetails)
-- [listBuyers](docs/sdks/gr4vy/README.md#listbuyers)
 - [listCardFlowActionRule3dsOutcomes](docs/sdks/gr4vy/README.md#listcardflowactionrule3dsoutcomes)
 - [listCardFlowActionRuleRoutingOutcomes](docs/sdks/gr4vy/README.md#listcardflowactionruleroutingoutcomes)
 - [listCardSchemeDefinitions](docs/sdks/gr4vy/README.md#listcardschemedefinitions)
@@ -735,9 +739,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [resumeNetworkToken](docs/sdks/gr4vy/README.md#resumenetworktoken)
 - [suspendNetworkToken](docs/sdks/gr4vy/README.md#suspendnetworktoken)
 - [updateAntiFraudService](docs/sdks/gr4vy/README.md#updateantifraudservice)
-- [updateBuyerBillingDetails](docs/sdks/gr4vy/README.md#updatebuyerbillingdetails)
-- [updateBuyerShippingDetails](docs/sdks/gr4vy/README.md#updatebuyershippingdetails)
-- [updateBuyer](docs/sdks/gr4vy/README.md#updatebuyer)
 - [updateCheckoutSessionFields](docs/sdks/gr4vy/README.md#updatecheckoutsessionfields)
 - [updateCheckoutSession](docs/sdks/gr4vy/README.md#updatecheckoutsession)
 - [updateDigitalWallet](docs/sdks/gr4vy/README.md#updatedigitalwallet)
@@ -770,6 +771,8 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const sdk = new Gr4vy({ debugLogger: console });
 ```
+
+You can also enable a default debug logger by setting an environment variable `GR4VY_DEBUG` to true.
 <!-- End Debugging [debug] -->
 
 <!-- Start File uploads [file-upload] -->
@@ -791,7 +794,7 @@ import { Gr4vy } from "@gr4vy/sdk";
 import { openAsBlob } from "node:fs";
 
 const gr4vy = new Gr4vy({
-    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {

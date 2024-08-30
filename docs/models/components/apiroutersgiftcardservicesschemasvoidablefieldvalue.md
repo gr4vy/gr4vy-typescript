@@ -5,7 +5,7 @@
 ```typescript
 import { ApiRoutersGiftCardServicesSchemasVoidableFieldValue } from "@gr4vy/sdk/models/components";
 
-let value: ApiRoutersGiftCardServicesSchemasVoidableFieldValue = "";
+let value: ApiRoutersGiftCardServicesSchemasVoidableFieldValue = "<value>";
 ```
 
 ## Supported Types

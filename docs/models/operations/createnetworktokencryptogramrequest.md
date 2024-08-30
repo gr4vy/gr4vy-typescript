@@ -6,8 +6,8 @@
 import { CreateNetworkTokenCryptogramRequest } from "@gr4vy/sdk/models/operations";
 
 let value: CreateNetworkTokenCryptogramRequest = {
-    paymentMethodId: "a57a15be-3e06-4080-be2b-6e3ab8845f05",
-    networkTokenId: "97a60ff2-a54a-431e-9476-4a3e865e7956",
+    paymentMethodId: "986e881e-ad4f-40e1-8125-63f94e29e973",
+    networkTokenId: "e922a57a-15be-43e0-a080-7e2b6e3ab884",
     cryptogramCreate: {
         merchantInitiated: false,
     },

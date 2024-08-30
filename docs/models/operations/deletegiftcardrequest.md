@@ -6,7 +6,7 @@
 import { DeleteGiftCardRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteGiftCardRequest = {
-    giftCardId: "31135296-5bb8-4a72-8261-1435e139dbc2",
+    giftCardId: "6e3a4370-00ae-46b6-bc9b-8f759eac55a9",
 };
 ```
 

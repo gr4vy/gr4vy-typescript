@@ -6,13 +6,13 @@
 import { UpdateBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateBuyerShippingDetailsRequest = {
-    buyerId: "13bb6f48-b656-4bcd-b35f-f2e4b27537a8",
-    shippingDetailsId: "cd9e7319-c177-4d52-9f77-b114eeb52ff7",
+    buyerId: "2d721657-6506-4641-870d-9d21f9ad030c",
+    shippingDetailsId: "4ecc11a0-8364-4290-a8b8-502a55e7f73b",
     shippingDetailsUpdate: {
         phoneNumber: "+442071838750",
         address: {
             country: "GB",
-            stateCode: "US-CA",
+            stateCode: "GB-LND",
         },
     },
 };
@@ -22,6 +22,6 @@ let value: UpdateBuyerShippingDetailsRequest = {
 
 | Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `buyerId`                                                                            | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `buyerId`                                                                            | *string*                                                                             | :heavy_check_mark:                                                                   | The `id` of the buyer to list shipping details for                                   |
 | `shippingDetailsId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
 | `shippingDetailsUpdate`                                                              | [components.ShippingDetailsUpdate](../../models/components/shippingdetailsupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |

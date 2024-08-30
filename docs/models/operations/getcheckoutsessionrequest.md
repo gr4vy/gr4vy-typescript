@@ -6,7 +6,7 @@
 import { GetCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetCheckoutSessionRequest = {
-    sessionId: "54080d40-bcac-4c6c-bd6b-5f3ec909304f",
+    sessionId: "a9c95f2e-ac55-465d-b07c-fee81206e281",
 };
 ```
 

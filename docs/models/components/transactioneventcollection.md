@@ -10,9 +10,9 @@ import { TransactionEventCollection } from "@gr4vy/sdk/models/components";
 let value: TransactionEventCollection = {
     items: [
         {
-            id: "813f16d9-f5fc-4e6c-9561-46c3e250fb00",
+            id: "3f73ef7f-bc7a-4bd7-8dd3-9c0f5d2cff7c",
             name: "<value>",
-            createdAt: new Date("2023-08-08T16:16:52.132Z"),
+            createdAt: new Date("2023-06-30T03:22:57.117Z"),
             context: {},
         },
     ],

@@ -9,8 +9,8 @@ import { GiftCardTransactionCreate } from "@gr4vy/sdk/models/components";
 
 let value: GiftCardTransactionCreate = {
     number: "<value>",
-    pin: "2215",
-    amount: 807581,
+    pin: "2469",
+    amount: 263322,
 };
 ```
 

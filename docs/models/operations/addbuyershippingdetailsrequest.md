@@ -6,12 +6,12 @@
 import { AddBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: AddBuyerShippingDetailsRequest = {
-    buyerId: "9177deac-646e-4cb5-b340-9e3eb1e5a2b1",
+    buyerId: "a6d2d000-3553-438c-ac08-6fa21e9152cb",
     shippingDetailsCreate: {
         phoneNumber: "+14155552671",
         address: {
-            country: "US",
-            stateCode: "US-CA",
+            country: "DE",
+            stateCode: "GB-LND",
         },
     },
 };
@@ -21,5 +21,5 @@ let value: AddBuyerShippingDetailsRequest = {
 
 | Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `buyerId`                                                                            | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `buyerId`                                                                            | *string*                                                                             | :heavy_check_mark:                                                                   | The `id` of the buyer to add shipping details to                                     |
 | `shippingDetailsCreate`                                                              | [components.ShippingDetailsCreate](../../models/components/shippingdetailscreate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |

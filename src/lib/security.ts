@@ -3,6 +3,7 @@
  */
 
 import * as components from "../models/components/index.js";
+import { env } from "./env.js";
 
 export enum SecurityErrorCode {
     Incomplete = "incomplete",
@@ -186,8 +187,8 @@ export function resolveGlobalSecurity(
     return resolveSecurity([
         {
             fieldName: "Authorization",
-            type: "oauth2",
-            value: security?.oAuth2PasswordBearer,
+            type: "http:bearer",
+            value: security?.bearerAuth ?? env().GR4VY_BEARER_AUTH,
         },
     ]);
 }

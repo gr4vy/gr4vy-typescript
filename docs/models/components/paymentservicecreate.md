@@ -8,7 +8,7 @@ Request body for activating a payment service
 import { PaymentServiceCreate } from "@gr4vy/sdk/models/components";
 
 let value: PaymentServiceCreate = {
-    displayName: "Maurice43",
+    displayName: "Tierra5",
     paymentServiceDefinitionId: "<value>",
     fields: [
         {

@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { Flow } from "@gr4vy/sdk/models/components";
 
-let value: Flow = "card-transaction";
+let value: Flow = "redirect-transaction";
 ```
 
 ## Values

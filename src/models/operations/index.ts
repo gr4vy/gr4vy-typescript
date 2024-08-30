@@ -60,7 +60,7 @@ export * from "./listallreportexecutions.js";
 export * from "./listantifraudservicedefinitions.js";
 export * from "./listapplepaycertificates.js";
 export * from "./listauditlogs.js";
-export * from "./listbuyerbillingdetails.js";
+export * from "./listbillingdetails.js";
 export * from "./listbuyergiftcards.js";
 export * from "./listbuyerpaymentmethods.js";
 export * from "./listbuyers.js";

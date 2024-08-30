@@ -10,7 +10,7 @@ import { CheckoutSessionUpdate } from "@gr4vy/sdk/models/components";
 let value: CheckoutSessionUpdate = {
     buyer: {
         billingDetails: {
-            phoneNumber: "+14155552671",
+            phoneNumber: "+442071838750",
             address: {
                 country: "DE",
                 stateCode: "GB-LND",
@@ -20,7 +20,7 @@ let value: CheckoutSessionUpdate = {
             phoneNumber: "+442071838750",
             address: {
                 country: "GB",
-                stateCode: "US-CA",
+                stateCode: "GB-LND",
             },
         },
     },

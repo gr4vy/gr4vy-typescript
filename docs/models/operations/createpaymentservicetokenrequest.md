@@ -6,10 +6,10 @@
 import { CreatePaymentServiceTokenRequest } from "@gr4vy/sdk/models/operations";
 
 let value: CreatePaymentServiceTokenRequest = {
-    paymentMethodId: "5aa8e482-4d0a-4b40-b508-8e51862065e9",
+    paymentMethodId: "b445e80c-a55e-4fd2-8e45-7e1858b6a89f",
     paymentServiceTokenCreate: {
-        paymentServiceId: "04f3b119-4b8a-4bf6-83a7-9f9dfe0ab7da",
-        redirectUrl: "https://pricey-fang.com",
+        paymentServiceId: "be3a5aa8-e482-44d0-ab40-75088e518620",
+        redirectUrl: "http://gorgeous-tic.name",
     },
 };
 ```

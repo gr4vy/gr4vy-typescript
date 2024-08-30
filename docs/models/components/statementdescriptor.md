@@ -8,7 +8,7 @@ Information to show the user on their payments statement
 import { StatementDescriptor } from "@gr4vy/sdk/models/components";
 
 let value: StatementDescriptor = {
-    phoneNumber: "+14155552671",
+    phoneNumber: "+442071838750",
 };
 ```
 

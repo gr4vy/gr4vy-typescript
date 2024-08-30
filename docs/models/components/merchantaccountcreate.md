@@ -9,7 +9,7 @@ import { MerchantAccountCreate } from "@gr4vy/sdk/models/components";
 
 let value: MerchantAccountCreate = {
     id: "<id>",
-    displayName: "Elenora.Cartwright24",
+    displayName: "Darlene_Kirlin",
 };
 ```
 

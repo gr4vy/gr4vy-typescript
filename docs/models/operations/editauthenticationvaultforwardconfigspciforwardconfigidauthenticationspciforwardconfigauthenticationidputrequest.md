@@ -9,8 +9,8 @@ import {
 
 let value: EditAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdPutRequest =
     {
-        pciForwardConfigId: "08364290-68b8-4502-a55e-7f73bc845e32",
-        pciForwardConfigAuthenticationId: "0a319f4b-adf9-447c-9a86-7bc424266658",
+        pciForwardConfigId: "6723dc0f-5ae2-4f3a-ab70-0878756143f5",
+        pciForwardConfigAuthenticationId: "a6c98b55-5540-480d-80bc-acc6cbd6b5f3",
         pciForwardConfigAuthenticationUpdate: {},
     };
 ```

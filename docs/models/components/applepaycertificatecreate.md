@@ -8,7 +8,7 @@ Base model with JSON encoders.
 import { ApplePayCertificateCreate } from "@gr4vy/sdk/models/components";
 
 let value: ApplePayCertificateCreate = {
-    displayName: "Graham.Bayer44",
+    displayName: "Hilario_Grant73",
 };
 ```
 

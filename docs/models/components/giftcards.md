@@ -7,8 +7,8 @@ import { GiftCards } from "@gr4vy/sdk/models/components";
 
 let value: GiftCards = {
     number: "<value>",
-    pin: "8560",
-    amount: 872651,
+    pin: "4926",
+    amount: 254356,
 };
 ```
 

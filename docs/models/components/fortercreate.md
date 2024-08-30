@@ -11,10 +11,10 @@ let value: ForterCreate = {
     fields: [
         {
             key: "<key>",
-            value: "<value>",
+            value: "",
         },
     ],
-    displayName: "Tiana_Bayer49",
+    displayName: "Amya48",
 };
 ```
 

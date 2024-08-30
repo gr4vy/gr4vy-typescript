@@ -6,7 +6,7 @@
 import { VoidTransactionRequest } from "@gr4vy/sdk/models/operations";
 
 let value: VoidTransactionRequest = {
-    transactionId: "8aa94c02-644c-4f5e-9d9a-4578adc1ac60",
+    transactionId: "f3c93c73-b9da-43f2-8eda-7e23f2257411",
 };
 ```
 

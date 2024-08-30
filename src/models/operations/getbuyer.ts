@@ -6,6 +6,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import * as z from "zod";
 
 export type GetBuyerRequest = {
+    /**
+     * The `id` of the buyer to return details for
+     */
     buyerId: string;
 };
 

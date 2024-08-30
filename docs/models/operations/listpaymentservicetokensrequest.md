@@ -6,7 +6,7 @@
 import { ListPaymentServiceTokensRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListPaymentServiceTokensRequest = {
-    paymentMethodId: "e80ca55e-fd20-4e45-be18-58b6a89fbe3a",
+    paymentMethodId: "26916fe1-f08f-4429-8e36-98f447f603e8",
 };
 ```
 

@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -24,12 +24,15 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * Delete Shipping Details
+ * Get buyer billing details
+ *
+ * @remarks
+ * Fetch billing details for a buyer.
  */
-export async function deleteBuyerShippingDetails(
+export async function buyersBillingDetailsGet(
     client$: Gr4vyCore,
-    buyerId: string,
-    shippingDetailsId: string,
+    buyerId?: string | undefined,
+    buyerExternalIdentifier?: string | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -44,14 +47,14 @@ export async function deleteBuyerShippingDetails(
         | ConnectionError
     >
 > {
-    const input$: operations.DeleteBuyerShippingDetailsRequest = {
+    const input$: operations.ListBillingDetailsRequest = {
         buyerId: buyerId,
-        shippingDetailsId: shippingDetailsId,
+        buyerExternalIdentifier: buyerExternalIdentifier,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => operations.DeleteBuyerShippingDetailsRequest$outboundSchema.parse(value$),
+        (value$) => operations.ListBillingDetailsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -60,32 +63,23 @@ export async function deleteBuyerShippingDetails(
     const payload$ = parsed$.value;
     const body$ = null;
 
-    const pathParams$ = {
-        buyer_id: encodeSimple$("buyer_id", payload$.buyer_id, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-        shipping_details_id: encodeSimple$("shipping_details_id", payload$.shipping_details_id, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-    };
+    const path$ = pathToFunc("/buyers/billing-details")();
 
-    const path$ = pathToFunc("/buyers/{buyer_id}/shipping-details/{shipping_details_id}")(
-        pathParams$
-    );
+    const query$ = encodeFormQuery$({
+        buyer_external_identifier: payload$.buyer_external_identifier,
+        buyer_id: payload$.buyer_id,
+    });
 
     const headers$ = new Headers({
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
-        operationID: "delete_buyer_shipping_details",
+        operationID: "list_billing_details",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 
@@ -93,9 +87,10 @@ export async function deleteBuyerShippingDetails(
         context,
         {
             security: securitySettings$,
-            method: "DELETE",
+            method: "GET",
             path: path$,
             headers: headers$,
+            query: query$,
             body: body$,
             timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
         },

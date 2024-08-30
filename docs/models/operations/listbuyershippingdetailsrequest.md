@@ -6,12 +6,12 @@
 import { ListBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListBuyerShippingDetailsRequest = {
-    buyerId: "fb0b3489-6c3c-4a5a-8fbe-2fd570757792",
+    buyerId: "741d3113-5296-45bb-8a72-02611435e139",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `buyerId`          | *string*           | :heavy_check_mark: | N/A                |
+| Field                                              | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `buyerId`                                          | *string*                                           | :heavy_check_mark:                                 | The `id` of the buyer to list shipping details for |

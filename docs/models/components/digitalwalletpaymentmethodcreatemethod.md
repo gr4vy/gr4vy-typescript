@@ -5,7 +5,7 @@
 ```typescript
 import { DigitalWalletPaymentMethodCreateMethod } from "@gr4vy/sdk/models/components";
 
-let value: DigitalWalletPaymentMethodCreateMethod = "applepay";
+let value: DigitalWalletPaymentMethodCreateMethod = "googlepay";
 ```
 
 ## Values

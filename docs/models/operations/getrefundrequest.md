@@ -6,7 +6,7 @@
 import { GetRefundRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetRefundRequest = {
-    refundId: "bb4ecae6-c3d5-4db3-adeb-d5daea4c506a",
+    refundId: "057eb809-e281-4033-9f39-81d4c700b607",
 };
 ```
 

@@ -8,33 +8,31 @@ Base model with JSON encoders.
 import { TransactionCreate } from "@gr4vy/sdk/models/components";
 
 let value: TransactionCreate = {
-    amount: 798047,
-    currency: "USD",
+    amount: 434417,
+    currency: "GBP",
     country: "DE",
     paymentMethod: {
-        method: "smartpay",
-        country: "GB",
-        currency: "USD",
-        redirectUrl: "http://dual-sequel.org",
+        method: "googlepay",
+        token: "<value>",
     },
     buyer: {
         billingDetails: {
             phoneNumber: "+14155552671",
             address: {
-                country: "US",
-                stateCode: "US-CA",
+                country: "GB",
+                stateCode: "GB-LND",
             },
         },
         shippingDetails: {
-            phoneNumber: "+14155552671",
+            phoneNumber: "+442071838750",
             address: {
                 country: "DE",
-                stateCode: "GB-LND",
+                stateCode: "US-CA",
             },
         },
     },
     statementDescriptor: {
-        phoneNumber: "+442071838750",
+        phoneNumber: "+14155552671",
     },
 };
 ```

@@ -6,9 +6,9 @@
 import { UpdateDigitalWalletRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateDigitalWalletRequest = {
-    digitalWalletId: "9da3f2ce-da7e-423f-a257-411faf4b7544",
+    digitalWalletId: "ad879eeb-9665-4b85-afbd-02bae0be2d78",
     digitalWalletUpdate: {
-        merchantCountryCode: "US",
+        merchantCountryCode: "DE",
     },
 };
 ```

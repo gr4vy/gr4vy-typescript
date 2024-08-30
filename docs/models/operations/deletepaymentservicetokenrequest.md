@@ -6,8 +6,8 @@
 import { DeletePaymentServiceTokenRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeletePaymentServiceTokenRequest = {
-    paymentMethodId: "f9251a5a-9da6-460f-b57b-faad4f9efc1b",
-    paymentServiceTokenId: "4512c103-2648-4dc2-b615-199ebfd0e9fe",
+    paymentMethodId: "5f0597a6-0ff2-4a54-a31e-94764a3e865e",
+    paymentServiceTokenId: "7956f925-1a5a-49da-a60f-f57bfaad4f9e",
 };
 ```
 

@@ -3,13 +3,12 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
+import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
     ConnectionError,
     InvalidRequestError,
@@ -25,12 +24,15 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * Edit
+ * Delete buyer shipping details
+ *
+ * @remarks
+ * Delete the shipping details for a buyer, using the buyer ID
  */
-export async function updateBuyer(
+export async function buyersShippingDetailsDelete(
     client$: Gr4vyCore,
     buyerId: string,
-    buyerUpdate: components.BuyerUpdate,
+    shippingDetailsId: string,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -45,43 +47,47 @@ export async function updateBuyer(
         | ConnectionError
     >
 > {
-    const input$: operations.UpdateBuyerRequest = {
+    const input$: operations.DeleteBuyerShippingDetailsRequest = {
         buyerId: buyerId,
-        buyerUpdate: buyerUpdate,
+        shippingDetailsId: shippingDetailsId,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => operations.UpdateBuyerRequest$outboundSchema.parse(value$),
+        (value$) => operations.DeleteBuyerShippingDetailsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
         return parsed$;
     }
     const payload$ = parsed$.value;
-    const body$ = encodeJSON$("body", payload$.BuyerUpdate, { explode: true });
+    const body$ = null;
 
     const pathParams$ = {
         buyer_id: encodeSimple$("buyer_id", payload$.buyer_id, {
             explode: false,
             charEncoding: "percent",
         }),
+        shipping_details_id: encodeSimple$("shipping_details_id", payload$.shipping_details_id, {
+            explode: false,
+            charEncoding: "percent",
+        }),
     };
 
-    const path$ = pathToFunc("/buyers/{buyer_id}")(pathParams$);
+    const path$ = pathToFunc("/buyers/{buyer_id}/shipping-details/{shipping_details_id}")(
+        pathParams$
+    );
 
     const headers$ = new Headers({
-        "Content-Type": "application/json",
         Accept: "application/json",
     });
 
-    const oAuth2PasswordBearer$ = await extractSecurity(client$.options$.oAuth2PasswordBearer);
-    const security$ =
-        oAuth2PasswordBearer$ == null ? {} : { oAuth2PasswordBearer: oAuth2PasswordBearer$ };
+    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
+    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
-        operationID: "update_buyer",
+        operationID: "delete_buyer_shipping_details",
         oAuth2Scopes: [],
-        securitySource: client$.options$.oAuth2PasswordBearer,
+        securitySource: client$.options$.bearerAuth,
     };
     const securitySettings$ = resolveGlobalSecurity(security$);
 
@@ -89,7 +95,7 @@ export async function updateBuyer(
         context,
         {
             security: securitySettings$,
-            method: "PUT",
+            method: "DELETE",
             path: path$,
             headers: headers$,
             body: body$,

@@ -8,8 +8,8 @@ Base model with JSON encoders.
 import { DigitalWalletPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: DigitalWalletPaymentMethodCreate = {
-    method: "applepay",
-    token: {},
+    method: "googlepay",
+    token: "<value>",
 };
 ```
 

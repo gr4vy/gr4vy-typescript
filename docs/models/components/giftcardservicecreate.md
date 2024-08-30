@@ -9,7 +9,7 @@ import { GiftCardServiceCreate } from "@gr4vy/sdk/models/components";
 
 let value: GiftCardServiceCreate = {
     giftCardServiceDefinitionId: "qwikcilver-gift-card",
-    displayName: "Johnathan.Cronin",
+    displayName: "Asa_Bednar",
     fields: [
         {
             key: "<key>",

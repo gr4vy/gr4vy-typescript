@@ -9,7 +9,7 @@ import { PaymentOptionRequest } from "@gr4vy/sdk/models/components";
 
 let value: PaymentOptionRequest = {
     country: "US",
-    currency: "GBP",
+    currency: "EUR",
 };
 ```
 

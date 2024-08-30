@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { ReportExecutionStatus } from "@gr4vy/sdk/models/components";
 
-let value: ReportExecutionStatus = "succeeded";
+let value: ReportExecutionStatus = "dispatched";
 ```
 
 ## Values

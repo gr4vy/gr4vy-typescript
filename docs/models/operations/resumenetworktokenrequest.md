@@ -6,8 +6,8 @@
 import { ResumeNetworkTokenRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ResumeNetworkTokenRequest = {
-    paymentMethodId: "10421813-d520-48ec-a7e2-53b668451c6c",
-    networkTokenId: "6e205e16-deab-43fe-8957-8a64584273a8",
+    paymentMethodId: "0fe1ade0-08e6-4f8c-9f35-0d8cdb5a3418",
+    networkTokenId: "14301042-1813-4d52-88ec-e7e253b66845",
 };
 ```
 
