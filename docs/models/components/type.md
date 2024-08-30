@@ -1,10 +1,15 @@
 # Type
 
-The type of this resource. Is always `account-updater-job`.
+## Example Usage
 
+```typescript
+import { Type } from "@gr4vy/sdk/models/components";
+
+let value: Type = "payment-service-token";
+```
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `AccountUpdaterJob` | account-updater-job |
+```typescript
+"payment-service-token"
+```

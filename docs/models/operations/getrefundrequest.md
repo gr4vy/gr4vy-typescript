@@ -1,9 +1,17 @@
 # GetRefundRequest
 
+## Example Usage
+
+```typescript
+import { GetRefundRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetRefundRequest = {
+    refundId: "bb4ecae6-c3d5-4db3-adeb-d5daea4c506a",
+};
+```
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            | Example                                                |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `transactionId`                                        | *string*                                               | :heavy_check_mark:                                     | The ID for the transaction to get the information for. | fe26475d-ec3e-4884-9553-f7356683f7f9                   |
-| `refundId`                                             | *string*                                               | :heavy_check_mark:                                     | The unique ID of the refund.                           | 8724fd24-5489-4a5d-90fd-0604df7d3b83                   |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `refundId`         | *string*           | :heavy_check_mark: | N/A                |

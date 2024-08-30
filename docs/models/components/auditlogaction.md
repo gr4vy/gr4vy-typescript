@@ -1,12 +1,17 @@
 # AuditLogAction
 
-The action that was performed.
+An enumeration.
 
+## Example Usage
+
+```typescript
+import { AuditLogAction } from "@gr4vy/sdk/models/components";
+
+let value: AuditLogAction = "deleted";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Created` | created   |
-| `Updated` | updated   |
-| `Deleted` | deleted   |
+```typescript
+"created" | "updated" | "deleted" | "voided" | "captured"
+```

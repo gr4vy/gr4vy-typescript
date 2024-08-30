@@ -1,12 +1,27 @@
 # BuyerUpdate
 
-A request to update a buyer.
+Request body for creating a new buyer
 
+## Example Usage
+
+```typescript
+import { BuyerUpdate } from "@gr4vy/sdk/models/components";
+
+let value: BuyerUpdate = {
+    billingDetails: {
+        phoneNumber: "+14155552671",
+        address: {
+            country: "DE",
+            stateCode: "US-CA",
+        },
+    },
+};
+```
 
 ## Fields
 
-| Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `externalIdentifier`                                                                                                               | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers. | user-789123                                                                                                                        |
-| `displayName`                                                                                                                      | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.                         | John L.                                                                                                                            |
-| `billingDetails`                                                                                                                   | [components.BillingDetailsUpdate](../../models/components/billingdetailsupdate.md)                                                 | :heavy_minus_sign:                                                                                                                 | The billing details of the buyer.                                                                                                  |                                                                                                                                    |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `displayName`                                                          | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `externalIdentifier`                                                   | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `billingDetails`                                                       | [components.BillingDetails](../../models/components/billingdetails.md) | :heavy_minus_sign:                                                     | Base model with JSON encoders.                                         |

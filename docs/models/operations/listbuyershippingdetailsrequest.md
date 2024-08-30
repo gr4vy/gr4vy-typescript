@@ -1,8 +1,17 @@
 # ListBuyerShippingDetailsRequest
 
+## Example Usage
+
+```typescript
+import { ListBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListBuyerShippingDetailsRequest = {
+    buyerId: "fb0b3489-6c3c-4a5a-8fbe-2fd570757792",
+};
+```
 
 ## Fields
 
-| Field                                | Type                                 | Required                             | Description                          | Example                              |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `buyerId`                            | *string*                             | :heavy_check_mark:                   | The unique ID for a buyer.           | 8724fd24-5489-4a5d-90fd-0604df7d3b83 |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `buyerId`          | *string*           | :heavy_check_mark: | N/A                |

@@ -1,11 +1,24 @@
 # Value
 
-Amount value compare the transaction to.
+## Example Usage
 
+```typescript
+import { Value } from "@gr4vy/sdk/models/components";
 
-## Fields
+let value: Value = "";
+```
 
-| Field                                             | Type                                              | Required                                          | Description                                       | Example                                           |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `currency`                                        | *string*                                          | :heavy_minus_sign:                                | Currency ISO codes to compare the transaction to. | USD                                               |
-| `value`                                           | *number*                                          | :heavy_minus_sign:                                | Amount value to compare transaction value to.     | 1                                                 |
+## Supported Types
+
+### `string`
+
+```typescript
+const value: string = /* values here */
+```
+
+### `components.Two`
+
+```typescript
+const value: components.Two = /* values here */
+```
+

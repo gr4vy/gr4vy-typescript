@@ -1,8 +1,17 @@
 # GetPaymentServiceDefinitionRequest
 
+## Example Usage
+
+```typescript
+import { GetPaymentServiceDefinitionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetPaymentServiceDefinitionRequest = {
+    paymentServiceDefinitionId: "<value>",
+};
+```
 
 ## Fields
 
-| Field                                            | Type                                             | Required                                         | Description                                      | Example                                          |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| `paymentServiceDefinitionId`                     | *string*                                         | :heavy_check_mark:                               | The unique ID of the payment service definition. | stripe-card                                      |
+| Field                        | Type                         | Required                     | Description                  |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `paymentServiceDefinitionId` | *string*                     | :heavy_check_mark:           | N/A                          |

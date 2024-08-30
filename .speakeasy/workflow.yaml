@@ -4,6 +4,7 @@ sources:
     openapi:
         inputs:
             - location: https://gr4vy.github.io/gr4vy-openapi/openapi.v1.json
+            # - location: /Users/cbetta/code/core-api/openapi/openapi.json
         registry:
             location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:

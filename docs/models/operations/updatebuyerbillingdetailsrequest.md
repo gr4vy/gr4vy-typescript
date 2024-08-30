@@ -1,10 +1,25 @@
 # UpdateBuyerBillingDetailsRequest
 
+## Example Usage
+
+```typescript
+import { UpdateBuyerBillingDetailsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: UpdateBuyerBillingDetailsRequest = {
+    billingDetails: {
+        phoneNumber: "+14155552671",
+        address: {
+            country: "GB",
+            stateCode: "US-CA",
+        },
+    },
+};
+```
 
 ## Fields
 
-| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       | Example                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `buyerId`                                                                                                         | *string*                                                                                                          | :heavy_minus_sign:                                                                                                | Filters the results to only the items for which the `buyer` has an<br/>`id` that matches this value.              | 8724fd24-5489-4a5d-90fd-0604df7d3b83                                                                              |
-| `buyerExternalIdentifier`                                                                                         | *string*                                                                                                          | :heavy_minus_sign:                                                                                                | Filters the results to only the items for which the `buyer` has an<br/>`external_identifier` that matches this value. | user-12345                                                                                                        |
-| `billingDetailsUpdateRequest`                                                                                     | [components.BillingDetailsUpdateRequest](../../models/components/billingdetailsupdaterequest.md)                  | :heavy_minus_sign:                                                                                                | N/A                                                                                                               |                                                                                                                   |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `buyerId`                                                              | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `buyerExternalIdentifier`                                              | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `billingDetails`                                                       | [components.BillingDetails](../../models/components/billingdetails.md) | :heavy_check_mark:                                                     | N/A                                                                    |

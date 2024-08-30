@@ -1,15 +1,28 @@
 # Address
 
-The billing address of the buyer.
+Base model with JSON encoders.
 
+## Example Usage
+
+```typescript
+import { Address } from "@gr4vy/sdk/models/components";
+
+let value: Address = {
+    country: "DE",
+    stateCode: "US-CA",
+};
+```
 
 ## Fields
 
-| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `city`                                                                                                 | *boolean*                                                                                              | :heavy_minus_sign:                                                                                     | The city for the billing address.                                                                      |
-| `country`                                                                                              | *boolean*                                                                                              | :heavy_minus_sign:                                                                                     | The country for the billing address.                                                                   |
-| `postalCode`                                                                                           | *boolean*                                                                                              | :heavy_minus_sign:                                                                                     | The postal code or zip code for the billing address.                                                   |
-| `state`                                                                                                | *boolean*                                                                                              | :heavy_minus_sign:                                                                                     | The state, county, or province for the billing address.                                                |
-| `houseNumberOrName`                                                                                    | *boolean*                                                                                              | :heavy_minus_sign:                                                                                     | The house number or name for the billing address. Not all payment<br/>services use this field but some do. |
-| `line1`                                                                                                | *boolean*                                                                                              | :heavy_minus_sign:                                                                                     | The first line of the billing address.                                                                 |
+| Field               | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `city`              | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| `country`           | *string*            | :heavy_minus_sign:  | N/A                 | DE                  |
+| `postalCode`        | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| `state`             | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| `stateCode`         | *string*            | :heavy_minus_sign:  | N/A                 | GB-LND              |
+| `houseNumberOrName` | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| `line1`             | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| `line2`             | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| `organization`      | *string*            | :heavy_minus_sign:  | N/A                 |                     |

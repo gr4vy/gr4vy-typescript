@@ -1,10 +1,15 @@
 # RoleType
 
-The type of this resource. Always `role`.
+## Example Usage
 
+```typescript
+import { RoleType } from "@gr4vy/sdk/models/components";
+
+let value: RoleType = "role";
+```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Role` | role   |
+```typescript
+"role"
+```

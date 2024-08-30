@@ -1,0 +1,31 @@
+# DigitalWalletPANPaymentMethodCreate
+
+Card
+
+Card details to use in a transaction or to register a new payment method.
+
+## Example Usage
+
+```typescript
+import { DigitalWalletPANPaymentMethodCreate } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletPANPaymentMethodCreate = {
+    expirationDate: "<value>",
+    number: "<value>",
+    method: "googlepay_pan_only",
+};
+```
+
+## Fields
+
+| Field                                                                                                                        | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `expirationDate`                                                                                                             | *string*                                                                                                                     | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |
+| `number`                                                                                                                     | *string*                                                                                                                     | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |
+| `buyerExternalIdentifier`                                                                                                    | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
+| `buyerId`                                                                                                                    | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
+| `externalIdentifier`                                                                                                         | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
+| `cardType`                                                                                                                   | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
+| `method`                                                                                                                     | [components.DigitalWalletPANPaymentMethodCreateMethod](../../models/components/digitalwalletpanpaymentmethodcreatemethod.md) | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |
+| `redirectUrl`                                                                                                                | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
+| `securityCode`                                                                                                               | *any*                                                                                                                        | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |

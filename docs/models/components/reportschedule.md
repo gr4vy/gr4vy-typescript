@@ -1,23 +1,17 @@
 # ReportSchedule
 
-Specifies the schedule of this report.
+An enumeration.
 
-If this is a one-off report, this value is `once`.
+## Example Usage
 
-If this is a recurring report, this value is set to the
-frequency by which the report will be executed. For example, a
-`monthly` schedule means that this report will be periodically
-executed at the start of each month.
+```typescript
+import { ReportSchedule } from "@gr4vy/sdk/models/components";
 
-Note that a `weekly` schedule means that the report is executed
-at the start of every Monday.
-
+let value: ReportSchedule = "daily";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Daily`   | daily     |
-| `Monthly` | monthly   |
-| `Once`    | once      |
-| `Weekly`  | weekly    |
+```typescript
+"daily" | "monthly" | "once" | "weekly"
+```

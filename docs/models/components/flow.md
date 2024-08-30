@@ -1,13 +1,17 @@
 # Flow
 
-The name of the Flow.
+An enumeration.
 
+## Example Usage
+
+```typescript
+import { Flow } from "@gr4vy/sdk/models/components";
+
+let value: Flow = "card-transaction";
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `Checkout`            | checkout              |
-| `CardTransaction`     | card-transaction      |
-| `NonCardTransaction`  | non-card-transaction  |
-| `RedirectTransaction` | redirect-transaction  |
+```typescript
+"checkout" | "card-transaction" | "non-card-transaction" | "redirect-transaction"
+```

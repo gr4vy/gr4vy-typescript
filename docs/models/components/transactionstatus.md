@@ -1,23 +1,17 @@
 # TransactionStatus
 
-The status of the transaction for the `payment_method`. The status
-may change over time as asynchronous processing events occur.
+An enumeration.
 
-Please note that the possible statuses returned will depend on the
-operation performed. For example, a captured transaction will never
-move to a `authorization_voided` status.
+## Example Usage
 
+```typescript
+import { TransactionStatus } from "@gr4vy/sdk/models/components";
+
+let value: TransactionStatus = "authorization_failed";
+```
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `Processing`               | processing                 |
-| `BuyerApprovalPending`     | buyer_approval_pending     |
-| `AuthorizationSucceeded`   | authorization_succeeded    |
-| `AuthorizationFailed`      | authorization_failed       |
-| `AuthorizationDeclined`    | authorization_declined     |
-| `CapturePending`           | capture_pending            |
-| `CaptureSucceeded`         | capture_succeeded          |
-| `AuthorizationVoidPending` | authorization_void_pending |
-| `AuthorizationVoided`      | authorization_voided       |
+```typescript
+"processing" | "authorization_succeeded" | "authorization_declined" | "authorization_failed" | "authorization_voided" | "authorization_void_pending" | "capture_succeeded" | "capture_pending" | "buyer_approval_pending"
+```

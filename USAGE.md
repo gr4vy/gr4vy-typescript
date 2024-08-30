@@ -3,12 +3,12 @@
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.accountUpdater.newAccountUpdaterJob({
-        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    const result = await gr4vy.createAccountUpdaterJob({
+        paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
     });
 
     // Handle the result

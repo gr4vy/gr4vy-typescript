@@ -1,13 +1,28 @@
 # GiftCards
 
-A list of stored gift cards.
+## Example Usage
 
+```typescript
+import { GiftCards } from "@gr4vy/sdk/models/components";
 
-## Fields
+let value: GiftCards = {
+    number: "<value>",
+    pin: "8560",
+    amount: 872651,
+};
+```
 
-| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        | Example                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `items`                                                                                                            | [components.GiftCard](../../models/components/giftcard.md)[]                                                       | :heavy_minus_sign:                                                                                                 | A list of stored gift cards.                                                                                       |                                                                                                                    |
-| `limit`                                                                                                            | *number*                                                                                                           | :heavy_minus_sign:                                                                                                 | The limit applied to request. This represents the number of items that are at<br/>maximum returned by this request. | 1                                                                                                                  |
-| `nextCursor`                                                                                                       | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | The cursor that represents the next page of results. Use the `cursor` query<br/>parameter to fetch this page of items. | ZXhhbXBsZTE                                                                                                        |
-| `previousCursor`                                                                                                   | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | The cursor that represents the next page of results. Use the `cursor` query<br/>parameter to fetch this page of items. | <nil>                                                                                                              |
+## Supported Types
+
+### `components.GiftCardTransactionCreate`
+
+```typescript
+const value: components.GiftCardTransactionCreate = /* values here */
+```
+
+### `components.GiftCardTokenTransactionCreate`
+
+```typescript
+const value: components.GiftCardTokenTransactionCreate = /* values here */
+```
+

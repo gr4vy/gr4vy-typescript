@@ -1,8 +1,17 @@
 # GetPaymentServiceRequest
 
+## Example Usage
+
+```typescript
+import { GetPaymentServiceRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetPaymentServiceRequest = {
+    paymentServiceId: "184c2b9c-247c-4883-b3a4-0e1942f32e55",
+};
+```
 
 ## Fields
 
-| Field                                | Type                                 | Required                             | Description                          | Example                              |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `paymentServiceId`                   | *string*                             | :heavy_check_mark:                   | The ID of the payment service.       | 46973e9d-88a7-44a6-abfe-be4ff0134ff4 |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `paymentServiceId` | *string*           | :heavy_check_mark: | N/A                |

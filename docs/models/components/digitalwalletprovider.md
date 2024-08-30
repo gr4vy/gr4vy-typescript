@@ -1,11 +1,17 @@
 # DigitalWalletProvider
 
-The name of the digital wallet provider.
+An enumeration.
 
+## Example Usage
+
+```typescript
+import { DigitalWalletProvider } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletProvider = "apple";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Apple`  | apple    |
-| `Google` | google   |
+```typescript
+"apple" | "google" | "click-to-pay"
+```

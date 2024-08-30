@@ -83,210 +83,137 @@ async function run() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [accountUpdater](docs/sdks/accountupdater/README.md)
+### [Gr4vy SDK](docs/sdks/gr4vy/README.md)
 
-* [newAccountUpdaterJob](docs/sdks/accountupdater/README.md#newaccountupdaterjob) - Create Account Updater job
-
-### [apiLogs](docs/sdks/apilogs/README.md)
-
-* [listApiLogs](docs/sdks/apilogs/README.md#listapilogs) - List API error logs
-
-### [auditLogs](docs/sdks/auditlogs/README.md)
-
-* [listAuditLogs](docs/sdks/auditlogs/README.md#listauditlogs) - List audit logs
-
-### [buyers](docs/sdks/buyers/README.md)
-
-* [listBuyers](docs/sdks/buyers/README.md#listbuyers) - List buyers
-* [newBuyer](docs/sdks/buyers/README.md#newbuyer) - New buyer
-* [getBuyer](docs/sdks/buyers/README.md#getbuyer) - Get buyer
-* [updateBuyer](docs/sdks/buyers/README.md#updatebuyer) - Update buyer
-* [deleteBuyer](docs/sdks/buyers/README.md#deletebuyer) - Delete buyer
-* [listBuyerShippingDetails](docs/sdks/buyers/README.md#listbuyershippingdetails) - List buyer shipping details
-* [newBuyerShippingDetail](docs/sdks/buyers/README.md#newbuyershippingdetail) - New buyer shipping detail
-* [updateBuyerShippingDetail](docs/sdks/buyers/README.md#updatebuyershippingdetail) - Update buyer shipping details
-* [deleteBuyerShippingDetail](docs/sdks/buyers/README.md#deletebuyershippingdetail) - Delete buyer shipping detail
-* [getBuyerBillingDetails](docs/sdks/buyers/README.md#getbuyerbillingdetails) - Get buyer billing details
-* [updateBuyerBillingDetails](docs/sdks/buyers/README.md#updatebuyerbillingdetails) - Update buyer billing details
-
-### [giftCards](docs/sdks/giftcards/README.md)
-
-* [listBuyerGiftCards](docs/sdks/giftcards/README.md#listbuyergiftcards) - List gift cards for buyer
-* [listGiftCards](docs/sdks/giftcards/README.md#listgiftcards) - List gift cards
-* [storeGiftCard](docs/sdks/giftcards/README.md#storegiftcard) - Store gift card
-* [getGiftCard](docs/sdks/giftcards/README.md#getgiftcard) - Get gift card
-* [deleteGiftCard](docs/sdks/giftcards/README.md#deletegiftcard) - Delete gift card
-* [checkGiftCardBalances](docs/sdks/giftcards/README.md#checkgiftcardbalances) - Verify and check gift card balances
-
-### [paymentMethods](docs/sdks/paymentmethods/README.md)
-
-* [listBuyerPaymentMethods](docs/sdks/paymentmethods/README.md#listbuyerpaymentmethods) - List payment methods for buyer
-* [listPaymentMethods](docs/sdks/paymentmethods/README.md#listpaymentmethods) - List payment methods
-* [newPaymentMethod](docs/sdks/paymentmethods/README.md#newpaymentmethod) - New payment method
-* [getPaymentMethod](docs/sdks/paymentmethods/README.md#getpaymentmethod) - Get payment method
-* [deletePaymentMethod](docs/sdks/paymentmethods/README.md#deletepaymentmethod) - Delete payment method
-
-### [cardSchemeDefinitions](docs/sdks/cardschemedefinitions/README.md)
-
-* [listCardSchemeDefinitions](docs/sdks/cardschemedefinitions/README.md#listcardschemedefinitions) - List card scheme definitions
-
-### [connections](docs/sdks/connections/README.md)
-
-* [listConnections](docs/sdks/connections/README.md#listconnections) - List connections
-
-### [connectionDefinitions](docs/sdks/connectiondefinitions/README.md)
-
-* [listConnectionDefinitions](docs/sdks/connectiondefinitions/README.md#listconnectiondefinitions) - List connection definitions
-
-### [checkoutSessions](docs/sdks/checkoutsessions/README.md)
-
-* [newCheckoutSession](docs/sdks/checkoutsessions/README.md#newcheckoutsession) - New checkout session
-* [getCheckoutSession](docs/sdks/checkoutsessions/README.md#getcheckoutsession) - Get checkout session
-* [deleteCheckoutSession](docs/sdks/checkoutsessions/README.md#deletecheckoutsession) - Delete checkout session
-* [updateCheckoutSession](docs/sdks/checkoutsessions/README.md#updatecheckoutsession) - Update checkout session
-* [updateCheckoutSessionFields](docs/sdks/checkoutsessions/README.md#updatecheckoutsessionfields) - Update fields for checkout session
-
-### [paymentMethodDefinitions](docs/sdks/paymentmethoddefinitions/README.md)
-
-* [listPaymentMethodDefinitions](docs/sdks/paymentmethoddefinitions/README.md#listpaymentmethoddefinitions) - List payment method definitions
-
-### [paymentOptions](docs/sdks/paymentoptions/README.md)
-
-* [listPaymentOptions](docs/sdks/paymentoptions/README.md#listpaymentoptions) - List payment options
-* [postListPaymentOptions](docs/sdks/paymentoptions/README.md#postlistpaymentoptions) - List payment options with POST
-
-### [paymentServices](docs/sdks/paymentservices/README.md)
-
-* [listPaymentServices](docs/sdks/paymentservices/README.md#listpaymentservices) - List payment services
-* [newPaymentService](docs/sdks/paymentservices/README.md#newpaymentservice) - New payment service
-* [getPaymentService](docs/sdks/paymentservices/README.md#getpaymentservice) - Get payment service
-* [updatePaymentService](docs/sdks/paymentservices/README.md#updatepaymentservice) - Update payment service
-* [deletePaymentService](docs/sdks/paymentservices/README.md#deletepaymentservice) - Delete payment service
-* [createPaymentServiceSession](docs/sdks/paymentservices/README.md#createpaymentservicesession) - Create a session for a payment service by ID
-* [verifyPaymentService](docs/sdks/paymentservices/README.md#verifypaymentservice) - Verify payment service credentials
-
-### [paymentServiceDefinitions](docs/sdks/paymentservicedefinitions/README.md)
-
-* [listPaymentServiceDefinitions](docs/sdks/paymentservicedefinitions/README.md#listpaymentservicedefinitions) - List payment service definitions
-* [getPaymentServiceDefinition](docs/sdks/paymentservicedefinitions/README.md#getpaymentservicedefinition) - Get payment service definition
-* [createPaymentServiceDefinitionSession](docs/sdks/paymentservicedefinitions/README.md#createpaymentservicedefinitionsession) - Create a session for a payment service
-
-### [digitalWallets](docs/sdks/digitalwallets/README.md)
-
-* [newDigitalWallet](docs/sdks/digitalwallets/README.md#newdigitalwallet) - Register digital wallet
-* [listDigitalWallets](docs/sdks/digitalwallets/README.md#listdigitalwallets) - List digital wallets
-* [getDigitalWallet](docs/sdks/digitalwallets/README.md#getdigitalwallet) - Get digital wallet
-* [updateDigitalWallet](docs/sdks/digitalwallets/README.md#updatedigitalwallet) - Update digital wallet
-* [deleteDigitalWallet](docs/sdks/digitalwallets/README.md#deletedigitalwallet) - De-register digital wallet
-* [addDigitalWalletDomainName](docs/sdks/digitalwallets/README.md#adddigitalwalletdomainname) - Add digital wallet domain name
-* [deleteDigitalWalletDomainName](docs/sdks/digitalwallets/README.md#deletedigitalwalletdomainname) - Remove digital wallet domain name
-* [newApplePaySession](docs/sdks/digitalwallets/README.md#newapplepaysession) - New Apple Pay session
-* [newClickToPaySession](docs/sdks/digitalwallets/README.md#newclicktopaysession) - New Click to Pay session
-* [newGooglePaySession](docs/sdks/digitalwallets/README.md#newgooglepaysession) - New Google Pay session
-
-### [transactions](docs/sdks/transactions/README.md)
-
-* [listTransactions](docs/sdks/transactions/README.md#listtransactions) - List transactions
-* [newTransaction](docs/sdks/transactions/README.md#newtransaction) - New transaction
-* [getTransaction](docs/sdks/transactions/README.md#gettransaction) - Get transaction
-* [getTransactionActions](docs/sdks/transactions/README.md#gettransactionactions) - List actions for transaction
-* [captureTransaction](docs/sdks/transactions/README.md#capturetransaction) - Capture transaction
-* [getTransactionEvents](docs/sdks/transactions/README.md#gettransactionevents) - List events for transaction
-* [listTransactionRefunds](docs/sdks/transactions/README.md#listtransactionrefunds) - List refunds
-* [newRefund](docs/sdks/transactions/README.md#newrefund) - Refund transaction
-* [refundAll](docs/sdks/transactions/README.md#refundall) - Refund all instruments in a transaction
-* [getRefund](docs/sdks/transactions/README.md#getrefund) - Get refund
-* [getSingleRefund](docs/sdks/transactions/README.md#getsinglerefund) - Get refund
-* [getTransactionSummary](docs/sdks/transactions/README.md#gettransactionsummary) - Get transaction summary
-* [voidTransaction](docs/sdks/transactions/README.md#voidtransaction) - Void transaction
-
-### [webhooks](docs/sdks/webhooks/README.md)
-
-* [~~inboundWebhookDeprecated~~](docs/sdks/webhooks/README.md#inboundwebhookdeprecated) - Inbound webhook :warning: **Deprecated**
-* [inboundWebhook](docs/sdks/webhooks/README.md#inboundwebhook) - Inbound webhook
-* [inboundWebhooks](docs/sdks/webhooks/README.md#inboundwebhooks) - Inbound webhook
-
-### [flow](docs/sdks/flow/README.md)
-
-* [listFlowRules](docs/sdks/flow/README.md#listflowrules) - List flow rules
-* [newFlowRule](docs/sdks/flow/README.md#newflowrule) - Create flow rule
-* [getFlowRule](docs/sdks/flow/README.md#getflowrule) - Get rule
-* [updateFlowRule](docs/sdks/flow/README.md#updateflowrule) - Update flow rule
-* [deleteFlowRule](docs/sdks/flow/README.md#deleteflowrule) - Delete flow rule
-* [listFlowOutcomes](docs/sdks/flow/README.md#listflowoutcomes) - List flow outcomes
-
-### [giftCardServices](docs/sdks/giftcardservices/README.md)
-
-* [newGiftCardService](docs/sdks/giftcardservices/README.md#newgiftcardservice) - New gift card service
-* [getGiftCardService](docs/sdks/giftcardservices/README.md#getgiftcardservice) - Get gift card service
-* [updateGiftCardService](docs/sdks/giftcardservices/README.md#updategiftcardservice) - Update gift card service
-* [deleteGiftCardService](docs/sdks/giftcardservices/README.md#deletegiftcardservice) - Delete gift card service
-* [verifyGiftCardService](docs/sdks/giftcardservices/README.md#verifygiftcardservice) - Verify gift card service credentials
-
-### [giftCardServiceDefinitions](docs/sdks/giftcardservicedefinitions/README.md)
-
-* [getGiftCardServiceDefinition](docs/sdks/giftcardservicedefinitions/README.md#getgiftcardservicedefinition) - Get gift card service definition
-
-### [antiFraudServices](docs/sdks/antifraudservices/README.md)
-
-* [newAntiFraudService](docs/sdks/antifraudservices/README.md#newantifraudservice) - New anti-fraud service
-* [getAntiFraudService](docs/sdks/antifraudservices/README.md#getantifraudservice) - Get anti-fraud service
-* [updateAntiFraudService](docs/sdks/antifraudservices/README.md#updateantifraudservice) - Update anti-fraud service
-* [deleteAntiFraudService](docs/sdks/antifraudservices/README.md#deleteantifraudservice) - Delete anti-fraud service
-
-### [antiFraudServiceDefinitions](docs/sdks/antifraudservicedefinitions/README.md)
-
-* [getAntiFraudServiceDefinition](docs/sdks/antifraudservicedefinitions/README.md#getantifraudservicedefinition) - Get anti fraud service definition
-
-### [reports](docs/sdks/reports/README.md)
-
-* [listAllReportExecutions](docs/sdks/reports/README.md#listallreportexecutions) - List all report executions
-* [getReportExecution](docs/sdks/reports/README.md#getreportexecution) - Get report execution
-* [newReport](docs/sdks/reports/README.md#newreport) - New report
-* [listReports](docs/sdks/reports/README.md#listreports) - List reports
-* [getReport](docs/sdks/reports/README.md#getreport) - Get report
-* [updateReport](docs/sdks/reports/README.md#updatereport) - Update report
-* [listReportExecutions](docs/sdks/reports/README.md#listreportexecutions) - List executions for report
-* [generateDownloadUrl](docs/sdks/reports/README.md#generatedownloadurl) - Generate report download URL
-
-### [roles](docs/sdks/roles/README.md)
-
-* [listRoles](docs/sdks/roles/README.md#listroles) - List roles
-* [listRoleAssignments](docs/sdks/roles/README.md#listroleassignments) - List role assignments
-* [newRoleAssignment](docs/sdks/roles/README.md#newroleassignment) - New role assignment
-* [deleteRoleAssignment](docs/sdks/roles/README.md#deleteroleassignment) - Delete role assignment
-
-### [merchantAccounts](docs/sdks/merchantaccounts/README.md)
-
-* [listMerchantAccounts](docs/sdks/merchantaccounts/README.md#listmerchantaccounts) - List merchant accounts
-* [newMerchantAccount](docs/sdks/merchantaccounts/README.md#newmerchantaccount) - New merchant account
-* [getMerchantAccount](docs/sdks/merchantaccounts/README.md#getmerchantaccount) - Get merchant account
-* [updateMerchantAccount](docs/sdks/merchantaccounts/README.md#updatemerchantaccount) - Update merchant account
-* [deleteMerchantAccuont](docs/sdks/merchantaccounts/README.md#deletemerchantaccuont) - Delete merchant account
-
-### [tokens](docs/sdks/tokens/README.md)
-
-* [getPaymentServiceTokens](docs/sdks/tokens/README.md#getpaymentservicetokens) - Get payment service tokens
-* [provisionPaymentServiceToken](docs/sdks/tokens/README.md#provisionpaymentservicetoken) - Provision payment service token
-* [deletePaymentServiceToken](docs/sdks/tokens/README.md#deletepaymentservicetoken) - Delete payment service token
-* [approvePaymentServiceTokenGet](docs/sdks/tokens/README.md#approvepaymentservicetokenget) - Approve payment service token
-* [approvePaymentServiceTokenPost](docs/sdks/tokens/README.md#approvepaymentservicetokenpost) - Approve payment service token
-* [getNetworkTokens](docs/sdks/tokens/README.md#getnetworktokens) - Get network tokens
-* [provisionNetworkToken](docs/sdks/tokens/README.md#provisionnetworktoken) - Provision network token
-* [deleteNetworkToken](docs/sdks/tokens/README.md#deletenetworktoken) - Delete network token
-* [issueCryptogram](docs/sdks/tokens/README.md#issuecryptogram) - Issue cryptogram
-* [suspendNetworkToken](docs/sdks/tokens/README.md#suspendnetworktoken) - Suspend network token
-* [resumeNetworkToken](docs/sdks/tokens/README.md#resumenetworktoken) - Resume network token
-
-### [vaultForward](docs/sdks/vaultforward/README.md)
-
-* [makeVaultForward](docs/sdks/vaultforward/README.md#makevaultforward) - Forward PCI data
-
-### [healthDashboard](docs/sdks/healthdashboard/README.md)
-
-* [getHealthDashboardStatus](docs/sdks/healthdashboard/README.md#gethealthdashboardstatus) - Get Health Dashboard status
-* [getHealthDashboardTotal](docs/sdks/healthdashboard/README.md#gethealthdashboardtotal) - Get Health Dashboard total
-* [getHealthDashboardTotalVolume](docs/sdks/healthdashboard/README.md#gethealthdashboardtotalvolume) - Get Health Dashboard total volume
+* [createAccountUpdaterJob](docs/sdks/gr4vy/README.md#createaccountupdaterjob) - Add
+* [listBuyerPaymentMethods](docs/sdks/gr4vy/README.md#listbuyerpaymentmethods) - For Buyer
+* [listPaymentMethods](docs/sdks/gr4vy/README.md#listpaymentmethods) - Browse
+* [addPaymentMethod](docs/sdks/gr4vy/README.md#addpaymentmethod) - Add
+* [getPaymentMethod](docs/sdks/gr4vy/README.md#getpaymentmethod) - Read
+* [deletePaymentMethod](docs/sdks/gr4vy/README.md#deletepaymentmethod) - Delete Payment Method
+* [listPaymentServiceTokens](docs/sdks/gr4vy/README.md#listpaymentservicetokens) - Payment Service Tokens
+* [createPaymentServiceToken](docs/sdks/gr4vy/README.md#createpaymentservicetoken) - Tokenize
+* [listNetworkTokens](docs/sdks/gr4vy/README.md#listnetworktokens) - Network Tokens
+* [createNetworkToken](docs/sdks/gr4vy/README.md#createnetworktoken) - Provision Network Token
+* [createNetworkTokenCryptogram](docs/sdks/gr4vy/README.md#createnetworktokencryptogram) - Issue Cryptogram
+* [deletePaymentServiceToken](docs/sdks/gr4vy/README.md#deletepaymentservicetoken) - Delete Payment Service Token
+* [deleteNetworkToken](docs/sdks/gr4vy/README.md#deletenetworktoken) - Delete Network Token
+* [suspendNetworkToken](docs/sdks/gr4vy/README.md#suspendnetworktoken) - Suspend Network Token
+* [resumeNetworkToken](docs/sdks/gr4vy/README.md#resumenetworktoken) - Resume Network Token
+* [approvePaymentMethod](docs/sdks/gr4vy/README.md#approvepaymentmethod) - Approve
+* [approvePaymentServiceToken](docs/sdks/gr4vy/README.md#approvepaymentservicetoken) - Approve Payment Service Token
+* [listGiftCardBalances](docs/sdks/gr4vy/README.md#listgiftcardbalances) - Get Balances
+* [getGiftCard](docs/sdks/gr4vy/README.md#getgiftcard) - Read
+* [deleteGiftCard](docs/sdks/gr4vy/README.md#deletegiftcard) - Delete
+* [listGiftCards](docs/sdks/gr4vy/README.md#listgiftcards) - Browse
+* [addGiftCard](docs/sdks/gr4vy/README.md#addgiftcard) - Add
+* [listBuyerGiftCards](docs/sdks/gr4vy/README.md#listbuyergiftcards) - For Buyer
+* [listBuyers](docs/sdks/gr4vy/README.md#listbuyers) - Browse
+* [addBuyer](docs/sdks/gr4vy/README.md#addbuyer) - Add
+* [listBuyerBillingDetails](docs/sdks/gr4vy/README.md#listbuyerbillingdetails) - Get Billing Details
+* [updateBuyerBillingDetails](docs/sdks/gr4vy/README.md#updatebuyerbillingdetails) - Update Billing Details
+* [getBuyer](docs/sdks/gr4vy/README.md#getbuyer) - Read
+* [updateBuyer](docs/sdks/gr4vy/README.md#updatebuyer) - Edit
+* [deleteBuyer](docs/sdks/gr4vy/README.md#deletebuyer) - Delete
+* [listBuyerShippingDetails](docs/sdks/gr4vy/README.md#listbuyershippingdetails) - List Shipping Details For Buyer
+* [addBuyerShippingDetails](docs/sdks/gr4vy/README.md#addbuyershippingdetails) - Add Shipping Details
+* [getBuyerShippingDetails](docs/sdks/gr4vy/README.md#getbuyershippingdetails) - Get Shipping Details
+* [updateBuyerShippingDetails](docs/sdks/gr4vy/README.md#updatebuyershippingdetails) - Update Shipping Details
+* [deleteBuyerShippingDetails](docs/sdks/gr4vy/README.md#deletebuyershippingdetails) - Delete Shipping Details
+* [listConnections](docs/sdks/gr4vy/README.md#listconnections) - Browse
+* [listConnectionDefinitions](docs/sdks/gr4vy/README.md#listconnectiondefinitions) - Browse
+* [listCardSchemeDefinitions](docs/sdks/gr4vy/README.md#listcardschemedefinitions) - Browse
+* [listDigitalWallets](docs/sdks/gr4vy/README.md#listdigitalwallets) - Browse
+* [addDigitalWallet](docs/sdks/gr4vy/README.md#adddigitalwallet) - Register
+* [getAppleDigitalWallet](docs/sdks/gr4vy/README.md#getappledigitalwallet) - Read Apple Status
+* [getDigitalWallet](docs/sdks/gr4vy/README.md#getdigitalwallet) - Read
+* [updateDigitalWallet](docs/sdks/gr4vy/README.md#updatedigitalwallet) - Edit
+* [deleteDigitalWallet](docs/sdks/gr4vy/README.md#deletedigitalwallet) - Delete
+* [addGooglePaySession](docs/sdks/gr4vy/README.md#addgooglepaysession) - Google Pay Session
+* [addApplePaySession](docs/sdks/gr4vy/README.md#addapplepaysession) - Apple Pay Session
+* [registerDigitalWalletDomain](docs/sdks/gr4vy/README.md#registerdigitalwalletdomain) - Domain Registration
+* [deregisterDigitalWalletDomain](docs/sdks/gr4vy/README.md#deregisterdigitalwalletdomain) - Domain Deregistration
+* [addClickToPaySession](docs/sdks/gr4vy/README.md#addclicktopaysession) - Click To Pay Session
+* [listTransactions](docs/sdks/gr4vy/README.md#listtransactions) - Browse
+* [createTransaction](docs/sdks/gr4vy/README.md#createtransaction) - Add
+* [getTransaction](docs/sdks/gr4vy/README.md#gettransaction) - Read
+* [captureTransaction](docs/sdks/gr4vy/README.md#capturetransaction) - Capture
+* [listTransactionRefunds](docs/sdks/gr4vy/README.md#listtransactionrefunds) - Browse Refunds
+* [refundTransaction](docs/sdks/gr4vy/README.md#refundtransaction) - Add Refund
+* [getTransactionRefund](docs/sdks/gr4vy/README.md#gettransactionrefund) - Read Transaction Refund
+* [getRefund](docs/sdks/gr4vy/README.md#getrefund) - Read Standalone Refund
+* [voidTransaction](docs/sdks/gr4vy/README.md#voidtransaction) - Void
+* [refundAllTransactionMethods](docs/sdks/gr4vy/README.md#refundalltransactionmethods) - Refund All
+* [listTransactionActions](docs/sdks/gr4vy/README.md#listtransactionactions) - Actions
+* [getTransactionSummary](docs/sdks/gr4vy/README.md#gettransactionsummary) - Summary
+* [listTransactionEvents](docs/sdks/gr4vy/README.md#listtransactionevents) - Events
+* [listPaymentOptions](docs/sdks/gr4vy/README.md#listpaymentoptions) - Browse Post
+* [listPaymentMethodDefinitions](docs/sdks/gr4vy/README.md#listpaymentmethoddefinitions) - Browse
+* [listPaymentServiceDefinitions](docs/sdks/gr4vy/README.md#listpaymentservicedefinitions) - Browse
+* [getPaymentServiceDefinition](docs/sdks/gr4vy/README.md#getpaymentservicedefinition) - Read
+* [createPaymentServiceDefinitionSession](docs/sdks/gr4vy/README.md#createpaymentservicedefinitionsession) - Create Session
+* [listPaymentServices](docs/sdks/gr4vy/README.md#listpaymentservices) - Browse
+* [createPaymentService](docs/sdks/gr4vy/README.md#createpaymentservice) - Add
+* [getPaymentService](docs/sdks/gr4vy/README.md#getpaymentservice) - Read
+* [updatePaymentService](docs/sdks/gr4vy/README.md#updatepaymentservice) - Edit
+* [deletePaymentService](docs/sdks/gr4vy/README.md#deletepaymentservice) - Delete
+* [verifyPaymentServiceCredentials](docs/sdks/gr4vy/README.md#verifypaymentservicecredentials) - Verify
+* [createPaymentServiceSession](docs/sdks/gr4vy/README.md#createpaymentservicesession) - Create Session
+* [listAntiFraudServiceDefinitions](docs/sdks/gr4vy/README.md#listantifraudservicedefinitions) - Get
+* [getAntiFraudService](docs/sdks/gr4vy/README.md#getantifraudservice) - Read
+* [updateAntiFraudService](docs/sdks/gr4vy/README.md#updateantifraudservice) - Edit
+* [deleteAntiFraudService](docs/sdks/gr4vy/README.md#deleteantifraudservice) - Delete
+* [createAntiFraudService](docs/sdks/gr4vy/README.md#createantifraudservice) - Add
+* [verifyAntiFraudServiceCredentials](docs/sdks/gr4vy/README.md#verifyantifraudservicecredentials) - Verify
+* [getGiftCardServiceDefinition](docs/sdks/gr4vy/README.md#getgiftcardservicedefinition) - Get
+* [getGiftCardService](docs/sdks/gr4vy/README.md#getgiftcardservice) - Read
+* [updateGiftCardService](docs/sdks/gr4vy/README.md#updategiftcardservice) - Edit
+* [deleteGiftCardService](docs/sdks/gr4vy/README.md#deletegiftcardservice) - Delete
+* [createGiftCardService](docs/sdks/gr4vy/README.md#creategiftcardservice) - Add
+* [verifyGiftCardServiceCredentials](docs/sdks/gr4vy/README.md#verifygiftcardservicecredentials) - Verify
+* [refreshAuthSessionsPut](docs/sdks/gr4vy/README.md#refreshauthsessionsput) - Refresh
+* [deleteAuthSessionsDelete](docs/sdks/gr4vy/README.md#deleteauthsessionsdelete) - Delete
+* [createFlowActionRule](docs/sdks/gr4vy/README.md#createflowactionrule) - Add
+* [getFlow](docs/sdks/gr4vy/README.md#getflow) - Browse Flow
+* [getFlowActionRule](docs/sdks/gr4vy/README.md#getflowactionrule) - Get
+* [updateFlowActionRule](docs/sdks/gr4vy/README.md#updateflowactionrule) - Edit
+* [deleteFlowActionRule](docs/sdks/gr4vy/README.md#deleteflowactionrule) - Delete
+* [listCheckoutFlowActionRuleOptionOutcomes](docs/sdks/gr4vy/README.md#listcheckoutflowactionruleoptionoutcomes) - Checkout Payment Options Outcomes
+* [listCardFlowActionRuleRoutingOutcomes](docs/sdks/gr4vy/README.md#listcardflowactionruleroutingoutcomes) - Browse Card Transaction Routing Outcomes
+* [listRedirectFlowActionRuleRoutingOutcomes](docs/sdks/gr4vy/README.md#listredirectflowactionruleroutingoutcomes) - Browse Redirect Transaction Routing Outcomes
+* [listCardFlowActionRule3dsOutcomes](docs/sdks/gr4vy/README.md#listcardflowactionrule3dsoutcomes) - Skip 3Ds Payment Options Outcomes
+* [listAuditLogs](docs/sdks/gr4vy/README.md#listauditlogs) - Browse
+* [listApiLogs](docs/sdks/gr4vy/README.md#listapilogs) - Browse
+* [listReports](docs/sdks/gr4vy/README.md#listreports) - Browse
+* [createReport](docs/sdks/gr4vy/README.md#createreport) - Add
+* [getReport](docs/sdks/gr4vy/README.md#getreport) - Read
+* [updateReport](docs/sdks/gr4vy/README.md#updatereport) - Edit
+* [listReportExecutions](docs/sdks/gr4vy/README.md#listreportexecutions) - Browse Executions
+* [generateReportExecutionUrl](docs/sdks/gr4vy/README.md#generatereportexecutionurl) - Generate Download Url
+* [listAllReportExecutions](docs/sdks/gr4vy/README.md#listallreportexecutions) - Browse Executions Any Report
+* [getReportExecution](docs/sdks/gr4vy/README.md#getreportexecution) - Get Report Execution
+* [addCheckoutSession](docs/sdks/gr4vy/README.md#addcheckoutsession) - Add
+* [getCheckoutSession](docs/sdks/gr4vy/README.md#getcheckoutsession) - Get Session
+* [updateCheckoutSession](docs/sdks/gr4vy/README.md#updatecheckoutsession) - Update
+* [deleteCheckoutSession](docs/sdks/gr4vy/README.md#deletecheckoutsession) - Delete Session
+* [updateCheckoutSessionFields](docs/sdks/gr4vy/README.md#updatecheckoutsessionfields) - Update Session Secure Fields
+* [listRoles](docs/sdks/gr4vy/README.md#listroles) - Browse Roles
+* [listRoleAssignments](docs/sdks/gr4vy/README.md#listroleassignments) - Browse
+* [createRoleAssignments](docs/sdks/gr4vy/README.md#createroleassignments) - Add
+* [deleteRoleAssignment](docs/sdks/gr4vy/README.md#deleteroleassignment) - Delete
+* [listApplePayCertificates](docs/sdks/gr4vy/README.md#listapplepaycertificates) - Browse
+* [generateApplePayCertificate](docs/sdks/gr4vy/README.md#generateapplepaycertificate) - Add
+* [confirmApplePayCertificate](docs/sdks/gr4vy/README.md#confirmapplepaycertificate) - Edit
+* [deleteApplePayCertificate](docs/sdks/gr4vy/README.md#deleteapplepaycertificate) - Delete
+* [listMerchantAccounts](docs/sdks/gr4vy/README.md#listmerchantaccounts) - Browse
+* [createMerchantAccount](docs/sdks/gr4vy/README.md#createmerchantaccount) - Add
+* [getMerchantAccount](docs/sdks/gr4vy/README.md#getmerchantaccount) - Read
+* [updateMerchantAccount](docs/sdks/gr4vy/README.md#updatemerchantaccount) - Edit
+* [browseConfigVaultForwardConfigsPciForwardConfigIdGet](docs/sdks/gr4vy/README.md#browseconfigvaultforwardconfigspciforwardconfigidget) - Browse Config
+* [browseAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdGet](docs/sdks/gr4vy/README.md#browseauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidget) - Browse Authentication
+* [editAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdPut](docs/sdks/gr4vy/README.md#editauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidput) - Edit Authentication
+* [deleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDelete](docs/sdks/gr4vy/README.md#deleteauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationiddelete) - Delete Authentication
+* [browseAuthenticationsVaultForwardConfigsPciForwardConfigIdAuthenticationsGet](docs/sdks/gr4vy/README.md#browseauthenticationsvaultforwardconfigspciforwardconfigidauthenticationsget) - Browse Authentications
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -294,28 +221,27 @@ async function run() {
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.Error400BadRequest   | 400                         | application/json            |
-| errors.Error401Unauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4xx-5xx                    | */*                        |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
 
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
-import { SDKValidationError } from "@gr4vy/sdk/models/errors";
+import { HTTPValidationError, SDKValidationError } from "@gr4vy/sdk/models/errors";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
     let result;
     try {
-        result = await gr4vy.accountUpdater.newAccountUpdaterJob({
-            paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+        result = await gr4vy.createAccountUpdaterJob({
+            paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
         });
     } catch (err) {
         switch (true) {
@@ -326,12 +252,9 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof errors.Error400BadRequest: {
-                console.error(err); // handle exception
-                return;
-            }
-            case err instanceof errors.Error401Unauthorized: {
-                console.error(err); // handle exception
+            case err instanceof HTTPValidationError: {
+                // Handle err.data$: HTTPValidationErrorData
+                console.error(err);
                 return;
             }
             default: {
@@ -366,12 +289,12 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
     server: "sandbox",
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.accountUpdater.newAccountUpdaterJob({
-        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    const result = await gr4vy.createAccountUpdaterJob({
+        paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
     });
 
     // Handle the result
@@ -396,12 +319,12 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
     serverURL: "https://api.{gr4vy_id}.gr4vy.app",
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.accountUpdater.newAccountUpdaterJob({
-        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    const result = await gr4vy.createAccountUpdaterJob({
+        paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
     });
 
     // Handle the result
@@ -469,21 +392,21 @@ const sdk = new Gr4vy({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `bearerAuth` | http         | HTTP Bearer  |
+| Name                   | Type                   | Scheme                 |
+| ---------------------- | ---------------------- | ---------------------- |
+| `oAuth2PasswordBearer` | oauth2                 | OAuth2 token           |
 
-To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
+To authenticate with the API the `oAuth2PasswordBearer` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.accountUpdater.newAccountUpdaterJob({
-        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    const result = await gr4vy.createAccountUpdaterJob({
+        paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
     });
 
     // Handle the result
@@ -498,28 +421,30 @@ run();
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
+
 ### NPM
 
 ```bash
-npm add https://github.com/gr4vy/gr4vy-js
+npm add @gr4vy/sdk
 ```
 
 ### PNPM
 
 ```bash
-pnpm add https://github.com/gr4vy/gr4vy-js
+pnpm add @gr4vy/sdk
 ```
 
 ### Bun
 
 ```bash
-bun add https://github.com/gr4vy/gr4vy-js
+bun add @gr4vy/sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/gr4vy/gr4vy-js zod
+yarn add @gr4vy/sdk zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -535,12 +460,12 @@ yarn add https://github.com/gr4vy/gr4vy-js zod
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.accountUpdater.newAccountUpdaterJob({
-        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    const result = await gr4vy.createAccountUpdaterJob({
+        paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
     });
 
     // Handle the result
@@ -568,43 +493,15 @@ Here's an example of one such pagination call:
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.transactions.listTransactions({
-        buyerExternalIdentifier: "user-12345",
-        buyerId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
-        cursor: "ZXhhbXBsZTE",
-        limit: 1,
-        amountEq: 500,
-        amountGte: 500,
-        amountLte: 500,
-        checkoutSessionId: "8724fd24-5489-4a5d-90fd-0604df7d3b83",
-        createdAtGte: new Date("2022-01-01T12:00:00+08:00"),
-        createdAtLte: new Date("2022-01-01T12:00:00+08:00"),
-        currency: ["USD", "GBP"],
-        externalIdentifier: "user-12345",
-        giftCardId: "be828248-56de-481e-a580-44b6e1d4df81",
-        giftCardLast4: "7890",
-        hasGiftCardRedemptions: true,
-        hasRefunds: true,
-        id: "be828248-56de-481e-a580-44b6e1d4df81",
-        metadata: ['{"key": "value"}', '{"key_one": "value", "key_two": "value"}'],
-        method: ["card"],
-        paymentMethodId: "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
-        paymentMethodLabel: "1234",
-        paymentServiceId: ["46973e9d-88a7-44a6-abfe-be4ff0134ff4"],
-        paymentServiceTransactionId: "transaction_123",
-        pendingReview: true,
-        reconciliationId: "7EgeeeTX0DS45RBDNt4AEY",
-        status: ["capture_succeeded", "processing"],
-        updatedAtGte: new Date("2022-01-01T12:00:00+08:00"),
-        updatedAtLte: new Date("2022-01-01T12:00:00+08:00"),
-    });
+    const result = await gr4vy.listPaymentMethods({});
 
     for await (const page of result) {
-        // handle page
+        // Handle the page
+        console.log(page);
     }
 }
 
@@ -623,13 +520,13 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.accountUpdater.newAccountUpdaterJob(
+    const result = await gr4vy.createAccountUpdaterJob(
         {
-            paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+            paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
         },
         {
             retries: {
@@ -668,12 +565,12 @@ const gr4vy = new Gr4vy({
         },
         retryConnectionErrors: false,
     },
-    bearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
 });
 
 async function run() {
-    const result = await gr4vy.accountUpdater.newAccountUpdaterJob({
-        paymentMethodIds: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    const result = await gr4vy.createAccountUpdaterJob({
+        paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
     });
 
     // Handle the result
@@ -684,6 +581,232 @@ run();
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Summary [summary] -->
+## Summary
+
+Gr4vy: The Gr4vy API.
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Pagination](#pagination)
+* [File uploads](#file-uploads)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [addApplePaySession](docs/sdks/gr4vy/README.md#addapplepaysession)
+- [addBuyerShippingDetails](docs/sdks/gr4vy/README.md#addbuyershippingdetails)
+- [addBuyer](docs/sdks/gr4vy/README.md#addbuyer)
+- [addCheckoutSession](docs/sdks/gr4vy/README.md#addcheckoutsession)
+- [addClickToPaySession](docs/sdks/gr4vy/README.md#addclicktopaysession)
+- [addDigitalWallet](docs/sdks/gr4vy/README.md#adddigitalwallet)
+- [addGiftCard](docs/sdks/gr4vy/README.md#addgiftcard)
+- [addGooglePaySession](docs/sdks/gr4vy/README.md#addgooglepaysession)
+- [addPaymentMethod](docs/sdks/gr4vy/README.md#addpaymentmethod)
+- [approvePaymentMethod](docs/sdks/gr4vy/README.md#approvepaymentmethod)
+- [approvePaymentServiceToken](docs/sdks/gr4vy/README.md#approvepaymentservicetoken)
+- [browseAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdGet](docs/sdks/gr4vy/README.md#browseauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidget)
+- [browseAuthenticationsVaultForwardConfigsPciForwardConfigIdAuthenticationsGet](docs/sdks/gr4vy/README.md#browseauthenticationsvaultforwardconfigspciforwardconfigidauthenticationsget)
+- [browseConfigVaultForwardConfigsPciForwardConfigIdGet](docs/sdks/gr4vy/README.md#browseconfigvaultforwardconfigspciforwardconfigidget)
+- [captureTransaction](docs/sdks/gr4vy/README.md#capturetransaction)
+- [confirmApplePayCertificate](docs/sdks/gr4vy/README.md#confirmapplepaycertificate)
+- [createAccountUpdaterJob](docs/sdks/gr4vy/README.md#createaccountupdaterjob)
+- [createAntiFraudService](docs/sdks/gr4vy/README.md#createantifraudservice)
+- [createFlowActionRule](docs/sdks/gr4vy/README.md#createflowactionrule)
+- [createGiftCardService](docs/sdks/gr4vy/README.md#creategiftcardservice)
+- [createMerchantAccount](docs/sdks/gr4vy/README.md#createmerchantaccount)
+- [createNetworkTokenCryptogram](docs/sdks/gr4vy/README.md#createnetworktokencryptogram)
+- [createNetworkToken](docs/sdks/gr4vy/README.md#createnetworktoken)
+- [createPaymentServiceDefinitionSession](docs/sdks/gr4vy/README.md#createpaymentservicedefinitionsession)
+- [createPaymentServiceSession](docs/sdks/gr4vy/README.md#createpaymentservicesession)
+- [createPaymentServiceToken](docs/sdks/gr4vy/README.md#createpaymentservicetoken)
+- [createPaymentService](docs/sdks/gr4vy/README.md#createpaymentservice)
+- [createReport](docs/sdks/gr4vy/README.md#createreport)
+- [createRoleAssignments](docs/sdks/gr4vy/README.md#createroleassignments)
+- [createTransaction](docs/sdks/gr4vy/README.md#createtransaction)
+- [deleteAntiFraudService](docs/sdks/gr4vy/README.md#deleteantifraudservice)
+- [deleteApplePayCertificate](docs/sdks/gr4vy/README.md#deleteapplepaycertificate)
+- [deleteAuthSessionsDelete](docs/sdks/gr4vy/README.md#deleteauthsessionsdelete)
+- [deleteAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdDelete](docs/sdks/gr4vy/README.md#deleteauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationiddelete)
+- [deleteBuyerShippingDetails](docs/sdks/gr4vy/README.md#deletebuyershippingdetails)
+- [deleteBuyer](docs/sdks/gr4vy/README.md#deletebuyer)
+- [deleteCheckoutSession](docs/sdks/gr4vy/README.md#deletecheckoutsession)
+- [deleteDigitalWallet](docs/sdks/gr4vy/README.md#deletedigitalwallet)
+- [deleteFlowActionRule](docs/sdks/gr4vy/README.md#deleteflowactionrule)
+- [deleteGiftCardService](docs/sdks/gr4vy/README.md#deletegiftcardservice)
+- [deleteGiftCard](docs/sdks/gr4vy/README.md#deletegiftcard)
+- [deleteNetworkToken](docs/sdks/gr4vy/README.md#deletenetworktoken)
+- [deletePaymentMethod](docs/sdks/gr4vy/README.md#deletepaymentmethod)
+- [deletePaymentServiceToken](docs/sdks/gr4vy/README.md#deletepaymentservicetoken)
+- [deletePaymentService](docs/sdks/gr4vy/README.md#deletepaymentservice)
+- [deleteRoleAssignment](docs/sdks/gr4vy/README.md#deleteroleassignment)
+- [deregisterDigitalWalletDomain](docs/sdks/gr4vy/README.md#deregisterdigitalwalletdomain)
+- [editAuthenticationVaultForwardConfigsPciForwardConfigIdAuthenticationsPciForwardConfigAuthenticationIdPut](docs/sdks/gr4vy/README.md#editauthenticationvaultforwardconfigspciforwardconfigidauthenticationspciforwardconfigauthenticationidput)
+- [generateApplePayCertificate](docs/sdks/gr4vy/README.md#generateapplepaycertificate)
+- [generateReportExecutionUrl](docs/sdks/gr4vy/README.md#generatereportexecutionurl)
+- [getAntiFraudService](docs/sdks/gr4vy/README.md#getantifraudservice)
+- [getAppleDigitalWallet](docs/sdks/gr4vy/README.md#getappledigitalwallet)
+- [getBuyerShippingDetails](docs/sdks/gr4vy/README.md#getbuyershippingdetails)
+- [getBuyer](docs/sdks/gr4vy/README.md#getbuyer)
+- [getCheckoutSession](docs/sdks/gr4vy/README.md#getcheckoutsession)
+- [getDigitalWallet](docs/sdks/gr4vy/README.md#getdigitalwallet)
+- [getFlowActionRule](docs/sdks/gr4vy/README.md#getflowactionrule)
+- [getFlow](docs/sdks/gr4vy/README.md#getflow)
+- [getGiftCardServiceDefinition](docs/sdks/gr4vy/README.md#getgiftcardservicedefinition)
+- [getGiftCardService](docs/sdks/gr4vy/README.md#getgiftcardservice)
+- [getGiftCard](docs/sdks/gr4vy/README.md#getgiftcard)
+- [getMerchantAccount](docs/sdks/gr4vy/README.md#getmerchantaccount)
+- [getPaymentMethod](docs/sdks/gr4vy/README.md#getpaymentmethod)
+- [getPaymentServiceDefinition](docs/sdks/gr4vy/README.md#getpaymentservicedefinition)
+- [getPaymentService](docs/sdks/gr4vy/README.md#getpaymentservice)
+- [getRefund](docs/sdks/gr4vy/README.md#getrefund)
+- [getReportExecution](docs/sdks/gr4vy/README.md#getreportexecution)
+- [getReport](docs/sdks/gr4vy/README.md#getreport)
+- [getTransactionRefund](docs/sdks/gr4vy/README.md#gettransactionrefund)
+- [getTransactionSummary](docs/sdks/gr4vy/README.md#gettransactionsummary)
+- [getTransaction](docs/sdks/gr4vy/README.md#gettransaction)
+- [listAllReportExecutions](docs/sdks/gr4vy/README.md#listallreportexecutions)
+- [listAntiFraudServiceDefinitions](docs/sdks/gr4vy/README.md#listantifraudservicedefinitions)
+- [listApiLogs](docs/sdks/gr4vy/README.md#listapilogs)
+- [listApplePayCertificates](docs/sdks/gr4vy/README.md#listapplepaycertificates)
+- [listAuditLogs](docs/sdks/gr4vy/README.md#listauditlogs)
+- [listBuyerBillingDetails](docs/sdks/gr4vy/README.md#listbuyerbillingdetails)
+- [listBuyerGiftCards](docs/sdks/gr4vy/README.md#listbuyergiftcards)
+- [listBuyerPaymentMethods](docs/sdks/gr4vy/README.md#listbuyerpaymentmethods)
+- [listBuyerShippingDetails](docs/sdks/gr4vy/README.md#listbuyershippingdetails)
+- [listBuyers](docs/sdks/gr4vy/README.md#listbuyers)
+- [listCardFlowActionRule3dsOutcomes](docs/sdks/gr4vy/README.md#listcardflowactionrule3dsoutcomes)
+- [listCardFlowActionRuleRoutingOutcomes](docs/sdks/gr4vy/README.md#listcardflowactionruleroutingoutcomes)
+- [listCardSchemeDefinitions](docs/sdks/gr4vy/README.md#listcardschemedefinitions)
+- [listCheckoutFlowActionRuleOptionOutcomes](docs/sdks/gr4vy/README.md#listcheckoutflowactionruleoptionoutcomes)
+- [listConnectionDefinitions](docs/sdks/gr4vy/README.md#listconnectiondefinitions)
+- [listConnections](docs/sdks/gr4vy/README.md#listconnections)
+- [listDigitalWallets](docs/sdks/gr4vy/README.md#listdigitalwallets)
+- [listGiftCardBalances](docs/sdks/gr4vy/README.md#listgiftcardbalances)
+- [listGiftCards](docs/sdks/gr4vy/README.md#listgiftcards)
+- [listMerchantAccounts](docs/sdks/gr4vy/README.md#listmerchantaccounts)
+- [listNetworkTokens](docs/sdks/gr4vy/README.md#listnetworktokens)
+- [listPaymentMethodDefinitions](docs/sdks/gr4vy/README.md#listpaymentmethoddefinitions)
+- [listPaymentMethods](docs/sdks/gr4vy/README.md#listpaymentmethods)
+- [listPaymentOptions](docs/sdks/gr4vy/README.md#listpaymentoptions)
+- [listPaymentServiceDefinitions](docs/sdks/gr4vy/README.md#listpaymentservicedefinitions)
+- [listPaymentServiceTokens](docs/sdks/gr4vy/README.md#listpaymentservicetokens)
+- [listPaymentServices](docs/sdks/gr4vy/README.md#listpaymentservices)
+- [listRedirectFlowActionRuleRoutingOutcomes](docs/sdks/gr4vy/README.md#listredirectflowactionruleroutingoutcomes)
+- [listReportExecutions](docs/sdks/gr4vy/README.md#listreportexecutions)
+- [listReports](docs/sdks/gr4vy/README.md#listreports)
+- [listRoleAssignments](docs/sdks/gr4vy/README.md#listroleassignments)
+- [listRoles](docs/sdks/gr4vy/README.md#listroles)
+- [listTransactionActions](docs/sdks/gr4vy/README.md#listtransactionactions)
+- [listTransactionEvents](docs/sdks/gr4vy/README.md#listtransactionevents)
+- [listTransactionRefunds](docs/sdks/gr4vy/README.md#listtransactionrefunds)
+- [listTransactions](docs/sdks/gr4vy/README.md#listtransactions)
+- [refreshAuthSessionsPut](docs/sdks/gr4vy/README.md#refreshauthsessionsput)
+- [refundAllTransactionMethods](docs/sdks/gr4vy/README.md#refundalltransactionmethods)
+- [refundTransaction](docs/sdks/gr4vy/README.md#refundtransaction)
+- [registerDigitalWalletDomain](docs/sdks/gr4vy/README.md#registerdigitalwalletdomain)
+- [resumeNetworkToken](docs/sdks/gr4vy/README.md#resumenetworktoken)
+- [suspendNetworkToken](docs/sdks/gr4vy/README.md#suspendnetworktoken)
+- [updateAntiFraudService](docs/sdks/gr4vy/README.md#updateantifraudservice)
+- [updateBuyerBillingDetails](docs/sdks/gr4vy/README.md#updatebuyerbillingdetails)
+- [updateBuyerShippingDetails](docs/sdks/gr4vy/README.md#updatebuyershippingdetails)
+- [updateBuyer](docs/sdks/gr4vy/README.md#updatebuyer)
+- [updateCheckoutSessionFields](docs/sdks/gr4vy/README.md#updatecheckoutsessionfields)
+- [updateCheckoutSession](docs/sdks/gr4vy/README.md#updatecheckoutsession)
+- [updateDigitalWallet](docs/sdks/gr4vy/README.md#updatedigitalwallet)
+- [updateFlowActionRule](docs/sdks/gr4vy/README.md#updateflowactionrule)
+- [updateGiftCardService](docs/sdks/gr4vy/README.md#updategiftcardservice)
+- [updateMerchantAccount](docs/sdks/gr4vy/README.md#updatemerchantaccount)
+- [updatePaymentService](docs/sdks/gr4vy/README.md#updatepaymentservice)
+- [updateReport](docs/sdks/gr4vy/README.md#updatereport)
+- [verifyAntiFraudServiceCredentials](docs/sdks/gr4vy/README.md#verifyantifraudservicecredentials)
+- [verifyGiftCardServiceCredentials](docs/sdks/gr4vy/README.md#verifygiftcardservicecredentials)
+- [verifyPaymentServiceCredentials](docs/sdks/gr4vy/README.md#verifypaymentservicecredentials)
+- [voidTransaction](docs/sdks/gr4vy/README.md#voidtransaction)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { Gr4vy } from "@gr4vy/sdk";
+
+const sdk = new Gr4vy({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
+
+<!-- Start File uploads [file-upload] -->
+## File uploads
+
+Certain SDK methods accept files as part of a multi-part request. It is possible and typically recommended to upload files as a stream rather than reading the entire contents into memory. This avoids excessive memory consumption and potentially crashing with out-of-memory errors when working with very large files. The following example demonstrates how to attach a file stream to a request.
+
+> [!TIP]
+>
+> Depending on your JavaScript runtime, there are convenient utilities that return a handle to a file without reading the entire contents into memory:
+>
+> - **Node.js v20+:** Since v20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
+> - **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
+> - **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
+> - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
+
+```typescript
+import { Gr4vy } from "@gr4vy/sdk";
+import { openAsBlob } from "node:fs";
+
+const gr4vy = new Gr4vy({
+    oAuth2PasswordBearer: "<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>",
+});
+
+async function run() {
+    const result = await gr4vy.confirmApplePayCertificate("91063e0e-bdc3-4ea8-a7c8-e8719dea3789", {
+        file: await openAsBlob("./sample-file"),
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End File uploads [file-upload] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

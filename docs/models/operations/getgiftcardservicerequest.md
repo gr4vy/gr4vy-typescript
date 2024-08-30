@@ -1,8 +1,17 @@
 # GetGiftCardServiceRequest
 
+## Example Usage
+
+```typescript
+import { GetGiftCardServiceRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetGiftCardServiceRequest = {
+    giftCardServiceId: "678878ba-8581-4a58-a08c-54fefa9c95f2",
+};
+```
 
 ## Fields
 
-| Field                                   | Type                                    | Required                                | Description                             | Example                                 |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `giftCardServiceId`                     | *string*                                | :heavy_check_mark:                      | The unique ID of the gift card service. | 541b126f-44c5-4c5e-a06b-d0e0d54c7d3f    |
+| Field               | Type                | Required            | Description         |
+| ------------------- | ------------------- | ------------------- | ------------------- |
+| `giftCardServiceId` | *string*            | :heavy_check_mark:  | N/A                 |

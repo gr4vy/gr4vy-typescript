@@ -1,8 +1,17 @@
 # GetDigitalWalletRequest
 
+## Example Usage
+
+```typescript
+import { GetDigitalWalletRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetDigitalWalletRequest = {
+    digitalWalletId: "2810331f-3981-4d4c-b00b-607f3c93c73b",
+};
+```
 
 ## Fields
 
-| Field                                    | Type                                     | Required                                 | Description                              | Example                                  |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `digitalWalletId`                        | *string*                                 | :heavy_check_mark:                       | The ID of the registered digital wallet. | fe26475d-ec3e-4884-9553-f7356683f7f9     |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `digitalWalletId`  | *string*           | :heavy_check_mark: | N/A                |

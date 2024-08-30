@@ -1,9 +1,19 @@
 # UpdateGiftCardServiceRequest
 
+## Example Usage
+
+```typescript
+import { UpdateGiftCardServiceRequest } from "@gr4vy/sdk/models/operations";
+
+let value: UpdateGiftCardServiceRequest = {
+    giftCardServiceId: "eac5565d-307c-4fee-8120-6e2813fa4a41",
+    giftCardServiceUpdate: {},
+};
+```
 
 ## Fields
 
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `giftCardServiceId`                                                                                | *string*                                                                                           | :heavy_check_mark:                                                                                 | The unique ID of the gift card service.                                                            | 541b126f-44c5-4c5e-a06b-d0e0d54c7d3f                                                               |
-| `giftCardServiceUpdateRequest`                                                                     | [components.GiftCardServiceUpdateRequest](../../models/components/giftcardserviceupdaterequest.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `giftCardServiceId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `giftCardServiceUpdate`                                                              | [components.GiftCardServiceUpdate](../../models/components/giftcardserviceupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |

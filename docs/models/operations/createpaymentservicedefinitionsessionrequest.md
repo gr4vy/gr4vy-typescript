@@ -1,9 +1,19 @@
 # CreatePaymentServiceDefinitionSessionRequest
 
+## Example Usage
+
+```typescript
+import { CreatePaymentServiceDefinitionSessionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: CreatePaymentServiceDefinitionSessionRequest = {
+    paymentServiceDefinitionId: "<value>",
+    requestBody: {},
+};
+```
 
 ## Fields
 
-| Field                                            | Type                                             | Required                                         | Description                                      | Example                                          |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| `paymentServiceDefinitionId`                     | *string*                                         | :heavy_check_mark:                               | The unique ID of the payment service definition. | stripe-card                                      |
-| `requestBody`                                    | Record<string, *any*>                            | :heavy_minus_sign:                               | N/A                                              |                                                  |
+| Field                                                                                                                        | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `paymentServiceDefinitionId`                                                                                                 | *string*                                                                                                                     | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |
+| `requestBody`                                                                                                                | [operations.CreatePaymentServiceDefinitionSessionBody](../../models/operations/createpaymentservicedefinitionsessionbody.md) | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |

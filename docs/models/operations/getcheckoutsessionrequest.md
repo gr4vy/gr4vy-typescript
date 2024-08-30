@@ -1,8 +1,17 @@
 # GetCheckoutSessionRequest
 
+## Example Usage
+
+```typescript
+import { GetCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: GetCheckoutSessionRequest = {
+    sessionId: "54080d40-bcac-4c6c-bd6b-5f3ec909304f",
+};
+```
 
 ## Fields
 
-| Field                                 | Type                                  | Required                              | Description                           | Example                               |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `checkoutSessionId`                   | *string*                              | :heavy_check_mark:                    | The unique ID for a Checkout Session. | 8724fd24-5489-4a5d-90fd-0604df7d3b83  |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `sessionId`        | *string*           | :heavy_check_mark: | N/A                |

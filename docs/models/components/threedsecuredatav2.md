@@ -1,14 +1,29 @@
 # ThreeDSecureDataV2
 
+Base model with JSON encoders.
+
+## Example Usage
+
+```typescript
+import { ThreeDSecureDataV2 } from "@gr4vy/sdk/models/components";
+
+let value: ThreeDSecureDataV2 = {
+    cavv: "<value>",
+    eci: "<value>",
+    version: "<value>",
+    directoryResponse: "<value>",
+    directoryTransactionId: "<value>",
+};
+```
 
 ## Fields
 
-| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             | Example                                                                                                 |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `cavv`                                                                                                  | *string*                                                                                                | :heavy_check_mark:                                                                                      | The cardholder authentication value or AAV.                                                             | 3q2+78r+ur7erb7vyv66vv8=                                                                                |
-| `eci`                                                                                                   | *string*                                                                                                | :heavy_check_mark:                                                                                      | The electronic commerce indicator for the 3DS transaction.                                              | 05                                                                                                      |
-| `version`                                                                                               | *string*                                                                                                | :heavy_check_mark:                                                                                      | The version of 3-D Secure that was used.                                                                |                                                                                                         |
-| `directoryResponse`                                                                                     | [components.DirectoryResponse](../../models/components/directoryresponse.md)                            | :heavy_check_mark:                                                                                      | The transaction status received as part of the authentication request.                                  | C                                                                                                       |
-| `scheme`                                                                                                | [components.ThreeDSecureDataV2Scheme](../../models/components/threedsecuredatav2scheme.md)              | :heavy_minus_sign:                                                                                      | The scheme/brand of the card that is used for 3-D Secure.                                               | visa                                                                                                    |
-| `authenticationResponse`                                                                                | [components.AuthenticationResponse](../../models/components/authenticationresponse.md)                  | :heavy_minus_sign:                                                                                      | The transaction status after a the 3DS challenge. This will<br/>be null in case of a frictionless 3DS flow. | Y                                                                                                       |
-| `directoryTransactionId`                                                                                | *string*                                                                                                | :heavy_check_mark:                                                                                      | The transaction identifier.                                                                             | c4e59ceb-a382-4d6a-bc87-385d591fa09d                                                                    |
+| Field                                                          | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `cavv`                                                         | *string*                                                       | :heavy_check_mark:                                             | N/A                                                            |
+| `eci`                                                          | *string*                                                       | :heavy_check_mark:                                             | N/A                                                            |
+| `version`                                                      | *string*                                                       | :heavy_check_mark:                                             | N/A                                                            |
+| `directoryResponse`                                            | *string*                                                       | :heavy_check_mark:                                             | N/A                                                            |
+| `scheme`                                                       | [components.CardScheme](../../models/components/cardscheme.md) | :heavy_minus_sign:                                             | An enumeration.                                                |
+| `authenticationResponse`                                       | *string*                                                       | :heavy_minus_sign:                                             | N/A                                                            |
+| `directoryTransactionId`                                       | *string*                                                       | :heavy_check_mark:                                             | N/A                                                            |

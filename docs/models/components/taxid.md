@@ -1,11 +1,21 @@
-# TaxID
+# TaxId
 
-The tax information associated with the billing details.
+Base model with JSON encoders.
 
+## Example Usage
+
+```typescript
+import { TaxId } from "@gr4vy/sdk/models/components";
+
+let value: TaxId = {
+    value: "<value>",
+    kind: "ca.gst_hst",
+};
+```
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        | Example                                            |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `value`                                            | *string*                                           | :heavy_check_mark:                                 | The tax ID for the buyer.                          | 12345678931                                        |
-| `kind`                                             | [components.Kind](../../models/components/kind.md) | :heavy_check_mark:                                 | The kind of tax ID.                                | gb.vat                                             |
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `value`                                                      | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `kind`                                                       | [components.TaxIdKind](../../models/components/taxidkind.md) | :heavy_check_mark:                                           | An enumeration.                                              |

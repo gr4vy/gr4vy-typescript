@@ -1,9 +1,19 @@
 # ClickToPaySession
 
+Base model with JSON encoders.
+
+## Example Usage
+
+```typescript
+import { ClickToPaySession } from "@gr4vy/sdk/models/components";
+
+let value: ClickToPaySession = {
+    checkoutSessionId: "8d9cbf48-6333-423f-9b77-f3a4100674eb",
+};
+```
 
 ## Fields
 
-| Field                                                         | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `digitalPaymentApplicationId`                                 | *string*                                                      | :heavy_minus_sign:                                            | The ID of the Digital Payment Application for Click to Pay.   | a0b093e4-028a-4310-93fb-4ed0afc813fb                          |
-| `digitalPaymentApplicationName`                               | *string*                                                      | :heavy_minus_sign:                                            | The name of the Digital Payment Application for Click to Pay. | Plantly T4JUU1                                                |
+| Field               | Type                | Required            | Description         |
+| ------------------- | ------------------- | ------------------- | ------------------- |
+| `checkoutSessionId` | *string*            | :heavy_check_mark:  | N/A                 |

@@ -1,9 +1,19 @@
 # UpdateMerchantAccountRequest
 
+## Example Usage
+
+```typescript
+import { UpdateMerchantAccountRequest } from "@gr4vy/sdk/models/operations";
+
+let value: UpdateMerchantAccountRequest = {
+    merchantAccountId: "<value>",
+    merchantAccountUpdate: {},
+};
+```
 
 ## Fields
 
-| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `merchantAccountId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | The unique ID for a merchant account.                                                | plantly-uk                                                                           |
-| `merchantAccountUpdate`                                                              | [components.MerchantAccountUpdate](../../models/components/merchantaccountupdate.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `merchantAccountId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `merchantAccountUpdate`                                                              | [components.MerchantAccountUpdate](../../models/components/merchantaccountupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |

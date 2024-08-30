@@ -1,8 +1,17 @@
 # DeleteDigitalWalletRequest
 
+## Example Usage
+
+```typescript
+import { DeleteDigitalWalletRequest } from "@gr4vy/sdk/models/operations";
+
+let value: DeleteDigitalWalletRequest = {
+    digitalWalletId: "472e8028-57a5-4b40-863a-7d575f1400e7",
+};
+```
 
 ## Fields
 
-| Field                                    | Type                                     | Required                                 | Description                              | Example                                  |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `digitalWalletId`                        | *string*                                 | :heavy_check_mark:                       | The ID of the registered digital wallet. | fe26475d-ec3e-4884-9553-f7356683f7f9     |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `digitalWalletId`  | *string*           | :heavy_check_mark: | N/A                |

@@ -1,14 +1,17 @@
 # TransactionPaymentSource
 
-The source of the transaction. Defaults to `ecommerce`.
+The way payment method information made it to this transaction.
 
+## Example Usage
+
+```typescript
+import { TransactionPaymentSource } from "@gr4vy/sdk/models/components";
+
+let value: TransactionPaymentSource = "recurring";
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `Ecommerce`   | ecommerce     |
-| `Moto`        | moto          |
-| `Recurring`   | recurring     |
-| `Installment` | installment   |
-| `CardOnFile`  | card_on_file  |
+```typescript
+"ecommerce" | "moto" | "recurring" | "installment" | "card_on_file"
+```

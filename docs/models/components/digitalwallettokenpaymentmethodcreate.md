@@ -1,0 +1,29 @@
+# DigitalWalletTokenPaymentMethodCreate
+
+Base model with JSON encoders.
+
+## Example Usage
+
+```typescript
+import { DigitalWalletTokenPaymentMethodCreate } from "@gr4vy/sdk/models/components";
+
+let value: DigitalWalletTokenPaymentMethodCreate = {
+    method: "click-to-pay",
+    token: "<value>",
+    cryptogram: "<value>",
+    expirationDate: "<value>",
+};
+```
+
+## Fields
+
+| Field                                                                                                                            | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `method`                                                                                                                         | [components.DigitalWalletTokenPaymentMethodCreateMethod](../../models/components/digitalwallettokenpaymentmethodcreatemethod.md) | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |
+| `token`                                                                                                                          | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |
+| `cryptogram`                                                                                                                     | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |
+| `buyerExternalIdentifier`                                                                                                        | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | N/A                                                                                                                              |
+| `buyerId`                                                                                                                        | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | N/A                                                                                                                              |
+| `externalIdentifier`                                                                                                             | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | N/A                                                                                                                              |
+| `expirationDate`                                                                                                                 | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |
+| `redirectUrl`                                                                                                                    | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | N/A                                                                                                                              |

@@ -1,9 +1,19 @@
 # CaptureTransactionRequest
 
+## Example Usage
+
+```typescript
+import { CaptureTransactionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: CaptureTransactionRequest = {
+    transactionId: "42defcce-8f19-4777-b3e6-3562a7b408f0",
+    transactionCapture: {},
+};
+```
 
 ## Fields
 
-| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `transactionId`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | The ID for the transaction to get the information for.                                       | fe26475d-ec3e-4884-9553-f7356683f7f9                                                         |
-| `transactionCaptureRequest`                                                                  | [components.TransactionCaptureRequest](../../models/components/transactioncapturerequest.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `transactionId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            |
+| `transactionCapture`                                                           | [components.TransactionCapture](../../models/components/transactioncapture.md) | :heavy_check_mark:                                                             | N/A                                                                            |

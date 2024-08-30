@@ -1,8 +1,17 @@
 # VoidTransactionRequest
 
+## Example Usage
+
+```typescript
+import { VoidTransactionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: VoidTransactionRequest = {
+    transactionId: "8aa94c02-644c-4f5e-9d9a-4578adc1ac60",
+};
+```
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            | Example                                                |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `transactionId`                                        | *string*                                               | :heavy_check_mark:                                     | The ID for the transaction to get the information for. | fe26475d-ec3e-4884-9553-f7356683f7f9                   |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `transactionId`    | *string*           | :heavy_check_mark: | N/A                |

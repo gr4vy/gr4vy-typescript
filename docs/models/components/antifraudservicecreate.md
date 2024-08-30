@@ -1,14 +1,50 @@
 # AntiFraudServiceCreate
 
-A request to create an anti-fraud service.
+## Example Usage
 
+```typescript
+import { AntiFraudServiceCreate } from "@gr4vy/sdk/models/components";
 
-## Fields
+let value: AntiFraudServiceCreate = {
+    fields: [
+        {
+            key: "<key>",
+            value: "",
+        },
+    ],
+    displayName: "Orion17",
+};
+```
 
-| Field                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                                                                           | Example                                                                                                                                                                                                                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `antiFraudServiceDefinitionId`                                                                                                                                                                                                                                                                                        | [components.AntiFraudServiceDefinitionId](../../models/components/antifraudservicedefinitionid.md)                                                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                                                                    | The name of the Anti-Fraud service provider.<br/>During update request, this value is used for validation only but<br/>the underlying service can not be changed for an existing service.                                                                                                                             | sift-anti-fraud                                                                                                                                                                                                                                                                                                       |
-| `displayName`                                                                                                                                                                                                                                                                                                         | *string*                                                                                                                                                                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                                                                                                                    | A unique name for this anti-fraud service which is used in the Gr4vy admin panel to give a anti-fraud Service a human readable name.                                                                                                                                                                                  | Sift Anti-Fraud Service.                                                                                                                                                                                                                                                                                              |
-| `active`                                                                                                                                                                                                                                                                                                              | *boolean*                                                                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                    | Defines if this service is currently active or not. There can only<br/>be one active service at any time. When updating a service<br/>to active, the current active service will be deactivated.                                                                                                                      | true                                                                                                                                                                                                                                                                                                                  |
-| `reviewsEnabled`                                                                                                                                                                                                                                                                                                      | *boolean*                                                                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                    | Defines if this service needs to handle the review status from anti-fraud<br/>responses with a proper review workflow. If not, the review status will<br/>be treated as any other one.                                                                                                                                | false                                                                                                                                                                                                                                                                                                                 |
-| `fields`                                                                                                                                                                                                                                                                                                              | [components.AntiFraudServiceCreateFields](../../models/components/antifraudservicecreatefields.md)[]                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                    | A list of fields, each containing a key-value pair for each field defined<br/>by the definition for this anti-fraud service e.g. for Sift<br/>`api_key` must be sent within this field when creating the service.<br/><br/>For updates, only the fields sent here will be updated,<br/>existing ones will not be affected if not present. |                                                                                                                                                                                                                                                                                                                       |
+## Supported Types
+
+### `components.CybersourceCreate`
+
+```typescript
+const value: components.CybersourceCreate = /* values here */
+```
+
+### `components.SiftCreate`
+
+```typescript
+const value: components.SiftCreate = /* values here */
+```
+
+### `components.ForterCreate`
+
+```typescript
+const value: components.ForterCreate = /* values here */
+```
+
+### `components.KountCreate`
+
+```typescript
+const value: components.KountCreate = /* values here */
+```
+
+### `components.SimulatorCreate`
+
+```typescript
+const value: components.SimulatorCreate = /* values here */
+```
+

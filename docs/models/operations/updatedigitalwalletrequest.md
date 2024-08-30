@@ -1,9 +1,21 @@
 # UpdateDigitalWalletRequest
 
+## Example Usage
+
+```typescript
+import { UpdateDigitalWalletRequest } from "@gr4vy/sdk/models/operations";
+
+let value: UpdateDigitalWalletRequest = {
+    digitalWalletId: "9da3f2ce-da7e-423f-a257-411faf4b7544",
+    digitalWalletUpdate: {
+        merchantCountryCode: "US",
+    },
+};
+```
 
 ## Fields
 
-| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `digitalWalletId`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | The ID of the registered digital wallet.                                         | fe26475d-ec3e-4884-9553-f7356683f7f9                                             |
-| `digitalWalletUpdate`                                                            | [components.DigitalWalletUpdate](../../models/components/digitalwalletupdate.md) | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `digitalWalletId`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `digitalWalletUpdate`                                                            | [components.DigitalWalletUpdate](../../models/components/digitalwalletupdate.md) | :heavy_check_mark:                                                               | N/A                                                                              |

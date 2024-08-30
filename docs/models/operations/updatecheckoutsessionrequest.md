@@ -1,9 +1,36 @@
 # UpdateCheckoutSessionRequest
 
+## Example Usage
+
+```typescript
+import { UpdateCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
+
+let value: UpdateCheckoutSessionRequest = {
+    sessionId: "926bad25-5381-49b4-b4b0-ed20e56248ff",
+    checkoutSessionUpdate: {
+        buyer: {
+            billingDetails: {
+                phoneNumber: "+442071838750",
+                address: {
+                    country: "GB",
+                    stateCode: "GB-LND",
+                },
+            },
+            shippingDetails: {
+                phoneNumber: "+442071838750",
+                address: {
+                    country: "GB",
+                    stateCode: "US-CA",
+                },
+            },
+        },
+    },
+};
+```
 
 ## Fields
 
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `checkoutSessionId`                                                                                | *string*                                                                                           | :heavy_check_mark:                                                                                 | The unique ID for a Checkout Session.                                                              | 8724fd24-5489-4a5d-90fd-0604df7d3b83                                                               |
-| `checkoutSessionUpdateRequest`                                                                     | [components.CheckoutSessionUpdateRequest](../../models/components/checkoutsessionupdaterequest.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `sessionId`                                                                          | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `checkoutSessionUpdate`                                                              | [components.CheckoutSessionUpdate](../../models/components/checkoutsessionupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |

@@ -1,8 +1,17 @@
 # ListTransactionRefundsRequest
 
+## Example Usage
+
+```typescript
+import { ListTransactionRefundsRequest } from "@gr4vy/sdk/models/operations";
+
+let value: ListTransactionRefundsRequest = {
+    transactionId: "5e3d48fd-af31-43a1-b5fd-94259c0b36f2",
+};
+```
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            | Example                                                |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `transactionId`                                        | *string*                                               | :heavy_check_mark:                                     | The ID for the transaction to get the information for. | fe26475d-ec3e-4884-9553-f7356683f7f9                   |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `transactionId`    | *string*           | :heavy_check_mark: | N/A                |

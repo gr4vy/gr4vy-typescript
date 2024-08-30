@@ -1,10 +1,19 @@
 # AccountUpdaterJobCreate
 
-A request to create an Account Updater job.
+Base model with JSON encoders.
 
+## Example Usage
+
+```typescript
+import { AccountUpdaterJobCreate } from "@gr4vy/sdk/models/components";
+
+let value: AccountUpdaterJobCreate = {
+    paymentMethodIds: ["dfc2ddf7-cc78-4ca1-ba92-8fc816742cb7"],
+};
+```
 
 ## Fields
 
-| Field                                                                                                                                                        | Type                                                                                                                                                         | Required                                                                                                                                                     | Description                                                                                                                                                  | Example                                                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `paymentMethodIds`                                                                                                                                           | *string*[]                                                                                                                                                   | :heavy_check_mark:                                                                                                                                           | A list of unique payment method identifiers used to create the Account Updater job.<br/>A payment method will be considered only if it qualifies for an inquiry. | [<br/>"497f6eca-6276-4993-bfeb-53cbbbba6f08"<br/>]                                                                                                           |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `paymentMethodIds` | *string*[]         | :heavy_check_mark: | N/A                |

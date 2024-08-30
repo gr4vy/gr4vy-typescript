@@ -1,14 +1,15 @@
 # AntiFraudServiceDefinitionId
 
-The name of the Anti-Fraud service provider.
-During update request, this value is used for validation only but
-the underlying service can not be changed for an existing service.
+## Example Usage
 
+```typescript
+import { AntiFraudServiceDefinitionId } from "@gr4vy/sdk/models/components";
+
+let value: AntiFraudServiceDefinitionId = "cybersource-anti-fraud";
+```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `CybersourceAntiFraud` | cybersource-anti-fraud |
-| `ForterAntiFraud`      | forter-anti-fraud      |
-| `SiftAntiFraud`        | sift-anti-fraud        |
+```typescript
+"cybersource-anti-fraud"
+```
