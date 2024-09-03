@@ -8,7 +8,7 @@ The address for these buyer details.
 import { ShippingDetailsCreateAddress } from "@gr4vy/sdk/models/components";
 
 let value: ShippingDetailsCreateAddress = {
-    country: "GB",
+    country: "US",
     stateCode: "US-CA",
 };
 ```

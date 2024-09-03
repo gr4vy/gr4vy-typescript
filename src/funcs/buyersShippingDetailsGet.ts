@@ -24,14 +24,15 @@ import { Result } from "../types/fp.js";
 import * as z from "zod";
 
 /**
- * List buyer shipping details
+ * Get buyer shipping details
  *
  * @remarks
- * List all the shipping details for a buyer, using the buyer ID
+ * Fetch the shipping details for a buyer, using the buyer ID
  */
-export async function listBuyerShippingDetails(
+export async function buyersShippingDetailsGet(
     client$: Gr4vyCore,
     buyerId: string,
+    shippingDetailsId: string,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -46,13 +47,14 @@ export async function listBuyerShippingDetails(
         | ConnectionError
     >
 > {
-    const input$: operations.ListBuyerShippingDetailsRequest = {
+    const input$: operations.GetBuyerShippingDetailsRequest = {
         buyerId: buyerId,
+        shippingDetailsId: shippingDetailsId,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => operations.ListBuyerShippingDetailsRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetBuyerShippingDetailsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -66,9 +68,15 @@ export async function listBuyerShippingDetails(
             explode: false,
             charEncoding: "percent",
         }),
+        shipping_details_id: encodeSimple$("shipping_details_id", payload$.shipping_details_id, {
+            explode: false,
+            charEncoding: "percent",
+        }),
     };
 
-    const path$ = pathToFunc("/buyers/{buyer_id}/shipping-details")(pathParams$);
+    const path$ = pathToFunc("/buyers/{buyer_id}/shipping-details/{shipping_details_id}")(
+        pathParams$
+    );
 
     const headers$ = new Headers({
         Accept: "application/json",
@@ -77,7 +85,7 @@ export async function listBuyerShippingDetails(
     const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
     const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
     const context = {
-        operationID: "list_buyer_shipping_details",
+        operationID: "get_buyer_shipping_details",
         oAuth2Scopes: [],
         securitySource: client$.options$.bearerAuth,
     };

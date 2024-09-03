@@ -5,10 +5,85 @@
 
 ### Available Operations
 
+* [list](#list) - List buyer shipping details
 * [create](#create) - Add buyer shipping details
-* [list](#list) - Get buyer shipping details
+* [get](#get) - Get buyer shipping details
 * [update](#update) - Update buyer shipping details
 * [delete](#delete) - Delete buyer shipping details
+
+## list
+
+List all the shipping details for a buyer, using the buyer ID
+
+### Example Usage
+
+```typescript
+import { Gr4vy } from "@gr4vy/sdk";
+
+const gr4vy = new Gr4vy({
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await gr4vy.buyers.shippingDetails.list("c184a429-302e-4aca-80db-f1718b882a50");
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { buyersShippingDetailsList } from "@gr4vy/sdk/funcs/buyersShippingDetailsList.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await buyersShippingDetailsList(gr4vy, "2f19e82e-7b6f-46a7-91f8-4d261d24a6d1");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `buyerId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The `id` of the buyer to list shipping details for                                                                                                                             |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[any](../../models/.md)\>**
+
+### Errors
+
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.SDKError            | 4xx-5xx                    | */*                        |
+
 
 ## create
 
@@ -97,7 +172,7 @@ run();
 | errors.SDKError            | 4xx-5xx                    | */*                        |
 
 
-## list
+## get
 
 Fetch the shipping details for a buyer, using the buyer ID
 
@@ -111,7 +186,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.shippingDetails.list("c184a429-302e-4aca-80db-f1718b882a50", "80555741-9e79-40e2-b205-5dd402eb66ec");
+  const result = await gr4vy.buyers.shippingDetails.get("b18d8d81-fd7b-4764-a31e-475cb1f36591", "58ccc65b-c928-4154-952e-30c048b8c2b5");
 
   // Handle the result
   console.log(result)
@@ -126,7 +201,7 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { buyersShippingDetailsList } from "@gr4vy/sdk/funcs/buyersShippingDetailsList.js";
+import { buyersShippingDetailsGet } from "@gr4vy/sdk/funcs/buyersShippingDetailsGet.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -135,7 +210,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersShippingDetailsList(gr4vy, "ddc82da2-47c2-4881-90e4-df0b6465018a", "77e0ac1f-5c08-4ff6-ab03-73f0b9c06e05");
+  const res = await buyersShippingDetailsGet(gr4vy, "edc1d66b-24bf-48cf-b721-61b24a4a5fe0", "9a5b24ee-84a3-4fbf-89cb-ccae3a741f65");
 
   if (!res.ok) {
     throw res.error;

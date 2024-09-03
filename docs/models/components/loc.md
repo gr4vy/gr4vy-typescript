@@ -5,7 +5,7 @@
 ```typescript
 import { Loc } from "@gr4vy/sdk/models/components";
 
-let value: Loc = 20218;
+let value: Loc = 928082;
 ```
 
 ## Supported Types

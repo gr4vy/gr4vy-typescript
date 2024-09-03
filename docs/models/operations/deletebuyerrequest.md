@@ -6,7 +6,7 @@
 import { DeleteBuyerRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteBuyerRequest = {
-    buyerId: "b5e6e13b-99d4-488e-9e91-e450ad2abd44",
+    buyerId: "39205929-396f-4ea7-996e-b10faaa2352c",
 };
 ```
 

@@ -11,7 +11,7 @@ let value: BillingDetails = {
     phoneNumber: "+442071838750",
     address: {
         country: "GB",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
     },
 };
 ```

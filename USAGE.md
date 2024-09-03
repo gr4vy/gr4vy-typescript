@@ -7,10 +7,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
+    const result = await gr4vy.buyers.list();
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();

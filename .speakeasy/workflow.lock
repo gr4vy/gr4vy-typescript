@@ -1,17 +1,17 @@
-speakeasyVersion: 1.389.1
+speakeasyVersion: 1.390.0
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:2d42a2de0611cdddea3bfc2ccb31c82962efa7dc1314a4f322a10ebf7c2b291a
-        sourceBlobDigest: sha256:ac42cb29ad69a97d4afd07a976ec51061c864ed6abff9ae7d9c1a6ab059f3e2e
+        sourceRevisionDigest: sha256:c89ccd6ede387d398341cb75f0c5ad2b342c8723f6a6ddd921a3afe6c1da6ac0
+        sourceBlobDigest: sha256:4bc4cfbfc174c94dcecd9c2636d77267bc0fbd2cea777a602afb97e78ba0e097
         tags:
             - latest
 targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:2d42a2de0611cdddea3bfc2ccb31c82962efa7dc1314a4f322a10ebf7c2b291a
-        sourceBlobDigest: sha256:ac42cb29ad69a97d4afd07a976ec51061c864ed6abff9ae7d9c1a6ab059f3e2e
+        sourceRevisionDigest: sha256:c89ccd6ede387d398341cb75f0c5ad2b342c8723f6a6ddd921a3afe6c1da6ac0
+        sourceBlobDigest: sha256:4bc4cfbfc174c94dcecd9c2636d77267bc0fbd2cea777a602afb97e78ba0e097
         outLocation: /Users/cbetta/code/gr4vy-js
 workflow:
     workflowVersion: 1.0.0

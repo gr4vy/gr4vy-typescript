@@ -6,8 +6,8 @@
 import { UpdateBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateBuyerShippingDetailsRequest = {
-    buyerId: "8b711e5b-7fd2-4ed0-a892-1cddc692601f",
-    shippingDetailsId: "b576b0d5-f0d3-40c5-bbb2-587053202c73",
+    buyerId: "4cd66ae3-95ef-4b9b-a88f-3a66997074ba",
+    shippingDetailsId: "4469b6e2-1419-4598-90af-a563e2516fe4",
     shippingDetailsUpdate: {
         phoneNumber: "+442071838750",
         address: {

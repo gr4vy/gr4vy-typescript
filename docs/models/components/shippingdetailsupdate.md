@@ -11,7 +11,7 @@ let value: ShippingDetailsUpdate = {
     phoneNumber: "+14155552671",
     address: {
         country: "DE",
-        stateCode: "US-CA",
+        stateCode: "GB-LND",
     },
 };
 ```

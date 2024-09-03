@@ -4,6 +4,7 @@
 
 import { buyersShippingDetailsCreate } from "../funcs/buyersShippingDetailsCreate.js";
 import { buyersShippingDetailsDelete } from "../funcs/buyersShippingDetailsDelete.js";
+import { buyersShippingDetailsGet } from "../funcs/buyersShippingDetailsGet.js";
 import { buyersShippingDetailsList } from "../funcs/buyersShippingDetailsList.js";
 import { buyersShippingDetailsUpdate } from "../funcs/buyersShippingDetailsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -11,6 +12,16 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ShippingDetails extends ClientSDK {
+    /**
+     * List buyer shipping details
+     *
+     * @remarks
+     * List all the shipping details for a buyer, using the buyer ID
+     */
+    async list(buyerId: string, options?: RequestOptions): Promise<any> {
+        return unwrapAsync(buyersShippingDetailsList(this, buyerId, options));
+    }
+
     /**
      * Add buyer shipping details
      *
@@ -33,8 +44,8 @@ export class ShippingDetails extends ClientSDK {
      * @remarks
      * Fetch the shipping details for a buyer, using the buyer ID
      */
-    async list(buyerId: string, shippingDetailsId: string, options?: RequestOptions): Promise<any> {
-        return unwrapAsync(buyersShippingDetailsList(this, buyerId, shippingDetailsId, options));
+    async get(buyerId: string, shippingDetailsId: string, options?: RequestOptions): Promise<any> {
+        return unwrapAsync(buyersShippingDetailsGet(this, buyerId, shippingDetailsId, options));
     }
 
     /**

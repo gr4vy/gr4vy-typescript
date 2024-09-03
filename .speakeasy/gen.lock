@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 159f3e4ba550b39132d5dd1d6f97faee
+  docChecksum: 3b599081e9cf1bca845e38090565d576
   docVersion: 1.0.0
-  speakeasyVersion: 1.389.1
+  speakeasyVersion: 1.390.0
   generationVersion: 2.409.0
-  releaseVersion: 0.7.3
-  configChecksum: 2a33cda693b1c5ff896016ba880df46e
+  releaseVersion: 0.7.4
+  configChecksum: 9c5d12f973142feaa6b6538c80a41b6b
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
@@ -31,7 +31,6 @@ features:
     serverIDs: 2.81.2
     unions: 2.85.7
 generatedFiles:
-  - src/funcs/listBuyerShippingDetails.ts
   - src/funcs/buyersList.ts
   - src/funcs/buyersCreate.ts
   - src/funcs/buyersGet.ts
@@ -39,8 +38,9 @@ generatedFiles:
   - src/funcs/buyersDelete.ts
   - src/funcs/buyersBillingDetailsGet.ts
   - src/funcs/buyersBillingDetailsUpdate.ts
-  - src/funcs/buyersShippingDetailsCreate.ts
   - src/funcs/buyersShippingDetailsList.ts
+  - src/funcs/buyersShippingDetailsCreate.ts
+  - src/funcs/buyersShippingDetailsGet.ts
   - src/funcs/buyersShippingDetailsUpdate.ts
   - src/funcs/buyersShippingDetailsDelete.ts
   - src/sdk/billingdetails.ts
@@ -83,6 +83,17 @@ generatedFiles:
   - src/types/rfcdate.ts
   - src/types/streams.ts
   - tsconfig.json
+  - src/models/operations/listbuyers.ts
+  - src/models/operations/getbuyer.ts
+  - src/models/operations/updatebuyer.ts
+  - src/models/operations/deletebuyer.ts
+  - src/models/operations/listbillingdetails.ts
+  - src/models/operations/updatebuyerbillingdetails.ts
+  - src/models/operations/listbuyershippingdetails.ts
+  - src/models/operations/addbuyershippingdetails.ts
+  - src/models/operations/getbuyershippingdetails.ts
+  - src/models/operations/updatebuyershippingdetails.ts
+  - src/models/operations/deletebuyershippingdetails.ts
   - src/models/errors/httpvalidationerror.ts
   - src/models/components/validationerror.ts
   - src/models/components/buyercreate.ts
@@ -92,20 +103,21 @@ generatedFiles:
   - src/models/components/shippingdetailscreate.ts
   - src/models/components/shippingdetailsupdate.ts
   - src/models/components/security.ts
-  - src/models/operations/listbuyershippingdetails.ts
-  - src/models/operations/listbuyers.ts
-  - src/models/operations/getbuyer.ts
-  - src/models/operations/updatebuyer.ts
-  - src/models/operations/deletebuyer.ts
-  - src/models/operations/listbillingdetails.ts
-  - src/models/operations/updatebuyerbillingdetails.ts
-  - src/models/operations/addbuyershippingdetails.ts
-  - src/models/operations/getbuyershippingdetails.ts
-  - src/models/operations/updatebuyershippingdetails.ts
-  - src/models/operations/deletebuyershippingdetails.ts
   - src/models/errors/index.ts
-  - src/models/components/index.ts
   - src/models/operations/index.ts
+  - src/models/components/index.ts
+  - docs/models/operations/listbuyersrequest.md
+  - docs/models/operations/listbuyersresponse.md
+  - docs/models/operations/getbuyerrequest.md
+  - docs/models/operations/updatebuyerrequest.md
+  - docs/models/operations/deletebuyerrequest.md
+  - docs/models/operations/listbillingdetailsrequest.md
+  - docs/models/operations/updatebuyerbillingdetailsrequest.md
+  - docs/models/operations/listbuyershippingdetailsrequest.md
+  - docs/models/operations/addbuyershippingdetailsrequest.md
+  - docs/models/operations/getbuyershippingdetailsrequest.md
+  - docs/models/operations/updatebuyershippingdetailsrequest.md
+  - docs/models/operations/deletebuyershippingdetailsrequest.md
   - docs/models/errors/httpvalidationerror.md
   - docs/models/components/loc.md
   - docs/models/components/validationerror.md
@@ -123,20 +135,8 @@ generatedFiles:
   - docs/models/components/shippingdetailsupdateaddress.md
   - docs/models/components/shippingdetailsupdate.md
   - docs/models/components/security.md
-  - docs/models/operations/listbuyershippingdetailsrequest.md
-  - docs/models/operations/listbuyersrequest.md
-  - docs/models/operations/listbuyersresponse.md
-  - docs/models/operations/getbuyerrequest.md
-  - docs/models/operations/updatebuyerrequest.md
-  - docs/models/operations/deletebuyerrequest.md
-  - docs/models/operations/listbillingdetailsrequest.md
-  - docs/models/operations/updatebuyerbillingdetailsrequest.md
-  - docs/models/operations/addbuyershippingdetailsrequest.md
-  - docs/models/operations/getbuyershippingdetailsrequest.md
-  - docs/models/operations/updatebuyershippingdetailsrequest.md
-  - docs/models/operations/deletebuyershippingdetailsrequest.md
-  - docs/lib/utils/retryconfig.md
   - docs/sdks/gr4vy/README.md
+  - docs/lib/utils/retryconfig.md
   - docs/sdks/buyers/README.md
   - docs/sdks/billingdetails/README.md
   - docs/sdks/shippingdetails/README.md

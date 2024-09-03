@@ -75,10 +75,6 @@ async function run() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [Gr4vy SDK](docs/sdks/gr4vy/README.md)
-
-* [listBuyerShippingDetails](docs/sdks/gr4vy/README.md#listbuyershippingdetails) - List buyer shipping details
-
 ### [buyers](docs/sdks/buyers/README.md)
 
 * [list](docs/sdks/buyers/README.md#list) - List all buyers
@@ -94,8 +90,9 @@ async function run() {
 
 ### [buyers.shippingDetails](docs/sdks/shippingdetails/README.md)
 
+* [list](docs/sdks/shippingdetails/README.md#list) - List buyer shipping details
 * [create](docs/sdks/shippingdetails/README.md#create) - Add buyer shipping details
-* [list](docs/sdks/shippingdetails/README.md#list) - Get buyer shipping details
+* [get](docs/sdks/shippingdetails/README.md#get) - Get buyer shipping details
 * [update](docs/sdks/shippingdetails/README.md#update) - Update buyer shipping details
 * [delete](docs/sdks/shippingdetails/README.md#delete) - Delete buyer shipping details
 <!-- End Available Resources and Operations [operations] -->
@@ -124,7 +121,7 @@ const gr4vy = new Gr4vy({
 async function run() {
     let result;
     try {
-        result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
+        result = await gr4vy.buyers.list();
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -145,8 +142,10 @@ async function run() {
         }
     }
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();
@@ -175,10 +174,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
+    const result = await gr4vy.buyers.list();
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();
@@ -203,10 +204,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
+    const result = await gr4vy.buyers.list();
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();
@@ -283,10 +286,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
+    const result = await gr4vy.buyers.list();
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();
@@ -340,10 +345,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
+    const result = await gr4vy.buyers.list();
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();
@@ -398,7 +405,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f", {
+    const result = await gr4vy.buyers.list({
         retries: {
             strategy: "backoff",
             backoff: {
@@ -411,8 +418,10 @@ async function run() {
         },
     });
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();
@@ -438,10 +447,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
+    const result = await gr4vy.buyers.list();
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+        // Handle the page
+        console.log(page);
+    }
 }
 
 run();
@@ -495,10 +506,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [buyersList](docs/sdks/buyers/README.md#list)
 - [buyersShippingDetailsCreate](docs/sdks/shippingdetails/README.md#create)
 - [buyersShippingDetailsDelete](docs/sdks/shippingdetails/README.md#delete)
+- [buyersShippingDetailsGet](docs/sdks/shippingdetails/README.md#get)
 - [buyersShippingDetailsList](docs/sdks/shippingdetails/README.md#list)
 - [buyersShippingDetailsUpdate](docs/sdks/shippingdetails/README.md#update)
 - [buyersUpdate](docs/sdks/buyers/README.md#update)
-- [listBuyerShippingDetails](docs/sdks/gr4vy/README.md#listbuyershippingdetails)
 
 
 </details>

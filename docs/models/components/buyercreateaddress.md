@@ -8,8 +8,8 @@ The address for these buyer details.
 import { BuyerCreateAddress } from "@gr4vy/sdk/models/components";
 
 let value: BuyerCreateAddress = {
-    country: "US",
-    stateCode: "US-CA",
+    country: "GB",
+    stateCode: "GB-LND",
 };
 ```
 

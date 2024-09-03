@@ -9,7 +9,7 @@ import { BuyerCreate } from "@gr4vy/sdk/models/components";
 
 let value: BuyerCreate = {
     billingDetails: {
-        phoneNumber: "+442071838750",
+        phoneNumber: "+14155552671",
         address: {
             country: "GB",
             stateCode: "US-CA",
