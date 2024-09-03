@@ -1,15 +1,15 @@
-# TaxId
+# BuyerCreateTaxId
 
 The tax ID for these buyer details.
 
 ## Example Usage
 
 ```typescript
-import { TaxId } from "@gr4vy/sdk/models/components";
+import { BuyerCreateTaxId } from "@gr4vy/sdk/models/components";
 
-let value: TaxId = {
+let value: BuyerCreateTaxId = {
     value: "<value>",
-    kind: "nz.gst",
+    kind: "ru.inn",
 };
 ```
 

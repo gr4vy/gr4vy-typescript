@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { createAccountUpdaterJob } from "@gr4vy/sdk/funcs/createAccountUpdaterJob.js";
+import { listBuyerShippingDetails } from "@gr4vy/sdk/funcs/listBuyerShippingDetails.js";
 import { SDKValidationError } from "@gr4vy/sdk/models/errors/sdkvalidationerror.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
@@ -30,11 +30,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await createAccountUpdaterJob(gr4vy, {
-    paymentMethodIds: [
-      "89bd9d8d-69a6-474e-8f46-7cc8796ed151",
-    ],
-  });
+  const res = await listBuyerShippingDetails(gr4vy, "89bd9d8d-69a6-474e-8f46-7cc8796ed151");
 
   switch (true) {
     case res.ok:

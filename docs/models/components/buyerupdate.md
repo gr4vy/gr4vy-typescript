@@ -9,9 +9,9 @@ import { BuyerUpdate } from "@gr4vy/sdk/models/components";
 
 let value: BuyerUpdate = {
     billingDetails: {
-        phoneNumber: "+442071838750",
+        phoneNumber: "+14155552671",
         address: {
-            country: "US",
+            country: "GB",
             stateCode: "US-CA",
         },
     },

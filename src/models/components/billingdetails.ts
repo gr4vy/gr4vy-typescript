@@ -3,32 +3,163 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
-import {
-    Address,
-    Address$inboundSchema,
-    Address$Outbound,
-    Address$outboundSchema,
-} from "./address.js";
-import { TaxId, TaxId$inboundSchema, TaxId$Outbound, TaxId$outboundSchema } from "./taxid.js";
+import { TaxIdKind, TaxIdKind$inboundSchema, TaxIdKind$outboundSchema } from "./taxidkind.js";
 import * as z from "zod";
+
+/**
+ * The address for these buyer details.
+ */
+export type Address = {
+    city?: string | undefined;
+    country?: string | undefined;
+    postalCode?: string | undefined;
+    state?: string | undefined;
+    stateCode?: string | undefined;
+    houseNumberOrName?: string | undefined;
+    line1?: string | undefined;
+    line2?: string | undefined;
+    organization?: string | undefined;
+};
+
+/**
+ * The tax ID for these buyer details.
+ */
+export type TaxId = {
+    value: string;
+    /**
+     * An enumeration.
+     */
+    kind: TaxIdKind;
+};
 
 /**
  * Base model with JSON encoders.
  */
 export type BillingDetails = {
+    /**
+     * The first or given name for these buyer details.
+     */
     firstName?: string | undefined;
+    /**
+     * The last or family name for these buyer details.
+     */
     lastName?: string | undefined;
+    /**
+     * The email address for these buyer details.
+     */
     emailAddress?: string | undefined;
+    /**
+     * The phone number for these buyer details.
+     */
     phoneNumber?: string | undefined;
     /**
-     * Base model with JSON encoders.
+     * The address for these buyer details.
      */
     address?: Address | undefined;
     /**
-     * Base model with JSON encoders.
+     * The tax ID for these buyer details.
      */
     taxId?: TaxId | undefined;
 };
+
+/** @internal */
+export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> = z
+    .object({
+        city: z.string().optional(),
+        country: z.string().optional(),
+        postal_code: z.string().optional(),
+        state: z.string().optional(),
+        state_code: z.string().optional(),
+        house_number_or_name: z.string().optional(),
+        line1: z.string().optional(),
+        line2: z.string().optional(),
+        organization: z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postal_code: "postalCode",
+            state_code: "stateCode",
+            house_number_or_name: "houseNumberOrName",
+        });
+    });
+
+/** @internal */
+export type Address$Outbound = {
+    city?: string | undefined;
+    country?: string | undefined;
+    postal_code?: string | undefined;
+    state?: string | undefined;
+    state_code?: string | undefined;
+    house_number_or_name?: string | undefined;
+    line1?: string | undefined;
+    line2?: string | undefined;
+    organization?: string | undefined;
+};
+
+/** @internal */
+export const Address$outboundSchema: z.ZodType<Address$Outbound, z.ZodTypeDef, Address> = z
+    .object({
+        city: z.string().optional(),
+        country: z.string().optional(),
+        postalCode: z.string().optional(),
+        state: z.string().optional(),
+        stateCode: z.string().optional(),
+        houseNumberOrName: z.string().optional(),
+        line1: z.string().optional(),
+        line2: z.string().optional(),
+        organization: z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postalCode: "postal_code",
+            stateCode: "state_code",
+            houseNumberOrName: "house_number_or_name",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Address$ {
+    /** @deprecated use `Address$inboundSchema` instead. */
+    export const inboundSchema = Address$inboundSchema;
+    /** @deprecated use `Address$outboundSchema` instead. */
+    export const outboundSchema = Address$outboundSchema;
+    /** @deprecated use `Address$Outbound` instead. */
+    export type Outbound = Address$Outbound;
+}
+
+/** @internal */
+export const TaxId$inboundSchema: z.ZodType<TaxId, z.ZodTypeDef, unknown> = z.object({
+    value: z.string(),
+    kind: TaxIdKind$inboundSchema,
+});
+
+/** @internal */
+export type TaxId$Outbound = {
+    value: string;
+    kind: string;
+};
+
+/** @internal */
+export const TaxId$outboundSchema: z.ZodType<TaxId$Outbound, z.ZodTypeDef, TaxId> = z.object({
+    value: z.string(),
+    kind: TaxIdKind$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TaxId$ {
+    /** @deprecated use `TaxId$inboundSchema` instead. */
+    export const inboundSchema = TaxId$inboundSchema;
+    /** @deprecated use `TaxId$outboundSchema` instead. */
+    export const outboundSchema = TaxId$outboundSchema;
+    /** @deprecated use `TaxId$Outbound` instead. */
+    export type Outbound = TaxId$Outbound;
+}
 
 /** @internal */
 export const BillingDetails$inboundSchema: z.ZodType<BillingDetails, z.ZodTypeDef, unknown> = z
@@ -37,8 +168,8 @@ export const BillingDetails$inboundSchema: z.ZodType<BillingDetails, z.ZodTypeDe
         last_name: z.string().optional(),
         email_address: z.string().optional(),
         phone_number: z.string().optional(),
-        address: Address$inboundSchema.optional(),
-        tax_id: TaxId$inboundSchema.optional(),
+        address: z.lazy(() => Address$inboundSchema).optional(),
+        tax_id: z.lazy(() => TaxId$inboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -71,8 +202,8 @@ export const BillingDetails$outboundSchema: z.ZodType<
         lastName: z.string().optional(),
         emailAddress: z.string().optional(),
         phoneNumber: z.string().optional(),
-        address: Address$outboundSchema.optional(),
-        taxId: TaxId$outboundSchema.optional(),
+        address: z.lazy(() => Address$outboundSchema).optional(),
+        taxId: z.lazy(() => TaxId$outboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {

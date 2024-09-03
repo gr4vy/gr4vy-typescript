@@ -6,9 +6,9 @@
 import { AddBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: AddBuyerShippingDetailsRequest = {
-    buyerId: "a6d2d000-3553-438c-ac08-6fa21e9152cb",
+    buyerId: "802d502a-94bb-44f6-bc96-9e9a3efa77df",
     shippingDetailsCreate: {
-        phoneNumber: "+14155552671",
+        phoneNumber: "+442071838750",
         address: {
             country: "DE",
             stateCode: "GB-LND",

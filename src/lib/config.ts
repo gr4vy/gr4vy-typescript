@@ -46,10 +46,10 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 
     const serverParams: Record<string, Params> = {
         production: {
-            gr4vy_id: options.gr4vyId ?? "plantly",
+            gr4vy_id: options.gr4vyId ?? "example",
         },
         sandbox: {
-            gr4vy_id: options.gr4vyId ?? "plantly",
+            gr4vy_id: options.gr4vyId ?? "example",
         },
     };
 
@@ -68,7 +68,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "1.0.0",
-    sdkVersion: "0.6.1",
-    genVersion: "2.407.1",
-    userAgent: "speakeasy-sdk/typescript 0.6.1 2.407.1 1.0.0 @gr4vy/sdk",
+    sdkVersion: "0.7.0",
+    genVersion: "2.409.0",
+    userAgent: "speakeasy-sdk/typescript 0.7.0 2.409.0 1.0.0 @gr4vy/sdk",
 } as const;

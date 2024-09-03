@@ -3,27 +3,124 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
-import {
-    Address,
-    Address$inboundSchema,
-    Address$Outbound,
-    Address$outboundSchema,
-} from "./address.js";
 import * as z from "zod";
+
+/**
+ * The address for these buyer details.
+ */
+export type ShippingDetailsUpdateAddress = {
+    city?: string | undefined;
+    country?: string | undefined;
+    postalCode?: string | undefined;
+    state?: string | undefined;
+    stateCode?: string | undefined;
+    houseNumberOrName?: string | undefined;
+    line1?: string | undefined;
+    line2?: string | undefined;
+    organization?: string | undefined;
+};
 
 /**
  * Base model with JSON encoders.
  */
 export type ShippingDetailsUpdate = {
+    /**
+     * The first or given name for these buyer details.
+     */
     firstName?: string | undefined;
+    /**
+     * The last or family name for these buyer details.
+     */
     lastName?: string | undefined;
+    /**
+     * The email address for these buyer details.
+     */
     emailAddress?: string | undefined;
+    /**
+     * The phone number for these buyer details.
+     */
     phoneNumber?: string | undefined;
     /**
-     * Base model with JSON encoders.
+     * The address for these buyer details.
      */
-    address?: Address | undefined;
+    address?: ShippingDetailsUpdateAddress | undefined;
 };
+
+/** @internal */
+export const ShippingDetailsUpdateAddress$inboundSchema: z.ZodType<
+    ShippingDetailsUpdateAddress,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        city: z.string().optional(),
+        country: z.string().optional(),
+        postal_code: z.string().optional(),
+        state: z.string().optional(),
+        state_code: z.string().optional(),
+        house_number_or_name: z.string().optional(),
+        line1: z.string().optional(),
+        line2: z.string().optional(),
+        organization: z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postal_code: "postalCode",
+            state_code: "stateCode",
+            house_number_or_name: "houseNumberOrName",
+        });
+    });
+
+/** @internal */
+export type ShippingDetailsUpdateAddress$Outbound = {
+    city?: string | undefined;
+    country?: string | undefined;
+    postal_code?: string | undefined;
+    state?: string | undefined;
+    state_code?: string | undefined;
+    house_number_or_name?: string | undefined;
+    line1?: string | undefined;
+    line2?: string | undefined;
+    organization?: string | undefined;
+};
+
+/** @internal */
+export const ShippingDetailsUpdateAddress$outboundSchema: z.ZodType<
+    ShippingDetailsUpdateAddress$Outbound,
+    z.ZodTypeDef,
+    ShippingDetailsUpdateAddress
+> = z
+    .object({
+        city: z.string().optional(),
+        country: z.string().optional(),
+        postalCode: z.string().optional(),
+        state: z.string().optional(),
+        stateCode: z.string().optional(),
+        houseNumberOrName: z.string().optional(),
+        line1: z.string().optional(),
+        line2: z.string().optional(),
+        organization: z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postalCode: "postal_code",
+            stateCode: "state_code",
+            houseNumberOrName: "house_number_or_name",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ShippingDetailsUpdateAddress$ {
+    /** @deprecated use `ShippingDetailsUpdateAddress$inboundSchema` instead. */
+    export const inboundSchema = ShippingDetailsUpdateAddress$inboundSchema;
+    /** @deprecated use `ShippingDetailsUpdateAddress$outboundSchema` instead. */
+    export const outboundSchema = ShippingDetailsUpdateAddress$outboundSchema;
+    /** @deprecated use `ShippingDetailsUpdateAddress$Outbound` instead. */
+    export type Outbound = ShippingDetailsUpdateAddress$Outbound;
+}
 
 /** @internal */
 export const ShippingDetailsUpdate$inboundSchema: z.ZodType<
@@ -36,7 +133,7 @@ export const ShippingDetailsUpdate$inboundSchema: z.ZodType<
         last_name: z.string().optional(),
         email_address: z.string().optional(),
         phone_number: z.string().optional(),
-        address: Address$inboundSchema.optional(),
+        address: z.lazy(() => ShippingDetailsUpdateAddress$inboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -53,7 +150,7 @@ export type ShippingDetailsUpdate$Outbound = {
     last_name?: string | undefined;
     email_address?: string | undefined;
     phone_number?: string | undefined;
-    address?: Address$Outbound | undefined;
+    address?: ShippingDetailsUpdateAddress$Outbound | undefined;
 };
 
 /** @internal */
@@ -67,7 +164,7 @@ export const ShippingDetailsUpdate$outboundSchema: z.ZodType<
         lastName: z.string().optional(),
         emailAddress: z.string().optional(),
         phoneNumber: z.string().optional(),
-        address: Address$outboundSchema.optional(),
+        address: z.lazy(() => ShippingDetailsUpdateAddress$outboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {

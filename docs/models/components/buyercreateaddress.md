@@ -1,15 +1,15 @@
-# Address
+# BuyerCreateAddress
 
 The address for these buyer details.
 
 ## Example Usage
 
 ```typescript
-import { Address } from "@gr4vy/sdk/models/components";
+import { BuyerCreateAddress } from "@gr4vy/sdk/models/components";
 
-let value: Address = {
+let value: BuyerCreateAddress = {
     country: "US",
-    stateCode: "GB-LND",
+    stateCode: "US-CA",
 };
 ```
 

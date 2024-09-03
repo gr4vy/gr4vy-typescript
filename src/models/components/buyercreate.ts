@@ -3,32 +3,272 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
-import {
-    BillingDetails,
-    BillingDetails$inboundSchema,
-    BillingDetails$Outbound,
-    BillingDetails$outboundSchema,
-} from "./billingdetails.js";
+import { TaxIdKind, TaxIdKind$inboundSchema, TaxIdKind$outboundSchema } from "./taxidkind.js";
 import * as z from "zod";
+
+/**
+ * The address for these buyer details.
+ */
+export type BuyerCreateAddress = {
+    city?: string | undefined;
+    country?: string | undefined;
+    postalCode?: string | undefined;
+    state?: string | undefined;
+    stateCode?: string | undefined;
+    houseNumberOrName?: string | undefined;
+    line1?: string | undefined;
+    line2?: string | undefined;
+    organization?: string | undefined;
+};
+
+/**
+ * The tax ID for these buyer details.
+ */
+export type BuyerCreateTaxId = {
+    value: string;
+    /**
+     * An enumeration.
+     */
+    kind: TaxIdKind;
+};
+
+/**
+ * The billing name, address, email, and other fields for this buyer
+ */
+export type BuyerCreateBillingDetails = {
+    /**
+     * The first or given name for these buyer details.
+     */
+    firstName?: string | undefined;
+    /**
+     * The last or family name for these buyer details.
+     */
+    lastName?: string | undefined;
+    /**
+     * The email address for these buyer details.
+     */
+    emailAddress?: string | undefined;
+    /**
+     * The phone number for these buyer details.
+     */
+    phoneNumber?: string | undefined;
+    /**
+     * The address for these buyer details.
+     */
+    address?: BuyerCreateAddress | undefined;
+    /**
+     * The tax ID for these buyer details.
+     */
+    taxId?: BuyerCreateTaxId | undefined;
+};
 
 /**
  * Request body for creating a new buyer
  */
 export type BuyerCreate = {
+    /**
+     * The display name for the buyer to show in the dashboard
+     */
     displayName?: string | undefined;
+    /**
+     * The merchant identifier for this buyer
+     */
     externalIdentifier?: string | undefined;
     /**
-     * Base model with JSON encoders.
+     * The billing name, address, email, and other fields for this buyer
      */
-    billingDetails?: BillingDetails | undefined;
+    billingDetails?: BuyerCreateBillingDetails | undefined;
 };
+
+/** @internal */
+export const BuyerCreateAddress$inboundSchema: z.ZodType<
+    BuyerCreateAddress,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        city: z.string().optional(),
+        country: z.string().optional(),
+        postal_code: z.string().optional(),
+        state: z.string().optional(),
+        state_code: z.string().optional(),
+        house_number_or_name: z.string().optional(),
+        line1: z.string().optional(),
+        line2: z.string().optional(),
+        organization: z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postal_code: "postalCode",
+            state_code: "stateCode",
+            house_number_or_name: "houseNumberOrName",
+        });
+    });
+
+/** @internal */
+export type BuyerCreateAddress$Outbound = {
+    city?: string | undefined;
+    country?: string | undefined;
+    postal_code?: string | undefined;
+    state?: string | undefined;
+    state_code?: string | undefined;
+    house_number_or_name?: string | undefined;
+    line1?: string | undefined;
+    line2?: string | undefined;
+    organization?: string | undefined;
+};
+
+/** @internal */
+export const BuyerCreateAddress$outboundSchema: z.ZodType<
+    BuyerCreateAddress$Outbound,
+    z.ZodTypeDef,
+    BuyerCreateAddress
+> = z
+    .object({
+        city: z.string().optional(),
+        country: z.string().optional(),
+        postalCode: z.string().optional(),
+        state: z.string().optional(),
+        stateCode: z.string().optional(),
+        houseNumberOrName: z.string().optional(),
+        line1: z.string().optional(),
+        line2: z.string().optional(),
+        organization: z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postalCode: "postal_code",
+            stateCode: "state_code",
+            houseNumberOrName: "house_number_or_name",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BuyerCreateAddress$ {
+    /** @deprecated use `BuyerCreateAddress$inboundSchema` instead. */
+    export const inboundSchema = BuyerCreateAddress$inboundSchema;
+    /** @deprecated use `BuyerCreateAddress$outboundSchema` instead. */
+    export const outboundSchema = BuyerCreateAddress$outboundSchema;
+    /** @deprecated use `BuyerCreateAddress$Outbound` instead. */
+    export type Outbound = BuyerCreateAddress$Outbound;
+}
+
+/** @internal */
+export const BuyerCreateTaxId$inboundSchema: z.ZodType<BuyerCreateTaxId, z.ZodTypeDef, unknown> =
+    z.object({
+        value: z.string(),
+        kind: TaxIdKind$inboundSchema,
+    });
+
+/** @internal */
+export type BuyerCreateTaxId$Outbound = {
+    value: string;
+    kind: string;
+};
+
+/** @internal */
+export const BuyerCreateTaxId$outboundSchema: z.ZodType<
+    BuyerCreateTaxId$Outbound,
+    z.ZodTypeDef,
+    BuyerCreateTaxId
+> = z.object({
+    value: z.string(),
+    kind: TaxIdKind$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BuyerCreateTaxId$ {
+    /** @deprecated use `BuyerCreateTaxId$inboundSchema` instead. */
+    export const inboundSchema = BuyerCreateTaxId$inboundSchema;
+    /** @deprecated use `BuyerCreateTaxId$outboundSchema` instead. */
+    export const outboundSchema = BuyerCreateTaxId$outboundSchema;
+    /** @deprecated use `BuyerCreateTaxId$Outbound` instead. */
+    export type Outbound = BuyerCreateTaxId$Outbound;
+}
+
+/** @internal */
+export const BuyerCreateBillingDetails$inboundSchema: z.ZodType<
+    BuyerCreateBillingDetails,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        first_name: z.string().optional(),
+        last_name: z.string().optional(),
+        email_address: z.string().optional(),
+        phone_number: z.string().optional(),
+        address: z.lazy(() => BuyerCreateAddress$inboundSchema).optional(),
+        tax_id: z.lazy(() => BuyerCreateTaxId$inboundSchema).optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            first_name: "firstName",
+            last_name: "lastName",
+            email_address: "emailAddress",
+            phone_number: "phoneNumber",
+            tax_id: "taxId",
+        });
+    });
+
+/** @internal */
+export type BuyerCreateBillingDetails$Outbound = {
+    first_name?: string | undefined;
+    last_name?: string | undefined;
+    email_address?: string | undefined;
+    phone_number?: string | undefined;
+    address?: BuyerCreateAddress$Outbound | undefined;
+    tax_id?: BuyerCreateTaxId$Outbound | undefined;
+};
+
+/** @internal */
+export const BuyerCreateBillingDetails$outboundSchema: z.ZodType<
+    BuyerCreateBillingDetails$Outbound,
+    z.ZodTypeDef,
+    BuyerCreateBillingDetails
+> = z
+    .object({
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+        emailAddress: z.string().optional(),
+        phoneNumber: z.string().optional(),
+        address: z.lazy(() => BuyerCreateAddress$outboundSchema).optional(),
+        taxId: z.lazy(() => BuyerCreateTaxId$outboundSchema).optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            firstName: "first_name",
+            lastName: "last_name",
+            emailAddress: "email_address",
+            phoneNumber: "phone_number",
+            taxId: "tax_id",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BuyerCreateBillingDetails$ {
+    /** @deprecated use `BuyerCreateBillingDetails$inboundSchema` instead. */
+    export const inboundSchema = BuyerCreateBillingDetails$inboundSchema;
+    /** @deprecated use `BuyerCreateBillingDetails$outboundSchema` instead. */
+    export const outboundSchema = BuyerCreateBillingDetails$outboundSchema;
+    /** @deprecated use `BuyerCreateBillingDetails$Outbound` instead. */
+    export type Outbound = BuyerCreateBillingDetails$Outbound;
+}
 
 /** @internal */
 export const BuyerCreate$inboundSchema: z.ZodType<BuyerCreate, z.ZodTypeDef, unknown> = z
     .object({
         display_name: z.string().optional(),
         external_identifier: z.string().optional(),
-        billing_details: BillingDetails$inboundSchema.optional(),
+        billing_details: z.lazy(() => BuyerCreateBillingDetails$inboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -42,7 +282,7 @@ export const BuyerCreate$inboundSchema: z.ZodType<BuyerCreate, z.ZodTypeDef, unk
 export type BuyerCreate$Outbound = {
     display_name?: string | undefined;
     external_identifier?: string | undefined;
-    billing_details?: BillingDetails$Outbound | undefined;
+    billing_details?: BuyerCreateBillingDetails$Outbound | undefined;
 };
 
 /** @internal */
@@ -54,7 +294,7 @@ export const BuyerCreate$outboundSchema: z.ZodType<
     .object({
         displayName: z.string().optional(),
         externalIdentifier: z.string().optional(),
-        billingDetails: BillingDetails$outboundSchema.optional(),
+        billingDetails: z.lazy(() => BuyerCreateBillingDetails$outboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {

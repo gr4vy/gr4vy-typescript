@@ -8,20 +8,20 @@ Base model with JSON encoders.
 import { ShippingDetailsCreate } from "@gr4vy/sdk/models/components";
 
 let value: ShippingDetailsCreate = {
-    phoneNumber: "+14155552671",
+    phoneNumber: "+442071838750",
     address: {
-        country: "DE",
-        stateCode: "US-CA",
+        country: "GB",
+        stateCode: "GB-LND",
     },
 };
 ```
 
 ## Fields
 
-| Field                                                    | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `firstName`                                              | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |                                                          |
-| `lastName`                                               | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |                                                          |
-| `emailAddress`                                           | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |                                                          |
-| `phoneNumber`                                            | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      | +14155552671                                             |
-| `address`                                                | [components.Address](../../models/components/address.md) | :heavy_minus_sign:                                       | Base model with JSON encoders.                           |                                                          |
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `firstName`                                                                                        | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The first or given name for these buyer details.                                                   |                                                                                                    |
+| `lastName`                                                                                         | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The last or family name for these buyer details.                                                   |                                                                                                    |
+| `emailAddress`                                                                                     | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The email address for these buyer details.                                                         |                                                                                                    |
+| `phoneNumber`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The phone number for these buyer details.                                                          | +14155552671                                                                                       |
+| `address`                                                                                          | [components.ShippingDetailsCreateAddress](../../models/components/shippingdetailscreateaddress.md) | :heavy_minus_sign:                                                                                 | The address for these buyer details.                                                               |                                                                                                    |

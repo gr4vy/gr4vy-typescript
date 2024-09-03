@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: Add servers definition
+  version: 0.0.1
+actions:
+  - target: "$.servers"
+    remove: true
+  - target: "$"
+    update:
+      servers:
+        - url: https://api.{gr4vy_id}.gr4vy.app
+          x-speakeasy-server-id: production
+          variables:
+            gr4vy_id:
+              default: example
+              description: The subdomain for your Gr4vy instance.
+              example: example
+        - url: https://api.sandbox.{gr4vy_id}.gr4vy.app
+          x-speakeasy-server-id: sandbox
+          variables:
+            gr4vy_id:
+              default: example
+              description: The subdomain for your Gr4vy instance.
+              example: example

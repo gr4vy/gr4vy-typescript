@@ -6,13 +6,13 @@
 import { UpdateBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateBuyerShippingDetailsRequest = {
-    buyerId: "2d721657-6506-4641-870d-9d21f9ad030c",
-    shippingDetailsId: "4ecc11a0-8364-4290-a8b8-502a55e7f73b",
+    buyerId: "8b711e5b-7fd2-4ed0-a892-1cddc692601f",
+    shippingDetailsId: "b576b0d5-f0d3-40c5-bbb2-587053202c73",
     shippingDetailsUpdate: {
         phoneNumber: "+442071838750",
         address: {
             country: "GB",
-            stateCode: "GB-LND",
+            stateCode: "US-CA",
         },
     },
 };

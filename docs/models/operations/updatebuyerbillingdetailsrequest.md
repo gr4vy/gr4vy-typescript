@@ -10,7 +10,7 @@ let value: UpdateBuyerBillingDetailsRequest = {
         phoneNumber: "+14155552671",
         address: {
             country: "GB",
-            stateCode: "GB-LND",
+            stateCode: "US-CA",
         },
     },
 };

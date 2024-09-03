@@ -7,9 +7,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-    const result = await gr4vy.createAccountUpdaterJob({
-        paymentMethodIds: ["88e8fffc-c40a-4d66-83ff-49739007c7a2"],
-    });
+    const result = await gr4vy.listBuyerShippingDetails("002969f0-dfe4-49ea-b5d8-b20d7e84726f");
 
     // Handle the result
     console.log(result);
