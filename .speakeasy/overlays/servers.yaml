@@ -22,3 +22,4 @@ actions:
               default: example
               description: The subdomain for your Gr4vy instance.
               example: example
+              required: true

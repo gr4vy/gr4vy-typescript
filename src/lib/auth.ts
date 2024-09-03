@@ -3,7 +3,7 @@ import snakeCaseKeys from "snakecase-keys";
 import { v4 as uuid } from "uuid";
 
 import { SDK_METADATA } from "./config";
-import { CartItem } from "../models/components/cartitem";
+// import { CartItem } from "../models/components/cartitem";
 import { getKeyId, getRuntime } from "./helpers";
 
 const ua = getRuntime();
@@ -126,7 +126,7 @@ export type EmbedParams = {
   buyerId?: string;
   buyerExternalIdentifier?: string;
   metadata?: Record<string, string>;
-  cartItems?: Array<CartItem>;
+  // cartItems?: Array<CartItem>;
   merchantAccountId?: string;
   connectionOptions?: Record<string, any>;
 };

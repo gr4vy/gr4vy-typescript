@@ -6,7 +6,7 @@ sources:
             - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
         overlays:
             - location: ./.speakeasy/overlays/servers.yaml
-            - location: ./.speakeasy/overlays/globals.yaml
+            # - location: ./.speakeasy/overlays/globals.yaml
             - location: ./.speakeasy/overlays/security.yaml
         registry:
             location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi

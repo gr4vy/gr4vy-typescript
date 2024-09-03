@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: e2a7191c1e086196c1d9747d96003faa
+  docChecksum: 159f3e4ba550b39132d5dd1d6f97faee
   docVersion: 1.0.0
-  speakeasyVersion: 1.389.0
+  speakeasyVersion: 1.389.1
   generationVersion: 2.409.0
-  releaseVersion: 0.7.0
-  configChecksum: 6642b01c0eccd2c795b0694bd3c8b6ae
+  releaseVersion: 0.7.3
+  configChecksum: 2a33cda693b1c5ff896016ba880df46e
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
