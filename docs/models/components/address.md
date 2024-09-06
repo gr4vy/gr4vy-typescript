@@ -1,6 +1,6 @@
 # Address
 
-The address for these buyer details.
+The address for the person.
 
 ## Example Usage
 
@@ -8,21 +8,21 @@ The address for these buyer details.
 import { Address } from "@gr4vy/sdk/models/components";
 
 let value: Address = {
-    country: "US",
+    country: "DE",
     stateCode: "GB-LND",
 };
 ```
 
 ## Fields
 
-| Field               | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `city`              | *string*            | :heavy_minus_sign:  | N/A                 |                     |
-| `country`           | *string*            | :heavy_minus_sign:  | N/A                 | DE                  |
-| `postalCode`        | *string*            | :heavy_minus_sign:  | N/A                 |                     |
-| `state`             | *string*            | :heavy_minus_sign:  | N/A                 |                     |
-| `stateCode`         | *string*            | :heavy_minus_sign:  | N/A                 | GB-LND              |
-| `houseNumberOrName` | *string*            | :heavy_minus_sign:  | N/A                 |                     |
-| `line1`             | *string*            | :heavy_minus_sign:  | N/A                 |                     |
-| `line2`             | *string*            | :heavy_minus_sign:  | N/A                 |                     |
-| `organization`      | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| Field                                            | Type                                             | Required                                         | Description                                      | Example                                          |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| `city`                                           | *string*                                         | :heavy_minus_sign:                               | The city of the address                          |                                                  |
+| `country`                                        | *string*                                         | :heavy_minus_sign:                               | The country of the address                       | DE                                               |
+| `postalCode`                                     | *string*                                         | :heavy_minus_sign:                               | The postal code of the address                   |                                                  |
+| `state`                                          | *string*                                         | :heavy_minus_sign:                               | The full state name of the address               |                                                  |
+| `stateCode`                                      | *string*                                         | :heavy_minus_sign:                               | The state code of the address                    | GB-LND                                           |
+| `houseNumberOrName`                              | *string*                                         | :heavy_minus_sign:                               | The house number or name of the address.         |                                                  |
+| `line1`                                          | *string*                                         | :heavy_minus_sign:                               | The first line of the address.                   |                                                  |
+| `line2`                                          | *string*                                         | :heavy_minus_sign:                               | The second line of the address.                  |                                                  |
+| `organization`                                   | *string*                                         | :heavy_minus_sign:                               | The company or organization name of the address. |                                                  |

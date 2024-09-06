@@ -1,5 +1,7 @@
 # BillingDetailsSummaryType
 
+Always `billing-details`.
+
 ## Example Usage
 
 ```typescript

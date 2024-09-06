@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.7.5
+  version: 0.8.2
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -26,7 +26,7 @@ typescript:
       '@types/uuid': ^9.0.8
     peerDependencies: {}
   additionalPackageJSON: {}
-  author: Speakeasy
+  author: Gr4vy
   clientServerStatusCodesAsErrors: true
   enumFormat: union
   envVarPrefix: GR4VY

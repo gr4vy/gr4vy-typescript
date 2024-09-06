@@ -7,23 +7,56 @@ import { ClosedEnum } from "../../types/enums.js";
 import * as z from "zod";
 
 /**
- * The address for these buyer details.
+ * The address for the person.
  */
 export type ShippingDetailsAddress = {
-    city?: string | undefined;
-    country?: string | undefined;
-    postalCode?: string | undefined;
-    state?: string | undefined;
-    stateCode?: string | undefined;
-    houseNumberOrName?: string | undefined;
-    line1?: string | undefined;
-    line2?: string | undefined;
-    organization?: string | undefined;
+    /**
+     * The city of the address
+     */
+    city?: string | null | undefined;
+    /**
+     * The country of the address
+     */
+    country?: string | null | undefined;
+    /**
+     * The postal code of the address
+     */
+    postalCode?: string | null | undefined;
+    /**
+     * The full state name of the address
+     */
+    state?: string | null | undefined;
+    /**
+     * The state code of the address
+     */
+    stateCode?: string | null | undefined;
+    /**
+     * The house number or name of the address.
+     */
+    houseNumberOrName?: string | null | undefined;
+    /**
+     * The first line of the address.
+     */
+    line1?: string | null | undefined;
+    /**
+     * The second line of the address.
+     */
+    line2?: string | null | undefined;
+    /**
+     * The company or organization name of the address.
+     */
+    organization?: string | null | undefined;
 };
 
+/**
+ * Always `shipping-details`.
+ */
 export const ShippingDetailsType = {
     ShippingDetails: "shipping-details",
 } as const;
+/**
+ * Always `shipping-details`.
+ */
 export type ShippingDetailsType = ClosedEnum<typeof ShippingDetailsType>;
 
 /**
@@ -31,27 +64,36 @@ export type ShippingDetailsType = ClosedEnum<typeof ShippingDetailsType>;
  */
 export type ShippingDetails = {
     /**
-     * The first or given name for these buyer details.
+     * The first or given name for the person.
      */
-    firstName?: string | undefined;
+    firstName?: string | null | undefined;
     /**
-     * The last or family name for these buyer details.
+     * The last or family name for the person.
      */
-    lastName?: string | undefined;
+    lastName?: string | null | undefined;
     /**
-     * The email address for these buyer details.
+     * The email address for the person.
      */
-    emailAddress?: string | undefined;
+    emailAddress?: string | null | undefined;
     /**
-     * The phone number for these buyer details.
+     * The phone number for the person.
      */
-    phoneNumber?: string | undefined;
+    phoneNumber?: string | null | undefined;
     /**
-     * The address for these buyer details.
+     * The address for the person.
      */
-    address?: ShippingDetailsAddress | undefined;
-    id?: string | undefined;
-    buyerId?: string | undefined;
+    address?: ShippingDetailsAddress | null | undefined;
+    /**
+     * The ID of the shipping details resource.
+     */
+    id?: string | null | undefined;
+    /**
+     * The ID of the buyer to which these shipping details belong.
+     */
+    buyerId?: string | null | undefined;
+    /**
+     * Always `shipping-details`.
+     */
     type?: ShippingDetailsType | undefined;
 };
 
@@ -62,15 +104,15 @@ export const ShippingDetailsAddress$inboundSchema: z.ZodType<
     unknown
 > = z
     .object({
-        city: z.string().optional(),
-        country: z.string().optional(),
-        postal_code: z.string().optional(),
-        state: z.string().optional(),
-        state_code: z.string().optional(),
-        house_number_or_name: z.string().optional(),
-        line1: z.string().optional(),
-        line2: z.string().optional(),
-        organization: z.string().optional(),
+        city: z.nullable(z.string()).optional(),
+        country: z.nullable(z.string()).optional(),
+        postal_code: z.nullable(z.string()).optional(),
+        state: z.nullable(z.string()).optional(),
+        state_code: z.nullable(z.string()).optional(),
+        house_number_or_name: z.nullable(z.string()).optional(),
+        line1: z.nullable(z.string()).optional(),
+        line2: z.nullable(z.string()).optional(),
+        organization: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -82,15 +124,15 @@ export const ShippingDetailsAddress$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ShippingDetailsAddress$Outbound = {
-    city?: string | undefined;
-    country?: string | undefined;
-    postal_code?: string | undefined;
-    state?: string | undefined;
-    state_code?: string | undefined;
-    house_number_or_name?: string | undefined;
-    line1?: string | undefined;
-    line2?: string | undefined;
-    organization?: string | undefined;
+    city?: string | null | undefined;
+    country?: string | null | undefined;
+    postal_code?: string | null | undefined;
+    state?: string | null | undefined;
+    state_code?: string | null | undefined;
+    house_number_or_name?: string | null | undefined;
+    line1?: string | null | undefined;
+    line2?: string | null | undefined;
+    organization?: string | null | undefined;
 };
 
 /** @internal */
@@ -100,15 +142,15 @@ export const ShippingDetailsAddress$outboundSchema: z.ZodType<
     ShippingDetailsAddress
 > = z
     .object({
-        city: z.string().optional(),
-        country: z.string().optional(),
-        postalCode: z.string().optional(),
-        state: z.string().optional(),
-        stateCode: z.string().optional(),
-        houseNumberOrName: z.string().optional(),
-        line1: z.string().optional(),
-        line2: z.string().optional(),
-        organization: z.string().optional(),
+        city: z.nullable(z.string()).optional(),
+        country: z.nullable(z.string()).optional(),
+        postalCode: z.nullable(z.string()).optional(),
+        state: z.nullable(z.string()).optional(),
+        stateCode: z.nullable(z.string()).optional(),
+        houseNumberOrName: z.nullable(z.string()).optional(),
+        line1: z.nullable(z.string()).optional(),
+        line2: z.nullable(z.string()).optional(),
+        organization: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -153,13 +195,13 @@ export namespace ShippingDetailsType$ {
 /** @internal */
 export const ShippingDetails$inboundSchema: z.ZodType<ShippingDetails, z.ZodTypeDef, unknown> = z
     .object({
-        first_name: z.string().optional(),
-        last_name: z.string().optional(),
-        email_address: z.string().optional(),
-        phone_number: z.string().optional(),
-        address: z.lazy(() => ShippingDetailsAddress$inboundSchema).optional(),
-        id: z.string().optional(),
-        buyer_id: z.string().optional(),
+        first_name: z.nullable(z.string()).optional(),
+        last_name: z.nullable(z.string()).optional(),
+        email_address: z.nullable(z.string()).optional(),
+        phone_number: z.nullable(z.string()).optional(),
+        address: z.nullable(z.lazy(() => ShippingDetailsAddress$inboundSchema)).optional(),
+        id: z.nullable(z.string()).optional(),
+        buyer_id: z.nullable(z.string()).optional(),
         type: ShippingDetailsType$inboundSchema.default("shipping-details"),
     })
     .transform((v) => {
@@ -174,13 +216,13 @@ export const ShippingDetails$inboundSchema: z.ZodType<ShippingDetails, z.ZodType
 
 /** @internal */
 export type ShippingDetails$Outbound = {
-    first_name?: string | undefined;
-    last_name?: string | undefined;
-    email_address?: string | undefined;
-    phone_number?: string | undefined;
-    address?: ShippingDetailsAddress$Outbound | undefined;
-    id?: string | undefined;
-    buyer_id?: string | undefined;
+    first_name?: string | null | undefined;
+    last_name?: string | null | undefined;
+    email_address?: string | null | undefined;
+    phone_number?: string | null | undefined;
+    address?: ShippingDetailsAddress$Outbound | null | undefined;
+    id?: string | null | undefined;
+    buyer_id?: string | null | undefined;
     type: string;
 };
 
@@ -191,13 +233,13 @@ export const ShippingDetails$outboundSchema: z.ZodType<
     ShippingDetails
 > = z
     .object({
-        firstName: z.string().optional(),
-        lastName: z.string().optional(),
-        emailAddress: z.string().optional(),
-        phoneNumber: z.string().optional(),
-        address: z.lazy(() => ShippingDetailsAddress$outboundSchema).optional(),
-        id: z.string().optional(),
-        buyerId: z.string().optional(),
+        firstName: z.nullable(z.string()).optional(),
+        lastName: z.nullable(z.string()).optional(),
+        emailAddress: z.nullable(z.string()).optional(),
+        phoneNumber: z.nullable(z.string()).optional(),
+        address: z.nullable(z.lazy(() => ShippingDetailsAddress$outboundSchema)).optional(),
+        id: z.nullable(z.string()).optional(),
+        buyerId: z.nullable(z.string()).optional(),
         type: ShippingDetailsType$outboundSchema.default("shipping-details"),
     })
     .transform((v) => {

@@ -1,5 +1,7 @@
 # ShippingDetailsType
 
+Always `shipping-details`.
+
 ## Example Usage
 
 ```typescript

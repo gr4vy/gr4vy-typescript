@@ -29,7 +29,7 @@ let value: BuyerCollection = {
 
 | Field                                                  | Type                                                   | Required                                               | Description                                            |
 | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `items`                                                | [components.Buyer](../../models/components/buyer.md)[] | :heavy_check_mark:                                     | N/A                                                    |
-| `limit`                                                | *number*                                               | :heavy_minus_sign:                                     | N/A                                                    |
-| `nextCursor`                                           | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
-| `previousCursor`                                       | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
+| `items`                                                | [components.Buyer](../../models/components/buyer.md)[] | :heavy_check_mark:                                     | A page of items returned for this request              |
+| `limit`                                                | *number*                                               | :heavy_minus_sign:                                     | The number of items for this page                      |
+| `nextCursor`                                           | *string*                                               | :heavy_minus_sign:                                     | The cursor pointing at the next page of items.         |
+| `previousCursor`                                       | *string*                                               | :heavy_minus_sign:                                     | The cursor pointing at the previous page of items.     |

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 8c961283d2319291baaf8086401a6006
+  docChecksum: 12c0c7a9cebc9044f805d249944176a4
   docVersion: 1.0.0
   speakeasyVersion: 1.390.8
   generationVersion: 2.409.8
-  releaseVersion: 0.7.5
-  configChecksum: 9af6fa5603023956f46f3918f925a1b7
+  releaseVersion: 0.8.2
+  configChecksum: 506dee2e44fd800ac21b7cfad0785847
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
@@ -24,6 +24,7 @@ features:
     globalServerURLs: 2.82.4
     groups: 2.81.2
     nameOverrides: 2.81.2
+    nullables: 0.1.0
     pagination: 2.82.6
     responseFormat: 0.2.3
     retries: 2.83.0
@@ -96,12 +97,12 @@ generatedFiles:
   - src/models/operations/deletebuyershippingdetails.ts
   - src/models/components/buyercollection.ts
   - src/models/components/buyer.ts
-  - src/models/components/billingdetails.ts
   - src/models/components/taxidkind.ts
   - src/models/components/validationerror.ts
   - src/models/components/buyercreate.ts
   - src/models/components/buyerupdate.ts
   - src/models/components/billingdetailssummary.ts
+  - src/models/components/billingdetails.ts
   - src/models/components/shippingdetailslist.ts
   - src/models/components/shippingdetails.ts
   - src/models/components/shippingdetailscreate.ts
@@ -125,10 +126,10 @@ generatedFiles:
   - docs/models/operations/deletebuyershippingdetailsrequest.md
   - docs/models/components/buyercollection.md
   - docs/models/components/type.md
+  - docs/models/components/buyeraddress.md
+  - docs/models/components/buyertaxid.md
+  - docs/models/components/buyerbillingdetails.md
   - docs/models/components/buyer.md
-  - docs/models/components/address.md
-  - docs/models/components/taxid.md
-  - docs/models/components/billingdetails.md
   - docs/models/components/taxidkind.md
   - docs/models/components/loc.md
   - docs/models/components/validationerror.md
@@ -136,11 +137,17 @@ generatedFiles:
   - docs/models/components/buyercreatetaxid.md
   - docs/models/components/buyercreatebillingdetails.md
   - docs/models/components/buyercreate.md
+  - docs/models/components/buyerupdateaddress.md
+  - docs/models/components/buyerupdatetaxid.md
+  - docs/models/components/buyerupdatebillingdetails.md
   - docs/models/components/buyerupdate.md
-  - docs/models/components/billingdetailssummaryaddress.md
-  - docs/models/components/billingdetailssummarytaxid.md
+  - docs/models/components/address.md
+  - docs/models/components/taxid.md
   - docs/models/components/billingdetailssummarytype.md
   - docs/models/components/billingdetailssummary.md
+  - docs/models/components/billingdetailsaddress.md
+  - docs/models/components/billingdetailstaxid.md
+  - docs/models/components/billingdetails.md
   - docs/models/components/shippingdetailslist.md
   - docs/models/components/shippingdetailsaddress.md
   - docs/models/components/shippingdetailstype.md

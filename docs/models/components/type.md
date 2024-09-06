@@ -1,5 +1,7 @@
 # Type
 
+Always `buyer`.
+
 ## Example Usage
 
 ```typescript

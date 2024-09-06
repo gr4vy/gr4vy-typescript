@@ -1,7 +1,7 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.7.5",
-  "author": "Speakeasy",
+  "version": "0.8.2",
+  "author": "Gr4vy",
   "main": "./index.js",
   "sideEffects": false,
   "repository": {

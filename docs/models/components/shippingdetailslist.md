@@ -10,10 +10,10 @@ import { ShippingDetailsList } from "@gr4vy/sdk/models/components";
 let value: ShippingDetailsList = {
     items: [
         {
-            phoneNumber: "+14155552671",
+            phoneNumber: "+442071838750",
             address: {
-                country: "GB",
-                stateCode: "GB-LND",
+                country: "DE",
+                stateCode: "US-CA",
             },
         },
     ],

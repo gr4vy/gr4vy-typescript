@@ -4,33 +4,141 @@
 
 import { remap as remap$ } from "../../lib/primitives.js";
 import { ClosedEnum } from "../../types/enums.js";
-import {
-    BillingDetails,
-    BillingDetails$inboundSchema,
-    BillingDetails$Outbound,
-    BillingDetails$outboundSchema,
-} from "./billingdetails.js";
+import { TaxIdKind, TaxIdKind$inboundSchema, TaxIdKind$outboundSchema } from "./taxidkind.js";
 import * as z from "zod";
 
+/**
+ * Always `buyer`.
+ */
 export const Type = {
     Buyer: "buyer",
 } as const;
+/**
+ * Always `buyer`.
+ */
 export type Type = ClosedEnum<typeof Type>;
+
+/**
+ * The address for the person.
+ */
+export type BuyerAddress = {
+    /**
+     * The city of the address
+     */
+    city?: string | null | undefined;
+    /**
+     * The country of the address
+     */
+    country?: string | null | undefined;
+    /**
+     * The postal code of the address
+     */
+    postalCode?: string | null | undefined;
+    /**
+     * The full state name of the address
+     */
+    state?: string | null | undefined;
+    /**
+     * The state code of the address
+     */
+    stateCode?: string | null | undefined;
+    /**
+     * The house number or name of the address.
+     */
+    houseNumberOrName?: string | null | undefined;
+    /**
+     * The first line of the address.
+     */
+    line1?: string | null | undefined;
+    /**
+     * The second line of the address.
+     */
+    line2?: string | null | undefined;
+    /**
+     * The company or organization name of the address.
+     */
+    organization?: string | null | undefined;
+};
+
+/**
+ * The tax ID for these buyer details.
+ */
+export type BuyerTaxId = {
+    /**
+     * The regional tax identifier
+     */
+    value: string;
+    /**
+     * The kind of tax identifier in a format matching `country.name`, e.g. `gb.vat`.
+     */
+    kind: TaxIdKind;
+};
+
+/**
+ * The billing name, address, email, and other fields for this buyer.
+ */
+export type BuyerBillingDetails = {
+    /**
+     * The first or given name for the person.
+     */
+    firstName?: string | null | undefined;
+    /**
+     * The last or family name for the person.
+     */
+    lastName?: string | null | undefined;
+    /**
+     * The email address for the person.
+     */
+    emailAddress?: string | null | undefined;
+    /**
+     * The phone number for the person.
+     */
+    phoneNumber?: string | null | undefined;
+    /**
+     * The address for the person.
+     */
+    address?: BuyerAddress | null | undefined;
+    /**
+     * The tax ID for these buyer details.
+     */
+    taxId?: BuyerTaxId | null | undefined;
+};
 
 /**
  * Base model with JSON encoders.
  */
 export type Buyer = {
-    type?: Type | undefined;
-    id?: string | undefined;
-    merchantAccountId: string;
-    displayName?: string | undefined;
-    externalIdentifier?: string | undefined;
     /**
-     * Base model with JSON encoders.
+     * Always `buyer`.
      */
-    billingDetails?: BillingDetails | undefined;
+    type?: Type | undefined;
+    /**
+     * The ID for the buyer.
+     */
+    id?: string | null | undefined;
+    /**
+     * The ID of the merchant account this buyer belongs to.
+     */
+    merchantAccountId: string;
+    /**
+     * The display name for the buyer.
+     */
+    displayName?: string | null | undefined;
+    /**
+     * The merchant identifier for this buyer.
+     */
+    externalIdentifier?: string | null | undefined;
+    /**
+     * The billing name, address, email, and other fields for this buyer.
+     */
+    billingDetails?: BuyerBillingDetails | null | undefined;
+    /**
+     * The date this buyer was created at.
+     */
     createdAt: Date;
+    /**
+     * The date this buyer was last updated at.
+     */
     updatedAt: Date;
 };
 
@@ -52,14 +160,189 @@ export namespace Type$ {
 }
 
 /** @internal */
+export const BuyerAddress$inboundSchema: z.ZodType<BuyerAddress, z.ZodTypeDef, unknown> = z
+    .object({
+        city: z.nullable(z.string()).optional(),
+        country: z.nullable(z.string()).optional(),
+        postal_code: z.nullable(z.string()).optional(),
+        state: z.nullable(z.string()).optional(),
+        state_code: z.nullable(z.string()).optional(),
+        house_number_or_name: z.nullable(z.string()).optional(),
+        line1: z.nullable(z.string()).optional(),
+        line2: z.nullable(z.string()).optional(),
+        organization: z.nullable(z.string()).optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postal_code: "postalCode",
+            state_code: "stateCode",
+            house_number_or_name: "houseNumberOrName",
+        });
+    });
+
+/** @internal */
+export type BuyerAddress$Outbound = {
+    city?: string | null | undefined;
+    country?: string | null | undefined;
+    postal_code?: string | null | undefined;
+    state?: string | null | undefined;
+    state_code?: string | null | undefined;
+    house_number_or_name?: string | null | undefined;
+    line1?: string | null | undefined;
+    line2?: string | null | undefined;
+    organization?: string | null | undefined;
+};
+
+/** @internal */
+export const BuyerAddress$outboundSchema: z.ZodType<
+    BuyerAddress$Outbound,
+    z.ZodTypeDef,
+    BuyerAddress
+> = z
+    .object({
+        city: z.nullable(z.string()).optional(),
+        country: z.nullable(z.string()).optional(),
+        postalCode: z.nullable(z.string()).optional(),
+        state: z.nullable(z.string()).optional(),
+        stateCode: z.nullable(z.string()).optional(),
+        houseNumberOrName: z.nullable(z.string()).optional(),
+        line1: z.nullable(z.string()).optional(),
+        line2: z.nullable(z.string()).optional(),
+        organization: z.nullable(z.string()).optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            postalCode: "postal_code",
+            stateCode: "state_code",
+            houseNumberOrName: "house_number_or_name",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BuyerAddress$ {
+    /** @deprecated use `BuyerAddress$inboundSchema` instead. */
+    export const inboundSchema = BuyerAddress$inboundSchema;
+    /** @deprecated use `BuyerAddress$outboundSchema` instead. */
+    export const outboundSchema = BuyerAddress$outboundSchema;
+    /** @deprecated use `BuyerAddress$Outbound` instead. */
+    export type Outbound = BuyerAddress$Outbound;
+}
+
+/** @internal */
+export const BuyerTaxId$inboundSchema: z.ZodType<BuyerTaxId, z.ZodTypeDef, unknown> = z.object({
+    value: z.string(),
+    kind: TaxIdKind$inboundSchema,
+});
+
+/** @internal */
+export type BuyerTaxId$Outbound = {
+    value: string;
+    kind: string;
+};
+
+/** @internal */
+export const BuyerTaxId$outboundSchema: z.ZodType<BuyerTaxId$Outbound, z.ZodTypeDef, BuyerTaxId> =
+    z.object({
+        value: z.string(),
+        kind: TaxIdKind$outboundSchema,
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BuyerTaxId$ {
+    /** @deprecated use `BuyerTaxId$inboundSchema` instead. */
+    export const inboundSchema = BuyerTaxId$inboundSchema;
+    /** @deprecated use `BuyerTaxId$outboundSchema` instead. */
+    export const outboundSchema = BuyerTaxId$outboundSchema;
+    /** @deprecated use `BuyerTaxId$Outbound` instead. */
+    export type Outbound = BuyerTaxId$Outbound;
+}
+
+/** @internal */
+export const BuyerBillingDetails$inboundSchema: z.ZodType<
+    BuyerBillingDetails,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        first_name: z.nullable(z.string()).optional(),
+        last_name: z.nullable(z.string()).optional(),
+        email_address: z.nullable(z.string()).optional(),
+        phone_number: z.nullable(z.string()).optional(),
+        address: z.nullable(z.lazy(() => BuyerAddress$inboundSchema)).optional(),
+        tax_id: z.nullable(z.lazy(() => BuyerTaxId$inboundSchema)).optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            first_name: "firstName",
+            last_name: "lastName",
+            email_address: "emailAddress",
+            phone_number: "phoneNumber",
+            tax_id: "taxId",
+        });
+    });
+
+/** @internal */
+export type BuyerBillingDetails$Outbound = {
+    first_name?: string | null | undefined;
+    last_name?: string | null | undefined;
+    email_address?: string | null | undefined;
+    phone_number?: string | null | undefined;
+    address?: BuyerAddress$Outbound | null | undefined;
+    tax_id?: BuyerTaxId$Outbound | null | undefined;
+};
+
+/** @internal */
+export const BuyerBillingDetails$outboundSchema: z.ZodType<
+    BuyerBillingDetails$Outbound,
+    z.ZodTypeDef,
+    BuyerBillingDetails
+> = z
+    .object({
+        firstName: z.nullable(z.string()).optional(),
+        lastName: z.nullable(z.string()).optional(),
+        emailAddress: z.nullable(z.string()).optional(),
+        phoneNumber: z.nullable(z.string()).optional(),
+        address: z.nullable(z.lazy(() => BuyerAddress$outboundSchema)).optional(),
+        taxId: z.nullable(z.lazy(() => BuyerTaxId$outboundSchema)).optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            firstName: "first_name",
+            lastName: "last_name",
+            emailAddress: "email_address",
+            phoneNumber: "phone_number",
+            taxId: "tax_id",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BuyerBillingDetails$ {
+    /** @deprecated use `BuyerBillingDetails$inboundSchema` instead. */
+    export const inboundSchema = BuyerBillingDetails$inboundSchema;
+    /** @deprecated use `BuyerBillingDetails$outboundSchema` instead. */
+    export const outboundSchema = BuyerBillingDetails$outboundSchema;
+    /** @deprecated use `BuyerBillingDetails$Outbound` instead. */
+    export type Outbound = BuyerBillingDetails$Outbound;
+}
+
+/** @internal */
 export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
     .object({
         type: Type$inboundSchema.default("buyer"),
-        id: z.string().optional(),
+        id: z.nullable(z.string()).optional(),
         merchant_account_id: z.string(),
-        display_name: z.string().optional(),
-        external_identifier: z.string().optional(),
-        billing_details: BillingDetails$inboundSchema.optional(),
+        display_name: z.nullable(z.string()).optional(),
+        external_identifier: z.nullable(z.string()).optional(),
+        billing_details: z.nullable(z.lazy(() => BuyerBillingDetails$inboundSchema)).optional(),
         created_at: z
             .string()
             .datetime({ offset: true })
@@ -83,11 +366,11 @@ export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
 /** @internal */
 export type Buyer$Outbound = {
     type: string;
-    id?: string | undefined;
+    id?: string | null | undefined;
     merchant_account_id: string;
-    display_name?: string | undefined;
-    external_identifier?: string | undefined;
-    billing_details?: BillingDetails$Outbound | undefined;
+    display_name?: string | null | undefined;
+    external_identifier?: string | null | undefined;
+    billing_details?: BuyerBillingDetails$Outbound | null | undefined;
     created_at: string;
     updated_at: string;
 };
@@ -96,11 +379,11 @@ export type Buyer$Outbound = {
 export const Buyer$outboundSchema: z.ZodType<Buyer$Outbound, z.ZodTypeDef, Buyer> = z
     .object({
         type: Type$outboundSchema.default("buyer"),
-        id: z.string().optional(),
+        id: z.nullable(z.string()).optional(),
         merchantAccountId: z.string(),
-        displayName: z.string().optional(),
-        externalIdentifier: z.string().optional(),
-        billingDetails: BillingDetails$outboundSchema.optional(),
+        displayName: z.nullable(z.string()).optional(),
+        externalIdentifier: z.nullable(z.string()).optional(),
+        billingDetails: z.nullable(z.lazy(() => BuyerBillingDetails$outboundSchema)).optional(),
         createdAt: z.date().transform((v) => v.toISOString()),
         updatedAt: z.date().transform((v) => v.toISOString()),
     })

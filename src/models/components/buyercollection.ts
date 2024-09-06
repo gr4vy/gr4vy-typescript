@@ -10,10 +10,22 @@ import * as z from "zod";
  * Collection of results.
  */
 export type BuyerCollection = {
+    /**
+     * A page of items returned for this request
+     */
     items: Array<Buyer>;
+    /**
+     * The number of items for this page
+     */
     limit?: number | undefined;
-    nextCursor?: string | undefined;
-    previousCursor?: string | undefined;
+    /**
+     * The cursor pointing at the next page of items.
+     */
+    nextCursor?: string | null | undefined;
+    /**
+     * The cursor pointing at the previous page of items.
+     */
+    previousCursor?: string | null | undefined;
 };
 
 /** @internal */
@@ -21,8 +33,8 @@ export const BuyerCollection$inboundSchema: z.ZodType<BuyerCollection, z.ZodType
     .object({
         items: z.array(Buyer$inboundSchema),
         limit: z.number().int().default(20),
-        next_cursor: z.string().optional(),
-        previous_cursor: z.string().optional(),
+        next_cursor: z.nullable(z.string()).optional(),
+        previous_cursor: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -35,8 +47,8 @@ export const BuyerCollection$inboundSchema: z.ZodType<BuyerCollection, z.ZodType
 export type BuyerCollection$Outbound = {
     items: Array<Buyer$Outbound>;
     limit: number;
-    next_cursor?: string | undefined;
-    previous_cursor?: string | undefined;
+    next_cursor?: string | null | undefined;
+    previous_cursor?: string | null | undefined;
 };
 
 /** @internal */
@@ -48,8 +60,8 @@ export const BuyerCollection$outboundSchema: z.ZodType<
     .object({
         items: z.array(Buyer$outboundSchema),
         limit: z.number().int().default(20),
-        nextCursor: z.string().optional(),
-        previousCursor: z.string().optional(),
+        nextCursor: z.nullable(z.string()).optional(),
+        previousCursor: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {

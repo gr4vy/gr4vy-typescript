@@ -1,13 +1,13 @@
-# ShippingDetailsAddress
+# BillingDetailsAddress
 
 The address for the person.
 
 ## Example Usage
 
 ```typescript
-import { ShippingDetailsAddress } from "@gr4vy/sdk/models/components";
+import { BillingDetailsAddress } from "@gr4vy/sdk/models/components";
 
-let value: ShippingDetailsAddress = {
+let value: BillingDetailsAddress = {
     country: "US",
     stateCode: "GB-LND",
 };

@@ -12,7 +12,7 @@ sources:
         registry:
             location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:
-    first-target:
+    typescript:
         target: typescript
         source: openapi
         publish:

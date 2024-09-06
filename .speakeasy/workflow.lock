@@ -2,16 +2,22 @@ speakeasyVersion: 1.390.8
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:b345c5de7018c47d67f08afba307ae772ce9ca4db27ca36343caed97b9d5c1f8
-        sourceBlobDigest: sha256:18c33c5e7d8d2b9711dd4679f2e5008cf481f505d046e6fc93a304542e8691a4
+        sourceRevisionDigest: sha256:e12ca0731cf9d1249884106cab0f7fb21a576961b89879d98c7557a97ff66951
+        sourceBlobDigest: sha256:91e79b636c103690ceea03207427b95c02d1ccfa6487d63a47d7c262d053c6ec
         tags:
             - latest
 targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:b345c5de7018c47d67f08afba307ae772ce9ca4db27ca36343caed97b9d5c1f8
-        sourceBlobDigest: sha256:18c33c5e7d8d2b9711dd4679f2e5008cf481f505d046e6fc93a304542e8691a4
+        sourceRevisionDigest: sha256:916f35ec72323b7de793b9e99cf14fac33e497c7148c84b996d5cbfd69870398
+        sourceBlobDigest: sha256:9ed8dd012845981cbfd2fffa608bf33138ca66d764d144933170a6218ca49e99
+        outLocation: /Users/cbetta/code/gr4vy-js
+    typescript:
+        source: openapi
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:e12ca0731cf9d1249884106cab0f7fb21a576961b89879d98c7557a97ff66951
+        sourceBlobDigest: sha256:91e79b636c103690ceea03207427b95c02d1ccfa6487d63a47d7c262d053c6ec
         outLocation: /Users/cbetta/code/gr4vy-js
 workflow:
     workflowVersion: 1.0.0
@@ -26,7 +32,7 @@ workflow:
             registry:
                 location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
     targets:
-        first-target:
+        typescript:
             target: typescript
             source: openapi
             publish:

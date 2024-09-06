@@ -7,59 +7,89 @@ import { TaxIdKind, TaxIdKind$inboundSchema, TaxIdKind$outboundSchema } from "./
 import * as z from "zod";
 
 /**
- * The address for these buyer details.
+ * The address for the person.
  */
 export type BuyerCreateAddress = {
-    city?: string | undefined;
-    country?: string | undefined;
-    postalCode?: string | undefined;
-    state?: string | undefined;
-    stateCode?: string | undefined;
-    houseNumberOrName?: string | undefined;
-    line1?: string | undefined;
-    line2?: string | undefined;
-    organization?: string | undefined;
+    /**
+     * The city of the address
+     */
+    city?: string | null | undefined;
+    /**
+     * The country of the address
+     */
+    country?: string | null | undefined;
+    /**
+     * The postal code of the address
+     */
+    postalCode?: string | null | undefined;
+    /**
+     * The full state name of the address
+     */
+    state?: string | null | undefined;
+    /**
+     * The state code of the address
+     */
+    stateCode?: string | null | undefined;
+    /**
+     * The house number or name of the address.
+     */
+    houseNumberOrName?: string | null | undefined;
+    /**
+     * The first line of the address.
+     */
+    line1?: string | null | undefined;
+    /**
+     * The second line of the address.
+     */
+    line2?: string | null | undefined;
+    /**
+     * The company or organization name of the address.
+     */
+    organization?: string | null | undefined;
 };
 
 /**
  * The tax ID for these buyer details.
  */
 export type BuyerCreateTaxId = {
+    /**
+     * The regional tax identifier
+     */
     value: string;
     /**
-     * An enumeration.
+     * The kind of tax identifier in a format matching `country.name`, e.g. `gb.vat`.
      */
     kind: TaxIdKind;
 };
 
 /**
- * The billing name, address, email, and other fields for this buyer
+ * The billing name, address, email, and other fields for this buyer.
  */
 export type BuyerCreateBillingDetails = {
     /**
-     * The first or given name for these buyer details.
+     * The first or given name for the person.
      */
-    firstName?: string | undefined;
+    firstName?: string | null | undefined;
     /**
-     * The last or family name for these buyer details.
+     * The last or family name for the person.
      */
-    lastName?: string | undefined;
+    lastName?: string | null | undefined;
     /**
-     * The email address for these buyer details.
+     * The email address for the person.
      */
-    emailAddress?: string | undefined;
+    emailAddress?: string | null | undefined;
     /**
-     * The phone number for these buyer details.
+     * The phone number for the person.
      */
-    phoneNumber?: string | undefined;
+    phoneNumber?: string | null | undefined;
     /**
-     * The address for these buyer details.
+     * The address for the person.
      */
-    address?: BuyerCreateAddress | undefined;
+    address?: BuyerCreateAddress | null | undefined;
     /**
      * The tax ID for these buyer details.
      */
-    taxId?: BuyerCreateTaxId | undefined;
+    taxId?: BuyerCreateTaxId | null | undefined;
 };
 
 /**
@@ -67,15 +97,15 @@ export type BuyerCreateBillingDetails = {
  */
 export type BuyerCreate = {
     /**
-     * The display name for the buyer to show in the dashboard
+     * The display name for the buyer.
      */
     displayName?: string | undefined;
     /**
-     * The merchant identifier for this buyer
+     * The merchant identifier for this buyer.
      */
     externalIdentifier?: string | undefined;
     /**
-     * The billing name, address, email, and other fields for this buyer
+     * The billing name, address, email, and other fields for this buyer.
      */
     billingDetails?: BuyerCreateBillingDetails | undefined;
 };
@@ -87,15 +117,15 @@ export const BuyerCreateAddress$inboundSchema: z.ZodType<
     unknown
 > = z
     .object({
-        city: z.string().optional(),
-        country: z.string().optional(),
-        postal_code: z.string().optional(),
-        state: z.string().optional(),
-        state_code: z.string().optional(),
-        house_number_or_name: z.string().optional(),
-        line1: z.string().optional(),
-        line2: z.string().optional(),
-        organization: z.string().optional(),
+        city: z.nullable(z.string()).optional(),
+        country: z.nullable(z.string()).optional(),
+        postal_code: z.nullable(z.string()).optional(),
+        state: z.nullable(z.string()).optional(),
+        state_code: z.nullable(z.string()).optional(),
+        house_number_or_name: z.nullable(z.string()).optional(),
+        line1: z.nullable(z.string()).optional(),
+        line2: z.nullable(z.string()).optional(),
+        organization: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -107,15 +137,15 @@ export const BuyerCreateAddress$inboundSchema: z.ZodType<
 
 /** @internal */
 export type BuyerCreateAddress$Outbound = {
-    city?: string | undefined;
-    country?: string | undefined;
-    postal_code?: string | undefined;
-    state?: string | undefined;
-    state_code?: string | undefined;
-    house_number_or_name?: string | undefined;
-    line1?: string | undefined;
-    line2?: string | undefined;
-    organization?: string | undefined;
+    city?: string | null | undefined;
+    country?: string | null | undefined;
+    postal_code?: string | null | undefined;
+    state?: string | null | undefined;
+    state_code?: string | null | undefined;
+    house_number_or_name?: string | null | undefined;
+    line1?: string | null | undefined;
+    line2?: string | null | undefined;
+    organization?: string | null | undefined;
 };
 
 /** @internal */
@@ -125,15 +155,15 @@ export const BuyerCreateAddress$outboundSchema: z.ZodType<
     BuyerCreateAddress
 > = z
     .object({
-        city: z.string().optional(),
-        country: z.string().optional(),
-        postalCode: z.string().optional(),
-        state: z.string().optional(),
-        stateCode: z.string().optional(),
-        houseNumberOrName: z.string().optional(),
-        line1: z.string().optional(),
-        line2: z.string().optional(),
-        organization: z.string().optional(),
+        city: z.nullable(z.string()).optional(),
+        country: z.nullable(z.string()).optional(),
+        postalCode: z.nullable(z.string()).optional(),
+        state: z.nullable(z.string()).optional(),
+        stateCode: z.nullable(z.string()).optional(),
+        houseNumberOrName: z.nullable(z.string()).optional(),
+        line1: z.nullable(z.string()).optional(),
+        line2: z.nullable(z.string()).optional(),
+        organization: z.nullable(z.string()).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -199,12 +229,12 @@ export const BuyerCreateBillingDetails$inboundSchema: z.ZodType<
     unknown
 > = z
     .object({
-        first_name: z.string().optional(),
-        last_name: z.string().optional(),
-        email_address: z.string().optional(),
-        phone_number: z.string().optional(),
-        address: z.lazy(() => BuyerCreateAddress$inboundSchema).optional(),
-        tax_id: z.lazy(() => BuyerCreateTaxId$inboundSchema).optional(),
+        first_name: z.nullable(z.string()).optional(),
+        last_name: z.nullable(z.string()).optional(),
+        email_address: z.nullable(z.string()).optional(),
+        phone_number: z.nullable(z.string()).optional(),
+        address: z.nullable(z.lazy(() => BuyerCreateAddress$inboundSchema)).optional(),
+        tax_id: z.nullable(z.lazy(() => BuyerCreateTaxId$inboundSchema)).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -218,12 +248,12 @@ export const BuyerCreateBillingDetails$inboundSchema: z.ZodType<
 
 /** @internal */
 export type BuyerCreateBillingDetails$Outbound = {
-    first_name?: string | undefined;
-    last_name?: string | undefined;
-    email_address?: string | undefined;
-    phone_number?: string | undefined;
-    address?: BuyerCreateAddress$Outbound | undefined;
-    tax_id?: BuyerCreateTaxId$Outbound | undefined;
+    first_name?: string | null | undefined;
+    last_name?: string | null | undefined;
+    email_address?: string | null | undefined;
+    phone_number?: string | null | undefined;
+    address?: BuyerCreateAddress$Outbound | null | undefined;
+    tax_id?: BuyerCreateTaxId$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -233,12 +263,12 @@ export const BuyerCreateBillingDetails$outboundSchema: z.ZodType<
     BuyerCreateBillingDetails
 > = z
     .object({
-        firstName: z.string().optional(),
-        lastName: z.string().optional(),
-        emailAddress: z.string().optional(),
-        phoneNumber: z.string().optional(),
-        address: z.lazy(() => BuyerCreateAddress$outboundSchema).optional(),
-        taxId: z.lazy(() => BuyerCreateTaxId$outboundSchema).optional(),
+        firstName: z.nullable(z.string()).optional(),
+        lastName: z.nullable(z.string()).optional(),
+        emailAddress: z.nullable(z.string()).optional(),
+        phoneNumber: z.nullable(z.string()).optional(),
+        address: z.nullable(z.lazy(() => BuyerCreateAddress$outboundSchema)).optional(),
+        taxId: z.nullable(z.lazy(() => BuyerCreateTaxId$outboundSchema)).optional(),
     })
     .transform((v) => {
         return remap$(v, {
