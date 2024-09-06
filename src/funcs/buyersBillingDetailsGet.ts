@@ -9,6 +9,7 @@ import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
     ConnectionError,
     InvalidRequestError,
@@ -21,7 +22,6 @@ import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
-import * as z from "zod";
 
 /**
  * Get buyer billing details
@@ -36,7 +36,7 @@ export async function buyersBillingDetailsGet(
     options?: RequestOptions
 ): Promise<
     Result<
-        any,
+        components.BillingDetailsSummary,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -117,7 +117,7 @@ export async function buyersBillingDetailsGet(
     };
 
     const [result$] = await m$.match<
-        any,
+        components.BillingDetailsSummary,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -127,7 +127,7 @@ export async function buyersBillingDetailsGet(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, z.any()),
+        m$.json(200, components.BillingDetailsSummary$inboundSchema),
         m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });

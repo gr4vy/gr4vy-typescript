@@ -6,7 +6,7 @@
 import { GetBuyerRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetBuyerRequest = {
-    buyerId: "89bd9d8d-69a6-474e-8f46-7cc8796ed151",
+    buyerId: "d8d69a67-4e0f-4467-8c87-96ed151a05df",
 };
 ```
 

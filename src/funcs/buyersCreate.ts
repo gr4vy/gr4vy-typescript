@@ -21,7 +21,6 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { Result } from "../types/fp.js";
-import * as z from "zod";
 
 /**
  * Add a buyer
@@ -35,7 +34,7 @@ export async function buyersCreate(
     options?: RequestOptions
 ): Promise<
     Result<
-        any,
+        components.Buyer,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -108,7 +107,7 @@ export async function buyersCreate(
     };
 
     const [result$] = await m$.match<
-        any,
+        components.Buyer,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -118,7 +117,7 @@ export async function buyersCreate(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(201, z.any()),
+        m$.json(201, components.Buyer$inboundSchema),
         m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });

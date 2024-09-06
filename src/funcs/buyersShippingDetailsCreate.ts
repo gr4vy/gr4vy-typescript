@@ -22,7 +22,6 @@ import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
-import * as z from "zod";
 
 /**
  * Add buyer shipping details
@@ -37,7 +36,7 @@ export async function buyersShippingDetailsCreate(
     options?: RequestOptions
 ): Promise<
     Result<
-        any,
+        components.ShippingDetails,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -120,7 +119,7 @@ export async function buyersShippingDetailsCreate(
     };
 
     const [result$] = await m$.match<
-        any,
+        components.ShippingDetails,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -130,7 +129,7 @@ export async function buyersShippingDetailsCreate(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(201, z.any()),
+        m$.json(201, components.ShippingDetails$inboundSchema),
         m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });

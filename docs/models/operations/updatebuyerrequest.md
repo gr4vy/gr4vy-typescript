@@ -6,12 +6,12 @@
 import { UpdateBuyerRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateBuyerRequest = {
-    buyerId: "a05dfc2d-df7c-4c78-8a1b-a928fc816742",
+    buyerId: "c2ddf7cc-78ca-41ba-928f-c816742cb739",
     buyerUpdate: {
         billingDetails: {
-            phoneNumber: "+442071838750",
+            phoneNumber: "+14155552671",
             address: {
-                country: "US",
+                country: "DE",
                 stateCode: "GB-LND",
             },
         },

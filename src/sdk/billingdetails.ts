@@ -19,7 +19,7 @@ export class BillingDetails extends ClientSDK {
         buyerId?: string | undefined,
         buyerExternalIdentifier?: string | undefined,
         options?: RequestOptions
-    ): Promise<any> {
+    ): Promise<components.BillingDetailsSummary> {
         return unwrapAsync(
             buyersBillingDetailsGet(this, buyerId, buyerExternalIdentifier, options)
         );
@@ -36,7 +36,7 @@ export class BillingDetails extends ClientSDK {
         buyerId?: string | undefined,
         buyerExternalIdentifier?: string | undefined,
         options?: RequestOptions
-    ): Promise<any> {
+    ): Promise<components.BillingDetailsSummary> {
         return unwrapAsync(
             buyersBillingDetailsUpdate(
                 this,

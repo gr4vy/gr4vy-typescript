@@ -18,7 +18,7 @@ export class ShippingDetails extends ClientSDK {
      * @remarks
      * List all the shipping details for a buyer, using the buyer ID
      */
-    async list(buyerId: string, options?: RequestOptions): Promise<any> {
+    async list(buyerId: string, options?: RequestOptions): Promise<components.ShippingDetailsList> {
         return unwrapAsync(buyersShippingDetailsList(this, buyerId, options));
     }
 
@@ -32,7 +32,7 @@ export class ShippingDetails extends ClientSDK {
         buyerId: string,
         shippingDetailsCreate: components.ShippingDetailsCreate,
         options?: RequestOptions
-    ): Promise<any> {
+    ): Promise<components.ShippingDetails> {
         return unwrapAsync(
             buyersShippingDetailsCreate(this, buyerId, shippingDetailsCreate, options)
         );
@@ -44,7 +44,11 @@ export class ShippingDetails extends ClientSDK {
      * @remarks
      * Fetch the shipping details for a buyer, using the buyer ID
      */
-    async get(buyerId: string, shippingDetailsId: string, options?: RequestOptions): Promise<any> {
+    async get(
+        buyerId: string,
+        shippingDetailsId: string,
+        options?: RequestOptions
+    ): Promise<components.ShippingDetails> {
         return unwrapAsync(buyersShippingDetailsGet(this, buyerId, shippingDetailsId, options));
     }
 
@@ -59,7 +63,7 @@ export class ShippingDetails extends ClientSDK {
         shippingDetailsId: string,
         shippingDetailsUpdate: components.ShippingDetailsUpdate,
         options?: RequestOptions
-    ): Promise<any> {
+    ): Promise<components.ShippingDetails> {
         return unwrapAsync(
             buyersShippingDetailsUpdate(
                 this,

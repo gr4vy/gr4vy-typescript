@@ -1,17 +1,17 @@
-# ShippingDetailsCreate
+# BillingDetailsSummary
 
 Base model with JSON encoders.
 
 ## Example Usage
 
 ```typescript
-import { ShippingDetailsCreate } from "@gr4vy/sdk/models/components";
+import { BillingDetailsSummary } from "@gr4vy/sdk/models/components";
 
-let value: ShippingDetailsCreate = {
-    phoneNumber: "+442071838750",
+let value: BillingDetailsSummary = {
+    phoneNumber: "+14155552671",
     address: {
         country: "DE",
-        stateCode: "US-CA",
+        stateCode: "GB-LND",
     },
 };
 ```
@@ -24,4 +24,6 @@ let value: ShippingDetailsCreate = {
 | `lastName`                                                                                         | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The last or family name for these buyer details.                                                   |                                                                                                    |
 | `emailAddress`                                                                                     | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The email address for these buyer details.                                                         |                                                                                                    |
 | `phoneNumber`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The phone number for these buyer details.                                                          | +14155552671                                                                                       |
-| `address`                                                                                          | [components.ShippingDetailsCreateAddress](../../models/components/shippingdetailscreateaddress.md) | :heavy_minus_sign:                                                                                 | The address for these buyer details.                                                               |                                                                                                    |
+| `address`                                                                                          | [components.BillingDetailsSummaryAddress](../../models/components/billingdetailssummaryaddress.md) | :heavy_minus_sign:                                                                                 | The address for these buyer details.                                                               |                                                                                                    |
+| `taxId`                                                                                            | [components.BillingDetailsSummaryTaxId](../../models/components/billingdetailssummarytaxid.md)     | :heavy_minus_sign:                                                                                 | The tax ID for these buyer details.                                                                |                                                                                                    |
+| `type`                                                                                             | [components.BillingDetailsSummaryType](../../models/components/billingdetailssummarytype.md)       | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |

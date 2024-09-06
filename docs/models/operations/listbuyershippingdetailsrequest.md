@@ -6,7 +6,7 @@
 import { ListBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListBuyerShippingDetailsRequest = {
-    buyerId: "5907aff1-a3a2-4fa9-8677-39251aa52c3f",
+    buyerId: "ff1a3a2f-a946-4773-9251-aa52c3f5ad01",
 };
 ```
 

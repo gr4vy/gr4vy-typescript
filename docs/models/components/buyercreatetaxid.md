@@ -9,7 +9,7 @@ import { BuyerCreateTaxId } from "@gr4vy/sdk/models/components";
 
 let value: BuyerCreateTaxId = {
     value: "<value>",
-    kind: "ru.kpp",
+    kind: "ca.pst_bc",
 };
 ```
 

@@ -9,7 +9,7 @@ import { ShippingDetailsUpdateAddress } from "@gr4vy/sdk/models/components";
 
 let value: ShippingDetailsUpdateAddress = {
     country: "DE",
-    stateCode: "GB-LND",
+    stateCode: "US-CA",
 };
 ```
 

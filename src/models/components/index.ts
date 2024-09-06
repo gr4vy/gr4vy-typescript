@@ -3,10 +3,15 @@
  */
 
 export * from "./billingdetails.js";
+export * from "./billingdetailssummary.js";
+export * from "./buyer.js";
+export * from "./buyercollection.js";
 export * from "./buyercreate.js";
 export * from "./buyerupdate.js";
 export * from "./security.js";
+export * from "./shippingdetails.js";
 export * from "./shippingdetailscreate.js";
+export * from "./shippingdetailslist.js";
 export * from "./shippingdetailsupdate.js";
 export * from "./taxidkind.js";
 export * from "./validationerror.js";

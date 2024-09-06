@@ -50,7 +50,10 @@ export class Buyers extends ClientSDK {
      * @remarks
      * Create a new buyer record.
      */
-    async create(request: components.BuyerCreate, options?: RequestOptions): Promise<any> {
+    async create(
+        request: components.BuyerCreate,
+        options?: RequestOptions
+    ): Promise<components.Buyer> {
         return unwrapAsync(buyersCreate(this, request, options));
     }
 
@@ -60,7 +63,7 @@ export class Buyers extends ClientSDK {
      * @remarks
      * Fetches a buyer by its ID.
      */
-    async get(buyerId: string, options?: RequestOptions): Promise<any> {
+    async get(buyerId: string, options?: RequestOptions): Promise<components.Buyer> {
         return unwrapAsync(buyersGet(this, buyerId, options));
     }
 
@@ -74,7 +77,7 @@ export class Buyers extends ClientSDK {
         buyerId: string,
         buyerUpdate: components.BuyerUpdate,
         options?: RequestOptions
-    ): Promise<any> {
+    ): Promise<components.Buyer> {
         return unwrapAsync(buyersUpdate(this, buyerId, buyerUpdate, options));
     }
 

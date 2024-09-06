@@ -122,6 +122,11 @@ async function run() {
     let result;
     try {
         result = await gr4vy.buyers.list();
+
+        for await (const page of result) {
+            // Handle the page
+            console.log(page);
+        }
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -140,11 +145,6 @@ async function run() {
                 throw err;
             }
         }
-    }
-
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
     }
 }
 

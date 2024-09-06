@@ -11,7 +11,7 @@ let value: BuyerUpdate = {
     billingDetails: {
         phoneNumber: "+442071838750",
         address: {
-            country: "US",
+            country: "GB",
             stateCode: "GB-LND",
         },
     },

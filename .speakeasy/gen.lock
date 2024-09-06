@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 3b599081e9cf1bca845e38090565d576
+  docChecksum: 8c961283d2319291baaf8086401a6006
   docVersion: 1.0.0
-  speakeasyVersion: 1.390.0
-  generationVersion: 2.409.0
-  releaseVersion: 0.7.4
-  configChecksum: 9c5d12f973142feaa6b6538c80a41b6b
+  speakeasyVersion: 1.390.8
+  generationVersion: 2.409.8
+  releaseVersion: 0.7.5
+  configChecksum: 9af6fa5603023956f46f3918f925a1b7
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.16.0
+    core: 3.16.1
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
@@ -94,15 +94,20 @@ generatedFiles:
   - src/models/operations/getbuyershippingdetails.ts
   - src/models/operations/updatebuyershippingdetails.ts
   - src/models/operations/deletebuyershippingdetails.ts
-  - src/models/errors/httpvalidationerror.ts
+  - src/models/components/buyercollection.ts
+  - src/models/components/buyer.ts
+  - src/models/components/billingdetails.ts
+  - src/models/components/taxidkind.ts
   - src/models/components/validationerror.ts
   - src/models/components/buyercreate.ts
-  - src/models/components/taxidkind.ts
   - src/models/components/buyerupdate.ts
-  - src/models/components/billingdetails.ts
+  - src/models/components/billingdetailssummary.ts
+  - src/models/components/shippingdetailslist.ts
+  - src/models/components/shippingdetails.ts
   - src/models/components/shippingdetailscreate.ts
   - src/models/components/shippingdetailsupdate.ts
   - src/models/components/security.ts
+  - src/models/errors/httpvalidationerror.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
@@ -118,23 +123,34 @@ generatedFiles:
   - docs/models/operations/getbuyershippingdetailsrequest.md
   - docs/models/operations/updatebuyershippingdetailsrequest.md
   - docs/models/operations/deletebuyershippingdetailsrequest.md
-  - docs/models/errors/httpvalidationerror.md
+  - docs/models/components/buyercollection.md
+  - docs/models/components/type.md
+  - docs/models/components/buyer.md
+  - docs/models/components/address.md
+  - docs/models/components/taxid.md
+  - docs/models/components/billingdetails.md
+  - docs/models/components/taxidkind.md
   - docs/models/components/loc.md
   - docs/models/components/validationerror.md
   - docs/models/components/buyercreateaddress.md
   - docs/models/components/buyercreatetaxid.md
   - docs/models/components/buyercreatebillingdetails.md
   - docs/models/components/buyercreate.md
-  - docs/models/components/taxidkind.md
   - docs/models/components/buyerupdate.md
-  - docs/models/components/address.md
-  - docs/models/components/taxid.md
-  - docs/models/components/billingdetails.md
+  - docs/models/components/billingdetailssummaryaddress.md
+  - docs/models/components/billingdetailssummarytaxid.md
+  - docs/models/components/billingdetailssummarytype.md
+  - docs/models/components/billingdetailssummary.md
+  - docs/models/components/shippingdetailslist.md
+  - docs/models/components/shippingdetailsaddress.md
+  - docs/models/components/shippingdetailstype.md
+  - docs/models/components/shippingdetails.md
   - docs/models/components/shippingdetailscreateaddress.md
   - docs/models/components/shippingdetailscreate.md
   - docs/models/components/shippingdetailsupdateaddress.md
   - docs/models/components/shippingdetailsupdate.md
   - docs/models/components/security.md
+  - docs/models/errors/httpvalidationerror.md
   - docs/sdks/gr4vy/README.md
   - docs/lib/utils/retryconfig.md
   - docs/sdks/buyers/README.md

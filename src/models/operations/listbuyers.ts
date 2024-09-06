@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type ListBuyersRequest = {
@@ -25,7 +26,7 @@ export type ListBuyersRequest = {
 };
 
 export type ListBuyersResponse = {
-    result?: any | undefined;
+    result: components.BuyerCollection;
 };
 
 /** @internal */
@@ -89,7 +90,7 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
     unknown
 > = z
     .object({
-        Result: z.any().optional(),
+        Result: components.BuyerCollection$inboundSchema,
     })
     .transform((v) => {
         return remap$(v, {
@@ -99,7 +100,7 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListBuyersResponse$Outbound = {
-    Result?: any | undefined;
+    Result: components.BuyerCollection$Outbound;
 };
 
 /** @internal */
@@ -109,7 +110,7 @@ export const ListBuyersResponse$outboundSchema: z.ZodType<
     ListBuyersResponse
 > = z
     .object({
-        result: z.any().optional(),
+        result: components.BuyerCollection$outboundSchema,
     })
     .transform((v) => {
         return remap$(v, {

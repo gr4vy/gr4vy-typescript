@@ -23,7 +23,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.buyers.billingDetails.get();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -73,7 +73,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.BillingDetailsSummary](../../models/components/billingdetailssummary.md)\>**
 
 ### Errors
 
@@ -104,7 +104,7 @@ async function run() {
       stateCode: "US-CA",
     },
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -161,7 +161,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.BillingDetailsSummary](../../models/components/billingdetailssummary.md)\>**
 
 ### Errors
 

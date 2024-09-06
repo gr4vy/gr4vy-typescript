@@ -1,17 +1,17 @@
-speakeasyVersion: 1.390.0
+speakeasyVersion: 1.390.8
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:c89ccd6ede387d398341cb75f0c5ad2b342c8723f6a6ddd921a3afe6c1da6ac0
-        sourceBlobDigest: sha256:4bc4cfbfc174c94dcecd9c2636d77267bc0fbd2cea777a602afb97e78ba0e097
+        sourceRevisionDigest: sha256:b345c5de7018c47d67f08afba307ae772ce9ca4db27ca36343caed97b9d5c1f8
+        sourceBlobDigest: sha256:18c33c5e7d8d2b9711dd4679f2e5008cf481f505d046e6fc93a304542e8691a4
         tags:
             - latest
 targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:c89ccd6ede387d398341cb75f0c5ad2b342c8723f6a6ddd921a3afe6c1da6ac0
-        sourceBlobDigest: sha256:4bc4cfbfc174c94dcecd9c2636d77267bc0fbd2cea777a602afb97e78ba0e097
+        sourceRevisionDigest: sha256:b345c5de7018c47d67f08afba307ae772ce9ca4db27ca36343caed97b9d5c1f8
+        sourceBlobDigest: sha256:18c33c5e7d8d2b9711dd4679f2e5008cf481f505d046e6fc93a304542e8691a4
         outLocation: /Users/cbetta/code/gr4vy-js
 workflow:
     workflowVersion: 1.0.0
@@ -19,7 +19,7 @@ workflow:
     sources:
         openapi:
             inputs:
-                - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+                - location: /Users/cbetta/code/core-api/openapi/openapi.json
             overlays:
                 - location: ./.speakeasy/overlays/servers.yaml
                 - location: ./.speakeasy/overlays/security.yaml

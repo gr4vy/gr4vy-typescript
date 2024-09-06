@@ -3,7 +3,8 @@ speakeasyVersion: latest
 sources:
     openapi:
         inputs:
-            - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+            # - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+            - location: /Users/cbetta/code/core-api/openapi/openapi.json
         overlays:
             - location: ./.speakeasy/overlays/servers.yaml
             # - location: ./.speakeasy/overlays/globals.yaml

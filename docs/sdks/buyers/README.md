@@ -26,7 +26,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.buyers.list();
-
+  
   for await (const page of result) {
     // Handle the page
     console.log(page);
@@ -115,7 +115,7 @@ async function run() {
       },
     },
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -172,7 +172,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.Buyer](../../models/components/buyer.md)\>**
 
 ### Errors
 
@@ -197,7 +197,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.buyers.get("b18d8d81-fd7b-4764-a31e-475cb1f36591");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -246,7 +246,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.Buyer](../../models/components/buyer.md)\>**
 
 ### Errors
 
@@ -279,7 +279,7 @@ async function run() {
       },
     },
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -337,7 +337,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.Buyer](../../models/components/buyer.md)\>**
 
 ### Errors
 
@@ -362,7 +362,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.buyers.delete("8db863f6-ef9b-413a-8a70-cb816b33de6b");
-
+  
   // Handle the result
   console.log(result)
 }

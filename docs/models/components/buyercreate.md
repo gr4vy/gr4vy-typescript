@@ -11,7 +11,7 @@ let value: BuyerCreate = {
     billingDetails: {
         phoneNumber: "+14155552671",
         address: {
-            country: "GB",
+            country: "US",
             stateCode: "US-CA",
         },
     },

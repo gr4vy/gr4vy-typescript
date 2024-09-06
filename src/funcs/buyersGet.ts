@@ -9,6 +9,7 @@ import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
     ConnectionError,
     InvalidRequestError,
@@ -21,7 +22,6 @@ import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
-import * as z from "zod";
 
 /**
  * Get a buyer
@@ -35,7 +35,7 @@ export async function buyersGet(
     options?: RequestOptions
 ): Promise<
     Result<
-        any,
+        components.Buyer,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -116,7 +116,7 @@ export async function buyersGet(
     };
 
     const [result$] = await m$.match<
-        any,
+        components.Buyer,
         | errors.HTTPValidationError
         | SDKError
         | SDKValidationError
@@ -126,7 +126,7 @@ export async function buyersGet(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, z.any()),
+        m$.json(200, components.Buyer$inboundSchema),
         m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });

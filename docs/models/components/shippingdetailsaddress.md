@@ -1,15 +1,15 @@
-# Address
+# ShippingDetailsAddress
 
 The address for these buyer details.
 
 ## Example Usage
 
 ```typescript
-import { Address } from "@gr4vy/sdk/models/components";
+import { ShippingDetailsAddress } from "@gr4vy/sdk/models/components";
 
-let value: Address = {
-    country: "US",
-    stateCode: "GB-LND",
+let value: ShippingDetailsAddress = {
+    country: "DE",
+    stateCode: "US-CA",
 };
 ```
 

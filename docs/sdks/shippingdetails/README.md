@@ -26,7 +26,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.list("c184a429-302e-4aca-80db-f1718b882a50");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -75,7 +75,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.ShippingDetailsList](../../models/components/shippingdetailslist.md)\>**
 
 ### Errors
 
@@ -106,7 +106,7 @@ async function run() {
       stateCode: "US-CA",
     },
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -162,7 +162,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.ShippingDetails](../../models/components/shippingdetails.md)\>**
 
 ### Errors
 
@@ -187,7 +187,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.get("b18d8d81-fd7b-4764-a31e-475cb1f36591", "58ccc65b-c928-4154-952e-30c048b8c2b5");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -237,7 +237,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.ShippingDetails](../../models/components/shippingdetails.md)\>**
 
 ### Errors
 
@@ -268,7 +268,7 @@ async function run() {
       stateCode: "US-CA",
     },
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -325,7 +325,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[components.ShippingDetails](../../models/components/shippingdetails.md)\>**
 
 ### Errors
 
@@ -350,7 +350,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.delete("8db863f6-ef9b-413a-8a70-cb816b33de6b", "c73b0ed8-237a-4f3f-aef4-283e9b9ee4b8");
-
+  
   // Handle the result
   console.log(result)
 }

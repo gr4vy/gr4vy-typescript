@@ -1,15 +1,15 @@
-# TaxId
+# BillingDetailsSummaryTaxId
 
 The tax ID for these buyer details.
 
 ## Example Usage
 
 ```typescript
-import { TaxId } from "@gr4vy/sdk/models/components";
+import { BillingDetailsSummaryTaxId } from "@gr4vy/sdk/models/components";
 
-let value: TaxId = {
+let value: BillingDetailsSummaryTaxId = {
     value: "<value>",
-    kind: "my.frp",
+    kind: "my.sst",
 };
 ```
 

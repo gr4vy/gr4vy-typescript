@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { TaxIdKind } from "@gr4vy/sdk/models/components";
 
-let value: TaxIdKind = "ca.pst_mb";
+let value: TaxIdKind = "mx.rfc";
 ```
 
 ## Values
