@@ -1,31 +1,32 @@
-speakeasyVersion: 1.390.8
+speakeasyVersion: 1.451.7
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:e12ca0731cf9d1249884106cab0f7fb21a576961b89879d98c7557a97ff66951
-        sourceBlobDigest: sha256:91e79b636c103690ceea03207427b95c02d1ccfa6487d63a47d7c262d053c6ec
+        sourceRevisionDigest: sha256:281d060be280a085c076b71971d95513681e07b5e516843c6dac3c43c9ca9fdb
+        sourceBlobDigest: sha256:f1e025df16dcabc34b64ab1d08ba445140a1bd2619c087dd31b67703cd5cf38c
         tags:
             - latest
+            - 1.0.0
 targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
         sourceRevisionDigest: sha256:916f35ec72323b7de793b9e99cf14fac33e497c7148c84b996d5cbfd69870398
         sourceBlobDigest: sha256:9ed8dd012845981cbfd2fffa608bf33138ca66d764d144933170a6218ca49e99
-        outLocation: /Users/cbetta/code/gr4vy-js
     typescript:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:e12ca0731cf9d1249884106cab0f7fb21a576961b89879d98c7557a97ff66951
-        sourceBlobDigest: sha256:91e79b636c103690ceea03207427b95c02d1ccfa6487d63a47d7c262d053c6ec
-        outLocation: /Users/cbetta/code/gr4vy-js
+        sourceRevisionDigest: sha256:281d060be280a085c076b71971d95513681e07b5e516843c6dac3c43c9ca9fdb
+        sourceBlobDigest: sha256:f1e025df16dcabc34b64ab1d08ba445140a1bd2619c087dd31b67703cd5cf38c
+        codeSamplesNamespace: openapi-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:3557eed01452e1ecf4aa3abd5ef937577a9fdc75fe62d56bbb55574464ffd99d
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         openapi:
             inputs:
-                - location: /Users/cbetta/code/core-api/openapi/openapi.json
+                - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
             overlays:
                 - location: ./.speakeasy/overlays/servers.yaml
                 - location: ./.speakeasy/overlays/security.yaml
@@ -38,3 +39,7 @@ workflow:
             publish:
                 npm:
                     token: $npm_token
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-typescript-code-samples
+                blocking: false

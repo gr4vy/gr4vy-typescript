@@ -13,62 +13,62 @@ export const ServerSandbox = "sandbox";
  * Contains the list of servers available to the SDK
  */
 export const ServerList = {
-    [ServerProduction]: "https://api.{gr4vy_id}.gr4vy.app",
-    [ServerSandbox]: "https://api.sandbox.{gr4vy_id}.gr4vy.app",
+  [ServerProduction]: "https://api.{gr4vy_id}.gr4vy.app",
+  [ServerSandbox]: "https://api.sandbox.{gr4vy_id}.gr4vy.app",
 } as const;
 
 export type SDKOptions = {
-    bearerAuth?: string | (() => Promise<string>);
+  bearerAuth?: string | (() => Promise<string>);
 
-    httpClient?: HTTPClient;
-    /**
-     * Allows overriding the default server used by the SDK
-     */
-    server?: keyof typeof ServerList;
-    /**
-     * Sets the gr4vy_id variable for url substitution
-     */
-    gr4vyId?: string;
-    /**
-     * Allows overriding the default server URL used by the SDK
-     */
-    serverURL?: string;
-    /**
-     * Allows overriding the default retry config used by the SDK
-     */
-    retryConfig?: RetryConfig;
-    timeoutMs?: number;
-    debugLogger?: Logger;
+  httpClient?: HTTPClient;
+  /**
+   * Allows overriding the default server used by the SDK
+   */
+  server?: keyof typeof ServerList;
+  /**
+   * Sets the gr4vy_id variable for url substitution
+   */
+  gr4vyId?: string;
+  /**
+   * Allows overriding the default server URL used by the SDK
+   */
+  serverURL?: string;
+  /**
+   * Allows overriding the default retry config used by the SDK
+   */
+  retryConfig?: RetryConfig;
+  timeoutMs?: number;
+  debugLogger?: Logger;
 };
 
 export function serverURLFromOptions(options: SDKOptions): URL | null {
-    let serverURL = options.serverURL;
+  let serverURL = options.serverURL;
 
-    const serverParams: Record<string, Params> = {
-        production: {
-            gr4vy_id: options.gr4vyId ?? "example",
-        },
-        sandbox: {
-            gr4vy_id: options.gr4vyId ?? "example",
-        },
-    };
+  const serverParams: Record<string, Params> = {
+    "production": {
+      "gr4vy_id": options.gr4vyId ?? "example",
+    },
+    "sandbox": {
+      "gr4vy_id": options.gr4vyId ?? "example",
+    },
+  };
 
-    let params: Params = {};
+  let params: Params = {};
 
-    if (!serverURL) {
-        const server = options.server ?? ServerProduction;
-        serverURL = ServerList[server] || "";
-        params = serverParams[server] || {};
-    }
+  if (!serverURL) {
+    const server = options.server ?? ServerProduction;
+    serverURL = ServerList[server] || "";
+    params = serverParams[server] || {};
+  }
 
-    const u = pathToFunc(serverURL)(params);
-    return new URL(u);
+  const u = pathToFunc(serverURL)(params);
+  return new URL(u);
 }
 
 export const SDK_METADATA = {
-    language: "typescript",
-    openapiDocVersion: "1.0.0",
-    sdkVersion: "0.8.2",
-    genVersion: "2.409.8",
-    userAgent: "speakeasy-sdk/typescript 0.8.2 2.409.8 1.0.0 @gr4vy/sdk",
+  language: "typescript",
+  openapiDocVersion: "1.0.0",
+  sdkVersion: "0.9.1",
+  genVersion: "2.471.2",
+  userAgent: "speakeasy-sdk/typescript 0.9.1 2.471.2 1.0.0 @gr4vy/sdk",
 } as const;

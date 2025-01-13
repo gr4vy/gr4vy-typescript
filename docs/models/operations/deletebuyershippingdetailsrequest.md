@@ -6,14 +6,14 @@
 import { DeleteBuyerShippingDetailsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteBuyerShippingDetailsRequest = {
-    buyerId: "b7fd2ed0-2892-41cd-9c69-2601fb576b0d",
-    shippingDetailsId: "5f0d30c5-fbb2-4587-8532-02c73d5fe9b9",
+  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  shippingDetailsId: "bf8c36ad-02d9-4904-b0f9-a230b149e341",
 };
 ```
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `buyerId`                                          | *string*                                           | :heavy_check_mark:                                 | The `id` of the buyer to list shipping details for |
-| `shippingDetailsId`                                | *string*                                           | :heavy_check_mark:                                 | N/A                                                |
+| Field                                               | Type                                                | Required                                            | Description                                         | Example                                             |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `buyerId`                                           | *string*                                            | :heavy_check_mark:                                  | The ID of the buyer to delete shipping details for. | fe26475d-ec3e-4884-9553-f7356683f7f9                |
+| `shippingDetailsId`                                 | *string*                                            | :heavy_check_mark:                                  | The ID of the shipping details to delete.           | bf8c36ad-02d9-4904-b0f9-a230b149e341                |

@@ -30,7 +30,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersList(gr4vy);
+  const res = await buyersList(gr4vy, "ZXhhbXBsZTE", 20, "John", "buyer-12345");
 
   switch (true) {
     case res.ok:

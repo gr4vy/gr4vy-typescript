@@ -11,8 +11,9 @@ generation:
     requestResponseComponentNamesFeb2024: true
   auth:
     oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
 typescript:
-  version: 0.8.2
+  version: 0.9.1
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -28,9 +29,12 @@ typescript:
   additionalPackageJSON: {}
   author: Gr4vy
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKError
+  enableReactQuery: false
   enumFormat: union
   envVarPrefix: GR4VY
   flattenGlobalSecurity: true
+  flatteningOrder: body-first
   imports:
     option: openapi
     paths:

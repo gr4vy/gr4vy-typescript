@@ -4,25 +4,30 @@
 
 import { Gr4vyCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
-import { createPageIterator, haltIterator, PageIterator, Paginator } from "../types/operations.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
  * List all buyers
@@ -31,101 +36,129 @@ import { createPageIterator, haltIterator, PageIterator, Paginator } from "../ty
  * List all buyers or search for a specific buyer.
  */
 export async function buyersList(
-    client$: Gr4vyCore,
-    cursor?: string | undefined,
-    limit?: number | undefined,
-    search?: string | undefined,
-    externalIdentifier?: string | undefined,
-    options?: RequestOptions
+  client: Gr4vyCore,
+  cursor?: string | undefined,
+  limit?: number | undefined,
+  search?: string | undefined,
+  externalIdentifier?: string | undefined,
+  options?: RequestOptions,
 ): Promise<
-    PageIterator<
-        Result<
-            operations.ListBuyersResponse,
-            | errors.HTTPValidationError
-            | SDKError
-            | SDKValidationError
-            | UnexpectedClientError
-            | InvalidRequestError
-            | RequestAbortedError
-            | RequestTimeoutError
-            | ConnectionError
-        >
-    >
+  PageIterator<
+    Result<
+      operations.ListBuyersResponse,
+      | errors.HTTPValidationError
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    { cursor: string }
+  >
 > {
-    const input$: operations.ListBuyersRequest = {
-        cursor: cursor,
-        limit: limit,
-        search: search,
-        externalIdentifier: externalIdentifier,
-    };
+  const input: operations.ListBuyersRequest = {
+    cursor: cursor,
+    limit: limit,
+    search: search,
+    externalIdentifier: externalIdentifier,
+  };
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) => operations.ListBuyersRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return haltIterator(parsed$);
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+  const parsed = safeParse(
+    input,
+    (value) => operations.ListBuyersRequest$outboundSchema.parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return haltIterator(parsed);
+  }
+  const payload = parsed.value;
+  const body = null;
 
-    const path$ = pathToFunc("/buyers")();
+  const path = pathToFunc("/buyers")();
 
-    const query$ = encodeFormQuery$({
-        cursor: payload$.cursor,
-        external_identifier: payload$.external_identifier,
-        limit: payload$.limit,
-        search: payload$.search,
-    });
+  const query = encodeFormQuery({
+    "cursor": payload.cursor,
+    "external_identifier": payload.external_identifier,
+    "limit": payload.limit,
+    "search": payload.search,
+  });
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const headers = new Headers({
+    Accept: "application/json",
+  });
 
-    const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
-    const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
-    const context = {
-        operationID: "list_buyers",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.bearerAuth,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+  const secConfig = await extractSecurity(client._options.bearerAuth);
+  const securityInput = secConfig == null ? {} : { bearerAuth: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            security: securitySettings$,
-            method: "GET",
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-        },
-        options
-    );
-    if (!requestRes.ok) {
-        return haltIterator(requestRes);
-    }
-    const request$ = requestRes.value;
+  const context = {
+    operationID: "list_buyers",
+    oAuth2Scopes: [],
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["422", "4XX", "5XX"],
-        retryConfig: options?.retries || client$.options$.retryConfig,
-        retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
-    });
-    if (!doResult.ok) {
-        return haltIterator(doResult);
-    }
-    const response = doResult.value;
+    resolvedSecurity: requestSecurity,
 
-    const responseFields$ = {
-        HttpMeta: { Response: response, Request: request$ },
-    };
+    securitySource: client._options.bearerAuth,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+  };
 
-    const [result$, raw$] = await m$.match<
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "GET",
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return haltIterator(requestRes);
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["422", "4XX", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
+  });
+  if (!doResult.ok) {
+    return haltIterator(doResult);
+  }
+  const response = doResult.value;
+
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result, raw] = await M.match<
+    operations.ListBuyersResponse,
+    | errors.HTTPValidationError
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    M.json(200, operations.ListBuyersResponse$inboundSchema, { key: "Result" }),
+    M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return haltIterator(result);
+  }
+
+  const nextFunc = (
+    responseData: unknown,
+  ): {
+    next: Paginator<
+      Result<
         operations.ListBuyersResponse,
         | errors.HTTPValidationError
         | SDKError
@@ -135,39 +168,28 @@ export async function buyersList(
         | RequestAbortedError
         | RequestTimeoutError
         | ConnectionError
-    >(
-        m$.json(200, operations.ListBuyersResponse$inboundSchema, { key: "Result" }),
-        m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-        m$.fail(["4XX", "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return haltIterator(result$);
+      >
+    >;
+    "~next"?: { cursor: string };
+  } => {
+    const nextCursor = dlv(responseData, "next_cursor");
+    if (nextCursor == null) {
+      return { next: () => null };
     }
 
-    const nextFunc = (
-        responseData: unknown
-    ): Paginator<
-        Result<
-            operations.ListBuyersResponse,
-            | errors.HTTPValidationError
-            | SDKError
-            | SDKValidationError
-            | UnexpectedClientError
-            | InvalidRequestError
-            | RequestAbortedError
-            | RequestTimeoutError
-            | ConnectionError
-        >
-    > => {
-        const nextCursor = dlv(responseData, "next_cursor");
+    const nextVal = () =>
+      buyersList(
+        client,
+        nextCursor,
+        limit,
+        search,
+        externalIdentifier,
+        options,
+      );
 
-        if (nextCursor == null) {
-            return () => null;
-        }
+    return { next: nextVal, "~next": { cursor: nextCursor } };
+  };
 
-        return () => buyersList(client$, nextCursor, limit, search, externalIdentifier, options);
-    };
-
-    const page$ = { ...result$, next: nextFunc(raw$) };
-    return { ...page$, ...createPageIterator(page$, (v) => !v.ok) };
+  const page = { ...result, ...nextFunc(raw) };
+  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
 }

@@ -12,82 +12,110 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
-import { BillingDetails } from "./billingdetails.js";
+import { Gr4vyPaymentMethods } from "./gr4vypaymentmethods.js";
 import { ShippingDetails } from "./shippingdetails.js";
 
 export class Buyers extends ClientSDK {
-    private _billingDetails?: BillingDetails;
-    get billingDetails(): BillingDetails {
-        return (this._billingDetails ??= new BillingDetails(this.options$));
-    }
+  private _paymentMethods?: Gr4vyPaymentMethods;
+  get paymentMethods(): Gr4vyPaymentMethods {
+    return (this._paymentMethods ??= new Gr4vyPaymentMethods(this._options));
+  }
 
-    private _shippingDetails?: ShippingDetails;
-    get shippingDetails(): ShippingDetails {
-        return (this._shippingDetails ??= new ShippingDetails(this.options$));
-    }
+  private _shippingDetails?: ShippingDetails;
+  get shippingDetails(): ShippingDetails {
+    return (this._shippingDetails ??= new ShippingDetails(this._options));
+  }
 
-    /**
-     * List all buyers
-     *
-     * @remarks
-     * List all buyers or search for a specific buyer.
-     */
-    async list(
-        cursor?: string | undefined,
-        limit?: number | undefined,
-        search?: string | undefined,
-        externalIdentifier?: string | undefined,
-        options?: RequestOptions
-    ): Promise<PageIterator<operations.ListBuyersResponse>> {
-        return unwrapResultIterator(
-            buyersList(this, cursor, limit, search, externalIdentifier, options)
-        );
-    }
+  /**
+   * List all buyers
+   *
+   * @remarks
+   * List all buyers or search for a specific buyer.
+   */
+  async list(
+    cursor?: string | undefined,
+    limit?: number | undefined,
+    search?: string | undefined,
+    externalIdentifier?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<PageIterator<operations.ListBuyersResponse, { cursor: string }>> {
+    return unwrapResultIterator(buyersList(
+      this,
+      cursor,
+      limit,
+      search,
+      externalIdentifier,
+      options,
+    ));
+  }
 
-    /**
-     * Add a buyer
-     *
-     * @remarks
-     * Create a new buyer record.
-     */
-    async create(
-        request: components.BuyerCreate,
-        options?: RequestOptions
-    ): Promise<components.Buyer> {
-        return unwrapAsync(buyersCreate(this, request, options));
-    }
+  /**
+   * Add a buyer
+   *
+   * @remarks
+   * Create a new buyer record.
+   */
+  async create(
+    request: components.BuyerCreate,
+    options?: RequestOptions,
+  ): Promise<components.Buyer> {
+    return unwrapAsync(buyersCreate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get a buyer
-     *
-     * @remarks
-     * Fetches a buyer by its ID.
-     */
-    async get(buyerId: string, options?: RequestOptions): Promise<components.Buyer> {
-        return unwrapAsync(buyersGet(this, buyerId, options));
-    }
+  /**
+   * Get a buyer
+   *
+   * @remarks
+   * Fetches a buyer by its ID.
+   */
+  async get(
+    buyerId: string,
+    options?: RequestOptions,
+  ): Promise<components.Buyer> {
+    return unwrapAsync(buyersGet(
+      this,
+      buyerId,
+      options,
+    ));
+  }
 
-    /**
-     * Update a buyer
-     *
-     * @remarks
-     * Updates a buyer record.
-     */
-    async update(
-        buyerId: string,
-        buyerUpdate: components.BuyerUpdate,
-        options?: RequestOptions
-    ): Promise<components.Buyer> {
-        return unwrapAsync(buyersUpdate(this, buyerId, buyerUpdate, options));
-    }
+  /**
+   * Update a buyer
+   *
+   * @remarks
+   * Updates a buyer record.
+   */
+  async update(
+    buyerUpdate: components.BuyerUpdate,
+    buyerId: string,
+    options?: RequestOptions,
+  ): Promise<components.Buyer> {
+    return unwrapAsync(buyersUpdate(
+      this,
+      buyerUpdate,
+      buyerId,
+      options,
+    ));
+  }
 
-    /**
-     * Delete a buyer
-     *
-     * @remarks
-     * Permanently removes a buyer record.
-     */
-    async delete(buyerId: string, options?: RequestOptions): Promise<any> {
-        return unwrapAsync(buyersDelete(this, buyerId, options));
-    }
+  /**
+   * Delete a buyer
+   *
+   * @remarks
+   * Permanently removes a buyer record.
+   */
+  async delete(
+    buyerId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(buyersDelete(
+      this,
+      buyerId,
+      options,
+    ));
+  }
 }

@@ -6,22 +6,38 @@
 import { UpdateBuyerRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateBuyerRequest = {
-    buyerId: "c2ddf7cc-78ca-41ba-928f-c816742cb739",
-    buyerUpdate: {
-        billingDetails: {
-            phoneNumber: "+14155552671",
-            address: {
-                country: "DE",
-                stateCode: "GB-LND",
-            },
-        },
+  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  buyerUpdate: {
+    displayName: "John Doe",
+    externalIdentifier: "buyer-12345",
+    billingDetails: {
+      firstName: "John",
+      lastName: "Doe",
+      emailAddress: "john@example.com",
+      phoneNumber: "+442071838750",
+      address: {
+        city: "San Jose",
+        country: "GB",
+        postalCode: "94560",
+        state: "California",
+        stateCode: "US-CA",
+        houseNumberOrName: "10",
+        line1: "Stafford Appartments",
+        line2: "29th Street",
+        organization: "Gr4vy",
+      },
+      taxId: {
+        value: "12345678931",
+        kind: "us.ein",
+      },
     },
+  },
 };
 ```
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `buyerId`                                                        | *string*                                                         | :heavy_check_mark:                                               | The `id` of the buyer to update                                  |
-| `buyerUpdate`                                                    | [components.BuyerUpdate](../../models/components/buyerupdate.md) | :heavy_check_mark:                                               | N/A                                                              |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `buyerId`                                                        | *string*                                                         | :heavy_check_mark:                                               | The ID of the buyer to edit.                                     | fe26475d-ec3e-4884-9553-f7356683f7f9                             |
+| `buyerUpdate`                                                    | [components.BuyerUpdate](../../models/components/buyerupdate.md) | :heavy_check_mark:                                               | N/A                                                              |                                                                  |

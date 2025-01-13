@@ -7,35 +7,35 @@ import { dlv } from "./dlv.js";
 import * as z from "zod";
 
 export interface Env {
-    GR4VY_BEARER_AUTH?: string | undefined;
+  GR4VY_BEARER_AUTH?: string | undefined;
 
-    GR4VY_DEBUG?: boolean | undefined;
+  GR4VY_DEBUG?: boolean | undefined;
 }
 
-export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z
-    .object({
-        GR4VY_BEARER_AUTH: z.string(),
+export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
+  GR4VY_BEARER_AUTH: z.string().optional(),
 
-        GR4VY_DEBUG: z.coerce.boolean(),
-    })
-    .partial();
+  GR4VY_DEBUG: z.coerce.boolean().optional(),
+});
 
 let envMemo: Env | undefined = undefined;
 /**
  * Reads and validates environment variables.
  */
 export function env(): Env {
-    if (envMemo) {
-        return envMemo;
-    }
-
-    envMemo = envSchema.parse(dlv(globalThis, "process.env") ?? dlv(globalThis, "Deno.env") ?? {});
+  if (envMemo) {
     return envMemo;
+  }
+
+  envMemo = envSchema.parse(
+    dlv(globalThis, "process.env") ?? dlv(globalThis, "Deno.env") ?? {},
+  );
+  return envMemo;
 }
 
 /**
  * Clears the cached env object. Useful for testing with a fresh environment.
  */
 export function resetEnv() {
-    envMemo = undefined;
+  envMemo = undefined;
 }

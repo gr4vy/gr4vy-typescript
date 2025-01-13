@@ -12,80 +12,98 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ShippingDetails extends ClientSDK {
-    /**
-     * List buyer shipping details
-     *
-     * @remarks
-     * List all the shipping details for a buyer, using the buyer ID
-     */
-    async list(buyerId: string, options?: RequestOptions): Promise<components.ShippingDetailsList> {
-        return unwrapAsync(buyersShippingDetailsList(this, buyerId, options));
-    }
+  /**
+   * List a buyer's shipping details
+   *
+   * @remarks
+   * List all the shipping details associated to a specific buyer.
+   */
+  async list(
+    buyerId: string,
+    options?: RequestOptions,
+  ): Promise<components.CollectionNoCursorShippingDetails> {
+    return unwrapAsync(buyersShippingDetailsList(
+      this,
+      buyerId,
+      options,
+    ));
+  }
 
-    /**
-     * Add buyer shipping details
-     *
-     * @remarks
-     * Create shipping details for a buyer, using the buyer ID
-     */
-    async create(
-        buyerId: string,
-        shippingDetailsCreate: components.ShippingDetailsCreate,
-        options?: RequestOptions
-    ): Promise<components.ShippingDetails> {
-        return unwrapAsync(
-            buyersShippingDetailsCreate(this, buyerId, shippingDetailsCreate, options)
-        );
-    }
+  /**
+   * Add buyer shipping details
+   *
+   * @remarks
+   * Associate shipping details to a buyer.
+   */
+  async create(
+    shippingDetailsCreate: components.ShippingDetailsCreate,
+    buyerId: string,
+    options?: RequestOptions,
+  ): Promise<components.ShippingDetails> {
+    return unwrapAsync(buyersShippingDetailsCreate(
+      this,
+      shippingDetailsCreate,
+      buyerId,
+      options,
+    ));
+  }
 
-    /**
-     * Get buyer shipping details
-     *
-     * @remarks
-     * Fetch the shipping details for a buyer, using the buyer ID
-     */
-    async get(
-        buyerId: string,
-        shippingDetailsId: string,
-        options?: RequestOptions
-    ): Promise<components.ShippingDetails> {
-        return unwrapAsync(buyersShippingDetailsGet(this, buyerId, shippingDetailsId, options));
-    }
+  /**
+   * Get buyer shipping details
+   *
+   * @remarks
+   * Get a buyer's shipping details.
+   */
+  async get(
+    buyerId: string,
+    shippingDetailsId: string,
+    options?: RequestOptions,
+  ): Promise<components.ShippingDetails> {
+    return unwrapAsync(buyersShippingDetailsGet(
+      this,
+      buyerId,
+      shippingDetailsId,
+      options,
+    ));
+  }
 
-    /**
-     * Update buyer shipping details
-     *
-     * @remarks
-     * Update the shipping details for a buyer, using the buyer ID
-     */
-    async update(
-        buyerId: string,
-        shippingDetailsId: string,
-        shippingDetailsUpdate: components.ShippingDetailsUpdate,
-        options?: RequestOptions
-    ): Promise<components.ShippingDetails> {
-        return unwrapAsync(
-            buyersShippingDetailsUpdate(
-                this,
-                buyerId,
-                shippingDetailsId,
-                shippingDetailsUpdate,
-                options
-            )
-        );
-    }
+  /**
+   * Update a buyer's shipping details
+   *
+   * @remarks
+   * Update the shipping details associated to a specific buyer.
+   */
+  async update(
+    shippingDetailsUpdate: components.ShippingDetailsUpdate,
+    buyerId: string,
+    shippingDetailsId: string,
+    options?: RequestOptions,
+  ): Promise<components.ShippingDetails> {
+    return unwrapAsync(buyersShippingDetailsUpdate(
+      this,
+      shippingDetailsUpdate,
+      buyerId,
+      shippingDetailsId,
+      options,
+    ));
+  }
 
-    /**
-     * Delete buyer shipping details
-     *
-     * @remarks
-     * Delete the shipping details for a buyer, using the buyer ID
-     */
-    async delete(
-        buyerId: string,
-        shippingDetailsId: string,
-        options?: RequestOptions
-    ): Promise<any> {
-        return unwrapAsync(buyersShippingDetailsDelete(this, buyerId, shippingDetailsId, options));
-    }
+  /**
+   * Delete a buyer's shipping details
+   *
+   * @remarks
+   * Delete the shipping details associated to a specific buyer.
+   */
+  async delete(
+    buyerId: string,
+    shippingDetailsId: string,
+    options?: RequestOptions,
+  ): Promise<any> {
+    return unwrapAsync(buyersShippingDetailsDelete(
+      this,
+      buyerId,
+      shippingDetailsId,
+      options,
+    ));
+  }
 }

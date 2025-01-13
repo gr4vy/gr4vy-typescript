@@ -1,0 +1,55 @@
+# AirlineLeg
+
+Base model with JSON encoders.
+
+## Example Usage
+
+```typescript
+import { AirlineLeg } from "@gr4vy/sdk/models/components";
+
+let value: AirlineLeg = {
+  arrivalAirport: "LAX",
+  arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
+  arrivalCity: "Los Angeles",
+  arrivalCountry: "DE",
+  carrierCode: "BA",
+  couponNumber: "15885566",
+  departureAirport: "LHR",
+  departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
+  departureCity: "London",
+  departureCountry: "US",
+  departureTaxAmount: 1200,
+  fareAmount: 129900,
+  fareBasisCode: "FY",
+  feeAmount: 1200,
+  flightClass: "E",
+  flightNumber: "101",
+  routeType: "round_trip",
+  stopOver: false,
+  taxAmount: 1200,
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `arrivalAirport`                                                                              | *string*                                                                                      | :heavy_minus_sign:                                                                            | Arrival airport code of leg. 3-letter ISO code according to IATA official directory.          | LAX                                                                                           |
+| `arrivalAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | The date and time of travel in local time at the arrival airport.                             | 2013-07-16T19:23:00.000+00:00                                                                 |
+| `arrivalCity`                                                                                 | *string*                                                                                      | :heavy_minus_sign:                                                                            | Arrival city name.                                                                            | Los Angeles                                                                                   |
+| `arrivalCountry`                                                                              | *string*                                                                                      | :heavy_minus_sign:                                                                            | Arrival country code in ISO 3166 format.                                                      | DE                                                                                            |
+| `carrierCode`                                                                                 | *string*                                                                                      | :heavy_minus_sign:                                                                            | 2 character airline code as set by IATA.                                                      | BA                                                                                            |
+| `couponNumber`                                                                                | *string*                                                                                      | :heavy_minus_sign:                                                                            | Coupon number associated with the leg.                                                        | 15885566                                                                                      |
+| `departureAirport`                                                                            | *string*                                                                                      | :heavy_minus_sign:                                                                            | Departure airport code of leg. 3-letter ISO code according to IATA official directory.        | LHR                                                                                           |
+| `departureAt`                                                                                 | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | The date and time of travel in local time at the departure airport.                           | 2013-07-16T19:23:00.000+00:00                                                                 |
+| `departureCity`                                                                               | *string*                                                                                      | :heavy_minus_sign:                                                                            | Departure city name.                                                                          | London                                                                                        |
+| `departureCountry`                                                                            | *string*                                                                                      | :heavy_minus_sign:                                                                            | Departure airport code of leg. 3-letter ISO code according to IATA official directory.        | DE                                                                                            |
+| `departureTaxAmount`                                                                          | *number*                                                                                      | :heavy_minus_sign:                                                                            | Departure tax amount charged by a country when a person is leaving the country.               | 1200                                                                                          |
+| `fareAmount`                                                                                  | *number*                                                                                      | :heavy_minus_sign:                                                                            | Amount of the ticket, for current leg of the trip, excluding taxes and fees.                  | 129900                                                                                        |
+| `fareBasisCode`                                                                               | *string*                                                                                      | :heavy_minus_sign:                                                                            | The alphanumeric code for the booking class of a ticket.                                      | FY                                                                                            |
+| `feeAmount`                                                                                   | *number*                                                                                      | :heavy_minus_sign:                                                                            | Fee amount for current leg of the trip.                                                       | 1200                                                                                          |
+| `flightClass`                                                                                 | *string*                                                                                      | :heavy_minus_sign:                                                                            | Indicates service class (first class, business class, etc.).                                  | E                                                                                             |
+| `flightNumber`                                                                                | *string*                                                                                      | :heavy_minus_sign:                                                                            | Unique identifier of the flight number.                                                       | 101                                                                                           |
+| `routeType`                                                                                   | [components.RouteType](../../models/components/routetype.md)                                  | :heavy_minus_sign:                                                                            | The route type of the flight.                                                                 | round_trip                                                                                    |
+| `stopOver`                                                                                    | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | Indicates whether a stopover is allowed on this ticket.                                       | false                                                                                         |
+| `taxAmount`                                                                                   | *number*                                                                                      | :heavy_minus_sign:                                                                            | Amount of the taxes for current leg of the trip.                                              | 1200                                                                                          |

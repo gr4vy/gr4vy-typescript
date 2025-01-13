@@ -6,12 +6,12 @@
 import { DeleteBuyerRequest } from "@gr4vy/sdk/models/operations";
 
 let value: DeleteBuyerRequest = {
-    buyerId: "929396fe-a759-46eb-90fa-aa2352c59559",
+  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
 };
 ```
 
 ## Fields
 
-| Field                           | Type                            | Required                        | Description                     |
-| ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| `buyerId`                       | *string*                        | :heavy_check_mark:              | The `id` of the buyer to delete |
+| Field                                | Type                                 | Required                             | Description                          | Example                              |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| `buyerId`                            | *string*                             | :heavy_check_mark:                   | The ID of the buyer to delete.       | fe26475d-ec3e-4884-9553-f7356683f7f9 |

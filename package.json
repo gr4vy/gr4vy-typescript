@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.8.2",
+  "version": "0.9.1",
   "author": "Gr4vy",
   "main": "./index.js",
   "sideEffects": false,
@@ -11,14 +11,15 @@
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19",
     "zod": ">= 3"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^18.19.3",
     "@types/trust__keyto": "^1.0.4",
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^7.7.1",

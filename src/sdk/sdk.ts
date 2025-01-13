@@ -3,11 +3,35 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
+import { AuditLogs } from "./auditlogs.js";
 import { Buyers } from "./buyers.js";
+import { CheckoutSessions } from "./checkoutsessions.js";
+import { PaymentMethods } from "./paymentmethods.js";
+import { Payouts } from "./payouts.js";
 
 export class Gr4vy extends ClientSDK {
-    private _buyers?: Buyers;
-    get buyers(): Buyers {
-        return (this._buyers ??= new Buyers(this.options$));
-    }
+  private _buyers?: Buyers;
+  get buyers(): Buyers {
+    return (this._buyers ??= new Buyers(this._options));
+  }
+
+  private _paymentMethods?: PaymentMethods;
+  get paymentMethods(): PaymentMethods {
+    return (this._paymentMethods ??= new PaymentMethods(this._options));
+  }
+
+  private _auditLogs?: AuditLogs;
+  get auditLogs(): AuditLogs {
+    return (this._auditLogs ??= new AuditLogs(this._options));
+  }
+
+  private _checkoutSessions?: CheckoutSessions;
+  get checkoutSessions(): CheckoutSessions {
+    return (this._checkoutSessions ??= new CheckoutSessions(this._options));
+  }
+
+  private _payouts?: Payouts;
+  get payouts(): Payouts {
+    return (this._payouts ??= new Payouts(this._options));
+  }
 }

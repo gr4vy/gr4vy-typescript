@@ -1,4 +1,7 @@
 **/*
+!/FUNCTIONS.md
+!/RUNTIMES.md
+!/REACT_QUERY.md
 !/**/*.ts
 !/**/*.js
 !/**/*.map
@@ -7,3 +10,4 @@
 /cjs
 /.tshy
 /.tshy-*
+/__tests__

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 12c0c7a9cebc9044f805d249944176a4
+  docChecksum: d22300b58f4f4fcbeb5b55bbf39c44b7
   docVersion: 1.0.0
-  speakeasyVersion: 1.390.8
-  generationVersion: 2.409.8
-  releaseVersion: 0.8.2
-  configChecksum: 506dee2e44fd800ac21b7cfad0785847
+  speakeasyVersion: 1.451.7
+  generationVersion: 2.471.2
+  releaseVersion: 0.9.1
+  configChecksum: 69d3b186237de37e1fe7ad4199c4b062
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
@@ -14,47 +14,256 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.16.1
+    core: 3.18.8
     defaultEnabledRetries: 0.1.0
-    envVarSecurityUsage: 0.1.1
-    flattening: 2.81.1
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    flattening: 2.82.0
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     groups: 2.81.2
     nameOverrides: 2.81.2
-    nullables: 0.1.0
-    pagination: 2.82.6
+    pagination: 2.82.7
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.1.0
+    sdkHooks: 0.2.0
     serverIDs: 2.81.2
-    unions: 2.85.7
+    unions: 2.85.8
 generatedFiles:
-  - src/funcs/buyersList.ts
-  - src/funcs/buyersCreate.ts
-  - src/funcs/buyersGet.ts
-  - src/funcs/buyersUpdate.ts
-  - src/funcs/buyersDelete.ts
-  - src/funcs/buyersBillingDetailsGet.ts
-  - src/funcs/buyersBillingDetailsUpdate.ts
-  - src/funcs/buyersShippingDetailsList.ts
-  - src/funcs/buyersShippingDetailsCreate.ts
-  - src/funcs/buyersShippingDetailsGet.ts
-  - src/funcs/buyersShippingDetailsUpdate.ts
-  - src/funcs/buyersShippingDetailsDelete.ts
-  - src/sdk/billingdetails.ts
-  - src/sdk/shippingdetails.ts
-  - src/sdk/buyers.ts
-  - src/sdk/sdk.ts
   - .eslintrc.cjs
+  - .gitattributes
   - .npmignore
+  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/components/address.md
+  - docs/models/components/agegroup.md
+  - docs/models/components/airline.md
+  - docs/models/components/airlineleg.md
+  - docs/models/components/airlinepassenger.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethod.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethodbuyer.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethodbuyertype.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethodcardscheme.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethoddetails.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethodmode.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethodpaymentmethod.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethodpaymentmethodstatus.md
+  - docs/models/components/apirouterspaymentmethodsschemaspaymentmethodtype.md
+  - docs/models/components/approvaltarget.md
+  - docs/models/components/auditlogaction.md
+  - docs/models/components/auditlogentry.md
+  - docs/models/components/auditlogentrycollection.md
+  - docs/models/components/auditlogentrytype.md
+  - docs/models/components/auditlogentryusertype.md
+  - docs/models/components/billingdetails.md
+  - docs/models/components/buyer.md
+  - docs/models/components/buyercollection.md
+  - docs/models/components/buyercreate.md
+  - docs/models/components/buyertype.md
+  - docs/models/components/buyerupdate.md
+  - docs/models/components/cardpaymentmethodcreate.md
+  - docs/models/components/cardscheme.md
+  - docs/models/components/cardtype.md
+  - docs/models/components/cartitem.md
+  - docs/models/components/checkoutcard.md
+  - docs/models/components/checkoutsession.md
+  - docs/models/components/checkoutsessionaddress.md
+  - docs/models/components/checkoutsessionairline.md
+  - docs/models/components/checkoutsessionbuyer.md
+  - docs/models/components/checkoutsessioncardscheme.md
+  - docs/models/components/checkoutsessioncardtype.md
+  - docs/models/components/checkoutsessiondetails.md
+  - docs/models/components/checkoutsessionmetadata.md
+  - docs/models/components/checkoutsessionmethod.md
+  - docs/models/components/checkoutsessionpaymentmethod.md
+  - docs/models/components/checkoutsessionpaymentmethodcreate.md
+  - docs/models/components/checkoutsessionpaymentmethodcreatemethod.md
+  - docs/models/components/checkoutsessionpaymentmethodtype.md
+  - docs/models/components/checkoutsessionshippingdetails.md
+  - docs/models/components/checkoutsessionticketdeliverymethod.md
+  - docs/models/components/checkoutsessiontype.md
+  - docs/models/components/checkoutsessionupdate.md
+  - docs/models/components/checkoutsessionupdateaddress.md
+  - docs/models/components/checkoutsessionupdatebuyer.md
+  - docs/models/components/checkoutsessionupdateshippingdetails.md
+  - docs/models/components/collectionnocursornetworktoken.md
+  - docs/models/components/collectionnocursorpaymentmethodsummary.md
+  - docs/models/components/collectionnocursorpaymentservicetoken.md
+  - docs/models/components/collectionnocursorshippingdetails.md
+  - docs/models/components/connectionoptions.md
+  - docs/models/components/cryptogram.md
+  - docs/models/components/cryptogramcreate.md
+  - docs/models/components/cryptogramtype.md
+  - docs/models/components/details.md
+  - docs/models/components/loc.md
+  - docs/models/components/merchant.md
+  - docs/models/components/metadata.md
+  - docs/models/components/method.md
+  - docs/models/components/mode.md
+  - docs/models/components/networktoken.md
+  - docs/models/components/networktokencreate.md
+  - docs/models/components/networktokenstatus.md
+  - docs/models/components/networktokentype.md
+  - docs/models/components/paymentmethod.md
+  - docs/models/components/paymentmethodcard.md
+  - docs/models/components/paymentmethodcardcardscheme.md
+  - docs/models/components/paymentmethodcardmethod.md
+  - docs/models/components/paymentmethodcollection.md
+  - docs/models/components/paymentmethodstatus.md
+  - docs/models/components/paymentmethodstoredcard.md
+  - docs/models/components/paymentmethodstoredcardmethod.md
+  - docs/models/components/paymentmethodsummary.md
+  - docs/models/components/paymentmethodsummarycardscheme.md
+  - docs/models/components/paymentservice.md
+  - docs/models/components/paymentservicetoken.md
+  - docs/models/components/paymentservicetokencreate.md
+  - docs/models/components/paymentservicetokenpaymentmethodstatus.md
+  - docs/models/components/paymentservicetokentype.md
+  - docs/models/components/payoutcategory.md
+  - docs/models/components/payoutscreate.md
+  - docs/models/components/payoutscreateaddress.md
+  - docs/models/components/payoutscreatebuyer.md
+  - docs/models/components/payoutscreatebuyeraddress.md
+  - docs/models/components/payoutscreatemerchant.md
+  - docs/models/components/payoutscreatepaymentmethod.md
+  - docs/models/components/payoutscreatepayoutcategory.md
+  - docs/models/components/payoutscreateshippingdetails.md
+  - docs/models/components/payoutssummary.md
+  - docs/models/components/payoutssummaryaddress.md
+  - docs/models/components/payoutssummarybillingdetails.md
+  - docs/models/components/payoutssummarybuyer.md
+  - docs/models/components/payoutssummarybuyeraddress.md
+  - docs/models/components/payoutssummarybuyertype.md
+  - docs/models/components/payoutssummarycardscheme.md
+  - docs/models/components/payoutssummarycollection.md
+  - docs/models/components/payoutssummarydetails.md
+  - docs/models/components/payoutssummarymerchanttype.md
+  - docs/models/components/payoutssummarymethod.md
+  - docs/models/components/payoutssummarymode.md
+  - docs/models/components/payoutssummarypaymentmethod.md
+  - docs/models/components/payoutssummarypaymentmethodpaymentmethod.md
+  - docs/models/components/payoutssummarypaymentmethodtype.md
+  - docs/models/components/payoutssummarypaymentservicetype.md
+  - docs/models/components/payoutssummarytaxid.md
+  - docs/models/components/payoutssummarytaxidkind.md
+  - docs/models/components/payoutssummarytype.md
+  - docs/models/components/payoutstatus.md
+  - docs/models/components/producttype.md
+  - docs/models/components/redirectpaymentmethodcreate.md
+  - docs/models/components/redirectpaymentmethodcreatemethod.md
+  - docs/models/components/resource.md
+  - docs/models/components/routetype.md
+  - docs/models/components/security.md
+  - docs/models/components/shippingdetails.md
+  - docs/models/components/shippingdetailsaddress.md
+  - docs/models/components/shippingdetailscreate.md
+  - docs/models/components/shippingdetailscreateaddress.md
+  - docs/models/components/shippingdetailstype.md
+  - docs/models/components/shippingdetailsupdate.md
+  - docs/models/components/shippingdetailsupdateaddress.md
+  - docs/models/components/taxid.md
+  - docs/models/components/taxidkind.md
+  - docs/models/components/ticketdeliverymethod.md
+  - docs/models/components/type.md
+  - docs/models/components/user.md
+  - docs/models/components/userstatus.md
+  - docs/models/components/validationerror.md
+  - docs/models/errors/httpvalidationerror.md
+  - docs/models/operations/addbuyershippingdetailsrequest.md
+  - docs/models/operations/auditlogaction.md
+  - docs/models/operations/createpaymentmethodbody.md
+  - docs/models/operations/createpaymentmethodnetworktokencryptogramrequest.md
+  - docs/models/operations/createpaymentmethodnetworktokenrequest.md
+  - docs/models/operations/createpaymentmethodpaymentservicetokenrequest.md
+  - docs/models/operations/deletebuyerrequest.md
+  - docs/models/operations/deletebuyershippingdetailsrequest.md
+  - docs/models/operations/deletecheckoutsessionrequest.md
+  - docs/models/operations/deletepaymentmethodnetworktokenrequest.md
+  - docs/models/operations/deletepaymentmethodpaymentservicetokenrequest.md
+  - docs/models/operations/deletepaymentmethodrequest.md
+  - docs/models/operations/four.md
+  - docs/models/operations/getbuyerrequest.md
+  - docs/models/operations/getbuyershippingdetailsrequest.md
+  - docs/models/operations/getcheckoutsessionrequest.md
+  - docs/models/operations/getpaymentmethodrequest.md
+  - docs/models/operations/getpayoutrequest.md
+  - docs/models/operations/listauditlogsrequest.md
+  - docs/models/operations/listauditlogsresponse.md
+  - docs/models/operations/listbuyerpaymentmethodsrequest.md
+  - docs/models/operations/listbuyershippingdetailsrequest.md
+  - docs/models/operations/listbuyersrequest.md
+  - docs/models/operations/listbuyersresponse.md
+  - docs/models/operations/listpaymentmethodnetworktokensrequest.md
+  - docs/models/operations/listpaymentmethodpaymentservicetokensrequest.md
+  - docs/models/operations/listpaymentmethodsrequest.md
+  - docs/models/operations/listpaymentmethodsresponse.md
+  - docs/models/operations/listpayoutsrequest.md
+  - docs/models/operations/listpayoutsresponse.md
+  - docs/models/operations/one.md
+  - docs/models/operations/orderby.md
+  - docs/models/operations/resumepaymentmethodnetworktokenrequest.md
+  - docs/models/operations/sortby.md
+  - docs/models/operations/suspendpaymentmethodnetworktokenrequest.md
+  - docs/models/operations/three.md
+  - docs/models/operations/two.md
+  - docs/models/operations/updatebuyerrequest.md
+  - docs/models/operations/updatebuyershippingdetailsrequest.md
+  - docs/models/operations/updatecheckoutsessionrequest.md
+  - docs/sdks/auditlogs/README.md
+  - docs/sdks/buyers/README.md
+  - docs/sdks/checkoutsessions/README.md
+  - docs/sdks/cryptogram/README.md
+  - docs/sdks/gr4vy/README.md
+  - docs/sdks/gr4vypaymentmethods/README.md
+  - docs/sdks/networktokens/README.md
+  - docs/sdks/paymentmethods/README.md
+  - docs/sdks/paymentservicetokens/README.md
+  - docs/sdks/payouts/README.md
+  - docs/sdks/shippingdetails/README.md
+  - docs/types/rfcdate.md
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/auditLogsList.ts
+  - src/funcs/buyersCreate.ts
+  - src/funcs/buyersDelete.ts
+  - src/funcs/buyersGet.ts
+  - src/funcs/buyersList.ts
+  - src/funcs/buyersPaymentMethodsList.ts
+  - src/funcs/buyersShippingDetailsCreate.ts
+  - src/funcs/buyersShippingDetailsDelete.ts
+  - src/funcs/buyersShippingDetailsGet.ts
+  - src/funcs/buyersShippingDetailsList.ts
+  - src/funcs/buyersShippingDetailsUpdate.ts
+  - src/funcs/buyersUpdate.ts
+  - src/funcs/checkoutSessionsCreate.ts
+  - src/funcs/checkoutSessionsDelete.ts
+  - src/funcs/checkoutSessionsGet.ts
+  - src/funcs/checkoutSessionsUpdate.ts
+  - src/funcs/paymentMethodsCreate.ts
+  - src/funcs/paymentMethodsDelete.ts
+  - src/funcs/paymentMethodsGet.ts
+  - src/funcs/paymentMethodsList.ts
+  - src/funcs/paymentMethodsNetworkTokensCreate.ts
+  - src/funcs/paymentMethodsNetworkTokensCryptogramCreate.ts
+  - src/funcs/paymentMethodsNetworkTokensDelete.ts
+  - src/funcs/paymentMethodsNetworkTokensList.ts
+  - src/funcs/paymentMethodsNetworkTokensResume.ts
+  - src/funcs/paymentMethodsNetworkTokensSuspend.ts
+  - src/funcs/paymentMethodsPaymentServiceTokensCreate.ts
+  - src/funcs/paymentMethodsPaymentServiceTokensDelete.ts
+  - src/funcs/paymentMethodsPaymentServiceTokensList.ts
+  - src/funcs/payoutsCreate.ts
+  - src/funcs/payoutsGet.ts
+  - src/funcs/payoutsList.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/dlv.ts
@@ -71,10 +280,96 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/sdk/index.ts
+  - src/models/components/airlineleg.ts
+  - src/models/components/airlinepassenger.ts
+  - src/models/components/apirouterspaymentmethodsschemaspaymentmethod.ts
+  - src/models/components/auditlogentry.ts
+  - src/models/components/auditlogentrycollection.ts
+  - src/models/components/billingdetails.ts
+  - src/models/components/buyer.ts
+  - src/models/components/buyercollection.ts
+  - src/models/components/buyercreate.ts
+  - src/models/components/buyerupdate.ts
+  - src/models/components/cardpaymentmethodcreate.ts
+  - src/models/components/cardscheme.ts
+  - src/models/components/cardtype.ts
+  - src/models/components/cartitem.ts
+  - src/models/components/checkoutsession.ts
+  - src/models/components/checkoutsessionpaymentmethodcreate.ts
+  - src/models/components/checkoutsessionupdate.ts
+  - src/models/components/collectionnocursornetworktoken.ts
+  - src/models/components/collectionnocursorpaymentmethodsummary.ts
+  - src/models/components/collectionnocursorpaymentservicetoken.ts
+  - src/models/components/collectionnocursorshippingdetails.ts
+  - src/models/components/cryptogram.ts
+  - src/models/components/cryptogramcreate.ts
+  - src/models/components/index.ts
+  - src/models/components/networktoken.ts
+  - src/models/components/networktokencreate.ts
+  - src/models/components/paymentmethodcard.ts
+  - src/models/components/paymentmethodcollection.ts
+  - src/models/components/paymentmethodstatus.ts
+  - src/models/components/paymentmethodstoredcard.ts
+  - src/models/components/paymentmethodsummary.ts
+  - src/models/components/paymentservicetoken.ts
+  - src/models/components/paymentservicetokencreate.ts
+  - src/models/components/payoutscreate.ts
+  - src/models/components/payoutssummary.ts
+  - src/models/components/payoutssummarycollection.ts
+  - src/models/components/redirectpaymentmethodcreate.ts
+  - src/models/components/security.ts
+  - src/models/components/shippingdetails.ts
+  - src/models/components/shippingdetailscreate.ts
+  - src/models/components/shippingdetailsupdate.ts
+  - src/models/components/userstatus.ts
+  - src/models/components/validationerror.ts
   - src/models/errors/httpclienterrors.ts
+  - src/models/errors/httpvalidationerror.ts
+  - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/addbuyershippingdetails.ts
+  - src/models/operations/createpaymentmethod.ts
+  - src/models/operations/createpaymentmethodnetworktoken.ts
+  - src/models/operations/createpaymentmethodnetworktokencryptogram.ts
+  - src/models/operations/createpaymentmethodpaymentservicetoken.ts
+  - src/models/operations/deletebuyer.ts
+  - src/models/operations/deletebuyershippingdetails.ts
+  - src/models/operations/deletecheckoutsession.ts
+  - src/models/operations/deletepaymentmethod.ts
+  - src/models/operations/deletepaymentmethodnetworktoken.ts
+  - src/models/operations/deletepaymentmethodpaymentservicetoken.ts
+  - src/models/operations/getbuyer.ts
+  - src/models/operations/getbuyershippingdetails.ts
+  - src/models/operations/getcheckoutsession.ts
+  - src/models/operations/getpaymentmethod.ts
+  - src/models/operations/getpayout.ts
+  - src/models/operations/index.ts
+  - src/models/operations/listauditlogs.ts
+  - src/models/operations/listbuyerpaymentmethods.ts
+  - src/models/operations/listbuyers.ts
+  - src/models/operations/listbuyershippingdetails.ts
+  - src/models/operations/listpaymentmethodnetworktokens.ts
+  - src/models/operations/listpaymentmethodpaymentservicetokens.ts
+  - src/models/operations/listpaymentmethods.ts
+  - src/models/operations/listpayouts.ts
+  - src/models/operations/resumepaymentmethodnetworktoken.ts
+  - src/models/operations/suspendpaymentmethodnetworktoken.ts
+  - src/models/operations/updatebuyer.ts
+  - src/models/operations/updatebuyershippingdetails.ts
+  - src/models/operations/updatecheckoutsession.ts
+  - src/sdk/auditlogs.ts
+  - src/sdk/buyers.ts
+  - src/sdk/checkoutsessions.ts
+  - src/sdk/cryptogram.ts
+  - src/sdk/gr4vypaymentmethods.ts
+  - src/sdk/index.ts
+  - src/sdk/networktokens.ts
+  - src/sdk/paymentmethods.ts
+  - src/sdk/paymentservicetokens.ts
+  - src/sdk/payouts.ts
+  - src/sdk/sdk.ts
+  - src/sdk/shippingdetails.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -84,88 +379,310 @@ generatedFiles:
   - src/types/rfcdate.ts
   - src/types/streams.ts
   - tsconfig.json
-  - src/models/operations/listbuyers.ts
-  - src/models/operations/getbuyer.ts
-  - src/models/operations/updatebuyer.ts
-  - src/models/operations/deletebuyer.ts
-  - src/models/operations/listbillingdetails.ts
-  - src/models/operations/updatebuyerbillingdetails.ts
-  - src/models/operations/listbuyershippingdetails.ts
-  - src/models/operations/addbuyershippingdetails.ts
-  - src/models/operations/getbuyershippingdetails.ts
-  - src/models/operations/updatebuyershippingdetails.ts
-  - src/models/operations/deletebuyershippingdetails.ts
-  - src/models/components/buyercollection.ts
-  - src/models/components/buyer.ts
-  - src/models/components/taxidkind.ts
-  - src/models/components/validationerror.ts
-  - src/models/components/buyercreate.ts
-  - src/models/components/buyerupdate.ts
-  - src/models/components/billingdetailssummary.ts
-  - src/models/components/billingdetails.ts
-  - src/models/components/shippingdetailslist.ts
-  - src/models/components/shippingdetails.ts
-  - src/models/components/shippingdetailscreate.ts
-  - src/models/components/shippingdetailsupdate.ts
-  - src/models/components/security.ts
-  - src/models/errors/httpvalidationerror.ts
-  - src/models/errors/index.ts
-  - src/models/operations/index.ts
-  - src/models/components/index.ts
-  - docs/models/operations/listbuyersrequest.md
-  - docs/models/operations/listbuyersresponse.md
-  - docs/models/operations/getbuyerrequest.md
-  - docs/models/operations/updatebuyerrequest.md
-  - docs/models/operations/deletebuyerrequest.md
-  - docs/models/operations/listbillingdetailsrequest.md
-  - docs/models/operations/updatebuyerbillingdetailsrequest.md
-  - docs/models/operations/listbuyershippingdetailsrequest.md
-  - docs/models/operations/addbuyershippingdetailsrequest.md
-  - docs/models/operations/getbuyershippingdetailsrequest.md
-  - docs/models/operations/updatebuyershippingdetailsrequest.md
-  - docs/models/operations/deletebuyershippingdetailsrequest.md
-  - docs/models/components/buyercollection.md
-  - docs/models/components/type.md
-  - docs/models/components/buyeraddress.md
-  - docs/models/components/buyertaxid.md
-  - docs/models/components/buyerbillingdetails.md
-  - docs/models/components/buyer.md
-  - docs/models/components/taxidkind.md
-  - docs/models/components/loc.md
-  - docs/models/components/validationerror.md
-  - docs/models/components/buyercreateaddress.md
-  - docs/models/components/buyercreatetaxid.md
-  - docs/models/components/buyercreatebillingdetails.md
-  - docs/models/components/buyercreate.md
-  - docs/models/components/buyerupdateaddress.md
-  - docs/models/components/buyerupdatetaxid.md
-  - docs/models/components/buyerupdatebillingdetails.md
-  - docs/models/components/buyerupdate.md
-  - docs/models/components/address.md
-  - docs/models/components/taxid.md
-  - docs/models/components/billingdetailssummarytype.md
-  - docs/models/components/billingdetailssummary.md
-  - docs/models/components/billingdetailsaddress.md
-  - docs/models/components/billingdetailstaxid.md
-  - docs/models/components/billingdetails.md
-  - docs/models/components/shippingdetailslist.md
-  - docs/models/components/shippingdetailsaddress.md
-  - docs/models/components/shippingdetailstype.md
-  - docs/models/components/shippingdetails.md
-  - docs/models/components/shippingdetailscreateaddress.md
-  - docs/models/components/shippingdetailscreate.md
-  - docs/models/components/shippingdetailsupdateaddress.md
-  - docs/models/components/shippingdetailsupdate.md
-  - docs/models/components/security.md
-  - docs/models/errors/httpvalidationerror.md
-  - docs/sdks/gr4vy/README.md
-  - docs/lib/utils/retryconfig.md
-  - docs/sdks/buyers/README.md
-  - docs/sdks/billingdetails/README.md
-  - docs/sdks/shippingdetails/README.md
-  - USAGE.md
-  - .gitattributes
-  - src/hooks/hooks.ts
-  - src/hooks/types.ts
-  - src/hooks/index.ts
-  - CONTRIBUTING.md
+examples:
+  list_audit_logs:
+    speakeasy-default-list-audit-logs:
+      parameters:
+        query:
+          cursor: "ZXhhbXBsZTE"
+          limit: 20
+          action: "created"
+          user_id: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef"
+          resource_type: "user"
+      responses:
+        "200":
+          application/json: {"items": [{"type": "audit-log", "id": "8d3fe99b-1422-42e6-bbb3-932d95ae5f79", "merchant_account_id": "default", "resource": {"type": "user", "id": "d0f98bc9-8915-413c-a1de-d853eb658c1b", "name": "Jane Zoe"}, "action": "created", "user": {"type": "user", "id": "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef", "name": "John Doe", "email_address": "john@example.com", "is_staff": false, "status": "pending"}, "timestamp": "2022-01-01T00:00:00+00:00"}, {"type": "audit-log", "id": "8d3fe99b-1422-42e6-bbb3-932d95ae5f79", "merchant_account_id": "default", "resource": {"type": "user", "id": "d0f98bc9-8915-413c-a1de-d853eb658c1b", "name": "Jane Zoe"}, "action": "created", "user": {"type": "user", "id": "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef", "name": "John Doe", "email_address": "john@example.com", "is_staff": false, "status": "deleted"}, "timestamp": "2022-01-01T00:00:00+00:00"}, {"type": "audit-log", "id": "8d3fe99b-1422-42e6-bbb3-932d95ae5f79", "merchant_account_id": "default", "resource": {"type": "user", "id": "d0f98bc9-8915-413c-a1de-d853eb658c1b", "name": "Jane Zoe"}, "action": "created", "user": {"type": "user", "id": "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef", "name": "John Doe", "email_address": "john@example.com", "is_staff": false, "status": "active"}, "timestamp": "2022-01-01T00:00:00+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+        "422": {}
+  list_payouts:
+    speakeasy-default-list-payouts:
+      parameters:
+        query:
+          cursor: "ZXhhbXBsZTE"
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [{"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "EUR", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"country": "GB", "currency": "EUR", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "method": "card", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "succeeded", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"country": "DE", "currency": "GBP", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "method": "card", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "succeeded", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "GBP", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"country": "DE", "currency": "USD", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "method": "card", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "succeeded", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+        "422": {}
+  create_payout:
+    speakeasy-default-create-payout:
+      requestBody:
+        application/json: {"amount": 1299, "currency": "GBP", "payment_service_id": "ed8bd87d-85ad-40cf-8e8f-007e21e55aad", "payment_method": {"method": "id", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077"}, "category": "online_gambling", "external_identifier": "payout-12345", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "buyer": {"billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "buyer_external_identifier": "buyer-12345", "merchant": {"name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "connection_options": {"checkout-card": {"processing_channel_id": "channel-1234", "source_id": "acct-1234"}}}
+      responses:
+        "201":
+          application/json: {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"country": "DE", "currency": "EUR", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "method": "card", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "succeeded", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  get_payout:
+    speakeasy-default-get-payout:
+      parameters:
+        path:
+          payout_id: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+      responses:
+        "200":
+          application/json: {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "GBP", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"country": "DE", "currency": "EUR", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "method": "card", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "succeeded", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  list_buyers:
+    speakeasy-default-list-buyers:
+      parameters:
+        query:
+          cursor: "ZXhhbXBsZTE"
+          limit: 20
+          search: "John"
+          external_identifier: "buyer-12345"
+      responses:
+        "200":
+          application/json: {"items": [{"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+        "422": {}
+  add_buyer:
+    speakeasy-default-add-buyer:
+      requestBody:
+        application/json: {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}}
+      responses:
+        "201":
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  get_buyer:
+    speakeasy-default-get-buyer:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+      responses:
+        "200":
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  update_buyer:
+    speakeasy-default-update-buyer:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+      requestBody:
+        application/json: {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}}
+      responses:
+        "200":
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  delete_buyer:
+    speakeasy-default-delete-buyer:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+  list_buyer_payment_methods:
+    speakeasy-default-list-buyer-payment-methods:
+      parameters:
+        query:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          buyer_external_identifier: "buyer-12345"
+          sort_by: "last_used_at"
+          order_by: "desc"
+          country: "GB"
+          currency: "EUR"
+      responses:
+        "200":
+          application/json: {"items": []}
+        "422": {}
+  list_buyer_shipping_details:
+    speakeasy-default-list-buyer-shipping-details:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+      responses:
+        "200":
+          application/json: {"items": [{"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}]}
+        "422": {}
+  add_buyer_shipping_details:
+    speakeasy-default-add-buyer-shipping-details:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+      requestBody:
+        application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}
+      responses:
+        "201":
+          application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}
+        "422": {}
+  get_buyer_shipping_details:
+    speakeasy-default-get-buyer-shipping-details:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
+      responses:
+        "200":
+          application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}
+        "422": {}
+  update_buyer_shipping_details:
+    speakeasy-default-update-buyer-shipping-details:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
+      requestBody:
+        application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}
+      responses:
+        "200":
+          application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}
+        "422": {}
+  delete_buyer_shipping_details:
+    speakeasy-default-delete-buyer-shipping-details:
+      parameters:
+        path:
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
+      responses:
+        "200":
+          application/json: "<value>"
+        "422": {}
+  list_payment_methods:
+    speakeasy-default-list-payment-methods:
+      parameters:
+        query:
+          cursor: "ZXhhbXBsZTE"
+          limit: 20
+          buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          buyer_external_identifier: "buyer-12345"
+          external_identifier: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+      responses:
+        "200":
+          application/json: {"items": [{"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "GB", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "card", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["eftpos-australia"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "DE", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "succeeded", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "GB", "currency": "GBP", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "card", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["eftpos-australia"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "succeeded", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "DE", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "card", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["eftpos-australia"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "succeeded", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+        "422": {}
+  create_payment_method:
+    speakeasy-default-create-payment-method:
+      requestBody:
+        application/json: {"method": "zippay", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "buyer_external_identifier": "buyer-12345", "country": "GB", "currency": "EUR", "redirect_url": "https://standard-utilization.com/", "external_identifier": "payment-method-12345"}
+      responses:
+        "201":
+          application/json: {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "DE", "currency": "EUR", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "card", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["eftpos-australia"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "succeeded", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  get_payment_method:
+    speakeasy-default-get-payment-method:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+      responses:
+        "200":
+          application/json: {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "GBP", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "card", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["eftpos-australia"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "succeeded", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  delete_payment_method:
+    speakeasy-default-delete-payment-method:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+  list_payment_method_payment_service_tokens:
+    speakeasy-default-list-payment-method-payment-service-tokens:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+        query:
+          payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+      responses:
+        "200":
+          application/json: {"items": [{"type": "payment-service-token", "id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "approval_url": "https://gr4vy.app/redirect/12345", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "status": "succeeded", "token": "pm_12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-service-token", "id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "approval_url": "https://gr4vy.app/redirect/12345", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "status": "succeeded", "token": "pm_12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-service-token", "id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "approval_url": "https://gr4vy.app/redirect/12345", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "status": "succeeded", "token": "pm_12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}]}
+        "422": {}
+  create_payment_method_payment_service_token:
+    speakeasy-default-create-payment-method-payment-service-token:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+      requestBody:
+        application/json: {"security_code": "123", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "redirect_url": "https://example.com/callback"}
+      responses:
+        "201":
+          application/json: {"type": "payment-service-token", "id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "approval_url": "https://gr4vy.app/redirect/12345", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "status": "succeeded", "token": "pm_12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  delete_payment_method_payment_service_token:
+    speakeasy-default-delete-payment-method-payment-service-token:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+          payment_service_token_id: "703f2d99-3fd1-44bc-9cbd-a25a2d597886"
+  list_payment_method_network_tokens:
+    speakeasy-default-list-payment-method-network-tokens:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+      responses:
+        "200":
+          application/json: {"items": [{"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "active", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "active", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "active", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}]}
+        "422": {}
+  create_payment_method_network_token:
+    speakeasy-default-create-payment-method-network-token:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+      requestBody:
+        application/json: {"security_code": "123", "merchant_initiated": false, "is_subsequent_payment": false}
+      responses:
+        "201":
+          application/json: {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "active", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  suspend_payment_method_network_token:
+    speakeasy-default-suspend-payment-method-network-token:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+          network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
+      responses:
+        "200":
+          application/json: {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "active", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  resume_payment_method_network_token:
+    speakeasy-default-resume-payment-method-network-token:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+          network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
+      responses:
+        "200":
+          application/json: {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "active", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "422": {}
+  delete_payment_method_network_token:
+    speakeasy-default-delete-payment-method-network-token:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+          network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
+  create_payment_method_network_token_cryptogram:
+    speakeasy-default-create-payment-method-network-token-cryptogram:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+          network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
+      requestBody:
+        application/json: {"merchant_initiated": false}
+      responses:
+        "201":
+          application/json: {"type": "network-token-cryptogram", "cryptogram": "A3F9C2D47E1B56A9"}
+        "422": {}
+  create_checkout_session:
+    speakeasy-default-create-checkout-session:
+      requestBody:
+        application/json: {"cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical"}], "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [], "passenger_name_record": "JOHN L", "passengers": [], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}}
+      responses:
+        "201":
+          application/json: {"cart_items": [], "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "DE", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "DE", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "type": "checkout-session", "id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "expires_at": "2013-07-16T19:23:00.000+00:00", "payment_method": {"type": "payment-method", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "details": {"bin": "411111", "card_country": "DE", "card_type": "credit"}, "label": "1234", "method": "card", "scheme": "visa", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4"}}
+        "422": {}
+  get_checkout_session:
+    speakeasy-default-get-checkout-session:
+      parameters:
+        path:
+          session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
+      responses:
+        "200":
+          application/json: {"cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical"}], "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "DE", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "US", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+442071838750", "ticket_number": "BA1236699999", "title": "Mr."}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "type": "checkout-session", "id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "expires_at": "2013-07-16T19:23:00.000+00:00", "payment_method": {"type": "payment-method", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "details": {"bin": "411111", "card_country": "DE", "card_type": "credit"}, "label": "1234", "method": "card", "scheme": "visa", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4"}}
+        "422": {}
+  update_checkout_session:
+    speakeasy-default-update-checkout-session:
+      parameters:
+        path:
+          session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
+      requestBody:
+        application/json: {"cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical"}], "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "GB", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+14155552671", "ticket_number": "BA1236699999", "title": "Mr."}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+14155552671", "ticket_number": "BA1236699999", "title": "Mr."}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+14155552671", "ticket_number": "BA1236699999", "title": "Mr."}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}}
+      responses:
+        "200":
+          application/json: {"cart_items": [], "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+442071838750", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "GB-LND", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+14155552671", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "DE", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "US", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+14155552671", "ticket_number": "BA1236699999", "title": "Mr."}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+442071838750", "ticket_number": "BA1236699999", "title": "Mr."}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+14155552671", "ticket_number": "BA1236699999", "title": "Mr."}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "type": "checkout-session", "id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "expires_at": "2013-07-16T19:23:00.000+00:00", "payment_method": {"type": "payment-method", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "details": {"bin": "411111", "card_country": "DE", "card_type": "credit"}, "label": "1234", "method": "card", "scheme": "visa", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4"}}
+        "422": {}
+  delete_checkout_session:
+    speakeasy-default-delete-checkout-session:
+      parameters:
+        path:
+          session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
+generatedTests: {}

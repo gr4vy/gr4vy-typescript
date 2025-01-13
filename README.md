@@ -75,6 +75,13 @@ async function run() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+### [auditLogs](docs/sdks/auditlogs/README.md)
+
+* [list](docs/sdks/auditlogs/README.md#list) - List audit log entries
+
 ### [buyers](docs/sdks/buyers/README.md)
 
 * [list](docs/sdks/buyers/README.md#list) - List all buyers
@@ -83,74 +90,128 @@ async function run() {
 * [update](docs/sdks/buyers/README.md#update) - Update a buyer
 * [delete](docs/sdks/buyers/README.md#delete) - Delete a buyer
 
-### [buyers.billingDetails](docs/sdks/billingdetails/README.md)
+#### [buyers.paymentMethods](docs/sdks/gr4vypaymentmethods/README.md)
 
-* [get](docs/sdks/billingdetails/README.md#get) - Get buyer billing details
-* [update](docs/sdks/billingdetails/README.md#update) - Update buyer billing details
+* [list](docs/sdks/gr4vypaymentmethods/README.md#list) - List payment methods for a buyer
 
-### [buyers.shippingDetails](docs/sdks/shippingdetails/README.md)
+#### [buyers.shippingDetails](docs/sdks/shippingdetails/README.md)
 
-* [list](docs/sdks/shippingdetails/README.md#list) - List buyer shipping details
+* [list](docs/sdks/shippingdetails/README.md#list) - List a buyer's shipping details
 * [create](docs/sdks/shippingdetails/README.md#create) - Add buyer shipping details
 * [get](docs/sdks/shippingdetails/README.md#get) - Get buyer shipping details
-* [update](docs/sdks/shippingdetails/README.md#update) - Update buyer shipping details
-* [delete](docs/sdks/shippingdetails/README.md#delete) - Delete buyer shipping details
+* [update](docs/sdks/shippingdetails/README.md#update) - Update a buyer's shipping details
+* [delete](docs/sdks/shippingdetails/README.md#delete) - Delete a buyer's shipping details
+
+### [checkoutSessions](docs/sdks/checkoutsessions/README.md)
+
+* [create](docs/sdks/checkoutsessions/README.md#create) - Create checkout session
+* [get](docs/sdks/checkoutsessions/README.md#get) - Get checkout session
+* [update](docs/sdks/checkoutsessions/README.md#update) - Update checkout session
+* [delete](docs/sdks/checkoutsessions/README.md#delete) - Delete checkout session
+
+
+### [paymentMethods](docs/sdks/paymentmethods/README.md)
+
+* [list](docs/sdks/paymentmethods/README.md#list) - List all payment methods
+* [create](docs/sdks/paymentmethods/README.md#create) - Create payment method
+* [get](docs/sdks/paymentmethods/README.md#get) - Get payment method
+* [delete](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
+
+#### [paymentMethods.networkTokens](docs/sdks/networktokens/README.md)
+
+* [list](docs/sdks/networktokens/README.md#list) - List network tokens
+* [create](docs/sdks/networktokens/README.md#create) - Provision network token
+* [suspend](docs/sdks/networktokens/README.md#suspend) - Suspend network token
+* [resume](docs/sdks/networktokens/README.md#resume) - Resume network token
+* [delete](docs/sdks/networktokens/README.md#delete) - Delete network token
+
+#### [paymentMethods.networkTokens.cryptogram](docs/sdks/cryptogram/README.md)
+
+* [create](docs/sdks/cryptogram/README.md#create) - Provision network token cryptogram
+
+#### [paymentMethods.paymentServiceTokens](docs/sdks/paymentservicetokens/README.md)
+
+* [list](docs/sdks/paymentservicetokens/README.md#list) - List payment service tokens
+* [create](docs/sdks/paymentservicetokens/README.md#create) - Create payment service token
+* [delete](docs/sdks/paymentservicetokens/README.md#delete) - Delete payment service token
+
+### [payouts](docs/sdks/payouts/README.md)
+
+* [list](docs/sdks/payouts/README.md#list) - List payouts created.
+* [create](docs/sdks/payouts/README.md#create) - Create a payout.
+* [get](docs/sdks/payouts/README.md#get) - Get a payout.
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
 
-| Error Object               | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+If a HTTP request fails, an operation my also throw an error from the `models/errors/httpclienterrors.ts` module:
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `list` method may throw the following errors:
+
+| Error Type                 | Status Code | Content Type     |
+| -------------------------- | ----------- | ---------------- |
+| errors.HTTPValidationError | 422         | application/json |
+| errors.SDKError            | 4XX, 5XX    | \*/\*            |
 
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
-import { HTTPValidationError, SDKValidationError } from "@gr4vy/sdk/models/errors";
+import {
+  HTTPValidationError,
+  SDKValidationError,
+} from "@gr4vy/sdk/models/errors";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    let result;
-    try {
-        result = await gr4vy.buyers.list();
+  let result;
+  try {
+    result = await gr4vy.buyers.list("ZXhhbXBsZTE", 20, "John", "buyer-12345");
 
-        for await (const page of result) {
-            // Handle the page
-            console.log(page);
-        }
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            case err instanceof HTTPValidationError: {
-                // Handle err.data$: HTTPValidationErrorData
-                console.error(err);
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
+    for await (const page of result) {
+      // Handle the page
+      console.log(page);
     }
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof HTTPValidationError): {
+        // Handle err.data$: HTTPValidationErrorData
+        console.error(err);
+        return;
+      }
+      default: {
+        throw err;
+      }
+    }
+  }
 }
 
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -158,58 +219,66 @@ run();
 
 ### Select Server by Name
 
-You can override the default server globally by passing a server name to the `server` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+You can override the default server globally by passing a server name to the `server: keyof typeof ServerList` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name | Server | Variables |
-| ----- | ------ | --------- |
-| `production` | `https://api.{gr4vy_id}.gr4vy.app` | `gr4vy_id` (default is `example`) |
-| `sandbox` | `https://api.sandbox.{gr4vy_id}.gr4vy.app` | `gr4vy_id` (default is `example`) |
+| Name         | Server                                     | Variables         | Default values |
+| ------------ | ------------------------------------------ | ----------------- | -------------- |
+| `production` | `https://api.{gr4vy_id}.gr4vy.app`         | `gr4vyId: string` | `"example"`    |
+| `sandbox`    | `https://api.sandbox.{gr4vy_id}.gr4vy.app` | `gr4vyId: string` | `"example"`    |
+
+If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
+
+#### Example
 
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    const result = await gr4vy.buyers.list();
+  const result = await gr4vy.buyers.list(
+    "ZXhhbXBsZTE",
+    20,
+    "John",
+    "buyer-12345",
+  );
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
 
 ```
 
-#### Variables
-
-Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
- * `gr4vyId: string`
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    serverURL: "https://api.{gr4vy_id}.gr4vy.app",
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  serverURL: "https://api.example.gr4vy.app",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    const result = await gr4vy.buyers.list();
+  const result = await gr4vy.buyers.list(
+    "ZXhhbXBsZTE",
+    20,
+    "John",
+    "buyer-12345",
+  );
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -273,25 +342,30 @@ const sdk = new Gr4vy({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name                 | Type                 | Scheme               | Environment Variable |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| `bearerAuth`         | http                 | HTTP Bearer          | `GR4VY_BEARER_AUTH`  |
+| Name         | Type | Scheme      | Environment Variable |
+| ------------ | ---- | ----------- | -------------------- |
+| `bearerAuth` | http | HTTP Bearer | `GR4VY_BEARER_AUTH`  |
 
 To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    const result = await gr4vy.buyers.list();
+  const result = await gr4vy.buyers.list(
+    "ZXhhbXBsZTE",
+    20,
+    "John",
+    "buyer-12345",
+  );
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -341,16 +415,21 @@ yarn add @gr4vy/sdk zod
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    const result = await gr4vy.buyers.list();
+  const result = await gr4vy.buyers.list(
+    "ZXhhbXBsZTE",
+    20,
+    "John",
+    "buyer-12345",
+  );
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -374,16 +453,21 @@ Here's an example of one such pagination call:
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    const result = await gr4vy.buyers.list();
+  const result = await gr4vy.buyers.list(
+    "ZXhhbXBsZTE",
+    20,
+    "John",
+    "buyer-12345",
+  );
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -401,27 +485,33 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    const result = await gr4vy.buyers.list({
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
+  const result = await gr4vy.buyers.list(
+    "ZXhhbXBsZTE",
+    20,
+    "John",
+    "buyer-12345",
+    {
+      retries: {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1,
+          maxInterval: 50,
+          exponent: 1.1,
+          maxElapsedTime: 100,
         },
-    });
+        retryConnectionErrors: false,
+      },
+    },
+  );
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -433,26 +523,31 @@ If you'd like to override the default retry strategy for all operations that sup
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+    retryConnectionErrors: false,
+  },
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
-    const result = await gr4vy.buyers.list();
+  const result = await gr4vy.buyers.list(
+    "ZXhhbXBsZTE",
+    20,
+    "John",
+    "buyer-12345",
+  );
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -468,19 +563,26 @@ Gr4vy: The Gr4vy API.
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [@gr4vy/js](#gr4vyjs)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [SDK Installation](#sdk-installation-1)
+  * [SDK Example Usage](#sdk-example-usage-1)
+  * [Pagination](#pagination)
+  * [Retries](#retries)
+  * [Standalone functions](#standalone-functions)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [Requirements](#requirements)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Standalone functions](#standalone-functions)
-* [Pagination](#pagination)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Debugging](#debugging)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start Standalone functions [standalone-funcs] -->
@@ -498,19 +600,38 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [buyersBillingDetailsGet](docs/sdks/billingdetails/README.md#get)
-- [buyersBillingDetailsUpdate](docs/sdks/billingdetails/README.md#update)
-- [buyersCreate](docs/sdks/buyers/README.md#create)
-- [buyersDelete](docs/sdks/buyers/README.md#delete)
-- [buyersGet](docs/sdks/buyers/README.md#get)
-- [buyersList](docs/sdks/buyers/README.md#list)
-- [buyersShippingDetailsCreate](docs/sdks/shippingdetails/README.md#create)
-- [buyersShippingDetailsDelete](docs/sdks/shippingdetails/README.md#delete)
-- [buyersShippingDetailsGet](docs/sdks/shippingdetails/README.md#get)
-- [buyersShippingDetailsList](docs/sdks/shippingdetails/README.md#list)
-- [buyersShippingDetailsUpdate](docs/sdks/shippingdetails/README.md#update)
-- [buyersUpdate](docs/sdks/buyers/README.md#update)
-
+- [`auditLogsList`](docs/sdks/auditlogs/README.md#list) - List audit log entries
+- [`buyersCreate`](docs/sdks/buyers/README.md#create) - Add a buyer
+- [`buyersDelete`](docs/sdks/buyers/README.md#delete) - Delete a buyer
+- [`buyersGet`](docs/sdks/buyers/README.md#get) - Get a buyer
+- [`buyersList`](docs/sdks/buyers/README.md#list) - List all buyers
+- [`buyersPaymentMethodsList`](docs/sdks/gr4vypaymentmethods/README.md#list) - List payment methods for a buyer
+- [`buyersShippingDetailsCreate`](docs/sdks/shippingdetails/README.md#create) - Add buyer shipping details
+- [`buyersShippingDetailsDelete`](docs/sdks/shippingdetails/README.md#delete) - Delete a buyer's shipping details
+- [`buyersShippingDetailsGet`](docs/sdks/shippingdetails/README.md#get) - Get buyer shipping details
+- [`buyersShippingDetailsList`](docs/sdks/shippingdetails/README.md#list) - List a buyer's shipping details
+- [`buyersShippingDetailsUpdate`](docs/sdks/shippingdetails/README.md#update) - Update a buyer's shipping details
+- [`buyersUpdate`](docs/sdks/buyers/README.md#update) - Update a buyer
+- [`checkoutSessionsCreate`](docs/sdks/checkoutsessions/README.md#create) - Create checkout session
+- [`checkoutSessionsDelete`](docs/sdks/checkoutsessions/README.md#delete) - Delete checkout session
+- [`checkoutSessionsGet`](docs/sdks/checkoutsessions/README.md#get) - Get checkout session
+- [`checkoutSessionsUpdate`](docs/sdks/checkoutsessions/README.md#update) - Update checkout session
+- [`paymentMethodsCreate`](docs/sdks/paymentmethods/README.md#create) - Create payment method
+- [`paymentMethodsDelete`](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
+- [`paymentMethodsGet`](docs/sdks/paymentmethods/README.md#get) - Get payment method
+- [`paymentMethodsList`](docs/sdks/paymentmethods/README.md#list) - List all payment methods
+- [`paymentMethodsNetworkTokensCreate`](docs/sdks/networktokens/README.md#create) - Provision network token
+- [`paymentMethodsNetworkTokensCryptogramCreate`](docs/sdks/cryptogram/README.md#create) - Provision network token cryptogram
+- [`paymentMethodsNetworkTokensDelete`](docs/sdks/networktokens/README.md#delete) - Delete network token
+- [`paymentMethodsNetworkTokensList`](docs/sdks/networktokens/README.md#list) - List network tokens
+- [`paymentMethodsNetworkTokensResume`](docs/sdks/networktokens/README.md#resume) - Resume network token
+- [`paymentMethodsNetworkTokensSuspend`](docs/sdks/networktokens/README.md#suspend) - Suspend network token
+- [`paymentMethodsPaymentServiceTokensCreate`](docs/sdks/paymentservicetokens/README.md#create) - Create payment service token
+- [`paymentMethodsPaymentServiceTokensDelete`](docs/sdks/paymentservicetokens/README.md#delete) - Delete payment service token
+- [`paymentMethodsPaymentServiceTokensList`](docs/sdks/paymentservicetokens/README.md#list) - List payment service tokens
+- [`payoutsCreate`](docs/sdks/payouts/README.md#create) - Create a payout.
+- [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout.
+- [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created.
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
