@@ -123,6 +123,10 @@ export type CheckoutSessionBuyer = {
    */
   billingDetails?: BillingDetails | undefined;
   /**
+   * The buyer account number
+   */
+  accountNumber?: string | undefined;
+  /**
    * The optional shipping details for this buyer.
    */
   shippingDetails?: CheckoutSessionShippingDetails | undefined;
@@ -263,6 +267,10 @@ export type CheckoutSessionDetails = {
    * The payment scheme of the card.
    */
   cardType?: CheckoutSessionCardType | undefined;
+  /**
+   * The card issuer.
+   */
+  cardIssuerName?: string | undefined;
 };
 
 /**
@@ -613,6 +621,7 @@ export const CheckoutSessionBuyer$inboundSchema: z.ZodType<
   display_name: z.string().optional(),
   external_identifier: z.string().optional(),
   billing_details: BillingDetails$inboundSchema.optional(),
+  account_number: z.string().optional(),
   shipping_details: z.lazy(() => CheckoutSessionShippingDetails$inboundSchema)
     .optional(),
 }).transform((v) => {
@@ -620,6 +629,7 @@ export const CheckoutSessionBuyer$inboundSchema: z.ZodType<
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
     "billing_details": "billingDetails",
+    "account_number": "accountNumber",
     "shipping_details": "shippingDetails",
   });
 });
@@ -629,6 +639,7 @@ export type CheckoutSessionBuyer$Outbound = {
   display_name?: string | undefined;
   external_identifier?: string | undefined;
   billing_details?: BillingDetails$Outbound | undefined;
+  account_number?: string | undefined;
   shipping_details?: CheckoutSessionShippingDetails$Outbound | undefined;
 };
 
@@ -641,6 +652,7 @@ export const CheckoutSessionBuyer$outboundSchema: z.ZodType<
   displayName: z.string().optional(),
   externalIdentifier: z.string().optional(),
   billingDetails: BillingDetails$outboundSchema.optional(),
+  accountNumber: z.string().optional(),
   shippingDetails: z.lazy(() => CheckoutSessionShippingDetails$outboundSchema)
     .optional(),
 }).transform((v) => {
@@ -648,6 +660,7 @@ export const CheckoutSessionBuyer$outboundSchema: z.ZodType<
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
     shippingDetails: "shipping_details",
   });
 });
@@ -909,10 +922,12 @@ export const CheckoutSessionDetails$inboundSchema: z.ZodType<
   bin: z.string().optional(),
   card_country: z.string().optional(),
   card_type: CheckoutSessionCardType$inboundSchema.optional(),
+  card_issuer_name: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "card_country": "cardCountry",
     "card_type": "cardType",
+    "card_issuer_name": "cardIssuerName",
   });
 });
 
@@ -921,6 +936,7 @@ export type CheckoutSessionDetails$Outbound = {
   bin?: string | undefined;
   card_country?: string | undefined;
   card_type?: string | undefined;
+  card_issuer_name?: string | undefined;
 };
 
 /** @internal */
@@ -932,10 +948,12 @@ export const CheckoutSessionDetails$outboundSchema: z.ZodType<
   bin: z.string().optional(),
   cardCountry: z.string().optional(),
   cardType: CheckoutSessionCardType$outboundSchema.optional(),
+  cardIssuerName: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     cardCountry: "card_country",
     cardType: "card_type",
+    cardIssuerName: "card_issuer_name",
   });
 });
 

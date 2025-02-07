@@ -9,7 +9,7 @@ import { PayoutsSummaryBuyerAddress } from "@gr4vy/sdk/models/components";
 
 let value: PayoutsSummaryBuyerAddress = {
   city: "San Jose",
-  country: "GB",
+  country: "DE",
   postalCode: "94560",
   state: "California",
   stateCode: "US-CA",

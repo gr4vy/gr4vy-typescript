@@ -23,7 +23,7 @@ let value: AuditLogEntry = {
     name: "John Doe",
     emailAddress: "john@example.com",
     isStaff: false,
-    status: "deleted",
+    status: "active",
   },
   timestamp: new Date("2022-01-01T00:00:00+00:00"),
 };

@@ -9,7 +9,7 @@ import { Address } from "@gr4vy/sdk/models/components";
 
 let value: Address = {
   city: "San Jose",
-  country: "DE",
+  country: "GB",
   postalCode: "94560",
   state: "California",
   stateCode: "US-CA",

@@ -17,7 +17,7 @@ let value: BuyerCreate = {
     phoneNumber: "+14155552671",
     address: {
       city: "San Jose",
-      country: "US",
+      country: "DE",
       postalCode: "94560",
       state: "California",
       stateCode: "GB-LND",
@@ -41,3 +41,4 @@ let value: BuyerCreate = {
 | `displayName`                                                          | *string*                                                               | :heavy_minus_sign:                                                     | The display name for the buyer.                                        | John Doe                                                               |
 | `externalIdentifier`                                                   | *string*                                                               | :heavy_minus_sign:                                                     | The merchant identifier for this buyer.                                | buyer-12345                                                            |
 | `billingDetails`                                                       | [components.BillingDetails](../../models/components/billingdetails.md) | :heavy_minus_sign:                                                     | Base model with JSON encoders.                                         |                                                                        |
+| `accountNumber`                                                        | *string*                                                               | :heavy_minus_sign:                                                     | The buyer account number                                               |                                                                        |

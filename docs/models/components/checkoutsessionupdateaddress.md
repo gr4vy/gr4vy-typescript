@@ -9,7 +9,7 @@ import { CheckoutSessionUpdateAddress } from "@gr4vy/sdk/models/components";
 
 let value: CheckoutSessionUpdateAddress = {
   city: "San Jose",
-  country: "DE",
+  country: "US",
   postalCode: "94560",
   state: "California",
   stateCode: "GB-LND",

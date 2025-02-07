@@ -15,7 +15,7 @@ let value: UpdateBuyerShippingDetailsRequest = {
     phoneNumber: "+442071838750",
     address: {
       city: "San Jose",
-      country: "GB",
+      country: "US",
       postalCode: "94560",
       state: "California",
       stateCode: "US-CA",

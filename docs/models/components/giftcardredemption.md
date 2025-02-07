@@ -1,0 +1,43 @@
+# GiftCardRedemption
+
+Base model with JSON encoders.
+
+## Example Usage
+
+```typescript
+import { GiftCardRedemption } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardRedemption = {
+  type: "gift-card-redemption",
+  id: "31e65fb1-9c67-432e-9c06-83300b9d4059",
+  status: "succeeded",
+  amount: 100,
+  refundedAmount: 50,
+  giftCardServiceRedemptionId: "xYqd43gySMtori",
+  errorCode: "expired_card",
+  rawErrorCode: "10001",
+  rawErrorMessage: "Card expired",
+  giftCard: {
+    type: "gift-card",
+    id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e",
+    bin: "412345",
+    subBin: "554",
+    last4: "1234",
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                            | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      | Example                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                                           | [components.GiftCardRedemptionType](../../models/components/giftcardredemptiontype.md)                                           | :heavy_minus_sign:                                                                                                               | Always `gift-card-redemption`.                                                                                                   | gift-card-redemption                                                                                                             |
+| `id`                                                                                                                             | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | The ID for the gift card redemption.                                                                                             | 31e65fb1-9c67-432e-9c06-83300b9d4059                                                                                             |
+| `status`                                                                                                                         | [components.GiftCardRedemptionStatus](../../models/components/giftcardredemptionstatus.md)                                       | :heavy_check_mark:                                                                                                               | The status of the gift card redemption for the `payment_method`.                                                                 | succeeded                                                                                                                        |
+| `amount`                                                                                                                         | *number*                                                                                                                         | :heavy_check_mark:                                                                                                               | The amount redeemed for this gift card.                                                                                          | 100                                                                                                                              |
+| `refundedAmount`                                                                                                                 | *number*                                                                                                                         | :heavy_check_mark:                                                                                                               | The amount refunded for this gift card. This can not be larger than `amount`.                                                    | 50                                                                                                                               |
+| `giftCardServiceRedemptionId`                                                                                                    | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | The gift card service's unique ID for the redemption.                                                                            | xYqd43gySMtori                                                                                                                   |
+| `errorCode`                                                                                                                      | [components.GiftCardRedemptionGiftCardErrorCode](../../models/components/giftcardredemptiongiftcarderrorcode.md)                 | :heavy_minus_sign:                                                                                                               | If this gift card redemption resulted in an error, this will contain the internal code for the error.                            | expired_card                                                                                                                     |
+| `rawErrorCode`                                                                                                                   | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.    | 10001                                                                                                                            |
+| `rawErrorMessage`                                                                                                                | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider. | Card expired                                                                                                                     |
+| `giftCard`                                                                                                                       | [components.GiftCardRedemptionGiftCard](../../models/components/giftcardredemptiongiftcard.md)                                   | :heavy_check_mark:                                                                                                               | The gift card used for this redemption                                                                                           |                                                                                                                                  |

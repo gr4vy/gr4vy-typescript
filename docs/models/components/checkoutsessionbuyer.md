@@ -14,13 +14,13 @@ let value: CheckoutSessionBuyer = {
     firstName: "John",
     lastName: "Doe",
     emailAddress: "john@example.com",
-    phoneNumber: "+442071838750",
+    phoneNumber: "+14155552671",
     address: {
       city: "San Jose",
-      country: "DE",
+      country: "GB",
       postalCode: "94560",
       state: "California",
-      stateCode: "US-CA",
+      stateCode: "GB-LND",
       houseNumberOrName: "10",
       line1: "Stafford Appartments",
       line2: "29th Street",
@@ -35,13 +35,13 @@ let value: CheckoutSessionBuyer = {
     firstName: "John",
     lastName: "Doe",
     emailAddress: "john@example.com",
-    phoneNumber: "+14155552671",
+    phoneNumber: "+442071838750",
     address: {
       city: "San Jose",
-      country: "US",
+      country: "GB",
       postalCode: "94560",
       state: "California",
-      stateCode: "US-CA",
+      stateCode: "GB-LND",
       houseNumberOrName: "10",
       line1: "Stafford Appartments",
       line2: "29th Street",
@@ -58,4 +58,5 @@ let value: CheckoutSessionBuyer = {
 | `displayName`                                                                                          | *string*                                                                                               | :heavy_minus_sign:                                                                                     | The display name for the buyer.                                                                        | John Doe                                                                                               |
 | `externalIdentifier`                                                                                   | *string*                                                                                               | :heavy_minus_sign:                                                                                     | The merchant identifier for this buyer.                                                                | buyer-12345                                                                                            |
 | `billingDetails`                                                                                       | [components.BillingDetails](../../models/components/billingdetails.md)                                 | :heavy_minus_sign:                                                                                     | Base model with JSON encoders.                                                                         |                                                                                                        |
+| `accountNumber`                                                                                        | *string*                                                                                               | :heavy_minus_sign:                                                                                     | The buyer account number                                                                               |                                                                                                        |
 | `shippingDetails`                                                                                      | [components.CheckoutSessionShippingDetails](../../models/components/checkoutsessionshippingdetails.md) | :heavy_minus_sign:                                                                                     | The optional shipping details for this buyer.                                                          |                                                                                                        |

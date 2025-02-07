@@ -10,8 +10,8 @@ let value: ListBuyerPaymentMethodsRequest = {
   buyerExternalIdentifier: "buyer-12345",
   sortBy: "last_used_at",
   orderBy: "desc",
-  country: "GB",
-  currency: "USD",
+  country: "DE",
+  currency: "EUR",
 };
 ```
 

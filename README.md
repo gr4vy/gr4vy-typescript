@@ -78,6 +78,13 @@ async function run() {
 <details open>
 <summary>Available methods</summary>
 
+### [accountUpdater](docs/sdks/accountupdater/README.md)
+
+
+#### [accountUpdater.jobs](docs/sdks/jobs/README.md)
+
+* [create](docs/sdks/jobs/README.md#create) - Create account updater job
+
 ### [auditLogs](docs/sdks/auditlogs/README.md)
 
 * [list](docs/sdks/auditlogs/README.md#list) - List audit log entries
@@ -89,6 +96,10 @@ async function run() {
 * [get](docs/sdks/buyers/README.md#get) - Get a buyer
 * [update](docs/sdks/buyers/README.md#update) - Update a buyer
 * [delete](docs/sdks/buyers/README.md#delete) - Delete a buyer
+
+#### [buyers.giftCards](docs/sdks/gr4vygiftcards/README.md)
+
+* [list](docs/sdks/gr4vygiftcards/README.md#list) - List gift cards for a buyer
 
 #### [buyers.paymentMethods](docs/sdks/gr4vypaymentmethods/README.md)
 
@@ -102,12 +113,46 @@ async function run() {
 * [update](docs/sdks/shippingdetails/README.md#update) - Update a buyer's shipping details
 * [delete](docs/sdks/shippingdetails/README.md#delete) - Delete a buyer's shipping details
 
+### [cardSchemeDefinitions](docs/sdks/cardschemedefinitions/README.md)
+
+* [list](docs/sdks/cardschemedefinitions/README.md#list) - List card scheme definitions
+
 ### [checkoutSessions](docs/sdks/checkoutsessions/README.md)
 
 * [create](docs/sdks/checkoutsessions/README.md#create) - Create checkout session
 * [get](docs/sdks/checkoutsessions/README.md#get) - Get checkout session
 * [update](docs/sdks/checkoutsessions/README.md#update) - Update checkout session
 * [delete](docs/sdks/checkoutsessions/README.md#delete) - Delete checkout session
+
+### [digitalWallets](docs/sdks/digitalwallets/README.md)
+
+* [list](docs/sdks/digitalwallets/README.md#list) - List digital wallets
+* [create](docs/sdks/digitalwallets/README.md#create) - Register digital wallet
+* [get](docs/sdks/digitalwallets/README.md#get) - Get digital wallet
+* [update](docs/sdks/digitalwallets/README.md#update) - Update digital wallet
+* [delete](docs/sdks/digitalwallets/README.md#delete) - Delete digital wallet
+
+#### [digitalWallets.domains](docs/sdks/domains/README.md)
+
+* [create](docs/sdks/domains/README.md#create) - Register a digital wallet domain
+* [delete](docs/sdks/domains/README.md#delete) - Remove a digital wallet domain
+
+#### [digitalWallets.sessions](docs/sdks/sessions/README.md)
+
+* [googlePay](docs/sdks/sessions/README.md#googlepay) - Create a Google Pay session
+* [applePay](docs/sdks/sessions/README.md#applepay) - Create a Apple Pay session
+* [clickToPay](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
+
+### [giftCards](docs/sdks/giftcards/README.md)
+
+* [get](docs/sdks/giftcards/README.md#get) - Get gift card
+* [delete](docs/sdks/giftcards/README.md#delete) - Delete a gift card
+* [list](docs/sdks/giftcards/README.md#list) - List gift cards
+* [create](docs/sdks/giftcards/README.md#create) - Create gift card
+
+#### [giftCards.balances](docs/sdks/balances/README.md)
+
+* [list](docs/sdks/balances/README.md#list) - List gift card balances
 
 
 ### [paymentMethods](docs/sdks/paymentmethods/README.md)
@@ -135,11 +180,42 @@ async function run() {
 * [create](docs/sdks/paymentservicetokens/README.md#create) - Create payment service token
 * [delete](docs/sdks/paymentservicetokens/README.md#delete) - Delete payment service token
 
+### [paymentOptions](docs/sdks/paymentoptions/README.md)
+
+* [list](docs/sdks/paymentoptions/README.md#list) - List payment options
+
 ### [payouts](docs/sdks/payouts/README.md)
 
 * [list](docs/sdks/payouts/README.md#list) - List payouts created.
 * [create](docs/sdks/payouts/README.md#create) - Create a payout.
 * [get](docs/sdks/payouts/README.md#get) - Get a payout.
+
+### [refunds](docs/sdks/refunds/README.md)
+
+* [get](docs/sdks/refunds/README.md#get) - Get refund
+
+### [transaction](docs/sdks/transaction/README.md)
+
+
+#### [transaction.refunds](docs/sdks/gr4vyrefunds/README.md)
+
+* [create](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
+
+#### [transaction.refunds.all](docs/sdks/all/README.md)
+
+* [create](docs/sdks/all/README.md#create) - Create batch transaction refund
+
+### [transactions](docs/sdks/transactions/README.md)
+
+* [list](docs/sdks/transactions/README.md#list) - List transactions
+* [capture](docs/sdks/transactions/README.md#capture) - Capture transaction
+* [void](docs/sdks/transactions/README.md#void) - Void transaction
+* [summary](docs/sdks/transactions/README.md#summary) - Get transaction summary
+
+#### [transactions.refunds](docs/sdks/gr4vytransactionsrefunds/README.md)
+
+* [list](docs/sdks/gr4vytransactionsrefunds/README.md#list) - List transaction refunds
+* [get](docs/sdks/gr4vytransactionsrefunds/README.md#get) - Get transaction refund
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -159,7 +235,7 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `list` method may throw the following errors:
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `create` method may throw the following errors:
 
 | Error Type                 | Status Code | Content Type     |
 | -------------------------- | ----------- | ---------------- |
@@ -180,12 +256,15 @@ const gr4vy = new Gr4vy({
 async function run() {
   let result;
   try {
-    result = await gr4vy.buyers.list("ZXhhbXBsZTE", 20, "John", "buyer-12345");
+    result = await gr4vy.accountUpdater.jobs.create({
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
+    });
 
-    for await (const page of result) {
-      // Handle the page
-      console.log(page);
-    }
+    // Handle the result
+    console.log(result);
   } catch (err) {
     switch (true) {
       case (err instanceof SDKValidationError): {
@@ -239,17 +318,15 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list(
-    "ZXhhbXBsZTE",
-    20,
-    "John",
-    "buyer-12345",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -268,17 +345,15 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list(
-    "ZXhhbXBsZTE",
-    20,
-    "John",
-    "buyer-12345",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -355,17 +430,15 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list(
-    "ZXhhbXBsZTE",
-    20,
-    "John",
-    "buyer-12345",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -419,17 +492,15 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list(
-    "ZXhhbXBsZTE",
-    20,
-    "John",
-    "buyer-12345",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -489,29 +560,26 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list(
-    "ZXhhbXBsZTE",
-    20,
-    "John",
-    "buyer-12345",
-    {
-      retries: {
-        strategy: "backoff",
-        backoff: {
-          initialInterval: 1,
-          maxInterval: 50,
-          exponent: 1.1,
-          maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
       },
+      retryConnectionErrors: false,
     },
-  );
+  });
 
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -537,17 +605,15 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list(
-    "ZXhhbXBsZTE",
-    20,
-    "John",
-    "buyer-12345",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -600,10 +666,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`accountUpdaterJobsCreate`](docs/sdks/jobs/README.md#create) - Create account updater job
 - [`auditLogsList`](docs/sdks/auditlogs/README.md#list) - List audit log entries
 - [`buyersCreate`](docs/sdks/buyers/README.md#create) - Add a buyer
 - [`buyersDelete`](docs/sdks/buyers/README.md#delete) - Delete a buyer
 - [`buyersGet`](docs/sdks/buyers/README.md#get) - Get a buyer
+- [`buyersGiftCardsList`](docs/sdks/gr4vygiftcards/README.md#list) - List gift cards for a buyer
 - [`buyersList`](docs/sdks/buyers/README.md#list) - List all buyers
 - [`buyersPaymentMethodsList`](docs/sdks/gr4vypaymentmethods/README.md#list) - List payment methods for a buyer
 - [`buyersShippingDetailsCreate`](docs/sdks/shippingdetails/README.md#create) - Add buyer shipping details
@@ -612,10 +680,26 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`buyersShippingDetailsList`](docs/sdks/shippingdetails/README.md#list) - List a buyer's shipping details
 - [`buyersShippingDetailsUpdate`](docs/sdks/shippingdetails/README.md#update) - Update a buyer's shipping details
 - [`buyersUpdate`](docs/sdks/buyers/README.md#update) - Update a buyer
+- [`cardSchemeDefinitionsList`](docs/sdks/cardschemedefinitions/README.md#list) - List card scheme definitions
 - [`checkoutSessionsCreate`](docs/sdks/checkoutsessions/README.md#create) - Create checkout session
 - [`checkoutSessionsDelete`](docs/sdks/checkoutsessions/README.md#delete) - Delete checkout session
 - [`checkoutSessionsGet`](docs/sdks/checkoutsessions/README.md#get) - Get checkout session
 - [`checkoutSessionsUpdate`](docs/sdks/checkoutsessions/README.md#update) - Update checkout session
+- [`digitalWalletsCreate`](docs/sdks/digitalwallets/README.md#create) - Register digital wallet
+- [`digitalWalletsDelete`](docs/sdks/digitalwallets/README.md#delete) - Delete digital wallet
+- [`digitalWalletsDomainsCreate`](docs/sdks/domains/README.md#create) - Register a digital wallet domain
+- [`digitalWalletsDomainsDelete`](docs/sdks/domains/README.md#delete) - Remove a digital wallet domain
+- [`digitalWalletsGet`](docs/sdks/digitalwallets/README.md#get) - Get digital wallet
+- [`digitalWalletsList`](docs/sdks/digitalwallets/README.md#list) - List digital wallets
+- [`digitalWalletsSessionsApplePay`](docs/sdks/sessions/README.md#applepay) - Create a Apple Pay session
+- [`digitalWalletsSessionsClickToPay`](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
+- [`digitalWalletsSessionsGooglePay`](docs/sdks/sessions/README.md#googlepay) - Create a Google Pay session
+- [`digitalWalletsUpdate`](docs/sdks/digitalwallets/README.md#update) - Update digital wallet
+- [`giftCardsBalancesList`](docs/sdks/balances/README.md#list) - List gift card balances
+- [`giftCardsCreate`](docs/sdks/giftcards/README.md#create) - Create gift card
+- [`giftCardsDelete`](docs/sdks/giftcards/README.md#delete) - Delete a gift card
+- [`giftCardsGet`](docs/sdks/giftcards/README.md#get) - Get gift card
+- [`giftCardsList`](docs/sdks/giftcards/README.md#list) - List gift cards
 - [`paymentMethodsCreate`](docs/sdks/paymentmethods/README.md#create) - Create payment method
 - [`paymentMethodsDelete`](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
 - [`paymentMethodsGet`](docs/sdks/paymentmethods/README.md#get) - Get payment method
@@ -629,9 +713,19 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentMethodsPaymentServiceTokensCreate`](docs/sdks/paymentservicetokens/README.md#create) - Create payment service token
 - [`paymentMethodsPaymentServiceTokensDelete`](docs/sdks/paymentservicetokens/README.md#delete) - Delete payment service token
 - [`paymentMethodsPaymentServiceTokensList`](docs/sdks/paymentservicetokens/README.md#list) - List payment service tokens
+- [`paymentOptionsList`](docs/sdks/paymentoptions/README.md#list) - List payment options
 - [`payoutsCreate`](docs/sdks/payouts/README.md#create) - Create a payout.
 - [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout.
 - [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created.
+- [`refundsGet`](docs/sdks/refunds/README.md#get) - Get refund
+- [`transactionRefundsAllCreate`](docs/sdks/all/README.md#create) - Create batch transaction refund
+- [`transactionRefundsCreate`](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
+- [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
+- [`transactionsList`](docs/sdks/transactions/README.md#list) - List transactions
+- [`transactionsRefundsGet`](docs/sdks/gr4vytransactionsrefunds/README.md#get) - Get transaction refund
+- [`transactionsRefundsList`](docs/sdks/gr4vytransactionsrefunds/README.md#list) - List transaction refunds
+- [`transactionsSummary`](docs/sdks/transactions/README.md#summary) - Get transaction summary
+- [`transactionsVoid`](docs/sdks/transactions/README.md#void) - Void transaction
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

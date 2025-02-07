@@ -8,11 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  ApiRoutersPaymentMethodsSchemasPaymentMethod,
-  ApiRoutersPaymentMethodsSchemasPaymentMethod$inboundSchema,
-  ApiRoutersPaymentMethodsSchemasPaymentMethod$Outbound,
-  ApiRoutersPaymentMethodsSchemasPaymentMethod$outboundSchema,
-} from "./apirouterspaymentmethodsschemaspaymentmethod.js";
+  PaymentMethod,
+  PaymentMethod$inboundSchema,
+  PaymentMethod$Outbound,
+  PaymentMethod$outboundSchema,
+} from "./paymentmethod.js";
 
 /**
  * Collection of results.
@@ -21,7 +21,7 @@ export type PaymentMethodCollection = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<ApiRoutersPaymentMethodsSchemasPaymentMethod>;
+  items: Array<PaymentMethod>;
   /**
    * The number of items for this page.
    */
@@ -42,7 +42,7 @@ export const PaymentMethodCollection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(ApiRoutersPaymentMethodsSchemasPaymentMethod$inboundSchema),
+  items: z.array(PaymentMethod$inboundSchema),
   limit: z.number().int().default(20),
   next_cursor: z.string().optional(),
   previous_cursor: z.string().optional(),
@@ -55,7 +55,7 @@ export const PaymentMethodCollection$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PaymentMethodCollection$Outbound = {
-  items: Array<ApiRoutersPaymentMethodsSchemasPaymentMethod$Outbound>;
+  items: Array<PaymentMethod$Outbound>;
   limit: number;
   next_cursor?: string | undefined;
   previous_cursor?: string | undefined;
@@ -67,7 +67,7 @@ export const PaymentMethodCollection$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentMethodCollection
 > = z.object({
-  items: z.array(ApiRoutersPaymentMethodsSchemasPaymentMethod$outboundSchema),
+  items: z.array(PaymentMethod$outboundSchema),
   limit: z.number().int().default(20),
   nextCursor: z.string().optional(),
   previousCursor: z.string().optional(),

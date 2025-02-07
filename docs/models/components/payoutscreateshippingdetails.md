@@ -11,10 +11,10 @@ let value: PayoutsCreateShippingDetails = {
   firstName: "John",
   lastName: "Doe",
   emailAddress: "john@example.com",
-  phoneNumber: "+14155552671",
+  phoneNumber: "+442071838750",
   address: {
     city: "San Jose",
-    country: "DE",
+    country: "GB",
     postalCode: "94560",
     state: "California",
     stateCode: "GB-LND",

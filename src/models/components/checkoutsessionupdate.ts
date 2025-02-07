@@ -36,7 +36,7 @@ import {
 /**
  * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
  */
-export type Metadata = {};
+export type CheckoutSessionUpdateMetadata = {};
 
 /**
  * The billing address for the buyer.
@@ -123,6 +123,10 @@ export type CheckoutSessionUpdateBuyer = {
    */
   billingDetails?: BillingDetails | undefined;
   /**
+   * The buyer account number
+   */
+  accountNumber?: string | undefined;
+  /**
    * The optional shipping details for this buyer.
    */
   shippingDetails?: CheckoutSessionUpdateShippingDetails | undefined;
@@ -131,19 +135,21 @@ export type CheckoutSessionUpdateBuyer = {
 /**
  * The delivery method of the ticket.
  */
-export const TicketDeliveryMethod = {
+export const CheckoutSessionUpdateTicketDeliveryMethod = {
   Electronic: "electronic",
   Other: "other",
 } as const;
 /**
  * The delivery method of the ticket.
  */
-export type TicketDeliveryMethod = ClosedEnum<typeof TicketDeliveryMethod>;
+export type CheckoutSessionUpdateTicketDeliveryMethod = ClosedEnum<
+  typeof CheckoutSessionUpdateTicketDeliveryMethod
+>;
 
 /**
  * The airline addendum data which describes the airline booking associated with this transaction.
  */
-export type Airline = {
+export type CheckoutSessionUpdateAirline = {
   /**
    * The unique identifier of the reservation in the global distribution system.
    */
@@ -183,7 +189,7 @@ export type Airline = {
   /**
    * The delivery method of the ticket.
    */
-  ticketDeliveryMethod?: TicketDeliveryMethod | undefined;
+  ticketDeliveryMethod?: CheckoutSessionUpdateTicketDeliveryMethod | undefined;
   /**
    * The airline's unique ticket number.
    */
@@ -217,7 +223,7 @@ export type CheckoutSessionUpdate = {
   /**
    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
    */
-  metadata?: Metadata | undefined;
+  metadata?: CheckoutSessionUpdateMetadata | undefined;
   /**
    * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
    */
@@ -225,50 +231,57 @@ export type CheckoutSessionUpdate = {
   /**
    * The airline addendum data which describes the airline booking associated with this transaction.
    */
-  airline?: Airline | undefined;
+  airline?: CheckoutSessionUpdateAirline | undefined;
+  expiresIn?: number | undefined;
 };
 
 /** @internal */
-export const Metadata$inboundSchema: z.ZodType<
-  Metadata,
+export const CheckoutSessionUpdateMetadata$inboundSchema: z.ZodType<
+  CheckoutSessionUpdateMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({});
 
 /** @internal */
-export type Metadata$Outbound = {};
+export type CheckoutSessionUpdateMetadata$Outbound = {};
 
 /** @internal */
-export const Metadata$outboundSchema: z.ZodType<
-  Metadata$Outbound,
+export const CheckoutSessionUpdateMetadata$outboundSchema: z.ZodType<
+  CheckoutSessionUpdateMetadata$Outbound,
   z.ZodTypeDef,
-  Metadata
+  CheckoutSessionUpdateMetadata
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Metadata$ {
-  /** @deprecated use `Metadata$inboundSchema` instead. */
-  export const inboundSchema = Metadata$inboundSchema;
-  /** @deprecated use `Metadata$outboundSchema` instead. */
-  export const outboundSchema = Metadata$outboundSchema;
-  /** @deprecated use `Metadata$Outbound` instead. */
-  export type Outbound = Metadata$Outbound;
+export namespace CheckoutSessionUpdateMetadata$ {
+  /** @deprecated use `CheckoutSessionUpdateMetadata$inboundSchema` instead. */
+  export const inboundSchema = CheckoutSessionUpdateMetadata$inboundSchema;
+  /** @deprecated use `CheckoutSessionUpdateMetadata$outboundSchema` instead. */
+  export const outboundSchema = CheckoutSessionUpdateMetadata$outboundSchema;
+  /** @deprecated use `CheckoutSessionUpdateMetadata$Outbound` instead. */
+  export type Outbound = CheckoutSessionUpdateMetadata$Outbound;
 }
 
-export function metadataToJSON(metadata: Metadata): string {
-  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+export function checkoutSessionUpdateMetadataToJSON(
+  checkoutSessionUpdateMetadata: CheckoutSessionUpdateMetadata,
+): string {
+  return JSON.stringify(
+    CheckoutSessionUpdateMetadata$outboundSchema.parse(
+      checkoutSessionUpdateMetadata,
+    ),
+  );
 }
 
-export function metadataFromJSON(
+export function checkoutSessionUpdateMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<Metadata, SDKValidationError> {
+): SafeParseResult<CheckoutSessionUpdateMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Metadata' from JSON`,
+    (x) => CheckoutSessionUpdateMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckoutSessionUpdateMetadata' from JSON`,
   );
 }
 
@@ -458,6 +471,7 @@ export const CheckoutSessionUpdateBuyer$inboundSchema: z.ZodType<
   display_name: z.string().optional(),
   external_identifier: z.string().optional(),
   billing_details: BillingDetails$inboundSchema.optional(),
+  account_number: z.string().optional(),
   shipping_details: z.lazy(() =>
     CheckoutSessionUpdateShippingDetails$inboundSchema
   ).optional(),
@@ -466,6 +480,7 @@ export const CheckoutSessionUpdateBuyer$inboundSchema: z.ZodType<
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
     "billing_details": "billingDetails",
+    "account_number": "accountNumber",
     "shipping_details": "shippingDetails",
   });
 });
@@ -475,6 +490,7 @@ export type CheckoutSessionUpdateBuyer$Outbound = {
   display_name?: string | undefined;
   external_identifier?: string | undefined;
   billing_details?: BillingDetails$Outbound | undefined;
+  account_number?: string | undefined;
   shipping_details?: CheckoutSessionUpdateShippingDetails$Outbound | undefined;
 };
 
@@ -487,6 +503,7 @@ export const CheckoutSessionUpdateBuyer$outboundSchema: z.ZodType<
   displayName: z.string().optional(),
   externalIdentifier: z.string().optional(),
   billingDetails: BillingDetails$outboundSchema.optional(),
+  accountNumber: z.string().optional(),
   shippingDetails: z.lazy(() =>
     CheckoutSessionUpdateShippingDetails$outboundSchema
   ).optional(),
@@ -495,6 +512,7 @@ export const CheckoutSessionUpdateBuyer$outboundSchema: z.ZodType<
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
     shippingDetails: "shipping_details",
   });
 });
@@ -531,67 +549,73 @@ export function checkoutSessionUpdateBuyerFromJSON(
 }
 
 /** @internal */
-export const TicketDeliveryMethod$inboundSchema: z.ZodNativeEnum<
-  typeof TicketDeliveryMethod
-> = z.nativeEnum(TicketDeliveryMethod);
+export const CheckoutSessionUpdateTicketDeliveryMethod$inboundSchema:
+  z.ZodNativeEnum<typeof CheckoutSessionUpdateTicketDeliveryMethod> = z
+    .nativeEnum(CheckoutSessionUpdateTicketDeliveryMethod);
 
 /** @internal */
-export const TicketDeliveryMethod$outboundSchema: z.ZodNativeEnum<
-  typeof TicketDeliveryMethod
-> = TicketDeliveryMethod$inboundSchema;
+export const CheckoutSessionUpdateTicketDeliveryMethod$outboundSchema:
+  z.ZodNativeEnum<typeof CheckoutSessionUpdateTicketDeliveryMethod> =
+    CheckoutSessionUpdateTicketDeliveryMethod$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TicketDeliveryMethod$ {
-  /** @deprecated use `TicketDeliveryMethod$inboundSchema` instead. */
-  export const inboundSchema = TicketDeliveryMethod$inboundSchema;
-  /** @deprecated use `TicketDeliveryMethod$outboundSchema` instead. */
-  export const outboundSchema = TicketDeliveryMethod$outboundSchema;
+export namespace CheckoutSessionUpdateTicketDeliveryMethod$ {
+  /** @deprecated use `CheckoutSessionUpdateTicketDeliveryMethod$inboundSchema` instead. */
+  export const inboundSchema =
+    CheckoutSessionUpdateTicketDeliveryMethod$inboundSchema;
+  /** @deprecated use `CheckoutSessionUpdateTicketDeliveryMethod$outboundSchema` instead. */
+  export const outboundSchema =
+    CheckoutSessionUpdateTicketDeliveryMethod$outboundSchema;
 }
 
 /** @internal */
-export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
-  z.object({
-    booking_code: z.string().optional(),
-    issued_address: z.string().optional(),
-    issued_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    issuing_carrier_code: z.string().optional(),
-    legs: z.array(AirlineLeg$inboundSchema).optional(),
-    passenger_name_record: z.string().optional(),
-    passengers: z.array(AirlinePassenger$inboundSchema).optional(),
-    reservation_system: z.string().optional(),
-    restricted_ticket: z.boolean().optional(),
-    ticket_delivery_method: TicketDeliveryMethod$inboundSchema.default(
+export const CheckoutSessionUpdateAirline$inboundSchema: z.ZodType<
+  CheckoutSessionUpdateAirline,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  booking_code: z.string().optional(),
+  issued_address: z.string().optional(),
+  issued_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  issuing_carrier_code: z.string().optional(),
+  legs: z.array(AirlineLeg$inboundSchema).optional(),
+  passenger_name_record: z.string().optional(),
+  passengers: z.array(AirlinePassenger$inboundSchema).optional(),
+  reservation_system: z.string().optional(),
+  restricted_ticket: z.boolean().optional(),
+  ticket_delivery_method:
+    CheckoutSessionUpdateTicketDeliveryMethod$inboundSchema.default(
       "electronic",
     ),
-    ticket_number: z.string().optional(),
-    travel_agency_code: z.string().optional(),
-    travel_agency_invoice_number: z.string().optional(),
-    travel_agency_name: z.string().optional(),
-    travel_agency_plan_name: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "booking_code": "bookingCode",
-      "issued_address": "issuedAddress",
-      "issued_at": "issuedAt",
-      "issuing_carrier_code": "issuingCarrierCode",
-      "passenger_name_record": "passengerNameRecord",
-      "reservation_system": "reservationSystem",
-      "restricted_ticket": "restrictedTicket",
-      "ticket_delivery_method": "ticketDeliveryMethod",
-      "ticket_number": "ticketNumber",
-      "travel_agency_code": "travelAgencyCode",
-      "travel_agency_invoice_number": "travelAgencyInvoiceNumber",
-      "travel_agency_name": "travelAgencyName",
-      "travel_agency_plan_name": "travelAgencyPlanName",
-    });
+  ticket_number: z.string().optional(),
+  travel_agency_code: z.string().optional(),
+  travel_agency_invoice_number: z.string().optional(),
+  travel_agency_name: z.string().optional(),
+  travel_agency_plan_name: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "booking_code": "bookingCode",
+    "issued_address": "issuedAddress",
+    "issued_at": "issuedAt",
+    "issuing_carrier_code": "issuingCarrierCode",
+    "passenger_name_record": "passengerNameRecord",
+    "reservation_system": "reservationSystem",
+    "restricted_ticket": "restrictedTicket",
+    "ticket_delivery_method": "ticketDeliveryMethod",
+    "ticket_number": "ticketNumber",
+    "travel_agency_code": "travelAgencyCode",
+    "travel_agency_invoice_number": "travelAgencyInvoiceNumber",
+    "travel_agency_name": "travelAgencyName",
+    "travel_agency_plan_name": "travelAgencyPlanName",
   });
+});
 
 /** @internal */
-export type Airline$Outbound = {
+export type CheckoutSessionUpdateAirline$Outbound = {
   booking_code?: string | undefined;
   issued_address?: string | undefined;
   issued_at?: string | undefined;
@@ -610,10 +634,10 @@ export type Airline$Outbound = {
 };
 
 /** @internal */
-export const Airline$outboundSchema: z.ZodType<
-  Airline$Outbound,
+export const CheckoutSessionUpdateAirline$outboundSchema: z.ZodType<
+  CheckoutSessionUpdateAirline$Outbound,
   z.ZodTypeDef,
-  Airline
+  CheckoutSessionUpdateAirline
 > = z.object({
   bookingCode: z.string().optional(),
   issuedAddress: z.string().optional(),
@@ -624,9 +648,8 @@ export const Airline$outboundSchema: z.ZodType<
   passengers: z.array(AirlinePassenger$outboundSchema).optional(),
   reservationSystem: z.string().optional(),
   restrictedTicket: z.boolean().optional(),
-  ticketDeliveryMethod: TicketDeliveryMethod$outboundSchema.default(
-    "electronic",
-  ),
+  ticketDeliveryMethod: CheckoutSessionUpdateTicketDeliveryMethod$outboundSchema
+    .default("electronic"),
   ticketNumber: z.string().optional(),
   travelAgencyCode: z.string().optional(),
   travelAgencyInvoiceNumber: z.string().optional(),
@@ -654,26 +677,32 @@ export const Airline$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Airline$ {
-  /** @deprecated use `Airline$inboundSchema` instead. */
-  export const inboundSchema = Airline$inboundSchema;
-  /** @deprecated use `Airline$outboundSchema` instead. */
-  export const outboundSchema = Airline$outboundSchema;
-  /** @deprecated use `Airline$Outbound` instead. */
-  export type Outbound = Airline$Outbound;
+export namespace CheckoutSessionUpdateAirline$ {
+  /** @deprecated use `CheckoutSessionUpdateAirline$inboundSchema` instead. */
+  export const inboundSchema = CheckoutSessionUpdateAirline$inboundSchema;
+  /** @deprecated use `CheckoutSessionUpdateAirline$outboundSchema` instead. */
+  export const outboundSchema = CheckoutSessionUpdateAirline$outboundSchema;
+  /** @deprecated use `CheckoutSessionUpdateAirline$Outbound` instead. */
+  export type Outbound = CheckoutSessionUpdateAirline$Outbound;
 }
 
-export function airlineToJSON(airline: Airline): string {
-  return JSON.stringify(Airline$outboundSchema.parse(airline));
+export function checkoutSessionUpdateAirlineToJSON(
+  checkoutSessionUpdateAirline: CheckoutSessionUpdateAirline,
+): string {
+  return JSON.stringify(
+    CheckoutSessionUpdateAirline$outboundSchema.parse(
+      checkoutSessionUpdateAirline,
+    ),
+  );
 }
 
-export function airlineFromJSON(
+export function checkoutSessionUpdateAirlineFromJSON(
   jsonString: string,
-): SafeParseResult<Airline, SDKValidationError> {
+): SafeParseResult<CheckoutSessionUpdateAirline, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Airline$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Airline' from JSON`,
+    (x) => CheckoutSessionUpdateAirline$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckoutSessionUpdateAirline' from JSON`,
   );
 }
 
@@ -684,21 +713,25 @@ export const CheckoutSessionUpdate$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   cart_items: z.array(CartItem$inboundSchema).optional(),
-  metadata: z.lazy(() => Metadata$inboundSchema).optional(),
+  metadata: z.lazy(() => CheckoutSessionUpdateMetadata$inboundSchema)
+    .optional(),
   buyer: z.lazy(() => CheckoutSessionUpdateBuyer$inboundSchema).optional(),
-  airline: z.lazy(() => Airline$inboundSchema).optional(),
+  airline: z.lazy(() => CheckoutSessionUpdateAirline$inboundSchema).optional(),
+  expires_in: z.number().default(3600),
 }).transform((v) => {
   return remap$(v, {
     "cart_items": "cartItems",
+    "expires_in": "expiresIn",
   });
 });
 
 /** @internal */
 export type CheckoutSessionUpdate$Outbound = {
   cart_items?: Array<CartItem$Outbound> | undefined;
-  metadata?: Metadata$Outbound | undefined;
+  metadata?: CheckoutSessionUpdateMetadata$Outbound | undefined;
   buyer?: CheckoutSessionUpdateBuyer$Outbound | undefined;
-  airline?: Airline$Outbound | undefined;
+  airline?: CheckoutSessionUpdateAirline$Outbound | undefined;
+  expires_in: number;
 };
 
 /** @internal */
@@ -708,12 +741,15 @@ export const CheckoutSessionUpdate$outboundSchema: z.ZodType<
   CheckoutSessionUpdate
 > = z.object({
   cartItems: z.array(CartItem$outboundSchema).optional(),
-  metadata: z.lazy(() => Metadata$outboundSchema).optional(),
+  metadata: z.lazy(() => CheckoutSessionUpdateMetadata$outboundSchema)
+    .optional(),
   buyer: z.lazy(() => CheckoutSessionUpdateBuyer$outboundSchema).optional(),
-  airline: z.lazy(() => Airline$outboundSchema).optional(),
+  airline: z.lazy(() => CheckoutSessionUpdateAirline$outboundSchema).optional(),
+  expiresIn: z.number().default(3600),
 }).transform((v) => {
   return remap$(v, {
     cartItems: "cart_items",
+    expiresIn: "expires_in",
   });
 });
 

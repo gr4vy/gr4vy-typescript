@@ -55,6 +55,10 @@ export type Buyer = {
    */
   billingDetails?: BillingDetails | undefined;
   /**
+   * The buyer account number
+   */
+  accountNumber?: string | undefined;
+  /**
    * The date this buyer was created at.
    */
   createdAt: Date;
@@ -92,6 +96,7 @@ export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
     display_name: z.string().optional(),
     external_identifier: z.string().optional(),
     billing_details: BillingDetails$inboundSchema.optional(),
+    account_number: z.string().optional(),
     created_at: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)
     ),
@@ -104,6 +109,7 @@ export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
       "display_name": "displayName",
       "external_identifier": "externalIdentifier",
       "billing_details": "billingDetails",
+      "account_number": "accountNumber",
       "created_at": "createdAt",
       "updated_at": "updatedAt",
     });
@@ -117,6 +123,7 @@ export type Buyer$Outbound = {
   display_name?: string | undefined;
   external_identifier?: string | undefined;
   billing_details?: BillingDetails$Outbound | undefined;
+  account_number?: string | undefined;
   created_at: string;
   updated_at: string;
 };
@@ -133,6 +140,7 @@ export const Buyer$outboundSchema: z.ZodType<
   displayName: z.string().optional(),
   externalIdentifier: z.string().optional(),
   billingDetails: BillingDetails$outboundSchema.optional(),
+  accountNumber: z.string().optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
@@ -141,6 +149,7 @@ export const Buyer$outboundSchema: z.ZodType<
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
     createdAt: "created_at",
     updatedAt: "updated_at",
   });

@@ -30,6 +30,10 @@ export type BuyerCreate = {
    * Base model with JSON encoders.
    */
   billingDetails?: BillingDetails | undefined;
+  /**
+   * The buyer account number
+   */
+  accountNumber?: string | undefined;
 };
 
 /** @internal */
@@ -41,11 +45,13 @@ export const BuyerCreate$inboundSchema: z.ZodType<
   display_name: z.string().optional(),
   external_identifier: z.string().optional(),
   billing_details: BillingDetails$inboundSchema.optional(),
+  account_number: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
     "billing_details": "billingDetails",
+    "account_number": "accountNumber",
   });
 });
 
@@ -54,6 +60,7 @@ export type BuyerCreate$Outbound = {
   display_name?: string | undefined;
   external_identifier?: string | undefined;
   billing_details?: BillingDetails$Outbound | undefined;
+  account_number?: string | undefined;
 };
 
 /** @internal */
@@ -65,11 +72,13 @@ export const BuyerCreate$outboundSchema: z.ZodType<
   displayName: z.string().optional(),
   externalIdentifier: z.string().optional(),
   billingDetails: BillingDetails$outboundSchema.optional(),
+  accountNumber: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
   });
 });
 

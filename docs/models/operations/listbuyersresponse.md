@@ -18,10 +18,10 @@ let value: ListBuyersResponse = {
           firstName: "John",
           lastName: "Doe",
           emailAddress: "john@example.com",
-          phoneNumber: "+442071838750",
+          phoneNumber: "+14155552671",
           address: {
             city: "San Jose",
-            country: "US",
+            country: "DE",
             postalCode: "94560",
             state: "California",
             stateCode: "US-CA",

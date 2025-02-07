@@ -1,17 +1,17 @@
 # Type
 
-Always `payment-method`.
+Always `account-updater-job`
 
 ## Example Usage
 
 ```typescript
 import { Type } from "@gr4vy/sdk/models/components";
 
-let value: Type = "payment-method";
+let value: Type = "account-updater-job";
 ```
 
 ## Values
 
 ```typescript
-"payment-method"
+"account-updater-job"
 ```

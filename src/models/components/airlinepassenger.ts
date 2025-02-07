@@ -66,6 +66,10 @@ export type AirlinePassenger = {
    * Title of the passenger.
    */
   title?: string | undefined;
+  /**
+   * The country of residence of the passenger
+   */
+  countryCode?: string | undefined;
 };
 
 /** @internal */
@@ -103,6 +107,7 @@ export const AirlinePassenger$inboundSchema: z.ZodType<
   phone_number: z.string().optional(),
   ticket_number: z.string().optional(),
   title: z.string().optional(),
+  country_code: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "age_group": "ageGroup",
@@ -114,6 +119,7 @@ export const AirlinePassenger$inboundSchema: z.ZodType<
     "passport_number": "passportNumber",
     "phone_number": "phoneNumber",
     "ticket_number": "ticketNumber",
+    "country_code": "countryCode",
   });
 });
 
@@ -129,6 +135,7 @@ export type AirlinePassenger$Outbound = {
   phone_number?: string | undefined;
   ticket_number?: string | undefined;
   title?: string | undefined;
+  country_code?: string | undefined;
 };
 
 /** @internal */
@@ -147,6 +154,7 @@ export const AirlinePassenger$outboundSchema: z.ZodType<
   phoneNumber: z.string().optional(),
   ticketNumber: z.string().optional(),
   title: z.string().optional(),
+  countryCode: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     ageGroup: "age_group",
@@ -158,6 +166,7 @@ export const AirlinePassenger$outboundSchema: z.ZodType<
     passportNumber: "passport_number",
     phoneNumber: "phone_number",
     ticketNumber: "ticket_number",
+    countryCode: "country_code",
   });
 });
 

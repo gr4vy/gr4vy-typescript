@@ -9,10 +9,10 @@ import { PayoutsCreateBuyerAddress } from "@gr4vy/sdk/models/components";
 
 let value: PayoutsCreateBuyerAddress = {
   city: "San Jose",
-  country: "DE",
+  country: "US",
   postalCode: "94560",
   state: "California",
-  stateCode: "US-CA",
+  stateCode: "GB-LND",
   houseNumberOrName: "10",
   line1: "Stafford Appartments",
   line2: "29th Street",

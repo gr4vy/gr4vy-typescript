@@ -8,12 +8,12 @@ Base model with JSON encoders.
 import { RedirectPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: RedirectPaymentMethodCreate = {
-  method: "zippay",
+  method: "paypal",
   buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
   buyerExternalIdentifier: "buyer-12345",
   country: "GB",
-  currency: "GBP",
-  redirectUrl: "https://intrepid-technician.info",
+  currency: "EUR",
+  redirectUrl: "https://hoarse-slide.com/",
   externalIdentifier: "payment-method-12345",
 };
 ```

@@ -6,7 +6,7 @@
 import { GetPayoutRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetPayoutRequest = {
-  payoutId: "a325597f-132a-4473-821a-235d1d1f7f9b",
+  payoutId: "9ff62a7f-1c43-4a3a-b868-4b65de035dff",
 };
 ```
 

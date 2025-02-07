@@ -132,6 +132,10 @@ export type PayoutsCreateBuyer = {
    */
   billingDetails?: BillingDetails | undefined;
   /**
+   * The buyer account number
+   */
+  accountNumber?: string | undefined;
+  /**
    * The optional shipping details for this buyer.
    */
   shippingDetails?: PayoutsCreateShippingDetails | undefined;
@@ -549,6 +553,7 @@ export const PayoutsCreateBuyer$inboundSchema: z.ZodType<
   display_name: z.string().optional(),
   external_identifier: z.string().optional(),
   billing_details: BillingDetails$inboundSchema.optional(),
+  account_number: z.string().optional(),
   shipping_details: z.lazy(() => PayoutsCreateShippingDetails$inboundSchema)
     .optional(),
 }).transform((v) => {
@@ -556,6 +561,7 @@ export const PayoutsCreateBuyer$inboundSchema: z.ZodType<
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
     "billing_details": "billingDetails",
+    "account_number": "accountNumber",
     "shipping_details": "shippingDetails",
   });
 });
@@ -565,6 +571,7 @@ export type PayoutsCreateBuyer$Outbound = {
   display_name?: string | undefined;
   external_identifier?: string | undefined;
   billing_details?: BillingDetails$Outbound | undefined;
+  account_number?: string | undefined;
   shipping_details?: PayoutsCreateShippingDetails$Outbound | undefined;
 };
 
@@ -577,6 +584,7 @@ export const PayoutsCreateBuyer$outboundSchema: z.ZodType<
   displayName: z.string().optional(),
   externalIdentifier: z.string().optional(),
   billingDetails: BillingDetails$outboundSchema.optional(),
+  accountNumber: z.string().optional(),
   shippingDetails: z.lazy(() => PayoutsCreateShippingDetails$outboundSchema)
     .optional(),
 }).transform((v) => {
@@ -584,6 +592,7 @@ export const PayoutsCreateBuyer$outboundSchema: z.ZodType<
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
     shippingDetails: "shipping_details",
   });
 });

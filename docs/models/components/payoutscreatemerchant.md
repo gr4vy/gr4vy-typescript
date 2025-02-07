@@ -16,7 +16,7 @@ let value: PayoutsCreateMerchant = {
   merchantCategoryCode: "123456",
   address: {
     city: "San Jose",
-    country: "GB",
+    country: "DE",
     postalCode: "94560",
     state: "California",
     stateCode: "US-CA",

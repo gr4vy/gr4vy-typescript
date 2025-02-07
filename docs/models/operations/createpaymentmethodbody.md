@@ -22,12 +22,12 @@ const value: components.CardPaymentMethodCreate = {
 
 ```typescript
 const value: components.RedirectPaymentMethodCreate = {
-  method: "zippay",
+  method: "paypal",
   buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
   buyerExternalIdentifier: "buyer-12345",
   country: "US",
   currency: "USD",
-  redirectUrl: "https://sparse-cardboard.name/",
+  redirectUrl: "https://hungry-conservative.net/",
   externalIdentifier: "payment-method-12345",
 };
 ```

@@ -22,7 +22,7 @@ let value: PayoutsSummary = {
       firstName: "John",
       lastName: "Doe",
       emailAddress: "john@example.com",
-      phoneNumber: "+14155552671",
+      phoneNumber: "+442071838750",
       address: {
         city: "San Jose",
         country: "US",
@@ -48,13 +48,13 @@ let value: PayoutsSummary = {
     type: "merchant",
     name: "Acme Inc",
     identificationNumber: "12345",
-    phoneNumber: "+442071838750",
+    phoneNumber: "+14155552671",
     url: "https://example.com",
     statementDescriptor: "Winnings",
     merchantCategoryCode: "123456",
     address: {
       city: "San Jose",
-      country: "DE",
+      country: "US",
       postalCode: "94560",
       state: "California",
       stateCode: "US-CA",
@@ -69,7 +69,7 @@ let value: PayoutsSummary = {
     type: "payment-method",
     approvalUrl: "https://gr4vy.app/redirect/12345",
     country: "US",
-    currency: "EUR",
+    currency: "GBP",
     expirationDate: "12/30",
     fingerprint:
       "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17",
@@ -111,7 +111,7 @@ let value: PayoutsSummary = {
 | `merchant`                                                                                                                                                 | [components.Merchant](../../models/components/merchant.md)                                                                                                 | :heavy_minus_sign:                                                                                                                                         | The merchant details associated to this payout.                                                                                                            |                                                                                                                                                            |
 | `merchantAccountId`                                                                                                                                        | *string*                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                         | The ID of the merchant account this payout was created for.                                                                                                | default                                                                                                                                                    |
 | `paymentMethod`                                                                                                                                            | [components.PayoutsSummaryPaymentMethod](../../models/components/payoutssummarypaymentmethod.md)                                                           | :heavy_check_mark:                                                                                                                                         | The payment method used for this payout.                                                                                                                   |                                                                                                                                                            |
-| `paymentService`                                                                                                                                           | [components.PaymentService](../../models/components/paymentservice.md)                                                                                     | :heavy_check_mark:                                                                                                                                         | The payment service used for this payout.                                                                                                                  |                                                                                                                                                            |
+| `paymentService`                                                                                                                                           | [components.PayoutsSummaryPaymentService](../../models/components/payoutssummarypaymentservice.md)                                                         | :heavy_check_mark:                                                                                                                                         | The payment service used for this payout.                                                                                                                  |                                                                                                                                                            |
 | `paymentServicePayoutId`                                                                                                                                   | *string*                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                         | The ID of the payout in the underlying payment service.                                                                                                    | pout-12345                                                                                                                                                 |
 | `status`                                                                                                                                                   | [components.PayoutStatus](../../models/components/payoutstatus.md)                                                                                         | :heavy_check_mark:                                                                                                                                         | The status of the payout.                                                                                                                                  | succeeded                                                                                                                                                  |
 | `updatedAt`                                                                                                                                                | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                              | :heavy_check_mark:                                                                                                                                         | The date this payout was last updated at.                                                                                                                  | 2013-07-16T19:23:00.000+00:00                                                                                                                              |

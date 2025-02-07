@@ -1,6 +1,6 @@
 # Metadata
 
-Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
 
 ## Example Usage
 

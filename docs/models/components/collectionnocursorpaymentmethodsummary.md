@@ -10,8 +10,8 @@ let value: CollectionNoCursorPaymentMethodSummary = {
     {
       type: "payment-method",
       approvalUrl: "https://gr4vy.app/redirect/12345",
-      country: "GB",
-      currency: "EUR",
+      country: "US",
+      currency: "USD",
       expirationDate: "12/30",
       fingerprint:
         "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4",

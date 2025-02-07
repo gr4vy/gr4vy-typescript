@@ -22,13 +22,15 @@ import {
 /**
  * Always `payment-method`.
  */
-export const Type = {
+export const PaymentMethodSummaryType = {
   PaymentMethod: "payment-method",
 } as const;
 /**
  * Always `payment-method`.
  */
-export type Type = ClosedEnum<typeof Type>;
+export type PaymentMethodSummaryType = ClosedEnum<
+  typeof PaymentMethodSummaryType
+>;
 
 /**
  * Details for credit or debit card payment method.
@@ -39,13 +41,15 @@ export type Details = {
    * An enumeration.
    */
   cardType?: CardType | undefined;
+  cardIssuerName?: string | undefined;
 };
 
 /**
  * The type of this payment method.
  */
-export const PaymentMethod = {
+export const PaymentMethodSummaryMethod = {
   Abitab: "abitab",
+  Affirm: "affirm",
   Afterpay: "afterpay",
   Alipay: "alipay",
   Alipayhk: "alipayhk",
@@ -72,6 +76,8 @@ export const PaymentMethod = {
   Eps: "eps",
   Everydaypay: "everydaypay",
   Gcash: "gcash",
+  Gem: "gem",
+  Gemds: "gemds",
   GiftCard: "gift-card",
   Giropay: "giropay",
   Givingblock: "givingblock",
@@ -85,6 +91,8 @@ export const PaymentMethod = {
   Kcp: "kcp",
   Khipu: "khipu",
   Klarna: "klarna",
+  Latitude: "latitude",
+  Latitudeds: "latitudeds",
   Laybuy: "laybuy",
   Linepay: "linepay",
   Linkaja: "linkaja",
@@ -142,12 +150,14 @@ export const PaymentMethod = {
 /**
  * The type of this payment method.
  */
-export type PaymentMethod = ClosedEnum<typeof PaymentMethod>;
+export type PaymentMethodSummaryMethod = ClosedEnum<
+  typeof PaymentMethodSummaryMethod
+>;
 
 /**
  * The mode to use with this payment method.
  */
-export const Mode = {
+export const PaymentMethodSummaryMode = {
   Card: "card",
   Redirect: "redirect",
   Applepay: "applepay",
@@ -159,7 +169,9 @@ export const Mode = {
 /**
  * The mode to use with this payment method.
  */
-export type Mode = ClosedEnum<typeof Mode>;
+export type PaymentMethodSummaryMode = ClosedEnum<
+  typeof PaymentMethodSummaryMode
+>;
 
 /**
  * The scheme of the card. Only applies to card payments.
@@ -208,7 +220,7 @@ export type PaymentMethodSummary = {
   /**
    * Always `payment-method`.
    */
-  type?: Type | undefined;
+  type?: PaymentMethodSummaryType | undefined;
   /**
    * The optional URL that the buyer needs to be redirected to to further authorize their payment.
    */
@@ -244,11 +256,11 @@ export type PaymentMethodSummary = {
   /**
    * The type of this payment method.
    */
-  method: PaymentMethod;
+  method: PaymentMethodSummaryMethod;
   /**
    * The mode to use with this payment method.
    */
-  mode?: Mode | undefined;
+  mode?: PaymentMethodSummaryMode | undefined;
   /**
    * The scheme of the card. Only applies to card payments.
    */
@@ -288,23 +300,24 @@ export type PaymentMethodSummary = {
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const PaymentMethodSummaryType$inboundSchema: z.ZodNativeEnum<
+  typeof PaymentMethodSummaryType
+> = z.nativeEnum(PaymentMethodSummaryType);
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
+export const PaymentMethodSummaryType$outboundSchema: z.ZodNativeEnum<
+  typeof PaymentMethodSummaryType
+> = PaymentMethodSummaryType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
+export namespace PaymentMethodSummaryType$ {
+  /** @deprecated use `PaymentMethodSummaryType$inboundSchema` instead. */
+  export const inboundSchema = PaymentMethodSummaryType$inboundSchema;
+  /** @deprecated use `PaymentMethodSummaryType$outboundSchema` instead. */
+  export const outboundSchema = PaymentMethodSummaryType$outboundSchema;
 }
 
 /** @internal */
@@ -312,9 +325,11 @@ export const Details$inboundSchema: z.ZodType<Details, z.ZodTypeDef, unknown> =
   z.object({
     bin: z.string().optional(),
     card_type: CardType$inboundSchema.optional(),
+    card_issuer_name: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "card_type": "cardType",
+      "card_issuer_name": "cardIssuerName",
     });
   });
 
@@ -322,6 +337,7 @@ export const Details$inboundSchema: z.ZodType<Details, z.ZodTypeDef, unknown> =
 export type Details$Outbound = {
   bin?: string | undefined;
   card_type?: string | undefined;
+  card_issuer_name?: string | undefined;
 };
 
 /** @internal */
@@ -332,9 +348,11 @@ export const Details$outboundSchema: z.ZodType<
 > = z.object({
   bin: z.string().optional(),
   cardType: CardType$outboundSchema.optional(),
+  cardIssuerName: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     cardType: "card_type",
+    cardIssuerName: "card_issuer_name",
   });
 });
 
@@ -366,44 +384,45 @@ export function detailsFromJSON(
 }
 
 /** @internal */
-export const PaymentMethod$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethod
-> = z.nativeEnum(PaymentMethod);
+export const PaymentMethodSummaryMethod$inboundSchema: z.ZodNativeEnum<
+  typeof PaymentMethodSummaryMethod
+> = z.nativeEnum(PaymentMethodSummaryMethod);
 
 /** @internal */
-export const PaymentMethod$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethod
-> = PaymentMethod$inboundSchema;
+export const PaymentMethodSummaryMethod$outboundSchema: z.ZodNativeEnum<
+  typeof PaymentMethodSummaryMethod
+> = PaymentMethodSummaryMethod$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PaymentMethod$ {
-  /** @deprecated use `PaymentMethod$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethod$inboundSchema;
-  /** @deprecated use `PaymentMethod$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethod$outboundSchema;
+export namespace PaymentMethodSummaryMethod$ {
+  /** @deprecated use `PaymentMethodSummaryMethod$inboundSchema` instead. */
+  export const inboundSchema = PaymentMethodSummaryMethod$inboundSchema;
+  /** @deprecated use `PaymentMethodSummaryMethod$outboundSchema` instead. */
+  export const outboundSchema = PaymentMethodSummaryMethod$outboundSchema;
 }
 
 /** @internal */
-export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
-  Mode,
-);
+export const PaymentMethodSummaryMode$inboundSchema: z.ZodNativeEnum<
+  typeof PaymentMethodSummaryMode
+> = z.nativeEnum(PaymentMethodSummaryMode);
 
 /** @internal */
-export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> =
-  Mode$inboundSchema;
+export const PaymentMethodSummaryMode$outboundSchema: z.ZodNativeEnum<
+  typeof PaymentMethodSummaryMode
+> = PaymentMethodSummaryMode$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Mode$ {
-  /** @deprecated use `Mode$inboundSchema` instead. */
-  export const inboundSchema = Mode$inboundSchema;
-  /** @deprecated use `Mode$outboundSchema` instead. */
-  export const outboundSchema = Mode$outboundSchema;
+export namespace PaymentMethodSummaryMode$ {
+  /** @deprecated use `PaymentMethodSummaryMode$inboundSchema` instead. */
+  export const inboundSchema = PaymentMethodSummaryMode$inboundSchema;
+  /** @deprecated use `PaymentMethodSummaryMode$outboundSchema` instead. */
+  export const outboundSchema = PaymentMethodSummaryMode$outboundSchema;
 }
 
 /** @internal */
@@ -433,7 +452,7 @@ export const PaymentMethodSummary$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: Type$inboundSchema.default("payment-method"),
+  type: PaymentMethodSummaryType$inboundSchema.default("payment-method"),
   approval_url: z.string().optional(),
   country: z.string().optional(),
   currency: z.string().optional(),
@@ -444,8 +463,8 @@ export const PaymentMethodSummary$inboundSchema: z.ZodType<
   last_replaced_at: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
-  method: PaymentMethod$inboundSchema,
-  mode: Mode$inboundSchema.optional(),
+  method: PaymentMethodSummaryMethod$inboundSchema,
+  mode: PaymentMethodSummaryMode$inboundSchema.optional(),
   scheme: PaymentMethodSummaryCardScheme$inboundSchema.optional(),
   id: z.string(),
   merchant_account_id: z.string(),
@@ -504,7 +523,7 @@ export const PaymentMethodSummary$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentMethodSummary
 > = z.object({
-  type: Type$outboundSchema.default("payment-method"),
+  type: PaymentMethodSummaryType$outboundSchema.default("payment-method"),
   approvalUrl: z.string().optional(),
   country: z.string().optional(),
   currency: z.string().optional(),
@@ -513,8 +532,8 @@ export const PaymentMethodSummary$outboundSchema: z.ZodType<
   fingerprint: z.string().optional(),
   label: z.string().optional(),
   lastReplacedAt: z.date().transform(v => v.toISOString()).optional(),
-  method: PaymentMethod$outboundSchema,
-  mode: Mode$outboundSchema.optional(),
+  method: PaymentMethodSummaryMethod$outboundSchema,
+  mode: PaymentMethodSummaryMode$outboundSchema.optional(),
   scheme: PaymentMethodSummaryCardScheme$outboundSchema.optional(),
   id: z.string(),
   merchantAccountId: z.string(),

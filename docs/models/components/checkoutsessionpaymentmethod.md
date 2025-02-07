@@ -12,8 +12,9 @@ let value: CheckoutSessionPaymentMethod = {
   id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
   details: {
     bin: "411111",
-    cardCountry: "GB",
+    cardCountry: "US",
     cardType: "credit",
+    cardIssuerName: "Bank of America NA",
   },
   label: "1234",
   method: "card",

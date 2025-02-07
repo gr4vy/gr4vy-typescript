@@ -12,6 +12,7 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
+import { Gr4vyGiftCards } from "./gr4vygiftcards.js";
 import { Gr4vyPaymentMethods } from "./gr4vypaymentmethods.js";
 import { ShippingDetails } from "./shippingdetails.js";
 
@@ -19,6 +20,11 @@ export class Buyers extends ClientSDK {
   private _paymentMethods?: Gr4vyPaymentMethods;
   get paymentMethods(): Gr4vyPaymentMethods {
     return (this._paymentMethods ??= new Gr4vyPaymentMethods(this._options));
+  }
+
+  private _giftCards?: Gr4vyGiftCards;
+  get giftCards(): Gr4vyGiftCards {
+    return (this._giftCards ??= new Gr4vyGiftCards(this._options));
   }
 
   private _shippingDetails?: ShippingDetails;

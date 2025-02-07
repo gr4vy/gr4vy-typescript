@@ -35,7 +35,7 @@ export async function paymentMethodsGet(
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.ApiRoutersPaymentMethodsSchemasPaymentMethod,
+    components.PaymentMethod,
     | errors.HTTPValidationError
     | SDKError
     | SDKValidationError
@@ -121,7 +121,7 @@ export async function paymentMethodsGet(
   };
 
   const [result] = await M.match<
-    components.ApiRoutersPaymentMethodsSchemasPaymentMethod,
+    components.PaymentMethod,
     | errors.HTTPValidationError
     | SDKError
     | SDKValidationError
@@ -131,10 +131,7 @@ export async function paymentMethodsGet(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(
-      200,
-      components.ApiRoutersPaymentMethodsSchemasPaymentMethod$inboundSchema,
-    ),
+    M.json(200, components.PaymentMethod$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

@@ -15,7 +15,7 @@ import {
 } from "./billingdetails.js";
 
 /**
- * Request body for creating a new buyer
+ * Request body for updating an existing buyer
  */
 export type BuyerUpdate = {
   /**
@@ -26,6 +26,10 @@ export type BuyerUpdate = {
    * The merchant identifier for this buyer.
    */
   externalIdentifier?: string | undefined;
+  /**
+   * The buyer account number
+   */
+  accountNumber?: string | undefined;
   /**
    * Base model with JSON encoders.
    */
@@ -40,11 +44,13 @@ export const BuyerUpdate$inboundSchema: z.ZodType<
 > = z.object({
   display_name: z.string().optional(),
   external_identifier: z.string().optional(),
+  account_number: z.string().optional(),
   billing_details: BillingDetails$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
+    "account_number": "accountNumber",
     "billing_details": "billingDetails",
   });
 });
@@ -53,6 +59,7 @@ export const BuyerUpdate$inboundSchema: z.ZodType<
 export type BuyerUpdate$Outbound = {
   display_name?: string | undefined;
   external_identifier?: string | undefined;
+  account_number?: string | undefined;
   billing_details?: BillingDetails$Outbound | undefined;
 };
 
@@ -64,11 +71,13 @@ export const BuyerUpdate$outboundSchema: z.ZodType<
 > = z.object({
   displayName: z.string().optional(),
   externalIdentifier: z.string().optional(),
+  accountNumber: z.string().optional(),
   billingDetails: BillingDetails$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",
     externalIdentifier: "external_identifier",
+    accountNumber: "account_number",
     billingDetails: "billing_details",
   });
 });

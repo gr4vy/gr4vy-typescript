@@ -12,13 +12,15 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * Always `card`
  */
-export const Method = {
+export const CardPaymentMethodCreateMethod = {
   Card: "card",
 } as const;
 /**
  * Always `card`
  */
-export type Method = ClosedEnum<typeof Method>;
+export type CardPaymentMethodCreateMethod = ClosedEnum<
+  typeof CardPaymentMethodCreateMethod
+>;
 
 /**
  * Card
@@ -55,7 +57,7 @@ export type CardPaymentMethodCreate = {
   /**
    * Always `card`
    */
-  method?: Method | undefined;
+  method?: CardPaymentMethodCreateMethod | undefined;
   /**
    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
    */
@@ -63,22 +65,24 @@ export type CardPaymentMethodCreate = {
 };
 
 /** @internal */
-export const Method$inboundSchema: z.ZodNativeEnum<typeof Method> = z
-  .nativeEnum(Method);
+export const CardPaymentMethodCreateMethod$inboundSchema: z.ZodNativeEnum<
+  typeof CardPaymentMethodCreateMethod
+> = z.nativeEnum(CardPaymentMethodCreateMethod);
 
 /** @internal */
-export const Method$outboundSchema: z.ZodNativeEnum<typeof Method> =
-  Method$inboundSchema;
+export const CardPaymentMethodCreateMethod$outboundSchema: z.ZodNativeEnum<
+  typeof CardPaymentMethodCreateMethod
+> = CardPaymentMethodCreateMethod$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Method$ {
-  /** @deprecated use `Method$inboundSchema` instead. */
-  export const inboundSchema = Method$inboundSchema;
-  /** @deprecated use `Method$outboundSchema` instead. */
-  export const outboundSchema = Method$outboundSchema;
+export namespace CardPaymentMethodCreateMethod$ {
+  /** @deprecated use `CardPaymentMethodCreateMethod$inboundSchema` instead. */
+  export const inboundSchema = CardPaymentMethodCreateMethod$inboundSchema;
+  /** @deprecated use `CardPaymentMethodCreateMethod$outboundSchema` instead. */
+  export const outboundSchema = CardPaymentMethodCreateMethod$outboundSchema;
 }
 
 /** @internal */
@@ -93,7 +97,7 @@ export const CardPaymentMethodCreate$inboundSchema: z.ZodType<
   buyer_id: z.string().optional(),
   external_identifier: z.string().optional(),
   card_type: z.string().optional(),
-  method: Method$inboundSchema.default("card"),
+  method: CardPaymentMethodCreateMethod$inboundSchema.default("card"),
   security_code: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -130,7 +134,7 @@ export const CardPaymentMethodCreate$outboundSchema: z.ZodType<
   buyerId: z.string().optional(),
   externalIdentifier: z.string().optional(),
   cardType: z.string().optional(),
-  method: Method$outboundSchema.default("card"),
+  method: CardPaymentMethodCreateMethod$outboundSchema.default("card"),
   securityCode: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -20,10 +20,10 @@ let value: Buyer = {
     phoneNumber: "+14155552671",
     address: {
       city: "San Jose",
-      country: "DE",
+      country: "US",
       postalCode: "94560",
       state: "California",
-      stateCode: "GB-LND",
+      stateCode: "US-CA",
       houseNumberOrName: "10",
       line1: "Stafford Appartments",
       line2: "29th Street",
@@ -49,5 +49,6 @@ let value: Buyer = {
 | `displayName`                                                                                 | *string*                                                                                      | :heavy_minus_sign:                                                                            | The display name for the buyer.                                                               | John Doe                                                                                      |
 | `externalIdentifier`                                                                          | *string*                                                                                      | :heavy_minus_sign:                                                                            | The merchant identifier for this buyer.                                                       | buyer-12345                                                                                   |
 | `billingDetails`                                                                              | [components.BillingDetails](../../models/components/billingdetails.md)                        | :heavy_minus_sign:                                                                            | Base model with JSON encoders.                                                                |                                                                                               |
+| `accountNumber`                                                                               | *string*                                                                                      | :heavy_minus_sign:                                                                            | The buyer account number                                                                      |                                                                                               |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | The date this buyer was created at.                                                           | 2013-07-16T19:23:00.000+00:00                                                                 |
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | The date this buyer was last updated at.                                                      | 2013-07-16T19:23:00.000+00:00                                                                 |

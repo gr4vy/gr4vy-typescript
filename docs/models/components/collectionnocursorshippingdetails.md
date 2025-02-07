@@ -14,7 +14,7 @@ let value: CollectionNoCursorShippingDetails = {
       phoneNumber: "+442071838750",
       address: {
         city: "San Jose",
-        country: "US",
+        country: "GB",
         postalCode: "94560",
         state: "California",
         stateCode: "GB-LND",

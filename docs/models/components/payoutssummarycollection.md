@@ -22,10 +22,10 @@ let value: PayoutsSummaryCollection = {
           firstName: "John",
           lastName: "Doe",
           emailAddress: "john@example.com",
-          phoneNumber: "+14155552671",
+          phoneNumber: "+442071838750",
           address: {
             city: "San Jose",
-            country: "GB",
+            country: "DE",
             postalCode: "94560",
             state: "California",
             stateCode: "GB-LND",
@@ -42,7 +42,7 @@ let value: PayoutsSummaryCollection = {
       },
       category: "online_gambling",
       createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
-      currency: "USD",
+      currency: "GBP",
       externalIdentifier: "payout-12345",
       merchant: {
         type: "merchant",
@@ -54,10 +54,10 @@ let value: PayoutsSummaryCollection = {
         merchantCategoryCode: "123456",
         address: {
           city: "San Jose",
-          country: "DE",
+          country: "US",
           postalCode: "94560",
           state: "California",
-          stateCode: "GB-LND",
+          stateCode: "US-CA",
           houseNumberOrName: "10",
           line1: "Stafford Appartments",
           line2: "29th Street",
@@ -68,7 +68,7 @@ let value: PayoutsSummaryCollection = {
       paymentMethod: {
         type: "payment-method",
         approvalUrl: "https://gr4vy.app/redirect/12345",
-        country: "DE",
+        country: "US",
         currency: "USD",
         expirationDate: "12/30",
         fingerprint:

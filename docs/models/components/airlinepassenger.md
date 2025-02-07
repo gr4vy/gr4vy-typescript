@@ -16,9 +16,10 @@ let value: AirlinePassenger = {
   frequentFlyerNumber: "15885566",
   lastName: "Luhn",
   passportNumber: "11117700225",
-  phoneNumber: "+14155552671",
+  phoneNumber: "+442071838750",
   ticketNumber: "BA1236699999",
   title: "Mr.",
+  countryCode: "DE",
 };
 ```
 
@@ -36,3 +37,4 @@ let value: AirlinePassenger = {
 | `phoneNumber`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The phone number of the passenger. This number is formatted according to the E164 number standard. | +14155552671                                                                                       |
 | `ticketNumber`                                                                                     | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The ticket number for a flight.                                                                    | BA1236699999                                                                                       |
 | `title`                                                                                            | *string*                                                                                           | :heavy_minus_sign:                                                                                 | Title of the passenger.                                                                            | Mr.                                                                                                |
+| `countryCode`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The country of residence of the passenger                                                          | DE                                                                                                 |

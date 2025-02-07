@@ -1,13 +1,13 @@
 # Mode
 
-The mode to use with this payment method.
+An enumeration.
 
 ## Example Usage
 
 ```typescript
 import { Mode } from "@gr4vy/sdk/models/components";
 
-let value: Mode = "card";
+let value: Mode = "googlepay";
 ```
 
 ## Values

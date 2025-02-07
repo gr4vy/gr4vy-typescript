@@ -12,7 +12,7 @@ let value: PayoutsSummaryAddress = {
   country: "US",
   postalCode: "94560",
   state: "California",
-  stateCode: "GB-LND",
+  stateCode: "US-CA",
   houseNumberOrName: "10",
   line1: "Stafford Appartments",
   line2: "29th Street",

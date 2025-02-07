@@ -7,11 +7,11 @@ The method to use, this can be any of the methods that support redirect requests
 ```typescript
 import { RedirectPaymentMethodCreateMethod } from "@gr4vy/sdk/models/components";
 
-let value: RedirectPaymentMethodCreateMethod = "zippay";
+let value: RedirectPaymentMethodCreateMethod = "paypal";
 ```
 
 ## Values
 
 ```typescript
-"afterpay" | "alipay" | "alipayhk" | "bacs" | "banked" | "becs" | "bitpay" | "boleto" | "boost" | "cashapp" | "clearpay" | "dana" | "dcb" | "dlocal" | "ebanx" | "everydaypay" | "gcash" | "giropay" | "gocardless" | "gopay" | "grabpay" | "ideal" | "kakaopay" | "kcp" | "klarna" | "laybuy" | "linkaja" | "maybankqrpay" | "multibanco" | "netbanking" | "oney_3x" | "oney_4x" | "oney_6x" | "oney_10x" | "oney_12x" | "ovo" | "oxxo" | "paymaya" | "paypal" | "paypalpaylater" | "pix" | "rabbitlinepay" | "scalapay" | "sepa" | "shopeepay" | "singteldash" | "sofort" | "stripedd" | "thaiqr" | "touchngo" | "truemoney" | "trustly" | "trustlyeurope" | "givingblock" | "venmo" | "vipps" | "webpay" | "wechat" | "zippay" | "bancontact" | "eps" | "linepay" | "razorpay" | "multipago" | "waave" | "smartpay" | "payid" | "payto" | "spei" | "pse" | "efecty" | "upi" | "mercadopago" | "arcuspaynetwork"
+"abitab" | "affirm" | "afterpay" | "alipay" | "alipayhk" | "arcuspaynetwork" | "bacs" | "bancontact" | "banked" | "bcp" | "becs" | "bitpay" | "boleto" | "boost" | "cashapp" | "clearpay" | "dana" | "dcb" | "dlocal" | "ebanx" | "efecty" | "eps" | "everydaypay" | "gcash" | "gem" | "gemds" | "giropay" | "givingblock" | "gocardless" | "gopay" | "grabpay" | "ideal" | "kakaopay" | "kcp" | "khipu" | "klarna" | "latitude" | "latitudeds" | "laybuy" | "linepay" | "linkaja" | "maybankqrpay" | "mercadopago" | "multibanco" | "multipago" | "netbanking" | "nupay" | "nequi" | "oney_10x" | "oney_12x" | "oney_3x" | "oney_4x" | "oney_6x" | "ovo" | "oxxo" | "pagoefectivo" | "payid" | "paymaya" | "paypal" | "paypalpaylater" | "payto" | "payvalida" | "picpay" | "pix" | "pse" | "rabbitlinepay" | "razorpay" | "redpagos" | "scalapay" | "sepa" | "servipag" | "shopeepay" | "singteldash" | "smartpay" | "sofort" | "spei" | "stripedd" | "thaiqr" | "touchngo" | "truemoney" | "trustly" | "trustlyeurope" | "upi" | "venmo" | "vipps" | "waave" | "webpay" | "wechat" | "yape" | "zippay"
 ```

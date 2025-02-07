@@ -7,7 +7,7 @@ An enumeration.
 ```typescript
 import { CardType } from "@gr4vy/sdk/models/components";
 
-let value: CardType = "credit";
+let value: CardType = "debit";
 ```
 
 ## Values

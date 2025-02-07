@@ -208,6 +208,10 @@ export type PayoutsSummaryBuyer = {
    * The billing name, address, email, and other fields for this buyer.
    */
   billingDetails?: PayoutsSummaryBillingDetails | undefined;
+  /**
+   * The buyer account number.
+   */
+  accountNumber?: string | undefined;
 };
 
 /**
@@ -336,13 +340,15 @@ export type PayoutsSummaryDetails = {
    * An enumeration.
    */
   cardType?: CardType | undefined;
+  cardIssuerName?: string | undefined;
 };
 
 /**
  * The type of this payment method.
  */
-export const PayoutsSummaryPaymentMethodPaymentMethod = {
+export const PayoutsSummaryMethod = {
   Abitab: "abitab",
+  Affirm: "affirm",
   Afterpay: "afterpay",
   Alipay: "alipay",
   Alipayhk: "alipayhk",
@@ -369,6 +375,8 @@ export const PayoutsSummaryPaymentMethodPaymentMethod = {
   Eps: "eps",
   Everydaypay: "everydaypay",
   Gcash: "gcash",
+  Gem: "gem",
+  Gemds: "gemds",
   GiftCard: "gift-card",
   Giropay: "giropay",
   Givingblock: "givingblock",
@@ -382,6 +390,8 @@ export const PayoutsSummaryPaymentMethodPaymentMethod = {
   Kcp: "kcp",
   Khipu: "khipu",
   Klarna: "klarna",
+  Latitude: "latitude",
+  Latitudeds: "latitudeds",
   Laybuy: "laybuy",
   Linepay: "linepay",
   Linkaja: "linkaja",
@@ -439,9 +449,7 @@ export const PayoutsSummaryPaymentMethodPaymentMethod = {
 /**
  * The type of this payment method.
  */
-export type PayoutsSummaryPaymentMethodPaymentMethod = ClosedEnum<
-  typeof PayoutsSummaryPaymentMethodPaymentMethod
->;
+export type PayoutsSummaryMethod = ClosedEnum<typeof PayoutsSummaryMethod>;
 
 /**
  * The mode to use with this payment method.
@@ -499,14 +507,16 @@ export type PayoutsSummaryCardScheme = ClosedEnum<
 /**
  * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
  */
-export const ApprovalTarget = {
+export const PayoutsSummaryApprovalTarget = {
   NewWindow: "new_window",
   Any: "any",
 } as const;
 /**
  * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
  */
-export type ApprovalTarget = ClosedEnum<typeof ApprovalTarget>;
+export type PayoutsSummaryApprovalTarget = ClosedEnum<
+  typeof PayoutsSummaryApprovalTarget
+>;
 
 /**
  * The payment method used for this payout.
@@ -551,7 +561,7 @@ export type PayoutsSummaryPaymentMethod = {
   /**
    * The type of this payment method.
    */
-  method: PayoutsSummaryPaymentMethodPaymentMethod;
+  method: PayoutsSummaryMethod;
   /**
    * The mode to use with this payment method.
    */
@@ -567,7 +577,7 @@ export type PayoutsSummaryPaymentMethod = {
   /**
    * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
    */
-  approvalTarget?: ApprovalTarget | undefined;
+  approvalTarget?: PayoutsSummaryApprovalTarget | undefined;
   /**
    * An external identifier that can be used to match the payment method against your own records.
    */
@@ -594,18 +604,20 @@ export type PayoutsSummaryPaymentServiceType = ClosedEnum<
 /**
  * Always `card`.
  */
-export const PayoutsSummaryMethod = {
+export const PayoutsSummaryPaymentServiceMethod = {
   Card: "card",
 } as const;
 /**
  * Always `card`.
  */
-export type PayoutsSummaryMethod = ClosedEnum<typeof PayoutsSummaryMethod>;
+export type PayoutsSummaryPaymentServiceMethod = ClosedEnum<
+  typeof PayoutsSummaryPaymentServiceMethod
+>;
 
 /**
  * The payment service used for this payout.
  */
-export type PaymentService = {
+export type PayoutsSummaryPaymentService = {
   /**
    * Always `payment-service`.
    */
@@ -617,7 +629,7 @@ export type PaymentService = {
   /**
    * Always `card`.
    */
-  method?: PayoutsSummaryMethod | undefined;
+  method?: PayoutsSummaryPaymentServiceMethod | undefined;
   /**
    * The ID of the connection used for this payout.
    */
@@ -697,7 +709,7 @@ export type PayoutsSummary = {
   /**
    * The payment service used for this payout.
    */
-  paymentService: PaymentService;
+  paymentService: PayoutsSummaryPaymentService;
   /**
    * The ID of the payout in the underlying payment service.
    */
@@ -1021,11 +1033,13 @@ export const PayoutsSummaryBuyer$inboundSchema: z.ZodType<
   external_identifier: z.string().optional(),
   billing_details: z.lazy(() => PayoutsSummaryBillingDetails$inboundSchema)
     .optional(),
+  account_number: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
     "billing_details": "billingDetails",
+    "account_number": "accountNumber",
   });
 });
 
@@ -1036,6 +1050,7 @@ export type PayoutsSummaryBuyer$Outbound = {
   display_name?: string | undefined;
   external_identifier?: string | undefined;
   billing_details?: PayoutsSummaryBillingDetails$Outbound | undefined;
+  account_number?: string | undefined;
 };
 
 /** @internal */
@@ -1050,11 +1065,13 @@ export const PayoutsSummaryBuyer$outboundSchema: z.ZodType<
   externalIdentifier: z.string().optional(),
   billingDetails: z.lazy(() => PayoutsSummaryBillingDetails$outboundSchema)
     .optional(),
+  accountNumber: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
   });
 });
 
@@ -1335,9 +1352,11 @@ export const PayoutsSummaryDetails$inboundSchema: z.ZodType<
 > = z.object({
   bin: z.string().optional(),
   card_type: CardType$inboundSchema.optional(),
+  card_issuer_name: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "card_type": "cardType",
+    "card_issuer_name": "cardIssuerName",
   });
 });
 
@@ -1345,6 +1364,7 @@ export const PayoutsSummaryDetails$inboundSchema: z.ZodType<
 export type PayoutsSummaryDetails$Outbound = {
   bin?: string | undefined;
   card_type?: string | undefined;
+  card_issuer_name?: string | undefined;
 };
 
 /** @internal */
@@ -1355,9 +1375,11 @@ export const PayoutsSummaryDetails$outboundSchema: z.ZodType<
 > = z.object({
   bin: z.string().optional(),
   cardType: CardType$outboundSchema.optional(),
+  cardIssuerName: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     cardType: "card_type",
+    cardIssuerName: "card_issuer_name",
   });
 });
 
@@ -1393,26 +1415,24 @@ export function payoutsSummaryDetailsFromJSON(
 }
 
 /** @internal */
-export const PayoutsSummaryPaymentMethodPaymentMethod$inboundSchema:
-  z.ZodNativeEnum<typeof PayoutsSummaryPaymentMethodPaymentMethod> = z
-    .nativeEnum(PayoutsSummaryPaymentMethodPaymentMethod);
+export const PayoutsSummaryMethod$inboundSchema: z.ZodNativeEnum<
+  typeof PayoutsSummaryMethod
+> = z.nativeEnum(PayoutsSummaryMethod);
 
 /** @internal */
-export const PayoutsSummaryPaymentMethodPaymentMethod$outboundSchema:
-  z.ZodNativeEnum<typeof PayoutsSummaryPaymentMethodPaymentMethod> =
-    PayoutsSummaryPaymentMethodPaymentMethod$inboundSchema;
+export const PayoutsSummaryMethod$outboundSchema: z.ZodNativeEnum<
+  typeof PayoutsSummaryMethod
+> = PayoutsSummaryMethod$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PayoutsSummaryPaymentMethodPaymentMethod$ {
-  /** @deprecated use `PayoutsSummaryPaymentMethodPaymentMethod$inboundSchema` instead. */
-  export const inboundSchema =
-    PayoutsSummaryPaymentMethodPaymentMethod$inboundSchema;
-  /** @deprecated use `PayoutsSummaryPaymentMethodPaymentMethod$outboundSchema` instead. */
-  export const outboundSchema =
-    PayoutsSummaryPaymentMethodPaymentMethod$outboundSchema;
+export namespace PayoutsSummaryMethod$ {
+  /** @deprecated use `PayoutsSummaryMethod$inboundSchema` instead. */
+  export const inboundSchema = PayoutsSummaryMethod$inboundSchema;
+  /** @deprecated use `PayoutsSummaryMethod$outboundSchema` instead. */
+  export const outboundSchema = PayoutsSummaryMethod$outboundSchema;
 }
 
 /** @internal */
@@ -1458,24 +1478,24 @@ export namespace PayoutsSummaryCardScheme$ {
 }
 
 /** @internal */
-export const ApprovalTarget$inboundSchema: z.ZodNativeEnum<
-  typeof ApprovalTarget
-> = z.nativeEnum(ApprovalTarget);
+export const PayoutsSummaryApprovalTarget$inboundSchema: z.ZodNativeEnum<
+  typeof PayoutsSummaryApprovalTarget
+> = z.nativeEnum(PayoutsSummaryApprovalTarget);
 
 /** @internal */
-export const ApprovalTarget$outboundSchema: z.ZodNativeEnum<
-  typeof ApprovalTarget
-> = ApprovalTarget$inboundSchema;
+export const PayoutsSummaryApprovalTarget$outboundSchema: z.ZodNativeEnum<
+  typeof PayoutsSummaryApprovalTarget
+> = PayoutsSummaryApprovalTarget$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ApprovalTarget$ {
-  /** @deprecated use `ApprovalTarget$inboundSchema` instead. */
-  export const inboundSchema = ApprovalTarget$inboundSchema;
-  /** @deprecated use `ApprovalTarget$outboundSchema` instead. */
-  export const outboundSchema = ApprovalTarget$outboundSchema;
+export namespace PayoutsSummaryApprovalTarget$ {
+  /** @deprecated use `PayoutsSummaryApprovalTarget$inboundSchema` instead. */
+  export const inboundSchema = PayoutsSummaryApprovalTarget$inboundSchema;
+  /** @deprecated use `PayoutsSummaryApprovalTarget$outboundSchema` instead. */
+  export const outboundSchema = PayoutsSummaryApprovalTarget$outboundSchema;
 }
 
 /** @internal */
@@ -1495,11 +1515,11 @@ export const PayoutsSummaryPaymentMethod$inboundSchema: z.ZodType<
   last_replaced_at: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
-  method: PayoutsSummaryPaymentMethodPaymentMethod$inboundSchema,
+  method: PayoutsSummaryMethod$inboundSchema,
   mode: PayoutsSummaryMode$inboundSchema.optional(),
   scheme: PayoutsSummaryCardScheme$inboundSchema.optional(),
   id: z.string().optional(),
-  approval_target: ApprovalTarget$inboundSchema.optional(),
+  approval_target: PayoutsSummaryApprovalTarget$inboundSchema.optional(),
   external_identifier: z.string().optional(),
   payment_account_reference: z.string().optional(),
 }).transform((v) => {
@@ -1550,11 +1570,11 @@ export const PayoutsSummaryPaymentMethod$outboundSchema: z.ZodType<
   fingerprint: z.string().optional(),
   label: z.string().optional(),
   lastReplacedAt: z.date().transform(v => v.toISOString()).optional(),
-  method: PayoutsSummaryPaymentMethodPaymentMethod$outboundSchema,
+  method: PayoutsSummaryMethod$outboundSchema,
   mode: PayoutsSummaryMode$outboundSchema.optional(),
   scheme: PayoutsSummaryCardScheme$outboundSchema.optional(),
   id: z.string().optional(),
-  approvalTarget: ApprovalTarget$outboundSchema.optional(),
+  approvalTarget: PayoutsSummaryApprovalTarget$outboundSchema.optional(),
   externalIdentifier: z.string().optional(),
   paymentAccountReference: z.string().optional(),
 }).transform((v) => {
@@ -1623,29 +1643,30 @@ export namespace PayoutsSummaryPaymentServiceType$ {
 }
 
 /** @internal */
-export const PayoutsSummaryMethod$inboundSchema: z.ZodNativeEnum<
-  typeof PayoutsSummaryMethod
-> = z.nativeEnum(PayoutsSummaryMethod);
+export const PayoutsSummaryPaymentServiceMethod$inboundSchema: z.ZodNativeEnum<
+  typeof PayoutsSummaryPaymentServiceMethod
+> = z.nativeEnum(PayoutsSummaryPaymentServiceMethod);
 
 /** @internal */
-export const PayoutsSummaryMethod$outboundSchema: z.ZodNativeEnum<
-  typeof PayoutsSummaryMethod
-> = PayoutsSummaryMethod$inboundSchema;
+export const PayoutsSummaryPaymentServiceMethod$outboundSchema: z.ZodNativeEnum<
+  typeof PayoutsSummaryPaymentServiceMethod
+> = PayoutsSummaryPaymentServiceMethod$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PayoutsSummaryMethod$ {
-  /** @deprecated use `PayoutsSummaryMethod$inboundSchema` instead. */
-  export const inboundSchema = PayoutsSummaryMethod$inboundSchema;
-  /** @deprecated use `PayoutsSummaryMethod$outboundSchema` instead. */
-  export const outboundSchema = PayoutsSummaryMethod$outboundSchema;
+export namespace PayoutsSummaryPaymentServiceMethod$ {
+  /** @deprecated use `PayoutsSummaryPaymentServiceMethod$inboundSchema` instead. */
+  export const inboundSchema = PayoutsSummaryPaymentServiceMethod$inboundSchema;
+  /** @deprecated use `PayoutsSummaryPaymentServiceMethod$outboundSchema` instead. */
+  export const outboundSchema =
+    PayoutsSummaryPaymentServiceMethod$outboundSchema;
 }
 
 /** @internal */
-export const PaymentService$inboundSchema: z.ZodType<
-  PaymentService,
+export const PayoutsSummaryPaymentService$inboundSchema: z.ZodType<
+  PayoutsSummaryPaymentService,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1653,7 +1674,7 @@ export const PaymentService$inboundSchema: z.ZodType<
     "payment-service",
   ),
   id: z.string().optional(),
-  method: PayoutsSummaryMethod$inboundSchema.default("card"),
+  method: PayoutsSummaryPaymentServiceMethod$inboundSchema.default("card"),
   payment_service_definition_id: z.string(),
   display_name: z.string().optional(),
 }).transform((v) => {
@@ -1664,7 +1685,7 @@ export const PaymentService$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type PaymentService$Outbound = {
+export type PayoutsSummaryPaymentService$Outbound = {
   type: string;
   id?: string | undefined;
   method: string;
@@ -1673,16 +1694,16 @@ export type PaymentService$Outbound = {
 };
 
 /** @internal */
-export const PaymentService$outboundSchema: z.ZodType<
-  PaymentService$Outbound,
+export const PayoutsSummaryPaymentService$outboundSchema: z.ZodType<
+  PayoutsSummaryPaymentService$Outbound,
   z.ZodTypeDef,
-  PaymentService
+  PayoutsSummaryPaymentService
 > = z.object({
   type: PayoutsSummaryPaymentServiceType$outboundSchema.default(
     "payment-service",
   ),
   id: z.string().optional(),
-  method: PayoutsSummaryMethod$outboundSchema.default("card"),
+  method: PayoutsSummaryPaymentServiceMethod$outboundSchema.default("card"),
   paymentServiceDefinitionId: z.string(),
   displayName: z.string().optional(),
 }).transform((v) => {
@@ -1696,26 +1717,32 @@ export const PaymentService$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PaymentService$ {
-  /** @deprecated use `PaymentService$inboundSchema` instead. */
-  export const inboundSchema = PaymentService$inboundSchema;
-  /** @deprecated use `PaymentService$outboundSchema` instead. */
-  export const outboundSchema = PaymentService$outboundSchema;
-  /** @deprecated use `PaymentService$Outbound` instead. */
-  export type Outbound = PaymentService$Outbound;
+export namespace PayoutsSummaryPaymentService$ {
+  /** @deprecated use `PayoutsSummaryPaymentService$inboundSchema` instead. */
+  export const inboundSchema = PayoutsSummaryPaymentService$inboundSchema;
+  /** @deprecated use `PayoutsSummaryPaymentService$outboundSchema` instead. */
+  export const outboundSchema = PayoutsSummaryPaymentService$outboundSchema;
+  /** @deprecated use `PayoutsSummaryPaymentService$Outbound` instead. */
+  export type Outbound = PayoutsSummaryPaymentService$Outbound;
 }
 
-export function paymentServiceToJSON(paymentService: PaymentService): string {
-  return JSON.stringify(PaymentService$outboundSchema.parse(paymentService));
+export function payoutsSummaryPaymentServiceToJSON(
+  payoutsSummaryPaymentService: PayoutsSummaryPaymentService,
+): string {
+  return JSON.stringify(
+    PayoutsSummaryPaymentService$outboundSchema.parse(
+      payoutsSummaryPaymentService,
+    ),
+  );
 }
 
-export function paymentServiceFromJSON(
+export function payoutsSummaryPaymentServiceFromJSON(
   jsonString: string,
-): SafeParseResult<PaymentService, SDKValidationError> {
+): SafeParseResult<PayoutsSummaryPaymentService, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => PaymentService$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentService' from JSON`,
+    (x) => PayoutsSummaryPaymentService$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PayoutsSummaryPaymentService' from JSON`,
   );
 }
 
@@ -1755,7 +1782,7 @@ export const PayoutsSummary$inboundSchema: z.ZodType<
   merchant: z.lazy(() => Merchant$inboundSchema).optional(),
   merchant_account_id: z.string().optional(),
   payment_method: z.lazy(() => PayoutsSummaryPaymentMethod$inboundSchema),
-  payment_service: z.lazy(() => PaymentService$inboundSchema),
+  payment_service: z.lazy(() => PayoutsSummaryPaymentService$inboundSchema),
   payment_service_payout_id: z.string().optional(),
   status: PayoutStatus$inboundSchema,
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -1784,7 +1811,7 @@ export type PayoutsSummary$Outbound = {
   merchant?: Merchant$Outbound | undefined;
   merchant_account_id?: string | undefined;
   payment_method: PayoutsSummaryPaymentMethod$Outbound;
-  payment_service: PaymentService$Outbound;
+  payment_service: PayoutsSummaryPaymentService$Outbound;
   payment_service_payout_id?: string | undefined;
   status: string;
   updated_at: string;
@@ -1807,7 +1834,7 @@ export const PayoutsSummary$outboundSchema: z.ZodType<
   merchant: z.lazy(() => Merchant$outboundSchema).optional(),
   merchantAccountId: z.string().optional(),
   paymentMethod: z.lazy(() => PayoutsSummaryPaymentMethod$outboundSchema),
-  paymentService: z.lazy(() => PaymentService$outboundSchema),
+  paymentService: z.lazy(() => PayoutsSummaryPaymentService$outboundSchema),
   paymentServicePayoutId: z.string().optional(),
   status: PayoutStatus$outboundSchema,
   updatedAt: z.date().transform(v => v.toISOString()),

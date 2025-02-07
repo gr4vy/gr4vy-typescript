@@ -55,7 +55,7 @@ export class PaymentMethods extends ClientSDK {
   async create(
     request: operations.CreatePaymentMethodBody,
     options?: RequestOptions,
-  ): Promise<components.ApiRoutersPaymentMethodsSchemasPaymentMethod> {
+  ): Promise<components.PaymentMethod> {
     return unwrapAsync(paymentMethodsCreate(
       this,
       request,
@@ -72,7 +72,7 @@ export class PaymentMethods extends ClientSDK {
   async get(
     paymentMethodId: string,
     options?: RequestOptions,
-  ): Promise<components.ApiRoutersPaymentMethodsSchemasPaymentMethod> {
+  ): Promise<components.PaymentMethod> {
     return unwrapAsync(paymentMethodsGet(
       this,
       paymentMethodId,

@@ -13,7 +13,7 @@ let value: User = {
   name: "John Doe",
   emailAddress: "john@example.com",
   isStaff: false,
-  status: "deleted",
+  status: "pending",
 };
 ```
 

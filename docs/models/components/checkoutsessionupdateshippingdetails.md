@@ -14,10 +14,10 @@ let value: CheckoutSessionUpdateShippingDetails = {
   phoneNumber: "+442071838750",
   address: {
     city: "San Jose",
-    country: "US",
+    country: "DE",
     postalCode: "94560",
     state: "California",
-    stateCode: "GB-LND",
+    stateCode: "US-CA",
     houseNumberOrName: "10",
     line1: "Stafford Appartments",
     line2: "29th Street",

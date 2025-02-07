@@ -11,7 +11,7 @@ let value: ShippingDetailsUpdate = {
   firstName: "John",
   lastName: "Doe",
   emailAddress: "john@example.com",
-  phoneNumber: "+442071838750",
+  phoneNumber: "+14155552671",
   address: {
     city: "San Jose",
     country: "US",

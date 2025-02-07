@@ -7,7 +7,7 @@ import { ValidationError } from "@gr4vy/sdk/models/components";
 
 let value: ValidationError = {
   loc: [
-    929297,
+    602763,
   ],
   msg: "<value>",
   type: "<value>",

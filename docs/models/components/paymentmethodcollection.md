@@ -12,8 +12,8 @@ let value: PaymentMethodCollection = {
     {
       type: "payment-method",
       approvalUrl: "https://gr4vy.app/redirect/12345",
-      country: "US",
-      currency: "GBP",
+      country: "DE",
+      currency: "EUR",
       expirationDate: "12/30",
       fingerprint:
         "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4",
@@ -42,13 +42,13 @@ let value: PaymentMethodCollection = {
           firstName: "John",
           lastName: "Doe",
           emailAddress: "john@example.com",
-          phoneNumber: "+442071838750",
+          phoneNumber: "+14155552671",
           address: {
             city: "San Jose",
             country: "GB",
             postalCode: "94560",
             state: "California",
-            stateCode: "GB-LND",
+            stateCode: "US-CA",
             houseNumberOrName: "10",
             line1: "Stafford Appartments",
             line2: "29th Street",
@@ -76,9 +76,9 @@ let value: PaymentMethodCollection = {
 
 ## Fields
 
-| Field                                                                                                                                | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          | Example                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `items`                                                                                                                              | [components.ApiRoutersPaymentMethodsSchemasPaymentMethod](../../models/components/apirouterspaymentmethodsschemaspaymentmethod.md)[] | :heavy_check_mark:                                                                                                                   | A list of items returned for this request.                                                                                           |                                                                                                                                      |
-| `limit`                                                                                                                              | *number*                                                                                                                             | :heavy_minus_sign:                                                                                                                   | The number of items for this page.                                                                                                   | 20                                                                                                                                   |
-| `nextCursor`                                                                                                                         | *string*                                                                                                                             | :heavy_minus_sign:                                                                                                                   | The cursor pointing at the next page of items.                                                                                       | ZXhhbXBsZTE                                                                                                                          |
-| `previousCursor`                                                                                                                     | *string*                                                                                                                             | :heavy_minus_sign:                                                                                                                   | The cursor pointing at the previous page of items.                                                                                   | Xkjss7asS                                                                                                                            |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `items`                                                                | [components.PaymentMethod](../../models/components/paymentmethod.md)[] | :heavy_check_mark:                                                     | A list of items returned for this request.                             |                                                                        |
+| `limit`                                                                | *number*                                                               | :heavy_minus_sign:                                                     | The number of items for this page.                                     | 20                                                                     |
+| `nextCursor`                                                           | *string*                                                               | :heavy_minus_sign:                                                     | The cursor pointing at the next page of items.                         | ZXhhbXBsZTE                                                            |
+| `previousCursor`                                                       | *string*                                                               | :heavy_minus_sign:                                                     | The cursor pointing at the previous page of items.                     | Xkjss7asS                                                              |

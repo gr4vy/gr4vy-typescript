@@ -44,10 +44,10 @@ let value: ListPaymentMethodsResponse = {
             phoneNumber: "+14155552671",
             address: {
               city: "San Jose",
-              country: "US",
+              country: "DE",
               postalCode: "94560",
               state: "California",
-              stateCode: "US-CA",
+              stateCode: "GB-LND",
               houseNumberOrName: "10",
               line1: "Stafford Appartments",
               line2: "29th Street",
