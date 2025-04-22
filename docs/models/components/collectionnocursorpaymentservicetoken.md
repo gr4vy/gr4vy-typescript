@@ -8,7 +8,6 @@ import { CollectionNoCursorPaymentServiceToken } from "@gr4vy/sdk/models/compone
 let value: CollectionNoCursorPaymentServiceToken = {
   items: [
     {
-      type: "payment-service-token",
       id: "07e70d14-a0c0-4ff5-bd4a-509959af0e4d",
       approvalUrl: "https://gr4vy.app/redirect/12345",
       paymentMethodId: "ef9496d8-53a5-4aad-8ca2-00eb68334389",

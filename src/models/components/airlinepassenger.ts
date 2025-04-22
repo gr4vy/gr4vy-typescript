@@ -10,62 +10,57 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * The age group for the passenger.
- */
 export const AgeGroup = {
   Adult: "adult",
   Infant: "infant",
 } as const;
-/**
- * The age group for the passenger.
- */
 export type AgeGroup = ClosedEnum<typeof AgeGroup>;
 
-/**
- * Base model with JSON encoders.
- */
 export type AirlinePassenger = {
   /**
    * The age group for the passenger.
    */
-  ageGroup?: AgeGroup | undefined;
+  ageGroup?: AgeGroup | null | undefined;
   /**
    * The passenger's date of birth in YYYY-MM-YY format.
    */
-  dateOfBirth?: RFCDate | undefined;
+  dateOfBirth?: RFCDate | null | undefined;
   /**
    * The email address of the passenger.
    */
-  emailAddress?: string | undefined;
+  emailAddress?: string | null | undefined;
   /**
    * The first name(s) or given name of the passenger.
    */
-  firstName?: string | undefined;
+  firstName?: string | null | undefined;
   /**
    * The passenger's frequent flyer number.
    */
-  frequentFlyerNumber?: string | undefined;
+  frequentFlyerNumber?: string | null | undefined;
   /**
    * The last name, or family name, of the passenger.
    */
-  lastName?: string | undefined;
+  lastName?: string | null | undefined;
   /**
    * The passenger's unique passport number.
    */
-  passportNumber?: string | undefined;
+  passportNumber?: string | null | undefined;
   /**
    * The phone number of the passenger. This number is formatted according to the E164 number standard.
    */
-  phoneNumber?: string | undefined;
+  phoneNumber?: string | null | undefined;
   /**
    * The ticket number for a flight.
    */
-  ticketNumber?: string | undefined;
+  ticketNumber?: string | null | undefined;
   /**
    * Title of the passenger.
    */
-  title?: string | undefined;
+  title?: string | null | undefined;
+  /**
+   * The country of residence of the passenger
+   */
+  countryCode?: string | null | undefined;
 };
 
 /** @internal */
@@ -93,16 +88,18 @@ export const AirlinePassenger$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  age_group: AgeGroup$inboundSchema.optional(),
-  date_of_birth: z.string().transform(v => new RFCDate(v)).optional(),
-  email_address: z.string().optional(),
-  first_name: z.string().optional(),
-  frequent_flyer_number: z.string().optional(),
-  last_name: z.string().optional(),
-  passport_number: z.string().optional(),
-  phone_number: z.string().optional(),
-  ticket_number: z.string().optional(),
-  title: z.string().optional(),
+  age_group: z.nullable(AgeGroup$inboundSchema).optional(),
+  date_of_birth: z.nullable(z.string().transform(v => new RFCDate(v)))
+    .optional(),
+  email_address: z.nullable(z.string()).optional(),
+  first_name: z.nullable(z.string()).optional(),
+  frequent_flyer_number: z.nullable(z.string()).optional(),
+  last_name: z.nullable(z.string()).optional(),
+  passport_number: z.nullable(z.string()).optional(),
+  phone_number: z.nullable(z.string()).optional(),
+  ticket_number: z.nullable(z.string()).optional(),
+  title: z.nullable(z.string()).optional(),
+  country_code: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "age_group": "ageGroup",
@@ -114,21 +111,23 @@ export const AirlinePassenger$inboundSchema: z.ZodType<
     "passport_number": "passportNumber",
     "phone_number": "phoneNumber",
     "ticket_number": "ticketNumber",
+    "country_code": "countryCode",
   });
 });
 
 /** @internal */
 export type AirlinePassenger$Outbound = {
-  age_group?: string | undefined;
-  date_of_birth?: string | undefined;
-  email_address?: string | undefined;
-  first_name?: string | undefined;
-  frequent_flyer_number?: string | undefined;
-  last_name?: string | undefined;
-  passport_number?: string | undefined;
-  phone_number?: string | undefined;
-  ticket_number?: string | undefined;
-  title?: string | undefined;
+  age_group?: string | null | undefined;
+  date_of_birth?: string | null | undefined;
+  email_address?: string | null | undefined;
+  first_name?: string | null | undefined;
+  frequent_flyer_number?: string | null | undefined;
+  last_name?: string | null | undefined;
+  passport_number?: string | null | undefined;
+  phone_number?: string | null | undefined;
+  ticket_number?: string | null | undefined;
+  title?: string | null | undefined;
+  country_code?: string | null | undefined;
 };
 
 /** @internal */
@@ -137,16 +136,18 @@ export const AirlinePassenger$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AirlinePassenger
 > = z.object({
-  ageGroup: AgeGroup$outboundSchema.optional(),
-  dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  emailAddress: z.string().optional(),
-  firstName: z.string().optional(),
-  frequentFlyerNumber: z.string().optional(),
-  lastName: z.string().optional(),
-  passportNumber: z.string().optional(),
-  phoneNumber: z.string().optional(),
-  ticketNumber: z.string().optional(),
-  title: z.string().optional(),
+  ageGroup: z.nullable(AgeGroup$outboundSchema).optional(),
+  dateOfBirth: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  emailAddress: z.nullable(z.string()).optional(),
+  firstName: z.nullable(z.string()).optional(),
+  frequentFlyerNumber: z.nullable(z.string()).optional(),
+  lastName: z.nullable(z.string()).optional(),
+  passportNumber: z.nullable(z.string()).optional(),
+  phoneNumber: z.nullable(z.string()).optional(),
+  ticketNumber: z.nullable(z.string()).optional(),
+  title: z.nullable(z.string()).optional(),
+  countryCode: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     ageGroup: "age_group",
@@ -158,6 +159,7 @@ export const AirlinePassenger$outboundSchema: z.ZodType<
     passportNumber: "passport_number",
     phoneNumber: "phone_number",
     ticketNumber: "ticket_number",
+    countryCode: "country_code",
   });
 });
 

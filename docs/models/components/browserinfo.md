@@ -1,0 +1,38 @@
+# BrowserInfo
+
+Merchant provided browser info
+
+## Example Usage
+
+```typescript
+import { BrowserInfo } from "@gr4vy/sdk/models/components";
+
+let value: BrowserInfo = {
+  javascriptEnabled: false,
+  javaEnabled: false,
+  language: "<value>",
+  colorDepth: 600113,
+  screenHeight: 468675,
+  screenWidth: 884131,
+  timeZoneOffset: 838116,
+  userAgent:
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  userDevice: "desktop",
+  acceptHeader: "*/*",
+};
+```
+
+## Fields
+
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     | Example                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `javascriptEnabled`                                                                                             | *boolean*                                                                                                       | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `javaEnabled`                                                                                                   | *boolean*                                                                                                       | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `language`                                                                                                      | *string*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `colorDepth`                                                                                                    | *number*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `screenHeight`                                                                                                  | *number*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `screenWidth`                                                                                                   | *number*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `timeZoneOffset`                                                                                                | *number*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `userAgent`                                                                                                     | *string*                                                                                                        | :heavy_check_mark:                                                                                              | Exact content of the HTTP user-agent header.                                                                    | Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 |
+| `userDevice`                                                                                                    | [components.UserDevice](../../models/components/userdevice.md)                                                  | :heavy_check_mark:                                                                                              | The platform that is being used to access the website.                                                          | desktop                                                                                                         |
+| `acceptHeader`                                                                                                  | *string*                                                                                                        | :heavy_minus_sign:                                                                                              | The Accept header of the request from the buyer's browser.                                                      | */*                                                                                                             |

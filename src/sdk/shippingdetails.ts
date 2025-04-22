@@ -13,6 +13,27 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class ShippingDetails extends ClientSDK {
   /**
+   * Add buyer shipping details
+   *
+   * @remarks
+   * Associate shipping details to a buyer.
+   */
+  async create(
+    shippingDetailsCreate: components.ShippingDetailsCreate,
+    buyerId: string,
+    timeoutInSeconds?: number | undefined,
+    options?: RequestOptions,
+  ): Promise<components.ShippingDetails> {
+    return unwrapAsync(buyersShippingDetailsCreate(
+      this,
+      shippingDetailsCreate,
+      buyerId,
+      timeoutInSeconds,
+      options,
+    ));
+  }
+
+  /**
    * List a buyer's shipping details
    *
    * @remarks
@@ -24,25 +45,6 @@ export class ShippingDetails extends ClientSDK {
   ): Promise<components.CollectionNoCursorShippingDetails> {
     return unwrapAsync(buyersShippingDetailsList(
       this,
-      buyerId,
-      options,
-    ));
-  }
-
-  /**
-   * Add buyer shipping details
-   *
-   * @remarks
-   * Associate shipping details to a buyer.
-   */
-  async create(
-    shippingDetailsCreate: components.ShippingDetailsCreate,
-    buyerId: string,
-    options?: RequestOptions,
-  ): Promise<components.ShippingDetails> {
-    return unwrapAsync(buyersShippingDetailsCreate(
-      this,
-      shippingDetailsCreate,
       buyerId,
       options,
     ));
@@ -77,6 +79,7 @@ export class ShippingDetails extends ClientSDK {
     shippingDetailsUpdate: components.ShippingDetailsUpdate,
     buyerId: string,
     shippingDetailsId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
     return unwrapAsync(buyersShippingDetailsUpdate(
@@ -84,6 +87,7 @@ export class ShippingDetails extends ClientSDK {
       shippingDetailsUpdate,
       buyerId,
       shippingDetailsId,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -97,12 +101,14 @@ export class ShippingDetails extends ClientSDK {
   async delete(
     buyerId: string,
     shippingDetailsId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(buyersShippingDetailsDelete(
       this,
       buyerId,
       shippingDetailsId,
+      timeoutInSeconds,
       options,
     ));
   }

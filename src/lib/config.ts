@@ -18,21 +18,21 @@ export const ServerList = {
 } as const;
 
 export type SDKOptions = {
-  bearerAuth?: string | (() => Promise<string>);
+  bearerAuth?: string | (() => Promise<string>) | undefined;
 
   httpClient?: HTTPClient;
   /**
    * Allows overriding the default server used by the SDK
    */
-  server?: keyof typeof ServerList;
+  server?: keyof typeof ServerList | undefined;
   /**
    * Sets the gr4vy_id variable for url substitution
    */
-  gr4vyId?: string;
+  gr4vyId?: string | undefined;
   /**
    * Allows overriding the default server URL used by the SDK
    */
-  serverURL?: string;
+  serverURL?: string | undefined;
   /**
    * Allows overriding the default retry config used by the SDK
    */
@@ -68,7 +68,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "0.9.1",
-  genVersion: "2.471.2",
-  userAgent: "speakeasy-sdk/typescript 0.9.1 2.471.2 1.0.0 @gr4vy/sdk",
+  sdkVersion: "0.13.0",
+  genVersion: "2.588.4",
+  userAgent: "speakeasy-sdk/typescript 0.13.0 2.588.4 1.0.0 @gr4vy/sdk",
 } as const;

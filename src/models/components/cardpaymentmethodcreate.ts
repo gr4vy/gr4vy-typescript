@@ -5,28 +5,9 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * Always `card`
- */
-export const Method = {
-  Card: "card",
-} as const;
-/**
- * Always `card`
- */
-export type Method = ClosedEnum<typeof Method>;
-
-/**
- * Card
- *
- * @remarks
- *
- * Card details to use in a transaction or to register a new payment method.
- */
 export type CardPaymentMethodCreate = {
   /**
    * The expiration date of the card, formatted `MM/YY`.
@@ -39,47 +20,28 @@ export type CardPaymentMethodCreate = {
   /**
    * The external identifier of the buyer to attach the method to.
    */
-  buyerExternalIdentifier?: string | undefined;
+  buyerExternalIdentifier?: string | null | undefined;
   /**
    * The ID of the buyer to attach the method to.
    */
-  buyerId?: string | undefined;
+  buyerId?: string | null | undefined;
   /**
    * The merchant reference for this payment method.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
   /**
    * The type of the card used
    */
-  cardType?: string | undefined;
+  cardType?: string | null | undefined;
   /**
    * Always `card`
    */
-  method?: Method | undefined;
+  method?: "card" | undefined;
   /**
    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
    */
-  securityCode?: string | undefined;
+  securityCode?: string | null | undefined;
 };
-
-/** @internal */
-export const Method$inboundSchema: z.ZodNativeEnum<typeof Method> = z
-  .nativeEnum(Method);
-
-/** @internal */
-export const Method$outboundSchema: z.ZodNativeEnum<typeof Method> =
-  Method$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Method$ {
-  /** @deprecated use `Method$inboundSchema` instead. */
-  export const inboundSchema = Method$inboundSchema;
-  /** @deprecated use `Method$outboundSchema` instead. */
-  export const outboundSchema = Method$outboundSchema;
-}
 
 /** @internal */
 export const CardPaymentMethodCreate$inboundSchema: z.ZodType<
@@ -89,12 +51,12 @@ export const CardPaymentMethodCreate$inboundSchema: z.ZodType<
 > = z.object({
   expiration_date: z.string(),
   number: z.string(),
-  buyer_external_identifier: z.string().optional(),
-  buyer_id: z.string().optional(),
-  external_identifier: z.string().optional(),
-  card_type: z.string().optional(),
-  method: Method$inboundSchema.default("card"),
-  security_code: z.string().optional(),
+  buyer_external_identifier: z.nullable(z.string()).optional(),
+  buyer_id: z.nullable(z.string()).optional(),
+  external_identifier: z.nullable(z.string()).optional(),
+  card_type: z.nullable(z.string()).optional(),
+  method: z.literal("card").default("card"),
+  security_code: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "expiration_date": "expirationDate",
@@ -110,12 +72,12 @@ export const CardPaymentMethodCreate$inboundSchema: z.ZodType<
 export type CardPaymentMethodCreate$Outbound = {
   expiration_date: string;
   number: string;
-  buyer_external_identifier?: string | undefined;
-  buyer_id?: string | undefined;
-  external_identifier?: string | undefined;
-  card_type?: string | undefined;
-  method: string;
-  security_code?: string | undefined;
+  buyer_external_identifier?: string | null | undefined;
+  buyer_id?: string | null | undefined;
+  external_identifier?: string | null | undefined;
+  card_type?: string | null | undefined;
+  method: "card";
+  security_code?: string | null | undefined;
 };
 
 /** @internal */
@@ -126,12 +88,12 @@ export const CardPaymentMethodCreate$outboundSchema: z.ZodType<
 > = z.object({
   expirationDate: z.string(),
   number: z.string(),
-  buyerExternalIdentifier: z.string().optional(),
-  buyerId: z.string().optional(),
-  externalIdentifier: z.string().optional(),
-  cardType: z.string().optional(),
-  method: Method$outboundSchema.default("card"),
-  securityCode: z.string().optional(),
+  buyerExternalIdentifier: z.nullable(z.string()).optional(),
+  buyerId: z.nullable(z.string()).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
+  cardType: z.nullable(z.string()).optional(),
+  method: z.literal("card").default("card" as const),
+  securityCode: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     expirationDate: "expiration_date",

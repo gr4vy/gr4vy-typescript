@@ -8,9 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * Base model with JSON encoders.
- */
 export type CryptogramCreate = {
   /**
    * Defines if the request is merchant initiated or not.

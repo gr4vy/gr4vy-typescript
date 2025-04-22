@@ -44,12 +44,14 @@ export class NetworkTokens extends ClientSDK {
   async create(
     networkTokenCreate: components.NetworkTokenCreate,
     paymentMethodId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensCreate(
       this,
       networkTokenCreate,
       paymentMethodId,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -63,12 +65,14 @@ export class NetworkTokens extends ClientSDK {
   async suspend(
     paymentMethodId: string,
     networkTokenId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensSuspend(
       this,
       paymentMethodId,
       networkTokenId,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -82,12 +86,14 @@ export class NetworkTokens extends ClientSDK {
   async resume(
     paymentMethodId: string,
     networkTokenId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensResume(
       this,
       paymentMethodId,
       networkTokenId,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -101,12 +107,14 @@ export class NetworkTokens extends ClientSDK {
   async delete(
     paymentMethodId: string,
     networkTokenId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(paymentMethodsNetworkTokensDelete(
       this,
       paymentMethodId,
       networkTokenId,
+      timeoutInSeconds,
       options,
     ));
   }

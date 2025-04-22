@@ -19,7 +19,7 @@ export class Payouts extends ClientSDK {
    * Returns a list of payouts made.
    */
   async list(
-    cursor?: string | undefined,
+    cursor?: string | null | undefined,
     limit?: number | undefined,
     options?: RequestOptions,
   ): Promise<PageIterator<operations.ListPayoutsResponse, { cursor: string }>> {
@@ -38,12 +38,14 @@ export class Payouts extends ClientSDK {
    * Creates a new payout.
    */
   async create(
-    request: components.PayoutsCreate,
+    payoutCreate: components.PayoutCreate,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
-  ): Promise<components.PayoutsSummary> {
+  ): Promise<components.PayoutSummary> {
     return unwrapAsync(payoutsCreate(
       this,
-      request,
+      payoutCreate,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -57,7 +59,7 @@ export class Payouts extends ClientSDK {
   async get(
     payoutId: string,
     options?: RequestOptions,
-  ): Promise<components.PayoutsSummary> {
+  ): Promise<components.PayoutSummary> {
     return unwrapAsync(payoutsGet(
       this,
       payoutId,

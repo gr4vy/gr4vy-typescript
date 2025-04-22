@@ -13,6 +13,7 @@ export type DeleteBuyerRequest = {
    * The ID of the buyer to delete.
    */
   buyerId: string;
+  timeoutInSeconds?: number | undefined;
 };
 
 /** @internal */
@@ -22,15 +23,18 @@ export const DeleteBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
+  timeout_in_seconds: z.number().default(1),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
+    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
 /** @internal */
 export type DeleteBuyerRequest$Outbound = {
   buyer_id: string;
+  timeout_in_seconds: number;
 };
 
 /** @internal */
@@ -40,9 +44,11 @@ export const DeleteBuyerRequest$outboundSchema: z.ZodType<
   DeleteBuyerRequest
 > = z.object({
   buyerId: z.string(),
+  timeoutInSeconds: z.number().default(1),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
+    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

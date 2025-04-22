@@ -5,31 +5,14 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ProductType,
+  ProductType$inboundSchema,
+  ProductType$outboundSchema,
+} from "./producttype.js";
 
-/**
- * The product type of the cart item.
- */
-export const ProductType = {
-  Physical: "physical",
-  Discount: "discount",
-  ShippingFee: "shipping_fee",
-  SalesTax: "sales_tax",
-  Digital: "digital",
-  GiftCard: "gift_card",
-  StoreCredit: "store_credit",
-  Surcharge: "surcharge",
-} as const;
-/**
- * The product type of the cart item.
- */
-export type ProductType = ClosedEnum<typeof ProductType>;
-
-/**
- * Base model with JSON encoders.
- */
 export type CartItem = {
   /**
    * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
@@ -46,55 +29,40 @@ export type CartItem = {
   /**
    * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
    */
-  discountAmount?: number | undefined;
+  discountAmount?: number | null | undefined;
   /**
    * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
    */
-  taxAmount?: number | undefined;
+  taxAmount?: number | null | undefined;
   /**
    * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
   /**
    * The SKU for the item.
    */
-  sku?: string | undefined;
+  sku?: string | null | undefined;
   /**
    * The product URL for the item.
    */
-  productUrl?: string | undefined;
+  productUrl?: string | null | undefined;
   /**
    * The URL for the image of the item.
    */
-  imageUrl?: string | undefined;
+  imageUrl?: string | null | undefined;
   /**
    * A list of strings containing product categories for the item.
    */
-  categories?: Array<string> | undefined;
+  categories?: Array<string> | null | undefined;
   /**
    * The product type of the cart item.
    */
-  productType?: ProductType | undefined;
+  productType?: ProductType | null | undefined;
+  /**
+   * The seller country of the cart item.
+   */
+  sellerCountry?: string | null | undefined;
 };
-
-/** @internal */
-export const ProductType$inboundSchema: z.ZodNativeEnum<typeof ProductType> = z
-  .nativeEnum(ProductType);
-
-/** @internal */
-export const ProductType$outboundSchema: z.ZodNativeEnum<typeof ProductType> =
-  ProductType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProductType$ {
-  /** @deprecated use `ProductType$inboundSchema` instead. */
-  export const inboundSchema = ProductType$inboundSchema;
-  /** @deprecated use `ProductType$outboundSchema` instead. */
-  export const outboundSchema = ProductType$outboundSchema;
-}
 
 /** @internal */
 export const CartItem$inboundSchema: z.ZodType<
@@ -105,14 +73,15 @@ export const CartItem$inboundSchema: z.ZodType<
   name: z.string(),
   quantity: z.number().int(),
   unit_amount: z.number().int(),
-  discount_amount: z.number().int().default(0),
-  tax_amount: z.number().int().default(0),
-  external_identifier: z.string().optional(),
-  sku: z.string().optional(),
-  product_url: z.string().optional(),
-  image_url: z.string().optional(),
-  categories: z.array(z.string()).optional(),
-  product_type: ProductType$inboundSchema.optional(),
+  discount_amount: z.nullable(z.number().int()).optional(),
+  tax_amount: z.nullable(z.number().int()).optional(),
+  external_identifier: z.nullable(z.string()).optional(),
+  sku: z.nullable(z.string()).optional(),
+  product_url: z.nullable(z.string()).optional(),
+  image_url: z.nullable(z.string()).optional(),
+  categories: z.nullable(z.array(z.string())).optional(),
+  product_type: z.nullable(ProductType$inboundSchema).optional(),
+  seller_country: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "unit_amount": "unitAmount",
@@ -122,6 +91,7 @@ export const CartItem$inboundSchema: z.ZodType<
     "product_url": "productUrl",
     "image_url": "imageUrl",
     "product_type": "productType",
+    "seller_country": "sellerCountry",
   });
 });
 
@@ -130,14 +100,15 @@ export type CartItem$Outbound = {
   name: string;
   quantity: number;
   unit_amount: number;
-  discount_amount: number;
-  tax_amount: number;
-  external_identifier?: string | undefined;
-  sku?: string | undefined;
-  product_url?: string | undefined;
-  image_url?: string | undefined;
-  categories?: Array<string> | undefined;
-  product_type?: string | undefined;
+  discount_amount?: number | null | undefined;
+  tax_amount?: number | null | undefined;
+  external_identifier?: string | null | undefined;
+  sku?: string | null | undefined;
+  product_url?: string | null | undefined;
+  image_url?: string | null | undefined;
+  categories?: Array<string> | null | undefined;
+  product_type?: string | null | undefined;
+  seller_country?: string | null | undefined;
 };
 
 /** @internal */
@@ -149,14 +120,15 @@ export const CartItem$outboundSchema: z.ZodType<
   name: z.string(),
   quantity: z.number().int(),
   unitAmount: z.number().int(),
-  discountAmount: z.number().int().default(0),
-  taxAmount: z.number().int().default(0),
-  externalIdentifier: z.string().optional(),
-  sku: z.string().optional(),
-  productUrl: z.string().optional(),
-  imageUrl: z.string().optional(),
-  categories: z.array(z.string()).optional(),
-  productType: ProductType$outboundSchema.optional(),
+  discountAmount: z.nullable(z.number().int()).optional(),
+  taxAmount: z.nullable(z.number().int()).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
+  sku: z.nullable(z.string()).optional(),
+  productUrl: z.nullable(z.string()).optional(),
+  imageUrl: z.nullable(z.string()).optional(),
+  categories: z.nullable(z.array(z.string())).optional(),
+  productType: z.nullable(ProductType$outboundSchema).optional(),
+  sellerCountry: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     unitAmount: "unit_amount",
@@ -166,6 +138,7 @@ export const CartItem$outboundSchema: z.ZodType<
     productUrl: "product_url",
     imageUrl: "image_url",
     productType: "product_type",
+    sellerCountry: "seller_country",
   });
 });
 

@@ -1,7 +1,10 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.9.1",
+  "version": "0.13.0",
   "author": "Gr4vy",
+  "bin": {
+    "mcp": "bin/mcp-server.js"
+  },
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
@@ -9,25 +12,33 @@
     "url": "https://github.com/gr4vy/gr4vy-js.git"
   },
   "scripts": {
-    "lint": "eslint --max-warnings=0 src",
-    "build": "tsc",
+    "lint": "eslint --cache --max-warnings=0 src",
+    "build:mcp": "bun src/mcp-server/build.mts",
+    "build": "npm run build:mcp && tsc",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": "^18 || ^19",
-    "react-dom": "^18 || ^19",
+    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "zod": ">= 3"
   },
+  "peerDependenciesMeta": {
+    "@modelcontextprotocol/sdk": {"optional":true}
+  },
   "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
+    "@stricli/core": "^1.1.1",
+    "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/trust__keyto": "^1.0.4",
     "@types/uuid": "^9.0.8",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
-    "eslint": "^8.57.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
+    "bun": "^1.2.2",
+    "bun-types": "^1.2.2",
+    "eslint": "^9.19.0",
+    "express": "^4.21.2",
+    "globals": "^15.14.0",
     "typescript": "^5.4.5",
+    "typescript-eslint": "^8.22.0",
     "zod": "^3.23.4"
   },
   "dependencies": {

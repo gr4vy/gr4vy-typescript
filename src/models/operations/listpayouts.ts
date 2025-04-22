@@ -13,7 +13,7 @@ export type ListPayoutsRequest = {
   /**
    * A pointer to the page of results to return.
    */
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   /**
    * The maximum number of items that are at returned.
    */
@@ -21,7 +21,7 @@ export type ListPayoutsRequest = {
 };
 
 export type ListPayoutsResponse = {
-  result: components.PayoutsSummaryCollection;
+  result: components.CollectionPayoutSummary;
 };
 
 /** @internal */
@@ -30,13 +30,13 @@ export const ListPayoutsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
 });
 
 /** @internal */
 export type ListPayoutsRequest$Outbound = {
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   limit: number;
 };
 
@@ -46,7 +46,7 @@ export const ListPayoutsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPayoutsRequest
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
 });
 
@@ -87,7 +87,7 @@ export const ListPayoutsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.PayoutsSummaryCollection$inboundSchema,
+  Result: components.CollectionPayoutSummary$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -96,7 +96,7 @@ export const ListPayoutsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListPayoutsResponse$Outbound = {
-  Result: components.PayoutsSummaryCollection$Outbound;
+  Result: components.CollectionPayoutSummary$Outbound;
 };
 
 /** @internal */
@@ -105,7 +105,7 @@ export const ListPayoutsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPayoutsResponse
 > = z.object({
-  result: components.PayoutsSummaryCollection$outboundSchema,
+  result: components.CollectionPayoutSummary$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

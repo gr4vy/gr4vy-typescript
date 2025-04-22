@@ -1,7 +1,5 @@
 # CheckoutSessionUpdate
 
-Base model with JSON encoders.
-
 ## Example Usage
 
 ```typescript
@@ -26,9 +24,13 @@ let value: CheckoutSessionUpdate = {
         "gear",
       ],
       productType: "physical",
+      sellerCountry: "US",
     },
   ],
-  metadata: {},
+  metadata: {
+    "cohort": "cohort-a",
+    "order_id": "order-12345",
+  },
   buyer: {
     displayName: "John Doe",
     externalIdentifier: "buyer-12345",
@@ -36,13 +38,13 @@ let value: CheckoutSessionUpdate = {
       firstName: "John",
       lastName: "Doe",
       emailAddress: "john@example.com",
-      phoneNumber: "+14155552671",
+      phoneNumber: "+1234567890",
       address: {
         city: "San Jose",
-        country: "GB",
+        country: "US",
         postalCode: "94560",
         state: "California",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
         houseNumberOrName: "10",
         line1: "Stafford Appartments",
         line2: "29th Street",
@@ -50,14 +52,14 @@ let value: CheckoutSessionUpdate = {
       },
       taxId: {
         value: "12345678931",
-        kind: "us.ein",
+        kind: "no.vat",
       },
     },
     shippingDetails: {
       firstName: "John",
       lastName: "Doe",
       emailAddress: "john@example.com",
-      phoneNumber: "+14155552671",
+      phoneNumber: "+1234567890",
       address: {
         city: "San Jose",
         country: "US",
@@ -81,13 +83,13 @@ let value: CheckoutSessionUpdate = {
         arrivalAirport: "LAX",
         arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
         arrivalCity: "Los Angeles",
-        arrivalCountry: "GB",
+        arrivalCountry: "US",
         carrierCode: "BA",
         couponNumber: "15885566",
         departureAirport: "LHR",
         departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
         departureCity: "London",
-        departureCountry: "DE",
+        departureCountry: "GB",
         departureTaxAmount: 1200,
         fareAmount: 129900,
         fareBasisCode: "FY",
@@ -109,9 +111,10 @@ let value: CheckoutSessionUpdate = {
         frequentFlyerNumber: "15885566",
         lastName: "Luhn",
         passportNumber: "11117700225",
-        phoneNumber: "+14155552671",
+        phoneNumber: "+1234567890",
         ticketNumber: "BA1236699999",
         title: "Mr.",
+        countryCode: "US",
       },
     ],
     reservationSystem: "Amadeus",
@@ -131,6 +134,7 @@ let value: CheckoutSessionUpdate = {
 | Field                                                                                                                                                               | Type                                                                                                                                                                | Required                                                                                                                                                            | Description                                                                                                                                                         | Example                                                                                                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `cartItems`                                                                                                                                                         | [components.CartItem](../../models/components/cartitem.md)[]                                                                                                        | :heavy_minus_sign:                                                                                                                                                  | An array of cart items that represents the line items of a transaction.                                                                                             |                                                                                                                                                                     |
-| `metadata`                                                                                                                                                          | [components.Metadata](../../models/components/metadata.md)                                                                                                          | :heavy_minus_sign:                                                                                                                                                  | Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. | {<br/>"order_id": "order-12345",<br/>"cohort": "cohort-a"<br/>}                                                                                                     |
-| `buyer`                                                                                                                                                             | [components.CheckoutSessionUpdateBuyer](../../models/components/checkoutsessionupdatebuyer.md)                                                                      | :heavy_minus_sign:                                                                                                                                                  | Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.                                                                    |                                                                                                                                                                     |
+| `metadata`                                                                                                                                                          | Record<string, *string*>                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                  | Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. | {<br/>"cohort": "cohort-a",<br/>"order_id": "order-12345"<br/>}                                                                                                     |
+| `buyer`                                                                                                                                                             | [components.GuestBuyerInput](../../models/components/guestbuyerinput.md)                                                                                            | :heavy_minus_sign:                                                                                                                                                  | Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.                                                                    |                                                                                                                                                                     |
 | `airline`                                                                                                                                                           | [components.Airline](../../models/components/airline.md)                                                                                                            | :heavy_minus_sign:                                                                                                                                                  | The airline addendum data which describes the airline booking associated with this transaction.                                                                     |                                                                                                                                                                     |
+| `expiresIn`                                                                                                                                                         | *number*                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                  | N/A                                                                                                                                                                 |                                                                                                                                                                     |

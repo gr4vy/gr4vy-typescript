@@ -1,13 +1,11 @@
 # CardScheme
 
-An enumeration.
-
 ## Example Usage
 
 ```typescript
 import { CardScheme } from "@gr4vy/sdk/models/components";
 
-let value: CardScheme = "nyce";
+let value: CardScheme = "visa";
 ```
 
 ## Values

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -12,6 +13,14 @@ export type CreatePaymentMethodBody =
   | components.CheckoutSessionPaymentMethodCreate
   | components.RedirectPaymentMethodCreate
   | components.CardPaymentMethodCreate;
+
+export type CreatePaymentMethodRequest = {
+  timeoutInSeconds?: number | undefined;
+  requestBody:
+    | components.CheckoutSessionPaymentMethodCreate
+    | components.RedirectPaymentMethodCreate
+    | components.CardPaymentMethodCreate;
+};
 
 /** @internal */
 export const CreatePaymentMethodBody$inboundSchema: z.ZodType<
@@ -69,5 +78,83 @@ export function createPaymentMethodBodyFromJSON(
     jsonString,
     (x) => CreatePaymentMethodBody$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'CreatePaymentMethodBody' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
+  CreatePaymentMethodRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  timeout_in_seconds: z.number().default(1),
+  RequestBody: z.union([
+    components.CheckoutSessionPaymentMethodCreate$inboundSchema,
+    components.RedirectPaymentMethodCreate$inboundSchema,
+    components.CardPaymentMethodCreate$inboundSchema,
+  ]),
+}).transform((v) => {
+  return remap$(v, {
+    "timeout_in_seconds": "timeoutInSeconds",
+    "RequestBody": "requestBody",
+  });
+});
+
+/** @internal */
+export type CreatePaymentMethodRequest$Outbound = {
+  timeout_in_seconds: number;
+  RequestBody:
+    | components.CheckoutSessionPaymentMethodCreate$Outbound
+    | components.RedirectPaymentMethodCreate$Outbound
+    | components.CardPaymentMethodCreate$Outbound;
+};
+
+/** @internal */
+export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
+  CreatePaymentMethodRequest$Outbound,
+  z.ZodTypeDef,
+  CreatePaymentMethodRequest
+> = z.object({
+  timeoutInSeconds: z.number().default(1),
+  requestBody: z.union([
+    components.CheckoutSessionPaymentMethodCreate$outboundSchema,
+    components.RedirectPaymentMethodCreate$outboundSchema,
+    components.CardPaymentMethodCreate$outboundSchema,
+  ]),
+}).transform((v) => {
+  return remap$(v, {
+    timeoutInSeconds: "timeout_in_seconds",
+    requestBody: "RequestBody",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreatePaymentMethodRequest$ {
+  /** @deprecated use `CreatePaymentMethodRequest$inboundSchema` instead. */
+  export const inboundSchema = CreatePaymentMethodRequest$inboundSchema;
+  /** @deprecated use `CreatePaymentMethodRequest$outboundSchema` instead. */
+  export const outboundSchema = CreatePaymentMethodRequest$outboundSchema;
+  /** @deprecated use `CreatePaymentMethodRequest$Outbound` instead. */
+  export type Outbound = CreatePaymentMethodRequest$Outbound;
+}
+
+export function createPaymentMethodRequestToJSON(
+  createPaymentMethodRequest: CreatePaymentMethodRequest,
+): string {
+  return JSON.stringify(
+    CreatePaymentMethodRequest$outboundSchema.parse(createPaymentMethodRequest),
+  );
+}
+
+export function createPaymentMethodRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePaymentMethodRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePaymentMethodRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePaymentMethodRequest' from JSON`,
   );
 }

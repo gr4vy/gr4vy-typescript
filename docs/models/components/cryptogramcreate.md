@@ -1,7 +1,5 @@
 # CryptogramCreate
 
-Base model with JSON encoders.
-
 ## Example Usage
 
 ```typescript

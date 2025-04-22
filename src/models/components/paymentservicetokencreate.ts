@@ -8,14 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * Base model with JSON encoders.
- */
 export type PaymentServiceTokenCreate = {
   /**
    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
    */
-  securityCode?: string | undefined;
+  securityCode?: string | null | undefined;
   /**
    * The ID of the payment method to use.
    */
@@ -32,7 +29,7 @@ export const PaymentServiceTokenCreate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  security_code: z.string().optional(),
+  security_code: z.nullable(z.string()).optional(),
   payment_service_id: z.string(),
   redirect_url: z.string(),
 }).transform((v) => {
@@ -45,7 +42,7 @@ export const PaymentServiceTokenCreate$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PaymentServiceTokenCreate$Outbound = {
-  security_code?: string | undefined;
+  security_code?: string | null | undefined;
   payment_service_id: string;
   redirect_url: string;
 };
@@ -56,7 +53,7 @@ export const PaymentServiceTokenCreate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentServiceTokenCreate
 > = z.object({
-  securityCode: z.string().optional(),
+  securityCode: z.nullable(z.string()).optional(),
   paymentServiceId: z.string(),
   redirectUrl: z.string(),
 }).transform((v) => {

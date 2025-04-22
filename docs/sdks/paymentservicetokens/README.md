@@ -80,7 +80,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## create
@@ -100,7 +113,7 @@ async function run() {
   const result = await gr4vy.paymentMethods.paymentServiceTokens.create({
     securityCode: "123",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    redirectUrl: "https://example.com/callback",
+    redirectUrl: "https://probable-heating.com/",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   // Handle the result
@@ -128,7 +141,7 @@ async function run() {
   const res = await paymentMethodsPaymentServiceTokensCreate(gr4vy, {
     securityCode: "123",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    redirectUrl: "https://example.com/callback",
+    redirectUrl: "https://probable-heating.com/",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   if (!res.ok) {
@@ -150,6 +163,7 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `paymentMethodId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the payment method                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `paymentServiceTokenCreate`                                                                                                                                                    | [components.PaymentServiceTokenCreate](../../models/components/paymentservicetokencreate.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -162,7 +176,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -222,6 +249,7 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `paymentMethodId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the payment method                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `paymentServiceTokenId`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the payment service token                                                                                                                                            | [object Object]                                                                                                                                                                |
+| `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -234,5 +262,18 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

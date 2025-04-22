@@ -14,6 +14,7 @@ export type CreatePaymentMethodPaymentServiceTokenRequest = {
    * The ID of the payment method
    */
   paymentMethodId: string;
+  timeoutInSeconds?: number | undefined;
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate;
 };
 
@@ -25,11 +26,13 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
     unknown
   > = z.object({
     payment_method_id: z.string(),
+    timeout_in_seconds: z.number().default(1),
     PaymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
+      "timeout_in_seconds": "timeoutInSeconds",
       "PaymentServiceTokenCreate": "paymentServiceTokenCreate",
     });
   });
@@ -37,6 +40,7 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
 /** @internal */
 export type CreatePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
+  timeout_in_seconds: number;
   PaymentServiceTokenCreate: components.PaymentServiceTokenCreate$Outbound;
 };
 
@@ -48,11 +52,13 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$outboundSchema:
     CreatePaymentMethodPaymentServiceTokenRequest
   > = z.object({
     paymentMethodId: z.string(),
+    timeoutInSeconds: z.number().default(1),
     paymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
+      timeoutInSeconds: "timeout_in_seconds",
       paymentServiceTokenCreate: "PaymentServiceTokenCreate",
     });
   });

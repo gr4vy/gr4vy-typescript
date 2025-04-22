@@ -1,7 +1,5 @@
 # RouteType
 
-The route type of the flight.
-
 ## Example Usage
 
 ```typescript

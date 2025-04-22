@@ -5,9 +5,6 @@
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
-/**
- * An enumeration.
- */
 export const CardScheme = {
   Accel: "accel",
   Amex: "amex",
@@ -34,9 +31,6 @@ export const CardScheme = {
   Unionpay: "unionpay",
   Visa: "visa",
 } as const;
-/**
- * An enumeration.
- */
 export type CardScheme = ClosedEnum<typeof CardScheme>;
 
 /** @internal */

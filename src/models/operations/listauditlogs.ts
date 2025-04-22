@@ -5,31 +5,15 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
- */
-export const AuditLogAction = {
-  Created: "created",
-  Updated: "updated",
-  Deleted: "deleted",
-  Voided: "voided",
-  Captured: "captured",
-} as const;
-/**
- * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
- */
-export type AuditLogAction = ClosedEnum<typeof AuditLogAction>;
 
 export type ListAuditLogsRequest = {
   /**
    * A pointer to the page of results to return.
    */
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   /**
    * The maximum number of items that are at returned.
    */
@@ -37,41 +21,20 @@ export type ListAuditLogsRequest = {
   /**
    * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
    */
-  action?: AuditLogAction | undefined;
+  action?: components.AuditLogAction | null | undefined;
   /**
    * Filters the results to only the items for which the `user` has an `id` that matches this value.
    */
-  userId?: string | undefined;
+  userId?: string | null | undefined;
   /**
    * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
    */
-  resourceType?: string | undefined;
+  resourceType?: string | null | undefined;
 };
 
 export type ListAuditLogsResponse = {
-  result: components.AuditLogEntryCollection;
+  result: components.CollectionAuditLogEntry;
 };
-
-/** @internal */
-export const AuditLogAction$inboundSchema: z.ZodNativeEnum<
-  typeof AuditLogAction
-> = z.nativeEnum(AuditLogAction);
-
-/** @internal */
-export const AuditLogAction$outboundSchema: z.ZodNativeEnum<
-  typeof AuditLogAction
-> = AuditLogAction$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogAction$ {
-  /** @deprecated use `AuditLogAction$inboundSchema` instead. */
-  export const inboundSchema = AuditLogAction$inboundSchema;
-  /** @deprecated use `AuditLogAction$outboundSchema` instead. */
-  export const outboundSchema = AuditLogAction$outboundSchema;
-}
 
 /** @internal */
 export const ListAuditLogsRequest$inboundSchema: z.ZodType<
@@ -79,11 +42,11 @@ export const ListAuditLogsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  action: AuditLogAction$inboundSchema.optional(),
-  user_id: z.string().optional(),
-  resource_type: z.string().optional(),
+  action: z.nullable(components.AuditLogAction$inboundSchema).optional(),
+  user_id: z.nullable(z.string()).optional(),
+  resource_type: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "user_id": "userId",
@@ -93,11 +56,11 @@ export const ListAuditLogsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListAuditLogsRequest$Outbound = {
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   limit: number;
-  action?: string | undefined;
-  user_id?: string | undefined;
-  resource_type?: string | undefined;
+  action?: string | null | undefined;
+  user_id?: string | null | undefined;
+  resource_type?: string | null | undefined;
 };
 
 /** @internal */
@@ -106,11 +69,11 @@ export const ListAuditLogsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListAuditLogsRequest
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  action: AuditLogAction$outboundSchema.optional(),
-  userId: z.string().optional(),
-  resourceType: z.string().optional(),
+  action: z.nullable(components.AuditLogAction$outboundSchema).optional(),
+  userId: z.nullable(z.string()).optional(),
+  resourceType: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     userId: "user_id",
@@ -155,7 +118,7 @@ export const ListAuditLogsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.AuditLogEntryCollection$inboundSchema,
+  Result: components.CollectionAuditLogEntry$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -164,7 +127,7 @@ export const ListAuditLogsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListAuditLogsResponse$Outbound = {
-  Result: components.AuditLogEntryCollection$Outbound;
+  Result: components.CollectionAuditLogEntry$Outbound;
 };
 
 /** @internal */
@@ -173,7 +136,7 @@ export const ListAuditLogsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListAuditLogsResponse
 > = z.object({
-  result: components.AuditLogEntryCollection$outboundSchema,
+  result: components.CollectionAuditLogEntry$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

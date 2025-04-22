@@ -5,39 +5,24 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  BillingDetails,
-  BillingDetails$inboundSchema,
-  BillingDetails$Outbound,
-  BillingDetails$outboundSchema,
-} from "./billingdetails.js";
+  BillingDetailsOutput,
+  BillingDetailsOutput$inboundSchema,
+  BillingDetailsOutput$Outbound,
+  BillingDetailsOutput$outboundSchema,
+} from "./billingdetailsoutput.js";
 
-/**
- * Always `buyer`.
- */
-export const BuyerType = {
-  Buyer: "buyer",
-} as const;
-/**
- * Always `buyer`.
- */
-export type BuyerType = ClosedEnum<typeof BuyerType>;
-
-/**
- * Base model with JSON encoders.
- */
 export type Buyer = {
   /**
    * Always `buyer`.
    */
-  type?: BuyerType | undefined;
+  type?: "buyer" | undefined;
   /**
    * The ID for the buyer.
    */
-  id?: string | undefined;
+  id?: string | null | undefined;
   /**
    * The ID of the merchant account this buyer belongs to.
    */
@@ -45,15 +30,19 @@ export type Buyer = {
   /**
    * The display name for the buyer.
    */
-  displayName?: string | undefined;
+  displayName?: string | null | undefined;
   /**
    * The merchant identifier for this buyer.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
   /**
-   * Base model with JSON encoders.
+   * The billing name, address, email, and other fields for this buyer.
    */
-  billingDetails?: BillingDetails | undefined;
+  billingDetails?: BillingDetailsOutput | null | undefined;
+  /**
+   * The buyer account number
+   */
+  accountNumber?: string | null | undefined;
   /**
    * The date this buyer was created at.
    */
@@ -65,33 +54,15 @@ export type Buyer = {
 };
 
 /** @internal */
-export const BuyerType$inboundSchema: z.ZodNativeEnum<typeof BuyerType> = z
-  .nativeEnum(BuyerType);
-
-/** @internal */
-export const BuyerType$outboundSchema: z.ZodNativeEnum<typeof BuyerType> =
-  BuyerType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BuyerType$ {
-  /** @deprecated use `BuyerType$inboundSchema` instead. */
-  export const inboundSchema = BuyerType$inboundSchema;
-  /** @deprecated use `BuyerType$outboundSchema` instead. */
-  export const outboundSchema = BuyerType$outboundSchema;
-}
-
-/** @internal */
 export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
   .object({
-    type: BuyerType$inboundSchema.default("buyer"),
-    id: z.string().optional(),
+    type: z.literal("buyer").default("buyer"),
+    id: z.nullable(z.string()).optional(),
     merchant_account_id: z.string(),
-    display_name: z.string().optional(),
-    external_identifier: z.string().optional(),
-    billing_details: BillingDetails$inboundSchema.optional(),
+    display_name: z.nullable(z.string()).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    billing_details: z.nullable(BillingDetailsOutput$inboundSchema).optional(),
+    account_number: z.nullable(z.string()).optional(),
     created_at: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)
     ),
@@ -104,6 +75,7 @@ export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
       "display_name": "displayName",
       "external_identifier": "externalIdentifier",
       "billing_details": "billingDetails",
+      "account_number": "accountNumber",
       "created_at": "createdAt",
       "updated_at": "updatedAt",
     });
@@ -111,12 +83,13 @@ export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
 
 /** @internal */
 export type Buyer$Outbound = {
-  type: string;
-  id?: string | undefined;
+  type: "buyer";
+  id?: string | null | undefined;
   merchant_account_id: string;
-  display_name?: string | undefined;
-  external_identifier?: string | undefined;
-  billing_details?: BillingDetails$Outbound | undefined;
+  display_name?: string | null | undefined;
+  external_identifier?: string | null | undefined;
+  billing_details?: BillingDetailsOutput$Outbound | null | undefined;
+  account_number?: string | null | undefined;
   created_at: string;
   updated_at: string;
 };
@@ -127,12 +100,13 @@ export const Buyer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Buyer
 > = z.object({
-  type: BuyerType$outboundSchema.default("buyer"),
-  id: z.string().optional(),
+  type: z.literal("buyer").default("buyer" as const),
+  id: z.nullable(z.string()).optional(),
   merchantAccountId: z.string(),
-  displayName: z.string().optional(),
-  externalIdentifier: z.string().optional(),
-  billingDetails: BillingDetails$outboundSchema.optional(),
+  displayName: z.nullable(z.string()).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
+  billingDetails: z.nullable(BillingDetailsOutput$outboundSchema).optional(),
+  accountNumber: z.nullable(z.string()).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
@@ -141,6 +115,7 @@ export const Buyer$outboundSchema: z.ZodType<
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
     createdAt: "created_at",
     updatedAt: "updated_at",
   });

@@ -5,43 +5,19 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  NetworkTokenStatus,
+  NetworkTokenStatus$inboundSchema,
+  NetworkTokenStatus$outboundSchema,
+} from "./networktokenstatus.js";
 
-/**
- * Always `network-token`.
- */
-export const NetworkTokenType = {
-  NetworkToken: "network-token",
-} as const;
-/**
- * Always `network-token`.
- */
-export type NetworkTokenType = ClosedEnum<typeof NetworkTokenType>;
-
-/**
- * The state of the network token.
- */
-export const NetworkTokenStatus = {
-  Active: "active",
-  Inactive: "inactive",
-  Suspended: "suspended",
-  Deleted: "deleted",
-} as const;
-/**
- * The state of the network token.
- */
-export type NetworkTokenStatus = ClosedEnum<typeof NetworkTokenStatus>;
-
-/**
- * Base model with JSON encoders.
- */
 export type NetworkToken = {
   /**
    * Always `network-token`.
    */
-  type?: NetworkTokenType | undefined;
+  type?: "network-token" | undefined;
   /**
    * The ID for the network token.
    */
@@ -54,9 +30,6 @@ export type NetworkToken = {
    * The ID of the payment method used to generate this token
    */
   paymentMethodId: string;
-  /**
-   * The state of the network token.
-   */
   status: NetworkTokenStatus;
   /**
    * The token value. Will be present if succeeded.
@@ -73,54 +46,12 @@ export type NetworkToken = {
 };
 
 /** @internal */
-export const NetworkTokenType$inboundSchema: z.ZodNativeEnum<
-  typeof NetworkTokenType
-> = z.nativeEnum(NetworkTokenType);
-
-/** @internal */
-export const NetworkTokenType$outboundSchema: z.ZodNativeEnum<
-  typeof NetworkTokenType
-> = NetworkTokenType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkTokenType$ {
-  /** @deprecated use `NetworkTokenType$inboundSchema` instead. */
-  export const inboundSchema = NetworkTokenType$inboundSchema;
-  /** @deprecated use `NetworkTokenType$outboundSchema` instead. */
-  export const outboundSchema = NetworkTokenType$outboundSchema;
-}
-
-/** @internal */
-export const NetworkTokenStatus$inboundSchema: z.ZodNativeEnum<
-  typeof NetworkTokenStatus
-> = z.nativeEnum(NetworkTokenStatus);
-
-/** @internal */
-export const NetworkTokenStatus$outboundSchema: z.ZodNativeEnum<
-  typeof NetworkTokenStatus
-> = NetworkTokenStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkTokenStatus$ {
-  /** @deprecated use `NetworkTokenStatus$inboundSchema` instead. */
-  export const inboundSchema = NetworkTokenStatus$inboundSchema;
-  /** @deprecated use `NetworkTokenStatus$outboundSchema` instead. */
-  export const outboundSchema = NetworkTokenStatus$outboundSchema;
-}
-
-/** @internal */
 export const NetworkToken$inboundSchema: z.ZodType<
   NetworkToken,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: NetworkTokenType$inboundSchema.default("network-token"),
+  type: z.literal("network-token").default("network-token"),
   id: z.string(),
   expiration_date: z.string(),
   payment_method_id: z.string(),
@@ -139,7 +70,7 @@ export const NetworkToken$inboundSchema: z.ZodType<
 
 /** @internal */
 export type NetworkToken$Outbound = {
-  type: string;
+  type: "network-token";
   id: string;
   expiration_date: string;
   payment_method_id: string;
@@ -155,7 +86,7 @@ export const NetworkToken$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   NetworkToken
 > = z.object({
-  type: NetworkTokenType$outboundSchema.default("network-token"),
+  type: z.literal("network-token").default("network-token" as const),
   id: z.string(),
   expirationDate: z.string(),
   paymentMethodId: z.string(),

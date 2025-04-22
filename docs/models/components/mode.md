@@ -1,7 +1,5 @@
 # Mode
 
-The mode to use with this payment method.
-
 ## Example Usage
 
 ```typescript

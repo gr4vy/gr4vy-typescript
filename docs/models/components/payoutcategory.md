@@ -1,7 +1,5 @@
 # PayoutCategory
 
-The type of payout to process.
-
 ## Example Usage
 
 ```typescript

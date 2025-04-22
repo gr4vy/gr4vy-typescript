@@ -8,14 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * Base model with JSON encoders.
- */
 export type NetworkTokenCreate = {
   /**
    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
    */
-  securityCode?: string | undefined;
+  securityCode?: string | null | undefined;
   /**
    * Defines if the request is merchant initiated or not.
    */
@@ -32,7 +29,7 @@ export const NetworkTokenCreate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  security_code: z.string().optional(),
+  security_code: z.nullable(z.string()).optional(),
   merchant_initiated: z.boolean(),
   is_subsequent_payment: z.boolean(),
 }).transform((v) => {
@@ -45,7 +42,7 @@ export const NetworkTokenCreate$inboundSchema: z.ZodType<
 
 /** @internal */
 export type NetworkTokenCreate$Outbound = {
-  security_code?: string | undefined;
+  security_code?: string | null | undefined;
   merchant_initiated: boolean;
   is_subsequent_payment: boolean;
 };
@@ -56,7 +53,7 @@ export const NetworkTokenCreate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   NetworkTokenCreate
 > = z.object({
-  securityCode: z.string().optional(),
+  securityCode: z.nullable(z.string()).optional(),
   merchantInitiated: z.boolean(),
   isSubsequentPayment: z.boolean(),
 }).transform((v) => {

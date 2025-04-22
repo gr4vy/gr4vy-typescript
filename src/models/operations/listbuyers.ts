@@ -13,7 +13,7 @@ export type ListBuyersRequest = {
   /**
    * A pointer to the page of results to return.
    */
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   /**
    * The maximum number of items that are at returned.
    */
@@ -21,15 +21,15 @@ export type ListBuyersRequest = {
   /**
    * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
    */
-  search?: string | undefined;
+  search?: string | null | undefined;
   /**
    * Filters the results to only the buyers for which the `external_identifier` matches this value.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
 };
 
 export type ListBuyersResponse = {
-  result: components.BuyerCollection;
+  result: components.CollectionBuyer;
 };
 
 /** @internal */
@@ -38,10 +38,10 @@ export const ListBuyersRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  search: z.string().optional(),
-  external_identifier: z.string().optional(),
+  search: z.nullable(z.string()).optional(),
+  external_identifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "external_identifier": "externalIdentifier",
@@ -50,10 +50,10 @@ export const ListBuyersRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListBuyersRequest$Outbound = {
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   limit: number;
-  search?: string | undefined;
-  external_identifier?: string | undefined;
+  search?: string | null | undefined;
+  external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -62,10 +62,10 @@ export const ListBuyersRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListBuyersRequest
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  search: z.string().optional(),
-  externalIdentifier: z.string().optional(),
+  search: z.nullable(z.string()).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     externalIdentifier: "external_identifier",
@@ -109,7 +109,7 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.BuyerCollection$inboundSchema,
+  Result: components.CollectionBuyer$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -118,7 +118,7 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListBuyersResponse$Outbound = {
-  Result: components.BuyerCollection$Outbound;
+  Result: components.CollectionBuyer$Outbound;
 };
 
 /** @internal */
@@ -127,7 +127,7 @@ export const ListBuyersResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListBuyersResponse
 > = z.object({
-  result: components.BuyerCollection$outboundSchema,
+  result: components.CollectionBuyer$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

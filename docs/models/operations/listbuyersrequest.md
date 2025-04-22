@@ -7,7 +7,6 @@ import { ListBuyersRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListBuyersRequest = {
   cursor: "ZXhhbXBsZTE",
-  limit: 20,
   search: "John",
   externalIdentifier: "buyer-12345",
 };

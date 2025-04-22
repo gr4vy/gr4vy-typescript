@@ -12,10 +12,10 @@ let value: UpdateBuyerShippingDetailsRequest = {
     firstName: "John",
     lastName: "Doe",
     emailAddress: "john@example.com",
-    phoneNumber: "+442071838750",
+    phoneNumber: "+1234567890",
     address: {
       city: "San Jose",
-      country: "GB",
+      country: "US",
       postalCode: "94560",
       state: "California",
       stateCode: "US-CA",
@@ -34,4 +34,5 @@ let value: UpdateBuyerShippingDetailsRequest = {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `buyerId`                                                                            | *string*                                                                             | :heavy_check_mark:                                                                   | The ID of the buyer to update shipping details for.                                  | fe26475d-ec3e-4884-9553-f7356683f7f9                                                 |
 | `shippingDetailsId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | The ID of the shipping details to update.                                            | bf8c36ad-02d9-4904-b0f9-a230b149e341                                                 |
+| `timeoutInSeconds`                                                                   | *number*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |
 | `shippingDetailsUpdate`                                                              | [components.ShippingDetailsUpdate](../../models/components/shippingdetailsupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |                                                                                      |

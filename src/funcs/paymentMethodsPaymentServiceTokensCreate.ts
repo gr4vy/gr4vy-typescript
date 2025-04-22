@@ -3,8 +3,9 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -21,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,15 +31,27 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Create a gateway tokens for a payment method.
  */
-export async function paymentMethodsPaymentServiceTokensCreate(
+export function paymentMethodsPaymentServiceTokensCreate(
   client: Gr4vyCore,
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate,
   paymentMethodId: string,
+  timeoutInSeconds?: number | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     components.PaymentServiceToken,
+    | errors.Error400
+    | errors.Error401
+    | errors.CreatePaymentMethodPaymentServiceTokenResponse403CreatePaymentMethodPaymentServiceToken
+    | errors.Error404
+    | errors.Error405
+    | errors.Error409
     | errors.HTTPValidationError
+    | errors.Error425
+    | errors.Error429
+    | errors.Error500
+    | errors.Error502
+    | errors.Error504
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -47,9 +61,52 @@ export async function paymentMethodsPaymentServiceTokensCreate(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    paymentServiceTokenCreate,
+    paymentMethodId,
+    timeoutInSeconds,
+    options,
+  ));
+}
+
+async function $do(
+  client: Gr4vyCore,
+  paymentServiceTokenCreate: components.PaymentServiceTokenCreate,
+  paymentMethodId: string,
+  timeoutInSeconds?: number | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      components.PaymentServiceToken,
+      | errors.Error400
+      | errors.Error401
+      | errors.CreatePaymentMethodPaymentServiceTokenResponse403CreatePaymentMethodPaymentServiceToken
+      | errors.Error404
+      | errors.Error405
+      | errors.Error409
+      | errors.HTTPValidationError
+      | errors.Error425
+      | errors.Error429
+      | errors.Error500
+      | errors.Error502
+      | errors.Error504
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.CreatePaymentMethodPaymentServiceTokenRequest = {
     paymentServiceTokenCreate: paymentServiceTokenCreate,
     paymentMethodId: paymentMethodId,
+    timeoutInSeconds: timeoutInSeconds,
   };
 
   const parsed = safeParse(
@@ -60,7 +117,7 @@ export async function paymentMethodsPaymentServiceTokensCreate(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.PaymentServiceTokenCreate, {
@@ -79,16 +136,21 @@ export async function paymentMethodsPaymentServiceTokensCreate(
     "/payment-methods/{payment_method_id}/payment-service-tokens",
   )(pathParams);
 
-  const headers = new Headers({
+  const query = encodeFormQuery({
+    "timeout_in_seconds": payload.timeout_in_seconds,
+  });
+
+  const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
   const securityInput = secConfig == null ? {} : { bearerAuth: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "create_payment_method_payment_service_token",
     oAuth2Scopes: [],
 
@@ -104,24 +166,41 @@ export async function paymentMethodsPaymentServiceTokensCreate(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["422", "4XX", "5XX"],
+    errorCodes: [
+      "400",
+      "401",
+      "403",
+      "404",
+      "405",
+      "409",
+      "422",
+      "425",
+      "429",
+      "4XX",
+      "500",
+      "502",
+      "504",
+      "5XX",
+    ],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -131,7 +210,18 @@ export async function paymentMethodsPaymentServiceTokensCreate(
 
   const [result] = await M.match<
     components.PaymentServiceToken,
+    | errors.Error400
+    | errors.Error401
+    | errors.CreatePaymentMethodPaymentServiceTokenResponse403CreatePaymentMethodPaymentServiceToken
+    | errors.Error404
+    | errors.Error405
+    | errors.Error409
     | errors.HTTPValidationError
+    | errors.Error425
+    | errors.Error429
+    | errors.Error500
+    | errors.Error502
+    | errors.Error504
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -141,12 +231,28 @@ export async function paymentMethodsPaymentServiceTokensCreate(
     | ConnectionError
   >(
     M.json(201, components.PaymentServiceToken$inboundSchema),
+    M.jsonErr(400, errors.Error400$inboundSchema),
+    M.jsonErr(401, errors.Error401$inboundSchema),
+    M.jsonErr(
+      403,
+      errors
+        .CreatePaymentMethodPaymentServiceTokenResponse403CreatePaymentMethodPaymentServiceToken$inboundSchema,
+    ),
+    M.jsonErr(404, errors.Error404$inboundSchema),
+    M.jsonErr(405, errors.Error405$inboundSchema),
+    M.jsonErr(409, errors.Error409$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.jsonErr(425, errors.Error425$inboundSchema),
+    M.jsonErr(429, errors.Error429$inboundSchema),
+    M.jsonErr(500, errors.Error500$inboundSchema),
+    M.jsonErr(502, errors.Error502$inboundSchema),
+    M.jsonErr(504, errors.Error504$inboundSchema),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

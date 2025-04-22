@@ -5,677 +5,46 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  AirlineLeg,
-  AirlineLeg$inboundSchema,
-  AirlineLeg$Outbound,
-  AirlineLeg$outboundSchema,
-} from "./airlineleg.js";
-import {
-  AirlinePassenger,
-  AirlinePassenger$inboundSchema,
-  AirlinePassenger$Outbound,
-  AirlinePassenger$outboundSchema,
-} from "./airlinepassenger.js";
-import {
-  BillingDetails,
-  BillingDetails$inboundSchema,
-  BillingDetails$Outbound,
-  BillingDetails$outboundSchema,
-} from "./billingdetails.js";
+  Airline,
+  Airline$inboundSchema,
+  Airline$Outbound,
+  Airline$outboundSchema,
+} from "./airline.js";
 import {
   CartItem,
   CartItem$inboundSchema,
   CartItem$Outbound,
   CartItem$outboundSchema,
 } from "./cartitem.js";
+import {
+  GuestBuyerInput,
+  GuestBuyerInput$inboundSchema,
+  GuestBuyerInput$Outbound,
+  GuestBuyerInput$outboundSchema,
+} from "./guestbuyerinput.js";
 
-/**
- * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
- */
-export type Metadata = {};
-
-/**
- * The billing address for the buyer.
- */
-export type CheckoutSessionUpdateAddress = {
-  /**
-   * The city for the address.
-   */
-  city?: string | undefined;
-  /**
-   * The country for the address in ISO 3166 format.
-   */
-  country?: string | undefined;
-  /**
-   * The postal code or zip code for the address.
-   */
-  postalCode?: string | undefined;
-  /**
-   * The state, county, or province for the address.
-   */
-  state?: string | undefined;
-  /**
-   * The code of state, county, or province for the address in ISO 3166-2 format.
-   */
-  stateCode?: string | undefined;
-  /**
-   * The house number or name for the address. Not all payment services use this field but some do.
-   */
-  houseNumberOrName?: string | undefined;
-  /**
-   * The first line of the address.
-   */
-  line1?: string | undefined;
-  /**
-   * The second line of the address.
-   */
-  line2?: string | undefined;
-  /**
-   * The optional name of the company or organisation to add to the address.
-   */
-  organization?: string | undefined;
-};
-
-/**
- * The optional shipping details for this buyer.
- */
-export type CheckoutSessionUpdateShippingDetails = {
-  /**
-   * The first name(s) or given name for the buyer.
-   */
-  firstName?: string | undefined;
-  /**
-   * The last name, or family name, of the buyer.
-   */
-  lastName?: string | undefined;
-  /**
-   * The email address for the buyer.
-   */
-  emailAddress?: string | undefined;
-  /**
-   * The phone number for the buyer which should be formatted according to the E164 number standard.
-   */
-  phoneNumber?: string | undefined;
-  /**
-   * The billing address for the buyer.
-   */
-  address?: CheckoutSessionUpdateAddress | undefined;
-};
-
-/**
- * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
- */
-export type CheckoutSessionUpdateBuyer = {
-  /**
-   * The display name for the buyer.
-   */
-  displayName?: string | undefined;
-  /**
-   * The merchant identifier for this buyer.
-   */
-  externalIdentifier?: string | undefined;
-  /**
-   * Base model with JSON encoders.
-   */
-  billingDetails?: BillingDetails | undefined;
-  /**
-   * The optional shipping details for this buyer.
-   */
-  shippingDetails?: CheckoutSessionUpdateShippingDetails | undefined;
-};
-
-/**
- * The delivery method of the ticket.
- */
-export const TicketDeliveryMethod = {
-  Electronic: "electronic",
-  Other: "other",
-} as const;
-/**
- * The delivery method of the ticket.
- */
-export type TicketDeliveryMethod = ClosedEnum<typeof TicketDeliveryMethod>;
-
-/**
- * The airline addendum data which describes the airline booking associated with this transaction.
- */
-export type Airline = {
-  /**
-   * The unique identifier of the reservation in the global distribution system.
-   */
-  bookingCode?: string | undefined;
-  /**
-   * The address of the place/agency that issued the ticket.
-   */
-  issuedAddress?: string | undefined;
-  /**
-   * The date that the ticket was last issued in the airline reservation system.
-   */
-  issuedAt?: Date | undefined;
-  /**
-   * For airline aggregators, two-character IATA code of the airline issuing the ticket.
-   */
-  issuingCarrierCode?: string | undefined;
-  /**
-   * An array of separate trip segments. Each leg contains detailed itinerary information.
-   */
-  legs?: Array<AirlineLeg> | undefined;
-  /**
-   * The Passenger Name Record (PNR) in the airline reservation system.
-   */
-  passengerNameRecord?: string | undefined;
-  /**
-   * An array of the travelling passengers.
-   */
-  passengers?: Array<AirlinePassenger> | undefined;
-  /**
-   * The name of the reservation system.
-   */
-  reservationSystem?: string | undefined;
-  /**
-   * Indicates whether the ticket is restricted (refundable).
-   */
-  restrictedTicket?: boolean | undefined;
-  /**
-   * The delivery method of the ticket.
-   */
-  ticketDeliveryMethod?: TicketDeliveryMethod | undefined;
-  /**
-   * The airline's unique ticket number.
-   */
-  ticketNumber?: string | undefined;
-  /**
-   * The IATA travel agency code.
-   */
-  travelAgencyCode?: string | undefined;
-  /**
-   * The reference number of the invoice that was issued by the travel agency.
-   */
-  travelAgencyInvoiceNumber?: string | undefined;
-  /**
-   * The name of the travel agency.
-   */
-  travelAgencyName?: string | undefined;
-  /**
-   * The name of the travel agency plan.
-   */
-  travelAgencyPlanName?: string | undefined;
-};
-
-/**
- * Base model with JSON encoders.
- */
 export type CheckoutSessionUpdate = {
   /**
    * An array of cart items that represents the line items of a transaction.
    */
-  cartItems?: Array<CartItem> | undefined;
+  cartItems?: Array<CartItem> | null | undefined;
   /**
    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
    */
-  metadata?: Metadata | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   /**
    * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
    */
-  buyer?: CheckoutSessionUpdateBuyer | undefined;
+  buyer?: GuestBuyerInput | null | undefined;
   /**
    * The airline addendum data which describes the airline booking associated with this transaction.
    */
-  airline?: Airline | undefined;
+  airline?: Airline | null | undefined;
+  expiresIn?: number | undefined;
 };
-
-/** @internal */
-export const Metadata$inboundSchema: z.ZodType<
-  Metadata,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type Metadata$Outbound = {};
-
-/** @internal */
-export const Metadata$outboundSchema: z.ZodType<
-  Metadata$Outbound,
-  z.ZodTypeDef,
-  Metadata
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Metadata$ {
-  /** @deprecated use `Metadata$inboundSchema` instead. */
-  export const inboundSchema = Metadata$inboundSchema;
-  /** @deprecated use `Metadata$outboundSchema` instead. */
-  export const outboundSchema = Metadata$outboundSchema;
-  /** @deprecated use `Metadata$Outbound` instead. */
-  export type Outbound = Metadata$Outbound;
-}
-
-export function metadataToJSON(metadata: Metadata): string {
-  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
-}
-
-export function metadataFromJSON(
-  jsonString: string,
-): SafeParseResult<Metadata, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Metadata' from JSON`,
-  );
-}
-
-/** @internal */
-export const CheckoutSessionUpdateAddress$inboundSchema: z.ZodType<
-  CheckoutSessionUpdateAddress,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  city: z.string().optional(),
-  country: z.string().optional(),
-  postal_code: z.string().optional(),
-  state: z.string().optional(),
-  state_code: z.string().optional(),
-  house_number_or_name: z.string().optional(),
-  line1: z.string().optional(),
-  line2: z.string().optional(),
-  organization: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "postal_code": "postalCode",
-    "state_code": "stateCode",
-    "house_number_or_name": "houseNumberOrName",
-  });
-});
-
-/** @internal */
-export type CheckoutSessionUpdateAddress$Outbound = {
-  city?: string | undefined;
-  country?: string | undefined;
-  postal_code?: string | undefined;
-  state?: string | undefined;
-  state_code?: string | undefined;
-  house_number_or_name?: string | undefined;
-  line1?: string | undefined;
-  line2?: string | undefined;
-  organization?: string | undefined;
-};
-
-/** @internal */
-export const CheckoutSessionUpdateAddress$outboundSchema: z.ZodType<
-  CheckoutSessionUpdateAddress$Outbound,
-  z.ZodTypeDef,
-  CheckoutSessionUpdateAddress
-> = z.object({
-  city: z.string().optional(),
-  country: z.string().optional(),
-  postalCode: z.string().optional(),
-  state: z.string().optional(),
-  stateCode: z.string().optional(),
-  houseNumberOrName: z.string().optional(),
-  line1: z.string().optional(),
-  line2: z.string().optional(),
-  organization: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    postalCode: "postal_code",
-    stateCode: "state_code",
-    houseNumberOrName: "house_number_or_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSessionUpdateAddress$ {
-  /** @deprecated use `CheckoutSessionUpdateAddress$inboundSchema` instead. */
-  export const inboundSchema = CheckoutSessionUpdateAddress$inboundSchema;
-  /** @deprecated use `CheckoutSessionUpdateAddress$outboundSchema` instead. */
-  export const outboundSchema = CheckoutSessionUpdateAddress$outboundSchema;
-  /** @deprecated use `CheckoutSessionUpdateAddress$Outbound` instead. */
-  export type Outbound = CheckoutSessionUpdateAddress$Outbound;
-}
-
-export function checkoutSessionUpdateAddressToJSON(
-  checkoutSessionUpdateAddress: CheckoutSessionUpdateAddress,
-): string {
-  return JSON.stringify(
-    CheckoutSessionUpdateAddress$outboundSchema.parse(
-      checkoutSessionUpdateAddress,
-    ),
-  );
-}
-
-export function checkoutSessionUpdateAddressFromJSON(
-  jsonString: string,
-): SafeParseResult<CheckoutSessionUpdateAddress, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CheckoutSessionUpdateAddress$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutSessionUpdateAddress' from JSON`,
-  );
-}
-
-/** @internal */
-export const CheckoutSessionUpdateShippingDetails$inboundSchema: z.ZodType<
-  CheckoutSessionUpdateShippingDetails,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  first_name: z.string().optional(),
-  last_name: z.string().optional(),
-  email_address: z.string().optional(),
-  phone_number: z.string().optional(),
-  address: z.lazy(() => CheckoutSessionUpdateAddress$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "phone_number": "phoneNumber",
-  });
-});
-
-/** @internal */
-export type CheckoutSessionUpdateShippingDetails$Outbound = {
-  first_name?: string | undefined;
-  last_name?: string | undefined;
-  email_address?: string | undefined;
-  phone_number?: string | undefined;
-  address?: CheckoutSessionUpdateAddress$Outbound | undefined;
-};
-
-/** @internal */
-export const CheckoutSessionUpdateShippingDetails$outboundSchema: z.ZodType<
-  CheckoutSessionUpdateShippingDetails$Outbound,
-  z.ZodTypeDef,
-  CheckoutSessionUpdateShippingDetails
-> = z.object({
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  emailAddress: z.string().optional(),
-  phoneNumber: z.string().optional(),
-  address: z.lazy(() => CheckoutSessionUpdateAddress$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    phoneNumber: "phone_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSessionUpdateShippingDetails$ {
-  /** @deprecated use `CheckoutSessionUpdateShippingDetails$inboundSchema` instead. */
-  export const inboundSchema =
-    CheckoutSessionUpdateShippingDetails$inboundSchema;
-  /** @deprecated use `CheckoutSessionUpdateShippingDetails$outboundSchema` instead. */
-  export const outboundSchema =
-    CheckoutSessionUpdateShippingDetails$outboundSchema;
-  /** @deprecated use `CheckoutSessionUpdateShippingDetails$Outbound` instead. */
-  export type Outbound = CheckoutSessionUpdateShippingDetails$Outbound;
-}
-
-export function checkoutSessionUpdateShippingDetailsToJSON(
-  checkoutSessionUpdateShippingDetails: CheckoutSessionUpdateShippingDetails,
-): string {
-  return JSON.stringify(
-    CheckoutSessionUpdateShippingDetails$outboundSchema.parse(
-      checkoutSessionUpdateShippingDetails,
-    ),
-  );
-}
-
-export function checkoutSessionUpdateShippingDetailsFromJSON(
-  jsonString: string,
-): SafeParseResult<CheckoutSessionUpdateShippingDetails, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CheckoutSessionUpdateShippingDetails$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutSessionUpdateShippingDetails' from JSON`,
-  );
-}
-
-/** @internal */
-export const CheckoutSessionUpdateBuyer$inboundSchema: z.ZodType<
-  CheckoutSessionUpdateBuyer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_name: z.string().optional(),
-  external_identifier: z.string().optional(),
-  billing_details: BillingDetails$inboundSchema.optional(),
-  shipping_details: z.lazy(() =>
-    CheckoutSessionUpdateShippingDetails$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "external_identifier": "externalIdentifier",
-    "billing_details": "billingDetails",
-    "shipping_details": "shippingDetails",
-  });
-});
-
-/** @internal */
-export type CheckoutSessionUpdateBuyer$Outbound = {
-  display_name?: string | undefined;
-  external_identifier?: string | undefined;
-  billing_details?: BillingDetails$Outbound | undefined;
-  shipping_details?: CheckoutSessionUpdateShippingDetails$Outbound | undefined;
-};
-
-/** @internal */
-export const CheckoutSessionUpdateBuyer$outboundSchema: z.ZodType<
-  CheckoutSessionUpdateBuyer$Outbound,
-  z.ZodTypeDef,
-  CheckoutSessionUpdateBuyer
-> = z.object({
-  displayName: z.string().optional(),
-  externalIdentifier: z.string().optional(),
-  billingDetails: BillingDetails$outboundSchema.optional(),
-  shippingDetails: z.lazy(() =>
-    CheckoutSessionUpdateShippingDetails$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    externalIdentifier: "external_identifier",
-    billingDetails: "billing_details",
-    shippingDetails: "shipping_details",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSessionUpdateBuyer$ {
-  /** @deprecated use `CheckoutSessionUpdateBuyer$inboundSchema` instead. */
-  export const inboundSchema = CheckoutSessionUpdateBuyer$inboundSchema;
-  /** @deprecated use `CheckoutSessionUpdateBuyer$outboundSchema` instead. */
-  export const outboundSchema = CheckoutSessionUpdateBuyer$outboundSchema;
-  /** @deprecated use `CheckoutSessionUpdateBuyer$Outbound` instead. */
-  export type Outbound = CheckoutSessionUpdateBuyer$Outbound;
-}
-
-export function checkoutSessionUpdateBuyerToJSON(
-  checkoutSessionUpdateBuyer: CheckoutSessionUpdateBuyer,
-): string {
-  return JSON.stringify(
-    CheckoutSessionUpdateBuyer$outboundSchema.parse(checkoutSessionUpdateBuyer),
-  );
-}
-
-export function checkoutSessionUpdateBuyerFromJSON(
-  jsonString: string,
-): SafeParseResult<CheckoutSessionUpdateBuyer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CheckoutSessionUpdateBuyer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutSessionUpdateBuyer' from JSON`,
-  );
-}
-
-/** @internal */
-export const TicketDeliveryMethod$inboundSchema: z.ZodNativeEnum<
-  typeof TicketDeliveryMethod
-> = z.nativeEnum(TicketDeliveryMethod);
-
-/** @internal */
-export const TicketDeliveryMethod$outboundSchema: z.ZodNativeEnum<
-  typeof TicketDeliveryMethod
-> = TicketDeliveryMethod$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TicketDeliveryMethod$ {
-  /** @deprecated use `TicketDeliveryMethod$inboundSchema` instead. */
-  export const inboundSchema = TicketDeliveryMethod$inboundSchema;
-  /** @deprecated use `TicketDeliveryMethod$outboundSchema` instead. */
-  export const outboundSchema = TicketDeliveryMethod$outboundSchema;
-}
-
-/** @internal */
-export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
-  z.object({
-    booking_code: z.string().optional(),
-    issued_address: z.string().optional(),
-    issued_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    issuing_carrier_code: z.string().optional(),
-    legs: z.array(AirlineLeg$inboundSchema).optional(),
-    passenger_name_record: z.string().optional(),
-    passengers: z.array(AirlinePassenger$inboundSchema).optional(),
-    reservation_system: z.string().optional(),
-    restricted_ticket: z.boolean().optional(),
-    ticket_delivery_method: TicketDeliveryMethod$inboundSchema.default(
-      "electronic",
-    ),
-    ticket_number: z.string().optional(),
-    travel_agency_code: z.string().optional(),
-    travel_agency_invoice_number: z.string().optional(),
-    travel_agency_name: z.string().optional(),
-    travel_agency_plan_name: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "booking_code": "bookingCode",
-      "issued_address": "issuedAddress",
-      "issued_at": "issuedAt",
-      "issuing_carrier_code": "issuingCarrierCode",
-      "passenger_name_record": "passengerNameRecord",
-      "reservation_system": "reservationSystem",
-      "restricted_ticket": "restrictedTicket",
-      "ticket_delivery_method": "ticketDeliveryMethod",
-      "ticket_number": "ticketNumber",
-      "travel_agency_code": "travelAgencyCode",
-      "travel_agency_invoice_number": "travelAgencyInvoiceNumber",
-      "travel_agency_name": "travelAgencyName",
-      "travel_agency_plan_name": "travelAgencyPlanName",
-    });
-  });
-
-/** @internal */
-export type Airline$Outbound = {
-  booking_code?: string | undefined;
-  issued_address?: string | undefined;
-  issued_at?: string | undefined;
-  issuing_carrier_code?: string | undefined;
-  legs?: Array<AirlineLeg$Outbound> | undefined;
-  passenger_name_record?: string | undefined;
-  passengers?: Array<AirlinePassenger$Outbound> | undefined;
-  reservation_system?: string | undefined;
-  restricted_ticket?: boolean | undefined;
-  ticket_delivery_method: string;
-  ticket_number?: string | undefined;
-  travel_agency_code?: string | undefined;
-  travel_agency_invoice_number?: string | undefined;
-  travel_agency_name?: string | undefined;
-  travel_agency_plan_name?: string | undefined;
-};
-
-/** @internal */
-export const Airline$outboundSchema: z.ZodType<
-  Airline$Outbound,
-  z.ZodTypeDef,
-  Airline
-> = z.object({
-  bookingCode: z.string().optional(),
-  issuedAddress: z.string().optional(),
-  issuedAt: z.date().transform(v => v.toISOString()).optional(),
-  issuingCarrierCode: z.string().optional(),
-  legs: z.array(AirlineLeg$outboundSchema).optional(),
-  passengerNameRecord: z.string().optional(),
-  passengers: z.array(AirlinePassenger$outboundSchema).optional(),
-  reservationSystem: z.string().optional(),
-  restrictedTicket: z.boolean().optional(),
-  ticketDeliveryMethod: TicketDeliveryMethod$outboundSchema.default(
-    "electronic",
-  ),
-  ticketNumber: z.string().optional(),
-  travelAgencyCode: z.string().optional(),
-  travelAgencyInvoiceNumber: z.string().optional(),
-  travelAgencyName: z.string().optional(),
-  travelAgencyPlanName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bookingCode: "booking_code",
-    issuedAddress: "issued_address",
-    issuedAt: "issued_at",
-    issuingCarrierCode: "issuing_carrier_code",
-    passengerNameRecord: "passenger_name_record",
-    reservationSystem: "reservation_system",
-    restrictedTicket: "restricted_ticket",
-    ticketDeliveryMethod: "ticket_delivery_method",
-    ticketNumber: "ticket_number",
-    travelAgencyCode: "travel_agency_code",
-    travelAgencyInvoiceNumber: "travel_agency_invoice_number",
-    travelAgencyName: "travel_agency_name",
-    travelAgencyPlanName: "travel_agency_plan_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Airline$ {
-  /** @deprecated use `Airline$inboundSchema` instead. */
-  export const inboundSchema = Airline$inboundSchema;
-  /** @deprecated use `Airline$outboundSchema` instead. */
-  export const outboundSchema = Airline$outboundSchema;
-  /** @deprecated use `Airline$Outbound` instead. */
-  export type Outbound = Airline$Outbound;
-}
-
-export function airlineToJSON(airline: Airline): string {
-  return JSON.stringify(Airline$outboundSchema.parse(airline));
-}
-
-export function airlineFromJSON(
-  jsonString: string,
-): SafeParseResult<Airline, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Airline$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Airline' from JSON`,
-  );
-}
 
 /** @internal */
 export const CheckoutSessionUpdate$inboundSchema: z.ZodType<
@@ -683,22 +52,25 @@ export const CheckoutSessionUpdate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cart_items: z.array(CartItem$inboundSchema).optional(),
-  metadata: z.lazy(() => Metadata$inboundSchema).optional(),
-  buyer: z.lazy(() => CheckoutSessionUpdateBuyer$inboundSchema).optional(),
-  airline: z.lazy(() => Airline$inboundSchema).optional(),
+  cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
+  buyer: z.nullable(GuestBuyerInput$inboundSchema).optional(),
+  airline: z.nullable(Airline$inboundSchema).optional(),
+  expires_in: z.number().default(3600),
 }).transform((v) => {
   return remap$(v, {
     "cart_items": "cartItems",
+    "expires_in": "expiresIn",
   });
 });
 
 /** @internal */
 export type CheckoutSessionUpdate$Outbound = {
-  cart_items?: Array<CartItem$Outbound> | undefined;
-  metadata?: Metadata$Outbound | undefined;
-  buyer?: CheckoutSessionUpdateBuyer$Outbound | undefined;
-  airline?: Airline$Outbound | undefined;
+  cart_items?: Array<CartItem$Outbound> | null | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
+  buyer?: GuestBuyerInput$Outbound | null | undefined;
+  airline?: Airline$Outbound | null | undefined;
+  expires_in: number;
 };
 
 /** @internal */
@@ -707,13 +79,15 @@ export const CheckoutSessionUpdate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CheckoutSessionUpdate
 > = z.object({
-  cartItems: z.array(CartItem$outboundSchema).optional(),
-  metadata: z.lazy(() => Metadata$outboundSchema).optional(),
-  buyer: z.lazy(() => CheckoutSessionUpdateBuyer$outboundSchema).optional(),
-  airline: z.lazy(() => Airline$outboundSchema).optional(),
+  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
+  buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
+  airline: z.nullable(Airline$outboundSchema).optional(),
+  expiresIn: z.number().default(3600),
 }).transform((v) => {
   return remap$(v, {
     cartItems: "cart_items",
+    expiresIn: "expires_in",
   });
 });
 

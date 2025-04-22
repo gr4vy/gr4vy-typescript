@@ -4,31 +4,14 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * Set to `id` to use a stored card.
- */
-export const PaymentMethodStoredCardMethod = {
-  Id: "id",
-} as const;
-/**
- * Set to `id` to use a stored card.
- */
-export type PaymentMethodStoredCardMethod = ClosedEnum<
-  typeof PaymentMethodStoredCardMethod
->;
-
-/**
- * Base model with JSON encoders.
- */
 export type PaymentMethodStoredCard = {
   /**
    * Set to `id` to use a stored card.
    */
-  method?: PaymentMethodStoredCardMethod | undefined;
+  method?: "id" | undefined;
   /**
    * The ID of the stored card to use.
    */
@@ -36,39 +19,18 @@ export type PaymentMethodStoredCard = {
 };
 
 /** @internal */
-export const PaymentMethodStoredCardMethod$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodStoredCardMethod
-> = z.nativeEnum(PaymentMethodStoredCardMethod);
-
-/** @internal */
-export const PaymentMethodStoredCardMethod$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodStoredCardMethod
-> = PaymentMethodStoredCardMethod$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethodStoredCardMethod$ {
-  /** @deprecated use `PaymentMethodStoredCardMethod$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethodStoredCardMethod$inboundSchema;
-  /** @deprecated use `PaymentMethodStoredCardMethod$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethodStoredCardMethod$outboundSchema;
-}
-
-/** @internal */
 export const PaymentMethodStoredCard$inboundSchema: z.ZodType<
   PaymentMethodStoredCard,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  method: PaymentMethodStoredCardMethod$inboundSchema.default("id"),
+  method: z.literal("id").default("id"),
   id: z.string(),
 });
 
 /** @internal */
 export type PaymentMethodStoredCard$Outbound = {
-  method: string;
+  method: "id";
   id: string;
 };
 
@@ -78,7 +40,7 @@ export const PaymentMethodStoredCard$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentMethodStoredCard
 > = z.object({
-  method: PaymentMethodStoredCardMethod$outboundSchema.default("id"),
+  method: z.literal("id").default("id" as const),
   id: z.string(),
 });
 

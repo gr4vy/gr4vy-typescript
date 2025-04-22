@@ -17,6 +17,7 @@ export type DeletePaymentMethodPaymentServiceTokenRequest = {
    * The ID of the payment service token
    */
   paymentServiceTokenId: string;
+  timeoutInSeconds?: number | undefined;
 };
 
 /** @internal */
@@ -28,10 +29,12 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     payment_service_token_id: z.string(),
+    timeout_in_seconds: z.number().default(1),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "payment_service_token_id": "paymentServiceTokenId",
+      "timeout_in_seconds": "timeoutInSeconds",
     });
   });
 
@@ -39,6 +42,7 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$inboundSchema:
 export type DeletePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
   payment_service_token_id: string;
+  timeout_in_seconds: number;
 };
 
 /** @internal */
@@ -50,10 +54,12 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     paymentServiceTokenId: z.string(),
+    timeoutInSeconds: z.number().default(1),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       paymentServiceTokenId: "payment_service_token_id",
+      timeoutInSeconds: "timeout_in_seconds",
     });
   });
 

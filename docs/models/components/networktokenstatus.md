@@ -1,13 +1,11 @@
 # NetworkTokenStatus
 
-The state of the network token.
-
 ## Example Usage
 
 ```typescript
 import { NetworkTokenStatus } from "@gr4vy/sdk/models/components";
 
-let value: NetworkTokenStatus = "active";
+let value: NetworkTokenStatus = "deleted";
 ```
 
 ## Values

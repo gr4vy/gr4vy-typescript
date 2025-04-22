@@ -16,7 +16,7 @@ export type ListPaymentMethodPaymentServiceTokensRequest = {
   /**
    * The ID of the payment service
    */
-  paymentServiceId?: string | undefined;
+  paymentServiceId?: string | null | undefined;
 };
 
 /** @internal */
@@ -27,7 +27,7 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
     unknown
   > = z.object({
     payment_method_id: z.string(),
-    payment_service_id: z.string().optional(),
+    payment_service_id: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
@@ -38,7 +38,7 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
 /** @internal */
 export type ListPaymentMethodPaymentServiceTokensRequest$Outbound = {
   payment_method_id: string;
-  payment_service_id?: string | undefined;
+  payment_service_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -49,7 +49,7 @@ export const ListPaymentMethodPaymentServiceTokensRequest$outboundSchema:
     ListPaymentMethodPaymentServiceTokensRequest
   > = z.object({
     paymentMethodId: z.string(),
-    paymentServiceId: z.string().optional(),
+    paymentServiceId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",

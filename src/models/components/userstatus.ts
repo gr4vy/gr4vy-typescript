@@ -5,17 +5,11 @@
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
-/**
- * An enumeration.
- */
 export const UserStatus = {
   Active: "active",
   Pending: "pending",
   Deleted: "deleted",
 } as const;
-/**
- * An enumeration.
- */
 export type UserStatus = ClosedEnum<typeof UserStatus>;
 
 /** @internal */

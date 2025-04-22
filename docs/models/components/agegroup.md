@@ -1,7 +1,5 @@
 # AgeGroup
 
-The age group for the passenger.
-
 ## Example Usage
 
 ```typescript

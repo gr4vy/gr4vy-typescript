@@ -1,7 +1,5 @@
 # AuditLogAction
 
-The action that was performed.
-
 ## Example Usage
 
 ```typescript

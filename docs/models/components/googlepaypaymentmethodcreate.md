@@ -1,0 +1,38 @@
+# GooglePayPaymentMethodCreate
+
+Create a Google Pay transaction with a device token.
+
+## Example Usage
+
+```typescript
+import { GooglePayPaymentMethodCreate } from "@gr4vy/sdk/models/components";
+
+let value: GooglePayPaymentMethodCreate = {
+  buyerExternalIdentifier: "buyer-12345",
+  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  cardholderName: "John Luhn",
+  cardSuffix: "1234",
+  cardScheme: "visa",
+  cardType: "credit",
+  token: "{\"signature\":\"MEUCIEg4a4A+pu+AUjgVjBpfz9msLqQOkT5kz7htz...",
+  assuranceDetails: {
+    accountVerified: true,
+    cardHolderAuthenticated: true,
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      | Example                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `buyerExternalIdentifier`                                                                                        | *string*                                                                                                         | :heavy_minus_sign:                                                                                               | The external identifier of the buyer to create a payment for.                                                    | buyer-12345                                                                                                      |
+| `buyerId`                                                                                                        | *string*                                                                                                         | :heavy_minus_sign:                                                                                               | The ID of the buyer to retrieve billing details for.                                                             | fe26475d-ec3e-4884-9553-f7356683f7f9                                                                             |
+| `cardholderName`                                                                                                 | *string*                                                                                                         | :heavy_minus_sign:                                                                                               | The card holder name associated to the original card for the token.                                              | John Luhn                                                                                                        |
+| `redirectUrl`                                                                                                    | *string*                                                                                                         | :heavy_minus_sign:                                                                                               | The URL to redirect a user back to after the complete 3DS in browser.                                            |                                                                                                                  |
+| `cardSuffix`                                                                                                     | *string*                                                                                                         | :heavy_minus_sign:                                                                                               | The last 4 digits of the original card used to generate the token.                                               | 1234                                                                                                             |
+| `cardScheme`                                                                                                     | *string*                                                                                                         | :heavy_minus_sign:                                                                                               | The original card scheme for which the token was generated.                                                      | visa                                                                                                             |
+| `cardType`                                                                                                       | *string*                                                                                                         | :heavy_minus_sign:                                                                                               | The payment scheme of the card.                                                                                  | credit                                                                                                           |
+| `method`                                                                                                         | *string*                                                                                                         | :heavy_check_mark:                                                                                               | Always `googlepay`                                                                                               | googlepay                                                                                                        |
+| `token`                                                                                                          | *components.Token*                                                                                               | :heavy_check_mark:                                                                                               | The opaque token as received from the Google Pay JS library. This format may change between JS library versions. | {"signature":"MEUCIEg4a4A+pu+AUjgVjBpfz9msLqQOkT5kz7htz...                                                       |
+| `assuranceDetails`                                                                                               | [components.GooglePayAssuranceDetails](../../models/components/googlepayassurancedetails.md)                     | :heavy_minus_sign:                                                                                               | The assurance details provided by Google Pay                                                                     |                                                                                                                  |

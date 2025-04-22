@@ -9,98 +9,89 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * The route type of the flight.
- */
 export const RouteType = {
   RoundTrip: "round_trip",
   OneWay: "one_way",
 } as const;
-/**
- * The route type of the flight.
- */
 export type RouteType = ClosedEnum<typeof RouteType>;
 
-/**
- * Base model with JSON encoders.
- */
 export type AirlineLeg = {
   /**
    * Arrival airport code of leg. 3-letter ISO code according to IATA official directory.
    */
-  arrivalAirport?: string | undefined;
+  arrivalAirport?: string | null | undefined;
   /**
    * The date and time of travel in local time at the arrival airport.
    */
-  arrivalAt?: Date | undefined;
+  arrivalAt?: Date | null | undefined;
   /**
    * Arrival city name.
    */
-  arrivalCity?: string | undefined;
+  arrivalCity?: string | null | undefined;
   /**
    * Arrival country code in ISO 3166 format.
    */
-  arrivalCountry?: string | undefined;
+  arrivalCountry?: string | null | undefined;
   /**
    * 2 character airline code as set by IATA.
    */
-  carrierCode?: string | undefined;
+  carrierCode?: string | null | undefined;
   /**
    * Coupon number associated with the leg.
    */
-  couponNumber?: string | undefined;
+  couponNumber?: string | null | undefined;
   /**
    * Departure airport code of leg. 3-letter ISO code according to IATA official directory.
    */
-  departureAirport?: string | undefined;
+  departureAirport?: string | null | undefined;
   /**
    * The date and time of travel in local time at the departure airport.
    */
-  departureAt?: Date | undefined;
+  departureAt?: Date | null | undefined;
   /**
    * Departure city name.
    */
-  departureCity?: string | undefined;
+  departureCity?: string | null | undefined;
   /**
    * Departure airport code of leg. 3-letter ISO code according to IATA official directory.
    */
-  departureCountry?: string | undefined;
+  departureCountry?: string | null | undefined;
   /**
    * Departure tax amount charged by a country when a person is leaving the country.
    */
-  departureTaxAmount?: number | undefined;
+  departureTaxAmount?: number | null | undefined;
   /**
    * Amount of the ticket, for current leg of the trip, excluding taxes and fees.
    */
-  fareAmount?: number | undefined;
+  fareAmount?: number | null | undefined;
   /**
    * The alphanumeric code for the booking class of a ticket.
    */
-  fareBasisCode?: string | undefined;
+  fareBasisCode?: string | null | undefined;
   /**
    * Fee amount for current leg of the trip.
    */
-  feeAmount?: number | undefined;
+  feeAmount?: number | null | undefined;
   /**
    * Indicates service class (first class, business class, etc.).
    */
-  flightClass?: string | undefined;
+  flightClass?: string | null | undefined;
   /**
    * Unique identifier of the flight number.
    */
-  flightNumber?: string | undefined;
+  flightNumber?: string | null | undefined;
   /**
    * The route type of the flight.
    */
-  routeType?: RouteType | undefined;
+  routeType?: RouteType | null | undefined;
   /**
    * Indicates whether a stopover is allowed on this ticket.
    */
-  stopOver?: boolean | undefined;
+  stopOver?: boolean | null | undefined;
   /**
    * Amount of the taxes for current leg of the trip.
    */
-  taxAmount?: number | undefined;
+  taxAmount?: number | null | undefined;
 };
 
 /** @internal */
@@ -128,28 +119,29 @@ export const AirlineLeg$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  arrival_airport: z.string().optional(),
-  arrival_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  arrival_city: z.string().optional(),
-  arrival_country: z.string().optional(),
-  carrier_code: z.string().optional(),
-  coupon_number: z.string().optional(),
-  departure_airport: z.string().optional(),
-  departure_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
+  arrival_airport: z.nullable(z.string()).optional(),
+  arrival_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
-  departure_city: z.string().optional(),
-  departure_country: z.string().optional(),
-  departure_tax_amount: z.number().int().optional(),
-  fare_amount: z.number().int().optional(),
-  fare_basis_code: z.string().optional(),
-  fee_amount: z.number().int().optional(),
-  flight_class: z.string().optional(),
-  flight_number: z.string().optional(),
-  route_type: RouteType$inboundSchema.optional(),
-  stop_over: z.boolean().optional(),
-  tax_amount: z.number().int().optional(),
+  arrival_city: z.nullable(z.string()).optional(),
+  arrival_country: z.nullable(z.string()).optional(),
+  carrier_code: z.nullable(z.string()).optional(),
+  coupon_number: z.nullable(z.string()).optional(),
+  departure_airport: z.nullable(z.string()).optional(),
+  departure_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  departure_city: z.nullable(z.string()).optional(),
+  departure_country: z.nullable(z.string()).optional(),
+  departure_tax_amount: z.nullable(z.number().int()).optional(),
+  fare_amount: z.nullable(z.number().int()).optional(),
+  fare_basis_code: z.nullable(z.string()).optional(),
+  fee_amount: z.nullable(z.number().int()).optional(),
+  flight_class: z.nullable(z.string()).optional(),
+  flight_number: z.nullable(z.string()).optional(),
+  route_type: z.nullable(RouteType$inboundSchema).optional(),
+  stop_over: z.nullable(z.boolean()).optional(),
+  tax_amount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "arrival_airport": "arrivalAirport",
@@ -176,25 +168,25 @@ export const AirlineLeg$inboundSchema: z.ZodType<
 
 /** @internal */
 export type AirlineLeg$Outbound = {
-  arrival_airport?: string | undefined;
-  arrival_at?: string | undefined;
-  arrival_city?: string | undefined;
-  arrival_country?: string | undefined;
-  carrier_code?: string | undefined;
-  coupon_number?: string | undefined;
-  departure_airport?: string | undefined;
-  departure_at?: string | undefined;
-  departure_city?: string | undefined;
-  departure_country?: string | undefined;
-  departure_tax_amount?: number | undefined;
-  fare_amount?: number | undefined;
-  fare_basis_code?: string | undefined;
-  fee_amount?: number | undefined;
-  flight_class?: string | undefined;
-  flight_number?: string | undefined;
-  route_type?: string | undefined;
-  stop_over?: boolean | undefined;
-  tax_amount?: number | undefined;
+  arrival_airport?: string | null | undefined;
+  arrival_at?: string | null | undefined;
+  arrival_city?: string | null | undefined;
+  arrival_country?: string | null | undefined;
+  carrier_code?: string | null | undefined;
+  coupon_number?: string | null | undefined;
+  departure_airport?: string | null | undefined;
+  departure_at?: string | null | undefined;
+  departure_city?: string | null | undefined;
+  departure_country?: string | null | undefined;
+  departure_tax_amount?: number | null | undefined;
+  fare_amount?: number | null | undefined;
+  fare_basis_code?: string | null | undefined;
+  fee_amount?: number | null | undefined;
+  flight_class?: string | null | undefined;
+  flight_number?: string | null | undefined;
+  route_type?: string | null | undefined;
+  stop_over?: boolean | null | undefined;
+  tax_amount?: number | null | undefined;
 };
 
 /** @internal */
@@ -203,25 +195,25 @@ export const AirlineLeg$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AirlineLeg
 > = z.object({
-  arrivalAirport: z.string().optional(),
-  arrivalAt: z.date().transform(v => v.toISOString()).optional(),
-  arrivalCity: z.string().optional(),
-  arrivalCountry: z.string().optional(),
-  carrierCode: z.string().optional(),
-  couponNumber: z.string().optional(),
-  departureAirport: z.string().optional(),
-  departureAt: z.date().transform(v => v.toISOString()).optional(),
-  departureCity: z.string().optional(),
-  departureCountry: z.string().optional(),
-  departureTaxAmount: z.number().int().optional(),
-  fareAmount: z.number().int().optional(),
-  fareBasisCode: z.string().optional(),
-  feeAmount: z.number().int().optional(),
-  flightClass: z.string().optional(),
-  flightNumber: z.string().optional(),
-  routeType: RouteType$outboundSchema.optional(),
-  stopOver: z.boolean().optional(),
-  taxAmount: z.number().int().optional(),
+  arrivalAirport: z.nullable(z.string()).optional(),
+  arrivalAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  arrivalCity: z.nullable(z.string()).optional(),
+  arrivalCountry: z.nullable(z.string()).optional(),
+  carrierCode: z.nullable(z.string()).optional(),
+  couponNumber: z.nullable(z.string()).optional(),
+  departureAirport: z.nullable(z.string()).optional(),
+  departureAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  departureCity: z.nullable(z.string()).optional(),
+  departureCountry: z.nullable(z.string()).optional(),
+  departureTaxAmount: z.nullable(z.number().int()).optional(),
+  fareAmount: z.nullable(z.number().int()).optional(),
+  fareBasisCode: z.nullable(z.string()).optional(),
+  feeAmount: z.nullable(z.number().int()).optional(),
+  flightClass: z.nullable(z.string()).optional(),
+  flightNumber: z.nullable(z.string()).optional(),
+  routeType: z.nullable(RouteType$outboundSchema).optional(),
+  stopOver: z.nullable(z.boolean()).optional(),
+  taxAmount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     arrivalAirport: "arrival_airport",

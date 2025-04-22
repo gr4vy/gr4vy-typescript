@@ -17,6 +17,7 @@ export type DeleteBuyerShippingDetailsRequest = {
    * The ID of the shipping details to delete.
    */
   shippingDetailsId: string;
+  timeoutInSeconds?: number | undefined;
 };
 
 /** @internal */
@@ -27,10 +28,12 @@ export const DeleteBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_id: z.string(),
   shipping_details_id: z.string(),
+  timeout_in_seconds: z.number().default(1),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "shipping_details_id": "shippingDetailsId",
+    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
@@ -38,6 +41,7 @@ export const DeleteBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 export type DeleteBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
   shipping_details_id: string;
+  timeout_in_seconds: number;
 };
 
 /** @internal */
@@ -48,10 +52,12 @@ export const DeleteBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.string(),
   shippingDetailsId: z.string(),
+  timeoutInSeconds: z.number().default(1),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     shippingDetailsId: "shipping_details_id",
+    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

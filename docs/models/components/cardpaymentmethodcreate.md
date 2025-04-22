@@ -1,9 +1,5 @@
 # CardPaymentMethodCreate
 
-Card
-
-Card details to use in a transaction or to register a new payment method.
-
 ## Example Usage
 
 ```typescript
@@ -16,7 +12,6 @@ let value: CardPaymentMethodCreate = {
   buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
   externalIdentifier: "payment-method-12345",
   cardType: "credit",
-  method: "card",
   securityCode: "123",
 };
 ```
@@ -31,5 +26,5 @@ let value: CardPaymentMethodCreate = {
 | `buyerId`                                                                                         | *string*                                                                                          | :heavy_minus_sign:                                                                                | The ID of the buyer to attach the method to.                                                      | fe26475d-ec3e-4884-9553-f7356683f7f9                                                              |
 | `externalIdentifier`                                                                              | *string*                                                                                          | :heavy_minus_sign:                                                                                | The merchant reference for this payment method.                                                   | payment-method-12345                                                                              |
 | `cardType`                                                                                        | *string*                                                                                          | :heavy_minus_sign:                                                                                | The type of the card used                                                                         | credit                                                                                            |
-| `method`                                                                                          | [components.Method](../../models/components/method.md)                                            | :heavy_minus_sign:                                                                                | Always `card`                                                                                     | card                                                                                              |
+| `method`                                                                                          | *string*                                                                                          | :heavy_minus_sign:                                                                                | Always `card`                                                                                     | card                                                                                              |
 | `securityCode`                                                                                    | *string*                                                                                          | :heavy_minus_sign:                                                                                | The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD. | 123                                                                                               |

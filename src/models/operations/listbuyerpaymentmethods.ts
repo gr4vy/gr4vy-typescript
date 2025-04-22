@@ -9,31 +9,6 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const Four = {
-  CitUsageCount: "cit_usage_count",
-} as const;
-export type Four = ClosedEnum<typeof Four>;
-
-export const Three = {
-  CitLastUsedAt: "cit_last_used_at",
-} as const;
-export type Three = ClosedEnum<typeof Three>;
-
-export const Two = {
-  UsageCount: "usage_count",
-} as const;
-export type Two = ClosedEnum<typeof Two>;
-
-export const One = {
-  LastUsedAt: "last_used_at",
-} as const;
-export type One = ClosedEnum<typeof One>;
-
-/**
- * The field to sort the payment methods by.
- */
-export type SortBy = One | Two | Three | Four;
-
 /**
  * The direction to sort the payment methods in.
  */
@@ -50,15 +25,15 @@ export type ListBuyerPaymentMethodsRequest = {
   /**
    * The ID of the buyer to query payment methods for.
    */
-  buyerId?: string | undefined;
+  buyerId?: string | null | undefined;
   /**
    * The external identifier of the buyer to query payment methods for.
    */
-  buyerExternalIdentifier?: string | undefined;
+  buyerExternalIdentifier?: string | null | undefined;
   /**
    * The field to sort the payment methods by.
    */
-  sortBy?: One | Two | Three | Four | undefined;
+  sortBy?: "last_used_at" | null | undefined;
   /**
    * The direction to sort the payment methods in.
    */
@@ -66,139 +41,12 @@ export type ListBuyerPaymentMethodsRequest = {
   /**
    * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
    */
-  country?: string | undefined;
+  country?: string | null | undefined;
   /**
    * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
    */
-  currency?: string | undefined;
+  currency?: string | null | undefined;
 };
-
-/** @internal */
-export const Four$inboundSchema: z.ZodNativeEnum<typeof Four> = z.nativeEnum(
-  Four,
-);
-
-/** @internal */
-export const Four$outboundSchema: z.ZodNativeEnum<typeof Four> =
-  Four$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-}
-
-/** @internal */
-export const Three$inboundSchema: z.ZodNativeEnum<typeof Three> = z.nativeEnum(
-  Three,
-);
-
-/** @internal */
-export const Three$outboundSchema: z.ZodNativeEnum<typeof Three> =
-  Three$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Three$ {
-  /** @deprecated use `Three$inboundSchema` instead. */
-  export const inboundSchema = Three$inboundSchema;
-  /** @deprecated use `Three$outboundSchema` instead. */
-  export const outboundSchema = Three$outboundSchema;
-}
-
-/** @internal */
-export const Two$inboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(Two);
-
-/** @internal */
-export const Two$outboundSchema: z.ZodNativeEnum<typeof Two> =
-  Two$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-}
-
-/** @internal */
-export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
-
-/** @internal */
-export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
-  One$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-}
-
-/** @internal */
-export const SortBy$inboundSchema: z.ZodType<SortBy, z.ZodTypeDef, unknown> = z
-  .union([
-    One$inboundSchema,
-    Two$inboundSchema,
-    Three$inboundSchema,
-    Four$inboundSchema,
-  ]);
-
-/** @internal */
-export type SortBy$Outbound = string | string | string | string;
-
-/** @internal */
-export const SortBy$outboundSchema: z.ZodType<
-  SortBy$Outbound,
-  z.ZodTypeDef,
-  SortBy
-> = z.union([
-  One$outboundSchema,
-  Two$outboundSchema,
-  Three$outboundSchema,
-  Four$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SortBy$ {
-  /** @deprecated use `SortBy$inboundSchema` instead. */
-  export const inboundSchema = SortBy$inboundSchema;
-  /** @deprecated use `SortBy$outboundSchema` instead. */
-  export const outboundSchema = SortBy$outboundSchema;
-  /** @deprecated use `SortBy$Outbound` instead. */
-  export type Outbound = SortBy$Outbound;
-}
-
-export function sortByToJSON(sortBy: SortBy): string {
-  return JSON.stringify(SortBy$outboundSchema.parse(sortBy));
-}
-
-export function sortByFromJSON(
-  jsonString: string,
-): SafeParseResult<SortBy, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SortBy$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SortBy' from JSON`,
-  );
-}
 
 /** @internal */
 export const OrderBy$inboundSchema: z.ZodNativeEnum<typeof OrderBy> = z
@@ -225,17 +73,12 @@ export const ListBuyerPaymentMethodsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  buyer_id: z.string().optional(),
-  buyer_external_identifier: z.string().optional(),
-  sort_by: z.union([
-    One$inboundSchema,
-    Two$inboundSchema,
-    Three$inboundSchema,
-    Four$inboundSchema,
-  ]).optional(),
+  buyer_id: z.nullable(z.string()).optional(),
+  buyer_external_identifier: z.nullable(z.string()).optional(),
+  sort_by: z.nullable(z.literal("last_used_at")).optional(),
   order_by: OrderBy$inboundSchema.default("desc"),
-  country: z.string().optional(),
-  currency: z.string().optional(),
+  country: z.nullable(z.string()).optional(),
+  currency: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
@@ -247,12 +90,12 @@ export const ListBuyerPaymentMethodsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListBuyerPaymentMethodsRequest$Outbound = {
-  buyer_id?: string | undefined;
-  buyer_external_identifier?: string | undefined;
-  sort_by?: string | string | string | string | undefined;
+  buyer_id?: string | null | undefined;
+  buyer_external_identifier?: string | null | undefined;
+  sort_by: "last_used_at" | null;
   order_by: string;
-  country?: string | undefined;
-  currency?: string | undefined;
+  country?: string | null | undefined;
+  currency?: string | null | undefined;
 };
 
 /** @internal */
@@ -261,17 +104,14 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListBuyerPaymentMethodsRequest
 > = z.object({
-  buyerId: z.string().optional(),
-  buyerExternalIdentifier: z.string().optional(),
-  sortBy: z.union([
-    One$outboundSchema,
-    Two$outboundSchema,
-    Three$outboundSchema,
-    Four$outboundSchema,
-  ]).optional(),
+  buyerId: z.nullable(z.string()).optional(),
+  buyerExternalIdentifier: z.nullable(z.string()).optional(),
+  sortBy: z.nullable(
+    z.literal("last_used_at").default("last_used_at" as const),
+  ),
   orderBy: OrderBy$outboundSchema.default("desc"),
-  country: z.string().optional(),
-  currency: z.string().optional(),
+  country: z.nullable(z.string()).optional(),
+  currency: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",

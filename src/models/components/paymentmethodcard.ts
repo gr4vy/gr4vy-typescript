@@ -5,67 +5,19 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  CardScheme,
+  CardScheme$inboundSchema,
+  CardScheme$outboundSchema,
+} from "./cardscheme.js";
 
-/**
- * Set to `card` to use a new card.
- */
-export const PaymentMethodCardMethod = {
-  Card: "card",
-} as const;
-/**
- * Set to `card` to use a new card.
- */
-export type PaymentMethodCardMethod = ClosedEnum<
-  typeof PaymentMethodCardMethod
->;
-
-/**
- * The optional card's network scheme.
- */
-export const PaymentMethodCardCardScheme = {
-  Accel: "accel",
-  Amex: "amex",
-  Bancontact: "bancontact",
-  CarteBancaire: "carte-bancaire",
-  Cirrus: "cirrus",
-  Culiance: "culiance",
-  Dankort: "dankort",
-  DinersClub: "diners-club",
-  Discover: "discover",
-  EftposAustralia: "eftpos-australia",
-  Elo: "elo",
-  Hipercard: "hipercard",
-  Jcb: "jcb",
-  Maestro: "maestro",
-  Mastercard: "mastercard",
-  Mir: "mir",
-  Nyce: "nyce",
-  Other: "other",
-  Pulse: "pulse",
-  Rupay: "rupay",
-  Star: "star",
-  Uatp: "uatp",
-  Unionpay: "unionpay",
-  Visa: "visa",
-} as const;
-/**
- * The optional card's network scheme.
- */
-export type PaymentMethodCardCardScheme = ClosedEnum<
-  typeof PaymentMethodCardCardScheme
->;
-
-/**
- * Base model with JSON encoders.
- */
 export type PaymentMethodCard = {
   /**
    * Set to `card` to use a new card.
    */
-  method?: PaymentMethodCardMethod | undefined;
+  method?: "card" | undefined;
   /**
    * The 13-19 digit number for this card as it can be found on the front of the card.
    */
@@ -77,54 +29,12 @@ export type PaymentMethodCard = {
   /**
    * The optional card's network scheme.
    */
-  cardScheme?: PaymentMethodCardCardScheme | undefined;
+  cardScheme?: CardScheme | null | undefined;
   /**
    * The merchant identifier for this card.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
 };
-
-/** @internal */
-export const PaymentMethodCardMethod$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodCardMethod
-> = z.nativeEnum(PaymentMethodCardMethod);
-
-/** @internal */
-export const PaymentMethodCardMethod$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodCardMethod
-> = PaymentMethodCardMethod$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethodCardMethod$ {
-  /** @deprecated use `PaymentMethodCardMethod$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethodCardMethod$inboundSchema;
-  /** @deprecated use `PaymentMethodCardMethod$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethodCardMethod$outboundSchema;
-}
-
-/** @internal */
-export const PaymentMethodCardCardScheme$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodCardCardScheme
-> = z.nativeEnum(PaymentMethodCardCardScheme);
-
-/** @internal */
-export const PaymentMethodCardCardScheme$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodCardCardScheme
-> = PaymentMethodCardCardScheme$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethodCardCardScheme$ {
-  /** @deprecated use `PaymentMethodCardCardScheme$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethodCardCardScheme$inboundSchema;
-  /** @deprecated use `PaymentMethodCardCardScheme$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethodCardCardScheme$outboundSchema;
-}
 
 /** @internal */
 export const PaymentMethodCard$inboundSchema: z.ZodType<
@@ -132,11 +42,11 @@ export const PaymentMethodCard$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  method: PaymentMethodCardMethod$inboundSchema.default("card"),
+  method: z.literal("card").default("card"),
   number: z.string(),
   expiration_date: z.string(),
-  card_scheme: PaymentMethodCardCardScheme$inboundSchema.optional(),
-  external_identifier: z.string().optional(),
+  card_scheme: z.nullable(CardScheme$inboundSchema).optional(),
+  external_identifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "expiration_date": "expirationDate",
@@ -147,11 +57,11 @@ export const PaymentMethodCard$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PaymentMethodCard$Outbound = {
-  method: string;
+  method: "card";
   number: string;
   expiration_date: string;
-  card_scheme?: string | undefined;
-  external_identifier?: string | undefined;
+  card_scheme?: string | null | undefined;
+  external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -160,11 +70,11 @@ export const PaymentMethodCard$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentMethodCard
 > = z.object({
-  method: PaymentMethodCardMethod$outboundSchema.default("card"),
+  method: z.literal("card").default("card" as const),
   number: z.string(),
   expirationDate: z.string(),
-  cardScheme: PaymentMethodCardCardScheme$outboundSchema.optional(),
-  externalIdentifier: z.string().optional(),
+  cardScheme: z.nullable(CardScheme$outboundSchema).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     expirationDate: "expiration_date",

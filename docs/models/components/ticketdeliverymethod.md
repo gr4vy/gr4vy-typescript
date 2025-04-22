@@ -1,7 +1,5 @@
 # TicketDeliveryMethod
 
-The delivery method of the ticket.
-
 ## Example Usage
 
 ```typescript

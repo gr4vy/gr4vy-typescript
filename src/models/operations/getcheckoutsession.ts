@@ -13,6 +13,7 @@ export type GetCheckoutSessionRequest = {
    * The ID of the checkout session.
    */
   sessionId: string;
+  timeoutInSeconds?: number | undefined;
 };
 
 /** @internal */
@@ -22,15 +23,18 @@ export const GetCheckoutSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   session_id: z.string(),
+  timeout_in_seconds: z.number().default(1),
 }).transform((v) => {
   return remap$(v, {
     "session_id": "sessionId",
+    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
 /** @internal */
 export type GetCheckoutSessionRequest$Outbound = {
   session_id: string;
+  timeout_in_seconds: number;
 };
 
 /** @internal */
@@ -40,9 +44,11 @@ export const GetCheckoutSessionRequest$outboundSchema: z.ZodType<
   GetCheckoutSessionRequest
 > = z.object({
   sessionId: z.string(),
+  timeoutInSeconds: z.number().default(1),
 }).transform((v) => {
   return remap$(v, {
     sessionId: "session_id",
+    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

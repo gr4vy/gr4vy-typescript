@@ -9,11 +9,9 @@ let value: ListPayoutsResponse = {
   result: {
     items: [
       {
-        type: "payout",
         id: "6f96a57e-a35b-4f98-b192-d298995f811a",
         amount: 1299,
         buyer: {
-          type: "buyer",
           id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
           displayName: "John Doe",
           externalIdentifier: "buyer-12345",
@@ -21,10 +19,10 @@ let value: ListPayoutsResponse = {
             firstName: "John",
             lastName: "Doe",
             emailAddress: "john@example.com",
-            phoneNumber: "+442071838750",
+            phoneNumber: "+1234567890",
             address: {
               city: "San Jose",
-              country: "GB",
+              country: "US",
               postalCode: "94560",
               state: "California",
               stateCode: "US-CA",
@@ -35,25 +33,24 @@ let value: ListPayoutsResponse = {
             },
             taxId: {
               value: "12345678931",
-              kind: "us.ein",
+              kind: "ar.cuit",
             },
           },
         },
         category: "online_gambling",
         createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
-        currency: "USD",
+        currency: "GBP",
         externalIdentifier: "payout-12345",
         merchant: {
-          type: "merchant",
           name: "Acme Inc",
           identificationNumber: "12345",
-          phoneNumber: "+14155552671",
+          phoneNumber: "+442071838750",
           url: "https://example.com",
           statementDescriptor: "Winnings",
           merchantCategoryCode: "123456",
           address: {
             city: "San Jose",
-            country: "GB",
+            country: "US",
             postalCode: "94560",
             state: "California",
             stateCode: "US-CA",
@@ -65,16 +62,15 @@ let value: ListPayoutsResponse = {
         },
         merchantAccountId: "default",
         paymentMethod: {
-          type: "payment-method",
           approvalUrl: "https://gr4vy.app/redirect/12345",
-          country: "DE",
+          country: "US",
           currency: "USD",
           expirationDate: "12/30",
           fingerprint:
             "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17",
           label: "1234",
           lastReplacedAt: new Date("2013-07-16T19:23:00.000+00:00"),
-          method: "card",
+          method: "multipago",
           mode: "card",
           scheme: "visa",
           id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
@@ -83,18 +79,15 @@ let value: ListPayoutsResponse = {
           paymentAccountReference: "V0010014629724763377327521982",
         },
         paymentService: {
-          type: "payment-service",
           id: "b6c9eb12-2b62-4103-99b9-e3efc94e396d",
-          method: "card",
           paymentServiceDefinitionId: "nuvei-card",
           displayName: "Nuvei",
         },
         paymentServicePayoutId: "pout-12345",
-        status: "succeeded",
+        status: "pending",
         updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
       },
     ],
-    limit: 20,
     nextCursor: "ZXhhbXBsZTE",
     previousCursor: "Xkjss7asS",
   },
@@ -103,6 +96,6 @@ let value: ListPayoutsResponse = {
 
 ## Fields
 
-| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `result`                                                                                   | [components.PayoutsSummaryCollection](../../models/components/payoutssummarycollection.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `result`                                                                                 | [components.CollectionPayoutSummary](../../models/components/collectionpayoutsummary.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |

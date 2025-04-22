@@ -4,29 +4,14 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * Always `network-token-cryptogram`.
- */
-export const CryptogramType = {
-  NetworkTokenCryptogram: "network-token-cryptogram",
-} as const;
-/**
- * Always `network-token-cryptogram`.
- */
-export type CryptogramType = ClosedEnum<typeof CryptogramType>;
-
-/**
- * Base model with JSON encoders.
- */
 export type Cryptogram = {
   /**
    * Always `network-token-cryptogram`.
    */
-  type?: CryptogramType | undefined;
+  type?: "network-token-cryptogram" | undefined;
   /**
    * The cryptogram of the network token.
    */
@@ -34,39 +19,20 @@ export type Cryptogram = {
 };
 
 /** @internal */
-export const CryptogramType$inboundSchema: z.ZodNativeEnum<
-  typeof CryptogramType
-> = z.nativeEnum(CryptogramType);
-
-/** @internal */
-export const CryptogramType$outboundSchema: z.ZodNativeEnum<
-  typeof CryptogramType
-> = CryptogramType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CryptogramType$ {
-  /** @deprecated use `CryptogramType$inboundSchema` instead. */
-  export const inboundSchema = CryptogramType$inboundSchema;
-  /** @deprecated use `CryptogramType$outboundSchema` instead. */
-  export const outboundSchema = CryptogramType$outboundSchema;
-}
-
-/** @internal */
 export const Cryptogram$inboundSchema: z.ZodType<
   Cryptogram,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: CryptogramType$inboundSchema.default("network-token-cryptogram"),
+  type: z.literal("network-token-cryptogram").default(
+    "network-token-cryptogram",
+  ),
   cryptogram: z.string(),
 });
 
 /** @internal */
 export type Cryptogram$Outbound = {
-  type: string;
+  type: "network-token-cryptogram";
   cryptogram: string;
 };
 
@@ -76,7 +42,9 @@ export const Cryptogram$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Cryptogram
 > = z.object({
-  type: CryptogramType$outboundSchema.default("network-token-cryptogram"),
+  type: z.literal("network-token-cryptogram").default(
+    "network-token-cryptogram" as const,
+  ),
   cryptogram: z.string(),
 });
 

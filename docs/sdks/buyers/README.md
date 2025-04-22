@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list("ZXhhbXBsZTE", 20, "John", "buyer-12345");
+  const result = await gr4vy.buyers.list("ZXhhbXBsZTE", "John", "buyer-12345");
 
   for await (const page of result) {
     // Handle the page
@@ -51,7 +51,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersList(gr4vy, "ZXhhbXBsZTE", 20, "John", "buyer-12345");
+  const res = await buyersList(gr4vy, "ZXhhbXBsZTE", "John", "buyer-12345");
 
   if (!res.ok) {
     throw res.error;
@@ -88,7 +88,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## create
@@ -112,13 +125,13 @@ async function run() {
       firstName: "John",
       lastName: "Doe",
       emailAddress: "john@example.com",
-      phoneNumber: "+14155552671",
+      phoneNumber: "+1234567890",
       address: {
         city: "San Jose",
-        country: "GB",
+        country: "US",
         postalCode: "94560",
         state: "California",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
         houseNumberOrName: "10",
         line1: "Stafford Appartments",
         line2: "29th Street",
@@ -126,7 +139,7 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "us.ein",
+        kind: "jp.cn",
       },
     },
   });
@@ -160,13 +173,13 @@ async function run() {
       firstName: "John",
       lastName: "Doe",
       emailAddress: "john@example.com",
-      phoneNumber: "+14155552671",
+      phoneNumber: "+1234567890",
       address: {
         city: "San Jose",
-        country: "GB",
+        country: "US",
         postalCode: "94560",
         state: "California",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
         houseNumberOrName: "10",
         line1: "Stafford Appartments",
         line2: "29th Street",
@@ -174,7 +187,7 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "us.ein",
+        kind: "jp.cn",
       },
     },
   });
@@ -196,7 +209,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.BuyerCreate](../../models/components/buyercreate.md)                                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `buyerCreate`                                                                                                                                                                  | [components.BuyerCreate](../../models/components/buyercreate.md)                                                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -209,7 +223,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
@@ -282,7 +309,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## update
@@ -306,13 +346,13 @@ async function run() {
       firstName: "John",
       lastName: "Doe",
       emailAddress: "john@example.com",
-      phoneNumber: "+442071838750",
+      phoneNumber: "+1234567890",
       address: {
         city: "San Jose",
-        country: "GB",
+        country: "US",
         postalCode: "94560",
         state: "California",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
         houseNumberOrName: "10",
         line1: "Stafford Appartments",
         line2: "29th Street",
@@ -320,7 +360,7 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "us.ein",
+        kind: "th.id",
       },
     },
   }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
@@ -354,13 +394,13 @@ async function run() {
       firstName: "John",
       lastName: "Doe",
       emailAddress: "john@example.com",
-      phoneNumber: "+442071838750",
+      phoneNumber: "+1234567890",
       address: {
         city: "San Jose",
-        country: "GB",
+        country: "US",
         postalCode: "94560",
         state: "California",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
         houseNumberOrName: "10",
         line1: "Stafford Appartments",
         line2: "29th Street",
@@ -368,7 +408,7 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "us.ein",
+        kind: "th.id",
       },
     },
   }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
@@ -392,6 +432,7 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `buyerId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the buyer to edit.                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `buyerUpdate`                                                                                                                                                                  | [components.BuyerUpdate](../../models/components/buyerupdate.md)                                                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -404,7 +445,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -463,6 +517,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `buyerId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the buyer to delete.                                                                                                                                                 | [object Object]                                                                                                                                                                |
+| `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -475,5 +530,18 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

@@ -9,7 +9,6 @@ let value: ListAuditLogsResponse = {
   result: {
     items: [
       {
-        type: "audit-log",
         id: "8d3fe99b-1422-42e6-bbb3-932d95ae5f79",
         merchantAccountId: "default",
         resource: {
@@ -19,17 +18,15 @@ let value: ListAuditLogsResponse = {
         },
         action: "created",
         user: {
-          type: "user",
           id: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef",
           name: "John Doe",
           emailAddress: "john@example.com",
           isStaff: false,
-          status: "active",
+          status: "pending",
         },
         timestamp: new Date("2022-01-01T00:00:00+00:00"),
       },
     ],
-    limit: 20,
     nextCursor: "ZXhhbXBsZTE",
     previousCursor: "Xkjss7asS",
   },
@@ -40,4 +37,4 @@ let value: ListAuditLogsResponse = {
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `result`                                                                                 | [components.AuditLogEntryCollection](../../models/components/auditlogentrycollection.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `result`                                                                                 | [components.CollectionAuditLogEntry](../../models/components/collectionauditlogentry.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |

@@ -6,6 +6,7 @@ import { Gr4vyCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -21,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 import {
   createPageIterator,
@@ -35,15 +37,26 @@ import {
  * @remarks
  * Returns a list of activity by dashboard users.
  */
-export async function auditLogsList(
+export function auditLogsList(
   client: Gr4vyCore,
   request: operations.ListAuditLogsRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   PageIterator<
     Result<
       operations.ListAuditLogsResponse,
+      | errors.Error400
+      | errors.Error401
+      | errors.ListAuditLogsResponse403ListAuditLogs
+      | errors.Error404
+      | errors.Error405
+      | errors.Error409
       | errors.HTTPValidationError
+      | errors.Error425
+      | errors.Error429
+      | errors.Error500
+      | errors.Error502
+      | errors.Error504
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -55,13 +68,54 @@ export async function auditLogsList(
     { cursor: string }
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: Gr4vyCore,
+  request: operations.ListAuditLogsRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    PageIterator<
+      Result<
+        operations.ListAuditLogsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.ListAuditLogsResponse403ListAuditLogs
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
+        | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
+        | SDKError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >,
+      { cursor: string }
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.ListAuditLogsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return haltIterator(parsed);
+    return [haltIterator(parsed), { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -76,15 +130,16 @@ export async function auditLogsList(
     "user_id": payload.user_id,
   });
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
   const securityInput = secConfig == null ? {} : { bearerAuth: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "list_audit_logs",
     oAuth2Scopes: [],
 
@@ -100,6 +155,7 @@ export async function auditLogsList(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -107,18 +163,33 @@ export async function auditLogsList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return haltIterator(requestRes);
+    return [haltIterator(requestRes), { status: "invalid" }];
   }
   const req = requestRes.value;
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["422", "4XX", "5XX"],
+    errorCodes: [
+      "400",
+      "401",
+      "403",
+      "404",
+      "405",
+      "409",
+      "422",
+      "425",
+      "429",
+      "4XX",
+      "500",
+      "502",
+      "504",
+      "5XX",
+    ],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return haltIterator(doResult);
+    return [haltIterator(doResult), { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -128,7 +199,18 @@ export async function auditLogsList(
 
   const [result, raw] = await M.match<
     operations.ListAuditLogsResponse,
+    | errors.Error400
+    | errors.Error401
+    | errors.ListAuditLogsResponse403ListAuditLogs
+    | errors.Error404
+    | errors.Error405
+    | errors.Error409
     | errors.HTTPValidationError
+    | errors.Error425
+    | errors.Error429
+    | errors.Error500
+    | errors.Error502
+    | errors.Error504
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -140,11 +222,27 @@ export async function auditLogsList(
     M.json(200, operations.ListAuditLogsResponse$inboundSchema, {
       key: "Result",
     }),
+    M.jsonErr(400, errors.Error400$inboundSchema),
+    M.jsonErr(401, errors.Error401$inboundSchema),
+    M.jsonErr(403, errors.ListAuditLogsResponse403ListAuditLogs$inboundSchema),
+    M.jsonErr(404, errors.Error404$inboundSchema),
+    M.jsonErr(405, errors.Error405$inboundSchema),
+    M.jsonErr(409, errors.Error409$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.jsonErr(425, errors.Error425$inboundSchema),
+    M.jsonErr(429, errors.Error429$inboundSchema),
+    M.jsonErr(500, errors.Error500$inboundSchema),
+    M.jsonErr(502, errors.Error502$inboundSchema),
+    M.jsonErr(504, errors.Error504$inboundSchema),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return haltIterator(result);
+    return [haltIterator(result), {
+      status: "complete",
+      request: req,
+      response,
+    }];
   }
 
   const nextFunc = (
@@ -153,7 +251,18 @@ export async function auditLogsList(
     next: Paginator<
       Result<
         operations.ListAuditLogsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.ListAuditLogsResponse403ListAuditLogs
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
         | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -166,7 +275,7 @@ export async function auditLogsList(
     "~next"?: { cursor: string };
   } => {
     const nextCursor = dlv(responseData, "next_cursor");
-    if (nextCursor == null) {
+    if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
 
@@ -184,5 +293,9 @@ export async function auditLogsList(
   };
 
   const page = { ...result, ...nextFunc(raw) };
-  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
+  return [{ ...page, ...createPageIterator(page, (v) => !v.ok) }, {
+    status: "complete",
+    request: req,
+    response,
+  }];
 }

@@ -12,6 +12,7 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
+import { Gr4vyGiftCards } from "./gr4vygiftcards.js";
 import { Gr4vyPaymentMethods } from "./gr4vypaymentmethods.js";
 import { ShippingDetails } from "./shippingdetails.js";
 
@@ -19,6 +20,11 @@ export class Buyers extends ClientSDK {
   private _paymentMethods?: Gr4vyPaymentMethods;
   get paymentMethods(): Gr4vyPaymentMethods {
     return (this._paymentMethods ??= new Gr4vyPaymentMethods(this._options));
+  }
+
+  private _giftCards?: Gr4vyGiftCards;
+  get giftCards(): Gr4vyGiftCards {
+    return (this._giftCards ??= new Gr4vyGiftCards(this._options));
   }
 
   private _shippingDetails?: ShippingDetails;
@@ -33,10 +39,10 @@ export class Buyers extends ClientSDK {
    * List all buyers or search for a specific buyer.
    */
   async list(
-    cursor?: string | undefined,
+    cursor?: string | null | undefined,
     limit?: number | undefined,
-    search?: string | undefined,
-    externalIdentifier?: string | undefined,
+    search?: string | null | undefined,
+    externalIdentifier?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<PageIterator<operations.ListBuyersResponse, { cursor: string }>> {
     return unwrapResultIterator(buyersList(
@@ -56,12 +62,14 @@ export class Buyers extends ClientSDK {
    * Create a new buyer record.
    */
   async create(
-    request: components.BuyerCreate,
+    buyerCreate: components.BuyerCreate,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.Buyer> {
     return unwrapAsync(buyersCreate(
       this,
-      request,
+      buyerCreate,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -92,12 +100,14 @@ export class Buyers extends ClientSDK {
   async update(
     buyerUpdate: components.BuyerUpdate,
     buyerId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.Buyer> {
     return unwrapAsync(buyersUpdate(
       this,
       buyerUpdate,
       buyerId,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -110,11 +120,13 @@ export class Buyers extends ClientSDK {
    */
   async delete(
     buyerId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(buyersDelete(
       this,
       buyerId,
+      timeoutInSeconds,
       options,
     ));
   }

@@ -5,7 +5,6 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -14,188 +13,17 @@ import {
   CardScheme$outboundSchema,
 } from "./cardscheme.js";
 import {
-  CardType,
-  CardType$inboundSchema,
-  CardType$outboundSchema,
-} from "./cardtype.js";
-
-/**
- * Always `payment-method`.
- */
-export const Type = {
-  PaymentMethod: "payment-method",
-} as const;
-/**
- * Always `payment-method`.
- */
-export type Type = ClosedEnum<typeof Type>;
-
-/**
- * Details for credit or debit card payment method.
- */
-export type Details = {
-  bin?: string | undefined;
-  /**
-   * An enumeration.
-   */
-  cardType?: CardType | undefined;
-};
-
-/**
- * The type of this payment method.
- */
-export const PaymentMethod = {
-  Abitab: "abitab",
-  Afterpay: "afterpay",
-  Alipay: "alipay",
-  Alipayhk: "alipayhk",
-  Applepay: "applepay",
-  Arcuspaynetwork: "arcuspaynetwork",
-  Bacs: "bacs",
-  Bancontact: "bancontact",
-  Banked: "banked",
-  Bcp: "bcp",
-  Becs: "becs",
-  Bitpay: "bitpay",
-  Boleto: "boleto",
-  Boost: "boost",
-  Card: "card",
-  Cashapp: "cashapp",
-  Chaseorbital: "chaseorbital",
-  Clearpay: "clearpay",
-  ClickToPay: "click-to-pay",
-  Dana: "dana",
-  Dcb: "dcb",
-  Dlocal: "dlocal",
-  Ebanx: "ebanx",
-  Efecty: "efecty",
-  Eps: "eps",
-  Everydaypay: "everydaypay",
-  Gcash: "gcash",
-  GiftCard: "gift-card",
-  Giropay: "giropay",
-  Givingblock: "givingblock",
-  Gocardless: "gocardless",
-  Googlepay: "googlepay",
-  GooglepayPanOnly: "googlepay_pan_only",
-  Gopay: "gopay",
-  Grabpay: "grabpay",
-  Ideal: "ideal",
-  Kakaopay: "kakaopay",
-  Kcp: "kcp",
-  Khipu: "khipu",
-  Klarna: "klarna",
-  Laybuy: "laybuy",
-  Linepay: "linepay",
-  Linkaja: "linkaja",
-  Maybankqrpay: "maybankqrpay",
-  Mercadopago: "mercadopago",
-  Multibanco: "multibanco",
-  Multipago: "multipago",
-  Nequi: "nequi",
-  Netbanking: "netbanking",
-  NetworkToken: "network-token",
-  Nupay: "nupay",
-  Oney10x: "oney_10x",
-  Oney12x: "oney_12x",
-  Oney3x: "oney_3x",
-  Oney4x: "oney_4x",
-  Oney6x: "oney_6x",
-  Ovo: "ovo",
-  Oxxo: "oxxo",
-  Pagoefectivo: "pagoefectivo",
-  Payid: "payid",
-  Paymaya: "paymaya",
-  Paypal: "paypal",
-  Paypalpaylater: "paypalpaylater",
-  Payto: "payto",
-  Payvalida: "payvalida",
-  Picpay: "picpay",
-  Pix: "pix",
-  Pse: "pse",
-  Rabbitlinepay: "rabbitlinepay",
-  Razorpay: "razorpay",
-  Redpagos: "redpagos",
-  Scalapay: "scalapay",
-  Sepa: "sepa",
-  Servipag: "servipag",
-  Shopeepay: "shopeepay",
-  Singteldash: "singteldash",
-  Smartpay: "smartpay",
-  Sofort: "sofort",
-  Spei: "spei",
-  Stripedd: "stripedd",
-  Thaiqr: "thaiqr",
-  Touchngo: "touchngo",
-  Truemoney: "truemoney",
-  Trustly: "trustly",
-  Trustlyeurope: "trustlyeurope",
-  Upi: "upi",
-  Venmo: "venmo",
-  Vipps: "vipps",
-  Waave: "waave",
-  Webpay: "webpay",
-  Wechat: "wechat",
-  Yape: "yape",
-  Zippay: "zippay",
-} as const;
-/**
- * The type of this payment method.
- */
-export type PaymentMethod = ClosedEnum<typeof PaymentMethod>;
-
-/**
- * The mode to use with this payment method.
- */
-export const Mode = {
-  Card: "card",
-  Redirect: "redirect",
-  Applepay: "applepay",
-  Googlepay: "googlepay",
-  CheckoutSession: "checkout-session",
-  ClickToPay: "click-to-pay",
-  GiftCard: "gift-card",
-} as const;
-/**
- * The mode to use with this payment method.
- */
-export type Mode = ClosedEnum<typeof Mode>;
-
-/**
- * The scheme of the card. Only applies to card payments.
- */
-export const PaymentMethodSummaryCardScheme = {
-  Accel: "accel",
-  Amex: "amex",
-  Bancontact: "bancontact",
-  CarteBancaire: "carte-bancaire",
-  Cirrus: "cirrus",
-  Culiance: "culiance",
-  Dankort: "dankort",
-  DinersClub: "diners-club",
-  Discover: "discover",
-  EftposAustralia: "eftpos-australia",
-  Elo: "elo",
-  Hipercard: "hipercard",
-  Jcb: "jcb",
-  Maestro: "maestro",
-  Mastercard: "mastercard",
-  Mir: "mir",
-  Nyce: "nyce",
-  Other: "other",
-  Pulse: "pulse",
-  Rupay: "rupay",
-  Star: "star",
-  Uatp: "uatp",
-  Unionpay: "unionpay",
-  Visa: "visa",
-} as const;
-/**
- * The scheme of the card. Only applies to card payments.
- */
-export type PaymentMethodSummaryCardScheme = ClosedEnum<
-  typeof PaymentMethodSummaryCardScheme
->;
+  Method,
+  Method$inboundSchema,
+  Method$outboundSchema,
+} from "./method.js";
+import { Mode, Mode$inboundSchema, Mode$outboundSchema } from "./mode.js";
+import {
+  PaymentMethodDetailsCard,
+  PaymentMethodDetailsCard$inboundSchema,
+  PaymentMethodDetailsCard$Outbound,
+  PaymentMethodDetailsCard$outboundSchema,
+} from "./paymentmethoddetailscard.js";
 
 /**
  * Payment Method
@@ -208,51 +36,48 @@ export type PaymentMethodSummary = {
   /**
    * Always `payment-method`.
    */
-  type?: Type | undefined;
+  type?: "payment-method" | undefined;
   /**
    * The optional URL that the buyer needs to be redirected to to further authorize their payment.
    */
-  approvalUrl?: string | undefined;
+  approvalUrl?: string | null | undefined;
   /**
    * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
    */
-  country?: string | undefined;
+  country?: string | null | undefined;
   /**
    * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
    */
-  currency?: string | undefined;
+  currency?: string | null | undefined;
   /**
    * Details for credit or debit card payment method.
    */
-  details?: Details | undefined;
+  details?: PaymentMethodDetailsCard | null | undefined;
   /**
    * The expiration date for the payment method.
    */
-  expirationDate?: string | undefined;
+  expirationDate?: string | null | undefined;
   /**
    * The unique hash derived from the payment method identifier (e.g. card number).
    */
-  fingerprint?: string | undefined;
+  fingerprint?: string | null | undefined;
   /**
    * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
    */
-  label?: string | undefined;
+  label?: string | null | undefined;
   /**
    * The date and time when this card was last replaced by the account updater.
    */
-  lastReplacedAt?: Date | undefined;
-  /**
-   * The type of this payment method.
-   */
-  method: PaymentMethod;
+  lastReplacedAt?: Date | null | undefined;
+  method: Method;
   /**
    * The mode to use with this payment method.
    */
-  mode?: Mode | undefined;
+  mode?: Mode | null | undefined;
   /**
    * The scheme of the card. Only applies to card payments.
    */
-  scheme?: PaymentMethodSummaryCardScheme | undefined;
+  scheme?: CardScheme | null | undefined;
   /**
    * The ID for the payment method.
    */
@@ -264,11 +89,11 @@ export type PaymentMethodSummary = {
   /**
    * Additional schemes of the card besides the primary scheme. Only applies to card payment methods.
    */
-  additionalSchemes?: Array<CardScheme> | undefined;
+  additionalSchemes?: Array<CardScheme> | null | undefined;
   /**
    * The timestamp when this payment method was last used in a transaction for client initiated transactions.
    */
-  citLastUsedAt?: Date | undefined;
+  citLastUsedAt?: Date | null | undefined;
   /**
    * The number of times this payment method has been used in transactions for client initiated transactions.
    */
@@ -280,7 +105,7 @@ export type PaymentMethodSummary = {
   /**
    * The timestamp when this payment method was last used in a transaction.
    */
-  lastUsedAt?: Date | undefined;
+  lastUsedAt?: Date | null | undefined;
   /**
    * The number of times this payment method has been used in transactions.
    */
@@ -288,175 +113,35 @@ export type PaymentMethodSummary = {
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
-
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
-
-/** @internal */
-export const Details$inboundSchema: z.ZodType<Details, z.ZodTypeDef, unknown> =
-  z.object({
-    bin: z.string().optional(),
-    card_type: CardType$inboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "card_type": "cardType",
-    });
-  });
-
-/** @internal */
-export type Details$Outbound = {
-  bin?: string | undefined;
-  card_type?: string | undefined;
-};
-
-/** @internal */
-export const Details$outboundSchema: z.ZodType<
-  Details$Outbound,
-  z.ZodTypeDef,
-  Details
-> = z.object({
-  bin: z.string().optional(),
-  cardType: CardType$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cardType: "card_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Details$ {
-  /** @deprecated use `Details$inboundSchema` instead. */
-  export const inboundSchema = Details$inboundSchema;
-  /** @deprecated use `Details$outboundSchema` instead. */
-  export const outboundSchema = Details$outboundSchema;
-  /** @deprecated use `Details$Outbound` instead. */
-  export type Outbound = Details$Outbound;
-}
-
-export function detailsToJSON(details: Details): string {
-  return JSON.stringify(Details$outboundSchema.parse(details));
-}
-
-export function detailsFromJSON(
-  jsonString: string,
-): SafeParseResult<Details, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Details$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Details' from JSON`,
-  );
-}
-
-/** @internal */
-export const PaymentMethod$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethod
-> = z.nativeEnum(PaymentMethod);
-
-/** @internal */
-export const PaymentMethod$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethod
-> = PaymentMethod$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethod$ {
-  /** @deprecated use `PaymentMethod$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethod$inboundSchema;
-  /** @deprecated use `PaymentMethod$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethod$outboundSchema;
-}
-
-/** @internal */
-export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
-  Mode,
-);
-
-/** @internal */
-export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> =
-  Mode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mode$ {
-  /** @deprecated use `Mode$inboundSchema` instead. */
-  export const inboundSchema = Mode$inboundSchema;
-  /** @deprecated use `Mode$outboundSchema` instead. */
-  export const outboundSchema = Mode$outboundSchema;
-}
-
-/** @internal */
-export const PaymentMethodSummaryCardScheme$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodSummaryCardScheme
-> = z.nativeEnum(PaymentMethodSummaryCardScheme);
-
-/** @internal */
-export const PaymentMethodSummaryCardScheme$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentMethodSummaryCardScheme
-> = PaymentMethodSummaryCardScheme$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethodSummaryCardScheme$ {
-  /** @deprecated use `PaymentMethodSummaryCardScheme$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethodSummaryCardScheme$inboundSchema;
-  /** @deprecated use `PaymentMethodSummaryCardScheme$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethodSummaryCardScheme$outboundSchema;
-}
-
-/** @internal */
 export const PaymentMethodSummary$inboundSchema: z.ZodType<
   PaymentMethodSummary,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: Type$inboundSchema.default("payment-method"),
-  approval_url: z.string().optional(),
-  country: z.string().optional(),
-  currency: z.string().optional(),
-  details: z.lazy(() => Details$inboundSchema).optional(),
-  expiration_date: z.string().optional(),
-  fingerprint: z.string().optional(),
-  label: z.string().optional(),
-  last_replaced_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
+  type: z.literal("payment-method").default("payment-method"),
+  approval_url: z.nullable(z.string()).optional(),
+  country: z.nullable(z.string()).optional(),
+  currency: z.nullable(z.string()).optional(),
+  details: z.nullable(PaymentMethodDetailsCard$inboundSchema).optional(),
+  expiration_date: z.nullable(z.string()).optional(),
+  fingerprint: z.nullable(z.string()).optional(),
+  label: z.nullable(z.string()).optional(),
+  last_replaced_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
-  method: PaymentMethod$inboundSchema,
-  mode: Mode$inboundSchema.optional(),
-  scheme: PaymentMethodSummaryCardScheme$inboundSchema.optional(),
+  method: Method$inboundSchema,
+  mode: z.nullable(Mode$inboundSchema).optional(),
+  scheme: z.nullable(CardScheme$inboundSchema).optional(),
   id: z.string(),
   merchant_account_id: z.string(),
-  additional_schemes: z.array(CardScheme$inboundSchema).optional(),
-  cit_last_used_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
+  additional_schemes: z.nullable(z.array(CardScheme$inboundSchema)).optional(),
+  cit_last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   cit_usage_count: z.number().int(),
   has_replacement: z.boolean(),
-  last_used_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
+  last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   usage_count: z.number().int(),
 }).transform((v) => {
@@ -476,25 +161,25 @@ export const PaymentMethodSummary$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PaymentMethodSummary$Outbound = {
-  type: string;
-  approval_url?: string | undefined;
-  country?: string | undefined;
-  currency?: string | undefined;
-  details?: Details$Outbound | undefined;
-  expiration_date?: string | undefined;
-  fingerprint?: string | undefined;
-  label?: string | undefined;
-  last_replaced_at?: string | undefined;
+  type: "payment-method";
+  approval_url?: string | null | undefined;
+  country?: string | null | undefined;
+  currency?: string | null | undefined;
+  details?: PaymentMethodDetailsCard$Outbound | null | undefined;
+  expiration_date?: string | null | undefined;
+  fingerprint?: string | null | undefined;
+  label?: string | null | undefined;
+  last_replaced_at?: string | null | undefined;
   method: string;
-  mode?: string | undefined;
-  scheme?: string | undefined;
+  mode?: string | null | undefined;
+  scheme?: string | null | undefined;
   id: string;
   merchant_account_id: string;
-  additional_schemes?: Array<string> | undefined;
-  cit_last_used_at?: string | undefined;
+  additional_schemes?: Array<string> | null | undefined;
+  cit_last_used_at?: string | null | undefined;
   cit_usage_count: number;
   has_replacement: boolean;
-  last_used_at?: string | undefined;
+  last_used_at?: string | null | undefined;
   usage_count: number;
 };
 
@@ -504,25 +189,27 @@ export const PaymentMethodSummary$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentMethodSummary
 > = z.object({
-  type: Type$outboundSchema.default("payment-method"),
-  approvalUrl: z.string().optional(),
-  country: z.string().optional(),
-  currency: z.string().optional(),
-  details: z.lazy(() => Details$outboundSchema).optional(),
-  expirationDate: z.string().optional(),
-  fingerprint: z.string().optional(),
-  label: z.string().optional(),
-  lastReplacedAt: z.date().transform(v => v.toISOString()).optional(),
-  method: PaymentMethod$outboundSchema,
-  mode: Mode$outboundSchema.optional(),
-  scheme: PaymentMethodSummaryCardScheme$outboundSchema.optional(),
+  type: z.literal("payment-method").default("payment-method" as const),
+  approvalUrl: z.nullable(z.string()).optional(),
+  country: z.nullable(z.string()).optional(),
+  currency: z.nullable(z.string()).optional(),
+  details: z.nullable(PaymentMethodDetailsCard$outboundSchema).optional(),
+  expirationDate: z.nullable(z.string()).optional(),
+  fingerprint: z.nullable(z.string()).optional(),
+  label: z.nullable(z.string()).optional(),
+  lastReplacedAt: z.nullable(z.date().transform(v => v.toISOString()))
+    .optional(),
+  method: Method$outboundSchema,
+  mode: z.nullable(Mode$outboundSchema).optional(),
+  scheme: z.nullable(CardScheme$outboundSchema).optional(),
   id: z.string(),
   merchantAccountId: z.string(),
-  additionalSchemes: z.array(CardScheme$outboundSchema).optional(),
-  citLastUsedAt: z.date().transform(v => v.toISOString()).optional(),
+  additionalSchemes: z.nullable(z.array(CardScheme$outboundSchema)).optional(),
+  citLastUsedAt: z.nullable(z.date().transform(v => v.toISOString()))
+    .optional(),
   citUsageCount: z.number().int(),
   hasReplacement: z.boolean(),
-  lastUsedAt: z.date().transform(v => v.toISOString()).optional(),
+  lastUsedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   usageCount: z.number().int(),
 }).transform((v) => {
   return remap$(v, {

@@ -5,17 +5,11 @@
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
-/**
- * An enumeration.
- */
 export const CardType = {
   Credit: "credit",
   Debit: "debit",
   Prepaid: "prepaid",
 } as const;
-/**
- * An enumeration.
- */
 export type CardType = ClosedEnum<typeof CardType>;
 
 /** @internal */

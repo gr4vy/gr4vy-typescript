@@ -1,7 +1,5 @@
 # ConnectionOptions
 
-Optional fields for processing payouts on specific payment services.
-
 ## Example Usage
 
 ```typescript
@@ -17,6 +15,6 @@ let value: ConnectionOptions = {
 
 ## Fields
 
-| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `checkoutCard`                                                     | [components.CheckoutCard](../../models/components/checkoutcard.md) | :heavy_minus_sign:                                                 | Custom options for `checkout-card` payment service.                |
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `checkoutCard`                                                                                       | [components.CheckoutCardConnectionOptions](../../models/components/checkoutcardconnectionoptions.md) | :heavy_minus_sign:                                                                                   | Custom options for `checkout-card` payment service.                                                  |

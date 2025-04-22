@@ -24,10 +24,8 @@ async function run() {
   const result = await gr4vy.buyers.paymentMethods.list({
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-    sortBy: "last_used_at",
-    orderBy: "desc",
-    country: "GB",
-    currency: "EUR",
+    country: "US",
+    currency: "USD",
   });
 
   // Handle the result
@@ -55,10 +53,8 @@ async function run() {
   const res = await buyersPaymentMethodsList(gr4vy, {
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-    sortBy: "last_used_at",
-    orderBy: "desc",
-    country: "GB",
-    currency: "EUR",
+    country: "US",
+    currency: "USD",
   });
 
   if (!res.ok) {
@@ -91,5 +87,18 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

@@ -26,10 +26,9 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.list({
     cursor: "ZXhhbXBsZTE",
-    limit: 20,
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-    externalIdentifier: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+    externalIdentifier: "payment-method-12345",
   });
 
   for await (const page of result) {
@@ -58,10 +57,9 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await paymentMethodsList(gr4vy, {
     cursor: "ZXhhbXBsZTE",
-    limit: 20,
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-    externalIdentifier: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+    externalIdentifier: "payment-method-12345",
   });
 
   if (!res.ok) {
@@ -96,7 +94,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## create
@@ -114,11 +125,11 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentMethods.create({
-    method: "zippay",
+    method: "paypal",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
     country: "GB",
-    currency: "EUR",
+    currency: "GBP",
     redirectUrl: "https://standard-utilization.com/",
     externalIdentifier: "payment-method-12345",
   });
@@ -146,11 +157,11 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsCreate(gr4vy, {
-    method: "zippay",
+    method: "paypal",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
     country: "GB",
-    currency: "EUR",
+    currency: "GBP",
     redirectUrl: "https://standard-utilization.com/",
     externalIdentifier: "payment-method-12345",
   });
@@ -172,20 +183,34 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreatePaymentMethodBody](../../models/operations/createpaymentmethodbody.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `requestBody`                                                                                                                                                                  | *operations.CreatePaymentMethodBody*                                                                                                                                           | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[components.ApiRoutersPaymentMethodsSchemasPaymentMethod](../../models/components/apirouterspaymentmethodsschemaspaymentmethod.md)\>**
+**Promise\<[components.PaymentMethod](../../models/components/paymentmethod.md)\>**
 
 ### Errors
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
@@ -252,13 +277,26 @@ run();
 
 ### Response
 
-**Promise\<[components.ApiRoutersPaymentMethodsSchemasPaymentMethod](../../models/components/apirouterspaymentmethodsschemaspaymentmethod.md)\>**
+**Promise\<[components.PaymentMethod](../../models/components/paymentmethod.md)\>**
 
 ### Errors
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
@@ -329,5 +367,18 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

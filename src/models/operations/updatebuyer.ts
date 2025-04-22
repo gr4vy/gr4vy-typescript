@@ -14,6 +14,7 @@ export type UpdateBuyerRequest = {
    * The ID of the buyer to edit.
    */
   buyerId: string;
+  timeoutInSeconds?: number | undefined;
   buyerUpdate: components.BuyerUpdate;
 };
 
@@ -24,10 +25,12 @@ export const UpdateBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
+  timeout_in_seconds: z.number().default(1),
   BuyerUpdate: components.BuyerUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
+    "timeout_in_seconds": "timeoutInSeconds",
     "BuyerUpdate": "buyerUpdate",
   });
 });
@@ -35,6 +38,7 @@ export const UpdateBuyerRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateBuyerRequest$Outbound = {
   buyer_id: string;
+  timeout_in_seconds: number;
   BuyerUpdate: components.BuyerUpdate$Outbound;
 };
 
@@ -45,10 +49,12 @@ export const UpdateBuyerRequest$outboundSchema: z.ZodType<
   UpdateBuyerRequest
 > = z.object({
   buyerId: z.string(),
+  timeoutInSeconds: z.number().default(1),
   buyerUpdate: components.BuyerUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
+    timeoutInSeconds: "timeout_in_seconds",
     buyerUpdate: "BuyerUpdate",
   });
 });

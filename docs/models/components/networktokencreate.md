@@ -1,7 +1,5 @@
 # NetworkTokenCreate
 
-Base model with JSON encoders.
-
 ## Example Usage
 
 ```typescript

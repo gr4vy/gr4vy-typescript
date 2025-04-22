@@ -14,11 +14,9 @@ actions:
             gr4vy_id:
               default: example
               description: The subdomain for your Gr4vy instance.
-              example: example
         - url: https://api.sandbox.{gr4vy_id}.gr4vy.app
           x-speakeasy-server-id: sandbox
           variables:
             gr4vy_id:
               default: example
               description: The subdomain for your Gr4vy instance.
-              example: example

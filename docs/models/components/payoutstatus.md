@@ -1,13 +1,11 @@
 # PayoutStatus
 
-The status of the payout.
-
 ## Example Usage
 
 ```typescript
 import { PayoutStatus } from "@gr4vy/sdk/models/components";
 
-let value: PayoutStatus = "succeeded";
+let value: PayoutStatus = "declined";
 ```
 
 ## Values

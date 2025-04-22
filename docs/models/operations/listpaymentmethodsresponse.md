@@ -9,16 +9,15 @@ let value: ListPaymentMethodsResponse = {
   result: {
     items: [
       {
-        type: "payment-method",
         approvalUrl: "https://gr4vy.app/redirect/12345",
-        country: "DE",
-        currency: "EUR",
+        country: "US",
+        currency: "USD",
         expirationDate: "12/30",
         fingerprint:
           "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4",
         label: "1234",
         lastReplacedAt: new Date("2013-07-16T19:23:00.000+00:00"),
-        method: "card",
+        method: "affirm",
         mode: "card",
         scheme: "visa",
         id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
@@ -32,7 +31,6 @@ let value: ListPaymentMethodsResponse = {
         lastUsedAt: new Date("2013-07-16T19:23:00.000+00:00"),
         usageCount: 100,
         buyer: {
-          type: "buyer",
           id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
           merchantAccountId: "default",
           displayName: "John Doe",
@@ -41,7 +39,7 @@ let value: ListPaymentMethodsResponse = {
             firstName: "John",
             lastName: "Doe",
             emailAddress: "john@example.com",
-            phoneNumber: "+14155552671",
+            phoneNumber: "+1234567890",
             address: {
               city: "San Jose",
               country: "US",
@@ -55,7 +53,7 @@ let value: ListPaymentMethodsResponse = {
             },
             taxId: {
               value: "12345678931",
-              kind: "us.ein",
+              kind: "sa.vat",
             },
           },
           createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
@@ -67,7 +65,6 @@ let value: ListPaymentMethodsResponse = {
         updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
       },
     ],
-    limit: 20,
     nextCursor: "ZXhhbXBsZTE",
     previousCursor: "Xkjss7asS",
   },
@@ -78,4 +75,4 @@ let value: ListPaymentMethodsResponse = {
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `result`                                                                                 | [components.PaymentMethodCollection](../../models/components/paymentmethodcollection.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `result`                                                                                 | [components.CollectionPaymentMethod](../../models/components/collectionpaymentmethod.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |

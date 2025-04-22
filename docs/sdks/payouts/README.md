@@ -23,7 +23,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.payouts.list("ZXhhbXBsZTE", 20);
+  const result = await gr4vy.payouts.list("ZXhhbXBsZTE");
 
   for await (const page of result) {
     // Handle the page
@@ -49,7 +49,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await payoutsList(gr4vy, "ZXhhbXBsZTE", 20);
+  const res = await payoutsList(gr4vy, "ZXhhbXBsZTE");
 
   if (!res.ok) {
     throw res.error;
@@ -84,7 +84,20 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## create
@@ -106,35 +119,40 @@ async function run() {
     currency: "GBP",
     paymentServiceId: "ed8bd87d-85ad-40cf-8e8f-007e21e55aad",
     paymentMethod: {
-      method: "id",
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
     },
     category: "online_gambling",
     externalIdentifier: "payout-12345",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyer: {
+      displayName: "John Doe",
+      externalIdentifier: "buyer-12345",
       billingDetails: {
         firstName: "John",
         lastName: "Doe",
         emailAddress: "john@example.com",
-        phoneNumber: "+442071838750",
+        phoneNumber: "+1234567890",
         address: {
           city: "San Jose",
-          country: "GB",
+          country: "US",
           postalCode: "94560",
           state: "California",
-          stateCode: "GB-LND",
+          stateCode: "US-CA",
           houseNumberOrName: "10",
           line1: "Stafford Appartments",
           line2: "29th Street",
           organization: "Gr4vy",
+        },
+        taxId: {
+          value: "12345678931",
+          kind: "id.nik",
         },
       },
       shippingDetails: {
         firstName: "John",
         lastName: "Doe",
         emailAddress: "john@example.com",
-        phoneNumber: "+14155552671",
+        phoneNumber: "+1234567890",
         address: {
           city: "San Jose",
           country: "US",
@@ -152,16 +170,16 @@ async function run() {
     merchant: {
       name: "Acme Inc",
       identificationNumber: "12345",
-      phoneNumber: "+14155552671",
+      phoneNumber: "+442071838750",
       url: "https://example.com",
       statementDescriptor: "Winnings",
       merchantCategoryCode: "123456",
       address: {
         city: "San Jose",
-        country: "DE",
+        country: "US",
         postalCode: "94560",
         state: "California",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
         houseNumberOrName: "10",
         line1: "Stafford Appartments",
         line2: "29th Street",
@@ -203,35 +221,40 @@ async function run() {
     currency: "GBP",
     paymentServiceId: "ed8bd87d-85ad-40cf-8e8f-007e21e55aad",
     paymentMethod: {
-      method: "id",
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
     },
     category: "online_gambling",
     externalIdentifier: "payout-12345",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyer: {
+      displayName: "John Doe",
+      externalIdentifier: "buyer-12345",
       billingDetails: {
         firstName: "John",
         lastName: "Doe",
         emailAddress: "john@example.com",
-        phoneNumber: "+442071838750",
+        phoneNumber: "+1234567890",
         address: {
           city: "San Jose",
-          country: "GB",
+          country: "US",
           postalCode: "94560",
           state: "California",
-          stateCode: "GB-LND",
+          stateCode: "US-CA",
           houseNumberOrName: "10",
           line1: "Stafford Appartments",
           line2: "29th Street",
           organization: "Gr4vy",
+        },
+        taxId: {
+          value: "12345678931",
+          kind: "id.nik",
         },
       },
       shippingDetails: {
         firstName: "John",
         lastName: "Doe",
         emailAddress: "john@example.com",
-        phoneNumber: "+14155552671",
+        phoneNumber: "+1234567890",
         address: {
           city: "San Jose",
           country: "US",
@@ -249,16 +272,16 @@ async function run() {
     merchant: {
       name: "Acme Inc",
       identificationNumber: "12345",
-      phoneNumber: "+14155552671",
+      phoneNumber: "+442071838750",
       url: "https://example.com",
       statementDescriptor: "Winnings",
       merchantCategoryCode: "123456",
       address: {
         city: "San Jose",
-        country: "DE",
+        country: "US",
         postalCode: "94560",
         state: "California",
-        stateCode: "GB-LND",
+        stateCode: "US-CA",
         houseNumberOrName: "10",
         line1: "Stafford Appartments",
         line2: "29th Street",
@@ -290,20 +313,34 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.PayoutsCreate](../../models/components/payoutscreate.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `payoutCreate`                                                                                                                                                                 | [components.PayoutCreate](../../models/components/payoutcreate.md)                                                                                                             | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[components.PayoutsSummary](../../models/components/payoutssummary.md)\>**
+**Promise\<[components.PayoutSummary](../../models/components/payoutsummary.md)\>**
 
 ### Errors
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
@@ -370,11 +407,24 @@ run();
 
 ### Response
 
-**Promise\<[components.PayoutsSummary](../../models/components/payoutssummary.md)\>**
+**Promise\<[components.PayoutSummary](../../models/components/payoutsummary.md)\>**
 
 ### Errors
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error403Forbidden   | 403                        | application/json           |
+| errors.Error403Active      | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

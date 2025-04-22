@@ -8,11 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  BillingDetails,
-  BillingDetails$inboundSchema,
-  BillingDetails$Outbound,
-  BillingDetails$outboundSchema,
-} from "./billingdetails.js";
+  BillingDetailsInput,
+  BillingDetailsInput$inboundSchema,
+  BillingDetailsInput$Outbound,
+  BillingDetailsInput$outboundSchema,
+} from "./billingdetailsinput.js";
 
 /**
  * Request body for creating a new buyer
@@ -21,15 +21,19 @@ export type BuyerCreate = {
   /**
    * The display name for the buyer.
    */
-  displayName?: string | undefined;
+  displayName?: string | null | undefined;
   /**
    * The merchant identifier for this buyer.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
   /**
-   * Base model with JSON encoders.
+   * The billing name, address, email, and other fields for this buyer.
    */
-  billingDetails?: BillingDetails | undefined;
+  billingDetails?: BillingDetailsInput | null | undefined;
+  /**
+   * The buyer account number
+   */
+  accountNumber?: string | null | undefined;
 };
 
 /** @internal */
@@ -38,22 +42,25 @@ export const BuyerCreate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  display_name: z.string().optional(),
-  external_identifier: z.string().optional(),
-  billing_details: BillingDetails$inboundSchema.optional(),
+  display_name: z.nullable(z.string()).optional(),
+  external_identifier: z.nullable(z.string()).optional(),
+  billing_details: z.nullable(BillingDetailsInput$inboundSchema).optional(),
+  account_number: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
     "billing_details": "billingDetails",
+    "account_number": "accountNumber",
   });
 });
 
 /** @internal */
 export type BuyerCreate$Outbound = {
-  display_name?: string | undefined;
-  external_identifier?: string | undefined;
-  billing_details?: BillingDetails$Outbound | undefined;
+  display_name?: string | null | undefined;
+  external_identifier?: string | null | undefined;
+  billing_details?: BillingDetailsInput$Outbound | null | undefined;
+  account_number?: string | null | undefined;
 };
 
 /** @internal */
@@ -62,14 +69,16 @@ export const BuyerCreate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BuyerCreate
 > = z.object({
-  displayName: z.string().optional(),
-  externalIdentifier: z.string().optional(),
-  billingDetails: BillingDetails$outboundSchema.optional(),
+  displayName: z.nullable(z.string()).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
+  billingDetails: z.nullable(BillingDetailsInput$outboundSchema).optional(),
+  accountNumber: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",
     externalIdentifier: "external_identifier",
     billingDetails: "billing_details",
+    accountNumber: "account_number",
   });
 });
 

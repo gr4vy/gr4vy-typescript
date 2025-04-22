@@ -9,7 +9,6 @@ let value: ListBuyersResponse = {
   result: {
     items: [
       {
-        type: "buyer",
         id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
         merchantAccountId: "default",
         displayName: "John Doe",
@@ -18,7 +17,7 @@ let value: ListBuyersResponse = {
           firstName: "John",
           lastName: "Doe",
           emailAddress: "john@example.com",
-          phoneNumber: "+442071838750",
+          phoneNumber: "+1234567890",
           address: {
             city: "San Jose",
             country: "US",
@@ -32,14 +31,13 @@ let value: ListBuyersResponse = {
           },
           taxId: {
             value: "12345678931",
-            kind: "us.ein",
+            kind: "ae.trn",
           },
         },
         createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
         updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
       },
     ],
-    limit: 20,
     nextCursor: "ZXhhbXBsZTE",
     previousCursor: "Xkjss7asS",
   },
@@ -50,4 +48,4 @@ let value: ListBuyersResponse = {
 
 | Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `result`                                                                 | [components.BuyerCollection](../../models/components/buyercollection.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| `result`                                                                 | [components.CollectionBuyer](../../models/components/collectionbuyer.md) | :heavy_check_mark:                                                       | N/A                                                                      |

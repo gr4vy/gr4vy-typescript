@@ -1,7 +1,5 @@
 # CardType
 
-An enumeration.
-
 ## Example Usage
 
 ```typescript

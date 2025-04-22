@@ -1,6 +1,6 @@
 # RedirectPaymentMethodCreate
 
-Base model with JSON encoders.
+Create a transaction for an APM/LPM that requires a redirect.
 
 ## Example Usage
 
@@ -12,8 +12,8 @@ let value: RedirectPaymentMethodCreate = {
   buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
   buyerExternalIdentifier: "buyer-12345",
   country: "GB",
-  currency: "GBP",
-  redirectUrl: "https://intrepid-technician.info",
+  currency: "EUR",
+  redirectUrl: "https://wee-captain.com",
   externalIdentifier: "payment-method-12345",
 };
 ```

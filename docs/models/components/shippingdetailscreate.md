@@ -1,7 +1,5 @@
 # ShippingDetailsCreate
 
-Base model with JSON encoders.
-
 ## Example Usage
 
 ```typescript
@@ -11,10 +9,10 @@ let value: ShippingDetailsCreate = {
   firstName: "John",
   lastName: "Doe",
   emailAddress: "john@example.com",
-  phoneNumber: "+442071838750",
+  phoneNumber: "+1234567890",
   address: {
     city: "San Jose",
-    country: "DE",
+    country: "US",
     postalCode: "94560",
     state: "California",
     stateCode: "US-CA",
@@ -28,10 +26,10 @@ let value: ShippingDetailsCreate = {
 
 ## Fields
 
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `firstName`                                                                                        | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The first name(s) or given name for the buyer.                                                     | John                                                                                               |
-| `lastName`                                                                                         | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The last name, or family name, of the buyer.                                                       | Doe                                                                                                |
-| `emailAddress`                                                                                     | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The email address for the buyer.                                                                   | john@example.com                                                                                   |
-| `phoneNumber`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The phone number for the buyer which should be formatted according to the E164 number standard.    | +14155552671                                                                                       |
-| `address`                                                                                          | [components.ShippingDetailsCreateAddress](../../models/components/shippingdetailscreateaddress.md) | :heavy_minus_sign:                                                                                 | The billing address for the buyer.                                                                 |                                                                                                    |
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `firstName`                                                                                     | *string*                                                                                        | :heavy_minus_sign:                                                                              | The first name(s) or given name for the buyer.                                                  | John                                                                                            |
+| `lastName`                                                                                      | *string*                                                                                        | :heavy_minus_sign:                                                                              | The last name, or family name, of the buyer.                                                    | Doe                                                                                             |
+| `emailAddress`                                                                                  | *string*                                                                                        | :heavy_minus_sign:                                                                              | The email address for the buyer.                                                                | john@example.com                                                                                |
+| `phoneNumber`                                                                                   | *string*                                                                                        | :heavy_minus_sign:                                                                              | The phone number for the buyer which should be formatted according to the E164 number standard. | +1234567890                                                                                     |
+| `address`                                                                                       | [components.Address](../../models/components/address.md)                                        | :heavy_minus_sign:                                                                              | The billing address for the buyer.                                                              |                                                                                                 |

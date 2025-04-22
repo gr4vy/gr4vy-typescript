@@ -1,6 +1,6 @@
 # Airline
 
-The airline addendum data which describes the airline booking associated with this transaction.
+Information about an airline travel.
 
 ## Example Usage
 
@@ -18,7 +18,7 @@ let value: Airline = {
       arrivalAirport: "LAX",
       arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
       arrivalCity: "Los Angeles",
-      arrivalCountry: "GB",
+      arrivalCountry: "US",
       carrierCode: "BA",
       couponNumber: "15885566",
       departureAirport: "LHR",
@@ -46,9 +46,10 @@ let value: Airline = {
       frequentFlyerNumber: "15885566",
       lastName: "Luhn",
       passportNumber: "11117700225",
-      phoneNumber: "+442071838750",
+      phoneNumber: "+1234567890",
       ticketNumber: "BA1236699999",
       title: "Mr.",
+      countryCode: "US",
     },
   ],
   reservationSystem: "Amadeus",

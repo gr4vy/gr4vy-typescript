@@ -10,7 +10,7 @@ let value: CreatePaymentMethodPaymentServiceTokenRequest = {
   paymentServiceTokenCreate: {
     securityCode: "123",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    redirectUrl: "https://example.com/callback",
+    redirectUrl: "https://murky-nerve.name/",
   },
 };
 ```
@@ -20,4 +20,5 @@ let value: CreatePaymentMethodPaymentServiceTokenRequest = {
 | Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `paymentMethodId`                                                                            | *string*                                                                                     | :heavy_check_mark:                                                                           | The ID of the payment method                                                                 | ef9496d8-53a5-4aad-8ca2-00eb68334389                                                         |
+| `timeoutInSeconds`                                                                           | *number*                                                                                     | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
 | `paymentServiceTokenCreate`                                                                  | [components.PaymentServiceTokenCreate](../../models/components/paymentservicetokencreate.md) | :heavy_check_mark:                                                                           | N/A                                                                                          |                                                                                              |

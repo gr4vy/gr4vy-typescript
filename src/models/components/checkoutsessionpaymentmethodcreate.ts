@@ -5,31 +5,14 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * Always `checkout-session`
- */
-export const CheckoutSessionPaymentMethodCreateMethod = {
-  CheckoutSession: "checkout-session",
-} as const;
-/**
- * Always `checkout-session`
- */
-export type CheckoutSessionPaymentMethodCreateMethod = ClosedEnum<
-  typeof CheckoutSessionPaymentMethodCreateMethod
->;
-
-/**
- * Base model with JSON encoders.
- */
 export type CheckoutSessionPaymentMethodCreate = {
   /**
    * Always `checkout-session`
    */
-  method?: CheckoutSessionPaymentMethodCreateMethod | undefined;
+  method?: "checkout-session" | undefined;
   /**
    * The ID for the checkout session.
    */
@@ -37,39 +20,16 @@ export type CheckoutSessionPaymentMethodCreate = {
   /**
    * The merchant reference that can be used to match the payment method against your own records.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
   /**
    * The `id` of a stored buyer to use Use this instead of the `buyer_external_identifier`.
    */
-  buyerId?: string | undefined;
+  buyerId?: string | null | undefined;
   /**
    * The `external_identifier` of a stored buyer to use. Use this instead of the `buyer_id`.
    */
-  buyerExternalIdentifier?: string | undefined;
+  buyerExternalIdentifier?: string | null | undefined;
 };
-
-/** @internal */
-export const CheckoutSessionPaymentMethodCreateMethod$inboundSchema:
-  z.ZodNativeEnum<typeof CheckoutSessionPaymentMethodCreateMethod> = z
-    .nativeEnum(CheckoutSessionPaymentMethodCreateMethod);
-
-/** @internal */
-export const CheckoutSessionPaymentMethodCreateMethod$outboundSchema:
-  z.ZodNativeEnum<typeof CheckoutSessionPaymentMethodCreateMethod> =
-    CheckoutSessionPaymentMethodCreateMethod$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSessionPaymentMethodCreateMethod$ {
-  /** @deprecated use `CheckoutSessionPaymentMethodCreateMethod$inboundSchema` instead. */
-  export const inboundSchema =
-    CheckoutSessionPaymentMethodCreateMethod$inboundSchema;
-  /** @deprecated use `CheckoutSessionPaymentMethodCreateMethod$outboundSchema` instead. */
-  export const outboundSchema =
-    CheckoutSessionPaymentMethodCreateMethod$outboundSchema;
-}
 
 /** @internal */
 export const CheckoutSessionPaymentMethodCreate$inboundSchema: z.ZodType<
@@ -77,13 +37,11 @@ export const CheckoutSessionPaymentMethodCreate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  method: CheckoutSessionPaymentMethodCreateMethod$inboundSchema.default(
-    "checkout-session",
-  ),
+  method: z.literal("checkout-session").default("checkout-session"),
   id: z.string(),
-  external_identifier: z.string().optional(),
-  buyer_id: z.string().optional(),
-  buyer_external_identifier: z.string().optional(),
+  external_identifier: z.nullable(z.string()).optional(),
+  buyer_id: z.nullable(z.string()).optional(),
+  buyer_external_identifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "external_identifier": "externalIdentifier",
@@ -94,11 +52,11 @@ export const CheckoutSessionPaymentMethodCreate$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CheckoutSessionPaymentMethodCreate$Outbound = {
-  method: string;
+  method: "checkout-session";
   id: string;
-  external_identifier?: string | undefined;
-  buyer_id?: string | undefined;
-  buyer_external_identifier?: string | undefined;
+  external_identifier?: string | null | undefined;
+  buyer_id?: string | null | undefined;
+  buyer_external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -107,13 +65,11 @@ export const CheckoutSessionPaymentMethodCreate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CheckoutSessionPaymentMethodCreate
 > = z.object({
-  method: CheckoutSessionPaymentMethodCreateMethod$outboundSchema.default(
-    "checkout-session",
-  ),
+  method: z.literal("checkout-session").default("checkout-session" as const),
   id: z.string(),
-  externalIdentifier: z.string().optional(),
-  buyerId: z.string().optional(),
-  buyerExternalIdentifier: z.string().optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
+  buyerId: z.nullable(z.string()).optional(),
+  buyerExternalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     externalIdentifier: "external_identifier",

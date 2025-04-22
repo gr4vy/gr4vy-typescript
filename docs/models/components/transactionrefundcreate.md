@@ -1,0 +1,24 @@
+# TransactionRefundCreate
+
+## Example Usage
+
+```typescript
+import { TransactionRefundCreate } from "@gr4vy/sdk/models/components";
+
+let value: TransactionRefundCreate = {
+  amount: 1299,
+  targetId: "7a6c366d-9205-45ab-8021-0d9ee37f20f2",
+  reason: "Refund due to user request.",
+  externalIdentifier: "refund-12345",
+};
+```
+
+## Fields
+
+| Field                                                                                                                           | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     | Example                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `amount`                                                                                                                        | *number*                                                                                                                        | :heavy_minus_sign:                                                                                                              | The amount requested to refund. If omitted, a full refund will be requested.                                                    | 1299                                                                                                                            |
+| `targetType`                                                                                                                    | [components.RefundTargetType](../../models/components/refundtargettype.md)                                                      | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             |                                                                                                                                 |
+| `targetId`                                                                                                                      | *string*                                                                                                                        | :heavy_minus_sign:                                                                                                              | The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`. | 7a6c366d-9205-45ab-8021-0d9ee37f20f2                                                                                            |
+| `reason`                                                                                                                        | *string*                                                                                                                        | :heavy_minus_sign:                                                                                                              | An optional reason to attach extra context to the refund request.                                                               | Refund due to user request.                                                                                                     |
+| `externalIdentifier`                                                                                                            | *string*                                                                                                                        | :heavy_minus_sign:                                                                                                              | An external identifier that can be used to match the refund against your own records.                                           | refund-12345                                                                                                                    |

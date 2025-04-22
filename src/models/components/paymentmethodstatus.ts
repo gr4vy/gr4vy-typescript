@@ -5,9 +5,6 @@
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
-/**
- * An enumeration.
- */
 export const PaymentMethodStatus = {
   Processing: "processing",
   BuyerApprovalRequired: "buyer_approval_required",
@@ -15,9 +12,6 @@ export const PaymentMethodStatus = {
   Failed: "failed",
   Paused: "paused",
 } as const;
-/**
- * An enumeration.
- */
 export type PaymentMethodStatus = ClosedEnum<typeof PaymentMethodStatus>;
 
 /** @internal */

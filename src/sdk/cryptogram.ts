@@ -18,6 +18,7 @@ export class Cryptogram extends ClientSDK {
     cryptogramCreate: components.CryptogramCreate,
     paymentMethodId: string,
     networkTokenId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.Cryptogram> {
     return unwrapAsync(paymentMethodsNetworkTokensCryptogramCreate(
@@ -25,6 +26,7 @@ export class Cryptogram extends ClientSDK {
       cryptogramCreate,
       paymentMethodId,
       networkTokenId,
+      timeoutInSeconds,
       options,
     ));
   }

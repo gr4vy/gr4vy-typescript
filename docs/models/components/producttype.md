@@ -1,7 +1,5 @@
 # ProductType
 
-The product type of the cart item.
-
 ## Example Usage
 
 ```typescript

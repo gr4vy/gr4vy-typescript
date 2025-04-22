@@ -7,7 +7,6 @@ import { ListPayoutsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListPayoutsRequest = {
   cursor: "ZXhhbXBsZTE",
-  limit: 20,
 };
 ```
 

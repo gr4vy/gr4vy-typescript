@@ -5,48 +5,19 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  PaymentMethodStatus,
+  PaymentMethodStatus$inboundSchema,
+  PaymentMethodStatus$outboundSchema,
+} from "./paymentmethodstatus.js";
 
-/**
- * Always `payment-service-token`.
- */
-export const PaymentServiceTokenType = {
-  PaymentServiceToken: "payment-service-token",
-} as const;
-/**
- * Always `payment-service-token`.
- */
-export type PaymentServiceTokenType = ClosedEnum<
-  typeof PaymentServiceTokenType
->;
-
-/**
- * The state of the payment service token.
- */
-export const PaymentServiceTokenPaymentMethodStatus = {
-  Processing: "processing",
-  BuyerApprovalRequired: "buyer_approval_required",
-  Succeeded: "succeeded",
-  Failed: "failed",
-  Paused: "paused",
-} as const;
-/**
- * The state of the payment service token.
- */
-export type PaymentServiceTokenPaymentMethodStatus = ClosedEnum<
-  typeof PaymentServiceTokenPaymentMethodStatus
->;
-
-/**
- * Base model with JSON encoders.
- */
 export type PaymentServiceToken = {
   /**
    * Always `payment-service-token`.
    */
-  type?: PaymentServiceTokenType | undefined;
+  type?: "payment-service-token" | undefined;
   /**
    * The ID for the payment service token.
    */
@@ -54,7 +25,7 @@ export type PaymentServiceToken = {
   /**
    * The optional URL that the buyer needs to be redirected to to further authorize the token creation.
    */
-  approvalUrl?: string | undefined;
+  approvalUrl?: string | null | undefined;
   /**
    * The ID of the payment method used to generate this token
    */
@@ -63,14 +34,11 @@ export type PaymentServiceToken = {
    * The ID of the payment method used to generate this token.
    */
   paymentServiceId: string;
-  /**
-   * The state of the payment service token.
-   */
-  status: PaymentServiceTokenPaymentMethodStatus;
+  status: PaymentMethodStatus;
   /**
    * The token value. Will be present if succeeded.
    */
-  token?: string | undefined;
+  token?: string | null | undefined;
   /**
    * The date and time when this payment service token was first created in our system.
    */
@@ -82,63 +50,18 @@ export type PaymentServiceToken = {
 };
 
 /** @internal */
-export const PaymentServiceTokenType$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentServiceTokenType
-> = z.nativeEnum(PaymentServiceTokenType);
-
-/** @internal */
-export const PaymentServiceTokenType$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentServiceTokenType
-> = PaymentServiceTokenType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceTokenType$ {
-  /** @deprecated use `PaymentServiceTokenType$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceTokenType$inboundSchema;
-  /** @deprecated use `PaymentServiceTokenType$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceTokenType$outboundSchema;
-}
-
-/** @internal */
-export const PaymentServiceTokenPaymentMethodStatus$inboundSchema:
-  z.ZodNativeEnum<typeof PaymentServiceTokenPaymentMethodStatus> = z.nativeEnum(
-    PaymentServiceTokenPaymentMethodStatus,
-  );
-
-/** @internal */
-export const PaymentServiceTokenPaymentMethodStatus$outboundSchema:
-  z.ZodNativeEnum<typeof PaymentServiceTokenPaymentMethodStatus> =
-    PaymentServiceTokenPaymentMethodStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceTokenPaymentMethodStatus$ {
-  /** @deprecated use `PaymentServiceTokenPaymentMethodStatus$inboundSchema` instead. */
-  export const inboundSchema =
-    PaymentServiceTokenPaymentMethodStatus$inboundSchema;
-  /** @deprecated use `PaymentServiceTokenPaymentMethodStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    PaymentServiceTokenPaymentMethodStatus$outboundSchema;
-}
-
-/** @internal */
 export const PaymentServiceToken$inboundSchema: z.ZodType<
   PaymentServiceToken,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: PaymentServiceTokenType$inboundSchema.default("payment-service-token"),
+  type: z.literal("payment-service-token").default("payment-service-token"),
   id: z.string(),
-  approval_url: z.string().optional(),
+  approval_url: z.nullable(z.string()).optional(),
   payment_method_id: z.string(),
   payment_service_id: z.string(),
-  status: PaymentServiceTokenPaymentMethodStatus$inboundSchema,
-  token: z.string().optional(),
+  status: PaymentMethodStatus$inboundSchema,
+  token: z.nullable(z.string()).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
@@ -153,13 +76,13 @@ export const PaymentServiceToken$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PaymentServiceToken$Outbound = {
-  type: string;
+  type: "payment-service-token";
   id: string;
-  approval_url?: string | undefined;
+  approval_url?: string | null | undefined;
   payment_method_id: string;
   payment_service_id: string;
   status: string;
-  token?: string | undefined;
+  token?: string | null | undefined;
   created_at: string;
   updated_at: string;
 };
@@ -170,13 +93,15 @@ export const PaymentServiceToken$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentServiceToken
 > = z.object({
-  type: PaymentServiceTokenType$outboundSchema.default("payment-service-token"),
+  type: z.literal("payment-service-token").default(
+    "payment-service-token" as const,
+  ),
   id: z.string(),
-  approvalUrl: z.string().optional(),
+  approvalUrl: z.nullable(z.string()).optional(),
   paymentMethodId: z.string(),
   paymentServiceId: z.string(),
-  status: PaymentServiceTokenPaymentMethodStatus$outboundSchema,
-  token: z.string().optional(),
+  status: PaymentMethodStatus$outboundSchema,
+  token: z.nullable(z.string()).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {

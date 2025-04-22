@@ -13,7 +13,7 @@ export type ListPaymentMethodsRequest = {
   /**
    * A pointer to the page of results to return.
    */
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   /**
    * The maximum number of items that are at returned.
    */
@@ -21,20 +21,20 @@ export type ListPaymentMethodsRequest = {
   /**
    * The ID of the buyer to filter payment methods by.
    */
-  buyerId?: string | undefined;
+  buyerId?: string | null | undefined;
   /**
    * The external identifier of the buyer to filter payment methods by.
    */
-  buyerExternalIdentifier?: string | undefined;
-  status?: Array<components.PaymentMethodStatus> | undefined;
+  buyerExternalIdentifier?: string | null | undefined;
+  status?: Array<components.PaymentMethodStatus> | null | undefined;
   /**
    * The external identifier of the payment method to filter by.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
 };
 
 export type ListPaymentMethodsResponse = {
-  result: components.PaymentMethodCollection;
+  result: components.CollectionPaymentMethod;
 };
 
 /** @internal */
@@ -43,12 +43,13 @@ export const ListPaymentMethodsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  buyer_id: z.string().optional(),
-  buyer_external_identifier: z.string().optional(),
-  status: z.array(components.PaymentMethodStatus$inboundSchema).optional(),
-  external_identifier: z.string().optional(),
+  buyer_id: z.nullable(z.string()).optional(),
+  buyer_external_identifier: z.nullable(z.string()).optional(),
+  status: z.nullable(z.array(components.PaymentMethodStatus$inboundSchema))
+    .optional(),
+  external_identifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
@@ -59,12 +60,12 @@ export const ListPaymentMethodsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListPaymentMethodsRequest$Outbound = {
-  cursor?: string | undefined;
+  cursor?: string | null | undefined;
   limit: number;
-  buyer_id?: string | undefined;
-  buyer_external_identifier?: string | undefined;
-  status?: Array<string> | undefined;
-  external_identifier?: string | undefined;
+  buyer_id?: string | null | undefined;
+  buyer_external_identifier?: string | null | undefined;
+  status?: Array<string> | null | undefined;
+  external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -73,12 +74,13 @@ export const ListPaymentMethodsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPaymentMethodsRequest
 > = z.object({
-  cursor: z.string().optional(),
+  cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  buyerId: z.string().optional(),
-  buyerExternalIdentifier: z.string().optional(),
-  status: z.array(components.PaymentMethodStatus$outboundSchema).optional(),
-  externalIdentifier: z.string().optional(),
+  buyerId: z.nullable(z.string()).optional(),
+  buyerExternalIdentifier: z.nullable(z.string()).optional(),
+  status: z.nullable(z.array(components.PaymentMethodStatus$outboundSchema))
+    .optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
@@ -124,7 +126,7 @@ export const ListPaymentMethodsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.PaymentMethodCollection$inboundSchema,
+  Result: components.CollectionPaymentMethod$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -133,7 +135,7 @@ export const ListPaymentMethodsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListPaymentMethodsResponse$Outbound = {
-  Result: components.PaymentMethodCollection$Outbound;
+  Result: components.CollectionPaymentMethod$Outbound;
 };
 
 /** @internal */
@@ -142,7 +144,7 @@ export const ListPaymentMethodsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPaymentMethodsResponse
 > = z.object({
-  result: components.PaymentMethodCollection$outboundSchema,
+  result: components.CollectionPaymentMethod$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

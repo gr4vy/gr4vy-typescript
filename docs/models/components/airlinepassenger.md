@@ -1,7 +1,5 @@
 # AirlinePassenger
 
-Base model with JSON encoders.
-
 ## Example Usage
 
 ```typescript
@@ -16,9 +14,10 @@ let value: AirlinePassenger = {
   frequentFlyerNumber: "15885566",
   lastName: "Luhn",
   passportNumber: "11117700225",
-  phoneNumber: "+14155552671",
+  phoneNumber: "+1234567890",
   ticketNumber: "BA1236699999",
   title: "Mr.",
+  countryCode: "US",
 };
 ```
 
@@ -33,6 +32,7 @@ let value: AirlinePassenger = {
 | `frequentFlyerNumber`                                                                              | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The passenger's frequent flyer number.                                                             | 15885566                                                                                           |
 | `lastName`                                                                                         | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The last name, or family name, of the passenger.                                                   | Luhn                                                                                               |
 | `passportNumber`                                                                                   | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The passenger's unique passport number.                                                            | 11117700225                                                                                        |
-| `phoneNumber`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The phone number of the passenger. This number is formatted according to the E164 number standard. | +14155552671                                                                                       |
+| `phoneNumber`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The phone number of the passenger. This number is formatted according to the E164 number standard. | +1234567890                                                                                        |
 | `ticketNumber`                                                                                     | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The ticket number for a flight.                                                                    | BA1236699999                                                                                       |
 | `title`                                                                                            | *string*                                                                                           | :heavy_minus_sign:                                                                                 | Title of the passenger.                                                                            | Mr.                                                                                                |
+| `countryCode`                                                                                      | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The country of residence of the passenger                                                          | US                                                                                                 |

@@ -14,6 +14,7 @@ export type CreatePaymentMethodNetworkTokenRequest = {
    * The ID of the payment method
    */
   paymentMethodId: string;
+  timeoutInSeconds?: number | undefined;
   networkTokenCreate: components.NetworkTokenCreate;
 };
 
@@ -24,10 +25,12 @@ export const CreatePaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_method_id: z.string(),
+  timeout_in_seconds: z.number().default(1),
   NetworkTokenCreate: components.NetworkTokenCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
+    "timeout_in_seconds": "timeoutInSeconds",
     "NetworkTokenCreate": "networkTokenCreate",
   });
 });
@@ -35,6 +38,7 @@ export const CreatePaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreatePaymentMethodNetworkTokenRequest$Outbound = {
   payment_method_id: string;
+  timeout_in_seconds: number;
   NetworkTokenCreate: components.NetworkTokenCreate$Outbound;
 };
 
@@ -45,10 +49,12 @@ export const CreatePaymentMethodNetworkTokenRequest$outboundSchema: z.ZodType<
   CreatePaymentMethodNetworkTokenRequest
 > = z.object({
   paymentMethodId: z.string(),
+  timeoutInSeconds: z.number().default(1),
   networkTokenCreate: components.NetworkTokenCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",
+    timeoutInSeconds: "timeout_in_seconds",
     networkTokenCreate: "NetworkTokenCreate",
   });
 });

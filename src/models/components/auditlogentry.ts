@@ -5,128 +5,42 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  UserStatus,
-  UserStatus$inboundSchema,
-  UserStatus$outboundSchema,
-} from "./userstatus.js";
+  AuditLogAction,
+  AuditLogAction$inboundSchema,
+  AuditLogAction$outboundSchema,
+} from "./auditlogaction.js";
+import {
+  AuditLogEntryResource,
+  AuditLogEntryResource$inboundSchema,
+  AuditLogEntryResource$Outbound,
+  AuditLogEntryResource$outboundSchema,
+} from "./auditlogentryresource.js";
+import {
+  AuditLogEntryUser,
+  AuditLogEntryUser$inboundSchema,
+  AuditLogEntryUser$Outbound,
+  AuditLogEntryUser$outboundSchema,
+} from "./auditlogentryuser.js";
 
-/**
- * Always `audit-log`.
- */
-export const AuditLogEntryType = {
-  AuditLog: "audit-log",
-} as const;
-/**
- * Always `audit-log`.
- */
-export type AuditLogEntryType = ClosedEnum<typeof AuditLogEntryType>;
-
-/**
- * The resource that was changed.
- */
-export type Resource = {
-  /**
-   *  The type of the resource.
-   */
-  type: string;
-  /**
-   * The ID of the resource.
-   */
-  id: string;
-  /**
-   * The descriptive name of the resource.
-   */
-  name: string;
-};
-
-/**
- * The action that was performed.
- */
-export const AuditLogAction = {
-  Created: "created",
-  Updated: "updated",
-  Deleted: "deleted",
-  Voided: "voided",
-  Captured: "captured",
-} as const;
-/**
- * The action that was performed.
- */
-export type AuditLogAction = ClosedEnum<typeof AuditLogAction>;
-
-/**
- * Always `user`.
- */
-export const AuditLogEntryUserType = {
-  User: "user",
-} as const;
-/**
- * Always `user`.
- */
-export type AuditLogEntryUserType = ClosedEnum<typeof AuditLogEntryUserType>;
-
-/**
- * The user who performed the action.
- */
-export type User = {
-  /**
-   * Always `user`.
-   */
-  type?: AuditLogEntryUserType | undefined;
-  /**
-   * The ID of the user.
-   */
-  id?: string | undefined;
-  /**
-   * The name of the user.
-   */
-  name: string;
-  /**
-   * The email address for this user.
-   */
-  emailAddress?: string | undefined;
-  /**
-   * Whether this is a Gr4vy staff user.
-   */
-  isStaff: boolean;
-  /**
-   * The status of the user.
-   */
-  status: UserStatus;
-};
-
-/**
- * Base model with JSON encoders.
- */
 export type AuditLogEntry = {
   /**
    * Always `audit-log`.
    */
-  type?: AuditLogEntryType | undefined;
+  type?: "audit-log" | undefined;
   /**
    * The ID for the audit log entry.
    */
-  id?: string | undefined;
+  id?: string | null | undefined;
   /**
    * The ID of the merchant account this entry was created for.
    */
-  merchantAccountId?: string | undefined;
-  /**
-   * The resource that was changed.
-   */
-  resource: Resource;
-  /**
-   * The action that was performed.
-   */
+  merchantAccountId?: string | null | undefined;
+  resource: AuditLogEntryResource;
   action: AuditLogAction;
-  /**
-   * The user who performed the action.
-   */
-  user: User;
+  user: AuditLogEntryUser;
   /**
    * The date and time that the action was performed.
    */
@@ -134,205 +48,17 @@ export type AuditLogEntry = {
 };
 
 /** @internal */
-export const AuditLogEntryType$inboundSchema: z.ZodNativeEnum<
-  typeof AuditLogEntryType
-> = z.nativeEnum(AuditLogEntryType);
-
-/** @internal */
-export const AuditLogEntryType$outboundSchema: z.ZodNativeEnum<
-  typeof AuditLogEntryType
-> = AuditLogEntryType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogEntryType$ {
-  /** @deprecated use `AuditLogEntryType$inboundSchema` instead. */
-  export const inboundSchema = AuditLogEntryType$inboundSchema;
-  /** @deprecated use `AuditLogEntryType$outboundSchema` instead. */
-  export const outboundSchema = AuditLogEntryType$outboundSchema;
-}
-
-/** @internal */
-export const Resource$inboundSchema: z.ZodType<
-  Resource,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string(),
-  id: z.string(),
-  name: z.string(),
-});
-
-/** @internal */
-export type Resource$Outbound = {
-  type: string;
-  id: string;
-  name: string;
-};
-
-/** @internal */
-export const Resource$outboundSchema: z.ZodType<
-  Resource$Outbound,
-  z.ZodTypeDef,
-  Resource
-> = z.object({
-  type: z.string(),
-  id: z.string(),
-  name: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Resource$ {
-  /** @deprecated use `Resource$inboundSchema` instead. */
-  export const inboundSchema = Resource$inboundSchema;
-  /** @deprecated use `Resource$outboundSchema` instead. */
-  export const outboundSchema = Resource$outboundSchema;
-  /** @deprecated use `Resource$Outbound` instead. */
-  export type Outbound = Resource$Outbound;
-}
-
-export function resourceToJSON(resource: Resource): string {
-  return JSON.stringify(Resource$outboundSchema.parse(resource));
-}
-
-export function resourceFromJSON(
-  jsonString: string,
-): SafeParseResult<Resource, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Resource$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Resource' from JSON`,
-  );
-}
-
-/** @internal */
-export const AuditLogAction$inboundSchema: z.ZodNativeEnum<
-  typeof AuditLogAction
-> = z.nativeEnum(AuditLogAction);
-
-/** @internal */
-export const AuditLogAction$outboundSchema: z.ZodNativeEnum<
-  typeof AuditLogAction
-> = AuditLogAction$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogAction$ {
-  /** @deprecated use `AuditLogAction$inboundSchema` instead. */
-  export const inboundSchema = AuditLogAction$inboundSchema;
-  /** @deprecated use `AuditLogAction$outboundSchema` instead. */
-  export const outboundSchema = AuditLogAction$outboundSchema;
-}
-
-/** @internal */
-export const AuditLogEntryUserType$inboundSchema: z.ZodNativeEnum<
-  typeof AuditLogEntryUserType
-> = z.nativeEnum(AuditLogEntryUserType);
-
-/** @internal */
-export const AuditLogEntryUserType$outboundSchema: z.ZodNativeEnum<
-  typeof AuditLogEntryUserType
-> = AuditLogEntryUserType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogEntryUserType$ {
-  /** @deprecated use `AuditLogEntryUserType$inboundSchema` instead. */
-  export const inboundSchema = AuditLogEntryUserType$inboundSchema;
-  /** @deprecated use `AuditLogEntryUserType$outboundSchema` instead. */
-  export const outboundSchema = AuditLogEntryUserType$outboundSchema;
-}
-
-/** @internal */
-export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
-  .object({
-    type: AuditLogEntryUserType$inboundSchema.default("user"),
-    id: z.string().optional(),
-    name: z.string(),
-    email_address: z.string().optional(),
-    is_staff: z.boolean(),
-    status: UserStatus$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "email_address": "emailAddress",
-      "is_staff": "isStaff",
-    });
-  });
-
-/** @internal */
-export type User$Outbound = {
-  type: string;
-  id?: string | undefined;
-  name: string;
-  email_address?: string | undefined;
-  is_staff: boolean;
-  status: string;
-};
-
-/** @internal */
-export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> =
-  z.object({
-    type: AuditLogEntryUserType$outboundSchema.default("user"),
-    id: z.string().optional(),
-    name: z.string(),
-    emailAddress: z.string().optional(),
-    isStaff: z.boolean(),
-    status: UserStatus$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      emailAddress: "email_address",
-      isStaff: "is_staff",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace User$ {
-  /** @deprecated use `User$inboundSchema` instead. */
-  export const inboundSchema = User$inboundSchema;
-  /** @deprecated use `User$outboundSchema` instead. */
-  export const outboundSchema = User$outboundSchema;
-  /** @deprecated use `User$Outbound` instead. */
-  export type Outbound = User$Outbound;
-}
-
-export function userToJSON(user: User): string {
-  return JSON.stringify(User$outboundSchema.parse(user));
-}
-
-export function userFromJSON(
-  jsonString: string,
-): SafeParseResult<User, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => User$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'User' from JSON`,
-  );
-}
-
-/** @internal */
 export const AuditLogEntry$inboundSchema: z.ZodType<
   AuditLogEntry,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: AuditLogEntryType$inboundSchema.default("audit-log"),
-  id: z.string().optional(),
-  merchant_account_id: z.string().optional(),
-  resource: z.lazy(() => Resource$inboundSchema),
+  type: z.literal("audit-log").default("audit-log"),
+  id: z.nullable(z.string()).optional(),
+  merchant_account_id: z.nullable(z.string()).optional(),
+  resource: AuditLogEntryResource$inboundSchema,
   action: AuditLogAction$inboundSchema,
-  user: z.lazy(() => User$inboundSchema),
+  user: AuditLogEntryUser$inboundSchema,
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
   return remap$(v, {
@@ -342,12 +68,12 @@ export const AuditLogEntry$inboundSchema: z.ZodType<
 
 /** @internal */
 export type AuditLogEntry$Outbound = {
-  type: string;
-  id?: string | undefined;
-  merchant_account_id?: string | undefined;
-  resource: Resource$Outbound;
+  type: "audit-log";
+  id?: string | null | undefined;
+  merchant_account_id?: string | null | undefined;
+  resource: AuditLogEntryResource$Outbound;
   action: string;
-  user: User$Outbound;
+  user: AuditLogEntryUser$Outbound;
   timestamp: string;
 };
 
@@ -357,12 +83,12 @@ export const AuditLogEntry$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AuditLogEntry
 > = z.object({
-  type: AuditLogEntryType$outboundSchema.default("audit-log"),
-  id: z.string().optional(),
-  merchantAccountId: z.string().optional(),
-  resource: z.lazy(() => Resource$outboundSchema),
+  type: z.literal("audit-log").default("audit-log" as const),
+  id: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
+  resource: AuditLogEntryResource$outboundSchema,
   action: AuditLogAction$outboundSchema,
-  user: z.lazy(() => User$outboundSchema),
+  user: AuditLogEntryUser$outboundSchema,
   timestamp: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
   return remap$(v, {

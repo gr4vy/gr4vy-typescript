@@ -13,11 +13,16 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * The method to use, this can be any of the methods that support redirect requests.
  */
 export const RedirectPaymentMethodCreateMethod = {
+  Abitab: "abitab",
+  Affirm: "affirm",
   Afterpay: "afterpay",
   Alipay: "alipay",
   Alipayhk: "alipayhk",
+  Arcuspaynetwork: "arcuspaynetwork",
   Bacs: "bacs",
+  Bancontact: "bancontact",
   Banked: "banked",
+  Bcp: "bcp",
   Becs: "becs",
   Bitpay: "bitpay",
   Boleto: "boleto",
@@ -28,65 +33,78 @@ export const RedirectPaymentMethodCreateMethod = {
   Dcb: "dcb",
   Dlocal: "dlocal",
   Ebanx: "ebanx",
+  Efecty: "efecty",
+  Eps: "eps",
   Everydaypay: "everydaypay",
   Gcash: "gcash",
+  Gem: "gem",
+  Gemds: "gemds",
   Giropay: "giropay",
+  Givingblock: "givingblock",
   Gocardless: "gocardless",
   Gopay: "gopay",
   Grabpay: "grabpay",
   Ideal: "ideal",
   Kakaopay: "kakaopay",
   Kcp: "kcp",
+  Khipu: "khipu",
   Klarna: "klarna",
+  Latitude: "latitude",
+  Latitudeds: "latitudeds",
   Laybuy: "laybuy",
+  Linepay: "linepay",
   Linkaja: "linkaja",
   Maybankqrpay: "maybankqrpay",
+  Mercadopago: "mercadopago",
   Multibanco: "multibanco",
+  Multipago: "multipago",
   Netbanking: "netbanking",
+  Nupay: "nupay",
+  Nequi: "nequi",
+  Oney10x: "oney_10x",
+  Oney12x: "oney_12x",
   Oney3x: "oney_3x",
   Oney4x: "oney_4x",
   Oney6x: "oney_6x",
-  Oney10x: "oney_10x",
-  Oney12x: "oney_12x",
   Ovo: "ovo",
   Oxxo: "oxxo",
+  Pagoefectivo: "pagoefectivo",
+  Payid: "payid",
   Paymaya: "paymaya",
   Paypal: "paypal",
   Paypalpaylater: "paypalpaylater",
+  Payto: "payto",
+  Payvalida: "payvalida",
+  Picpay: "picpay",
   Pix: "pix",
+  Pse: "pse",
   Rabbitlinepay: "rabbitlinepay",
+  Rapipago: "rapipago",
+  Razorpay: "razorpay",
+  Redpagos: "redpagos",
   Scalapay: "scalapay",
   Sepa: "sepa",
+  Servipag: "servipag",
   Shopeepay: "shopeepay",
   Singteldash: "singteldash",
+  Smartpay: "smartpay",
   Sofort: "sofort",
+  Spei: "spei",
+  Stitch: "stitch",
   Stripedd: "stripedd",
   Thaiqr: "thaiqr",
   Touchngo: "touchngo",
   Truemoney: "truemoney",
   Trustly: "trustly",
   Trustlyeurope: "trustlyeurope",
-  Givingblock: "givingblock",
+  Upi: "upi",
   Venmo: "venmo",
   Vipps: "vipps",
+  Waave: "waave",
   Webpay: "webpay",
   Wechat: "wechat",
+  Yape: "yape",
   Zippay: "zippay",
-  Bancontact: "bancontact",
-  Eps: "eps",
-  Linepay: "linepay",
-  Razorpay: "razorpay",
-  Multipago: "multipago",
-  Waave: "waave",
-  Smartpay: "smartpay",
-  Payid: "payid",
-  Payto: "payto",
-  Spei: "spei",
-  Pse: "pse",
-  Efecty: "efecty",
-  Upi: "upi",
-  Mercadopago: "mercadopago",
-  Arcuspaynetwork: "arcuspaynetwork",
 } as const;
 /**
  * The method to use, this can be any of the methods that support redirect requests.
@@ -96,7 +114,7 @@ export type RedirectPaymentMethodCreateMethod = ClosedEnum<
 >;
 
 /**
- * Base model with JSON encoders.
+ * Create a transaction for an APM/LPM that requires a redirect.
  */
 export type RedirectPaymentMethodCreate = {
   /**
@@ -106,11 +124,11 @@ export type RedirectPaymentMethodCreate = {
   /**
    * The `id` of a stored buyer to use Use this instead of the `buyer_external_identifier`.
    */
-  buyerId?: string | undefined;
+  buyerId?: string | null | undefined;
   /**
    * The `external_identifier` of a stored buyer to use. Use this instead of the `buyer_id`.
    */
-  buyerExternalIdentifier?: string | undefined;
+  buyerExternalIdentifier?: string | null | undefined;
   /**
    * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
    */
@@ -126,7 +144,7 @@ export type RedirectPaymentMethodCreate = {
   /**
    * The merchant identifier for this payment method.
    */
-  externalIdentifier?: string | undefined;
+  externalIdentifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -158,12 +176,12 @@ export const RedirectPaymentMethodCreate$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   method: RedirectPaymentMethodCreateMethod$inboundSchema,
-  buyer_id: z.string().optional(),
-  buyer_external_identifier: z.string().optional(),
+  buyer_id: z.nullable(z.string()).optional(),
+  buyer_external_identifier: z.nullable(z.string()).optional(),
   country: z.string(),
   currency: z.string(),
   redirect_url: z.string(),
-  external_identifier: z.string().optional(),
+  external_identifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
@@ -176,12 +194,12 @@ export const RedirectPaymentMethodCreate$inboundSchema: z.ZodType<
 /** @internal */
 export type RedirectPaymentMethodCreate$Outbound = {
   method: string;
-  buyer_id?: string | undefined;
-  buyer_external_identifier?: string | undefined;
+  buyer_id?: string | null | undefined;
+  buyer_external_identifier?: string | null | undefined;
   country: string;
   currency: string;
   redirect_url: string;
-  external_identifier?: string | undefined;
+  external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -191,12 +209,12 @@ export const RedirectPaymentMethodCreate$outboundSchema: z.ZodType<
   RedirectPaymentMethodCreate
 > = z.object({
   method: RedirectPaymentMethodCreateMethod$outboundSchema,
-  buyerId: z.string().optional(),
-  buyerExternalIdentifier: z.string().optional(),
+  buyerId: z.nullable(z.string()).optional(),
+  buyerExternalIdentifier: z.nullable(z.string()).optional(),
   country: z.string(),
   currency: z.string(),
   redirectUrl: z.string(),
-  externalIdentifier: z.string().optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",

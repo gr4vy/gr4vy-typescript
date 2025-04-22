@@ -18,29 +18,14 @@ export class CheckoutSessions extends ClientSDK {
    * Create a new checkout session.
    */
   async create(
-    request?: components.CheckoutSessionUpdate | undefined,
+    checkoutSessionUpdate?: components.CheckoutSessionUpdate | null | undefined,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.CheckoutSession> {
     return unwrapAsync(checkoutSessionsCreate(
       this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get checkout session
-   *
-   * @remarks
-   * Retrieve the information stored on a checkout session.
-   */
-  async get(
-    sessionId: string,
-    options?: RequestOptions,
-  ): Promise<components.CheckoutSession> {
-    return unwrapAsync(checkoutSessionsGet(
-      this,
-      sessionId,
+      checkoutSessionUpdate,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -54,12 +39,33 @@ export class CheckoutSessions extends ClientSDK {
   async update(
     checkoutSessionUpdate: components.CheckoutSessionUpdate,
     sessionId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.CheckoutSession> {
     return unwrapAsync(checkoutSessionsUpdate(
       this,
       checkoutSessionUpdate,
       sessionId,
+      timeoutInSeconds,
+      options,
+    ));
+  }
+
+  /**
+   * Get checkout session
+   *
+   * @remarks
+   * Retrieve the information stored on a checkout session.
+   */
+  async get(
+    sessionId: string,
+    timeoutInSeconds?: number | undefined,
+    options?: RequestOptions,
+  ): Promise<components.CheckoutSession> {
+    return unwrapAsync(checkoutSessionsGet(
+      this,
+      sessionId,
+      timeoutInSeconds,
       options,
     ));
   }
@@ -72,11 +78,13 @@ export class CheckoutSessions extends ClientSDK {
    */
   async delete(
     sessionId: string,
+    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(checkoutSessionsDelete(
       this,
       sessionId,
+      timeoutInSeconds,
       options,
     ));
   }

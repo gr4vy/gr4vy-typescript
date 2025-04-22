@@ -3,13 +3,26 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
+import { AccountUpdater } from "./accountupdater.js";
 import { AuditLogs } from "./auditlogs.js";
 import { Buyers } from "./buyers.js";
+import { CardSchemeDefinitions } from "./cardschemedefinitions.js";
 import { CheckoutSessions } from "./checkoutsessions.js";
+import { DigitalWallets } from "./digitalwallets.js";
+import { GiftCards } from "./giftcards.js";
 import { PaymentMethods } from "./paymentmethods.js";
+import { PaymentOptions } from "./paymentoptions.js";
 import { Payouts } from "./payouts.js";
+import { Refunds } from "./refunds.js";
+import { Transaction } from "./transaction.js";
+import { Transactions } from "./transactions.js";
 
 export class Gr4vy extends ClientSDK {
+  private _accountUpdater?: AccountUpdater;
+  get accountUpdater(): AccountUpdater {
+    return (this._accountUpdater ??= new AccountUpdater(this._options));
+  }
+
   private _buyers?: Buyers;
   get buyers(): Buyers {
     return (this._buyers ??= new Buyers(this._options));
@@ -18,6 +31,43 @@ export class Gr4vy extends ClientSDK {
   private _paymentMethods?: PaymentMethods;
   get paymentMethods(): PaymentMethods {
     return (this._paymentMethods ??= new PaymentMethods(this._options));
+  }
+
+  private _giftCards?: GiftCards;
+  get giftCards(): GiftCards {
+    return (this._giftCards ??= new GiftCards(this._options));
+  }
+
+  private _cardSchemeDefinitions?: CardSchemeDefinitions;
+  get cardSchemeDefinitions(): CardSchemeDefinitions {
+    return (this._cardSchemeDefinitions ??= new CardSchemeDefinitions(
+      this._options,
+    ));
+  }
+
+  private _digitalWallets?: DigitalWallets;
+  get digitalWallets(): DigitalWallets {
+    return (this._digitalWallets ??= new DigitalWallets(this._options));
+  }
+
+  private _transactions?: Transactions;
+  get transactions(): Transactions {
+    return (this._transactions ??= new Transactions(this._options));
+  }
+
+  private _transaction?: Transaction;
+  get transaction(): Transaction {
+    return (this._transaction ??= new Transaction(this._options));
+  }
+
+  private _refunds?: Refunds;
+  get refunds(): Refunds {
+    return (this._refunds ??= new Refunds(this._options));
+  }
+
+  private _paymentOptions?: PaymentOptions;
+  get paymentOptions(): PaymentOptions {
+    return (this._paymentOptions ??= new PaymentOptions(this._options));
   }
 
   private _auditLogs?: AuditLogs;
