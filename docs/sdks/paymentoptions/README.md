@@ -81,7 +81,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
+        sellerCountry: "GB",
       },
     ],
   });
@@ -168,7 +168,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
+        sellerCountry: "GB",
       },
     ],
   });

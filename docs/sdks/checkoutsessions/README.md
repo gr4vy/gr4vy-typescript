@@ -43,7 +43,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "GB",
+        sellerCountry: "US",
       },
       {
         name: "GoPro HD",
@@ -61,7 +61,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
+        sellerCountry: "GB",
       },
     ],
     metadata: {
@@ -232,7 +232,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "GB",
+        sellerCountry: "US",
       },
       {
         name: "GoPro HD",
@@ -250,7 +250,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
+        sellerCountry: "GB",
       },
     ],
     metadata: {
@@ -478,7 +478,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
+        sellerCountry: "GB",
       },
       {
         name: "GoPro HD",
@@ -496,7 +496,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "GB",
+        sellerCountry: "US",
       },
     ],
     metadata: {
@@ -706,7 +706,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
+        sellerCountry: "GB",
       },
       {
         name: "GoPro HD",
@@ -724,7 +724,7 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "GB",
+        sellerCountry: "US",
       },
     ],
     metadata: {

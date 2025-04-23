@@ -125,11 +125,11 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentMethods.create({
-    method: "zippay",
+    method: "paypal",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
     country: "GB",
-    currency: "EUR",
+    currency: "GBP",
     redirectUrl: "https://standard-utilization.com/",
     externalIdentifier: "payment-method-12345",
   });
@@ -157,11 +157,11 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsCreate(gr4vy, {
-    method: "zippay",
+    method: "paypal",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
     country: "GB",
-    currency: "EUR",
+    currency: "GBP",
     redirectUrl: "https://standard-utilization.com/",
     externalIdentifier: "payment-method-12345",
   });

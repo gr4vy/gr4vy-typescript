@@ -885,7 +885,7 @@ Gr4vy: The Gr4vy API.
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [@gr4vy/js](#gr4vyjs)
+* [Gr4vy Typescript SDK (Beta)](#gr4vy-typescript-sdk-beta)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
