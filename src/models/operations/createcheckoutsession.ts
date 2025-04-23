@@ -9,10 +9,74 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateCheckoutSessionBody =
+  | components.CheckoutSessionUpdate
+  | Array<components.BaseModel>;
+
 export type CreateCheckoutSessionRequest = {
   timeoutInSeconds?: number | undefined;
-  checkoutSessionUpdate?: components.CheckoutSessionUpdate | null | undefined;
+  requestBody?:
+    | components.CheckoutSessionUpdate
+    | Array<components.BaseModel>
+    | null
+    | undefined;
 };
+
+/** @internal */
+export const CreateCheckoutSessionBody$inboundSchema: z.ZodType<
+  CreateCheckoutSessionBody,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  components.CheckoutSessionUpdate$inboundSchema,
+  z.array(components.BaseModel$inboundSchema),
+]);
+
+/** @internal */
+export type CreateCheckoutSessionBody$Outbound =
+  | components.CheckoutSessionUpdate$Outbound
+  | Array<components.BaseModel$Outbound>;
+
+/** @internal */
+export const CreateCheckoutSessionBody$outboundSchema: z.ZodType<
+  CreateCheckoutSessionBody$Outbound,
+  z.ZodTypeDef,
+  CreateCheckoutSessionBody
+> = z.union([
+  components.CheckoutSessionUpdate$outboundSchema,
+  z.array(components.BaseModel$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateCheckoutSessionBody$ {
+  /** @deprecated use `CreateCheckoutSessionBody$inboundSchema` instead. */
+  export const inboundSchema = CreateCheckoutSessionBody$inboundSchema;
+  /** @deprecated use `CreateCheckoutSessionBody$outboundSchema` instead. */
+  export const outboundSchema = CreateCheckoutSessionBody$outboundSchema;
+  /** @deprecated use `CreateCheckoutSessionBody$Outbound` instead. */
+  export type Outbound = CreateCheckoutSessionBody$Outbound;
+}
+
+export function createCheckoutSessionBodyToJSON(
+  createCheckoutSessionBody: CreateCheckoutSessionBody,
+): string {
+  return JSON.stringify(
+    CreateCheckoutSessionBody$outboundSchema.parse(createCheckoutSessionBody),
+  );
+}
+
+export function createCheckoutSessionBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateCheckoutSessionBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateCheckoutSessionBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateCheckoutSessionBody' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateCheckoutSessionRequest$inboundSchema: z.ZodType<
@@ -21,21 +85,25 @@ export const CreateCheckoutSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
-  CheckoutSessionUpdate: z.nullable(
-    components.CheckoutSessionUpdate$inboundSchema,
+  RequestBody: z.nullable(
+    z.union([
+      components.CheckoutSessionUpdate$inboundSchema,
+      z.array(components.BaseModel$inboundSchema),
+    ]),
   ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
-    "CheckoutSessionUpdate": "checkoutSessionUpdate",
+    "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type CreateCheckoutSessionRequest$Outbound = {
   timeout_in_seconds: number;
-  CheckoutSessionUpdate?:
+  RequestBody?:
     | components.CheckoutSessionUpdate$Outbound
+    | Array<components.BaseModel$Outbound>
     | null
     | undefined;
 };
@@ -47,13 +115,16 @@ export const CreateCheckoutSessionRequest$outboundSchema: z.ZodType<
   CreateCheckoutSessionRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
-  checkoutSessionUpdate: z.nullable(
-    components.CheckoutSessionUpdate$outboundSchema,
+  requestBody: z.nullable(
+    z.union([
+      components.CheckoutSessionUpdate$outboundSchema,
+      z.array(components.BaseModel$outboundSchema),
+    ]),
   ).optional(),
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
-    checkoutSessionUpdate: "CheckoutSessionUpdate",
+    requestBody: "RequestBody",
   });
 });
 

@@ -43,24 +43,6 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
-      },
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
         sellerCountry: "GB",
       },
     ],
@@ -89,7 +71,7 @@ async function run() {
         },
         taxId: {
           value: "12345678931",
-          kind: "br.cpf",
+          kind: "id.nik",
         },
       },
       shippingDetails: {
@@ -153,32 +135,6 @@ async function run() {
           title: "Mr.",
           countryCode: "US",
         },
-        {
-          ageGroup: "adult",
-          dateOfBirth: new RFCDate("2013-07-16"),
-          emailAddress: "john@example.com",
-          firstName: "John",
-          frequentFlyerNumber: "15885566",
-          lastName: "Luhn",
-          passportNumber: "11117700225",
-          phoneNumber: "+1234567890",
-          ticketNumber: "BA1236699999",
-          title: "Mr.",
-          countryCode: "US",
-        },
-        {
-          ageGroup: "adult",
-          dateOfBirth: new RFCDate("2013-07-16"),
-          emailAddress: "john@example.com",
-          firstName: "John",
-          frequentFlyerNumber: "15885566",
-          lastName: "Luhn",
-          passportNumber: "11117700225",
-          phoneNumber: "+1234567890",
-          ticketNumber: "BA1236699999",
-          title: "Mr.",
-          countryCode: "US",
-        },
       ],
       reservationSystem: "Amadeus",
       restrictedTicket: false,
@@ -189,6 +145,7 @@ async function run() {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
+    expiresIn: 3600,
   });
 
   // Handle the result
@@ -205,7 +162,6 @@ The standalone function version of this method:
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
 import { checkoutSessionsCreate } from "@gr4vy/sdk/funcs/checkoutSessionsCreate.js";
-import { RFCDate } from "@gr4vy/sdk/types";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -214,171 +170,9 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await checkoutSessionsCreate(gr4vy, {
-    cartItems: [
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "US",
-      },
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "GB",
-      },
-    ],
-    metadata: {
-      "cohort": "cohort-a",
-      "order_id": "order-12345",
-    },
-    buyer: {
-      displayName: "John Doe",
-      externalIdentifier: "buyer-12345",
-      billingDetails: {
-        firstName: "John",
-        lastName: "Doe",
-        emailAddress: "john@example.com",
-        phoneNumber: "+1234567890",
-        address: {
-          city: "San Jose",
-          country: "US",
-          postalCode: "94560",
-          state: "California",
-          stateCode: "US-CA",
-          houseNumberOrName: "10",
-          line1: "Stafford Appartments",
-          line2: "29th Street",
-          organization: "Gr4vy",
-        },
-        taxId: {
-          value: "12345678931",
-          kind: "br.cpf",
-        },
-      },
-      shippingDetails: {
-        firstName: "John",
-        lastName: "Doe",
-        emailAddress: "john@example.com",
-        phoneNumber: "+1234567890",
-        address: {
-          city: "San Jose",
-          country: "US",
-          postalCode: "94560",
-          state: "California",
-          stateCode: "US-CA",
-          houseNumberOrName: "10",
-          line1: "Stafford Appartments",
-          line2: "29th Street",
-          organization: "Gr4vy",
-        },
-      },
-    },
-    airline: {
-      bookingCode: "X36Q9C",
-      issuedAddress: "123 Broadway, New York",
-      issuedAt: new Date("2013-07-16T19:23:00.000+00:00"),
-      issuingCarrierCode: "A3",
-      legs: [
-        {
-          arrivalAirport: "LAX",
-          arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
-          arrivalCity: "Los Angeles",
-          arrivalCountry: "US",
-          carrierCode: "BA",
-          couponNumber: "15885566",
-          departureAirport: "LHR",
-          departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
-          departureCity: "London",
-          departureCountry: "GB",
-          departureTaxAmount: 1200,
-          fareAmount: 129900,
-          fareBasisCode: "FY",
-          feeAmount: 1200,
-          flightClass: "E",
-          flightNumber: "101",
-          routeType: "round_trip",
-          stopOver: false,
-          taxAmount: 1200,
-        },
-      ],
-      passengerNameRecord: "JOHN L",
-      passengers: [
-        {
-          ageGroup: "adult",
-          dateOfBirth: new RFCDate("2013-07-16"),
-          emailAddress: "john@example.com",
-          firstName: "John",
-          frequentFlyerNumber: "15885566",
-          lastName: "Luhn",
-          passportNumber: "11117700225",
-          phoneNumber: "+1234567890",
-          ticketNumber: "BA1236699999",
-          title: "Mr.",
-          countryCode: "US",
-        },
-        {
-          ageGroup: "adult",
-          dateOfBirth: new RFCDate("2013-07-16"),
-          emailAddress: "john@example.com",
-          firstName: "John",
-          frequentFlyerNumber: "15885566",
-          lastName: "Luhn",
-          passportNumber: "11117700225",
-          phoneNumber: "+1234567890",
-          ticketNumber: "BA1236699999",
-          title: "Mr.",
-          countryCode: "US",
-        },
-        {
-          ageGroup: "adult",
-          dateOfBirth: new RFCDate("2013-07-16"),
-          emailAddress: "john@example.com",
-          firstName: "John",
-          frequentFlyerNumber: "15885566",
-          lastName: "Luhn",
-          passportNumber: "11117700225",
-          phoneNumber: "+1234567890",
-          ticketNumber: "BA1236699999",
-          title: "Mr.",
-          countryCode: "US",
-        },
-      ],
-      reservationSystem: "Amadeus",
-      restrictedTicket: false,
-      ticketDeliveryMethod: "electronic",
-      ticketNumber: "123-1234-151555",
-      travelAgencyCode: "12345",
-      travelAgencyInvoiceNumber: "EG15555155",
-      travelAgencyName: "ACME Agency",
-      travelAgencyPlanName: "B733",
-    },
-  });
+  const res = await checkoutSessionsCreate(gr4vy, [
+    {},
+  ]);
 
   if (!res.ok) {
     throw res.error;
@@ -398,7 +192,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `timeoutInSeconds`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `checkoutSessionUpdate`                                                                                                                                                        | [components.CheckoutSessionUpdate](../../models/components/checkoutsessionupdate.md)                                                                                           | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `requestBody`                                                                                                                                                                  | *operations.CreateCheckoutSessionBody*                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

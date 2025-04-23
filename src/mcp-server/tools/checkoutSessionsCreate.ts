@@ -4,13 +4,12 @@
 
 import * as z from "zod";
 import { checkoutSessionsCreate } from "../../funcs/checkoutSessionsCreate.js";
-import * as components from "../../models/components/index.js";
+import * as operations from "../../models/operations/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  checkoutSessionUpdate: z.nullable(
-    components.CheckoutSessionUpdate$inboundSchema,
-  ).optional(),
+  requestBody: z.nullable(operations.CreateCheckoutSessionBody$inboundSchema)
+    .optional(),
   timeoutInSeconds: z.number().default(1),
 };
 
@@ -23,7 +22,7 @@ Create a new checkout session.`,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await checkoutSessionsCreate(
       client,
-      args.checkoutSessionUpdate,
+      args.requestBody,
       args.timeoutInSeconds,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

@@ -14,7 +14,7 @@ export const tool$transactionsList: ToolDefinition<typeof args> = {
   name: "transactions-list",
   description: `List transactions
 
-List all transactions.`,
+List all transactions for a specific merchant account sorted by most recently created.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await transactionsList(

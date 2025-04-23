@@ -18,6 +18,7 @@ export * from "./auditlogentry.js";
 export * from "./auditlogentryresource.js";
 export * from "./auditlogentryuser.js";
 export * from "./avsresponsecode.js";
+export * from "./basemodel.js";
 export * from "./billingdetailsinput.js";
 export * from "./billingdetailsoutput.js";
 export * from "./browserinfo.js";

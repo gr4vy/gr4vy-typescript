@@ -26,7 +26,7 @@ export class Transactions extends ClientSDK {
    * List transactions
    *
    * @remarks
-   * List all transactions.
+   * List all transactions for a specific merchant account sorted by most recently created.
    */
   async list(
     request?: operations.ListTransactionsRequest | undefined,

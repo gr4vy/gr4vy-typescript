@@ -15,7 +15,7 @@
 
 ## list
 
-List all transactions.
+List all transactions for a specific merchant account sorted by most recently created.
 
 ### Example Usage
 

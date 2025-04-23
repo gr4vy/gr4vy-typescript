@@ -7,7 +7,7 @@ import { CreateCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
 import { RFCDate } from "@gr4vy/sdk/types";
 
 let value: CreateCheckoutSessionRequest = {
-  checkoutSessionUpdate: {
+  requestBody: {
     cartItems: [
       {
         name: "GoPro HD",
@@ -25,7 +25,7 @@ let value: CreateCheckoutSessionRequest = {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "US",
+        sellerCountry: "GB",
       },
     ],
     metadata: {
@@ -53,7 +53,7 @@ let value: CreateCheckoutSessionRequest = {
         },
         taxId: {
           value: "12345678931",
-          kind: "li.uid",
+          kind: "tw.vat",
         },
       },
       shippingDetails: {
@@ -127,13 +127,14 @@ let value: CreateCheckoutSessionRequest = {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
+    expiresIn: 3600,
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `timeoutInSeconds`                                                                   | *number*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
-| `checkoutSessionUpdate`                                                              | [components.CheckoutSessionUpdate](../../models/components/checkoutsessionupdate.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| Field                                  | Type                                   | Required                               | Description                            |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| `timeoutInSeconds`                     | *number*                               | :heavy_minus_sign:                     | N/A                                    |
+| `requestBody`                          | *operations.CreateCheckoutSessionBody* | :heavy_minus_sign:                     | N/A                                    |

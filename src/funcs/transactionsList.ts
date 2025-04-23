@@ -35,7 +35,7 @@ import {
  * List transactions
  *
  * @remarks
- * List all transactions.
+ * List all transactions for a specific merchant account sorted by most recently created.
  */
 export function transactionsList(
   client: Gr4vyCore,

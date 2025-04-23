@@ -33,7 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function checkoutSessionsCreate(
   client: Gr4vyCore,
-  checkoutSessionUpdate?: components.CheckoutSessionUpdate | null | undefined,
+  requestBody?: operations.CreateCheckoutSessionBody | null | undefined,
   timeoutInSeconds?: number | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -62,7 +62,7 @@ export function checkoutSessionsCreate(
 > {
   return new APIPromise($do(
     client,
-    checkoutSessionUpdate,
+    requestBody,
     timeoutInSeconds,
     options,
   ));
@@ -70,7 +70,7 @@ export function checkoutSessionsCreate(
 
 async function $do(
   client: Gr4vyCore,
-  checkoutSessionUpdate?: components.CheckoutSessionUpdate | null | undefined,
+  requestBody?: operations.CreateCheckoutSessionBody | null | undefined,
   timeoutInSeconds?: number | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -101,7 +101,7 @@ async function $do(
   ]
 > {
   const input: operations.CreateCheckoutSessionRequest | undefined = {
-    checkoutSessionUpdate: checkoutSessionUpdate,
+    requestBody: requestBody,
     timeoutInSeconds: timeoutInSeconds,
   };
 
@@ -117,9 +117,7 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload?.CheckoutSessionUpdate, {
-    explode: true,
-  });
+  const body = encodeJSON("body", payload?.RequestBody, { explode: true });
 
   const path = pathToFunc("/checkout/sessions")();
 

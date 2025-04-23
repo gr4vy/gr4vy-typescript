@@ -8,6 +8,7 @@ import { checkoutSessionsGet } from "../funcs/checkoutSessionsGet.js";
 import { checkoutSessionsUpdate } from "../funcs/checkoutSessionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class CheckoutSessions extends ClientSDK {
@@ -18,13 +19,13 @@ export class CheckoutSessions extends ClientSDK {
    * Create a new checkout session.
    */
   async create(
-    checkoutSessionUpdate?: components.CheckoutSessionUpdate | null | undefined,
+    requestBody?: operations.CreateCheckoutSessionBody | null | undefined,
     timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.CheckoutSession> {
     return unwrapAsync(checkoutSessionsCreate(
       this,
-      checkoutSessionUpdate,
+      requestBody,
       timeoutInSeconds,
       options,
     ));
