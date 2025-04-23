@@ -8,6 +8,7 @@ sources:
             - location: ./.speakeasy/overlays/servers.yaml
             - location: ./.speakeasy/overlays/security.yaml
             - location: ./.speakeasy/overlays/enums.yaml
+            - location: ./.speakeasy/overlays/retries.yaml
         registry:
             location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:
