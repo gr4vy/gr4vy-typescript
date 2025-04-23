@@ -8,7 +8,9 @@ import { giftCardsGet } from "../funcs/giftCardsGet.js";
 import { giftCardsList } from "../funcs/giftCardsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Balances } from "./balances.js";
 
 export class GiftCards extends ClientSDK {
@@ -84,8 +86,10 @@ export class GiftCards extends ClientSDK {
     cursor?: string | null | undefined,
     limit?: number | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionGiftCard> {
-    return unwrapAsync(giftCardsList(
+  ): Promise<
+    PageIterator<operations.ListGiftCardsResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(giftCardsList(
       this,
       buyerExternalIdentifier,
       buyerId,

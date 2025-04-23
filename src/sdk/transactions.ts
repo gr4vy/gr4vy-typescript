@@ -13,6 +13,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Gr4vyTransactionsRefunds } from "./gr4vytransactionsrefunds.js";
 
 export class Transactions extends ClientSDK {
@@ -30,8 +31,10 @@ export class Transactions extends ClientSDK {
   async list(
     request?: operations.ListTransactionsRequest | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionTransactionSummary> {
-    return unwrapAsync(transactionsList(
+  ): Promise<
+    PageIterator<operations.ListTransactionsResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(transactionsList(
       this,
       request,
       options,

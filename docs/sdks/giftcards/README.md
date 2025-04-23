@@ -296,8 +296,10 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.giftCards.list();
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -326,8 +328,10 @@ async function run() {
 
   const { value: result } = res;
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -347,7 +351,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionGiftCard](../../models/components/collectiongiftcard.md)\>**
+**Promise\<[operations.ListGiftCardsResponse](../../models/operations/listgiftcardsresponse.md)\>**
 
 ### Errors
 

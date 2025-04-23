@@ -3,6 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
+import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -10,7 +11,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -24,6 +24,12 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
  * List gift cards
@@ -39,27 +45,30 @@ export function giftCardsList(
   limit?: number | undefined,
   options?: RequestOptions,
 ): APIPromise<
-  Result<
-    components.CollectionGiftCard,
-    | errors.Error400
-    | errors.Error401
-    | errors.ListGiftCardsResponse403ListGiftCards
-    | errors.Error404
-    | errors.Error405
-    | errors.Error409
-    | errors.HTTPValidationError
-    | errors.Error425
-    | errors.Error429
-    | errors.Error500
-    | errors.Error502
-    | errors.Error504
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | ConnectionError
+  PageIterator<
+    Result<
+      operations.ListGiftCardsResponse,
+      | errors.Error400
+      | errors.Error401
+      | errors.ListGiftCardsResponse403ListGiftCards
+      | errors.Error404
+      | errors.Error405
+      | errors.Error409
+      | errors.HTTPValidationError
+      | errors.Error425
+      | errors.Error429
+      | errors.Error500
+      | errors.Error502
+      | errors.Error504
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    { cursor: string }
   >
 > {
   return new APIPromise($do(
@@ -81,27 +90,30 @@ async function $do(
   options?: RequestOptions,
 ): Promise<
   [
-    Result<
-      components.CollectionGiftCard,
-      | errors.Error400
-      | errors.Error401
-      | errors.ListGiftCardsResponse403ListGiftCards
-      | errors.Error404
-      | errors.Error405
-      | errors.Error409
-      | errors.HTTPValidationError
-      | errors.Error425
-      | errors.Error429
-      | errors.Error500
-      | errors.Error502
-      | errors.Error504
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
-      | RequestAbortedError
-      | RequestTimeoutError
-      | ConnectionError
+    PageIterator<
+      Result<
+        operations.ListGiftCardsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.ListGiftCardsResponse403ListGiftCards
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
+        | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
+        | SDKError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >,
+      { cursor: string }
     >,
     APICall,
   ]
@@ -120,7 +132,7 @@ async function $do(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return [parsed, { status: "invalid" }];
+    return [haltIterator(parsed), { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -177,7 +189,7 @@ async function $do(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return [requestRes, { status: "invalid" }];
+    return [haltIterator(requestRes), { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -203,7 +215,7 @@ async function $do(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return [doResult, { status: "request-error", request: req }];
+    return [haltIterator(doResult), { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -211,8 +223,8 @@ async function $do(
     HttpMeta: { Response: response, Request: req },
   };
 
-  const [result] = await M.match<
-    components.CollectionGiftCard,
+  const [result, raw] = await M.match<
+    operations.ListGiftCardsResponse,
     | errors.Error400
     | errors.Error401
     | errors.ListGiftCardsResponse403ListGiftCards
@@ -233,7 +245,9 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.CollectionGiftCard$inboundSchema),
+    M.json(200, operations.ListGiftCardsResponse$inboundSchema, {
+      key: "Result",
+    }),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.ListGiftCardsResponse403ListGiftCards$inboundSchema),
@@ -250,8 +264,64 @@ async function $do(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return [result, { status: "complete", request: req, response }];
+    return [haltIterator(result), {
+      status: "complete",
+      request: req,
+      response,
+    }];
   }
 
-  return [result, { status: "complete", request: req, response }];
+  const nextFunc = (
+    responseData: unknown,
+  ): {
+    next: Paginator<
+      Result<
+        operations.ListGiftCardsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.ListGiftCardsResponse403ListGiftCards
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
+        | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
+        | SDKError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >
+    >;
+    "~next"?: { cursor: string };
+  } => {
+    const nextCursor = dlv(responseData, "next_cursor");
+    if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+
+    const nextVal = () =>
+      giftCardsList(
+        client,
+        buyerExternalIdentifier,
+        buyerId,
+        nextCursor,
+        limit,
+        options,
+      );
+
+    return { next: nextVal, "~next": { cursor: nextCursor } };
+  };
+
+  const page = { ...result, ...nextFunc(raw) };
+  return [{ ...page, ...createPageIterator(page, (v) => !v.ok) }, {
+    status: "complete",
+    request: req,
+    response,
+  }];
 }

@@ -130,6 +130,10 @@ export type ListTransactionsRequest = {
   merchantInitiated?: boolean | null | undefined;
 };
 
+export type ListTransactionsResponse = {
+  result: components.CollectionTransactionSummary;
+};
+
 /** @internal */
 export const ListTransactionsRequest$inboundSchema: z.ZodType<
   ListTransactionsRequest,
@@ -367,5 +371,67 @@ export function listTransactionsRequestFromJSON(
     jsonString,
     (x) => ListTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ListTransactionsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListTransactionsResponse$inboundSchema: z.ZodType<
+  ListTransactionsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.CollectionTransactionSummary$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type ListTransactionsResponse$Outbound = {
+  Result: components.CollectionTransactionSummary$Outbound;
+};
+
+/** @internal */
+export const ListTransactionsResponse$outboundSchema: z.ZodType<
+  ListTransactionsResponse$Outbound,
+  z.ZodTypeDef,
+  ListTransactionsResponse
+> = z.object({
+  result: components.CollectionTransactionSummary$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListTransactionsResponse$ {
+  /** @deprecated use `ListTransactionsResponse$inboundSchema` instead. */
+  export const inboundSchema = ListTransactionsResponse$inboundSchema;
+  /** @deprecated use `ListTransactionsResponse$outboundSchema` instead. */
+  export const outboundSchema = ListTransactionsResponse$outboundSchema;
+  /** @deprecated use `ListTransactionsResponse$Outbound` instead. */
+  export type Outbound = ListTransactionsResponse$Outbound;
+}
+
+export function listTransactionsResponseToJSON(
+  listTransactionsResponse: ListTransactionsResponse,
+): string {
+  return JSON.stringify(
+    ListTransactionsResponse$outboundSchema.parse(listTransactionsResponse),
+  );
+}
+
+export function listTransactionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTransactionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTransactionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransactionsResponse' from JSON`,
   );
 }

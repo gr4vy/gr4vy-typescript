@@ -36,7 +36,7 @@ Browser all gift cards.`,
       };
     }
 
-    const value = result.value;
+    const value = result.value.result;
 
     return formatResult(value, apiCall);
   },
