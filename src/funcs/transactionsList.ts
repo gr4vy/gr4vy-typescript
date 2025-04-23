@@ -33,7 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function transactionsList(
   client: Gr4vyCore,
-  request: operations.ListTransactionsRequest,
+  request?: operations.ListTransactionsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -68,7 +68,7 @@ export function transactionsList(
 
 async function $do(
   client: Gr4vyCore,
-  request: operations.ListTransactionsRequest,
+  request?: operations.ListTransactionsRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -99,7 +99,8 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.ListTransactionsRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.ListTransactionsRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -111,43 +112,43 @@ async function $do(
   const path = pathToFunc("/transactions")();
 
   const query = encodeFormQuery({
-    "amount_eq": payload.amount_eq,
-    "amount_gte": payload.amount_gte,
-    "amount_lte": payload.amount_lte,
-    "buyer_email_address": payload.buyer_email_address,
-    "buyer_external_identifier": payload.buyer_external_identifier,
-    "buyer_id": payload.buyer_id,
-    "checkout_session_id": payload.checkout_session_id,
-    "created_at_gte": payload.created_at_gte,
-    "created_at_lte": payload.created_at_lte,
-    "currency": payload.currency,
-    "cursor": payload.cursor,
-    "error_code": payload.error_code,
-    "external_identifier": payload.external_identifier,
-    "gift_card_id": payload.gift_card_id,
-    "gift_card_last4": payload.gift_card_last4,
-    "has_gift_card_redemptions": payload.has_gift_card_redemptions,
-    "has_refunds": payload.has_refunds,
-    "has_settlements": payload.has_settlements,
-    "id": payload.id,
-    "is_subsequent_payment": payload.is_subsequent_payment,
-    "limit": payload.limit,
-    "merchant_initiated": payload.merchant_initiated,
-    "metadata": payload.metadata,
-    "method": payload.method,
-    "payment_method_bin": payload.payment_method_bin,
-    "payment_method_fingerprint": payload.payment_method_fingerprint,
-    "payment_method_id": payload.payment_method_id,
-    "payment_method_label": payload.payment_method_label,
-    "payment_service_id": payload.payment_service_id,
-    "payment_service_transaction_id": payload.payment_service_transaction_id,
-    "payment_source": payload.payment_source,
-    "pending_review": payload.pending_review,
-    "reconciliation_id": payload.reconciliation_id,
-    "search": payload.search,
-    "status": payload.status,
-    "updated_at_gte": payload.updated_at_gte,
-    "updated_at_lte": payload.updated_at_lte,
+    "amount_eq": payload?.amount_eq,
+    "amount_gte": payload?.amount_gte,
+    "amount_lte": payload?.amount_lte,
+    "buyer_email_address": payload?.buyer_email_address,
+    "buyer_external_identifier": payload?.buyer_external_identifier,
+    "buyer_id": payload?.buyer_id,
+    "checkout_session_id": payload?.checkout_session_id,
+    "created_at_gte": payload?.created_at_gte,
+    "created_at_lte": payload?.created_at_lte,
+    "currency": payload?.currency,
+    "cursor": payload?.cursor,
+    "error_code": payload?.error_code,
+    "external_identifier": payload?.external_identifier,
+    "gift_card_id": payload?.gift_card_id,
+    "gift_card_last4": payload?.gift_card_last4,
+    "has_gift_card_redemptions": payload?.has_gift_card_redemptions,
+    "has_refunds": payload?.has_refunds,
+    "has_settlements": payload?.has_settlements,
+    "id": payload?.id,
+    "is_subsequent_payment": payload?.is_subsequent_payment,
+    "limit": payload?.limit,
+    "merchant_initiated": payload?.merchant_initiated,
+    "metadata": payload?.metadata,
+    "method": payload?.method,
+    "payment_method_bin": payload?.payment_method_bin,
+    "payment_method_fingerprint": payload?.payment_method_fingerprint,
+    "payment_method_id": payload?.payment_method_id,
+    "payment_method_label": payload?.payment_method_label,
+    "payment_service_id": payload?.payment_service_id,
+    "payment_service_transaction_id": payload?.payment_service_transaction_id,
+    "payment_source": payload?.payment_source,
+    "pending_review": payload?.pending_review,
+    "reconciliation_id": payload?.reconciliation_id,
+    "search": payload?.search,
+    "status": payload?.status,
+    "updated_at_gte": payload?.updated_at_gte,
+    "updated_at_lte": payload?.updated_at_lte,
   });
 
   const headers = new Headers(compactMap({

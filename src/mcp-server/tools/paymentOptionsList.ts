@@ -7,7 +7,7 @@ import * as components from "../../models/components/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  request: components.PaymentOptionRequest$inboundSchema,
+  request: components.PaymentOptionRequest$inboundSchema.optional(),
 };
 
 export const tool$paymentOptionsList: ToolDefinition<typeof args> = {

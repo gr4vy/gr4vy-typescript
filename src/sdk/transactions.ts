@@ -28,7 +28,7 @@ export class Transactions extends ClientSDK {
    * List all transactions.
    */
   async list(
-    request: operations.ListTransactionsRequest,
+    request?: operations.ListTransactionsRequest | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionTransactionSummary> {
     return unwrapAsync(transactionsList(

@@ -103,7 +103,7 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListBuyerGiftCardsRequest = {
+  const input: operations.ListBuyerGiftCardsRequest | undefined = {
     buyerExternalIdentifier: buyerExternalIdentifier,
     buyerId: buyerId,
     timeoutInSeconds: timeoutInSeconds,
@@ -111,7 +111,10 @@ async function $do(
 
   const parsed = safeParse(
     input,
-    (value) => operations.ListBuyerGiftCardsRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.ListBuyerGiftCardsRequest$outboundSchema.optional().parse(
+        value,
+      ),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -123,9 +126,9 @@ async function $do(
   const path = pathToFunc("/buyers/gift-cards")();
 
   const query = encodeFormQuery({
-    "buyer_external_identifier": payload.buyer_external_identifier,
-    "buyer_id": payload.buyer_id,
-    "timeout_in_seconds": payload.timeout_in_seconds,
+    "buyer_external_identifier": payload?.buyer_external_identifier,
+    "buyer_id": payload?.buyer_id,
+    "timeout_in_seconds": payload?.timeout_in_seconds,
   });
 
   const headers = new Headers(compactMap({

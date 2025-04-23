@@ -32,7 +32,7 @@ import { Result } from "../types/fp.js";
  */
 export function paymentOptionsList(
   client: Gr4vyCore,
-  request: components.PaymentOptionRequest,
+  request?: components.PaymentOptionRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -67,7 +67,7 @@ export function paymentOptionsList(
 
 async function $do(
   client: Gr4vyCore,
-  request: components.PaymentOptionRequest,
+  request?: components.PaymentOptionRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -98,14 +98,17 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => components.PaymentOptionRequest$outboundSchema.parse(value),
+    (value) =>
+      components.PaymentOptionRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = payload === undefined
+    ? null
+    : encodeJSON("body", payload, { explode: true });
 
   const path = pathToFunc("/payment-options")();
 

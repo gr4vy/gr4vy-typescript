@@ -39,7 +39,7 @@ import {
  */
 export function auditLogsList(
   client: Gr4vyCore,
-  request: operations.ListAuditLogsRequest,
+  request?: operations.ListAuditLogsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -77,7 +77,7 @@ export function auditLogsList(
 
 async function $do(
   client: Gr4vyCore,
-  request: operations.ListAuditLogsRequest,
+  request?: operations.ListAuditLogsRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -111,7 +111,8 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.ListAuditLogsRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.ListAuditLogsRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -123,11 +124,11 @@ async function $do(
   const path = pathToFunc("/audit-logs")();
 
   const query = encodeFormQuery({
-    "action": payload.action,
-    "cursor": payload.cursor,
-    "limit": payload.limit,
-    "resource_type": payload.resource_type,
-    "user_id": payload.user_id,
+    "action": payload?.action,
+    "cursor": payload?.cursor,
+    "limit": payload?.limit,
+    "resource_type": payload?.resource_type,
+    "user_id": payload?.user_id,
   });
 
   const headers = new Headers(compactMap({

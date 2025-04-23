@@ -39,7 +39,7 @@ import {
  */
 export function paymentMethodsList(
   client: Gr4vyCore,
-  request: operations.ListPaymentMethodsRequest,
+  request?: operations.ListPaymentMethodsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -77,7 +77,7 @@ export function paymentMethodsList(
 
 async function $do(
   client: Gr4vyCore,
-  request: operations.ListPaymentMethodsRequest,
+  request?: operations.ListPaymentMethodsRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -111,7 +111,10 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.ListPaymentMethodsRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.ListPaymentMethodsRequest$outboundSchema.optional().parse(
+        value,
+      ),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -123,12 +126,12 @@ async function $do(
   const path = pathToFunc("/payment-methods")();
 
   const query = encodeFormQuery({
-    "buyer_external_identifier": payload.buyer_external_identifier,
-    "buyer_id": payload.buyer_id,
-    "cursor": payload.cursor,
-    "external_identifier": payload.external_identifier,
-    "limit": payload.limit,
-    "status": payload.status,
+    "buyer_external_identifier": payload?.buyer_external_identifier,
+    "buyer_id": payload?.buyer_id,
+    "cursor": payload?.cursor,
+    "external_identifier": payload?.external_identifier,
+    "limit": payload?.limit,
+    "status": payload?.status,
   });
 
   const headers = new Headers(compactMap({

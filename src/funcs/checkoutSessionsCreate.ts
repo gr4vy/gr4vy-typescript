@@ -100,7 +100,7 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.CreateCheckoutSessionRequest = {
+  const input: operations.CreateCheckoutSessionRequest | undefined = {
     checkoutSessionUpdate: checkoutSessionUpdate,
     timeoutInSeconds: timeoutInSeconds,
   };
@@ -108,21 +108,23 @@ async function $do(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.CreateCheckoutSessionRequest$outboundSchema.parse(value),
+      operations.CreateCheckoutSessionRequest$outboundSchema.optional().parse(
+        value,
+      ),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.CheckoutSessionUpdate, {
+  const body = encodeJSON("body", payload?.CheckoutSessionUpdate, {
     explode: true,
   });
 
   const path = pathToFunc("/checkout/sessions")();
 
   const query = encodeFormQuery({
-    "timeout_in_seconds": payload.timeout_in_seconds,
+    "timeout_in_seconds": payload?.timeout_in_seconds,
   });
 
   const headers = new Headers(compactMap({

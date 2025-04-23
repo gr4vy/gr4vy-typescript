@@ -16,7 +16,7 @@ export class Gr4vyPaymentMethods extends ClientSDK {
    * List all the stored payment methods for a specific buyer.
    */
   async list(
-    request: operations.ListBuyerPaymentMethodsRequest,
+    request?: operations.ListBuyerPaymentMethodsRequest | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorPaymentMethodSummary> {
     return unwrapAsync(buyersPaymentMethodsList(

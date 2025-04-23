@@ -118,7 +118,7 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListBuyersRequest = {
+  const input: operations.ListBuyersRequest | undefined = {
     cursor: cursor,
     limit: limit,
     search: search,
@@ -127,7 +127,8 @@ async function $do(
 
   const parsed = safeParse(
     input,
-    (value) => operations.ListBuyersRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.ListBuyersRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -139,10 +140,10 @@ async function $do(
   const path = pathToFunc("/buyers")();
 
   const query = encodeFormQuery({
-    "cursor": payload.cursor,
-    "external_identifier": payload.external_identifier,
-    "limit": payload.limit,
-    "search": payload.search,
+    "cursor": payload?.cursor,
+    "external_identifier": payload?.external_identifier,
+    "limit": payload?.limit,
+    "search": payload?.search,
   });
 
   const headers = new Headers(compactMap({

@@ -15,7 +15,7 @@ export class AuditLogs extends ClientSDK {
    * Returns a list of activity by dashboard users.
    */
   async list(
-    request: operations.ListAuditLogsRequest,
+    request?: operations.ListAuditLogsRequest | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<operations.ListAuditLogsResponse, { cursor: string }>

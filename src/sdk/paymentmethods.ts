@@ -34,7 +34,7 @@ export class PaymentMethods extends ClientSDK {
    * List all stored payment method.
    */
   async list(
-    request: operations.ListPaymentMethodsRequest,
+    request?: operations.ListPaymentMethodsRequest | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<operations.ListPaymentMethodsResponse, { cursor: string }>

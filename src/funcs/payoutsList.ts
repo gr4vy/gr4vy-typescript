@@ -112,14 +112,15 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListPayoutsRequest = {
+  const input: operations.ListPayoutsRequest | undefined = {
     cursor: cursor,
     limit: limit,
   };
 
   const parsed = safeParse(
     input,
-    (value) => operations.ListPayoutsRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.ListPayoutsRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -131,8 +132,8 @@ async function $do(
   const path = pathToFunc("/payouts")();
 
   const query = encodeFormQuery({
-    "cursor": payload.cursor,
-    "limit": payload.limit,
+    "cursor": payload?.cursor,
+    "limit": payload?.limit,
   });
 
   const headers = new Headers(compactMap({

@@ -106,7 +106,7 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListGiftCardsRequest = {
+  const input: operations.ListGiftCardsRequest | undefined = {
     buyerExternalIdentifier: buyerExternalIdentifier,
     buyerId: buyerId,
     cursor: cursor,
@@ -115,7 +115,8 @@ async function $do(
 
   const parsed = safeParse(
     input,
-    (value) => operations.ListGiftCardsRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.ListGiftCardsRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -127,10 +128,10 @@ async function $do(
   const path = pathToFunc("/gift-cards")();
 
   const query = encodeFormQuery({
-    "buyer_external_identifier": payload.buyer_external_identifier,
-    "buyer_id": payload.buyer_id,
-    "cursor": payload.cursor,
-    "limit": payload.limit,
+    "buyer_external_identifier": payload?.buyer_external_identifier,
+    "buyer_id": payload?.buyer_id,
+    "cursor": payload?.cursor,
+    "limit": payload?.limit,
   });
 
   const headers = new Headers(compactMap({

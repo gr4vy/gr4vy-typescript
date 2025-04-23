@@ -33,7 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function buyersPaymentMethodsList(
   client: Gr4vyCore,
-  request: operations.ListBuyerPaymentMethodsRequest,
+  request?: operations.ListBuyerPaymentMethodsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -68,7 +68,7 @@ export function buyersPaymentMethodsList(
 
 async function $do(
   client: Gr4vyCore,
-  request: operations.ListBuyerPaymentMethodsRequest,
+  request?: operations.ListBuyerPaymentMethodsRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -100,7 +100,9 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.ListBuyerPaymentMethodsRequest$outboundSchema.parse(value),
+      operations.ListBuyerPaymentMethodsRequest$outboundSchema.optional().parse(
+        value,
+      ),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -112,12 +114,12 @@ async function $do(
   const path = pathToFunc("/buyers/payment-methods")();
 
   const query = encodeFormQuery({
-    "buyer_external_identifier": payload.buyer_external_identifier,
-    "buyer_id": payload.buyer_id,
-    "country": payload.country,
-    "currency": payload.currency,
-    "order_by": payload.order_by,
-    "sort_by": payload.sort_by,
+    "buyer_external_identifier": payload?.buyer_external_identifier,
+    "buyer_id": payload?.buyer_id,
+    "country": payload?.country,
+    "currency": payload?.currency,
+    "order_by": payload?.order_by,
+    "sort_by": payload?.sort_by,
   });
 
   const headers = new Headers(compactMap({

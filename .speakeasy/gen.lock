@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.537.1
   generationVersion: 2.588.4
-  releaseVersion: 0.16.4
-  configChecksum: 8e261716f4f89379b01c445556220002
+  releaseVersion: 0.17.0
+  configChecksum: d04543d7880343dafbdb673fbfb6e5d9
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
@@ -26,6 +26,7 @@ features:
     globalServerURLs: 2.82.4
     groups: 2.81.2
     mcpServer: 0.9.2
+    methodArguments: 0.1.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
     openEnums: 0.1.1
