@@ -170,7 +170,7 @@ async function run() {
     merchant: {
       name: "Acme Inc",
       identificationNumber: "12345",
-      phoneNumber: "+442071838750",
+      phoneNumber: "+14155552671",
       url: "https://example.com",
       statementDescriptor: "Winnings",
       merchantCategoryCode: "123456",
@@ -272,7 +272,7 @@ async function run() {
     merchant: {
       name: "Acme Inc",
       identificationNumber: "12345",
-      phoneNumber: "+442071838750",
+      phoneNumber: "+14155552671",
       url: "https://example.com",
       statementDescriptor: "Winnings",
       merchantCategoryCode: "123456",

@@ -55,24 +55,99 @@ run();
 
 ```
 
-Alternatively, create a token once for use with the SDK or with your own client library.
+## Bearer token generation
+
+Alternatively, you can create a token for use with the SDK or with your own client library.
 
 ```js
+import { getToken } from "@gr4vy/sdk";
+
 async function run() {
-    const sdk = new SDK({
-        bearerAuth: await getToken({
+    const token = await getToken({
           privateKey: fs.readFileSync("private_key.pem", "utf8"),
-        }),
     });
-
-    const result = await sdk.transactions.listTransactions({});
-
-    console.log(result);
+    console.log(token);
 }
+
+run();
 ```
 
 > **Note:** This will only create a token once. Use `withToken` to dynamically generate a token
 > for every request.
+
+
+## Embed token generation
+
+Alternatively, you can create a token for use with Embed as follows.
+
+```js
+import { SDK, getEmbedToken } from "@gr4vy/sdk";
+
+async function run() {
+    const privateKey = fs.readFileSync("private_key.pem", "utf8")
+
+    const sdk = new SDK({
+        server: "sandbox",
+        id: "example",
+        bearerAuth: withToken({ privateKey }),
+    });
+
+    const checkoutSession = sdk.checkoutSessions.create()
+
+    const token = await getEmbedToken({ 
+      privateKey,
+      checkoutSessionId: checkoutSession.id,
+      embedParams: {
+        amount: 1299,
+        currency: 'USD',
+        buyerExternalIdentifier: 'user-1234',
+      }
+     });
+    console.log(token);
+}
+
+run();
+```
+
+> **Note:** This will only create a token once. Use `withToken` to dynamically generate a token
+> for every request.
+
+
+## Webhooks verification
+
+The SDK provides a `verifyWebhook` method to validate incoming webhook requests from Gr4vy. This ensures that the webhook payload is authentic and has not been tampered with.
+
+```js
+import { verifyWebhook } from "@gr4vy/sdk";
+
+const payload = 'your-webhook-payload'
+const secret = 'your-webhook-secret'
+const signatureHeader = 'signatures-from-header'
+const timestampHeader = 'timestamp-from-header'
+const timestampTolerance = 300 // optional, in seconds (default: 0)
+
+try {
+  verifyWebhook(
+    payload,
+    secret,
+    signatureHeader,
+    timestampHeader,
+    timestampTolerance
+  )
+  console.log('Webhook verified successfully!')
+} catch (error) {
+  console.error('Webhook verification failed:', error.message)
+}
+```
+
+### Parameters
+
+- **`payload`**: The raw payload string received in the webhook request.
+- **`secret`**: The secret used to sign the webhook. This is provided in your Gr4vy dashboard.
+- **`signatureHeader`**: The `X-Gr4vy-Signature` header from the webhook request.
+- **`timestampHeader`**: The `X-Gr4vy-Timestamp` header from the webhook request.
+- **`timestampTolerance`**: _(Optional)_ The maximum allowed difference (in seconds) between the current time and the timestamp in the webhook. Defaults to `0` (no tolerance).
+
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
@@ -814,6 +889,9 @@ Gr4vy: The Gr4vy API.
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
+  * [Bearer token generation](#bearer-token-generation)
+  * [Embed token generation](#embed-token-generation)
+  * [Webhooks verification](#webhooks-verification)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)

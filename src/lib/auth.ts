@@ -72,6 +72,21 @@ export const getToken = async (options: {
 };
 
 /**
+ * Helper method for generating a bearer token for use with Embed
+ */
+export const getEmbedToken = async (options: {
+  privateKey: string;
+  embedParams?: EmbedParams;
+  checkoutSessionId?: string;
+}): Promise<string> => {
+  return getToken({
+    ...options,
+    scopes: [JWTScope.Embed],
+    expiresIn: '1h'
+   })
+}
+
+/**
  * Short hands for scopes. Strings can be used as well.
  */
 export enum JWTScope {

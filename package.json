@@ -1,16 +1,12 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "author": "Gr4vy",
   "bin": {
     "mcp": "bin/mcp-server.js"
   },
   "main": "./index.js",
   "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gr4vy/gr4vy-js.git"
-  },
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",
     "build:mcp": "bun src/mcp-server/build.mts",

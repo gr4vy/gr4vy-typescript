@@ -5,6 +5,6 @@
 export * from "./sdk";
 export * from "./lib/config";
 
-export { getToken, withToken, JWTScope } from "./lib/auth"
+export { getToken, getEmbedToken, withToken, JWTScope } from "./lib/auth"
 export { verifyWebhook } from "./lib/webhooks"
 export type { EmbedParams } from "./lib/auth"
