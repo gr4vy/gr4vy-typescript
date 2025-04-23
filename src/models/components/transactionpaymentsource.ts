@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 /**
  * The way payment method information made it to this transaction.
@@ -18,19 +22,30 @@ export const TransactionPaymentSource = {
 /**
  * The way payment method information made it to this transaction.
  */
-export type TransactionPaymentSource = ClosedEnum<
+export type TransactionPaymentSource = OpenEnum<
   typeof TransactionPaymentSource
 >;
 
 /** @internal */
-export const TransactionPaymentSource$inboundSchema: z.ZodNativeEnum<
-  typeof TransactionPaymentSource
-> = z.nativeEnum(TransactionPaymentSource);
+export const TransactionPaymentSource$inboundSchema: z.ZodType<
+  TransactionPaymentSource,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(TransactionPaymentSource),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const TransactionPaymentSource$outboundSchema: z.ZodNativeEnum<
-  typeof TransactionPaymentSource
-> = TransactionPaymentSource$inboundSchema;
+export const TransactionPaymentSource$outboundSchema: z.ZodType<
+  TransactionPaymentSource,
+  z.ZodTypeDef,
+  TransactionPaymentSource
+> = z.union([
+  z.nativeEnum(TransactionPaymentSource),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

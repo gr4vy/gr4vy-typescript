@@ -3,25 +3,38 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const GiftCardServiceProvider = {
   MockGiftCard: "mock-gift-card",
   QwikcilverGiftCard: "qwikcilver-gift-card",
 } as const;
-export type GiftCardServiceProvider = ClosedEnum<
-  typeof GiftCardServiceProvider
->;
+export type GiftCardServiceProvider = OpenEnum<typeof GiftCardServiceProvider>;
 
 /** @internal */
-export const GiftCardServiceProvider$inboundSchema: z.ZodNativeEnum<
-  typeof GiftCardServiceProvider
-> = z.nativeEnum(GiftCardServiceProvider);
+export const GiftCardServiceProvider$inboundSchema: z.ZodType<
+  GiftCardServiceProvider,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GiftCardServiceProvider),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GiftCardServiceProvider$outboundSchema: z.ZodNativeEnum<
-  typeof GiftCardServiceProvider
-> = GiftCardServiceProvider$inboundSchema;
+export const GiftCardServiceProvider$outboundSchema: z.ZodType<
+  GiftCardServiceProvider,
+  z.ZodTypeDef,
+  GiftCardServiceProvider
+> = z.union([
+  z.nativeEnum(GiftCardServiceProvider),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

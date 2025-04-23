@@ -3,26 +3,41 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const TransactionIntentOutcome = {
   Pending: "pending",
   Succeeded: "succeeded",
   Failed: "failed",
 } as const;
-export type TransactionIntentOutcome = ClosedEnum<
+export type TransactionIntentOutcome = OpenEnum<
   typeof TransactionIntentOutcome
 >;
 
 /** @internal */
-export const TransactionIntentOutcome$inboundSchema: z.ZodNativeEnum<
-  typeof TransactionIntentOutcome
-> = z.nativeEnum(TransactionIntentOutcome);
+export const TransactionIntentOutcome$inboundSchema: z.ZodType<
+  TransactionIntentOutcome,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(TransactionIntentOutcome),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const TransactionIntentOutcome$outboundSchema: z.ZodNativeEnum<
-  typeof TransactionIntentOutcome
-> = TransactionIntentOutcome$inboundSchema;
+export const TransactionIntentOutcome$outboundSchema: z.ZodType<
+  TransactionIntentOutcome,
+  z.ZodTypeDef,
+  TransactionIntentOutcome
+> = z.union([
+  z.nativeEnum(TransactionIntentOutcome),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

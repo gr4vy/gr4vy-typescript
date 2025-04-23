@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const ThreeDSecureStatus = {
   SetupError: "setup_error",
@@ -12,17 +16,28 @@ export const ThreeDSecureStatus = {
   Cancelled: "cancelled",
   Complete: "complete",
 } as const;
-export type ThreeDSecureStatus = ClosedEnum<typeof ThreeDSecureStatus>;
+export type ThreeDSecureStatus = OpenEnum<typeof ThreeDSecureStatus>;
 
 /** @internal */
-export const ThreeDSecureStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ThreeDSecureStatus
-> = z.nativeEnum(ThreeDSecureStatus);
+export const ThreeDSecureStatus$inboundSchema: z.ZodType<
+  ThreeDSecureStatus,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(ThreeDSecureStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const ThreeDSecureStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ThreeDSecureStatus
-> = ThreeDSecureStatus$inboundSchema;
+export const ThreeDSecureStatus$outboundSchema: z.ZodType<
+  ThreeDSecureStatus,
+  z.ZodTypeDef,
+  ThreeDSecureStatus
+> = z.union([
+  z.nativeEnum(ThreeDSecureStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

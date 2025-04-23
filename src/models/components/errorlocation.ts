@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const ErrorLocation = {
   Query: "query",
@@ -12,17 +16,28 @@ export const ErrorLocation = {
   Header: "header",
   Unknown: "unknown",
 } as const;
-export type ErrorLocation = ClosedEnum<typeof ErrorLocation>;
+export type ErrorLocation = OpenEnum<typeof ErrorLocation>;
 
 /** @internal */
-export const ErrorLocation$inboundSchema: z.ZodNativeEnum<
-  typeof ErrorLocation
-> = z.nativeEnum(ErrorLocation);
+export const ErrorLocation$inboundSchema: z.ZodType<
+  ErrorLocation,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(ErrorLocation),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const ErrorLocation$outboundSchema: z.ZodNativeEnum<
-  typeof ErrorLocation
-> = ErrorLocation$inboundSchema;
+export const ErrorLocation$outboundSchema: z.ZodType<
+  ErrorLocation,
+  z.ZodTypeDef,
+  ErrorLocation
+> = z.union([
+  z.nativeEnum(ErrorLocation),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

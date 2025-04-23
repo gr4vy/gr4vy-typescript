@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const TaxIdKind = {
   AeTrn: "ae.trn",
@@ -58,15 +62,28 @@ export const TaxIdKind = {
   UyRut: "uy.rut",
   UyCi: "uy.ci",
 } as const;
-export type TaxIdKind = ClosedEnum<typeof TaxIdKind>;
+export type TaxIdKind = OpenEnum<typeof TaxIdKind>;
 
 /** @internal */
-export const TaxIdKind$inboundSchema: z.ZodNativeEnum<typeof TaxIdKind> = z
-  .nativeEnum(TaxIdKind);
+export const TaxIdKind$inboundSchema: z.ZodType<
+  TaxIdKind,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(TaxIdKind),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const TaxIdKind$outboundSchema: z.ZodNativeEnum<typeof TaxIdKind> =
-  TaxIdKind$inboundSchema;
+export const TaxIdKind$outboundSchema: z.ZodType<
+  TaxIdKind,
+  z.ZodTypeDef,
+  TaxIdKind
+> = z.union([
+  z.nativeEnum(TaxIdKind),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

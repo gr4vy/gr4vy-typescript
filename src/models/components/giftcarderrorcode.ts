@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 /**
  * Gift card error codes.
@@ -41,17 +45,28 @@ export const GiftCardErrorCode = {
  * If new codes are added, append them at the end or amend public simulator
  * documentation: https://docs.gr4vy.com/guides/features/gift-cards/simulator
  */
-export type GiftCardErrorCode = ClosedEnum<typeof GiftCardErrorCode>;
+export type GiftCardErrorCode = OpenEnum<typeof GiftCardErrorCode>;
 
 /** @internal */
-export const GiftCardErrorCode$inboundSchema: z.ZodNativeEnum<
-  typeof GiftCardErrorCode
-> = z.nativeEnum(GiftCardErrorCode);
+export const GiftCardErrorCode$inboundSchema: z.ZodType<
+  GiftCardErrorCode,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GiftCardErrorCode),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GiftCardErrorCode$outboundSchema: z.ZodNativeEnum<
-  typeof GiftCardErrorCode
-> = GiftCardErrorCode$inboundSchema;
+export const GiftCardErrorCode$outboundSchema: z.ZodType<
+  GiftCardErrorCode,
+  z.ZodTypeDef,
+  GiftCardErrorCode
+> = z.union([
+  z.nativeEnum(GiftCardErrorCode),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

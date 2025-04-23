@@ -5,7 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -13,7 +17,7 @@ export const RouteType = {
   RoundTrip: "round_trip",
   OneWay: "one_way",
 } as const;
-export type RouteType = ClosedEnum<typeof RouteType>;
+export type RouteType = OpenEnum<typeof RouteType>;
 
 export type AirlineLeg = {
   /**
@@ -95,12 +99,25 @@ export type AirlineLeg = {
 };
 
 /** @internal */
-export const RouteType$inboundSchema: z.ZodNativeEnum<typeof RouteType> = z
-  .nativeEnum(RouteType);
+export const RouteType$inboundSchema: z.ZodType<
+  RouteType,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(RouteType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const RouteType$outboundSchema: z.ZodNativeEnum<typeof RouteType> =
-  RouteType$inboundSchema;
+export const RouteType$outboundSchema: z.ZodType<
+  RouteType,
+  z.ZodTypeDef,
+  RouteType
+> = z.union([
+  z.nativeEnum(RouteType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

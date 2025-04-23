@@ -10,6 +10,8 @@ let value: GiftCardServiceProvider = "mock-gift-card";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"mock-gift-card" | "qwikcilver-gift-card"
+"mock-gift-card" | "qwikcilver-gift-card" | Unrecognized<string>
 ```

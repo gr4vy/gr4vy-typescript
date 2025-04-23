@@ -3,24 +3,39 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const DigitalWalletProvider = {
   Apple: "apple",
   Google: "google",
   ClickToPay: "click-to-pay",
 } as const;
-export type DigitalWalletProvider = ClosedEnum<typeof DigitalWalletProvider>;
+export type DigitalWalletProvider = OpenEnum<typeof DigitalWalletProvider>;
 
 /** @internal */
-export const DigitalWalletProvider$inboundSchema: z.ZodNativeEnum<
-  typeof DigitalWalletProvider
-> = z.nativeEnum(DigitalWalletProvider);
+export const DigitalWalletProvider$inboundSchema: z.ZodType<
+  DigitalWalletProvider,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(DigitalWalletProvider),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const DigitalWalletProvider$outboundSchema: z.ZodNativeEnum<
-  typeof DigitalWalletProvider
-> = DigitalWalletProvider$inboundSchema;
+export const DigitalWalletProvider$outboundSchema: z.ZodType<
+  DigitalWalletProvider,
+  z.ZodTypeDef,
+  DigitalWalletProvider
+> = z.union([
+  z.nativeEnum(DigitalWalletProvider),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

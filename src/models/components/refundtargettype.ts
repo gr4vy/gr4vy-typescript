@@ -3,23 +3,38 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const RefundTargetType = {
   PaymentMethod: "payment-method",
   GiftCardRedemption: "gift-card-redemption",
 } as const;
-export type RefundTargetType = ClosedEnum<typeof RefundTargetType>;
+export type RefundTargetType = OpenEnum<typeof RefundTargetType>;
 
 /** @internal */
-export const RefundTargetType$inboundSchema: z.ZodNativeEnum<
-  typeof RefundTargetType
-> = z.nativeEnum(RefundTargetType);
+export const RefundTargetType$inboundSchema: z.ZodType<
+  RefundTargetType,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(RefundTargetType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const RefundTargetType$outboundSchema: z.ZodNativeEnum<
-  typeof RefundTargetType
-> = RefundTargetType$inboundSchema;
+export const RefundTargetType$outboundSchema: z.ZodType<
+  RefundTargetType,
+  z.ZodTypeDef,
+  RefundTargetType
+> = z.union([
+  z.nativeEnum(RefundTargetType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

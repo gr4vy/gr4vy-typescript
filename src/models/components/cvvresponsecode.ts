@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const CVVResponseCode = {
   Match: "match",
@@ -11,17 +15,28 @@ export const CVVResponseCode = {
   Unavailable: "unavailable",
   NotProvided: "not_provided",
 } as const;
-export type CVVResponseCode = ClosedEnum<typeof CVVResponseCode>;
+export type CVVResponseCode = OpenEnum<typeof CVVResponseCode>;
 
 /** @internal */
-export const CVVResponseCode$inboundSchema: z.ZodNativeEnum<
-  typeof CVVResponseCode
-> = z.nativeEnum(CVVResponseCode);
+export const CVVResponseCode$inboundSchema: z.ZodType<
+  CVVResponseCode,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(CVVResponseCode),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const CVVResponseCode$outboundSchema: z.ZodNativeEnum<
-  typeof CVVResponseCode
-> = CVVResponseCode$inboundSchema;
+export const CVVResponseCode$outboundSchema: z.ZodType<
+  CVVResponseCode,
+  z.ZodTypeDef,
+  CVVResponseCode
+> = z.union([
+  z.nativeEnum(CVVResponseCode),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

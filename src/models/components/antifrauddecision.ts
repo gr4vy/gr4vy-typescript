@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const AntiFraudDecision = {
   Accept: "accept",
@@ -13,17 +17,28 @@ export const AntiFraudDecision = {
   Review: "review",
   Skipped: "skipped",
 } as const;
-export type AntiFraudDecision = ClosedEnum<typeof AntiFraudDecision>;
+export type AntiFraudDecision = OpenEnum<typeof AntiFraudDecision>;
 
 /** @internal */
-export const AntiFraudDecision$inboundSchema: z.ZodNativeEnum<
-  typeof AntiFraudDecision
-> = z.nativeEnum(AntiFraudDecision);
+export const AntiFraudDecision$inboundSchema: z.ZodType<
+  AntiFraudDecision,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(AntiFraudDecision),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const AntiFraudDecision$outboundSchema: z.ZodNativeEnum<
-  typeof AntiFraudDecision
-> = AntiFraudDecision$inboundSchema;
+export const AntiFraudDecision$outboundSchema: z.ZodType<
+  AntiFraudDecision,
+  z.ZodTypeDef,
+  AntiFraudDecision
+> = z.union([
+  z.nativeEnum(AntiFraudDecision),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

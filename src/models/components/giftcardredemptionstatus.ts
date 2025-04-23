@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const GiftCardRedemptionStatus = {
   Created: "created",
@@ -11,19 +15,30 @@ export const GiftCardRedemptionStatus = {
   Failed: "failed",
   Skipped: "skipped",
 } as const;
-export type GiftCardRedemptionStatus = ClosedEnum<
+export type GiftCardRedemptionStatus = OpenEnum<
   typeof GiftCardRedemptionStatus
 >;
 
 /** @internal */
-export const GiftCardRedemptionStatus$inboundSchema: z.ZodNativeEnum<
-  typeof GiftCardRedemptionStatus
-> = z.nativeEnum(GiftCardRedemptionStatus);
+export const GiftCardRedemptionStatus$inboundSchema: z.ZodType<
+  GiftCardRedemptionStatus,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GiftCardRedemptionStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GiftCardRedemptionStatus$outboundSchema: z.ZodNativeEnum<
-  typeof GiftCardRedemptionStatus
-> = GiftCardRedemptionStatus$inboundSchema;
+export const GiftCardRedemptionStatus$outboundSchema: z.ZodType<
+  GiftCardRedemptionStatus,
+  z.ZodTypeDef,
+  GiftCardRedemptionStatus
+> = z.union([
+  z.nativeEnum(GiftCardRedemptionStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

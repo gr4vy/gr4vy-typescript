@@ -34,10 +34,12 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 
 ```typescript
 import fs from "fs";
-import { SDK } from "@gr4vy/sdk";
+import { SDK, withToken } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new SDK({
+        server: "sandbox",
+        id: "example",
         bearerAuth: withToken({
           privateKey: fs.readFileSync("private_key.pem", "utf8"),
         }),
@@ -393,16 +395,16 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 You can override the default server globally by passing a server name to the `server: keyof typeof ServerList` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name         | Server                                     | Variables  | Description |
-| ------------ | ------------------------------------------ | ---------- | ----------- |
-| `production` | `https://api.{gr4vy_id}.gr4vy.app`         | `gr4vy_id` |             |
-| `sandbox`    | `https://api.sandbox.{gr4vy_id}.gr4vy.app` | `gr4vy_id` |             |
+| Name         | Server                               | Variables | Description |
+| ------------ | ------------------------------------ | --------- | ----------- |
+| `production` | `https://api.{id}.gr4vy.app`         | `id`      |             |
+| `sandbox`    | `https://api.sandbox.{id}.gr4vy.app` | `id`      |             |
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable   | Parameter         | Default     | Description                            |
-| ---------- | ----------------- | ----------- | -------------------------------------- |
-| `gr4vy_id` | `gr4vyId: string` | `"example"` | The subdomain for your Gr4vy instance. |
+| Variable | Parameter    | Default     | Description                            |
+| -------- | ------------ | ----------- | -------------------------------------- |
+| `id`     | `id: string` | `"example"` | The subdomain for your Gr4vy instance. |
 
 #### Example
 
@@ -411,7 +413,7 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
   server: "sandbox",
-  gr4vyId: "<id>",
+  id: "<id>",
   bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 

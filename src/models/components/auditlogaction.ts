@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const AuditLogAction = {
   Created: "created",
@@ -12,17 +16,28 @@ export const AuditLogAction = {
   Voided: "voided",
   Captured: "captured",
 } as const;
-export type AuditLogAction = ClosedEnum<typeof AuditLogAction>;
+export type AuditLogAction = OpenEnum<typeof AuditLogAction>;
 
 /** @internal */
-export const AuditLogAction$inboundSchema: z.ZodNativeEnum<
-  typeof AuditLogAction
-> = z.nativeEnum(AuditLogAction);
+export const AuditLogAction$inboundSchema: z.ZodType<
+  AuditLogAction,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(AuditLogAction),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const AuditLogAction$outboundSchema: z.ZodNativeEnum<
-  typeof AuditLogAction
-> = AuditLogAction$inboundSchema;
+export const AuditLogAction$outboundSchema: z.ZodType<
+  AuditLogAction,
+  z.ZodTypeDef,
+  AuditLogAction
+> = z.union([
+  z.nativeEnum(AuditLogAction),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

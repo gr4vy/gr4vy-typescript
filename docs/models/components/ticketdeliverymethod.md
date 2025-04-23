@@ -10,6 +10,8 @@ let value: TicketDeliveryMethod = "electronic";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"electronic" | "other"
+"electronic" | "other" | Unrecognized<string>
 ```

@@ -5,7 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -18,7 +22,7 @@ export const CardSource = {
   ApplePay: "apple-pay",
   GooglePay: "google-pay",
 } as const;
-export type CardSource = ClosedEnum<typeof CardSource>;
+export type CardSource = OpenEnum<typeof CardSource>;
 
 export type NetworkTokenPaymentMethodCreate = {
   /**
@@ -64,12 +68,25 @@ export type NetworkTokenPaymentMethodCreate = {
 };
 
 /** @internal */
-export const CardSource$inboundSchema: z.ZodNativeEnum<typeof CardSource> = z
-  .nativeEnum(CardSource);
+export const CardSource$inboundSchema: z.ZodType<
+  CardSource,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(CardSource),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const CardSource$outboundSchema: z.ZodNativeEnum<typeof CardSource> =
-  CardSource$inboundSchema;
+export const CardSource$outboundSchema: z.ZodType<
+  CardSource,
+  z.ZodTypeDef,
+  CardSource
+> = z.union([
+  z.nativeEnum(CardSource),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

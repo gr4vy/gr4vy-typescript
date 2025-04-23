@@ -10,6 +10,8 @@ let value: ErrorLocation = "body";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"query" | "body" | "path" | "header" | "unknown"
+"query" | "body" | "path" | "header" | "unknown" | Unrecognized<string>
 ```

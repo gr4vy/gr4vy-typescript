@@ -5,7 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,7 +23,7 @@ export const UserDevice = {
 /**
  * The platform that is being used to access the website.
  */
-export type UserDevice = ClosedEnum<typeof UserDevice>;
+export type UserDevice = OpenEnum<typeof UserDevice>;
 
 /**
  * Merchant provided browser info
@@ -47,12 +51,25 @@ export type BrowserInfo = {
 };
 
 /** @internal */
-export const UserDevice$inboundSchema: z.ZodNativeEnum<typeof UserDevice> = z
-  .nativeEnum(UserDevice);
+export const UserDevice$inboundSchema: z.ZodType<
+  UserDevice,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(UserDevice),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const UserDevice$outboundSchema: z.ZodNativeEnum<typeof UserDevice> =
-  UserDevice$inboundSchema;
+export const UserDevice$outboundSchema: z.ZodType<
+  UserDevice,
+  z.ZodTypeDef,
+  UserDevice
+> = z.union([
+  z.nativeEnum(UserDevice),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

@@ -3,23 +3,38 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const ThreeDSecureMethod = {
   Challenge: "challenge",
   Frictionless: "frictionless",
 } as const;
-export type ThreeDSecureMethod = ClosedEnum<typeof ThreeDSecureMethod>;
+export type ThreeDSecureMethod = OpenEnum<typeof ThreeDSecureMethod>;
 
 /** @internal */
-export const ThreeDSecureMethod$inboundSchema: z.ZodNativeEnum<
-  typeof ThreeDSecureMethod
-> = z.nativeEnum(ThreeDSecureMethod);
+export const ThreeDSecureMethod$inboundSchema: z.ZodType<
+  ThreeDSecureMethod,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(ThreeDSecureMethod),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const ThreeDSecureMethod$outboundSchema: z.ZodNativeEnum<
-  typeof ThreeDSecureMethod
-> = ThreeDSecureMethod$inboundSchema;
+export const ThreeDSecureMethod$outboundSchema: z.ZodType<
+  ThreeDSecureMethod,
+  z.ZodTypeDef,
+  ThreeDSecureMethod
+> = z.union([
+  z.nativeEnum(ThreeDSecureMethod),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

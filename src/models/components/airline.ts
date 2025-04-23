@@ -5,7 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -25,7 +29,7 @@ export const TicketDeliveryMethod = {
   Electronic: "electronic",
   Other: "other",
 } as const;
-export type TicketDeliveryMethod = ClosedEnum<typeof TicketDeliveryMethod>;
+export type TicketDeliveryMethod = OpenEnum<typeof TicketDeliveryMethod>;
 
 /**
  * Information about an airline travel.
@@ -94,14 +98,25 @@ export type Airline = {
 };
 
 /** @internal */
-export const TicketDeliveryMethod$inboundSchema: z.ZodNativeEnum<
-  typeof TicketDeliveryMethod
-> = z.nativeEnum(TicketDeliveryMethod);
+export const TicketDeliveryMethod$inboundSchema: z.ZodType<
+  TicketDeliveryMethod,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(TicketDeliveryMethod),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const TicketDeliveryMethod$outboundSchema: z.ZodNativeEnum<
-  typeof TicketDeliveryMethod
-> = TicketDeliveryMethod$inboundSchema;
+export const TicketDeliveryMethod$outboundSchema: z.ZodType<
+  TicketDeliveryMethod,
+  z.ZodTypeDef,
+  TicketDeliveryMethod
+> = z.union([
+  z.nativeEnum(TicketDeliveryMethod),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

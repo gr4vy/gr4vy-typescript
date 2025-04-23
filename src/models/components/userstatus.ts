@@ -3,22 +3,39 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const UserStatus = {
   Active: "active",
   Pending: "pending",
   Deleted: "deleted",
 } as const;
-export type UserStatus = ClosedEnum<typeof UserStatus>;
+export type UserStatus = OpenEnum<typeof UserStatus>;
 
 /** @internal */
-export const UserStatus$inboundSchema: z.ZodNativeEnum<typeof UserStatus> = z
-  .nativeEnum(UserStatus);
+export const UserStatus$inboundSchema: z.ZodType<
+  UserStatus,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(UserStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const UserStatus$outboundSchema: z.ZodNativeEnum<typeof UserStatus> =
-  UserStatus$inboundSchema;
+export const UserStatus$outboundSchema: z.ZodType<
+  UserStatus,
+  z.ZodTypeDef,
+  UserStatus
+> = z.union([
+  z.nativeEnum(UserStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

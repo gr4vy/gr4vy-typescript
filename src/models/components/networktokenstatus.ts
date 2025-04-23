@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const NetworkTokenStatus = {
   Active: "active",
@@ -11,17 +15,28 @@ export const NetworkTokenStatus = {
   Suspended: "suspended",
   Deleted: "deleted",
 } as const;
-export type NetworkTokenStatus = ClosedEnum<typeof NetworkTokenStatus>;
+export type NetworkTokenStatus = OpenEnum<typeof NetworkTokenStatus>;
 
 /** @internal */
-export const NetworkTokenStatus$inboundSchema: z.ZodNativeEnum<
-  typeof NetworkTokenStatus
-> = z.nativeEnum(NetworkTokenStatus);
+export const NetworkTokenStatus$inboundSchema: z.ZodType<
+  NetworkTokenStatus,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(NetworkTokenStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const NetworkTokenStatus$outboundSchema: z.ZodNativeEnum<
-  typeof NetworkTokenStatus
-> = NetworkTokenStatus$inboundSchema;
+export const NetworkTokenStatus$outboundSchema: z.ZodType<
+  NetworkTokenStatus,
+  z.ZodTypeDef,
+  NetworkTokenStatus
+> = z.union([
+  z.nativeEnum(NetworkTokenStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

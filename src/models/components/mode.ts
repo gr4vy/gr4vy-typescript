@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const Mode = {
   Card: "card",
@@ -14,16 +18,22 @@ export const Mode = {
   ClickToPay: "click-to-pay",
   GiftCard: "gift-card",
 } as const;
-export type Mode = ClosedEnum<typeof Mode>;
+export type Mode = OpenEnum<typeof Mode>;
 
 /** @internal */
-export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
-  Mode,
+export const Mode$inboundSchema: z.ZodType<Mode, z.ZodTypeDef, unknown> = z
+  .union([
+    z.nativeEnum(Mode),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const Mode$outboundSchema: z.ZodType<Mode, z.ZodTypeDef, Mode> = z.union(
+  [
+    z.nativeEnum(Mode),
+    z.string().and(z.custom<Unrecognized<string>>()),
+  ],
 );
-
-/** @internal */
-export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> =
-  Mode$inboundSchema;
 
 /**
  * @internal

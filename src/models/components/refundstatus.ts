@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const RefundStatus = {
   Processing: "processing",
@@ -12,15 +16,28 @@ export const RefundStatus = {
   Declined: "declined",
   Voided: "voided",
 } as const;
-export type RefundStatus = ClosedEnum<typeof RefundStatus>;
+export type RefundStatus = OpenEnum<typeof RefundStatus>;
 
 /** @internal */
-export const RefundStatus$inboundSchema: z.ZodNativeEnum<typeof RefundStatus> =
-  z.nativeEnum(RefundStatus);
+export const RefundStatus$inboundSchema: z.ZodType<
+  RefundStatus,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(RefundStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const RefundStatus$outboundSchema: z.ZodNativeEnum<typeof RefundStatus> =
-  RefundStatus$inboundSchema;
+export const RefundStatus$outboundSchema: z.ZodType<
+  RefundStatus,
+  z.ZodTypeDef,
+  RefundStatus
+> = z.union([
+  z.nativeEnum(RefundStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

@@ -69,9 +69,9 @@ export const startCommand = buildCommand({
         optional: true,
         values: Object.keys(ServerList) as Array<keyof typeof ServerList>,
       },
-      "gr4vy-id": {
+      id: {
         kind: "parsed",
-        brief: "Sets the gr4vy_id variable for url substitution",
+        brief: "Sets the id variable for url substitution",
         optional: true,
         parse: (value) => value,
       },

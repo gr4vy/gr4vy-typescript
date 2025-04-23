@@ -5,7 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -14,7 +18,7 @@ export const AgeGroup = {
   Adult: "adult",
   Infant: "infant",
 } as const;
-export type AgeGroup = ClosedEnum<typeof AgeGroup>;
+export type AgeGroup = OpenEnum<typeof AgeGroup>;
 
 export type AirlinePassenger = {
   /**
@@ -64,12 +68,25 @@ export type AirlinePassenger = {
 };
 
 /** @internal */
-export const AgeGroup$inboundSchema: z.ZodNativeEnum<typeof AgeGroup> = z
-  .nativeEnum(AgeGroup);
+export const AgeGroup$inboundSchema: z.ZodType<
+  AgeGroup,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(AgeGroup),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const AgeGroup$outboundSchema: z.ZodNativeEnum<typeof AgeGroup> =
-  AgeGroup$inboundSchema;
+export const AgeGroup$outboundSchema: z.ZodType<
+  AgeGroup,
+  z.ZodTypeDef,
+  AgeGroup
+> = z.union([
+  z.nativeEnum(AgeGroup),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

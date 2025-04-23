@@ -3,22 +3,39 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const CardType = {
   Credit: "credit",
   Debit: "debit",
   Prepaid: "prepaid",
 } as const;
-export type CardType = ClosedEnum<typeof CardType>;
+export type CardType = OpenEnum<typeof CardType>;
 
 /** @internal */
-export const CardType$inboundSchema: z.ZodNativeEnum<typeof CardType> = z
-  .nativeEnum(CardType);
+export const CardType$inboundSchema: z.ZodType<
+  CardType,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(CardType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const CardType$outboundSchema: z.ZodNativeEnum<typeof CardType> =
-  CardType$inboundSchema;
+export const CardType$outboundSchema: z.ZodType<
+  CardType,
+  z.ZodTypeDef,
+  CardType
+> = z.union([
+  z.nativeEnum(CardType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

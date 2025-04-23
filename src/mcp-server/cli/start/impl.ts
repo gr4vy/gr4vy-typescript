@@ -22,7 +22,7 @@ interface StartCommandFlags {
   readonly "bearer-auth"?: string | undefined;
   readonly "server-url"?: string;
   readonly server?: SDKOptions["server"];
-  readonly "gr4vy-id"?: SDKOptions["gr4vyId"];
+  readonly id?: SDKOptions["id"];
   readonly "log-level": ConsoleLoggerLevel;
   readonly env?: [string, string][];
 }
@@ -54,7 +54,7 @@ async function startStdio(flags: StartCommandFlags) {
     ...{ bearerAuth: flags["bearer-auth"] },
     serverURL: flags["server-url"],
     server: flags.server,
-    gr4vyId: flags["gr4vy-id"],
+    id: flags.id,
   });
   await server.connect(transport);
 
@@ -76,7 +76,7 @@ async function startSSE(flags: StartCommandFlags) {
     ...{ bearerAuth: flags["bearer-auth"] },
     serverURL: flags["server-url"],
     server: flags.server,
-    gr4vyId: flags["gr4vy-id"],
+    id: flags.id,
   });
   let transport: SSEServerTransport | undefined;
   const controller = new AbortController();

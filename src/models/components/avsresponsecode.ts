@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const AVSResponseCode = {
   Match: "match",
@@ -12,17 +16,28 @@ export const AVSResponseCode = {
   PartialMatchPostcode: "partial_match_postcode",
   Unavailable: "unavailable",
 } as const;
-export type AVSResponseCode = ClosedEnum<typeof AVSResponseCode>;
+export type AVSResponseCode = OpenEnum<typeof AVSResponseCode>;
 
 /** @internal */
-export const AVSResponseCode$inboundSchema: z.ZodNativeEnum<
-  typeof AVSResponseCode
-> = z.nativeEnum(AVSResponseCode);
+export const AVSResponseCode$inboundSchema: z.ZodType<
+  AVSResponseCode,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(AVSResponseCode),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const AVSResponseCode$outboundSchema: z.ZodNativeEnum<
-  typeof AVSResponseCode
-> = AVSResponseCode$inboundSchema;
+export const AVSResponseCode$outboundSchema: z.ZodType<
+  AVSResponseCode,
+  z.ZodTypeDef,
+  AVSResponseCode
+> = z.union([
+  z.nativeEnum(AVSResponseCode),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

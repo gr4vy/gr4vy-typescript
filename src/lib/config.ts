@@ -13,8 +13,8 @@ export const ServerSandbox = "sandbox";
  * Contains the list of servers available to the SDK
  */
 export const ServerList = {
-  [ServerProduction]: "https://api.{gr4vy_id}.gr4vy.app",
-  [ServerSandbox]: "https://api.sandbox.{gr4vy_id}.gr4vy.app",
+  [ServerProduction]: "https://api.{id}.gr4vy.app",
+  [ServerSandbox]: "https://api.sandbox.{id}.gr4vy.app",
 } as const;
 
 export type SDKOptions = {
@@ -26,9 +26,9 @@ export type SDKOptions = {
    */
   server?: keyof typeof ServerList | undefined;
   /**
-   * Sets the gr4vy_id variable for url substitution
+   * Sets the id variable for url substitution
    */
-  gr4vyId?: string | undefined;
+  id?: string | undefined;
   /**
    * Allows overriding the default server URL used by the SDK
    */
@@ -46,10 +46,10 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 
   const serverParams: Record<string, Params> = {
     "production": {
-      "gr4vy_id": options.gr4vyId ?? "example",
+      "id": options.id ?? "example",
     },
     "sandbox": {
-      "gr4vy_id": options.gr4vyId ?? "example",
+      "id": options.id ?? "example",
     },
   };
 
@@ -68,7 +68,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "0.13.0",
+  sdkVersion: "0.14.0",
   genVersion: "2.588.4",
-  userAgent: "speakeasy-sdk/typescript 0.13.0 2.588.4 1.0.0 @gr4vy/sdk",
+  userAgent: "speakeasy-sdk/typescript 0.14.0 2.588.4 1.0.0 @gr4vy/sdk",
 } as const;

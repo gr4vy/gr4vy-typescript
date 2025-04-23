@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const CardScheme = {
   Accel: "accel",
@@ -31,15 +35,28 @@ export const CardScheme = {
   Unionpay: "unionpay",
   Visa: "visa",
 } as const;
-export type CardScheme = ClosedEnum<typeof CardScheme>;
+export type CardScheme = OpenEnum<typeof CardScheme>;
 
 /** @internal */
-export const CardScheme$inboundSchema: z.ZodNativeEnum<typeof CardScheme> = z
-  .nativeEnum(CardScheme);
+export const CardScheme$inboundSchema: z.ZodType<
+  CardScheme,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(CardScheme),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const CardScheme$outboundSchema: z.ZodNativeEnum<typeof CardScheme> =
-  CardScheme$inboundSchema;
+export const CardScheme$outboundSchema: z.ZodType<
+  CardScheme,
+  z.ZodTypeDef,
+  CardScheme
+> = z.union([
+  z.nativeEnum(CardScheme),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

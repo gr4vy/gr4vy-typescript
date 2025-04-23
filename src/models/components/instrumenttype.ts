@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const InstrumentType = {
   Pan: "pan",
@@ -14,17 +18,28 @@ export const InstrumentType = {
   Applepay: "applepay",
   NetworkToken: "network_token",
 } as const;
-export type InstrumentType = ClosedEnum<typeof InstrumentType>;
+export type InstrumentType = OpenEnum<typeof InstrumentType>;
 
 /** @internal */
-export const InstrumentType$inboundSchema: z.ZodNativeEnum<
-  typeof InstrumentType
-> = z.nativeEnum(InstrumentType);
+export const InstrumentType$inboundSchema: z.ZodType<
+  InstrumentType,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(InstrumentType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const InstrumentType$outboundSchema: z.ZodNativeEnum<
-  typeof InstrumentType
-> = InstrumentType$inboundSchema;
+export const InstrumentType$outboundSchema: z.ZodType<
+  InstrumentType,
+  z.ZodTypeDef,
+  InstrumentType
+> = z.union([
+  z.nativeEnum(InstrumentType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

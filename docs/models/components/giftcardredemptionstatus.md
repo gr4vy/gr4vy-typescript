@@ -10,6 +10,8 @@ let value: GiftCardRedemptionStatus = "created";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"created" | "succeeded" | "failed" | "skipped"
+"created" | "succeeded" | "failed" | "skipped" | Unrecognized<string>
 ```

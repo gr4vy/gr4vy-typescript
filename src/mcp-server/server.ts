@@ -84,18 +84,18 @@ export function createMCPServer(deps: {
   serverURL?: string | undefined;
   bearerAuth?: SDKOptions["bearerAuth"] | undefined;
   server?: SDKOptions["server"] | undefined;
-  gr4vyId?: SDKOptions["gr4vyId"] | undefined;
+  id?: SDKOptions["id"] | undefined;
 }) {
   const server = new McpServer({
     name: "Gr4vy",
-    version: "0.13.0",
+    version: "0.14.0",
   });
 
   const client = new Gr4vyCore({
     bearerAuth: deps.bearerAuth,
     serverURL: deps.serverURL,
     server: deps.server,
-    gr4vyId: deps.gr4vyId,
+    id: deps.id,
   });
 
   const scopes = new Set(deps.scopes);

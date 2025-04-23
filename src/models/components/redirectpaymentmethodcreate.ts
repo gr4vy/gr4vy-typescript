@@ -5,7 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -109,7 +113,7 @@ export const RedirectPaymentMethodCreateMethod = {
 /**
  * The method to use, this can be any of the methods that support redirect requests.
  */
-export type RedirectPaymentMethodCreateMethod = ClosedEnum<
+export type RedirectPaymentMethodCreateMethod = OpenEnum<
   typeof RedirectPaymentMethodCreateMethod
 >;
 
@@ -148,14 +152,25 @@ export type RedirectPaymentMethodCreate = {
 };
 
 /** @internal */
-export const RedirectPaymentMethodCreateMethod$inboundSchema: z.ZodNativeEnum<
-  typeof RedirectPaymentMethodCreateMethod
-> = z.nativeEnum(RedirectPaymentMethodCreateMethod);
+export const RedirectPaymentMethodCreateMethod$inboundSchema: z.ZodType<
+  RedirectPaymentMethodCreateMethod,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(RedirectPaymentMethodCreateMethod),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const RedirectPaymentMethodCreateMethod$outboundSchema: z.ZodNativeEnum<
-  typeof RedirectPaymentMethodCreateMethod
-> = RedirectPaymentMethodCreateMethod$inboundSchema;
+export const RedirectPaymentMethodCreateMethod$outboundSchema: z.ZodType<
+  RedirectPaymentMethodCreateMethod,
+  z.ZodTypeDef,
+  RedirectPaymentMethodCreateMethod
+> = z.union([
+  z.nativeEnum(RedirectPaymentMethodCreateMethod),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

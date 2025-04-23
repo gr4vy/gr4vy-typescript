@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 595a8af4-8da0-44fa-a00d-c1cb52e0c7dc
 management:
-  docChecksum: 5737e35b5127a9eea147d90080bc51a1
+  docChecksum: 0101ffa918330c170443cc245674fe23
   docVersion: 1.0.0
   speakeasyVersion: 1.537.1
   generationVersion: 2.588.4
-  releaseVersion: 0.13.0
-  configChecksum: 621d01044efa1017f92587690bfe79b3
+  releaseVersion: 0.14.0
+  configChecksum: 3afede377cf0076c32b56f7049fc697d
   repoURL: https://github.com/gr4vy/gr4vy-js.git
   installationURL: https://github.com/gr4vy/gr4vy-js
   published: true
@@ -28,6 +28,7 @@ features:
     mcpServer: 0.9.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
+    openEnums: 0.1.1
     pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0

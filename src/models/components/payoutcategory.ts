@@ -3,22 +3,37 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const PayoutCategory = {
   OnlineGambling: "online_gambling",
 } as const;
-export type PayoutCategory = ClosedEnum<typeof PayoutCategory>;
+export type PayoutCategory = OpenEnum<typeof PayoutCategory>;
 
 /** @internal */
-export const PayoutCategory$inboundSchema: z.ZodNativeEnum<
-  typeof PayoutCategory
-> = z.nativeEnum(PayoutCategory);
+export const PayoutCategory$inboundSchema: z.ZodType<
+  PayoutCategory,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PayoutCategory),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const PayoutCategory$outboundSchema: z.ZodNativeEnum<
-  typeof PayoutCategory
-> = PayoutCategory$inboundSchema;
+export const PayoutCategory$outboundSchema: z.ZodType<
+  PayoutCategory,
+  z.ZodTypeDef,
+  PayoutCategory
+> = z.union([
+  z.nativeEnum(PayoutCategory),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

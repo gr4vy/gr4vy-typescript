@@ -10,6 +10,8 @@ let value: CardSource = "apple-pay";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"apple-pay" | "google-pay"
+"apple-pay" | "google-pay" | Unrecognized<string>
 ```

@@ -5,7 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,7 +23,7 @@ export const OrderBy = {
 /**
  * The direction to sort the payment methods in.
  */
-export type OrderBy = ClosedEnum<typeof OrderBy>;
+export type OrderBy = OpenEnum<typeof OrderBy>;
 
 export type ListBuyerPaymentMethodsRequest = {
   /**
@@ -49,12 +53,19 @@ export type ListBuyerPaymentMethodsRequest = {
 };
 
 /** @internal */
-export const OrderBy$inboundSchema: z.ZodNativeEnum<typeof OrderBy> = z
-  .nativeEnum(OrderBy);
+export const OrderBy$inboundSchema: z.ZodType<OrderBy, z.ZodTypeDef, unknown> =
+  z
+    .union([
+      z.nativeEnum(OrderBy),
+      z.string().transform(catchUnrecognizedEnum),
+    ]);
 
 /** @internal */
-export const OrderBy$outboundSchema: z.ZodNativeEnum<typeof OrderBy> =
-  OrderBy$inboundSchema;
+export const OrderBy$outboundSchema: z.ZodType<OrderBy, z.ZodTypeDef, OrderBy> =
+  z.union([
+    z.nativeEnum(OrderBy),
+    z.string().and(z.custom<Unrecognized<string>>()),
+  ]);
 
 /**
  * @internal

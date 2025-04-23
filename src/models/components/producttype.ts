@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const ProductType = {
   Physical: "physical",
@@ -15,15 +19,28 @@ export const ProductType = {
   StoreCredit: "store_credit",
   Surcharge: "surcharge",
 } as const;
-export type ProductType = ClosedEnum<typeof ProductType>;
+export type ProductType = OpenEnum<typeof ProductType>;
 
 /** @internal */
-export const ProductType$inboundSchema: z.ZodNativeEnum<typeof ProductType> = z
-  .nativeEnum(ProductType);
+export const ProductType$inboundSchema: z.ZodType<
+  ProductType,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(ProductType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const ProductType$outboundSchema: z.ZodNativeEnum<typeof ProductType> =
-  ProductType$inboundSchema;
+export const ProductType$outboundSchema: z.ZodType<
+  ProductType,
+  z.ZodTypeDef,
+  ProductType
+> = z.union([
+  z.nativeEnum(ProductType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

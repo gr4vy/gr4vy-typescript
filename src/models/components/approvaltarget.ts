@@ -3,23 +3,38 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const ApprovalTarget = {
   NewWindow: "new_window",
   Any: "any",
 } as const;
-export type ApprovalTarget = ClosedEnum<typeof ApprovalTarget>;
+export type ApprovalTarget = OpenEnum<typeof ApprovalTarget>;
 
 /** @internal */
-export const ApprovalTarget$inboundSchema: z.ZodNativeEnum<
-  typeof ApprovalTarget
-> = z.nativeEnum(ApprovalTarget);
+export const ApprovalTarget$inboundSchema: z.ZodType<
+  ApprovalTarget,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(ApprovalTarget),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const ApprovalTarget$outboundSchema: z.ZodNativeEnum<
-  typeof ApprovalTarget
-> = ApprovalTarget$inboundSchema;
+export const ApprovalTarget$outboundSchema: z.ZodType<
+  ApprovalTarget,
+  z.ZodTypeDef,
+  ApprovalTarget
+> = z.union([
+  z.nativeEnum(ApprovalTarget),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
