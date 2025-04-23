@@ -82,8 +82,10 @@ async function run() {
     merchantInitiated: true,
   });
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -165,8 +167,10 @@ async function run() {
 
   const { value: result } = res;
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -183,7 +187,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionTransactionSummary](../../models/components/collectiontransactionsummary.md)\>**
+**Promise\<[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)\>**
 
 ### Errors
 

@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListGiftCardsRequest = {
@@ -13,6 +14,10 @@ export type ListGiftCardsRequest = {
   buyerId?: string | null | undefined;
   cursor?: string | null | undefined;
   limit?: number | undefined;
+};
+
+export type ListGiftCardsResponse = {
+  result: components.CollectionGiftCard;
 };
 
 /** @internal */
@@ -85,5 +90,67 @@ export function listGiftCardsRequestFromJSON(
     jsonString,
     (x) => ListGiftCardsRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ListGiftCardsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListGiftCardsResponse$inboundSchema: z.ZodType<
+  ListGiftCardsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.CollectionGiftCard$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type ListGiftCardsResponse$Outbound = {
+  Result: components.CollectionGiftCard$Outbound;
+};
+
+/** @internal */
+export const ListGiftCardsResponse$outboundSchema: z.ZodType<
+  ListGiftCardsResponse$Outbound,
+  z.ZodTypeDef,
+  ListGiftCardsResponse
+> = z.object({
+  result: components.CollectionGiftCard$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListGiftCardsResponse$ {
+  /** @deprecated use `ListGiftCardsResponse$inboundSchema` instead. */
+  export const inboundSchema = ListGiftCardsResponse$inboundSchema;
+  /** @deprecated use `ListGiftCardsResponse$outboundSchema` instead. */
+  export const outboundSchema = ListGiftCardsResponse$outboundSchema;
+  /** @deprecated use `ListGiftCardsResponse$Outbound` instead. */
+  export type Outbound = ListGiftCardsResponse$Outbound;
+}
+
+export function listGiftCardsResponseToJSON(
+  listGiftCardsResponse: ListGiftCardsResponse,
+): string {
+  return JSON.stringify(
+    ListGiftCardsResponse$outboundSchema.parse(listGiftCardsResponse),
+  );
+}
+
+export function listGiftCardsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListGiftCardsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListGiftCardsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListGiftCardsResponse' from JSON`,
   );
 }

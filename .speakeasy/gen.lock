@@ -1,12 +1,14 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: a2772a997d17a536365950d5bce17cd4
+  docChecksum: 3c7dff40caa6a5c7769fa059c6b9424c
   docVersion: 1.0.0
-  speakeasyVersion: 1.537.1
-  generationVersion: 2.588.4
-  releaseVersion: 0.17.2
-  configChecksum: fa4068f743f736f116083d32c7ace5d6
+  speakeasyVersion: 1.538.0
+  generationVersion: 2.591.1
+  releaseVersion: 0.17.3
+  configChecksum: 01e73e3c9b4890347ccc257b028d26d3
+  repoURL: https://github.com/gr4vy/gr4vy-typescript.git
+  installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 features:
   typescript:
@@ -333,6 +335,7 @@ generatedFiles:
   - docs/models/operations/listbuyersresponse.md
   - docs/models/operations/listgiftcardbalancesrequest.md
   - docs/models/operations/listgiftcardsrequest.md
+  - docs/models/operations/listgiftcardsresponse.md
   - docs/models/operations/listpaymentmethodnetworktokensrequest.md
   - docs/models/operations/listpaymentmethodpaymentservicetokensrequest.md
   - docs/models/operations/listpaymentmethodsrequest.md
@@ -341,6 +344,7 @@ generatedFiles:
   - docs/models/operations/listpayoutsresponse.md
   - docs/models/operations/listtransactionrefundsrequest.md
   - docs/models/operations/listtransactionsrequest.md
+  - docs/models/operations/listtransactionsresponse.md
   - docs/models/operations/orderby.md
   - docs/models/operations/registerdigitalwalletdomainrequest.md
   - docs/models/operations/resumepaymentmethodnetworktokenrequest.md

@@ -3,6 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
+import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -10,7 +11,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -24,6 +24,12 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
  * List transactions
@@ -36,44 +42,9 @@ export function transactionsList(
   request?: operations.ListTransactionsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
-  Result<
-    components.CollectionTransactionSummary,
-    | errors.Error400
-    | errors.Error401
-    | errors.ListTransactionsResponse403ListTransactions
-    | errors.Error404
-    | errors.Error405
-    | errors.Error409
-    | errors.HTTPValidationError
-    | errors.Error425
-    | errors.Error429
-    | errors.Error500
-    | errors.Error502
-    | errors.Error504
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | ConnectionError
-  >
-> {
-  return new APIPromise($do(
-    client,
-    request,
-    options,
-  ));
-}
-
-async function $do(
-  client: Gr4vyCore,
-  request?: operations.ListTransactionsRequest | undefined,
-  options?: RequestOptions,
-): Promise<
-  [
+  PageIterator<
     Result<
-      components.CollectionTransactionSummary,
+      operations.ListTransactionsResponse,
       | errors.Error400
       | errors.Error401
       | errors.ListTransactionsResponse403ListTransactions
@@ -94,6 +65,47 @@ async function $do(
       | RequestTimeoutError
       | ConnectionError
     >,
+    { cursor: string }
+  >
+> {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: Gr4vyCore,
+  request?: operations.ListTransactionsRequest | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    PageIterator<
+      Result<
+        operations.ListTransactionsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.ListTransactionsResponse403ListTransactions
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
+        | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
+        | SDKError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >,
+      { cursor: string }
+    >,
     APICall,
   ]
 > {
@@ -104,7 +116,7 @@ async function $do(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return [parsed, { status: "invalid" }];
+    return [haltIterator(parsed), { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -194,7 +206,7 @@ async function $do(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return [requestRes, { status: "invalid" }];
+    return [haltIterator(requestRes), { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -220,7 +232,7 @@ async function $do(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return [doResult, { status: "request-error", request: req }];
+    return [haltIterator(doResult), { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -228,8 +240,8 @@ async function $do(
     HttpMeta: { Response: response, Request: req },
   };
 
-  const [result] = await M.match<
-    components.CollectionTransactionSummary,
+  const [result, raw] = await M.match<
+    operations.ListTransactionsResponse,
     | errors.Error400
     | errors.Error401
     | errors.ListTransactionsResponse403ListTransactions
@@ -250,7 +262,9 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.CollectionTransactionSummary$inboundSchema),
+    M.json(200, operations.ListTransactionsResponse$inboundSchema, {
+      key: "Result",
+    }),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(
@@ -270,8 +284,64 @@ async function $do(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return [result, { status: "complete", request: req, response }];
+    return [haltIterator(result), {
+      status: "complete",
+      request: req,
+      response,
+    }];
   }
 
-  return [result, { status: "complete", request: req, response }];
+  const nextFunc = (
+    responseData: unknown,
+  ): {
+    next: Paginator<
+      Result<
+        operations.ListTransactionsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.ListTransactionsResponse403ListTransactions
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
+        | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
+        | SDKError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >
+    >;
+    "~next"?: { cursor: string };
+  } => {
+    const nextCursor = dlv(responseData, "next_cursor");
+    if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+
+    const nextVal = () =>
+      transactionsList(
+        client,
+        {
+          ...request,
+          cursor: nextCursor,
+        },
+        options,
+      );
+
+    return { next: nextVal, "~next": { cursor: nextCursor } };
+  };
+
+  const page = { ...result, ...nextFunc(raw) };
+  return [{ ...page, ...createPageIterator(page, (v) => !v.ok) }, {
+    status: "complete",
+    request: req,
+    response,
+  }];
 }
