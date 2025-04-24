@@ -8,6 +8,7 @@ import { RFCDate } from "@gr4vy/sdk/types";
 
 let value: UpdateCheckoutSessionRequest = {
   sessionId: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
+  xGr4vyMerchantAccountId: "default",
   checkoutSessionUpdate: {
     cartItems: [
       {
@@ -138,4 +139,5 @@ let value: UpdateCheckoutSessionRequest = {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `sessionId`                                                                          | *string*                                                                             | :heavy_check_mark:                                                                   | The ID of the checkout session.                                                      | 4137b1cf-39ac-42a8-bad6-1c680d5dab6b                                                 |
 | `timeoutInSeconds`                                                                   | *number*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |
+| `xGr4vyMerchantAccountId`                                                            | *string*                                                                             | :heavy_minus_sign:                                                                   | The ID of the merchant account to use for this request.                              | default                                                                              |
 | `checkoutSessionUpdate`                                                              | [components.CheckoutSessionUpdate](../../models/components/checkoutsessionupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |                                                                                      |

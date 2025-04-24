@@ -10,6 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetTransactionSummaryRequest = {
   transactionId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -19,15 +23,18 @@ export const GetTransactionSummaryRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type GetTransactionSummaryRequest$Outbound = {
   transaction_id: string;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -37,9 +44,11 @@ export const GetTransactionSummaryRequest$outboundSchema: z.ZodType<
   GetTransactionSummaryRequest
 > = z.object({
   transactionId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

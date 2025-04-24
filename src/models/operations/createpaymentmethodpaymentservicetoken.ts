@@ -15,6 +15,10 @@ export type CreatePaymentMethodPaymentServiceTokenRequest = {
    */
   paymentMethodId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate;
 };
 
@@ -27,12 +31,14 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     timeout_in_seconds: z.number().default(1),
+    "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
     PaymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "timeout_in_seconds": "timeoutInSeconds",
+      "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
       "PaymentServiceTokenCreate": "paymentServiceTokenCreate",
     });
   });
@@ -41,6 +47,7 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
 export type CreatePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   PaymentServiceTokenCreate: components.PaymentServiceTokenCreate$Outbound;
 };
 
@@ -53,12 +60,14 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     timeoutInSeconds: z.number().default(1),
+    xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
     paymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       timeoutInSeconds: "timeout_in_seconds",
+      xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
       paymentServiceTokenCreate: "PaymentServiceTokenCreate",
     });
   });

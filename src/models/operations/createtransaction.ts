@@ -11,6 +11,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateTransactionRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
+  /**
+   * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+   */
+  idempotencyKey?: string | null | undefined;
   transactionCreate: components.TransactionCreate;
 };
 
@@ -23,10 +31,14 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  "idempotency-key": z.nullable(z.string()).optional(),
   TransactionCreate: components.TransactionCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
+    "idempotency-key": "idempotencyKey",
     "TransactionCreate": "transactionCreate",
   });
 });
@@ -34,6 +46,8 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateTransactionRequest$Outbound = {
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  "idempotency-key"?: string | null | undefined;
   TransactionCreate: components.TransactionCreate$Outbound;
 };
 
@@ -44,10 +58,14 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
   CreateTransactionRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  idempotencyKey: z.nullable(z.string()).optional(),
   transactionCreate: components.TransactionCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
+    idempotencyKey: "idempotency-key",
     transactionCreate: "TransactionCreate",
   });
 });

@@ -33,12 +33,14 @@ export class DigitalWallets extends ClientSDK {
   async create(
     digitalWalletCreate: components.DigitalWalletCreate,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsCreate(
       this,
       digitalWalletCreate,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -50,10 +52,12 @@ export class DigitalWallets extends ClientSDK {
    * List configured digital wallets.
    */
   async list(
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorDigitalWallet> {
     return unwrapAsync(digitalWalletsList(
       this,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -66,11 +70,13 @@ export class DigitalWallets extends ClientSDK {
    */
   async get(
     digitalWalletId: string,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsGet(
       this,
       digitalWalletId,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -84,12 +90,14 @@ export class DigitalWallets extends ClientSDK {
   async delete(
     digitalWalletId: string,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(digitalWalletsDelete(
       this,
       digitalWalletId,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -104,6 +112,7 @@ export class DigitalWallets extends ClientSDK {
     digitalWalletUpdate: components.DigitalWalletUpdate,
     digitalWalletId: string,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsUpdate(
@@ -111,6 +120,7 @@ export class DigitalWallets extends ClientSDK {
       digitalWalletUpdate,
       digitalWalletId,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }

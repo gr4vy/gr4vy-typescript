@@ -13,6 +13,10 @@ export type GetBuyerRequest = {
    * The ID of the buyer to retrieve.
    */
   buyerId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -22,15 +26,18 @@ export const GetBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type GetBuyerRequest$Outbound = {
   buyer_id: string;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,9 +47,11 @@ export const GetBuyerRequest$outboundSchema: z.ZodType<
   GetBuyerRequest
 > = z.object({
   buyerId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

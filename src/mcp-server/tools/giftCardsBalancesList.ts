@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   giftCardBalanceRequest: components.GiftCardBalanceRequest$inboundSchema,
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$giftCardsBalancesList: ToolDefinition<typeof args> = {
@@ -23,6 +24,7 @@ Fetch the balances for one or more gift cards.`,
       client,
       args.giftCardBalanceRequest,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

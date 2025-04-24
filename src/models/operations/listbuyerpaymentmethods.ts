@@ -50,6 +50,10 @@ export type ListBuyerPaymentMethodsRequest = {
    * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
    */
   currency?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -90,12 +94,14 @@ export const ListBuyerPaymentMethodsRequest$inboundSchema: z.ZodType<
   order_by: OrderBy$inboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "buyer_external_identifier": "buyerExternalIdentifier",
     "sort_by": "sortBy",
     "order_by": "orderBy",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -107,6 +113,7 @@ export type ListBuyerPaymentMethodsRequest$Outbound = {
   order_by: string;
   country?: string | null | undefined;
   currency?: string | null | undefined;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -123,12 +130,14 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
   orderBy: OrderBy$outboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     buyerExternalIdentifier: "buyer_external_identifier",
     sortBy: "sort_by",
     orderBy: "order_by",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

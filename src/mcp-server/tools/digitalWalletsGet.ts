@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   digitalWalletId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$digitalWalletsGet: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ Fetch the details a digital wallet.`,
     const [result, apiCall] = await digitalWalletsGet(
       client,
       args.digitalWalletId,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -4,7 +4,7 @@
 
 import { Gr4vyCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -39,10 +39,7 @@ import {
  */
 export function giftCardsList(
   client: Gr4vyCore,
-  buyerExternalIdentifier?: string | null | undefined,
-  buyerId?: string | null | undefined,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
+  request?: operations.ListGiftCardsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -73,20 +70,14 @@ export function giftCardsList(
 > {
   return new APIPromise($do(
     client,
-    buyerExternalIdentifier,
-    buyerId,
-    cursor,
-    limit,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  buyerExternalIdentifier?: string | null | undefined,
-  buyerId?: string | null | undefined,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
+  request?: operations.ListGiftCardsRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -118,15 +109,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListGiftCardsRequest | undefined = {
-    buyerExternalIdentifier: buyerExternalIdentifier,
-    buyerId: buyerId,
-    cursor: cursor,
-    limit: limit,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListGiftCardsRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
@@ -148,6 +132,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload?.["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
@@ -308,10 +297,10 @@ async function $do(
     const nextVal = () =>
       giftCardsList(
         client,
-        buyerExternalIdentifier,
-        buyerId,
-        nextCursor,
-        limit,
+        {
+          ...request,
+          cursor: nextCursor,
+        },
         options,
       );
 

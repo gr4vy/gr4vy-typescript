@@ -33,10 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function buyersShippingDetailsUpdate(
   client: Gr4vyCore,
-  shippingDetailsUpdate: components.ShippingDetailsUpdate,
-  buyerId: string,
-  shippingDetailsId: string,
-  timeoutInSeconds?: number | undefined,
+  request: operations.UpdateBuyerShippingDetailsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,20 +61,14 @@ export function buyersShippingDetailsUpdate(
 > {
   return new APIPromise($do(
     client,
-    shippingDetailsUpdate,
-    buyerId,
-    shippingDetailsId,
-    timeoutInSeconds,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  shippingDetailsUpdate: components.ShippingDetailsUpdate,
-  buyerId: string,
-  shippingDetailsId: string,
-  timeoutInSeconds?: number | undefined,
+  request: operations.UpdateBuyerShippingDetailsRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -106,15 +97,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.UpdateBuyerShippingDetailsRequest = {
-    shippingDetailsUpdate: shippingDetailsUpdate,
-    buyerId: buyerId,
-    shippingDetailsId: shippingDetailsId,
-    timeoutInSeconds: timeoutInSeconds,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.UpdateBuyerShippingDetailsRequest$outboundSchema.parse(value),
     "Input validation failed",
@@ -150,6 +134,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

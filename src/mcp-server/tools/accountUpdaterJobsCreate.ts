@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   accountUpdaterJobCreate: components.AccountUpdaterJobCreate$inboundSchema,
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$accountUpdaterJobsCreate: ToolDefinition<typeof args> = {
@@ -23,6 +24,7 @@ Schedule one or more stored cards for an account update.`,
       client,
       args.accountUpdaterJobCreate,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

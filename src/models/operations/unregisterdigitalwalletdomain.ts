@@ -12,6 +12,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type UnregisterDigitalWalletDomainRequest = {
   digitalWalletId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   digitalWalletDomain: components.DigitalWalletDomain;
 };
 
@@ -23,11 +27,13 @@ export const UnregisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 > = z.object({
   digital_wallet_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   DigitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "DigitalWalletDomain": "digitalWalletDomain",
   });
 });
@@ -36,6 +42,7 @@ export const UnregisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 export type UnregisterDigitalWalletDomainRequest$Outbound = {
   digital_wallet_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   DigitalWalletDomain: components.DigitalWalletDomain$Outbound;
 };
 
@@ -47,11 +54,13 @@ export const UnregisterDigitalWalletDomainRequest$outboundSchema: z.ZodType<
 > = z.object({
   digitalWalletId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletDomain: components.DigitalWalletDomain$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     digitalWalletDomain: "DigitalWalletDomain",
   });
 });

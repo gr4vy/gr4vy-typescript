@@ -13,6 +13,10 @@ export type GetGiftCardRequest = {
    * The ID of the gift card.
    */
   giftCardId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -22,15 +26,18 @@ export const GetGiftCardRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   gift_card_id: z.string(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "gift_card_id": "giftCardId",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type GetGiftCardRequest$Outbound = {
   gift_card_id: string;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,9 +47,11 @@ export const GetGiftCardRequest$outboundSchema: z.ZodType<
   GetGiftCardRequest
 > = z.object({
   giftCardId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     giftCardId: "gift_card_id",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

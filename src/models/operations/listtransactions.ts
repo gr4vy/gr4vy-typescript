@@ -128,6 +128,10 @@ export type ListTransactionsRequest = {
    * Filters for transactions where the `merchant_initiated` matches the provided value.
    */
   merchantInitiated?: boolean | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 export type ListTransactionsResponse = {
@@ -188,6 +192,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   ).optional(),
   is_subsequent_payment: z.nullable(z.boolean()).optional(),
   merchant_initiated: z.nullable(z.boolean()).optional(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "created_at_lte": "createdAtLte",
@@ -219,6 +224,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     "payment_source": "paymentSource",
     "is_subsequent_payment": "isSubsequentPayment",
     "merchant_initiated": "merchantInitiated",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -261,6 +267,7 @@ export type ListTransactionsRequest$Outbound = {
   payment_source?: Array<string> | null | undefined;
   is_subsequent_payment?: boolean | null | undefined;
   merchant_initiated?: boolean | null | undefined;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -309,6 +316,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   ).optional(),
   isSubsequentPayment: z.nullable(z.boolean()).optional(),
   merchantInitiated: z.nullable(z.boolean()).optional(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     createdAtLte: "created_at_lte",
@@ -340,6 +348,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     paymentSource: "payment_source",
     isSubsequentPayment: "is_subsequent_payment",
     merchantInitiated: "merchant_initiated",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

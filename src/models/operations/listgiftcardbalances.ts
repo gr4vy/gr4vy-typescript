@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListGiftCardBalancesRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   giftCardBalanceRequest: components.GiftCardBalanceRequest;
 };
 
@@ -21,10 +25,12 @@ export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "GiftCardBalanceRequest": "giftCardBalanceRequest",
   });
 });
@@ -32,6 +38,7 @@ export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type ListGiftCardBalancesRequest$Outbound = {
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$Outbound;
 };
 
@@ -42,10 +49,12 @@ export const ListGiftCardBalancesRequest$outboundSchema: z.ZodType<
   ListGiftCardBalancesRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   giftCardBalanceRequest: components.GiftCardBalanceRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     giftCardBalanceRequest: "GiftCardBalanceRequest",
   });
 });

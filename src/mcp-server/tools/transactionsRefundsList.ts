@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   transactionId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionsRefundsList: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ List refunds for a transaction.`,
     const [result, apiCall] = await transactionsRefundsList(
       client,
       args.transactionId,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

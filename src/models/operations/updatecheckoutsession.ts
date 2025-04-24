@@ -15,6 +15,10 @@ export type UpdateCheckoutSessionRequest = {
    */
   sessionId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   checkoutSessionUpdate: components.CheckoutSessionUpdate;
 };
 
@@ -26,11 +30,13 @@ export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
 > = z.object({
   session_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   CheckoutSessionUpdate: components.CheckoutSessionUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "session_id": "sessionId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "CheckoutSessionUpdate": "checkoutSessionUpdate",
   });
 });
@@ -39,6 +45,7 @@ export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
 export type UpdateCheckoutSessionRequest$Outbound = {
   session_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   CheckoutSessionUpdate: components.CheckoutSessionUpdate$Outbound;
 };
 
@@ -50,11 +57,13 @@ export const UpdateCheckoutSessionRequest$outboundSchema: z.ZodType<
 > = z.object({
   sessionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   checkoutSessionUpdate: components.CheckoutSessionUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     sessionId: "session_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     checkoutSessionUpdate: "CheckoutSessionUpdate",
   });
 });

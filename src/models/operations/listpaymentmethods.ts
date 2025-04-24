@@ -31,6 +31,10 @@ export type ListPaymentMethodsRequest = {
    * The external identifier of the payment method to filter by.
    */
   externalIdentifier?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 export type ListPaymentMethodsResponse = {
@@ -50,11 +54,13 @@ export const ListPaymentMethodsRequest$inboundSchema: z.ZodType<
   status: z.nullable(z.array(components.PaymentMethodStatus$inboundSchema))
     .optional(),
   external_identifier: z.nullable(z.string()).optional(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "buyer_external_identifier": "buyerExternalIdentifier",
     "external_identifier": "externalIdentifier",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -66,6 +72,7 @@ export type ListPaymentMethodsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   status?: Array<string> | null | undefined;
   external_identifier?: string | null | undefined;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -81,11 +88,13 @@ export const ListPaymentMethodsRequest$outboundSchema: z.ZodType<
   status: z.nullable(z.array(components.PaymentMethodStatus$outboundSchema))
     .optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     buyerExternalIdentifier: "buyer_external_identifier",
     externalIdentifier: "external_identifier",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

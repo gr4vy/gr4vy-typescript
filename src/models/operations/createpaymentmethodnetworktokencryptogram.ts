@@ -19,6 +19,10 @@ export type CreatePaymentMethodNetworkTokenCryptogramRequest = {
    */
   networkTokenId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   cryptogramCreate: components.CryptogramCreate;
 };
 
@@ -32,12 +36,14 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$inboundSchema:
     payment_method_id: z.string(),
     network_token_id: z.string(),
     timeout_in_seconds: z.number().default(1),
+    "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
     CryptogramCreate: components.CryptogramCreate$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "network_token_id": "networkTokenId",
       "timeout_in_seconds": "timeoutInSeconds",
+      "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
       "CryptogramCreate": "cryptogramCreate",
     });
   });
@@ -47,6 +53,7 @@ export type CreatePaymentMethodNetworkTokenCryptogramRequest$Outbound = {
   payment_method_id: string;
   network_token_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   CryptogramCreate: components.CryptogramCreate$Outbound;
 };
 
@@ -60,12 +67,14 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$outboundSchema:
     paymentMethodId: z.string(),
     networkTokenId: z.string(),
     timeoutInSeconds: z.number().default(1),
+    xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
     cryptogramCreate: components.CryptogramCreate$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       networkTokenId: "network_token_id",
       timeoutInSeconds: "timeout_in_seconds",
+      xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
       cryptogramCreate: "CryptogramCreate",
     });
   });

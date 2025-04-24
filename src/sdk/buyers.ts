@@ -39,18 +39,12 @@ export class Buyers extends ClientSDK {
    * List all buyers or search for a specific buyer.
    */
   async list(
-    cursor?: string | null | undefined,
-    limit?: number | undefined,
-    search?: string | null | undefined,
-    externalIdentifier?: string | null | undefined,
+    request?: operations.ListBuyersRequest | undefined,
     options?: RequestOptions,
   ): Promise<PageIterator<operations.ListBuyersResponse, { cursor: string }>> {
     return unwrapResultIterator(buyersList(
       this,
-      cursor,
-      limit,
-      search,
-      externalIdentifier,
+      request,
       options,
     ));
   }
@@ -64,12 +58,14 @@ export class Buyers extends ClientSDK {
   async create(
     buyerCreate: components.BuyerCreate,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Buyer> {
     return unwrapAsync(buyersCreate(
       this,
       buyerCreate,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -82,11 +78,13 @@ export class Buyers extends ClientSDK {
    */
   async get(
     buyerId: string,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Buyer> {
     return unwrapAsync(buyersGet(
       this,
       buyerId,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -101,6 +99,7 @@ export class Buyers extends ClientSDK {
     buyerUpdate: components.BuyerUpdate,
     buyerId: string,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Buyer> {
     return unwrapAsync(buyersUpdate(
@@ -108,6 +107,7 @@ export class Buyers extends ClientSDK {
       buyerUpdate,
       buyerId,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -121,12 +121,14 @@ export class Buyers extends ClientSDK {
   async delete(
     buyerId: string,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(buyersDelete(
       this,
       buyerId,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }

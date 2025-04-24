@@ -3,8 +3,10 @@
  */
 
 import { Gr4vyCore } from "../core.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -19,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -30,6 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function cardSchemeDefinitionsList(
   client: Gr4vyCore,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -40,6 +44,7 @@ export function cardSchemeDefinitionsList(
     | errors.Error404
     | errors.Error405
     | errors.Error409
+    | errors.HTTPValidationError
     | errors.Error425
     | errors.Error429
     | errors.Error500
@@ -56,12 +61,14 @@ export function cardSchemeDefinitionsList(
 > {
   return new APIPromise($do(
     client,
+    xGr4vyMerchantAccountId,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -73,6 +80,7 @@ async function $do(
       | errors.Error404
       | errors.Error405
       | errors.Error409
+      | errors.HTTPValidationError
       | errors.Error425
       | errors.Error429
       | errors.Error500
@@ -89,10 +97,32 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.ListCardSchemeDefinitionsRequest | undefined = {
+    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+  };
+
+  const parsed = safeParse(
+    input,
+    (value) =>
+      operations.ListCardSchemeDefinitionsRequest$outboundSchema.optional()
+        .parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = null;
+
   const path = pathToFunc("/card-scheme-definitions")();
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload?.["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
@@ -129,6 +159,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -145,6 +176,7 @@ async function $do(
       "404",
       "405",
       "409",
+      "422",
       "425",
       "429",
       "4XX",
@@ -173,6 +205,7 @@ async function $do(
     | errors.Error404
     | errors.Error405
     | errors.Error409
+    | errors.HTTPValidationError
     | errors.Error425
     | errors.Error429
     | errors.Error500
@@ -200,6 +233,7 @@ async function $do(
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),
     M.jsonErr(409, errors.Error409$inboundSchema),
+    M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.jsonErr(425, errors.Error425$inboundSchema),
     M.jsonErr(429, errors.Error429$inboundSchema),
     M.jsonErr(500, errors.Error500$inboundSchema),

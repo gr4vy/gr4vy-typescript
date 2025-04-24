@@ -36,6 +36,7 @@ export function buyersShippingDetailsCreate(
   shippingDetailsCreate: components.ShippingDetailsCreate,
   buyerId: string,
   timeoutInSeconds?: number | undefined,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -66,6 +67,7 @@ export function buyersShippingDetailsCreate(
     shippingDetailsCreate,
     buyerId,
     timeoutInSeconds,
+    xGr4vyMerchantAccountId,
     options,
   ));
 }
@@ -75,6 +77,7 @@ async function $do(
   shippingDetailsCreate: components.ShippingDetailsCreate,
   buyerId: string,
   timeoutInSeconds?: number | undefined,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -107,6 +110,7 @@ async function $do(
     shippingDetailsCreate: shippingDetailsCreate,
     buyerId: buyerId,
     timeoutInSeconds: timeoutInSeconds,
+    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
   };
 
   const parsed = safeParse(
@@ -139,6 +143,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

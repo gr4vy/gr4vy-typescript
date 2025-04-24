@@ -26,6 +26,10 @@ export type ListBuyersRequest = {
    * Filters the results to only the buyers for which the `external_identifier` matches this value.
    */
   externalIdentifier?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 export type ListBuyersResponse = {
@@ -42,9 +46,11 @@ export const ListBuyersRequest$inboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   search: z.nullable(z.string()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "external_identifier": "externalIdentifier",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -54,6 +60,7 @@ export type ListBuyersRequest$Outbound = {
   limit: number;
   search?: string | null | undefined;
   external_identifier?: string | null | undefined;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -66,9 +73,11 @@ export const ListBuyersRequest$outboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   search: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     externalIdentifier: "external_identifier",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

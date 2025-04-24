@@ -19,6 +19,7 @@ export class Domains extends ClientSDK {
     digitalWalletDomain: components.DigitalWalletDomain,
     digitalWalletId: string,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(digitalWalletsDomainsCreate(
@@ -26,6 +27,7 @@ export class Domains extends ClientSDK {
       digitalWalletDomain,
       digitalWalletId,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -40,6 +42,7 @@ export class Domains extends ClientSDK {
     digitalWalletDomain: components.DigitalWalletDomain,
     digitalWalletId: string,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(digitalWalletsDomainsDelete(
@@ -47,6 +50,7 @@ export class Domains extends ClientSDK {
       digitalWalletDomain,
       digitalWalletId,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }

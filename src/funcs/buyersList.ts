@@ -4,7 +4,7 @@
 
 import { Gr4vyCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -39,10 +39,7 @@ import {
  */
 export function buyersList(
   client: Gr4vyCore,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  search?: string | null | undefined,
-  externalIdentifier?: string | null | undefined,
+  request?: operations.ListBuyersRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -73,20 +70,14 @@ export function buyersList(
 > {
   return new APIPromise($do(
     client,
-    cursor,
-    limit,
-    search,
-    externalIdentifier,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  search?: string | null | undefined,
-  externalIdentifier?: string | null | undefined,
+  request?: operations.ListBuyersRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -118,15 +109,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListBuyersRequest | undefined = {
-    cursor: cursor,
-    limit: limit,
-    search: search,
-    externalIdentifier: externalIdentifier,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListBuyersRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
@@ -148,6 +132,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload?.["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
@@ -306,10 +295,10 @@ async function $do(
     const nextVal = () =>
       buyersList(
         client,
-        nextCursor,
-        limit,
-        search,
-        externalIdentifier,
+        {
+          ...request,
+          cursor: nextCursor,
+        },
         options,
       );
 

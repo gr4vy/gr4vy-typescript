@@ -21,12 +21,14 @@ export class Payouts extends ClientSDK {
   async list(
     cursor?: string | null | undefined,
     limit?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<PageIterator<operations.ListPayoutsResponse, { cursor: string }>> {
     return unwrapResultIterator(payoutsList(
       this,
       cursor,
       limit,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -40,12 +42,14 @@ export class Payouts extends ClientSDK {
   async create(
     payoutCreate: components.PayoutCreate,
     timeoutInSeconds?: number | undefined,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PayoutSummary> {
     return unwrapAsync(payoutsCreate(
       this,
       payoutCreate,
       timeoutInSeconds,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }
@@ -58,11 +62,13 @@ export class Payouts extends ClientSDK {
    */
   async get(
     payoutId: string,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PayoutSummary> {
     return unwrapAsync(payoutsGet(
       this,
       payoutId,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }

@@ -18,6 +18,10 @@ export type ListPayoutsRequest = {
    * The maximum number of items that are at returned.
    */
   limit?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 export type ListPayoutsResponse = {
@@ -32,12 +36,18 @@ export const ListPayoutsRequest$inboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
+  });
 });
 
 /** @internal */
 export type ListPayoutsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -48,6 +58,11 @@ export const ListPayoutsRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
+  });
 });
 
 /**

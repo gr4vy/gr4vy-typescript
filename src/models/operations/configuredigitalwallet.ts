@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConfigureDigitalWalletRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   digitalWalletCreate: components.DigitalWalletCreate;
 };
 
@@ -21,10 +25,12 @@ export const ConfigureDigitalWalletRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   DigitalWalletCreate: components.DigitalWalletCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "DigitalWalletCreate": "digitalWalletCreate",
   });
 });
@@ -32,6 +38,7 @@ export const ConfigureDigitalWalletRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type ConfigureDigitalWalletRequest$Outbound = {
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   DigitalWalletCreate: components.DigitalWalletCreate$Outbound;
 };
 
@@ -42,10 +49,12 @@ export const ConfigureDigitalWalletRequest$outboundSchema: z.ZodType<
   ConfigureDigitalWalletRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletCreate: components.DigitalWalletCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     digitalWalletCreate: "DigitalWalletCreate",
   });
 });

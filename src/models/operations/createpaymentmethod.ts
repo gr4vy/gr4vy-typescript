@@ -16,6 +16,10 @@ export type CreatePaymentMethodBody =
 
 export type CreatePaymentMethodRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   requestBody:
     | components.CheckoutSessionPaymentMethodCreate
     | components.RedirectPaymentMethodCreate
@@ -88,6 +92,7 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   RequestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$inboundSchema,
     components.RedirectPaymentMethodCreate$inboundSchema,
@@ -96,6 +101,7 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "RequestBody": "requestBody",
   });
 });
@@ -103,6 +109,7 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreatePaymentMethodRequest$Outbound = {
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   RequestBody:
     | components.CheckoutSessionPaymentMethodCreate$Outbound
     | components.RedirectPaymentMethodCreate$Outbound
@@ -116,6 +123,7 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   CreatePaymentMethodRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   requestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$outboundSchema,
     components.RedirectPaymentMethodCreate$outboundSchema,
@@ -124,6 +132,7 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     requestBody: "RequestBody",
   });
 });

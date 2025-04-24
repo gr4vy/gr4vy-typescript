@@ -15,12 +15,14 @@ export class PaymentOptions extends ClientSDK {
    * List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
    */
   async list(
-    request?: components.PaymentOptionRequest | undefined,
+    paymentOptionRequest: components.PaymentOptionRequest,
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorPaymentOption> {
     return unwrapAsync(paymentOptionsList(
       this,
-      request,
+      paymentOptionRequest,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }

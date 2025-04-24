@@ -10,6 +10,8 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   transactionCreate: components.TransactionCreate$inboundSchema,
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  idempotencyKey: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionsCreate: ToolDefinition<typeof args> = {
@@ -23,6 +25,8 @@ Create a transaction.`,
       client,
       args.transactionCreate,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
+      args.idempotencyKey,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -15,6 +15,10 @@ export type UpdateBuyerRequest = {
    */
   buyerId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   buyerUpdate: components.BuyerUpdate;
 };
 
@@ -26,11 +30,13 @@ export const UpdateBuyerRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   BuyerUpdate: components.BuyerUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "BuyerUpdate": "buyerUpdate",
   });
 });
@@ -39,6 +45,7 @@ export const UpdateBuyerRequest$inboundSchema: z.ZodType<
 export type UpdateBuyerRequest$Outbound = {
   buyer_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   BuyerUpdate: components.BuyerUpdate$Outbound;
 };
 
@@ -50,11 +57,13 @@ export const UpdateBuyerRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   buyerUpdate: components.BuyerUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     buyerUpdate: "BuyerUpdate",
   });
 });

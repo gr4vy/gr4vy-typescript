@@ -15,10 +15,12 @@ export class CardSchemeDefinitions extends ClientSDK {
    * Fetch a list of the definitions of each card scheme.
    */
   async list(
+    xGr4vyMerchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorCardSchemeDefinition> {
     return unwrapAsync(cardSchemeDefinitionsList(
       this,
+      xGr4vyMerchantAccountId,
       options,
     ));
   }

@@ -10,6 +10,7 @@ const args = {
   buyerId: z.string(),
   shippingDetailsId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersShippingDetailsDelete: ToolDefinition<typeof args> = {
@@ -24,6 +25,7 @@ Delete the shipping details associated to a specific buyer.`,
       args.buyerId,
       args.shippingDetailsId,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

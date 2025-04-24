@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   giftCardId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$giftCardsGet: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ Fetch details about a gift card.`,
     const [result, apiCall] = await giftCardsGet(
       client,
       args.giftCardId,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

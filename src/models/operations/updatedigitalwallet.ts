@@ -15,6 +15,10 @@ export type UpdateDigitalWalletRequest = {
    */
   digitalWalletId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   digitalWalletUpdate: components.DigitalWalletUpdate;
 };
 
@@ -26,11 +30,13 @@ export const UpdateDigitalWalletRequest$inboundSchema: z.ZodType<
 > = z.object({
   digital_wallet_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   DigitalWalletUpdate: components.DigitalWalletUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "DigitalWalletUpdate": "digitalWalletUpdate",
   });
 });
@@ -39,6 +45,7 @@ export const UpdateDigitalWalletRequest$inboundSchema: z.ZodType<
 export type UpdateDigitalWalletRequest$Outbound = {
   digital_wallet_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   DigitalWalletUpdate: components.DigitalWalletUpdate$Outbound;
 };
 
@@ -50,11 +57,13 @@ export const UpdateDigitalWalletRequest$outboundSchema: z.ZodType<
 > = z.object({
   digitalWalletId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletUpdate: components.DigitalWalletUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     digitalWalletUpdate: "DigitalWalletUpdate",
   });
 });

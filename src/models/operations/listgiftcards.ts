@@ -14,6 +14,10 @@ export type ListGiftCardsRequest = {
   buyerId?: string | null | undefined;
   cursor?: string | null | undefined;
   limit?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 export type ListGiftCardsResponse = {
@@ -30,10 +34,12 @@ export const ListGiftCardsRequest$inboundSchema: z.ZodType<
   buyer_id: z.nullable(z.string()).optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_external_identifier": "buyerExternalIdentifier",
     "buyer_id": "buyerId",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -43,6 +49,7 @@ export type ListGiftCardsRequest$Outbound = {
   buyer_id?: string | null | undefined;
   cursor?: string | null | undefined;
   limit: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -55,10 +62,12 @@ export const ListGiftCardsRequest$outboundSchema: z.ZodType<
   buyerId: z.nullable(z.string()).optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerExternalIdentifier: "buyer_external_identifier",
     buyerId: "buyer_id",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

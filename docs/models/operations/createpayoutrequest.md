@@ -6,6 +6,7 @@
 import { CreatePayoutRequest } from "@gr4vy/sdk/models/operations";
 
 let value: CreatePayoutRequest = {
+  xGr4vyMerchantAccountId: "default",
   payoutCreate: {
     amount: 1299,
     currency: "USD",
@@ -90,7 +91,8 @@ let value: CreatePayoutRequest = {
 
 ## Fields
 
-| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `timeoutInSeconds`                                                 | *number*                                                           | :heavy_minus_sign:                                                 | N/A                                                                |
-| `payoutCreate`                                                     | [components.PayoutCreate](../../models/components/payoutcreate.md) | :heavy_check_mark:                                                 | N/A                                                                |
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        | Example                                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `timeoutInSeconds`                                                 | *number*                                                           | :heavy_minus_sign:                                                 | N/A                                                                |                                                                    |
+| `xGr4vyMerchantAccountId`                                          | *string*                                                           | :heavy_minus_sign:                                                 | The ID of the merchant account to use for this request.            | default                                                            |
+| `payoutCreate`                                                     | [components.PayoutCreate](../../models/components/payoutcreate.md) | :heavy_check_mark:                                                 | N/A                                                                |                                                                    |

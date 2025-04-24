@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type GetTreansactionRefundRequest = {
   transactionId: string;
   refundId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -21,10 +25,12 @@ export const GetTreansactionRefundRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   refund_id: z.string(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
     "refund_id": "refundId",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -32,6 +38,7 @@ export const GetTreansactionRefundRequest$inboundSchema: z.ZodType<
 export type GetTreansactionRefundRequest$Outbound = {
   transaction_id: string;
   refund_id: string;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -42,10 +49,12 @@ export const GetTreansactionRefundRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   refundId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
     refundId: "refund_id",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

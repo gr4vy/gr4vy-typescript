@@ -18,6 +18,10 @@ export type DeletePaymentMethodNetworkTokenRequest = {
    */
   networkTokenId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -29,11 +33,13 @@ export const DeletePaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
   payment_method_id: z.string(),
   network_token_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
     "network_token_id": "networkTokenId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -42,6 +48,7 @@ export type DeletePaymentMethodNetworkTokenRequest$Outbound = {
   payment_method_id: string;
   network_token_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -53,11 +60,13 @@ export const DeletePaymentMethodNetworkTokenRequest$outboundSchema: z.ZodType<
   paymentMethodId: z.string(),
   networkTokenId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",
     networkTokenId: "network_token_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

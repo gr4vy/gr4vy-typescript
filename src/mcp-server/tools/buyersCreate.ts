@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   buyerCreate: components.BuyerCreate$inboundSchema,
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersCreate: ToolDefinition<typeof args> = {
@@ -23,6 +24,7 @@ Create a new buyer record.`,
       client,
       args.buyerCreate,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -13,6 +13,10 @@ export type GetDigitalWalletRequest = {
    * The ID of the digital wallet to read.
    */
   digitalWalletId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -22,15 +26,18 @@ export const GetDigitalWalletRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   digital_wallet_id: z.string(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type GetDigitalWalletRequest$Outbound = {
   digital_wallet_id: string;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,9 +47,11 @@ export const GetDigitalWalletRequest$outboundSchema: z.ZodType<
   GetDigitalWalletRequest
 > = z.object({
   digitalWalletId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -22,6 +22,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -33,7 +34,8 @@ import { Result } from "../types/fp.js";
  */
 export function digitalWalletsSessionsApplePay(
   client: Gr4vyCore,
-  request: components.ApplePaySessionRequest,
+  applePaySessionRequest: components.ApplePaySessionRequest,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -61,14 +63,16 @@ export function digitalWalletsSessionsApplePay(
 > {
   return new APIPromise($do(
     client,
-    request,
+    applePaySessionRequest,
+    xGr4vyMerchantAccountId,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  request: components.ApplePaySessionRequest,
+  applePaySessionRequest: components.ApplePaySessionRequest,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -97,22 +101,37 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.CreateApplePayDigitalWalletSessionRequest = {
+    applePaySessionRequest: applePaySessionRequest,
+    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => components.ApplePaySessionRequest$outboundSchema.parse(value),
+    input,
+    (value) =>
+      operations.CreateApplePayDigitalWalletSessionRequest$outboundSchema.parse(
+        value,
+      ),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.ApplePaySessionRequest, {
+    explode: true,
+  });
 
   const path = pathToFunc("/digital-wallets/apple/session")();
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

@@ -11,6 +11,7 @@ const args = {
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate$inboundSchema,
   paymentMethodId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsPaymentServiceTokensCreate: ToolDefinition<
@@ -27,6 +28,7 @@ Create a gateway tokens for a payment method.`,
       args.paymentServiceTokenCreate,
       args.paymentMethodId,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

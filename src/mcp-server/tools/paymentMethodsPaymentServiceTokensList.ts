@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   paymentMethodId: z.string(),
   paymentServiceId: z.nullable(z.string()).optional(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsPaymentServiceTokensList: ToolDefinition<
@@ -24,6 +25,7 @@ List all gateway tokens stored for a payment method.`,
       client,
       args.paymentMethodId,
       args.paymentServiceId,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,6 +35,7 @@ export function giftCardsCreate(
   client: Gr4vyCore,
   giftCardCreate: components.GiftCardCreate,
   timeoutInSeconds?: number | undefined,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,6 +65,7 @@ export function giftCardsCreate(
     client,
     giftCardCreate,
     timeoutInSeconds,
+    xGr4vyMerchantAccountId,
     options,
   ));
 }
@@ -72,6 +74,7 @@ async function $do(
   client: Gr4vyCore,
   giftCardCreate: components.GiftCardCreate,
   timeoutInSeconds?: number | undefined,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -103,6 +106,7 @@ async function $do(
   const input: operations.CreateGiftCardRequest = {
     giftCardCreate: giftCardCreate,
     timeoutInSeconds: timeoutInSeconds,
+    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
   };
 
   const parsed = safeParse(
@@ -125,6 +129,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

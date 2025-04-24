@@ -7,6 +7,7 @@ import { UnregisterDigitalWalletDomainRequest } from "@gr4vy/sdk/models/operatio
 
 let value: UnregisterDigitalWalletDomainRequest = {
   digitalWalletId: "",
+  xGr4vyMerchantAccountId: "default",
   digitalWalletDomain: {
     domainName: "example.com",
   },
@@ -19,4 +20,5 @@ let value: UnregisterDigitalWalletDomainRequest = {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `digitalWalletId`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
 | `timeoutInSeconds`                                                               | *number*                                                                         | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `xGr4vyMerchantAccountId`                                                        | *string*                                                                         | :heavy_minus_sign:                                                               | The ID of the merchant account to use for this request.                          | default                                                                          |
 | `digitalWalletDomain`                                                            | [components.DigitalWalletDomain](../../models/components/digitalwalletdomain.md) | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |

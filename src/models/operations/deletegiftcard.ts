@@ -14,6 +14,10 @@ export type DeleteGiftCardRequest = {
    */
   giftCardId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -24,10 +28,12 @@ export const DeleteGiftCardRequest$inboundSchema: z.ZodType<
 > = z.object({
   gift_card_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "gift_card_id": "giftCardId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -35,6 +41,7 @@ export const DeleteGiftCardRequest$inboundSchema: z.ZodType<
 export type DeleteGiftCardRequest$Outbound = {
   gift_card_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -45,10 +52,12 @@ export const DeleteGiftCardRequest$outboundSchema: z.ZodType<
 > = z.object({
   giftCardId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     giftCardId: "gift_card_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

@@ -18,6 +18,10 @@ export type DeletePaymentMethodPaymentServiceTokenRequest = {
    */
   paymentServiceTokenId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -30,11 +34,13 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$inboundSchema:
     payment_method_id: z.string(),
     payment_service_token_id: z.string(),
     timeout_in_seconds: z.number().default(1),
+    "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "payment_service_token_id": "paymentServiceTokenId",
       "timeout_in_seconds": "timeoutInSeconds",
+      "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     });
   });
 
@@ -43,6 +49,7 @@ export type DeletePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
   payment_service_token_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -55,11 +62,13 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$outboundSchema:
     paymentMethodId: z.string(),
     paymentServiceTokenId: z.string(),
     timeoutInSeconds: z.number().default(1),
+    xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       paymentServiceTokenId: "payment_service_token_id",
       timeoutInSeconds: "timeout_in_seconds",
+      xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     });
   });
 

@@ -12,6 +12,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type CreateFullTransactionRefundRequest = {
   transactionId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   transactionRefundAllCreate?:
     | components.TransactionRefundAllCreate
     | null
@@ -26,6 +30,7 @@ export const CreateFullTransactionRefundRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   TransactionRefundAllCreate: z.nullable(
     components.TransactionRefundAllCreate$inboundSchema,
   ).optional(),
@@ -33,6 +38,7 @@ export const CreateFullTransactionRefundRequest$inboundSchema: z.ZodType<
   return remap$(v, {
     "transaction_id": "transactionId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "TransactionRefundAllCreate": "transactionRefundAllCreate",
   });
 });
@@ -41,6 +47,7 @@ export const CreateFullTransactionRefundRequest$inboundSchema: z.ZodType<
 export type CreateFullTransactionRefundRequest$Outbound = {
   transaction_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   TransactionRefundAllCreate?:
     | components.TransactionRefundAllCreate$Outbound
     | null
@@ -55,6 +62,7 @@ export const CreateFullTransactionRefundRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   transactionRefundAllCreate: z.nullable(
     components.TransactionRefundAllCreate$outboundSchema,
   ).optional(),
@@ -62,6 +70,7 @@ export const CreateFullTransactionRefundRequest$outboundSchema: z.ZodType<
   return remap$(v, {
     transactionId: "transaction_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     transactionRefundAllCreate: "TransactionRefundAllCreate",
   });
 });

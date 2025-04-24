@@ -12,6 +12,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type CreateTransactionRefundRequest = {
   transactionId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   transactionRefundCreate: components.TransactionRefundCreate;
 };
 
@@ -23,11 +27,13 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   TransactionRefundCreate: components.TransactionRefundCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "TransactionRefundCreate": "transactionRefundCreate",
   });
 });
@@ -36,6 +42,7 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
 export type CreateTransactionRefundRequest$Outbound = {
   transaction_id: string;
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   TransactionRefundCreate: components.TransactionRefundCreate$Outbound;
 };
 
@@ -47,11 +54,13 @@ export const CreateTransactionRefundRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   transactionRefundCreate: components.TransactionRefundCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     transactionRefundCreate: "TransactionRefundCreate",
   });
 });

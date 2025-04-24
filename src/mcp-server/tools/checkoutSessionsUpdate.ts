@@ -11,6 +11,7 @@ const args = {
   checkoutSessionUpdate: components.CheckoutSessionUpdate$inboundSchema,
   sessionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$checkoutSessionsUpdate: ToolDefinition<typeof args> = {
@@ -25,6 +26,7 @@ Update the information stored on a checkout session.`,
       args.checkoutSessionUpdate,
       args.sessionId,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

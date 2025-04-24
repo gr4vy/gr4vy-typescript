@@ -13,6 +13,10 @@ export type DeletePaymentMethodRequest = {
    * The ID of the payment method
    */
   paymentMethodId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -22,15 +26,18 @@ export const DeletePaymentMethodRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_method_id: z.string(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type DeletePaymentMethodRequest$Outbound = {
   payment_method_id: string;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,9 +47,11 @@ export const DeletePaymentMethodRequest$outboundSchema: z.ZodType<
   DeletePaymentMethodRequest
 > = z.object({
   paymentMethodId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

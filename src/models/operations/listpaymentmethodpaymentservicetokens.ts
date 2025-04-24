@@ -17,6 +17,10 @@ export type ListPaymentMethodPaymentServiceTokensRequest = {
    * The ID of the payment service
    */
   paymentServiceId?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -28,10 +32,12 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     payment_service_id: z.nullable(z.string()).optional(),
+    "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "payment_service_id": "paymentServiceId",
+      "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     });
   });
 
@@ -39,6 +45,7 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
 export type ListPaymentMethodPaymentServiceTokensRequest$Outbound = {
   payment_method_id: string;
   payment_service_id?: string | null | undefined;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -50,10 +57,12 @@ export const ListPaymentMethodPaymentServiceTokensRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     paymentServiceId: z.nullable(z.string()).optional(),
+    xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       paymentServiceId: "payment_service_id",
+      xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     });
   });
 

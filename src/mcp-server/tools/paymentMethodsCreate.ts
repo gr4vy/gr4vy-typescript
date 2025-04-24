@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   requestBody: operations.CreatePaymentMethodBody$inboundSchema,
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsCreate: ToolDefinition<typeof args> = {
@@ -23,6 +24,7 @@ Store a new payment method.`,
       client,
       args.requestBody,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

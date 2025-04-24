@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   paymentMethodId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsGet: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ Retrieve a payment method.`,
     const [result, apiCall] = await paymentMethodsGet(
       client,
       args.paymentMethodId,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

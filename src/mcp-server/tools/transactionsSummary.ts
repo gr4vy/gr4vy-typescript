@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   transactionId: z.string(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionsSummary: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ Fetch a summary for a transaction.`,
     const [result, apiCall] = await transactionsSummary(
       client,
       args.transactionId,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

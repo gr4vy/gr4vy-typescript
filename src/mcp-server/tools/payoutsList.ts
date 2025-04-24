@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$payoutsList: ToolDefinition<typeof args> = {
@@ -22,6 +23,7 @@ Returns a list of payouts made.`,
       client,
       args.cursor,
       args.limit,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

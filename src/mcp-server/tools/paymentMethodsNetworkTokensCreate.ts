@@ -11,6 +11,7 @@ const args = {
   networkTokenCreate: components.NetworkTokenCreate$inboundSchema,
   paymentMethodId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsNetworkTokensCreate: ToolDefinition<
@@ -27,6 +28,7 @@ Provision a network token for a payment method.`,
       args.networkTokenCreate,
       args.paymentMethodId,
       args.timeoutInSeconds,
+      args.xGr4vyMerchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

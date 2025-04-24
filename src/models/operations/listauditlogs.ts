@@ -30,6 +30,10 @@ export type ListAuditLogsRequest = {
    * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
    */
   resourceType?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
 };
 
 export type ListAuditLogsResponse = {
@@ -47,10 +51,12 @@ export const ListAuditLogsRequest$inboundSchema: z.ZodType<
   action: z.nullable(components.AuditLogAction$inboundSchema).optional(),
   user_id: z.nullable(z.string()).optional(),
   resource_type: z.nullable(z.string()).optional(),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "user_id": "userId",
     "resource_type": "resourceType",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -61,6 +67,7 @@ export type ListAuditLogsRequest$Outbound = {
   action?: string | null | undefined;
   user_id?: string | null | undefined;
   resource_type?: string | null | undefined;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
 };
 
 /** @internal */
@@ -74,10 +81,12 @@ export const ListAuditLogsRequest$outboundSchema: z.ZodType<
   action: z.nullable(components.AuditLogAction$outboundSchema).optional(),
   userId: z.nullable(z.string()).optional(),
   resourceType: z.nullable(z.string()).optional(),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     userId: "user_id",
     resourceType: "resource_type",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

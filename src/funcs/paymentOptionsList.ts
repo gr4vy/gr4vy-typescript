@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -32,7 +33,8 @@ import { Result } from "../types/fp.js";
  */
 export function paymentOptionsList(
   client: Gr4vyCore,
-  request?: components.PaymentOptionRequest | undefined,
+  paymentOptionRequest: components.PaymentOptionRequest,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,14 +62,16 @@ export function paymentOptionsList(
 > {
   return new APIPromise($do(
     client,
-    request,
+    paymentOptionRequest,
+    xGr4vyMerchantAccountId,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  request?: components.PaymentOptionRequest | undefined,
+  paymentOptionRequest: components.PaymentOptionRequest,
+  xGr4vyMerchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -96,25 +100,34 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.ListPaymentOptionsRequest = {
+    paymentOptionRequest: paymentOptionRequest,
+    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) =>
-      components.PaymentOptionRequest$outboundSchema.optional().parse(value),
+    input,
+    (value) => operations.ListPaymentOptionsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = payload === undefined
-    ? null
-    : encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.PaymentOptionRequest, {
+    explode: true,
+  });
 
   const path = pathToFunc("/payment-options")();
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload["x-gr4vy-merchant-account-id"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

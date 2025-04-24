@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddBuyerRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  xGr4vyMerchantAccountId?: string | null | undefined;
   buyerCreate: components.BuyerCreate;
 };
 
@@ -21,10 +25,12 @@ export const AddBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
   BuyerCreate: components.BuyerCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
+    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "BuyerCreate": "buyerCreate",
   });
 });
@@ -32,6 +38,7 @@ export const AddBuyerRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type AddBuyerRequest$Outbound = {
   timeout_in_seconds: number;
+  "x-gr4vy-merchant-account-id"?: string | null | undefined;
   BuyerCreate: components.BuyerCreate$Outbound;
 };
 
@@ -42,10 +49,12 @@ export const AddBuyerRequest$outboundSchema: z.ZodType<
   AddBuyerRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
   buyerCreate: components.BuyerCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
+    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     buyerCreate: "BuyerCreate",
   });
 });
