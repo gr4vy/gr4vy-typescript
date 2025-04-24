@@ -1,5 +1,7 @@
 # Gr4vy Typescript SDK (Beta)
 
+> **Note:** This is a new SDK that might eventually replace our Node SDK
+
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
     <a href="https://opensource.org/licenses/MIT">
@@ -679,7 +681,7 @@ Add the following server definition to your `claude_desktop_config.json` file:
         "--",
         "mcp", "start",
         "--bearer-auth", "...",
-        "--merchant-account-id", "..."
+        "--mid", "..."
       ]
     }
   }
@@ -703,7 +705,7 @@ Create a `.cursor/mcp.json` file in your project root with the following content
         "--",
         "mcp", "start",
         "--bearer-auth", "...",
-        "--merchant-account-id", "..."
+        "--mid", "..."
       ]
     }
   }
