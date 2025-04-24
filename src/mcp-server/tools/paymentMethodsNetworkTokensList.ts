@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   paymentMethodId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsNetworkTokensList: ToolDefinition<typeof args> =
@@ -21,6 +22,7 @@ List all network tokens stored for a payment method.`,
       const [result, apiCall] = await paymentMethodsNetworkTokensList(
         client,
         args.paymentMethodId,
+        args.merchantAccountId,
         { fetchOptions: { signal: ctx.signal } },
       ).$inspect();
 

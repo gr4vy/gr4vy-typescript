@@ -13,6 +13,10 @@ import {
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListBuyerPaymentMethodsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 /**
  * The direction to sort the payment methods in.
  */
@@ -50,7 +54,67 @@ export type ListBuyerPaymentMethodsRequest = {
    * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
    */
   currency?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const ListBuyerPaymentMethodsGlobals$inboundSchema: z.ZodType<
+  ListBuyerPaymentMethodsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListBuyerPaymentMethodsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListBuyerPaymentMethodsGlobals$outboundSchema: z.ZodType<
+  ListBuyerPaymentMethodsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListBuyerPaymentMethodsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListBuyerPaymentMethodsGlobals$ {
+  /** @deprecated use `ListBuyerPaymentMethodsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListBuyerPaymentMethodsGlobals$inboundSchema;
+  /** @deprecated use `ListBuyerPaymentMethodsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListBuyerPaymentMethodsGlobals$outboundSchema;
+  /** @deprecated use `ListBuyerPaymentMethodsGlobals$Outbound` instead. */
+  export type Outbound = ListBuyerPaymentMethodsGlobals$Outbound;
+}
+
+export function listBuyerPaymentMethodsGlobalsToJSON(
+  listBuyerPaymentMethodsGlobals: ListBuyerPaymentMethodsGlobals,
+): string {
+  return JSON.stringify(
+    ListBuyerPaymentMethodsGlobals$outboundSchema.parse(
+      listBuyerPaymentMethodsGlobals,
+    ),
+  );
+}
+
+export function listBuyerPaymentMethodsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListBuyerPaymentMethodsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListBuyerPaymentMethodsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListBuyerPaymentMethodsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const OrderBy$inboundSchema: z.ZodType<OrderBy, z.ZodTypeDef, unknown> =
@@ -90,6 +154,7 @@ export const ListBuyerPaymentMethodsRequest$inboundSchema: z.ZodType<
   order_by: OrderBy$inboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
@@ -107,6 +172,7 @@ export type ListBuyerPaymentMethodsRequest$Outbound = {
   order_by: string;
   country?: string | null | undefined;
   currency?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -123,6 +189,7 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
   orderBy: OrderBy$outboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",

@@ -11,6 +11,7 @@ const args = {
   digitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
   digitalWalletId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$digitalWalletsDomainsCreate: ToolDefinition<typeof args> = {
@@ -25,6 +26,7 @@ Register a digital wallet domain (Apple Pay only).`,
       args.digitalWalletDomain,
       args.digitalWalletId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

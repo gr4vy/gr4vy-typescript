@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListAuditLogsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListAuditLogsRequest = {
   /**
    * A pointer to the page of results to return.
@@ -30,11 +34,69 @@ export type ListAuditLogsRequest = {
    * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
    */
   resourceType?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
 
 export type ListAuditLogsResponse = {
   result: components.CollectionAuditLogEntry;
 };
+
+/** @internal */
+export const ListAuditLogsGlobals$inboundSchema: z.ZodType<
+  ListAuditLogsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListAuditLogsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListAuditLogsGlobals$outboundSchema: z.ZodType<
+  ListAuditLogsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListAuditLogsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListAuditLogsGlobals$ {
+  /** @deprecated use `ListAuditLogsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListAuditLogsGlobals$inboundSchema;
+  /** @deprecated use `ListAuditLogsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListAuditLogsGlobals$outboundSchema;
+  /** @deprecated use `ListAuditLogsGlobals$Outbound` instead. */
+  export type Outbound = ListAuditLogsGlobals$Outbound;
+}
+
+export function listAuditLogsGlobalsToJSON(
+  listAuditLogsGlobals: ListAuditLogsGlobals,
+): string {
+  return JSON.stringify(
+    ListAuditLogsGlobals$outboundSchema.parse(listAuditLogsGlobals),
+  );
+}
+
+export function listAuditLogsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListAuditLogsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListAuditLogsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListAuditLogsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListAuditLogsRequest$inboundSchema: z.ZodType<
@@ -47,6 +109,7 @@ export const ListAuditLogsRequest$inboundSchema: z.ZodType<
   action: z.nullable(components.AuditLogAction$inboundSchema).optional(),
   user_id: z.nullable(z.string()).optional(),
   resource_type: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "user_id": "userId",
@@ -61,6 +124,7 @@ export type ListAuditLogsRequest$Outbound = {
   action?: string | null | undefined;
   user_id?: string | null | undefined;
   resource_type?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -74,6 +138,7 @@ export const ListAuditLogsRequest$outboundSchema: z.ZodType<
   action: z.nullable(components.AuditLogAction$outboundSchema).optional(),
   userId: z.nullable(z.string()).optional(),
   resourceType: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     userId: "user_id",

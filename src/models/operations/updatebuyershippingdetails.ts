@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type UpdateBuyerShippingDetailsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type UpdateBuyerShippingDetailsRequest = {
   /**
    * The ID of the buyer to update shipping details for.
@@ -19,8 +23,69 @@ export type UpdateBuyerShippingDetailsRequest = {
    */
   shippingDetailsId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   shippingDetailsUpdate: components.ShippingDetailsUpdate;
 };
+
+/** @internal */
+export const UpdateBuyerShippingDetailsGlobals$inboundSchema: z.ZodType<
+  UpdateBuyerShippingDetailsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type UpdateBuyerShippingDetailsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const UpdateBuyerShippingDetailsGlobals$outboundSchema: z.ZodType<
+  UpdateBuyerShippingDetailsGlobals$Outbound,
+  z.ZodTypeDef,
+  UpdateBuyerShippingDetailsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateBuyerShippingDetailsGlobals$ {
+  /** @deprecated use `UpdateBuyerShippingDetailsGlobals$inboundSchema` instead. */
+  export const inboundSchema = UpdateBuyerShippingDetailsGlobals$inboundSchema;
+  /** @deprecated use `UpdateBuyerShippingDetailsGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateBuyerShippingDetailsGlobals$outboundSchema;
+  /** @deprecated use `UpdateBuyerShippingDetailsGlobals$Outbound` instead. */
+  export type Outbound = UpdateBuyerShippingDetailsGlobals$Outbound;
+}
+
+export function updateBuyerShippingDetailsGlobalsToJSON(
+  updateBuyerShippingDetailsGlobals: UpdateBuyerShippingDetailsGlobals,
+): string {
+  return JSON.stringify(
+    UpdateBuyerShippingDetailsGlobals$outboundSchema.parse(
+      updateBuyerShippingDetailsGlobals,
+    ),
+  );
+}
+
+export function updateBuyerShippingDetailsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateBuyerShippingDetailsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateBuyerShippingDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateBuyerShippingDetailsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const UpdateBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
@@ -31,6 +96,7 @@ export const UpdateBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
   buyer_id: z.string(),
   shipping_details_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   ShippingDetailsUpdate: components.ShippingDetailsUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -46,6 +112,7 @@ export type UpdateBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
   shipping_details_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   ShippingDetailsUpdate: components.ShippingDetailsUpdate$Outbound;
 };
 
@@ -58,6 +125,7 @@ export const UpdateBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   buyerId: z.string(),
   shippingDetailsId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   shippingDetailsUpdate: components.ShippingDetailsUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

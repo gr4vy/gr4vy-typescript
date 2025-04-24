@@ -8,12 +8,79 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListPaymentMethodNetworkTokensGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListPaymentMethodNetworkTokensRequest = {
   /**
    * The ID of the payment method
    */
   paymentMethodId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const ListPaymentMethodNetworkTokensGlobals$inboundSchema: z.ZodType<
+  ListPaymentMethodNetworkTokensGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListPaymentMethodNetworkTokensGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListPaymentMethodNetworkTokensGlobals$outboundSchema: z.ZodType<
+  ListPaymentMethodNetworkTokensGlobals$Outbound,
+  z.ZodTypeDef,
+  ListPaymentMethodNetworkTokensGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListPaymentMethodNetworkTokensGlobals$ {
+  /** @deprecated use `ListPaymentMethodNetworkTokensGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    ListPaymentMethodNetworkTokensGlobals$inboundSchema;
+  /** @deprecated use `ListPaymentMethodNetworkTokensGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    ListPaymentMethodNetworkTokensGlobals$outboundSchema;
+  /** @deprecated use `ListPaymentMethodNetworkTokensGlobals$Outbound` instead. */
+  export type Outbound = ListPaymentMethodNetworkTokensGlobals$Outbound;
+}
+
+export function listPaymentMethodNetworkTokensGlobalsToJSON(
+  listPaymentMethodNetworkTokensGlobals: ListPaymentMethodNetworkTokensGlobals,
+): string {
+  return JSON.stringify(
+    ListPaymentMethodNetworkTokensGlobals$outboundSchema.parse(
+      listPaymentMethodNetworkTokensGlobals,
+    ),
+  );
+}
+
+export function listPaymentMethodNetworkTokensGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPaymentMethodNetworkTokensGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListPaymentMethodNetworkTokensGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPaymentMethodNetworkTokensGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListPaymentMethodNetworkTokensRequest$inboundSchema: z.ZodType<
@@ -22,6 +89,7 @@ export const ListPaymentMethodNetworkTokensRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_method_id: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
@@ -31,6 +99,7 @@ export const ListPaymentMethodNetworkTokensRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type ListPaymentMethodNetworkTokensRequest$Outbound = {
   payment_method_id: string;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,6 +109,7 @@ export const ListPaymentMethodNetworkTokensRequest$outboundSchema: z.ZodType<
   ListPaymentMethodNetworkTokensRequest
 > = z.object({
   paymentMethodId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",

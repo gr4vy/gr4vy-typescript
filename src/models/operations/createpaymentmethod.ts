@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreatePaymentMethodGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreatePaymentMethodBody =
   | components.CheckoutSessionPaymentMethodCreate
   | components.RedirectPaymentMethodCreate
@@ -16,11 +20,69 @@ export type CreatePaymentMethodBody =
 
 export type CreatePaymentMethodRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   requestBody:
     | components.CheckoutSessionPaymentMethodCreate
     | components.RedirectPaymentMethodCreate
     | components.CardPaymentMethodCreate;
 };
+
+/** @internal */
+export const CreatePaymentMethodGlobals$inboundSchema: z.ZodType<
+  CreatePaymentMethodGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreatePaymentMethodGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreatePaymentMethodGlobals$outboundSchema: z.ZodType<
+  CreatePaymentMethodGlobals$Outbound,
+  z.ZodTypeDef,
+  CreatePaymentMethodGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreatePaymentMethodGlobals$ {
+  /** @deprecated use `CreatePaymentMethodGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreatePaymentMethodGlobals$inboundSchema;
+  /** @deprecated use `CreatePaymentMethodGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreatePaymentMethodGlobals$outboundSchema;
+  /** @deprecated use `CreatePaymentMethodGlobals$Outbound` instead. */
+  export type Outbound = CreatePaymentMethodGlobals$Outbound;
+}
+
+export function createPaymentMethodGlobalsToJSON(
+  createPaymentMethodGlobals: CreatePaymentMethodGlobals,
+): string {
+  return JSON.stringify(
+    CreatePaymentMethodGlobals$outboundSchema.parse(createPaymentMethodGlobals),
+  );
+}
+
+export function createPaymentMethodGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePaymentMethodGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePaymentMethodGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePaymentMethodGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreatePaymentMethodBody$inboundSchema: z.ZodType<
@@ -88,6 +150,7 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   RequestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$inboundSchema,
     components.RedirectPaymentMethodCreate$inboundSchema,
@@ -103,6 +166,7 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreatePaymentMethodRequest$Outbound = {
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   RequestBody:
     | components.CheckoutSessionPaymentMethodCreate$Outbound
     | components.RedirectPaymentMethodCreate$Outbound
@@ -116,6 +180,7 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   CreatePaymentMethodRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   requestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$outboundSchema,
     components.RedirectPaymentMethodCreate$outboundSchema,

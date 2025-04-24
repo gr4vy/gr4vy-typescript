@@ -8,12 +8,74 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetGiftCardGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetGiftCardRequest = {
   /**
    * The ID of the gift card.
    */
   giftCardId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetGiftCardGlobals$inboundSchema: z.ZodType<
+  GetGiftCardGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetGiftCardGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetGiftCardGlobals$outboundSchema: z.ZodType<
+  GetGiftCardGlobals$Outbound,
+  z.ZodTypeDef,
+  GetGiftCardGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGiftCardGlobals$ {
+  /** @deprecated use `GetGiftCardGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetGiftCardGlobals$inboundSchema;
+  /** @deprecated use `GetGiftCardGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetGiftCardGlobals$outboundSchema;
+  /** @deprecated use `GetGiftCardGlobals$Outbound` instead. */
+  export type Outbound = GetGiftCardGlobals$Outbound;
+}
+
+export function getGiftCardGlobalsToJSON(
+  getGiftCardGlobals: GetGiftCardGlobals,
+): string {
+  return JSON.stringify(
+    GetGiftCardGlobals$outboundSchema.parse(getGiftCardGlobals),
+  );
+}
+
+export function getGiftCardGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGiftCardGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGiftCardGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGiftCardGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetGiftCardRequest$inboundSchema: z.ZodType<
@@ -22,6 +84,7 @@ export const GetGiftCardRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   gift_card_id: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "gift_card_id": "giftCardId",
@@ -31,6 +94,7 @@ export const GetGiftCardRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetGiftCardRequest$Outbound = {
   gift_card_id: string;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,6 +104,7 @@ export const GetGiftCardRequest$outboundSchema: z.ZodType<
   GetGiftCardRequest
 > = z.object({
   giftCardId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     giftCardId: "gift_card_id",

@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListPaymentMethodPaymentServiceTokensGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListPaymentMethodPaymentServiceTokensRequest = {
   /**
    * The ID of the payment method
@@ -17,7 +21,78 @@ export type ListPaymentMethodPaymentServiceTokensRequest = {
    * The ID of the payment service
    */
   paymentServiceId?: string | null | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const ListPaymentMethodPaymentServiceTokensGlobals$inboundSchema:
+  z.ZodType<
+    ListPaymentMethodPaymentServiceTokensGlobals,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/** @internal */
+export type ListPaymentMethodPaymentServiceTokensGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListPaymentMethodPaymentServiceTokensGlobals$outboundSchema:
+  z.ZodType<
+    ListPaymentMethodPaymentServiceTokensGlobals$Outbound,
+    z.ZodTypeDef,
+    ListPaymentMethodPaymentServiceTokensGlobals
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListPaymentMethodPaymentServiceTokensGlobals$ {
+  /** @deprecated use `ListPaymentMethodPaymentServiceTokensGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    ListPaymentMethodPaymentServiceTokensGlobals$inboundSchema;
+  /** @deprecated use `ListPaymentMethodPaymentServiceTokensGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    ListPaymentMethodPaymentServiceTokensGlobals$outboundSchema;
+  /** @deprecated use `ListPaymentMethodPaymentServiceTokensGlobals$Outbound` instead. */
+  export type Outbound = ListPaymentMethodPaymentServiceTokensGlobals$Outbound;
+}
+
+export function listPaymentMethodPaymentServiceTokensGlobalsToJSON(
+  listPaymentMethodPaymentServiceTokensGlobals:
+    ListPaymentMethodPaymentServiceTokensGlobals,
+): string {
+  return JSON.stringify(
+    ListPaymentMethodPaymentServiceTokensGlobals$outboundSchema.parse(
+      listPaymentMethodPaymentServiceTokensGlobals,
+    ),
+  );
+}
+
+export function listPaymentMethodPaymentServiceTokensGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ListPaymentMethodPaymentServiceTokensGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListPaymentMethodPaymentServiceTokensGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ListPaymentMethodPaymentServiceTokensGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
@@ -28,6 +103,7 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     payment_service_id: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
@@ -39,6 +115,7 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
 export type ListPaymentMethodPaymentServiceTokensRequest$Outbound = {
   payment_method_id: string;
   payment_service_id?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -50,6 +127,7 @@ export const ListPaymentMethodPaymentServiceTokensRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     paymentServiceId: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",

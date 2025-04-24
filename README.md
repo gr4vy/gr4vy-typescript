@@ -38,17 +38,18 @@ import { SDK, withToken } from "@gr4vy/sdk";
 
 async function run() {
     const sdk = new SDK({
-        server: "sandbox",
-        id: "example",
+        id: "example", // Your instance ID
+        merchantAccountId: "default", // Your merchant account ID
+        server: "sandbox", // Your server environment
         bearerAuth: withToken({
           privateKey: fs.readFileSync("private_key.pem", "utf8"),
         }),
     });
 
-    const result = await sdk.transactions.listTransactions({});
+    const checkoutSession = await sdk.tcheckoutSessions.create();
 
-    // Handle the result
-    console.log(result);
+    console.log(checkoutSession.id)
+    
 }
 
 run();
@@ -87,8 +88,9 @@ async function run() {
     const privateKey = fs.readFileSync("private_key.pem", "utf8")
 
     const sdk = new SDK({
-        server: "sandbox",
         id: "example",
+        mid: "default", 
+        server: "sandbox", 
         bearerAuth: withToken({ privateKey }),
     });
 
@@ -357,7 +359,7 @@ async function run() {
         "ef9496d8-53a5-4aad-8ca2-00eb68334389",
         "f29e886e-93cc-4714-b4a3-12b7a718e595",
       ],
-    });
+    }, "default");
 
     // Handle the result
     console.log(result);
@@ -498,7 +500,7 @@ async function run() {
       "ef9496d8-53a5-4aad-8ca2-00eb68334389",
       "f29e886e-93cc-4714-b4a3-12b7a718e595",
     ],
-  });
+  }, "default");
 
   // Handle the result
   console.log(result);
@@ -525,7 +527,7 @@ async function run() {
       "ef9496d8-53a5-4aad-8ca2-00eb68334389",
       "f29e886e-93cc-4714-b4a3-12b7a718e595",
     ],
-  });
+  }, "default");
 
   // Handle the result
   console.log(result);
@@ -610,7 +612,7 @@ async function run() {
       "ef9496d8-53a5-4aad-8ca2-00eb68334389",
       "f29e886e-93cc-4714-b4a3-12b7a718e595",
     ],
-  });
+  }, "default");
 
   // Handle the result
   console.log(result);
@@ -676,7 +678,8 @@ Add the following server definition to your `claude_desktop_config.json` file:
         "-y", "--package", "@gr4vy/sdk",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--bearer-auth", "...",
+        "--merchant-account-id", "..."
       ]
     }
   }
@@ -699,7 +702,8 @@ Create a `.cursor/mcp.json` file in your project root with the following content
         "-y", "--package", "@gr4vy/sdk",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--bearer-auth", "...",
+        "--merchant-account-id", "..."
       ]
     }
   }
@@ -757,7 +761,7 @@ async function run() {
       "ef9496d8-53a5-4aad-8ca2-00eb68334389",
       "f29e886e-93cc-4714-b4a3-12b7a718e595",
     ],
-  });
+  }, "default");
 
   // Handle the result
   console.log(result);
@@ -788,7 +792,11 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list("ZXhhbXBsZTE", "John", "buyer-12345");
+  const result = await gr4vy.buyers.list({
+    cursor: "ZXhhbXBsZTE",
+    search: "John",
+    externalIdentifier: "buyer-12345",
+  });
 
   for await (const page of result) {
     // Handle the page
@@ -815,23 +823,27 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  }, {
-    retries: {
-      strategy: "backoff",
-      backoff: {
-        initialInterval: 1,
-        maxInterval: 50,
-        exponent: 1.1,
-        maxElapsedTime: 100,
-      },
-      retryConnectionErrors: false,
+  const result = await gr4vy.accountUpdater.jobs.create(
+    {
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
     },
-  });
+    "default",
+    {
+      retries: {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1,
+          maxInterval: 50,
+          exponent: 1.1,
+          maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+      },
+    },
+  );
 
   // Handle the result
   console.log(result);
@@ -865,7 +877,7 @@ async function run() {
       "ef9496d8-53a5-4aad-8ca2-00eb68334389",
       "f29e886e-93cc-4714-b4a3-12b7a718e595",
     ],
-  });
+  }, "default");
 
   // Handle the result
   console.log(result);

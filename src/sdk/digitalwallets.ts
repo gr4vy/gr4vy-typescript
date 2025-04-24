@@ -33,12 +33,14 @@ export class DigitalWallets extends ClientSDK {
   async create(
     digitalWalletCreate: components.DigitalWalletCreate,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsCreate(
       this,
       digitalWalletCreate,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }
@@ -50,10 +52,12 @@ export class DigitalWallets extends ClientSDK {
    * List configured digital wallets.
    */
   async list(
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorDigitalWallet> {
     return unwrapAsync(digitalWalletsList(
       this,
+      merchantAccountId,
       options,
     ));
   }
@@ -66,11 +70,13 @@ export class DigitalWallets extends ClientSDK {
    */
   async get(
     digitalWalletId: string,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsGet(
       this,
       digitalWalletId,
+      merchantAccountId,
       options,
     ));
   }
@@ -84,12 +90,14 @@ export class DigitalWallets extends ClientSDK {
   async delete(
     digitalWalletId: string,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(digitalWalletsDelete(
       this,
       digitalWalletId,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }
@@ -104,6 +112,7 @@ export class DigitalWallets extends ClientSDK {
     digitalWalletUpdate: components.DigitalWalletUpdate,
     digitalWalletId: string,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsUpdate(
@@ -111,6 +120,7 @@ export class DigitalWallets extends ClientSDK {
       digitalWalletUpdate,
       digitalWalletId,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }

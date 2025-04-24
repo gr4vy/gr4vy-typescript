@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   buyerId: z.string(),
   shippingDetailsId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersShippingDetailsGet: ToolDefinition<typeof args> = {
@@ -22,6 +23,7 @@ Get a buyer's shipping details.`,
       client,
       args.buyerId,
       args.shippingDetailsId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

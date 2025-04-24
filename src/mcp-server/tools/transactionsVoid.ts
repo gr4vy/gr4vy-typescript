@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionsVoid: ToolDefinition<typeof args> = {
@@ -22,6 +23,7 @@ Void an authorized transaction.`,
       client,
       args.transactionId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

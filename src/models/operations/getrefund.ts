@@ -8,9 +8,71 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetRefundGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetRefundRequest = {
   refundId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetRefundGlobals$inboundSchema: z.ZodType<
+  GetRefundGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetRefundGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetRefundGlobals$outboundSchema: z.ZodType<
+  GetRefundGlobals$Outbound,
+  z.ZodTypeDef,
+  GetRefundGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRefundGlobals$ {
+  /** @deprecated use `GetRefundGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetRefundGlobals$inboundSchema;
+  /** @deprecated use `GetRefundGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetRefundGlobals$outboundSchema;
+  /** @deprecated use `GetRefundGlobals$Outbound` instead. */
+  export type Outbound = GetRefundGlobals$Outbound;
+}
+
+export function getRefundGlobalsToJSON(
+  getRefundGlobals: GetRefundGlobals,
+): string {
+  return JSON.stringify(
+    GetRefundGlobals$outboundSchema.parse(getRefundGlobals),
+  );
+}
+
+export function getRefundGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRefundGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRefundGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRefundGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetRefundRequest$inboundSchema: z.ZodType<
@@ -19,6 +81,7 @@ export const GetRefundRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   refund_id: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "refund_id": "refundId",
@@ -28,6 +91,7 @@ export const GetRefundRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetRefundRequest$Outbound = {
   refund_id: string;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -37,6 +101,7 @@ export const GetRefundRequest$outboundSchema: z.ZodType<
   GetRefundRequest
 > = z.object({
   refundId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     refundId: "refund_id",

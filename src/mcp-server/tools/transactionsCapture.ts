@@ -11,6 +11,7 @@ const args = {
   transactionCapture: components.TransactionCapture$inboundSchema,
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionsCapture: ToolDefinition<typeof args> = {
@@ -25,6 +26,7 @@ Capture an authorized transaction.`,
       args.transactionCapture,
       args.transactionId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

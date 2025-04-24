@@ -9,11 +9,73 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CaptureTransactionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CaptureTransactionRequest = {
   transactionId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   transactionCapture: components.TransactionCapture;
 };
+
+/** @internal */
+export const CaptureTransactionGlobals$inboundSchema: z.ZodType<
+  CaptureTransactionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CaptureTransactionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CaptureTransactionGlobals$outboundSchema: z.ZodType<
+  CaptureTransactionGlobals$Outbound,
+  z.ZodTypeDef,
+  CaptureTransactionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CaptureTransactionGlobals$ {
+  /** @deprecated use `CaptureTransactionGlobals$inboundSchema` instead. */
+  export const inboundSchema = CaptureTransactionGlobals$inboundSchema;
+  /** @deprecated use `CaptureTransactionGlobals$outboundSchema` instead. */
+  export const outboundSchema = CaptureTransactionGlobals$outboundSchema;
+  /** @deprecated use `CaptureTransactionGlobals$Outbound` instead. */
+  export type Outbound = CaptureTransactionGlobals$Outbound;
+}
+
+export function captureTransactionGlobalsToJSON(
+  captureTransactionGlobals: CaptureTransactionGlobals,
+): string {
+  return JSON.stringify(
+    CaptureTransactionGlobals$outboundSchema.parse(captureTransactionGlobals),
+  );
+}
+
+export function captureTransactionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CaptureTransactionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CaptureTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CaptureTransactionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CaptureTransactionRequest$inboundSchema: z.ZodType<
@@ -23,6 +85,7 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   TransactionCapture: components.TransactionCapture$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -36,6 +99,7 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
 export type CaptureTransactionRequest$Outbound = {
   transaction_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   TransactionCapture: components.TransactionCapture$Outbound;
 };
 
@@ -47,6 +111,7 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   transactionCapture: components.TransactionCapture$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

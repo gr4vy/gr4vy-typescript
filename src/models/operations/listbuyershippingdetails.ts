@@ -8,12 +8,76 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListBuyerShippingDetailsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListBuyerShippingDetailsRequest = {
   /**
    * The ID of the buyer to retrieve shipping details for.
    */
   buyerId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const ListBuyerShippingDetailsGlobals$inboundSchema: z.ZodType<
+  ListBuyerShippingDetailsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListBuyerShippingDetailsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListBuyerShippingDetailsGlobals$outboundSchema: z.ZodType<
+  ListBuyerShippingDetailsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListBuyerShippingDetailsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListBuyerShippingDetailsGlobals$ {
+  /** @deprecated use `ListBuyerShippingDetailsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListBuyerShippingDetailsGlobals$inboundSchema;
+  /** @deprecated use `ListBuyerShippingDetailsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListBuyerShippingDetailsGlobals$outboundSchema;
+  /** @deprecated use `ListBuyerShippingDetailsGlobals$Outbound` instead. */
+  export type Outbound = ListBuyerShippingDetailsGlobals$Outbound;
+}
+
+export function listBuyerShippingDetailsGlobalsToJSON(
+  listBuyerShippingDetailsGlobals: ListBuyerShippingDetailsGlobals,
+): string {
+  return JSON.stringify(
+    ListBuyerShippingDetailsGlobals$outboundSchema.parse(
+      listBuyerShippingDetailsGlobals,
+    ),
+  );
+}
+
+export function listBuyerShippingDetailsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListBuyerShippingDetailsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListBuyerShippingDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListBuyerShippingDetailsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
@@ -22,6 +86,7 @@ export const ListBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
@@ -31,6 +96,7 @@ export const ListBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type ListBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,6 +106,7 @@ export const ListBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   ListBuyerShippingDetailsRequest
 > = z.object({
   buyerId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",

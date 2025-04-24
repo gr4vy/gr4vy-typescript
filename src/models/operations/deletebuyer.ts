@@ -8,13 +8,75 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type DeleteBuyerGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type DeleteBuyerRequest = {
   /**
    * The ID of the buyer to delete.
    */
   buyerId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const DeleteBuyerGlobals$inboundSchema: z.ZodType<
+  DeleteBuyerGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type DeleteBuyerGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const DeleteBuyerGlobals$outboundSchema: z.ZodType<
+  DeleteBuyerGlobals$Outbound,
+  z.ZodTypeDef,
+  DeleteBuyerGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeleteBuyerGlobals$ {
+  /** @deprecated use `DeleteBuyerGlobals$inboundSchema` instead. */
+  export const inboundSchema = DeleteBuyerGlobals$inboundSchema;
+  /** @deprecated use `DeleteBuyerGlobals$outboundSchema` instead. */
+  export const outboundSchema = DeleteBuyerGlobals$outboundSchema;
+  /** @deprecated use `DeleteBuyerGlobals$Outbound` instead. */
+  export type Outbound = DeleteBuyerGlobals$Outbound;
+}
+
+export function deleteBuyerGlobalsToJSON(
+  deleteBuyerGlobals: DeleteBuyerGlobals,
+): string {
+  return JSON.stringify(
+    DeleteBuyerGlobals$outboundSchema.parse(deleteBuyerGlobals),
+  );
+}
+
+export function deleteBuyerGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteBuyerGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteBuyerGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteBuyerGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const DeleteBuyerRequest$inboundSchema: z.ZodType<
@@ -24,6 +86,7 @@ export const DeleteBuyerRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
@@ -35,6 +98,7 @@ export const DeleteBuyerRequest$inboundSchema: z.ZodType<
 export type DeleteBuyerRequest$Outbound = {
   buyer_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -45,6 +109,7 @@ export const DeleteBuyerRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",

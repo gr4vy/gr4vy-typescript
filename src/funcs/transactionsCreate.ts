@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,6 +35,8 @@ export function transactionsCreate(
   client: Gr4vyCore,
   transactionCreate: components.TransactionCreate,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
+  idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,6 +66,8 @@ export function transactionsCreate(
     client,
     transactionCreate,
     timeoutInSeconds,
+    merchantAccountId,
+    idempotencyKey,
     options,
   ));
 }
@@ -72,6 +76,8 @@ async function $do(
   client: Gr4vyCore,
   transactionCreate: components.TransactionCreate,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
+  idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -103,6 +109,8 @@ async function $do(
   const input: operations.CreateTransactionRequest = {
     transactionCreate: transactionCreate,
     timeoutInSeconds: timeoutInSeconds,
+    merchantAccountId: merchantAccountId,
+    idempotencyKey: idempotencyKey,
   };
 
   const parsed = safeParse(
@@ -125,6 +133,16 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "idempotency-key": encodeSimple(
+      "idempotency-key",
+      payload["idempotency-key"],
+      { explode: false, charEncoding: "none" },
+    ),
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

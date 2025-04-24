@@ -8,18 +8,20 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   transactionId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionsGet: ToolDefinition<typeof args> = {
   name: "transactions-get",
   description: `Get transaction
 
-Fetch a single transaction.`,
+Fetch a single transaction by its ID.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await transactionsGet(
       client,
       args.transactionId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

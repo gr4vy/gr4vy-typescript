@@ -34,6 +34,7 @@ import { Result } from "../types/fp.js";
 export function paymentMethodsGet(
   client: Gr4vyCore,
   paymentMethodId: string,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -62,6 +63,7 @@ export function paymentMethodsGet(
   return new APIPromise($do(
     client,
     paymentMethodId,
+    merchantAccountId,
     options,
   ));
 }
@@ -69,6 +71,7 @@ export function paymentMethodsGet(
 async function $do(
   client: Gr4vyCore,
   paymentMethodId: string,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -99,6 +102,7 @@ async function $do(
 > {
   const input: operations.GetPaymentMethodRequest = {
     paymentMethodId: paymentMethodId,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -124,6 +128,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

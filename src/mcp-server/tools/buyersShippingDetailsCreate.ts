@@ -11,6 +11,7 @@ const args = {
   shippingDetailsCreate: components.ShippingDetailsCreate$inboundSchema,
   buyerId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersShippingDetailsCreate: ToolDefinition<typeof args> = {
@@ -25,6 +26,7 @@ Associate shipping details to a buyer.`,
       args.shippingDetailsCreate,
       args.buyerId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

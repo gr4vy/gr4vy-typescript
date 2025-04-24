@@ -17,11 +17,13 @@ export class Gr4vyTransactionsRefunds extends ClientSDK {
    */
   async list(
     transactionId: string,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionRefund> {
     return unwrapAsync(transactionsRefundsList(
       this,
       transactionId,
+      merchantAccountId,
       options,
     ));
   }
@@ -35,12 +37,14 @@ export class Gr4vyTransactionsRefunds extends ClientSDK {
   async get(
     transactionId: string,
     refundId: string,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Refund> {
     return unwrapAsync(transactionsRefundsGet(
       this,
       transactionId,
       refundId,
+      merchantAccountId,
       options,
     ));
   }

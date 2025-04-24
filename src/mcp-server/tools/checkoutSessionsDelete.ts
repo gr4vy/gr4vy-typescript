@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   sessionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$checkoutSessionsDelete: ToolDefinition<typeof args> = {
@@ -22,6 +23,7 @@ Deleta a checkout session and all of its (PCI) data.`,
       client,
       args.sessionId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

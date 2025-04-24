@@ -9,12 +9,78 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateTransactionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreateTransactionRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
+  /**
+   * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+   */
+  idempotencyKey?: string | null | undefined;
   transactionCreate: components.TransactionCreate;
 };
 
 export type CreateTransactionResponse = components.Transaction | any;
+
+/** @internal */
+export const CreateTransactionGlobals$inboundSchema: z.ZodType<
+  CreateTransactionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateTransactionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreateTransactionGlobals$outboundSchema: z.ZodType<
+  CreateTransactionGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateTransactionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateTransactionGlobals$ {
+  /** @deprecated use `CreateTransactionGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateTransactionGlobals$inboundSchema;
+  /** @deprecated use `CreateTransactionGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreateTransactionGlobals$outboundSchema;
+  /** @deprecated use `CreateTransactionGlobals$Outbound` instead. */
+  export type Outbound = CreateTransactionGlobals$Outbound;
+}
+
+export function createTransactionGlobalsToJSON(
+  createTransactionGlobals: CreateTransactionGlobals,
+): string {
+  return JSON.stringify(
+    CreateTransactionGlobals$outboundSchema.parse(createTransactionGlobals),
+  );
+}
+
+export function createTransactionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateTransactionRequest$inboundSchema: z.ZodType<
@@ -23,10 +89,13 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
+  "idempotency-key": z.nullable(z.string()).optional(),
   TransactionCreate: components.TransactionCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
+    "idempotency-key": "idempotencyKey",
     "TransactionCreate": "transactionCreate",
   });
 });
@@ -34,6 +103,8 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateTransactionRequest$Outbound = {
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
+  "idempotency-key"?: string | null | undefined;
   TransactionCreate: components.TransactionCreate$Outbound;
 };
 
@@ -44,10 +115,13 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
   CreateTransactionRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
+  idempotencyKey: z.nullable(z.string()).optional(),
   transactionCreate: components.TransactionCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
+    idempotencyKey: "idempotency-key",
     transactionCreate: "TransactionCreate",
   });
 });

@@ -35,6 +35,7 @@ export function checkoutSessionsGet(
   client: Gr4vyCore,
   sessionId: string,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -63,6 +64,7 @@ export function checkoutSessionsGet(
     client,
     sessionId,
     timeoutInSeconds,
+    merchantAccountId,
     options,
   ));
 }
@@ -71,6 +73,7 @@ async function $do(
   client: Gr4vyCore,
   sessionId: string,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -101,6 +104,7 @@ async function $do(
   const input: operations.GetCheckoutSessionRequest = {
     sessionId: sessionId,
     timeoutInSeconds: timeoutInSeconds,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -129,6 +133,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

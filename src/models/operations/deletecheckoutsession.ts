@@ -8,13 +8,77 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type DeleteCheckoutSessionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type DeleteCheckoutSessionRequest = {
   /**
    * The ID of the checkout session.
    */
   sessionId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const DeleteCheckoutSessionGlobals$inboundSchema: z.ZodType<
+  DeleteCheckoutSessionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type DeleteCheckoutSessionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const DeleteCheckoutSessionGlobals$outboundSchema: z.ZodType<
+  DeleteCheckoutSessionGlobals$Outbound,
+  z.ZodTypeDef,
+  DeleteCheckoutSessionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeleteCheckoutSessionGlobals$ {
+  /** @deprecated use `DeleteCheckoutSessionGlobals$inboundSchema` instead. */
+  export const inboundSchema = DeleteCheckoutSessionGlobals$inboundSchema;
+  /** @deprecated use `DeleteCheckoutSessionGlobals$outboundSchema` instead. */
+  export const outboundSchema = DeleteCheckoutSessionGlobals$outboundSchema;
+  /** @deprecated use `DeleteCheckoutSessionGlobals$Outbound` instead. */
+  export type Outbound = DeleteCheckoutSessionGlobals$Outbound;
+}
+
+export function deleteCheckoutSessionGlobalsToJSON(
+  deleteCheckoutSessionGlobals: DeleteCheckoutSessionGlobals,
+): string {
+  return JSON.stringify(
+    DeleteCheckoutSessionGlobals$outboundSchema.parse(
+      deleteCheckoutSessionGlobals,
+    ),
+  );
+}
+
+export function deleteCheckoutSessionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteCheckoutSessionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteCheckoutSessionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteCheckoutSessionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const DeleteCheckoutSessionRequest$inboundSchema: z.ZodType<
@@ -24,6 +88,7 @@ export const DeleteCheckoutSessionRequest$inboundSchema: z.ZodType<
 > = z.object({
   session_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "session_id": "sessionId",
@@ -35,6 +100,7 @@ export const DeleteCheckoutSessionRequest$inboundSchema: z.ZodType<
 export type DeleteCheckoutSessionRequest$Outbound = {
   session_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -45,6 +111,7 @@ export const DeleteCheckoutSessionRequest$outboundSchema: z.ZodType<
 > = z.object({
   sessionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     sessionId: "session_id",

@@ -9,10 +9,74 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListGiftCardBalancesGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListGiftCardBalancesRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   giftCardBalanceRequest: components.GiftCardBalanceRequest;
 };
+
+/** @internal */
+export const ListGiftCardBalancesGlobals$inboundSchema: z.ZodType<
+  ListGiftCardBalancesGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListGiftCardBalancesGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListGiftCardBalancesGlobals$outboundSchema: z.ZodType<
+  ListGiftCardBalancesGlobals$Outbound,
+  z.ZodTypeDef,
+  ListGiftCardBalancesGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListGiftCardBalancesGlobals$ {
+  /** @deprecated use `ListGiftCardBalancesGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListGiftCardBalancesGlobals$inboundSchema;
+  /** @deprecated use `ListGiftCardBalancesGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListGiftCardBalancesGlobals$outboundSchema;
+  /** @deprecated use `ListGiftCardBalancesGlobals$Outbound` instead. */
+  export type Outbound = ListGiftCardBalancesGlobals$Outbound;
+}
+
+export function listGiftCardBalancesGlobalsToJSON(
+  listGiftCardBalancesGlobals: ListGiftCardBalancesGlobals,
+): string {
+  return JSON.stringify(
+    ListGiftCardBalancesGlobals$outboundSchema.parse(
+      listGiftCardBalancesGlobals,
+    ),
+  );
+}
+
+export function listGiftCardBalancesGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListGiftCardBalancesGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListGiftCardBalancesGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListGiftCardBalancesGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
@@ -21,6 +85,7 @@ export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -32,6 +97,7 @@ export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type ListGiftCardBalancesRequest$Outbound = {
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$Outbound;
 };
 
@@ -42,6 +108,7 @@ export const ListGiftCardBalancesRequest$outboundSchema: z.ZodType<
   ListGiftCardBalancesRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   giftCardBalanceRequest: components.GiftCardBalanceRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

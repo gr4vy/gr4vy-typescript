@@ -27,11 +27,13 @@ export class GiftCards extends ClientSDK {
    */
   async get(
     giftCardId: string,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.GiftCard> {
     return unwrapAsync(giftCardsGet(
       this,
       giftCardId,
+      merchantAccountId,
       options,
     ));
   }
@@ -45,12 +47,14 @@ export class GiftCards extends ClientSDK {
   async delete(
     giftCardId: string,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(giftCardsDelete(
       this,
       giftCardId,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }
@@ -64,12 +68,14 @@ export class GiftCards extends ClientSDK {
   async create(
     giftCardCreate: components.GiftCardCreate,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.GiftCard> {
     return unwrapAsync(giftCardsCreate(
       this,
       giftCardCreate,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }
@@ -81,20 +87,14 @@ export class GiftCards extends ClientSDK {
    * Browser all gift cards.
    */
   async list(
-    buyerExternalIdentifier?: string | null | undefined,
-    buyerId?: string | null | undefined,
-    cursor?: string | null | undefined,
-    limit?: number | undefined,
+    request?: operations.ListGiftCardsRequest | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<operations.ListGiftCardsResponse, { cursor: string }>
   > {
     return unwrapResultIterator(giftCardsList(
       this,
-      buyerExternalIdentifier,
-      buyerId,
-      cursor,
-      limit,
+      request,
       options,
     ));
   }

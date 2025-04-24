@@ -9,14 +9,80 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type RegisterDigitalWalletDomainGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type RegisterDigitalWalletDomainRequest = {
   /**
    * The ID of the digital wallet to remove a domain for.
    */
   digitalWalletId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   digitalWalletDomain: components.DigitalWalletDomain;
 };
+
+/** @internal */
+export const RegisterDigitalWalletDomainGlobals$inboundSchema: z.ZodType<
+  RegisterDigitalWalletDomainGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type RegisterDigitalWalletDomainGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const RegisterDigitalWalletDomainGlobals$outboundSchema: z.ZodType<
+  RegisterDigitalWalletDomainGlobals$Outbound,
+  z.ZodTypeDef,
+  RegisterDigitalWalletDomainGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace RegisterDigitalWalletDomainGlobals$ {
+  /** @deprecated use `RegisterDigitalWalletDomainGlobals$inboundSchema` instead. */
+  export const inboundSchema = RegisterDigitalWalletDomainGlobals$inboundSchema;
+  /** @deprecated use `RegisterDigitalWalletDomainGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    RegisterDigitalWalletDomainGlobals$outboundSchema;
+  /** @deprecated use `RegisterDigitalWalletDomainGlobals$Outbound` instead. */
+  export type Outbound = RegisterDigitalWalletDomainGlobals$Outbound;
+}
+
+export function registerDigitalWalletDomainGlobalsToJSON(
+  registerDigitalWalletDomainGlobals: RegisterDigitalWalletDomainGlobals,
+): string {
+  return JSON.stringify(
+    RegisterDigitalWalletDomainGlobals$outboundSchema.parse(
+      registerDigitalWalletDomainGlobals,
+    ),
+  );
+}
+
+export function registerDigitalWalletDomainGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<RegisterDigitalWalletDomainGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      RegisterDigitalWalletDomainGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RegisterDigitalWalletDomainGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const RegisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
@@ -26,6 +92,7 @@ export const RegisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 > = z.object({
   digital_wallet_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   DigitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -39,6 +106,7 @@ export const RegisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 export type RegisterDigitalWalletDomainRequest$Outbound = {
   digital_wallet_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   DigitalWalletDomain: components.DigitalWalletDomain$Outbound;
 };
 
@@ -50,6 +118,7 @@ export const RegisterDigitalWalletDomainRequest$outboundSchema: z.ZodType<
 > = z.object({
   digitalWalletId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletDomain: components.DigitalWalletDomain$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

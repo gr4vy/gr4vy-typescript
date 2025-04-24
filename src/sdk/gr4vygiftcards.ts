@@ -18,6 +18,7 @@ export class Gr4vyGiftCards extends ClientSDK {
     buyerExternalIdentifier?: string | null | undefined,
     buyerId?: string | null | undefined,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorGiftCardSummary> {
     return unwrapAsync(buyersGiftCardsList(
@@ -25,6 +26,7 @@ export class Gr4vyGiftCards extends ClientSDK {
       buyerExternalIdentifier,
       buyerId,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }

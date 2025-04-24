@@ -9,14 +9,89 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreatePaymentMethodPaymentServiceTokenGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreatePaymentMethodPaymentServiceTokenRequest = {
   /**
    * The ID of the payment method
    */
   paymentMethodId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate;
 };
+
+/** @internal */
+export const CreatePaymentMethodPaymentServiceTokenGlobals$inboundSchema:
+  z.ZodType<
+    CreatePaymentMethodPaymentServiceTokenGlobals,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/** @internal */
+export type CreatePaymentMethodPaymentServiceTokenGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreatePaymentMethodPaymentServiceTokenGlobals$outboundSchema:
+  z.ZodType<
+    CreatePaymentMethodPaymentServiceTokenGlobals$Outbound,
+    z.ZodTypeDef,
+    CreatePaymentMethodPaymentServiceTokenGlobals
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreatePaymentMethodPaymentServiceTokenGlobals$ {
+  /** @deprecated use `CreatePaymentMethodPaymentServiceTokenGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    CreatePaymentMethodPaymentServiceTokenGlobals$inboundSchema;
+  /** @deprecated use `CreatePaymentMethodPaymentServiceTokenGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    CreatePaymentMethodPaymentServiceTokenGlobals$outboundSchema;
+  /** @deprecated use `CreatePaymentMethodPaymentServiceTokenGlobals$Outbound` instead. */
+  export type Outbound = CreatePaymentMethodPaymentServiceTokenGlobals$Outbound;
+}
+
+export function createPaymentMethodPaymentServiceTokenGlobalsToJSON(
+  createPaymentMethodPaymentServiceTokenGlobals:
+    CreatePaymentMethodPaymentServiceTokenGlobals,
+): string {
+  return JSON.stringify(
+    CreatePaymentMethodPaymentServiceTokenGlobals$outboundSchema.parse(
+      createPaymentMethodPaymentServiceTokenGlobals,
+    ),
+  );
+}
+
+export function createPaymentMethodPaymentServiceTokenGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CreatePaymentMethodPaymentServiceTokenGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreatePaymentMethodPaymentServiceTokenGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreatePaymentMethodPaymentServiceTokenGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
@@ -27,6 +102,7 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     timeout_in_seconds: z.number().default(1),
+    merchantAccountId: z.nullable(z.string()).optional(),
     PaymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$inboundSchema,
   }).transform((v) => {
@@ -41,6 +117,7 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
 export type CreatePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   PaymentServiceTokenCreate: components.PaymentServiceTokenCreate$Outbound;
 };
 
@@ -53,6 +130,7 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     timeoutInSeconds: z.number().default(1),
+    merchantAccountId: z.nullable(z.string()).optional(),
     paymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$outboundSchema,
   }).transform((v) => {

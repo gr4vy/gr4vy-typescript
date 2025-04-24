@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -32,7 +33,8 @@ import { Result } from "../types/fp.js";
  */
 export function digitalWalletsSessionsGooglePay(
   client: Gr4vyCore,
-  request: components.GooglePaySessionRequest,
+  googlePaySessionRequest: components.GooglePaySessionRequest,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,14 +62,16 @@ export function digitalWalletsSessionsGooglePay(
 > {
   return new APIPromise($do(
     client,
-    request,
+    googlePaySessionRequest,
+    merchantAccountId,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  request: components.GooglePaySessionRequest,
+  googlePaySessionRequest: components.GooglePaySessionRequest,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -96,22 +100,36 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.CreateGooglePayDigitalWalletSessionRequest = {
+    googlePaySessionRequest: googlePaySessionRequest,
+    merchantAccountId: merchantAccountId,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => components.GooglePaySessionRequest$outboundSchema.parse(value),
+    input,
+    (value) =>
+      operations.CreateGooglePayDigitalWalletSessionRequest$outboundSchema
+        .parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.GooglePaySessionRequest, {
+    explode: true,
+  });
 
   const path = pathToFunc("/digital-wallets/google/session")();
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

@@ -8,10 +8,74 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetTreansactionRefundGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetTreansactionRefundRequest = {
   transactionId: string;
   refundId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetTreansactionRefundGlobals$inboundSchema: z.ZodType<
+  GetTreansactionRefundGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetTreansactionRefundGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetTreansactionRefundGlobals$outboundSchema: z.ZodType<
+  GetTreansactionRefundGlobals$Outbound,
+  z.ZodTypeDef,
+  GetTreansactionRefundGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTreansactionRefundGlobals$ {
+  /** @deprecated use `GetTreansactionRefundGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetTreansactionRefundGlobals$inboundSchema;
+  /** @deprecated use `GetTreansactionRefundGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetTreansactionRefundGlobals$outboundSchema;
+  /** @deprecated use `GetTreansactionRefundGlobals$Outbound` instead. */
+  export type Outbound = GetTreansactionRefundGlobals$Outbound;
+}
+
+export function getTreansactionRefundGlobalsToJSON(
+  getTreansactionRefundGlobals: GetTreansactionRefundGlobals,
+): string {
+  return JSON.stringify(
+    GetTreansactionRefundGlobals$outboundSchema.parse(
+      getTreansactionRefundGlobals,
+    ),
+  );
+}
+
+export function getTreansactionRefundGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTreansactionRefundGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTreansactionRefundGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTreansactionRefundGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetTreansactionRefundRequest$inboundSchema: z.ZodType<
@@ -21,6 +85,7 @@ export const GetTreansactionRefundRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   refund_id: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
@@ -32,6 +97,7 @@ export const GetTreansactionRefundRequest$inboundSchema: z.ZodType<
 export type GetTreansactionRefundRequest$Outbound = {
   transaction_id: string;
   refund_id: string;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -42,6 +108,7 @@ export const GetTreansactionRefundRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   refundId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",

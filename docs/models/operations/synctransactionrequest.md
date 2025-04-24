@@ -12,7 +12,8 @@ let value: SyncTransactionRequest = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `transactionId`    | *string*           | :heavy_check_mark: | N/A                |
-| `timeoutInSeconds` | *number*           | :heavy_minus_sign: | N/A                |
+| Field                                                   | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `transactionId`                                         | *string*                                                | :heavy_check_mark:                                      | N/A                                                     |
+| `timeoutInSeconds`                                      | *number*                                                | :heavy_minus_sign:                                      | N/A                                                     |
+| `merchantAccountId`                                     | *string*                                                | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |

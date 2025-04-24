@@ -35,6 +35,7 @@ export function transactionsVoid(
   client: Gr4vyCore,
   transactionId: string,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,6 +65,7 @@ export function transactionsVoid(
     client,
     transactionId,
     timeoutInSeconds,
+    merchantAccountId,
     options,
   ));
 }
@@ -72,6 +74,7 @@ async function $do(
   client: Gr4vyCore,
   transactionId: string,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -103,6 +106,7 @@ async function $do(
   const input: operations.VoidTransactionRequest = {
     transactionId: transactionId,
     timeoutInSeconds: timeoutInSeconds,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -131,6 +135,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

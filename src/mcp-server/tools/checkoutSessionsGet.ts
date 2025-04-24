@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   sessionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$checkoutSessionsGet: ToolDefinition<typeof args> = {
@@ -22,6 +23,7 @@ Retrieve the information stored on a checkout session.`,
       client,
       args.sessionId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -8,12 +8,74 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetPaymentMethodGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetPaymentMethodRequest = {
   /**
    * The ID of the payment method
    */
   paymentMethodId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetPaymentMethodGlobals$inboundSchema: z.ZodType<
+  GetPaymentMethodGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetPaymentMethodGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetPaymentMethodGlobals$outboundSchema: z.ZodType<
+  GetPaymentMethodGlobals$Outbound,
+  z.ZodTypeDef,
+  GetPaymentMethodGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetPaymentMethodGlobals$ {
+  /** @deprecated use `GetPaymentMethodGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetPaymentMethodGlobals$inboundSchema;
+  /** @deprecated use `GetPaymentMethodGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetPaymentMethodGlobals$outboundSchema;
+  /** @deprecated use `GetPaymentMethodGlobals$Outbound` instead. */
+  export type Outbound = GetPaymentMethodGlobals$Outbound;
+}
+
+export function getPaymentMethodGlobalsToJSON(
+  getPaymentMethodGlobals: GetPaymentMethodGlobals,
+): string {
+  return JSON.stringify(
+    GetPaymentMethodGlobals$outboundSchema.parse(getPaymentMethodGlobals),
+  );
+}
+
+export function getPaymentMethodGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPaymentMethodGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPaymentMethodGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPaymentMethodGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetPaymentMethodRequest$inboundSchema: z.ZodType<
@@ -22,6 +84,7 @@ export const GetPaymentMethodRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_method_id: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
@@ -31,6 +94,7 @@ export const GetPaymentMethodRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetPaymentMethodRequest$Outbound = {
   payment_method_id: string;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,6 +104,7 @@ export const GetPaymentMethodRequest$outboundSchema: z.ZodType<
   GetPaymentMethodRequest
 > = z.object({
   paymentMethodId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",

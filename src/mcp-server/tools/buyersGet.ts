@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   buyerId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersGet: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ Fetches a buyer by its ID.`,
     const [result, apiCall] = await buyersGet(
       client,
       args.buyerId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

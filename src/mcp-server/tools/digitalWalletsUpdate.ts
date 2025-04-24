@@ -11,6 +11,7 @@ const args = {
   digitalWalletUpdate: components.DigitalWalletUpdate$inboundSchema,
   digitalWalletId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$digitalWalletsUpdate: ToolDefinition<typeof args> = {
@@ -25,6 +26,7 @@ Update a digital wallet.`,
       args.digitalWalletUpdate,
       args.digitalWalletId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

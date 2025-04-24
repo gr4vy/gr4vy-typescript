@@ -21,6 +21,7 @@ export class All extends ClientSDK {
       | null
       | undefined,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorRefund> {
     return unwrapAsync(transactionRefundsAllCreate(
@@ -28,6 +29,7 @@ export class All extends ClientSDK {
       transactionId,
       transactionRefundAllCreate,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }

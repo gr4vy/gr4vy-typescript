@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   transactionId: z.string(),
   refundId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionsRefundsGet: ToolDefinition<typeof args> = {
@@ -22,6 +23,7 @@ Fetch refund for a transaction.`,
       client,
       args.transactionId,
       args.refundId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

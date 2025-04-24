@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreatePaymentMethodNetworkTokenCryptogramGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreatePaymentMethodNetworkTokenCryptogramRequest = {
   /**
    * The ID of the payment method
@@ -19,8 +23,80 @@ export type CreatePaymentMethodNetworkTokenCryptogramRequest = {
    */
   networkTokenId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   cryptogramCreate: components.CryptogramCreate;
 };
+
+/** @internal */
+export const CreatePaymentMethodNetworkTokenCryptogramGlobals$inboundSchema:
+  z.ZodType<
+    CreatePaymentMethodNetworkTokenCryptogramGlobals,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/** @internal */
+export type CreatePaymentMethodNetworkTokenCryptogramGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreatePaymentMethodNetworkTokenCryptogramGlobals$outboundSchema:
+  z.ZodType<
+    CreatePaymentMethodNetworkTokenCryptogramGlobals$Outbound,
+    z.ZodTypeDef,
+    CreatePaymentMethodNetworkTokenCryptogramGlobals
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreatePaymentMethodNetworkTokenCryptogramGlobals$ {
+  /** @deprecated use `CreatePaymentMethodNetworkTokenCryptogramGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    CreatePaymentMethodNetworkTokenCryptogramGlobals$inboundSchema;
+  /** @deprecated use `CreatePaymentMethodNetworkTokenCryptogramGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    CreatePaymentMethodNetworkTokenCryptogramGlobals$outboundSchema;
+  /** @deprecated use `CreatePaymentMethodNetworkTokenCryptogramGlobals$Outbound` instead. */
+  export type Outbound =
+    CreatePaymentMethodNetworkTokenCryptogramGlobals$Outbound;
+}
+
+export function createPaymentMethodNetworkTokenCryptogramGlobalsToJSON(
+  createPaymentMethodNetworkTokenCryptogramGlobals:
+    CreatePaymentMethodNetworkTokenCryptogramGlobals,
+): string {
+  return JSON.stringify(
+    CreatePaymentMethodNetworkTokenCryptogramGlobals$outboundSchema.parse(
+      createPaymentMethodNetworkTokenCryptogramGlobals,
+    ),
+  );
+}
+
+export function createPaymentMethodNetworkTokenCryptogramGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CreatePaymentMethodNetworkTokenCryptogramGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreatePaymentMethodNetworkTokenCryptogramGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreatePaymentMethodNetworkTokenCryptogramGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreatePaymentMethodNetworkTokenCryptogramRequest$inboundSchema:
@@ -32,6 +108,7 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$inboundSchema:
     payment_method_id: z.string(),
     network_token_id: z.string(),
     timeout_in_seconds: z.number().default(1),
+    merchantAccountId: z.nullable(z.string()).optional(),
     CryptogramCreate: components.CryptogramCreate$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
@@ -47,6 +124,7 @@ export type CreatePaymentMethodNetworkTokenCryptogramRequest$Outbound = {
   payment_method_id: string;
   network_token_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   CryptogramCreate: components.CryptogramCreate$Outbound;
 };
 
@@ -60,6 +138,7 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$outboundSchema:
     paymentMethodId: z.string(),
     networkTokenId: z.string(),
     timeoutInSeconds: z.number().default(1),
+    merchantAccountId: z.nullable(z.string()).optional(),
     cryptogramCreate: components.CryptogramCreate$outboundSchema,
   }).transform((v) => {
     return remap$(v, {

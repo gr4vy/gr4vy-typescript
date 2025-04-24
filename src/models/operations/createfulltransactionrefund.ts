@@ -9,14 +9,80 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateFullTransactionRefundGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreateFullTransactionRefundRequest = {
   transactionId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   transactionRefundAllCreate?:
     | components.TransactionRefundAllCreate
     | null
     | undefined;
 };
+
+/** @internal */
+export const CreateFullTransactionRefundGlobals$inboundSchema: z.ZodType<
+  CreateFullTransactionRefundGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateFullTransactionRefundGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreateFullTransactionRefundGlobals$outboundSchema: z.ZodType<
+  CreateFullTransactionRefundGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateFullTransactionRefundGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateFullTransactionRefundGlobals$ {
+  /** @deprecated use `CreateFullTransactionRefundGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateFullTransactionRefundGlobals$inboundSchema;
+  /** @deprecated use `CreateFullTransactionRefundGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateFullTransactionRefundGlobals$outboundSchema;
+  /** @deprecated use `CreateFullTransactionRefundGlobals$Outbound` instead. */
+  export type Outbound = CreateFullTransactionRefundGlobals$Outbound;
+}
+
+export function createFullTransactionRefundGlobalsToJSON(
+  createFullTransactionRefundGlobals: CreateFullTransactionRefundGlobals,
+): string {
+  return JSON.stringify(
+    CreateFullTransactionRefundGlobals$outboundSchema.parse(
+      createFullTransactionRefundGlobals,
+    ),
+  );
+}
+
+export function createFullTransactionRefundGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateFullTransactionRefundGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateFullTransactionRefundGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateFullTransactionRefundGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateFullTransactionRefundRequest$inboundSchema: z.ZodType<
@@ -26,6 +92,7 @@ export const CreateFullTransactionRefundRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   TransactionRefundAllCreate: z.nullable(
     components.TransactionRefundAllCreate$inboundSchema,
   ).optional(),
@@ -41,6 +108,7 @@ export const CreateFullTransactionRefundRequest$inboundSchema: z.ZodType<
 export type CreateFullTransactionRefundRequest$Outbound = {
   transaction_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   TransactionRefundAllCreate?:
     | components.TransactionRefundAllCreate$Outbound
     | null
@@ -55,6 +123,7 @@ export const CreateFullTransactionRefundRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   transactionRefundAllCreate: z.nullable(
     components.TransactionRefundAllCreate$outboundSchema,
   ).optional(),

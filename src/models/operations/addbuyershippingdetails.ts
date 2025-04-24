@@ -9,14 +9,78 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type AddBuyerShippingDetailsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type AddBuyerShippingDetailsRequest = {
   /**
    * The ID of the buyer to add shipping details to.
    */
   buyerId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   shippingDetailsCreate: components.ShippingDetailsCreate;
 };
+
+/** @internal */
+export const AddBuyerShippingDetailsGlobals$inboundSchema: z.ZodType<
+  AddBuyerShippingDetailsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type AddBuyerShippingDetailsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const AddBuyerShippingDetailsGlobals$outboundSchema: z.ZodType<
+  AddBuyerShippingDetailsGlobals$Outbound,
+  z.ZodTypeDef,
+  AddBuyerShippingDetailsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AddBuyerShippingDetailsGlobals$ {
+  /** @deprecated use `AddBuyerShippingDetailsGlobals$inboundSchema` instead. */
+  export const inboundSchema = AddBuyerShippingDetailsGlobals$inboundSchema;
+  /** @deprecated use `AddBuyerShippingDetailsGlobals$outboundSchema` instead. */
+  export const outboundSchema = AddBuyerShippingDetailsGlobals$outboundSchema;
+  /** @deprecated use `AddBuyerShippingDetailsGlobals$Outbound` instead. */
+  export type Outbound = AddBuyerShippingDetailsGlobals$Outbound;
+}
+
+export function addBuyerShippingDetailsGlobalsToJSON(
+  addBuyerShippingDetailsGlobals: AddBuyerShippingDetailsGlobals,
+): string {
+  return JSON.stringify(
+    AddBuyerShippingDetailsGlobals$outboundSchema.parse(
+      addBuyerShippingDetailsGlobals,
+    ),
+  );
+}
+
+export function addBuyerShippingDetailsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AddBuyerShippingDetailsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddBuyerShippingDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddBuyerShippingDetailsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
@@ -26,6 +90,7 @@ export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   ShippingDetailsCreate: components.ShippingDetailsCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -39,6 +104,7 @@ export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 export type AddBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   ShippingDetailsCreate: components.ShippingDetailsCreate$Outbound;
 };
 
@@ -50,6 +116,7 @@ export const AddBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   shippingDetailsCreate: components.ShippingDetailsCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

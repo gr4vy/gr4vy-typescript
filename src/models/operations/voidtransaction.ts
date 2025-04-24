@@ -8,10 +8,72 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type VoidTransactionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type VoidTransactionRequest = {
   transactionId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const VoidTransactionGlobals$inboundSchema: z.ZodType<
+  VoidTransactionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type VoidTransactionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const VoidTransactionGlobals$outboundSchema: z.ZodType<
+  VoidTransactionGlobals$Outbound,
+  z.ZodTypeDef,
+  VoidTransactionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace VoidTransactionGlobals$ {
+  /** @deprecated use `VoidTransactionGlobals$inboundSchema` instead. */
+  export const inboundSchema = VoidTransactionGlobals$inboundSchema;
+  /** @deprecated use `VoidTransactionGlobals$outboundSchema` instead. */
+  export const outboundSchema = VoidTransactionGlobals$outboundSchema;
+  /** @deprecated use `VoidTransactionGlobals$Outbound` instead. */
+  export type Outbound = VoidTransactionGlobals$Outbound;
+}
+
+export function voidTransactionGlobalsToJSON(
+  voidTransactionGlobals: VoidTransactionGlobals,
+): string {
+  return JSON.stringify(
+    VoidTransactionGlobals$outboundSchema.parse(voidTransactionGlobals),
+  );
+}
+
+export function voidTransactionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VoidTransactionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VoidTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VoidTransactionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const VoidTransactionRequest$inboundSchema: z.ZodType<
@@ -21,6 +83,7 @@ export const VoidTransactionRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
@@ -32,6 +95,7 @@ export const VoidTransactionRequest$inboundSchema: z.ZodType<
 export type VoidTransactionRequest$Outbound = {
   transaction_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -42,6 +106,7 @@ export const VoidTransactionRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",

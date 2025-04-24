@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,6 +35,7 @@ export function paymentMethodsCreate(
   client: Gr4vyCore,
   requestBody: operations.CreatePaymentMethodBody,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,6 +65,7 @@ export function paymentMethodsCreate(
     client,
     requestBody,
     timeoutInSeconds,
+    merchantAccountId,
     options,
   ));
 }
@@ -72,6 +74,7 @@ async function $do(
   client: Gr4vyCore,
   requestBody: operations.CreatePaymentMethodBody,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -103,6 +106,7 @@ async function $do(
   const input: operations.CreatePaymentMethodRequest = {
     requestBody: requestBody,
     timeoutInSeconds: timeoutInSeconds,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -126,6 +130,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

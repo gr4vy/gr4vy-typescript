@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type SuspendPaymentMethodNetworkTokenGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type SuspendPaymentMethodNetworkTokenRequest = {
   /**
    * The ID of the payment method
@@ -18,7 +22,76 @@ export type SuspendPaymentMethodNetworkTokenRequest = {
    */
   networkTokenId: string;
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const SuspendPaymentMethodNetworkTokenGlobals$inboundSchema: z.ZodType<
+  SuspendPaymentMethodNetworkTokenGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type SuspendPaymentMethodNetworkTokenGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const SuspendPaymentMethodNetworkTokenGlobals$outboundSchema: z.ZodType<
+  SuspendPaymentMethodNetworkTokenGlobals$Outbound,
+  z.ZodTypeDef,
+  SuspendPaymentMethodNetworkTokenGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SuspendPaymentMethodNetworkTokenGlobals$ {
+  /** @deprecated use `SuspendPaymentMethodNetworkTokenGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    SuspendPaymentMethodNetworkTokenGlobals$inboundSchema;
+  /** @deprecated use `SuspendPaymentMethodNetworkTokenGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    SuspendPaymentMethodNetworkTokenGlobals$outboundSchema;
+  /** @deprecated use `SuspendPaymentMethodNetworkTokenGlobals$Outbound` instead. */
+  export type Outbound = SuspendPaymentMethodNetworkTokenGlobals$Outbound;
+}
+
+export function suspendPaymentMethodNetworkTokenGlobalsToJSON(
+  suspendPaymentMethodNetworkTokenGlobals:
+    SuspendPaymentMethodNetworkTokenGlobals,
+): string {
+  return JSON.stringify(
+    SuspendPaymentMethodNetworkTokenGlobals$outboundSchema.parse(
+      suspendPaymentMethodNetworkTokenGlobals,
+    ),
+  );
+}
+
+export function suspendPaymentMethodNetworkTokenGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SuspendPaymentMethodNetworkTokenGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SuspendPaymentMethodNetworkTokenGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SuspendPaymentMethodNetworkTokenGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const SuspendPaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
@@ -29,6 +102,7 @@ export const SuspendPaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
   payment_method_id: z.string(),
   network_token_id: z.string(),
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
@@ -42,6 +116,7 @@ export type SuspendPaymentMethodNetworkTokenRequest$Outbound = {
   payment_method_id: string;
   network_token_id: string;
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -53,6 +128,7 @@ export const SuspendPaymentMethodNetworkTokenRequest$outboundSchema: z.ZodType<
   paymentMethodId: z.string(),
   networkTokenId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",

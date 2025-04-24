@@ -36,6 +36,7 @@ export function digitalWalletsUpdate(
   digitalWalletUpdate: components.DigitalWalletUpdate,
   digitalWalletId: string,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -66,6 +67,7 @@ export function digitalWalletsUpdate(
     digitalWalletUpdate,
     digitalWalletId,
     timeoutInSeconds,
+    merchantAccountId,
     options,
   ));
 }
@@ -75,6 +77,7 @@ async function $do(
   digitalWalletUpdate: components.DigitalWalletUpdate,
   digitalWalletId: string,
   timeoutInSeconds?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -107,6 +110,7 @@ async function $do(
     digitalWalletUpdate: digitalWalletUpdate,
     digitalWalletId: digitalWalletId,
     timeoutInSeconds: timeoutInSeconds,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -140,6 +144,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);

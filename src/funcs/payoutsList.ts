@@ -4,7 +4,7 @@
 
 import { Gr4vyCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -41,6 +41,7 @@ export function payoutsList(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -73,6 +74,7 @@ export function payoutsList(
     client,
     cursor,
     limit,
+    merchantAccountId,
     options,
   ));
 }
@@ -81,6 +83,7 @@ async function $do(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -115,6 +118,7 @@ async function $do(
   const input: operations.ListPayoutsRequest | undefined = {
     cursor: cursor,
     limit: limit,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -138,6 +142,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload?.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
@@ -300,6 +309,7 @@ async function $do(
         client,
         nextCursor,
         limit,
+        merchantAccountId,
         options,
       );
 

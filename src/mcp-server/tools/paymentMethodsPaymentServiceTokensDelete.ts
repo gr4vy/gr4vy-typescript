@@ -10,6 +10,7 @@ const args = {
   paymentMethodId: z.string(),
   paymentServiceTokenId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsPaymentServiceTokensDelete: ToolDefinition<
@@ -26,6 +27,7 @@ Delete a gateway tokens for a payment method.`,
       args.paymentMethodId,
       args.paymentServiceTokenId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -11,6 +11,7 @@ const args = {
   transactionRefundCreate: components.TransactionRefundCreate$inboundSchema,
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$transactionRefundsCreate: ToolDefinition<typeof args> = {
@@ -25,6 +26,7 @@ Create a refund for a transaction.`,
       args.transactionRefundCreate,
       args.transactionId,
       args.timeoutInSeconds,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -8,12 +8,72 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetBuyerGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetBuyerRequest = {
   /**
    * The ID of the buyer to retrieve.
    */
   buyerId: string;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetBuyerGlobals$inboundSchema: z.ZodType<
+  GetBuyerGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetBuyerGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetBuyerGlobals$outboundSchema: z.ZodType<
+  GetBuyerGlobals$Outbound,
+  z.ZodTypeDef,
+  GetBuyerGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBuyerGlobals$ {
+  /** @deprecated use `GetBuyerGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetBuyerGlobals$inboundSchema;
+  /** @deprecated use `GetBuyerGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetBuyerGlobals$outboundSchema;
+  /** @deprecated use `GetBuyerGlobals$Outbound` instead. */
+  export type Outbound = GetBuyerGlobals$Outbound;
+}
+
+export function getBuyerGlobalsToJSON(
+  getBuyerGlobals: GetBuyerGlobals,
+): string {
+  return JSON.stringify(GetBuyerGlobals$outboundSchema.parse(getBuyerGlobals));
+}
+
+export function getBuyerGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBuyerGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBuyerGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBuyerGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetBuyerRequest$inboundSchema: z.ZodType<
@@ -22,6 +82,7 @@ export const GetBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
@@ -31,6 +92,7 @@ export const GetBuyerRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetBuyerRequest$Outbound = {
   buyer_id: string;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,6 +102,7 @@ export const GetBuyerRequest$outboundSchema: z.ZodType<
   GetBuyerRequest
 > = z.object({
   buyerId: z.string(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",

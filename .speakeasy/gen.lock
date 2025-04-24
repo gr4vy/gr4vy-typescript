@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: bd3a38d480b7b1c61725a6274944286c
+  docChecksum: 913dbd505752011c0485a6127dbe14c1
   docVersion: 1.0.0
   speakeasyVersion: 1.538.0
   generationVersion: 2.591.1
-  releaseVersion: 0.17.4
-  configChecksum: 164a05f87148a784582114eb13c4db4c
+  releaseVersion: 0.18.11
+  configChecksum: 9f70f65e967cda3ca813c9868a56fe3f
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -24,6 +24,7 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
+    globals: 2.82.2
     groups: 2.81.2
     mcpServer: 0.9.2
     methodArguments: 0.1.2
@@ -291,72 +292,139 @@ generatedFiles:
   - docs/models/errors/updatecheckoutsessionresponse403updatecheckoutsession.md
   - docs/models/errors/updatedigitalwalletresponse403updatedigitalwallet.md
   - docs/models/errors/voidtransactionresponse403voidtransaction.md
+  - docs/models/operations/addbuyerglobals.md
   - docs/models/operations/addbuyerrequest.md
+  - docs/models/operations/addbuyershippingdetailsglobals.md
   - docs/models/operations/addbuyershippingdetailsrequest.md
+  - docs/models/operations/capturetransactionglobals.md
   - docs/models/operations/capturetransactionrequest.md
+  - docs/models/operations/configuredigitalwalletglobals.md
   - docs/models/operations/configuredigitalwalletrequest.md
+  - docs/models/operations/createaccountupdaterjobglobals.md
   - docs/models/operations/createaccountupdaterjobrequest.md
+  - docs/models/operations/createapplepaydigitalwalletsessionglobals.md
+  - docs/models/operations/createapplepaydigitalwalletsessionrequest.md
   - docs/models/operations/createcheckoutsessionbody.md
+  - docs/models/operations/createcheckoutsessionglobals.md
   - docs/models/operations/createcheckoutsessionrequest.md
+  - docs/models/operations/createfulltransactionrefundglobals.md
   - docs/models/operations/createfulltransactionrefundrequest.md
+  - docs/models/operations/creategiftcardglobals.md
   - docs/models/operations/creategiftcardrequest.md
+  - docs/models/operations/creategooglepaydigitalwalletsessionglobals.md
+  - docs/models/operations/creategooglepaydigitalwalletsessionrequest.md
   - docs/models/operations/createpaymentmethodbody.md
+  - docs/models/operations/createpaymentmethodglobals.md
+  - docs/models/operations/createpaymentmethodnetworktokencryptogramglobals.md
   - docs/models/operations/createpaymentmethodnetworktokencryptogramrequest.md
+  - docs/models/operations/createpaymentmethodnetworktokenglobals.md
   - docs/models/operations/createpaymentmethodnetworktokenrequest.md
+  - docs/models/operations/createpaymentmethodpaymentservicetokenglobals.md
   - docs/models/operations/createpaymentmethodpaymentservicetokenrequest.md
   - docs/models/operations/createpaymentmethodrequest.md
+  - docs/models/operations/createpayoutglobals.md
   - docs/models/operations/createpayoutrequest.md
+  - docs/models/operations/createtransactionglobals.md
+  - docs/models/operations/createtransactionrefundglobals.md
   - docs/models/operations/createtransactionrefundrequest.md
   - docs/models/operations/createtransactionrequest.md
   - docs/models/operations/createtransactionresponse.md
+  - docs/models/operations/deletebuyerglobals.md
   - docs/models/operations/deletebuyerrequest.md
+  - docs/models/operations/deletebuyershippingdetailsglobals.md
   - docs/models/operations/deletebuyershippingdetailsrequest.md
+  - docs/models/operations/deletecheckoutsessionglobals.md
   - docs/models/operations/deletecheckoutsessionrequest.md
+  - docs/models/operations/deletedigitalwalletglobals.md
   - docs/models/operations/deletedigitalwalletrequest.md
+  - docs/models/operations/deletegiftcardglobals.md
   - docs/models/operations/deletegiftcardrequest.md
+  - docs/models/operations/deletepaymentmethodglobals.md
+  - docs/models/operations/deletepaymentmethodnetworktokenglobals.md
   - docs/models/operations/deletepaymentmethodnetworktokenrequest.md
+  - docs/models/operations/deletepaymentmethodpaymentservicetokenglobals.md
   - docs/models/operations/deletepaymentmethodpaymentservicetokenrequest.md
   - docs/models/operations/deletepaymentmethodrequest.md
+  - docs/models/operations/getbuyerglobals.md
   - docs/models/operations/getbuyerrequest.md
+  - docs/models/operations/getbuyershippingdetailsglobals.md
   - docs/models/operations/getbuyershippingdetailsrequest.md
+  - docs/models/operations/getcheckoutsessionglobals.md
   - docs/models/operations/getcheckoutsessionrequest.md
+  - docs/models/operations/getdigitalwalletglobals.md
   - docs/models/operations/getdigitalwalletrequest.md
+  - docs/models/operations/getgiftcardglobals.md
   - docs/models/operations/getgiftcardrequest.md
+  - docs/models/operations/getpaymentmethodglobals.md
   - docs/models/operations/getpaymentmethodrequest.md
+  - docs/models/operations/getpayoutglobals.md
   - docs/models/operations/getpayoutrequest.md
+  - docs/models/operations/getrefundglobals.md
   - docs/models/operations/getrefundrequest.md
+  - docs/models/operations/gettransactionglobals.md
   - docs/models/operations/gettransactionrequest.md
+  - docs/models/operations/gettransactionsummaryglobals.md
   - docs/models/operations/gettransactionsummaryrequest.md
+  - docs/models/operations/gettreansactionrefundglobals.md
   - docs/models/operations/gettreansactionrefundrequest.md
+  - docs/models/operations/listauditlogsglobals.md
   - docs/models/operations/listauditlogsrequest.md
   - docs/models/operations/listauditlogsresponse.md
+  - docs/models/operations/listbuyergiftcardsglobals.md
   - docs/models/operations/listbuyergiftcardsrequest.md
+  - docs/models/operations/listbuyerpaymentmethodsglobals.md
   - docs/models/operations/listbuyerpaymentmethodsrequest.md
+  - docs/models/operations/listbuyersglobals.md
+  - docs/models/operations/listbuyershippingdetailsglobals.md
   - docs/models/operations/listbuyershippingdetailsrequest.md
   - docs/models/operations/listbuyersrequest.md
   - docs/models/operations/listbuyersresponse.md
+  - docs/models/operations/listcardschemedefinitionsglobals.md
+  - docs/models/operations/listcardschemedefinitionsrequest.md
+  - docs/models/operations/listdigitalwalletsglobals.md
+  - docs/models/operations/listdigitalwalletsrequest.md
+  - docs/models/operations/listgiftcardbalancesglobals.md
   - docs/models/operations/listgiftcardbalancesrequest.md
+  - docs/models/operations/listgiftcardsglobals.md
   - docs/models/operations/listgiftcardsrequest.md
   - docs/models/operations/listgiftcardsresponse.md
+  - docs/models/operations/listpaymentmethodnetworktokensglobals.md
   - docs/models/operations/listpaymentmethodnetworktokensrequest.md
+  - docs/models/operations/listpaymentmethodpaymentservicetokensglobals.md
   - docs/models/operations/listpaymentmethodpaymentservicetokensrequest.md
+  - docs/models/operations/listpaymentmethodsglobals.md
   - docs/models/operations/listpaymentmethodsrequest.md
   - docs/models/operations/listpaymentmethodsresponse.md
+  - docs/models/operations/listpaymentoptionsglobals.md
+  - docs/models/operations/listpaymentoptionsrequest.md
+  - docs/models/operations/listpayoutsglobals.md
   - docs/models/operations/listpayoutsrequest.md
   - docs/models/operations/listpayoutsresponse.md
+  - docs/models/operations/listtransactionrefundsglobals.md
   - docs/models/operations/listtransactionrefundsrequest.md
+  - docs/models/operations/listtransactionsglobals.md
   - docs/models/operations/listtransactionsrequest.md
   - docs/models/operations/listtransactionsresponse.md
   - docs/models/operations/orderby.md
+  - docs/models/operations/registerdigitalwalletdomainglobals.md
   - docs/models/operations/registerdigitalwalletdomainrequest.md
+  - docs/models/operations/resumepaymentmethodnetworktokenglobals.md
   - docs/models/operations/resumepaymentmethodnetworktokenrequest.md
+  - docs/models/operations/suspendpaymentmethodnetworktokenglobals.md
   - docs/models/operations/suspendpaymentmethodnetworktokenrequest.md
+  - docs/models/operations/synctransactionglobals.md
   - docs/models/operations/synctransactionrequest.md
+  - docs/models/operations/unregisterdigitalwalletdomainglobals.md
   - docs/models/operations/unregisterdigitalwalletdomainrequest.md
+  - docs/models/operations/updatebuyerglobals.md
   - docs/models/operations/updatebuyerrequest.md
+  - docs/models/operations/updatebuyershippingdetailsglobals.md
   - docs/models/operations/updatebuyershippingdetailsrequest.md
+  - docs/models/operations/updatecheckoutsessionglobals.md
   - docs/models/operations/updatecheckoutsessionrequest.md
+  - docs/models/operations/updatedigitalwalletglobals.md
   - docs/models/operations/updatedigitalwalletrequest.md
+  - docs/models/operations/voidtransactionglobals.md
   - docs/models/operations/voidtransactionrequest.md
   - docs/sdks/accountupdater/README.md
   - docs/sdks/all/README.md
@@ -789,9 +857,11 @@ generatedFiles:
   - src/models/operations/capturetransaction.ts
   - src/models/operations/configuredigitalwallet.ts
   - src/models/operations/createaccountupdaterjob.ts
+  - src/models/operations/createapplepaydigitalwalletsession.ts
   - src/models/operations/createcheckoutsession.ts
   - src/models/operations/createfulltransactionrefund.ts
   - src/models/operations/creategiftcard.ts
+  - src/models/operations/creategooglepaydigitalwalletsession.ts
   - src/models/operations/createpaymentmethod.ts
   - src/models/operations/createpaymentmethodnetworktoken.ts
   - src/models/operations/createpaymentmethodnetworktokencryptogram.ts
@@ -824,11 +894,14 @@ generatedFiles:
   - src/models/operations/listbuyerpaymentmethods.ts
   - src/models/operations/listbuyers.ts
   - src/models/operations/listbuyershippingdetails.ts
+  - src/models/operations/listcardschemedefinitions.ts
+  - src/models/operations/listdigitalwallets.ts
   - src/models/operations/listgiftcardbalances.ts
   - src/models/operations/listgiftcards.ts
   - src/models/operations/listpaymentmethodnetworktokens.ts
   - src/models/operations/listpaymentmethodpaymentservicetokens.ts
   - src/models/operations/listpaymentmethods.ts
+  - src/models/operations/listpaymentoptions.ts
   - src/models/operations/listpayouts.ts
   - src/models/operations/listtransactionrefunds.ts
   - src/models/operations/listtransactions.ts
@@ -886,6 +959,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"payment_method_ids": ["ef9496d8-53a5-4aad-8ca2-00eb68334389", "f29e886e-93cc-4714-b4a3-12b7a718e595"]}
       responses:
@@ -923,6 +998,8 @@ examples:
           limit: 20
           search: "John"
           external_identifier: "buyer-12345"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "li.uid"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "no.vat"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ca.pst_bc"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -955,6 +1032,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "jp.cn"}}}
       responses:
@@ -989,6 +1068,8 @@ examples:
       parameters:
         path:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "nz.gst"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -1023,6 +1104,8 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "th.id"}}}
       responses:
@@ -1059,6 +1142,8 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
@@ -1093,6 +1178,8 @@ examples:
           order_by: "desc"
           country: "US"
           currency: "USD"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "network-token", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["visa"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100}, {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "paypalpaylater", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["visa"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100}, {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "chaseorbital", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["visa"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100}]}
@@ -1125,6 +1212,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "bin": "412345", "sub_bin": "554", "last4": "1234", "currency": "AUD", "expiration_date": "2013-07-16T19:23:00.000+00:00", "balance": 1299, "balance_error_code": "incorrect_currency", "balance_raw_error_code": "10363", "balance_raw_error_message": "This currency is not supported by the merchant."}, {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "bin": "412345", "sub_bin": "554", "last4": "1234", "currency": "AUD", "expiration_date": "2013-07-16T19:23:00.000+00:00", "balance": 1299, "balance_error_code": "incorrect_currency", "balance_raw_error_code": "10363", "balance_raw_error_message": "This currency is not supported by the merchant."}, {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "bin": "412345", "sub_bin": "554", "last4": "1234", "currency": "AUD", "expiration_date": "2013-07-16T19:23:00.000+00:00", "balance": 1299, "balance_error_code": "incorrect_currency", "balance_raw_error_code": "10363", "balance_raw_error_message": "This currency is not supported by the merchant."}]}
@@ -1159,6 +1248,8 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}
       responses:
@@ -1193,6 +1284,8 @@ examples:
       parameters:
         path:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}]}
@@ -1226,6 +1319,8 @@ examples:
         path:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
           shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}
@@ -1261,6 +1356,8 @@ examples:
           shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}
       responses:
@@ -1298,6 +1395,8 @@ examples:
           shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: "<value>"
@@ -1334,6 +1433,8 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
           buyer_external_identifier: "buyer-12345"
           external_identifier: "payment-method-12345"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "network-token", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["visa"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "no.vat"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "processing", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "dlocal", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["visa"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ca.bn"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "failed", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pagoefectivo", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["visa"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ae.trn"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "failed", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -1366,6 +1467,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"method": "paypal", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "buyer_external_identifier": "buyer-12345", "country": "GB", "currency": "GBP", "redirect_url": "https://standard-utilization.com/", "external_identifier": "payment-method-12345"}
       responses:
@@ -1400,6 +1503,8 @@ examples:
       parameters:
         path:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "picpay", "mode": "card", "scheme": "visa", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "merchant_account_id": "default", "additional_schemes": ["visa"], "cit_last_used_at": "2013-07-16T19:23:00.000+00:00", "cit_usage_count": 50, "has_replacement": false, "last_used_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "mx.curp"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "external_identifier": "card-12345", "status": "succeeded", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -1432,6 +1537,8 @@ examples:
       parameters:
         path:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
@@ -1464,6 +1571,8 @@ examples:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
         query:
           payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "payment-service-token", "id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "approval_url": "https://gr4vy.app/redirect/12345", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "status": "succeeded", "token": "pm_12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-service-token", "id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "approval_url": "https://gr4vy.app/redirect/12345", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "status": "failed", "token": "pm_12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-service-token", "id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "approval_url": "https://gr4vy.app/redirect/12345", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "status": "processing", "token": "pm_12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}]}
@@ -1498,6 +1607,8 @@ examples:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"security_code": "123", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "redirect_url": "https://probable-heating.com/"}
       responses:
@@ -1535,6 +1646,8 @@ examples:
           payment_service_token_id: "703f2d99-3fd1-44bc-9cbd-a25a2d597886"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
@@ -1565,6 +1678,8 @@ examples:
       parameters:
         path:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "suspended", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "suspended", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "active", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}]}
@@ -1599,6 +1714,8 @@ examples:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"security_code": "123", "merchant_initiated": false, "is_subsequent_payment": false}
       responses:
@@ -1636,6 +1753,8 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "suspended", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -1671,6 +1790,8 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "network-token", "id": "918f6c9b-5d11-4897-98dc-23fda6fe0055", "expiration_date": "12/30", "payment_method_id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "status": "inactive", "token": "4111123456789012", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -1706,6 +1827,8 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
@@ -1739,6 +1862,8 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"merchant_initiated": false}
       responses:
@@ -1773,6 +1898,8 @@ examples:
       parameters:
         path:
           gift_card_id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "qwikcilver-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "expiration_date": "2013-07-16T19:23:00.000+00:00", "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "mx.curp"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -1807,6 +1934,8 @@ examples:
           gift_card_id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: "<value>"
@@ -1839,6 +1968,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"number": "4123455541234561234", "pin": "1234", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "buyer_external_identifier": "buyer-12345"}
       responses:
@@ -1873,6 +2004,8 @@ examples:
       parameters:
         query:
           limit: 20
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "qwikcilver-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "expiration_date": "2013-07-16T19:23:00.000+00:00", "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "no.vat"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "mock-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "expiration_date": "2013-07-16T19:23:00.000+00:00", "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ca.pst_sk"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "mock-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "expiration_date": "2013-07-16T19:23:00.000+00:00", "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "my.nric"}}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -1905,6 +2038,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"items": [{"id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e"}, {"id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e"}, {"number": "4123455541234561234", "pin": "1234"}]}
       responses:
@@ -1936,6 +2071,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
   list_card_scheme_definitions:
     speakeasy-default-list-card-scheme-definitions:
+      parameters:
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "card-scheme-definition", "id": "visa", "icon_url": "https://api.sandbox.example.gr4vy.app/assets/card-scheme-definitions/visa.svg", "display_name": "Visa"}, {"type": "card-scheme-definition", "id": "visa", "icon_url": "https://api.sandbox.example.gr4vy.app/assets/card-scheme-definitions/visa.svg", "display_name": "Visa"}, {"type": "card-scheme-definition", "id": "visa", "icon_url": "https://api.sandbox.example.gr4vy.app/assets/card-scheme-definitions/visa.svg", "display_name": "Visa"}]}
@@ -1961,11 +2099,15 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
   configure_digital_wallet:
     speakeasy-default-configure-digital-wallet:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"provider": "google", "merchant_name": "<value>", "merchant_country_code": "GB", "accept_terms_and_conditions": true}
       responses:
@@ -1997,6 +2139,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
   list_digital_wallets:
     speakeasy-default-list-digital-wallets:
+      parameters:
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "digital-wallet", "id": "1808f5e6-b49c-4db9-94fa-22371ea352f5", "merchant_account_id": "default", "provider": "google", "merchant_name": "ACME Inc.", "merchant_display_name": "ACME", "merchant_url": "https://example.com", "merchant_country_code": "US", "domain_names": ["example.com"], "active_certificate_count": 2, "pending_certificate_count": 1, "expired_certificate_count": 0, "fields": {"digital_payment_application_id": "8faebf73-5b43-4514-b170-cbfb50c99fff", "digital_payment_application_name": "ACME"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "digital-wallet", "id": "1808f5e6-b49c-4db9-94fa-22371ea352f5", "merchant_account_id": "default", "provider": "click-to-pay", "merchant_name": "ACME Inc.", "merchant_display_name": "ACME", "merchant_url": "https://example.com", "merchant_country_code": "US", "domain_names": ["example.com"], "active_certificate_count": 2, "pending_certificate_count": 1, "expired_certificate_count": 0, "fields": {"digital_payment_application_id": "8faebf73-5b43-4514-b170-cbfb50c99fff", "digital_payment_application_name": "ACME"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "digital-wallet", "id": "1808f5e6-b49c-4db9-94fa-22371ea352f5", "merchant_account_id": "default", "provider": "apple", "merchant_name": "ACME Inc.", "merchant_display_name": "ACME", "merchant_url": "https://example.com", "merchant_country_code": "US", "domain_names": ["example.com"], "active_certificate_count": 2, "pending_certificate_count": 1, "expired_certificate_count": 0, "fields": {"digital_payment_application_id": "8faebf73-5b43-4514-b170-cbfb50c99fff", "digital_payment_application_name": "ACME"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}]}
@@ -2022,11 +2167,15 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
   get_digital_wallet:
     speakeasy-default-get-digital-wallet:
       parameters:
         path:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "digital-wallet", "id": "1808f5e6-b49c-4db9-94fa-22371ea352f5", "merchant_account_id": "default", "provider": "click-to-pay", "merchant_name": "ACME Inc.", "merchant_display_name": "ACME", "merchant_url": "https://example.com", "merchant_country_code": "US", "domain_names": ["example.com"], "active_certificate_count": 2, "pending_certificate_count": 1, "expired_certificate_count": 0, "fields": {"digital_payment_application_id": "8faebf73-5b43-4514-b170-cbfb50c99fff", "digital_payment_application_name": "ACME"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -2061,6 +2210,8 @@ examples:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: "<value>"
@@ -2095,6 +2246,8 @@ examples:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"merchant_country_code": "US"}
       responses:
@@ -2126,6 +2279,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
   create_google_pay_digital_wallet_session:
     speakeasy-default-create-google-pay-digital-wallet-session:
+      parameters:
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"origin_domain": "example.com"}
       responses:
@@ -2157,6 +2313,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
   create_apple_pay_digital_wallet_session:
     speakeasy-default-create-apple-pay-digital-wallet-session:
+      parameters:
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"validation_url": "https://apple-pay-gateway-cert.apple.com", "domain_name": "example.com"}
       responses:
@@ -2224,6 +2383,8 @@ examples:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"domain_name": "example.com"}
       responses:
@@ -2260,6 +2421,8 @@ examples:
           digital_wallet_id: ""
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"domain_name": "example.com"}
       responses:
@@ -2330,6 +2493,8 @@ examples:
           payment_source: ["recurring"]
           is_subsequent_payment: true
           merchant_initiated: true
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "USD", "amount": 1299, "status": "capture_succeeded", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_currency": "USD", "settled_amount": 1100, "settled": true, "country": "US", "external_identifier": "transaction-12345", "intent": "authorize", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "dlocal", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "instrument_type": "pan", "error_code": "missing_redirect_url", "payment_service": {"type": "payment-service", "id": "824ff064-7f4b-430b-9801-59aff90d013e", "payment_service_definition_id": "stripe-card", "method": "card", "display_name": "Stripe USA"}, "pending_review": false, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "my.nric"}}}, "raw_response_code": "E104", "raw_response_description": "Missing redirect URL", "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, "checkout_session_id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "created", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}, {"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "failed", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "mock-gift-card", "display_name": "Qwikcilver USA"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "GBP", "amount": 1299, "status": "capture_succeeded", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_currency": "USD", "settled_amount": 1100, "settled": true, "country": "US", "external_identifier": "transaction-12345", "intent": "capture", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pagoefectivo", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "instrument_type": "pan", "error_code": "missing_redirect_url", "payment_service": {"type": "payment-service", "id": "824ff064-7f4b-430b-9801-59aff90d013e", "payment_service_definition_id": "stripe-card", "method": "abitab", "display_name": "Stripe USA"}, "pending_review": false, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ar.dni"}}}, "raw_response_code": "E104", "raw_response_description": "Missing redirect URL", "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, "checkout_session_id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "succeeded", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "mock-gift-card", "display_name": "Qwikcilver USA"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "USD", "amount": 1299, "status": "authorization_void_pending", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_currency": "USD", "settled_amount": 1100, "settled": true, "country": "US", "external_identifier": "transaction-12345", "intent": "capture", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "mercadopago", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "instrument_type": "pan", "error_code": "missing_redirect_url", "payment_service": {"type": "payment-service", "id": "824ff064-7f4b-430b-9801-59aff90d013e", "payment_service_definition_id": "stripe-card", "method": "applepay", "display_name": "Stripe USA"}, "pending_review": false, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "co.nit"}}}, "raw_response_code": "E104", "raw_response_description": "Missing redirect URL", "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, "checkout_session_id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "created", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}, {"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "skipped", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}, {"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "succeeded", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "qwikcilver-gift-card", "display_name": "Qwikcilver USA"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -2362,6 +2527,9 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
+          idempotency-key: "request-12345"
       requestBody:
         application/json: {"amount": 1299, "currency": "GBP", "country": "US", "payment_method": {"buyer_external_identifier": "buyer-12345", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "cardholder_name": "John Luhn", "card_suffix": "1234", "card_scheme": "visa", "card_type": "credit", "token": "{\"signature\":\"MEUCIEg4a4A+pu+AUjgVjBpfz9msLqQOkT5kz7htz...", "assurance_details": {"account_verified": true, "card_holder_authenticated": true}}, "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "id.nik"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "buyer_external_identifier": "buyer-12345", "gift_cards": [{"number": "4123455541234561234", "pin": "1234", "amount": 1299}], "external_identifier": "transaction-12345", "store": true, "three_d_secure_data": {"cavv": "3q2+78r+ur7erb7vyv66vv8=", "eci": "05", "version": "2.1.0", "directory_response": "C", "scheme": "visa", "authentication_response": "Y", "directory_transaction_id": "c4e59ceb-a382-4d6a-bc87-385d591fa09d"}, "metadata": {"cohort": "cohort-12345", "order": "order-12345"}, "is_subsequent_payment": true, "merchant_initiated": true, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "US"}], "statement_descriptor": {"name": "ACME", "description": "ACME San Jose Electronics", "city": "San Jose", "country": "US", "phone_number": "+1234567890", "url": "www.example.com"}, "previous_scheme_transaction_id": "123456789012345", "browser_info": {"javascript_enabled": false, "java_enabled": false, "language": "<value>", "color_depth": 586220, "screen_height": 752438, "screen_width": 957409, "time_zone_offset": 357021, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36", "user_device": "desktop", "accept_header": "*/*"}, "shipping_details_id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "async_capture": true, "anti_fraud_fingerprint": "yGeBAFYgFmM=", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "account_funding_transaction": true, "allow_partial_authorization": false, "recipient": {"first_name": "", "last_name": "", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "account_number": "act12345", "date_of_birth": "1995-12-23"}}
       responses:
@@ -2398,6 +2566,8 @@ examples:
       parameters:
         path:
           transaction_id: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "USD", "amount": 1299, "status": "authorization_declined", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_currency": "USD", "settled_amount": 1100, "settled": true, "country": "US", "external_identifier": "transaction-12345", "intent": "authorize", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "webpay", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "instrument_type": "pan", "error_code": "missing_redirect_url", "payment_service": {"type": "payment-service", "id": "824ff064-7f4b-430b-9801-59aff90d013e", "payment_service_definition_id": "stripe-card", "method": "latitudeds", "display_name": "Stripe USA"}, "pending_review": false, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "id.nik"}}}, "raw_response_code": "E104", "raw_response_description": "Missing redirect URL", "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, "checkout_session_id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "gift_card_redemptions": [], "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "mock-gift-card", "display_name": "Qwikcilver USA"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "auth_response_code": "00", "avs_response_code": "match", "cvv_response_code": "match", "anti_fraud_decision": "accept", "payment_source": "card_on_file", "merchant_initiated": true, "is_subsequent_payment": false, "cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}], "statement_descriptor": {"name": "ACME", "description": "ACME San Jose Electronics", "city": "San Jose", "country": "US", "phone_number": "+1234567890", "url": "www.example.com"}, "scheme_transaction_id": "123456789012345", "three_d_secure": {"version": "2.2.0", "status": "complete", "method": "challenge", "response_data": {"version": "<value>"}, "error_data": {"code": "305", "description": "Invalid ThreeDSCompInd", "detail": "The threeDSCompInd must be 'Y' when successful", "component": "C"}}, "payment_service_transaction_id": "tx-12345", "additional_identifiers": {"payment_service_authorization_id": "auth-12345", "payment_service_capture_id": "capture-12345"}, "metadata": {"cohort": "cohort-12345", "order": "order-12345"}, "authorized_at": "2013-07-16T19:23:00.000+00:00", "captured_at": "2013-07-16T19:23:00.000+00:00", "voided_at": "2013-07-16T19:23:00.000+00:00", "approval_expires_at": "2013-07-16T19:23:00.000+00:00", "buyer_approval_timedout_at": "2013-07-16T19:23:00.000+00:00", "intent_outcome": "failed", "multi_tender": true, "account_funding_transaction": true, "recipient": {"first_name": "", "last_name": "", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "account_number": "act12345", "date_of_birth": "1995-12-23"}, "merchant_advice_code": "21"}
@@ -2432,6 +2602,8 @@ examples:
           transaction_id: "cac402e8-3f44-4782-bac4-283b15a3b3e2"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"amount": 1299, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}}
       responses:
@@ -2468,6 +2640,8 @@ examples:
           transaction_id: "26740073-c9e5-4864-9ecf-5856a8e566d6"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "EUR", "amount": 1299, "status": "authorization_void_pending", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_currency": "USD", "settled_amount": 1100, "settled": true, "country": "US", "external_identifier": "transaction-12345", "intent": "authorize", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "linkaja", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "instrument_type": "pan", "error_code": "missing_redirect_url", "payment_service": {"type": "payment-service", "id": "824ff064-7f4b-430b-9801-59aff90d013e", "payment_service_definition_id": "stripe-card", "method": "pse", "display_name": "Stripe USA"}, "pending_review": false, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "hk.br"}}}, "raw_response_code": "E104", "raw_response_description": "Missing redirect URL", "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, "checkout_session_id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "gift_card_redemptions": [], "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "mock-gift-card", "display_name": "Qwikcilver USA"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "auth_response_code": "00", "avs_response_code": "match", "cvv_response_code": "match", "anti_fraud_decision": "accept", "payment_source": "ecommerce", "merchant_initiated": true, "is_subsequent_payment": false, "cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "US"}], "statement_descriptor": {"name": "ACME", "description": "ACME San Jose Electronics", "city": "San Jose", "country": "US", "phone_number": "+1234567890", "url": "www.example.com"}, "scheme_transaction_id": "123456789012345", "three_d_secure": {"version": "2.2.0", "status": "complete", "method": "challenge", "response_data": {"version": "<value>"}, "error_data": {"code": "305", "description": "Invalid ThreeDSCompInd", "detail": "The threeDSCompInd must be 'Y' when successful", "component": "C"}}, "payment_service_transaction_id": "tx-12345", "additional_identifiers": {"payment_service_authorization_id": "auth-12345", "payment_service_capture_id": "capture-12345"}, "metadata": {"cohort": "cohort-12345", "order": "order-12345"}, "authorized_at": "2013-07-16T19:23:00.000+00:00", "captured_at": "2013-07-16T19:23:00.000+00:00", "voided_at": "2013-07-16T19:23:00.000+00:00", "approval_expires_at": "2013-07-16T19:23:00.000+00:00", "buyer_approval_timedout_at": "2013-07-16T19:23:00.000+00:00", "intent_outcome": "failed", "multi_tender": true, "account_funding_transaction": true, "recipient": {"first_name": "", "last_name": "", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "account_number": "act12345", "date_of_birth": "1995-12-23"}, "merchant_advice_code": "02"}
@@ -2500,6 +2674,8 @@ examples:
       parameters:
         path:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "processing"}
@@ -2534,6 +2710,8 @@ examples:
           transaction_id: "f0897be3-0808-45c9-a63b-509c0142ddd3"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "USD", "amount": 1299, "status": "authorization_voided", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_currency": "USD", "settled_amount": 1100, "settled": true, "country": "US", "external_identifier": "transaction-12345", "intent": "authorize", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "giropay", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "instrument_type": "pan", "error_code": "missing_redirect_url", "payment_service": {"type": "payment-service", "id": "824ff064-7f4b-430b-9801-59aff90d013e", "payment_service_definition_id": "stripe-card", "method": "dlocal", "display_name": "Stripe USA"}, "pending_review": false, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "in.gst"}}}, "raw_response_code": "E104", "raw_response_description": "Missing redirect URL", "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "id": "bf8c36ad-02d9-4904-b0f9-a230b149e341", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "type": "shipping-details"}, "checkout_session_id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "created", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}, {"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "succeeded", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}, {"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "skipped", "amount": 100, "refunded_amount": 50, "gift_card_service_redemption_id": "xYqd43gySMtori", "error_code": "incorrect_currency", "raw_error_code": "10001", "raw_error_message": "Card expired", "gift_card": {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "mock-gift-card", "display_name": "Qwikcilver USA"}, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "auth_response_code": "00", "avs_response_code": "match", "cvv_response_code": "match", "anti_fraud_decision": "accept", "payment_source": "moto", "merchant_initiated": true, "is_subsequent_payment": false, "cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "US"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}], "statement_descriptor": {"name": "ACME", "description": "ACME San Jose Electronics", "city": "San Jose", "country": "US", "phone_number": "+1234567890", "url": "www.example.com"}, "scheme_transaction_id": "123456789012345", "three_d_secure": {"version": "2.2.0", "status": "complete", "method": "challenge", "response_data": {"cavv": "3q2+78r+ur7erb7vyv66vv8=", "eci": "05", "version": "2.1.0", "directory_response": "C", "scheme": "visa", "authentication_response": "Y", "cavv_algorithm": "A", "xid": "12345"}, "error_data": {"code": "305", "description": "Invalid ThreeDSCompInd", "detail": "The threeDSCompInd must be 'Y' when successful", "component": "C"}}, "payment_service_transaction_id": "tx-12345", "additional_identifiers": {"payment_service_authorization_id": "auth-12345", "payment_service_capture_id": "capture-12345"}, "metadata": {"cohort": "cohort-12345", "order": "order-12345"}, "authorized_at": "2013-07-16T19:23:00.000+00:00", "captured_at": "2013-07-16T19:23:00.000+00:00", "voided_at": "2013-07-16T19:23:00.000+00:00", "approval_expires_at": "2013-07-16T19:23:00.000+00:00", "buyer_approval_timedout_at": "2013-07-16T19:23:00.000+00:00", "intent_outcome": "failed", "multi_tender": true, "account_funding_transaction": true, "recipient": {"first_name": "", "last_name": "", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "account_number": "act12345", "date_of_birth": "1995-12-23"}, "merchant_advice_code": "02"}
@@ -2566,6 +2744,8 @@ examples:
       parameters:
         path:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "failed", "currency": "USD", "amount": 1299, "reason": "Refund due to user request.", "target_type": "payment-method", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "succeeded", "currency": "GBP", "amount": 1299, "reason": "Refund due to user request.", "target_type": "gift-card-redemption", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "declined", "currency": "USD", "amount": 1299, "reason": "Refund due to user request.", "target_type": "gift-card-redemption", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -2599,6 +2779,8 @@ examples:
         path:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
           refund_id: "6a1d4e46-14ed-4fe1-a45f-eff4e025d211"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "declined", "currency": "USD", "amount": 1299, "reason": "Refund due to user request.", "target_type": "gift-card-redemption", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}
@@ -2633,6 +2815,8 @@ examples:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"amount": 1299, "target_id": "7a6c366d-9205-45ab-8021-0d9ee37f20f2", "reason": "Refund due to user request.", "external_identifier": "refund-12345"}
       responses:
@@ -2669,6 +2853,8 @@ examples:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"reason": "Refund due to user request.", "external_identifier": "refund-12345"}
       responses:
@@ -2703,6 +2889,8 @@ examples:
       parameters:
         path:
           refund_id: "6a1d4e46-14ed-4fe1-a45f-eff4e025d211"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "declined", "currency": "USD", "amount": 1299, "reason": "Refund due to user request.", "target_type": "gift-card-redemption", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}
@@ -2732,6 +2920,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
   list_payment_options:
     speakeasy-default-list-payment-options:
+      parameters:
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"metadata": {"cohort": "a"}, "country": "US", "currency": "USD", "amount": 1299, "locale": "en", "cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}]}
       responses:
@@ -2770,6 +2961,8 @@ examples:
           action: "created"
           user_id: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef"
           resource_type: "user"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "audit-log", "id": "8d3fe99b-1422-42e6-bbb3-932d95ae5f79", "merchant_account_id": "default", "resource": {"type": "user", "id": "d0f98bc9-8915-413c-a1de-d853eb658c1b", "name": "Jane Zoe"}, "action": "created", "user": {"type": "user", "id": "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef", "name": "John Doe", "email_address": "john@example.com", "is_staff": false, "status": "pending"}, "timestamp": "2022-01-01T00:00:00+00:00"}, {"type": "audit-log", "id": "8d3fe99b-1422-42e6-bbb3-932d95ae5f79", "merchant_account_id": "default", "resource": {"type": "user", "id": "d0f98bc9-8915-413c-a1de-d853eb658c1b", "name": "Jane Zoe"}, "action": "created", "user": {"type": "user", "id": "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef", "name": "John Doe", "email_address": "john@example.com", "is_staff": false, "status": "deleted"}, "timestamp": "2022-01-01T00:00:00+00:00"}, {"type": "audit-log", "id": "8d3fe99b-1422-42e6-bbb3-932d95ae5f79", "merchant_account_id": "default", "resource": {"type": "user", "id": "d0f98bc9-8915-413c-a1de-d853eb658c1b", "name": "Jane Zoe"}, "action": "created", "user": {"type": "user", "id": "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef", "name": "John Doe", "email_address": "john@example.com", "is_staff": false, "status": "active"}, "timestamp": "2022-01-01T00:00:00+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -2802,6 +2995,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "US"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "US"}], "metadata": {"cohort": "cohort-a", "order_id": "order-12345"}, "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ar.cuil"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "expires_in": 3600}
       responses:
@@ -2838,6 +3033,8 @@ examples:
           session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "US"}], "metadata": {"cohort": "cohort-a", "order_id": "order-12345"}, "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "my.nric"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "expires_in": 3600}
       responses:
@@ -2874,6 +3071,8 @@ examples:
           session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"cart_items": [{"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}, {"name": "GoPro HD", "quantity": 2, "unit_amount": 1299, "discount_amount": 0, "tax_amount": 0, "external_identifier": "goprohd", "sku": "GPHD1078", "product_url": "https://example.com/catalog/go-pro-hd", "image_url": "https://example.com/images/go-pro-hd.jpg", "categories": ["camera", "travel", "gear"], "product_type": "physical", "seller_country": "GB"}], "metadata": {"cohort": "cohort-a", "order_id": "order-12345"}, "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "uy.rut"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "airline": {"booking_code": "X36Q9C", "issued_address": "123 Broadway, New York", "issued_at": "2013-07-16T19:23:00.000+00:00", "issuing_carrier_code": "A3", "legs": [{"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}, {"arrival_airport": "LAX", "arrival_at": "2013-07-16T19:23:00.000+00:00", "arrival_city": "Los Angeles", "arrival_country": "US", "carrier_code": "BA", "coupon_number": "15885566", "departure_airport": "LHR", "departure_at": "2013-07-16T19:23:00.000+00:00", "departure_city": "London", "departure_country": "GB", "departure_tax_amount": 1200, "fare_amount": 129900, "fare_basis_code": "FY", "fee_amount": 1200, "flight_class": "E", "flight_number": "101", "route_type": "round_trip", "stop_over": false, "tax_amount": 1200}], "passenger_name_record": "JOHN L", "passengers": [{"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}, {"age_group": "adult", "date_of_birth": "2013-07-16", "email_address": "john@example.com", "first_name": "John", "frequent_flyer_number": "15885566", "last_name": "Luhn", "passport_number": "11117700225", "phone_number": "+1234567890", "ticket_number": "BA1236699999", "title": "Mr.", "country_code": "US"}], "reservation_system": "Amadeus", "restricted_ticket": false, "ticket_delivery_method": "electronic", "ticket_number": "123-1234-151555", "travel_agency_code": "12345", "travel_agency_invoice_number": "EG15555155", "travel_agency_name": "ACME Agency", "travel_agency_plan_name": "B733"}, "type": "checkout-session", "id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "expires_at": "2013-07-16T19:23:00.000+00:00", "payment_method": {"type": "payment-method", "id": "ef9496d8-53a5-4aad-8ca2-00eb68334389", "details": {"bin": "411111", "card_country": "US", "card_issuer_name": "Bank of America NA"}, "label": "1234", "method": "card", "scheme": "visa", "fingerprint": "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4"}}
@@ -2906,6 +3105,8 @@ examples:
           session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
@@ -2937,6 +3138,8 @@ examples:
         query:
           cursor: "ZXhhbXBsZTE"
           limit: 20
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"items": [{"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "li.uid"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "dlocal", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "my.nric"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pix", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ar.cuil"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "EUR", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pagoefectivo", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -2969,6 +3172,8 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+        header:
+          x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"amount": 1299, "currency": "GBP", "payment_service_id": "ed8bd87d-85ad-40cf-8e8f-007e21e55aad", "payment_method": {"method": "id", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077"}, "category": "online_gambling", "external_identifier": "payout-12345", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "id.nik"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "buyer_external_identifier": "buyer-12345", "merchant": {"name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "connection_options": {"checkout-card": {"processing_channel_id": "channel-1234", "source_id": "acct-1234"}}}
       responses:
@@ -3003,6 +3208,8 @@ examples:
       parameters:
         path:
           payout_id: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header:
+          x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
           application/json: {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "webpay", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "failed", "updated_at": "2013-07-16T19:23:00.000+00:00"}

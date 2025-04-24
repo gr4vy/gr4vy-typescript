@@ -9,6 +9,7 @@ import { buyersShippingDetailsList } from "../funcs/buyersShippingDetailsList.js
 import { buyersShippingDetailsUpdate } from "../funcs/buyersShippingDetailsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ShippingDetails extends ClientSDK {
@@ -22,6 +23,7 @@ export class ShippingDetails extends ClientSDK {
     shippingDetailsCreate: components.ShippingDetailsCreate,
     buyerId: string,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
     return unwrapAsync(buyersShippingDetailsCreate(
@@ -29,6 +31,7 @@ export class ShippingDetails extends ClientSDK {
       shippingDetailsCreate,
       buyerId,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }
@@ -41,11 +44,13 @@ export class ShippingDetails extends ClientSDK {
    */
   async list(
     buyerId: string,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorShippingDetails> {
     return unwrapAsync(buyersShippingDetailsList(
       this,
       buyerId,
+      merchantAccountId,
       options,
     ));
   }
@@ -59,12 +64,14 @@ export class ShippingDetails extends ClientSDK {
   async get(
     buyerId: string,
     shippingDetailsId: string,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
     return unwrapAsync(buyersShippingDetailsGet(
       this,
       buyerId,
       shippingDetailsId,
+      merchantAccountId,
       options,
     ));
   }
@@ -76,18 +83,12 @@ export class ShippingDetails extends ClientSDK {
    * Update the shipping details associated to a specific buyer.
    */
   async update(
-    shippingDetailsUpdate: components.ShippingDetailsUpdate,
-    buyerId: string,
-    shippingDetailsId: string,
-    timeoutInSeconds?: number | undefined,
+    request: operations.UpdateBuyerShippingDetailsRequest,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
     return unwrapAsync(buyersShippingDetailsUpdate(
       this,
-      shippingDetailsUpdate,
-      buyerId,
-      shippingDetailsId,
-      timeoutInSeconds,
+      request,
       options,
     ));
   }
@@ -102,6 +103,7 @@ export class ShippingDetails extends ClientSDK {
     buyerId: string,
     shippingDetailsId: string,
     timeoutInSeconds?: number | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(buyersShippingDetailsDelete(
@@ -109,6 +111,7 @@ export class ShippingDetails extends ClientSDK {
       buyerId,
       shippingDetailsId,
       timeoutInSeconds,
+      merchantAccountId,
       options,
     ));
   }

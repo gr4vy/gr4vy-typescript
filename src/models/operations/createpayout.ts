@@ -9,10 +9,72 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreatePayoutGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreatePayoutRequest = {
   timeoutInSeconds?: number | undefined;
+  /**
+   * The ID of the merchant account to use for this request.
+   */
+  merchantAccountId?: string | null | undefined;
   payoutCreate: components.PayoutCreate;
 };
+
+/** @internal */
+export const CreatePayoutGlobals$inboundSchema: z.ZodType<
+  CreatePayoutGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreatePayoutGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreatePayoutGlobals$outboundSchema: z.ZodType<
+  CreatePayoutGlobals$Outbound,
+  z.ZodTypeDef,
+  CreatePayoutGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreatePayoutGlobals$ {
+  /** @deprecated use `CreatePayoutGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreatePayoutGlobals$inboundSchema;
+  /** @deprecated use `CreatePayoutGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreatePayoutGlobals$outboundSchema;
+  /** @deprecated use `CreatePayoutGlobals$Outbound` instead. */
+  export type Outbound = CreatePayoutGlobals$Outbound;
+}
+
+export function createPayoutGlobalsToJSON(
+  createPayoutGlobals: CreatePayoutGlobals,
+): string {
+  return JSON.stringify(
+    CreatePayoutGlobals$outboundSchema.parse(createPayoutGlobals),
+  );
+}
+
+export function createPayoutGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePayoutGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePayoutGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePayoutGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreatePayoutRequest$inboundSchema: z.ZodType<
@@ -21,6 +83,7 @@ export const CreatePayoutRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   PayoutCreate: components.PayoutCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -32,6 +95,7 @@ export const CreatePayoutRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreatePayoutRequest$Outbound = {
   timeout_in_seconds: number;
+  merchantAccountId?: string | null | undefined;
   PayoutCreate: components.PayoutCreate$Outbound;
 };
 
@@ -42,6 +106,7 @@ export const CreatePayoutRequest$outboundSchema: z.ZodType<
   CreatePayoutRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
+  merchantAccountId: z.nullable(z.string()).optional(),
   payoutCreate: components.PayoutCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

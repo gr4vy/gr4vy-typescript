@@ -33,10 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function paymentMethodsNetworkTokensCryptogramCreate(
   client: Gr4vyCore,
-  cryptogramCreate: components.CryptogramCreate,
-  paymentMethodId: string,
-  networkTokenId: string,
-  timeoutInSeconds?: number | undefined,
+  request: operations.CreatePaymentMethodNetworkTokenCryptogramRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,20 +61,14 @@ export function paymentMethodsNetworkTokensCryptogramCreate(
 > {
   return new APIPromise($do(
     client,
-    cryptogramCreate,
-    paymentMethodId,
-    networkTokenId,
-    timeoutInSeconds,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  cryptogramCreate: components.CryptogramCreate,
-  paymentMethodId: string,
-  networkTokenId: string,
-  timeoutInSeconds?: number | undefined,
+  request: operations.CreatePaymentMethodNetworkTokenCryptogramRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -106,15 +97,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.CreatePaymentMethodNetworkTokenCryptogramRequest = {
-    cryptogramCreate: cryptogramCreate,
-    paymentMethodId: paymentMethodId,
-    networkTokenId: networkTokenId,
-    timeoutInSeconds: timeoutInSeconds,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.CreatePaymentMethodNetworkTokenCryptogramRequest$outboundSchema
         .parse(value),
@@ -150,6 +134,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-gr4vy-merchant-account-id": encodeSimple(
+      "x-gr4vy-merchant-account-id",
+      payload.merchantAccountId ?? client._options.merchantAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
