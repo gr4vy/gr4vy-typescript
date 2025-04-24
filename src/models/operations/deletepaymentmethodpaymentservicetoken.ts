@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type DeletePaymentMethodPaymentServiceTokenGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type DeletePaymentMethodPaymentServiceTokenRequest = {
   /**
    * The ID of the payment method
@@ -21,8 +25,75 @@ export type DeletePaymentMethodPaymentServiceTokenRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const DeletePaymentMethodPaymentServiceTokenGlobals$inboundSchema:
+  z.ZodType<
+    DeletePaymentMethodPaymentServiceTokenGlobals,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/** @internal */
+export type DeletePaymentMethodPaymentServiceTokenGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const DeletePaymentMethodPaymentServiceTokenGlobals$outboundSchema:
+  z.ZodType<
+    DeletePaymentMethodPaymentServiceTokenGlobals$Outbound,
+    z.ZodTypeDef,
+    DeletePaymentMethodPaymentServiceTokenGlobals
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeletePaymentMethodPaymentServiceTokenGlobals$ {
+  /** @deprecated use `DeletePaymentMethodPaymentServiceTokenGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    DeletePaymentMethodPaymentServiceTokenGlobals$inboundSchema;
+  /** @deprecated use `DeletePaymentMethodPaymentServiceTokenGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    DeletePaymentMethodPaymentServiceTokenGlobals$outboundSchema;
+  /** @deprecated use `DeletePaymentMethodPaymentServiceTokenGlobals$Outbound` instead. */
+  export type Outbound = DeletePaymentMethodPaymentServiceTokenGlobals$Outbound;
+}
+
+export function deletePaymentMethodPaymentServiceTokenGlobalsToJSON(
+  deletePaymentMethodPaymentServiceTokenGlobals:
+    DeletePaymentMethodPaymentServiceTokenGlobals,
+): string {
+  return JSON.stringify(
+    DeletePaymentMethodPaymentServiceTokenGlobals$outboundSchema.parse(
+      deletePaymentMethodPaymentServiceTokenGlobals,
+    ),
+  );
+}
+
+export function deletePaymentMethodPaymentServiceTokenGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  DeletePaymentMethodPaymentServiceTokenGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DeletePaymentMethodPaymentServiceTokenGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'DeletePaymentMethodPaymentServiceTokenGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const DeletePaymentMethodPaymentServiceTokenRequest$inboundSchema:
@@ -34,13 +105,12 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$inboundSchema:
     payment_method_id: z.string(),
     payment_service_token_id: z.string(),
     timeout_in_seconds: z.number().default(1),
-    "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "payment_service_token_id": "paymentServiceTokenId",
       "timeout_in_seconds": "timeoutInSeconds",
-      "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     });
   });
 
@@ -49,7 +119,7 @@ export type DeletePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
   payment_service_token_id: string;
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -62,13 +132,12 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$outboundSchema:
     paymentMethodId: z.string(),
     paymentServiceTokenId: z.string(),
     timeoutInSeconds: z.number().default(1),
-    xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       paymentServiceTokenId: "payment_service_token_id",
       timeoutInSeconds: "timeout_in_seconds",
-      xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     });
   });
 

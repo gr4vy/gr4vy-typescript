@@ -7,7 +7,6 @@ import { CreateCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
 import { RFCDate } from "@gr4vy/sdk/types";
 
 let value: CreateCheckoutSessionRequest = {
-  xGr4vyMerchantAccountId: "default",
   requestBody: {
     cartItems: [
       {
@@ -135,8 +134,8 @@ let value: CreateCheckoutSessionRequest = {
 
 ## Fields
 
-| Field                                                   | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `timeoutInSeconds`                                      | *number*                                                | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *string*                                                | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
-| `requestBody`                                           | *operations.CreateCheckoutSessionBody*                  | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
+| Field                                                   | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `timeoutInSeconds`                                      | *number*                                                | :heavy_minus_sign:                                      | N/A                                                     |
+| `merchantAccountId`                                     | *string*                                                | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
+| `requestBody`                                           | *operations.CreateCheckoutSessionBody*                  | :heavy_minus_sign:                                      | N/A                                                     |

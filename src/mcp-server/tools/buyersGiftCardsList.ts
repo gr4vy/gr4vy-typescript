@@ -10,7 +10,7 @@ const args = {
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersGiftCardsList: ToolDefinition<typeof args> = {
@@ -25,7 +25,7 @@ List all the stored gift cards for a specific buyer.`,
       args.buyerExternalIdentifier,
       args.buyerId,
       args.timeoutInSeconds,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

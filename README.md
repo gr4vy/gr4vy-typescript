@@ -676,7 +676,8 @@ Add the following server definition to your `claude_desktop_config.json` file:
         "-y", "--package", "@gr4vy/sdk",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--bearer-auth", "...",
+        "--merchant-account-id", "..."
       ]
     }
   }
@@ -699,7 +700,8 @@ Create a `.cursor/mcp.json` file in your project root with the following content
         "-y", "--package", "@gr4vy/sdk",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--bearer-auth", "...",
+        "--merchant-account-id", "..."
       ]
     }
   }
@@ -792,7 +794,6 @@ async function run() {
     cursor: "ZXhhbXBsZTE",
     search: "John",
     externalIdentifier: "buyer-12345",
-    xGr4vyMerchantAccountId: "default",
   });
 
   for await (const page of result) {

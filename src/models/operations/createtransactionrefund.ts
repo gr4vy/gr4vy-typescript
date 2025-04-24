@@ -9,15 +9,75 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateTransactionRefundGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreateTransactionRefundRequest = {
   transactionId: string;
   timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   transactionRefundCreate: components.TransactionRefundCreate;
 };
+
+/** @internal */
+export const CreateTransactionRefundGlobals$inboundSchema: z.ZodType<
+  CreateTransactionRefundGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateTransactionRefundGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreateTransactionRefundGlobals$outboundSchema: z.ZodType<
+  CreateTransactionRefundGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateTransactionRefundGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateTransactionRefundGlobals$ {
+  /** @deprecated use `CreateTransactionRefundGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateTransactionRefundGlobals$inboundSchema;
+  /** @deprecated use `CreateTransactionRefundGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreateTransactionRefundGlobals$outboundSchema;
+  /** @deprecated use `CreateTransactionRefundGlobals$Outbound` instead. */
+  export type Outbound = CreateTransactionRefundGlobals$Outbound;
+}
+
+export function createTransactionRefundGlobalsToJSON(
+  createTransactionRefundGlobals: CreateTransactionRefundGlobals,
+): string {
+  return JSON.stringify(
+    CreateTransactionRefundGlobals$outboundSchema.parse(
+      createTransactionRefundGlobals,
+    ),
+  );
+}
+
+export function createTransactionRefundGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionRefundGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionRefundGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionRefundGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
@@ -27,13 +87,12 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   TransactionRefundCreate: components.TransactionRefundCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "TransactionRefundCreate": "transactionRefundCreate",
   });
 });
@@ -42,7 +101,7 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
 export type CreateTransactionRefundRequest$Outbound = {
   transaction_id: string;
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   TransactionRefundCreate: components.TransactionRefundCreate$Outbound;
 };
 
@@ -54,13 +113,12 @@ export const CreateTransactionRefundRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   transactionRefundCreate: components.TransactionRefundCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     transactionRefundCreate: "TransactionRefundCreate",
   });
 });

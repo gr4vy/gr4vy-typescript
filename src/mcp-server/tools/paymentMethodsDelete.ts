@@ -8,7 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   paymentMethodId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsDelete: ToolDefinition<typeof args> = {
@@ -21,7 +21,7 @@ Delete a payment method.`,
     const [result, apiCall] = await paymentMethodsDelete(
       client,
       args.paymentMethodId,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

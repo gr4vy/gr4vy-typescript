@@ -20,6 +20,7 @@ interface StartCommandFlags {
   readonly tool?: string[];
   readonly scope?: MCPScope[];
   readonly "bearer-auth"?: string | undefined;
+  readonly "merchant-account-id"?: SDKOptions["merchantAccountId"] | undefined;
   readonly "server-url"?: string;
   readonly server?: SDKOptions["server"];
   readonly id?: SDKOptions["id"];
@@ -52,6 +53,7 @@ async function startStdio(flags: StartCommandFlags) {
     allowedTools: flags.tool,
     scopes: flags.scope,
     ...{ bearerAuth: flags["bearer-auth"] },
+    merchantAccountId: flags["merchant-account-id"],
     serverURL: flags["server-url"],
     server: flags.server,
     id: flags.id,
@@ -74,6 +76,7 @@ async function startSSE(flags: StartCommandFlags) {
     allowedTools: flags.tool,
     scopes: flags.scope,
     ...{ bearerAuth: flags["bearer-auth"] },
+    merchantAccountId: flags["merchant-account-id"],
     serverURL: flags["server-url"],
     server: flags.server,
     id: flags.id,

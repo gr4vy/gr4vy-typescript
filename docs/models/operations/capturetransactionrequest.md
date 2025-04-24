@@ -8,7 +8,6 @@ import { RFCDate } from "@gr4vy/sdk/types";
 
 let value: CaptureTransactionRequest = {
   transactionId: "0ba10bd1-14ef-4412-9545-789df2f0cd86",
-  xGr4vyMerchantAccountId: "default",
   transactionCapture: {
     amount: 1299,
     airline: {
@@ -70,9 +69,9 @@ let value: CaptureTransactionRequest = {
 
 ## Fields
 
-| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `transactionId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            |                                                                                |
-| `timeoutInSeconds`                                                             | *number*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |                                                                                |
-| `xGr4vyMerchantAccountId`                                                      | *string*                                                                       | :heavy_minus_sign:                                                             | The ID of the merchant account to use for this request.                        | default                                                                        |
-| `transactionCapture`                                                           | [components.TransactionCapture](../../models/components/transactioncapture.md) | :heavy_check_mark:                                                             | N/A                                                                            |                                                                                |
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `transactionId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            |
+| `timeoutInSeconds`                                                             | *number*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `merchantAccountId`                                                            | *string*                                                                       | :heavy_minus_sign:                                                             | The ID of the merchant account to use for this request.                        |
+| `transactionCapture`                                                           | [components.TransactionCapture](../../models/components/transactioncapture.md) | :heavy_check_mark:                                                             | N/A                                                                            |

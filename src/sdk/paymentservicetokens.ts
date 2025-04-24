@@ -19,14 +19,14 @@ export class PaymentServiceTokens extends ClientSDK {
   async list(
     paymentMethodId: string,
     paymentServiceId?: string | null | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorPaymentServiceToken> {
     return unwrapAsync(paymentMethodsPaymentServiceTokensList(
       this,
       paymentMethodId,
       paymentServiceId,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -41,7 +41,7 @@ export class PaymentServiceTokens extends ClientSDK {
     paymentServiceTokenCreate: components.PaymentServiceTokenCreate,
     paymentMethodId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentServiceToken> {
     return unwrapAsync(paymentMethodsPaymentServiceTokensCreate(
@@ -49,7 +49,7 @@ export class PaymentServiceTokens extends ClientSDK {
       paymentServiceTokenCreate,
       paymentMethodId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -64,7 +64,7 @@ export class PaymentServiceTokens extends ClientSDK {
     paymentMethodId: string,
     paymentServiceTokenId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(paymentMethodsPaymentServiceTokensDelete(
@@ -72,7 +72,7 @@ export class PaymentServiceTokens extends ClientSDK {
       paymentMethodId,
       paymentServiceTokenId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

@@ -3,17 +3,76 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type ListCardSchemeDefinitionsGlobals = {
+  merchantAccountId?: string | undefined;
+};
 
 export type ListCardSchemeDefinitionsRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const ListCardSchemeDefinitionsGlobals$inboundSchema: z.ZodType<
+  ListCardSchemeDefinitionsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListCardSchemeDefinitionsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListCardSchemeDefinitionsGlobals$outboundSchema: z.ZodType<
+  ListCardSchemeDefinitionsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListCardSchemeDefinitionsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListCardSchemeDefinitionsGlobals$ {
+  /** @deprecated use `ListCardSchemeDefinitionsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListCardSchemeDefinitionsGlobals$inboundSchema;
+  /** @deprecated use `ListCardSchemeDefinitionsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListCardSchemeDefinitionsGlobals$outboundSchema;
+  /** @deprecated use `ListCardSchemeDefinitionsGlobals$Outbound` instead. */
+  export type Outbound = ListCardSchemeDefinitionsGlobals$Outbound;
+}
+
+export function listCardSchemeDefinitionsGlobalsToJSON(
+  listCardSchemeDefinitionsGlobals: ListCardSchemeDefinitionsGlobals,
+): string {
+  return JSON.stringify(
+    ListCardSchemeDefinitionsGlobals$outboundSchema.parse(
+      listCardSchemeDefinitionsGlobals,
+    ),
+  );
+}
+
+export function listCardSchemeDefinitionsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCardSchemeDefinitionsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCardSchemeDefinitionsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCardSchemeDefinitionsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListCardSchemeDefinitionsRequest$inboundSchema: z.ZodType<
@@ -21,16 +80,12 @@ export const ListCardSchemeDefinitionsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
-  });
+  merchantAccountId: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
 export type ListCardSchemeDefinitionsRequest$Outbound = {
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -39,11 +94,7 @@ export const ListCardSchemeDefinitionsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCardSchemeDefinitionsRequest
 > = z.object({
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
-  });
+  merchantAccountId: z.nullable(z.string()).optional(),
 });
 
 /**

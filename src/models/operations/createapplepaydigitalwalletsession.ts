@@ -9,13 +9,83 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateApplePayDigitalWalletSessionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreateApplePayDigitalWalletSessionRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   applePaySessionRequest: components.ApplePaySessionRequest;
 };
+
+/** @internal */
+export const CreateApplePayDigitalWalletSessionGlobals$inboundSchema: z.ZodType<
+  CreateApplePayDigitalWalletSessionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateApplePayDigitalWalletSessionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreateApplePayDigitalWalletSessionGlobals$outboundSchema:
+  z.ZodType<
+    CreateApplePayDigitalWalletSessionGlobals$Outbound,
+    z.ZodTypeDef,
+    CreateApplePayDigitalWalletSessionGlobals
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateApplePayDigitalWalletSessionGlobals$ {
+  /** @deprecated use `CreateApplePayDigitalWalletSessionGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateApplePayDigitalWalletSessionGlobals$inboundSchema;
+  /** @deprecated use `CreateApplePayDigitalWalletSessionGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateApplePayDigitalWalletSessionGlobals$outboundSchema;
+  /** @deprecated use `CreateApplePayDigitalWalletSessionGlobals$Outbound` instead. */
+  export type Outbound = CreateApplePayDigitalWalletSessionGlobals$Outbound;
+}
+
+export function createApplePayDigitalWalletSessionGlobalsToJSON(
+  createApplePayDigitalWalletSessionGlobals:
+    CreateApplePayDigitalWalletSessionGlobals,
+): string {
+  return JSON.stringify(
+    CreateApplePayDigitalWalletSessionGlobals$outboundSchema.parse(
+      createApplePayDigitalWalletSessionGlobals,
+    ),
+  );
+}
+
+export function createApplePayDigitalWalletSessionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CreateApplePayDigitalWalletSessionGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateApplePayDigitalWalletSessionGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreateApplePayDigitalWalletSessionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateApplePayDigitalWalletSessionRequest$inboundSchema: z.ZodType<
@@ -23,18 +93,17 @@ export const CreateApplePayDigitalWalletSessionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   ApplePaySessionRequest: components.ApplePaySessionRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "ApplePaySessionRequest": "applePaySessionRequest",
   });
 });
 
 /** @internal */
 export type CreateApplePayDigitalWalletSessionRequest$Outbound = {
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   ApplePaySessionRequest: components.ApplePaySessionRequest$Outbound;
 };
 
@@ -45,11 +114,10 @@ export const CreateApplePayDigitalWalletSessionRequest$outboundSchema:
     z.ZodTypeDef,
     CreateApplePayDigitalWalletSessionRequest
   > = z.object({
-    xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
     applePaySessionRequest: components.ApplePaySessionRequest$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
       applePaySessionRequest: "ApplePaySessionRequest",
     });
   });

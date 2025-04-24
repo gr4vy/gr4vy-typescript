@@ -8,7 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   buyerId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersShippingDetailsList: ToolDefinition<typeof args> = {
@@ -21,7 +21,7 @@ List all the shipping details associated to a specific buyer.`,
     const [result, apiCall] = await buyersShippingDetailsList(
       client,
       args.buyerId,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

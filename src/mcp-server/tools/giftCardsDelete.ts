@@ -9,7 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   giftCardId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$giftCardsDelete: ToolDefinition<typeof args> = {
@@ -23,7 +23,7 @@ Removes a gift card from our system.`,
       client,
       args.giftCardId,
       args.timeoutInSeconds,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

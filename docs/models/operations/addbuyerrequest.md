@@ -6,7 +6,6 @@
 import { AddBuyerRequest } from "@gr4vy/sdk/models/operations";
 
 let value: AddBuyerRequest = {
-  xGr4vyMerchantAccountId: "default",
   buyerCreate: {
     displayName: "John Doe",
     externalIdentifier: "buyer-12345",
@@ -37,8 +36,8 @@ let value: AddBuyerRequest = {
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `timeoutInSeconds`                                               | *number*                                                         | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
-| `xGr4vyMerchantAccountId`                                        | *string*                                                         | :heavy_minus_sign:                                               | The ID of the merchant account to use for this request.          | default                                                          |
-| `buyerCreate`                                                    | [components.BuyerCreate](../../models/components/buyercreate.md) | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `timeoutInSeconds`                                               | *number*                                                         | :heavy_minus_sign:                                               | N/A                                                              |
+| `merchantAccountId`                                              | *string*                                                         | :heavy_minus_sign:                                               | The ID of the merchant account to use for this request.          |
+| `buyerCreate`                                                    | [components.BuyerCreate](../../models/components/buyercreate.md) | :heavy_check_mark:                                               | N/A                                                              |

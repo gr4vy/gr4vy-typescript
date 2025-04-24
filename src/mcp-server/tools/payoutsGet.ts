@@ -8,7 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   payoutId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$payoutsGet: ToolDefinition<typeof args> = {
@@ -21,7 +21,7 @@ Retreives a payout.`,
     const [result, apiCall] = await payoutsGet(
       client,
       args.payoutId,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

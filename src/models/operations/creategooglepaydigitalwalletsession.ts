@@ -9,30 +9,97 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateGooglePayDigitalWalletSessionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreateGooglePayDigitalWalletSessionRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   googlePaySessionRequest: components.GooglePaySessionRequest;
 };
+
+/** @internal */
+export const CreateGooglePayDigitalWalletSessionGlobals$inboundSchema:
+  z.ZodType<CreateGooglePayDigitalWalletSessionGlobals, z.ZodTypeDef, unknown> =
+    z.object({
+      merchantAccountId: z.string().optional(),
+    });
+
+/** @internal */
+export type CreateGooglePayDigitalWalletSessionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreateGooglePayDigitalWalletSessionGlobals$outboundSchema:
+  z.ZodType<
+    CreateGooglePayDigitalWalletSessionGlobals$Outbound,
+    z.ZodTypeDef,
+    CreateGooglePayDigitalWalletSessionGlobals
+  > = z.object({
+    merchantAccountId: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateGooglePayDigitalWalletSessionGlobals$ {
+  /** @deprecated use `CreateGooglePayDigitalWalletSessionGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateGooglePayDigitalWalletSessionGlobals$inboundSchema;
+  /** @deprecated use `CreateGooglePayDigitalWalletSessionGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateGooglePayDigitalWalletSessionGlobals$outboundSchema;
+  /** @deprecated use `CreateGooglePayDigitalWalletSessionGlobals$Outbound` instead. */
+  export type Outbound = CreateGooglePayDigitalWalletSessionGlobals$Outbound;
+}
+
+export function createGooglePayDigitalWalletSessionGlobalsToJSON(
+  createGooglePayDigitalWalletSessionGlobals:
+    CreateGooglePayDigitalWalletSessionGlobals,
+): string {
+  return JSON.stringify(
+    CreateGooglePayDigitalWalletSessionGlobals$outboundSchema.parse(
+      createGooglePayDigitalWalletSessionGlobals,
+    ),
+  );
+}
+
+export function createGooglePayDigitalWalletSessionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CreateGooglePayDigitalWalletSessionGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateGooglePayDigitalWalletSessionGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreateGooglePayDigitalWalletSessionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateGooglePayDigitalWalletSessionRequest$inboundSchema:
   z.ZodType<CreateGooglePayDigitalWalletSessionRequest, z.ZodTypeDef, unknown> =
     z.object({
-      "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+      merchantAccountId: z.nullable(z.string()).optional(),
       GooglePaySessionRequest: components.GooglePaySessionRequest$inboundSchema,
     }).transform((v) => {
       return remap$(v, {
-        "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
         "GooglePaySessionRequest": "googlePaySessionRequest",
       });
     });
 
 /** @internal */
 export type CreateGooglePayDigitalWalletSessionRequest$Outbound = {
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   GooglePaySessionRequest: components.GooglePaySessionRequest$Outbound;
 };
 
@@ -43,11 +110,10 @@ export const CreateGooglePayDigitalWalletSessionRequest$outboundSchema:
     z.ZodTypeDef,
     CreateGooglePayDigitalWalletSessionRequest
   > = z.object({
-    xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
     googlePaySessionRequest: components.GooglePaySessionRequest$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
       googlePaySessionRequest: "GooglePaySessionRequest",
     });
   });

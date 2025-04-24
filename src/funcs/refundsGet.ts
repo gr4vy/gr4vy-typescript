@@ -34,7 +34,7 @@ import { Result } from "../types/fp.js";
 export function refundsGet(
   client: Gr4vyCore,
   refundId: string,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -63,7 +63,7 @@ export function refundsGet(
   return new APIPromise($do(
     client,
     refundId,
-    xGr4vyMerchantAccountId,
+    merchantAccountId,
     options,
   ));
 }
@@ -71,7 +71,7 @@ export function refundsGet(
 async function $do(
   client: Gr4vyCore,
   refundId: string,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -102,7 +102,7 @@ async function $do(
 > {
   const input: operations.GetRefundRequest = {
     refundId: refundId,
-    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -129,7 +129,7 @@ async function $do(
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
-      payload["x-gr4vy-merchant-account-id"],
+      payload.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
   }));

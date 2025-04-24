@@ -18,13 +18,13 @@ export class Sessions extends ClientSDK {
    */
   async googlePay(
     googlePaySessionRequest: components.GooglePaySessionRequest,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.GooglePaySession> {
     return unwrapAsync(digitalWalletsSessionsGooglePay(
       this,
       googlePaySessionRequest,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -37,13 +37,13 @@ export class Sessions extends ClientSDK {
    */
   async applePay(
     applePaySessionRequest: components.ApplePaySessionRequest,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<{ [k: string]: any }> {
     return unwrapAsync(digitalWalletsSessionsApplePay(
       this,
       applePaySessionRequest,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

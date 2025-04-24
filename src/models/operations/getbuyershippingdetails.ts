@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetBuyerShippingDetailsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetBuyerShippingDetailsRequest = {
   /**
    * The ID of the buyer to retrieve shipping details for.
@@ -20,8 +24,64 @@ export type GetBuyerShippingDetailsRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetBuyerShippingDetailsGlobals$inboundSchema: z.ZodType<
+  GetBuyerShippingDetailsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetBuyerShippingDetailsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetBuyerShippingDetailsGlobals$outboundSchema: z.ZodType<
+  GetBuyerShippingDetailsGlobals$Outbound,
+  z.ZodTypeDef,
+  GetBuyerShippingDetailsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBuyerShippingDetailsGlobals$ {
+  /** @deprecated use `GetBuyerShippingDetailsGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetBuyerShippingDetailsGlobals$inboundSchema;
+  /** @deprecated use `GetBuyerShippingDetailsGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetBuyerShippingDetailsGlobals$outboundSchema;
+  /** @deprecated use `GetBuyerShippingDetailsGlobals$Outbound` instead. */
+  export type Outbound = GetBuyerShippingDetailsGlobals$Outbound;
+}
+
+export function getBuyerShippingDetailsGlobalsToJSON(
+  getBuyerShippingDetailsGlobals: GetBuyerShippingDetailsGlobals,
+): string {
+  return JSON.stringify(
+    GetBuyerShippingDetailsGlobals$outboundSchema.parse(
+      getBuyerShippingDetailsGlobals,
+    ),
+  );
+}
+
+export function getBuyerShippingDetailsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBuyerShippingDetailsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBuyerShippingDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBuyerShippingDetailsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
@@ -31,12 +91,11 @@ export const GetBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_id: z.string(),
   shipping_details_id: z.string(),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "shipping_details_id": "shippingDetailsId",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -44,7 +103,7 @@ export const GetBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 export type GetBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
   shipping_details_id: string;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -55,12 +114,11 @@ export const GetBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.string(),
   shippingDetailsId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     shippingDetailsId: "shipping_details_id",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

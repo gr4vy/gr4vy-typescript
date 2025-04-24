@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetDigitalWalletGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetDigitalWalletRequest = {
   /**
    * The ID of the digital wallet to read.
@@ -16,8 +20,62 @@ export type GetDigitalWalletRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetDigitalWalletGlobals$inboundSchema: z.ZodType<
+  GetDigitalWalletGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetDigitalWalletGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetDigitalWalletGlobals$outboundSchema: z.ZodType<
+  GetDigitalWalletGlobals$Outbound,
+  z.ZodTypeDef,
+  GetDigitalWalletGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetDigitalWalletGlobals$ {
+  /** @deprecated use `GetDigitalWalletGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetDigitalWalletGlobals$inboundSchema;
+  /** @deprecated use `GetDigitalWalletGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetDigitalWalletGlobals$outboundSchema;
+  /** @deprecated use `GetDigitalWalletGlobals$Outbound` instead. */
+  export type Outbound = GetDigitalWalletGlobals$Outbound;
+}
+
+export function getDigitalWalletGlobalsToJSON(
+  getDigitalWalletGlobals: GetDigitalWalletGlobals,
+): string {
+  return JSON.stringify(
+    GetDigitalWalletGlobals$outboundSchema.parse(getDigitalWalletGlobals),
+  );
+}
+
+export function getDigitalWalletGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDigitalWalletGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDigitalWalletGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDigitalWalletGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetDigitalWalletRequest$inboundSchema: z.ZodType<
@@ -26,18 +84,17 @@ export const GetDigitalWalletRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   digital_wallet_id: z.string(),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type GetDigitalWalletRequest$Outbound = {
   digital_wallet_id: string;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -47,11 +104,10 @@ export const GetDigitalWalletRequest$outboundSchema: z.ZodType<
   GetDigitalWalletRequest
 > = z.object({
   digitalWalletId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

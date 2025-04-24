@@ -8,13 +8,73 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListTransactionRefundsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListTransactionRefundsRequest = {
   transactionId: string;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const ListTransactionRefundsGlobals$inboundSchema: z.ZodType<
+  ListTransactionRefundsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListTransactionRefundsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListTransactionRefundsGlobals$outboundSchema: z.ZodType<
+  ListTransactionRefundsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListTransactionRefundsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListTransactionRefundsGlobals$ {
+  /** @deprecated use `ListTransactionRefundsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListTransactionRefundsGlobals$inboundSchema;
+  /** @deprecated use `ListTransactionRefundsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListTransactionRefundsGlobals$outboundSchema;
+  /** @deprecated use `ListTransactionRefundsGlobals$Outbound` instead. */
+  export type Outbound = ListTransactionRefundsGlobals$Outbound;
+}
+
+export function listTransactionRefundsGlobalsToJSON(
+  listTransactionRefundsGlobals: ListTransactionRefundsGlobals,
+): string {
+  return JSON.stringify(
+    ListTransactionRefundsGlobals$outboundSchema.parse(
+      listTransactionRefundsGlobals,
+    ),
+  );
+}
+
+export function listTransactionRefundsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTransactionRefundsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTransactionRefundsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransactionRefundsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListTransactionRefundsRequest$inboundSchema: z.ZodType<
@@ -23,18 +83,17 @@ export const ListTransactionRefundsRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type ListTransactionRefundsRequest$Outbound = {
   transaction_id: string;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -44,11 +103,10 @@ export const ListTransactionRefundsRequest$outboundSchema: z.ZodType<
   ListTransactionRefundsRequest
 > = z.object({
   transactionId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

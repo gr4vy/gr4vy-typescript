@@ -35,7 +35,7 @@ export function transactionsCreate(
   client: Gr4vyCore,
   transactionCreate: components.TransactionCreate,
   timeoutInSeconds?: number | undefined,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -66,7 +66,7 @@ export function transactionsCreate(
     client,
     transactionCreate,
     timeoutInSeconds,
-    xGr4vyMerchantAccountId,
+    merchantAccountId,
     idempotencyKey,
     options,
   ));
@@ -76,7 +76,7 @@ async function $do(
   client: Gr4vyCore,
   transactionCreate: components.TransactionCreate,
   timeoutInSeconds?: number | undefined,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -109,7 +109,7 @@ async function $do(
   const input: operations.CreateTransactionRequest = {
     transactionCreate: transactionCreate,
     timeoutInSeconds: timeoutInSeconds,
-    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+    merchantAccountId: merchantAccountId,
     idempotencyKey: idempotencyKey,
   };
 
@@ -140,7 +140,7 @@ async function $do(
     ),
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
-      payload["x-gr4vy-merchant-account-id"],
+      payload.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
   }));

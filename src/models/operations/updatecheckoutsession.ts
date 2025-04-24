@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type UpdateCheckoutSessionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type UpdateCheckoutSessionRequest = {
   /**
    * The ID of the checkout session.
@@ -18,9 +22,65 @@ export type UpdateCheckoutSessionRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   checkoutSessionUpdate: components.CheckoutSessionUpdate;
 };
+
+/** @internal */
+export const UpdateCheckoutSessionGlobals$inboundSchema: z.ZodType<
+  UpdateCheckoutSessionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type UpdateCheckoutSessionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const UpdateCheckoutSessionGlobals$outboundSchema: z.ZodType<
+  UpdateCheckoutSessionGlobals$Outbound,
+  z.ZodTypeDef,
+  UpdateCheckoutSessionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateCheckoutSessionGlobals$ {
+  /** @deprecated use `UpdateCheckoutSessionGlobals$inboundSchema` instead. */
+  export const inboundSchema = UpdateCheckoutSessionGlobals$inboundSchema;
+  /** @deprecated use `UpdateCheckoutSessionGlobals$outboundSchema` instead. */
+  export const outboundSchema = UpdateCheckoutSessionGlobals$outboundSchema;
+  /** @deprecated use `UpdateCheckoutSessionGlobals$Outbound` instead. */
+  export type Outbound = UpdateCheckoutSessionGlobals$Outbound;
+}
+
+export function updateCheckoutSessionGlobalsToJSON(
+  updateCheckoutSessionGlobals: UpdateCheckoutSessionGlobals,
+): string {
+  return JSON.stringify(
+    UpdateCheckoutSessionGlobals$outboundSchema.parse(
+      updateCheckoutSessionGlobals,
+    ),
+  );
+}
+
+export function updateCheckoutSessionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateCheckoutSessionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateCheckoutSessionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateCheckoutSessionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
@@ -30,13 +90,12 @@ export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
 > = z.object({
   session_id: z.string(),
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   CheckoutSessionUpdate: components.CheckoutSessionUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "session_id": "sessionId",
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "CheckoutSessionUpdate": "checkoutSessionUpdate",
   });
 });
@@ -45,7 +104,7 @@ export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
 export type UpdateCheckoutSessionRequest$Outbound = {
   session_id: string;
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   CheckoutSessionUpdate: components.CheckoutSessionUpdate$Outbound;
 };
 
@@ -57,13 +116,12 @@ export const UpdateCheckoutSessionRequest$outboundSchema: z.ZodType<
 > = z.object({
   sessionId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   checkoutSessionUpdate: components.CheckoutSessionUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     sessionId: "session_id",
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     checkoutSessionUpdate: "CheckoutSessionUpdate",
   });
 });

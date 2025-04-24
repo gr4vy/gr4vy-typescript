@@ -10,7 +10,7 @@ const args = {
   paymentMethodId: z.string(),
   networkTokenId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentMethodsNetworkTokensSuspend: ToolDefinition<
@@ -27,7 +27,7 @@ Suspend a network token for a payment method.`,
       args.paymentMethodId,
       args.networkTokenId,
       args.timeoutInSeconds,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

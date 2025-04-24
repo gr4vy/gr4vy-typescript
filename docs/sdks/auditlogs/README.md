@@ -26,7 +26,6 @@ async function run() {
     action: "created",
     userId: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef",
     resourceType: "user",
-    xGr4vyMerchantAccountId: "default",
   });
 
   for await (const page of result) {
@@ -58,7 +57,6 @@ async function run() {
     action: "created",
     userId: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef",
     resourceType: "user",
-    xGr4vyMerchantAccountId: "default",
   });
 
   if (!res.ok) {

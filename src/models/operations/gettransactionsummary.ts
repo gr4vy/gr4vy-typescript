@@ -8,13 +8,73 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetTransactionSummaryGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetTransactionSummaryRequest = {
   transactionId: string;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetTransactionSummaryGlobals$inboundSchema: z.ZodType<
+  GetTransactionSummaryGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetTransactionSummaryGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetTransactionSummaryGlobals$outboundSchema: z.ZodType<
+  GetTransactionSummaryGlobals$Outbound,
+  z.ZodTypeDef,
+  GetTransactionSummaryGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTransactionSummaryGlobals$ {
+  /** @deprecated use `GetTransactionSummaryGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetTransactionSummaryGlobals$inboundSchema;
+  /** @deprecated use `GetTransactionSummaryGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetTransactionSummaryGlobals$outboundSchema;
+  /** @deprecated use `GetTransactionSummaryGlobals$Outbound` instead. */
+  export type Outbound = GetTransactionSummaryGlobals$Outbound;
+}
+
+export function getTransactionSummaryGlobalsToJSON(
+  getTransactionSummaryGlobals: GetTransactionSummaryGlobals,
+): string {
+  return JSON.stringify(
+    GetTransactionSummaryGlobals$outboundSchema.parse(
+      getTransactionSummaryGlobals,
+    ),
+  );
+}
+
+export function getTransactionSummaryGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransactionSummaryGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransactionSummaryGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransactionSummaryGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetTransactionSummaryRequest$inboundSchema: z.ZodType<
@@ -23,18 +83,17 @@ export const GetTransactionSummaryRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type GetTransactionSummaryRequest$Outbound = {
   transaction_id: string;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -44,11 +103,10 @@ export const GetTransactionSummaryRequest$outboundSchema: z.ZodType<
   GetTransactionSummaryRequest
 > = z.object({
   transactionId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

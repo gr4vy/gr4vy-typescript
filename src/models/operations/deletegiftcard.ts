@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type DeleteGiftCardGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type DeleteGiftCardRequest = {
   /**
    * The ID of the gift card.
@@ -17,8 +21,62 @@ export type DeleteGiftCardRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const DeleteGiftCardGlobals$inboundSchema: z.ZodType<
+  DeleteGiftCardGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type DeleteGiftCardGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const DeleteGiftCardGlobals$outboundSchema: z.ZodType<
+  DeleteGiftCardGlobals$Outbound,
+  z.ZodTypeDef,
+  DeleteGiftCardGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeleteGiftCardGlobals$ {
+  /** @deprecated use `DeleteGiftCardGlobals$inboundSchema` instead. */
+  export const inboundSchema = DeleteGiftCardGlobals$inboundSchema;
+  /** @deprecated use `DeleteGiftCardGlobals$outboundSchema` instead. */
+  export const outboundSchema = DeleteGiftCardGlobals$outboundSchema;
+  /** @deprecated use `DeleteGiftCardGlobals$Outbound` instead. */
+  export type Outbound = DeleteGiftCardGlobals$Outbound;
+}
+
+export function deleteGiftCardGlobalsToJSON(
+  deleteGiftCardGlobals: DeleteGiftCardGlobals,
+): string {
+  return JSON.stringify(
+    DeleteGiftCardGlobals$outboundSchema.parse(deleteGiftCardGlobals),
+  );
+}
+
+export function deleteGiftCardGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteGiftCardGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteGiftCardGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteGiftCardGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const DeleteGiftCardRequest$inboundSchema: z.ZodType<
@@ -28,12 +86,11 @@ export const DeleteGiftCardRequest$inboundSchema: z.ZodType<
 > = z.object({
   gift_card_id: z.string(),
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "gift_card_id": "giftCardId",
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -41,7 +98,7 @@ export const DeleteGiftCardRequest$inboundSchema: z.ZodType<
 export type DeleteGiftCardRequest$Outbound = {
   gift_card_id: string;
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -52,12 +109,11 @@ export const DeleteGiftCardRequest$outboundSchema: z.ZodType<
 > = z.object({
   giftCardId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     giftCardId: "gift_card_id",
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

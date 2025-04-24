@@ -50,7 +50,7 @@ export class Transactions extends ClientSDK {
   async create(
     transactionCreate: components.TransactionCreate,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     idempotencyKey?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<operations.CreateTransactionResponse> {
@@ -58,7 +58,7 @@ export class Transactions extends ClientSDK {
       this,
       transactionCreate,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       idempotencyKey,
       options,
     ));
@@ -72,13 +72,13 @@ export class Transactions extends ClientSDK {
    */
   async get(
     transactionId: string,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsGet(
       this,
       transactionId,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -93,7 +93,7 @@ export class Transactions extends ClientSDK {
     transactionCapture: components.TransactionCapture,
     transactionId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsCapture(
@@ -101,7 +101,7 @@ export class Transactions extends ClientSDK {
       transactionCapture,
       transactionId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -115,14 +115,14 @@ export class Transactions extends ClientSDK {
   async void(
     transactionId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsVoid(
       this,
       transactionId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -135,13 +135,13 @@ export class Transactions extends ClientSDK {
    */
   async summary(
     transactionId: string,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.TransactionStatusSummary> {
     return unwrapAsync(transactionsSummary(
       this,
       transactionId,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -155,14 +155,14 @@ export class Transactions extends ClientSDK {
   async sync(
     transactionId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsSync(
       this,
       transactionId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

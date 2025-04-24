@@ -10,7 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   digitalWalletCreate: components.DigitalWalletCreate$inboundSchema,
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$digitalWalletsCreate: ToolDefinition<typeof args> = {
@@ -24,7 +24,7 @@ Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.`,
       client,
       args.digitalWalletCreate,
       args.timeoutInSeconds,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

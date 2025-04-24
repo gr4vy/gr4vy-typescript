@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateCheckoutSessionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreateCheckoutSessionBody =
   | components.CheckoutSessionUpdate
   | Array<components.BaseModel>;
@@ -18,13 +22,69 @@ export type CreateCheckoutSessionRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   requestBody?:
     | components.CheckoutSessionUpdate
     | Array<components.BaseModel>
     | null
     | undefined;
 };
+
+/** @internal */
+export const CreateCheckoutSessionGlobals$inboundSchema: z.ZodType<
+  CreateCheckoutSessionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateCheckoutSessionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreateCheckoutSessionGlobals$outboundSchema: z.ZodType<
+  CreateCheckoutSessionGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateCheckoutSessionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateCheckoutSessionGlobals$ {
+  /** @deprecated use `CreateCheckoutSessionGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateCheckoutSessionGlobals$inboundSchema;
+  /** @deprecated use `CreateCheckoutSessionGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreateCheckoutSessionGlobals$outboundSchema;
+  /** @deprecated use `CreateCheckoutSessionGlobals$Outbound` instead. */
+  export type Outbound = CreateCheckoutSessionGlobals$Outbound;
+}
+
+export function createCheckoutSessionGlobalsToJSON(
+  createCheckoutSessionGlobals: CreateCheckoutSessionGlobals,
+): string {
+  return JSON.stringify(
+    CreateCheckoutSessionGlobals$outboundSchema.parse(
+      createCheckoutSessionGlobals,
+    ),
+  );
+}
+
+export function createCheckoutSessionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateCheckoutSessionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateCheckoutSessionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateCheckoutSessionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateCheckoutSessionBody$inboundSchema: z.ZodType<
@@ -89,7 +149,7 @@ export const CreateCheckoutSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   RequestBody: z.nullable(
     z.union([
       components.CheckoutSessionUpdate$inboundSchema,
@@ -99,7 +159,6 @@ export const CreateCheckoutSessionRequest$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "RequestBody": "requestBody",
   });
 });
@@ -107,7 +166,7 @@ export const CreateCheckoutSessionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateCheckoutSessionRequest$Outbound = {
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   RequestBody?:
     | components.CheckoutSessionUpdate$Outbound
     | Array<components.BaseModel$Outbound>
@@ -122,7 +181,7 @@ export const CreateCheckoutSessionRequest$outboundSchema: z.ZodType<
   CreateCheckoutSessionRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   requestBody: z.nullable(
     z.union([
       components.CheckoutSessionUpdate$outboundSchema,
@@ -132,7 +191,6 @@ export const CreateCheckoutSessionRequest$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     requestBody: "RequestBody",
   });
 });

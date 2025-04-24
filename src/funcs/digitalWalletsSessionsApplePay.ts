@@ -35,7 +35,7 @@ import { Result } from "../types/fp.js";
 export function digitalWalletsSessionsApplePay(
   client: Gr4vyCore,
   applePaySessionRequest: components.ApplePaySessionRequest,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,7 +64,7 @@ export function digitalWalletsSessionsApplePay(
   return new APIPromise($do(
     client,
     applePaySessionRequest,
-    xGr4vyMerchantAccountId,
+    merchantAccountId,
     options,
   ));
 }
@@ -72,7 +72,7 @@ export function digitalWalletsSessionsApplePay(
 async function $do(
   client: Gr4vyCore,
   applePaySessionRequest: components.ApplePaySessionRequest,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -103,7 +103,7 @@ async function $do(
 > {
   const input: operations.CreateApplePayDigitalWalletSessionRequest = {
     applePaySessionRequest: applePaySessionRequest,
-    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -129,7 +129,7 @@ async function $do(
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
-      payload["x-gr4vy-merchant-account-id"],
+      payload.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
   }));

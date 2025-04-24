@@ -8,13 +8,71 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetTransactionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type GetTransactionRequest = {
   transactionId: string;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const GetTransactionGlobals$inboundSchema: z.ZodType<
+  GetTransactionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type GetTransactionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const GetTransactionGlobals$outboundSchema: z.ZodType<
+  GetTransactionGlobals$Outbound,
+  z.ZodTypeDef,
+  GetTransactionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTransactionGlobals$ {
+  /** @deprecated use `GetTransactionGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetTransactionGlobals$inboundSchema;
+  /** @deprecated use `GetTransactionGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetTransactionGlobals$outboundSchema;
+  /** @deprecated use `GetTransactionGlobals$Outbound` instead. */
+  export type Outbound = GetTransactionGlobals$Outbound;
+}
+
+export function getTransactionGlobalsToJSON(
+  getTransactionGlobals: GetTransactionGlobals,
+): string {
+  return JSON.stringify(
+    GetTransactionGlobals$outboundSchema.parse(getTransactionGlobals),
+  );
+}
+
+export function getTransactionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransactionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransactionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetTransactionRequest$inboundSchema: z.ZodType<
@@ -23,18 +81,17 @@ export const GetTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
 /** @internal */
 export type GetTransactionRequest$Outbound = {
   transaction_id: string;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -44,11 +101,10 @@ export const GetTransactionRequest$outboundSchema: z.ZodType<
   GetTransactionRequest
 > = z.object({
   transactionId: z.string(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

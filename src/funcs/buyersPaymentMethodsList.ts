@@ -126,7 +126,7 @@ async function $do(
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
-      payload?.["x-gr4vy-merchant-account-id"],
+      payload?.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
   }));

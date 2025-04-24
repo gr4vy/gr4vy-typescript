@@ -9,14 +9,70 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type AddBuyerGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type AddBuyerRequest = {
   timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   buyerCreate: components.BuyerCreate;
 };
+
+/** @internal */
+export const AddBuyerGlobals$inboundSchema: z.ZodType<
+  AddBuyerGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type AddBuyerGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const AddBuyerGlobals$outboundSchema: z.ZodType<
+  AddBuyerGlobals$Outbound,
+  z.ZodTypeDef,
+  AddBuyerGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AddBuyerGlobals$ {
+  /** @deprecated use `AddBuyerGlobals$inboundSchema` instead. */
+  export const inboundSchema = AddBuyerGlobals$inboundSchema;
+  /** @deprecated use `AddBuyerGlobals$outboundSchema` instead. */
+  export const outboundSchema = AddBuyerGlobals$outboundSchema;
+  /** @deprecated use `AddBuyerGlobals$Outbound` instead. */
+  export type Outbound = AddBuyerGlobals$Outbound;
+}
+
+export function addBuyerGlobalsToJSON(
+  addBuyerGlobals: AddBuyerGlobals,
+): string {
+  return JSON.stringify(AddBuyerGlobals$outboundSchema.parse(addBuyerGlobals));
+}
+
+export function addBuyerGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AddBuyerGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddBuyerGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddBuyerGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const AddBuyerRequest$inboundSchema: z.ZodType<
@@ -25,12 +81,11 @@ export const AddBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   BuyerCreate: components.BuyerCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "BuyerCreate": "buyerCreate",
   });
 });
@@ -38,7 +93,7 @@ export const AddBuyerRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type AddBuyerRequest$Outbound = {
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   BuyerCreate: components.BuyerCreate$Outbound;
 };
 
@@ -49,12 +104,11 @@ export const AddBuyerRequest$outboundSchema: z.ZodType<
   AddBuyerRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   buyerCreate: components.BuyerCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     buyerCreate: "BuyerCreate",
   });
 });

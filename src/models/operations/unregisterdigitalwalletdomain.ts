@@ -9,15 +9,78 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type UnregisterDigitalWalletDomainGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type UnregisterDigitalWalletDomainRequest = {
   digitalWalletId: string;
   timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   digitalWalletDomain: components.DigitalWalletDomain;
 };
+
+/** @internal */
+export const UnregisterDigitalWalletDomainGlobals$inboundSchema: z.ZodType<
+  UnregisterDigitalWalletDomainGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type UnregisterDigitalWalletDomainGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const UnregisterDigitalWalletDomainGlobals$outboundSchema: z.ZodType<
+  UnregisterDigitalWalletDomainGlobals$Outbound,
+  z.ZodTypeDef,
+  UnregisterDigitalWalletDomainGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UnregisterDigitalWalletDomainGlobals$ {
+  /** @deprecated use `UnregisterDigitalWalletDomainGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    UnregisterDigitalWalletDomainGlobals$inboundSchema;
+  /** @deprecated use `UnregisterDigitalWalletDomainGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    UnregisterDigitalWalletDomainGlobals$outboundSchema;
+  /** @deprecated use `UnregisterDigitalWalletDomainGlobals$Outbound` instead. */
+  export type Outbound = UnregisterDigitalWalletDomainGlobals$Outbound;
+}
+
+export function unregisterDigitalWalletDomainGlobalsToJSON(
+  unregisterDigitalWalletDomainGlobals: UnregisterDigitalWalletDomainGlobals,
+): string {
+  return JSON.stringify(
+    UnregisterDigitalWalletDomainGlobals$outboundSchema.parse(
+      unregisterDigitalWalletDomainGlobals,
+    ),
+  );
+}
+
+export function unregisterDigitalWalletDomainGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UnregisterDigitalWalletDomainGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UnregisterDigitalWalletDomainGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UnregisterDigitalWalletDomainGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const UnregisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
@@ -27,13 +90,12 @@ export const UnregisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 > = z.object({
   digital_wallet_id: z.string(),
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   DigitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "DigitalWalletDomain": "digitalWalletDomain",
   });
 });
@@ -42,7 +104,7 @@ export const UnregisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 export type UnregisterDigitalWalletDomainRequest$Outbound = {
   digital_wallet_id: string;
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   DigitalWalletDomain: components.DigitalWalletDomain$Outbound;
 };
 
@@ -54,13 +116,12 @@ export const UnregisterDigitalWalletDomainRequest$outboundSchema: z.ZodType<
 > = z.object({
   digitalWalletId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletDomain: components.DigitalWalletDomain$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     digitalWalletDomain: "DigitalWalletDomain",
   });
 });

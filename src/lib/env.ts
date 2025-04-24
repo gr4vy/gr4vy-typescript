@@ -5,15 +5,23 @@
 import { dlv } from "./dlv.js";
 
 import * as z from "zod";
+import { SDKOptions } from "./config.js";
 
 export interface Env {
   GR4VY_BEARER_AUTH?: string | undefined;
+
+  /**
+   * Sets the merchantAccountId parameter for all supported operations
+   */
+  GR4VY_MERCHANT_ACCOUNT_ID?: string | undefined;
 
   GR4VY_DEBUG?: boolean | undefined;
 }
 
 export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
   GR4VY_BEARER_AUTH: z.string().optional(),
+
+  GR4VY_MERCHANT_ACCOUNT_ID: z.string().optional(),
 
   GR4VY_DEBUG: z.coerce.boolean().optional(),
 });
@@ -38,4 +46,19 @@ export function env(): Env {
  */
 export function resetEnv() {
   envMemo = undefined;
+}
+
+/**
+ * Populates global parameters with environment variables.
+ */
+export function fillGlobals(options: SDKOptions): SDKOptions {
+  const clone = { ...options };
+
+  const envVars = env();
+
+  if (typeof envVars.GR4VY_MERCHANT_ACCOUNT_ID !== "undefined") {
+    clone.merchantAccountId ??= envVars.GR4VY_MERCHANT_ACCOUNT_ID;
+  }
+
+  return clone;
 }

@@ -27,13 +27,13 @@ export class GiftCards extends ClientSDK {
    */
   async get(
     giftCardId: string,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.GiftCard> {
     return unwrapAsync(giftCardsGet(
       this,
       giftCardId,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -47,14 +47,14 @@ export class GiftCards extends ClientSDK {
   async delete(
     giftCardId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(giftCardsDelete(
       this,
       giftCardId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -68,14 +68,14 @@ export class GiftCards extends ClientSDK {
   async create(
     giftCardCreate: components.GiftCardCreate,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.GiftCard> {
     return unwrapAsync(giftCardsCreate(
       this,
       giftCardCreate,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

@@ -26,13 +26,13 @@ export class NetworkTokens extends ClientSDK {
    */
   async list(
     paymentMethodId: string,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorNetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensList(
       this,
       paymentMethodId,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -47,7 +47,7 @@ export class NetworkTokens extends ClientSDK {
     networkTokenCreate: components.NetworkTokenCreate,
     paymentMethodId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensCreate(
@@ -55,7 +55,7 @@ export class NetworkTokens extends ClientSDK {
       networkTokenCreate,
       paymentMethodId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -70,7 +70,7 @@ export class NetworkTokens extends ClientSDK {
     paymentMethodId: string,
     networkTokenId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensSuspend(
@@ -78,7 +78,7 @@ export class NetworkTokens extends ClientSDK {
       paymentMethodId,
       networkTokenId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -93,7 +93,7 @@ export class NetworkTokens extends ClientSDK {
     paymentMethodId: string,
     networkTokenId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensResume(
@@ -101,7 +101,7 @@ export class NetworkTokens extends ClientSDK {
       paymentMethodId,
       networkTokenId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -116,7 +116,7 @@ export class NetworkTokens extends ClientSDK {
     paymentMethodId: string,
     networkTokenId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(paymentMethodsNetworkTokensDelete(
@@ -124,7 +124,7 @@ export class NetworkTokens extends ClientSDK {
       paymentMethodId,
       networkTokenId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

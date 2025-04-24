@@ -23,7 +23,7 @@ export class ShippingDetails extends ClientSDK {
     shippingDetailsCreate: components.ShippingDetailsCreate,
     buyerId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
     return unwrapAsync(buyersShippingDetailsCreate(
@@ -31,7 +31,7 @@ export class ShippingDetails extends ClientSDK {
       shippingDetailsCreate,
       buyerId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -44,13 +44,13 @@ export class ShippingDetails extends ClientSDK {
    */
   async list(
     buyerId: string,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorShippingDetails> {
     return unwrapAsync(buyersShippingDetailsList(
       this,
       buyerId,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -64,14 +64,14 @@ export class ShippingDetails extends ClientSDK {
   async get(
     buyerId: string,
     shippingDetailsId: string,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
     return unwrapAsync(buyersShippingDetailsGet(
       this,
       buyerId,
       shippingDetailsId,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }
@@ -103,7 +103,7 @@ export class ShippingDetails extends ClientSDK {
     buyerId: string,
     shippingDetailsId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(buyersShippingDetailsDelete(
@@ -111,7 +111,7 @@ export class ShippingDetails extends ClientSDK {
       buyerId,
       shippingDetailsId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

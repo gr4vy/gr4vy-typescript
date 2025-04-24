@@ -9,7 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   applePaySessionRequest: components.ApplePaySessionRequest$inboundSchema,
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$digitalWalletsSessionsApplePay: ToolDefinition<typeof args> =
@@ -23,7 +23,7 @@ Create a session for use with Apple Pay.`,
       const [result, apiCall] = await digitalWalletsSessionsApplePay(
         client,
         args.applePaySessionRequest,
-        args.xGr4vyMerchantAccountId,
+        args.merchantAccountId,
         { fetchOptions: { signal: ctx.signal } },
       ).$inspect();
 

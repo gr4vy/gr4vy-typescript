@@ -9,14 +9,74 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateAccountUpdaterJobGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type CreateAccountUpdaterJobRequest = {
   timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   accountUpdaterJobCreate: components.AccountUpdaterJobCreate;
 };
+
+/** @internal */
+export const CreateAccountUpdaterJobGlobals$inboundSchema: z.ZodType<
+  CreateAccountUpdaterJobGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateAccountUpdaterJobGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const CreateAccountUpdaterJobGlobals$outboundSchema: z.ZodType<
+  CreateAccountUpdaterJobGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateAccountUpdaterJobGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateAccountUpdaterJobGlobals$ {
+  /** @deprecated use `CreateAccountUpdaterJobGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateAccountUpdaterJobGlobals$inboundSchema;
+  /** @deprecated use `CreateAccountUpdaterJobGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreateAccountUpdaterJobGlobals$outboundSchema;
+  /** @deprecated use `CreateAccountUpdaterJobGlobals$Outbound` instead. */
+  export type Outbound = CreateAccountUpdaterJobGlobals$Outbound;
+}
+
+export function createAccountUpdaterJobGlobalsToJSON(
+  createAccountUpdaterJobGlobals: CreateAccountUpdaterJobGlobals,
+): string {
+  return JSON.stringify(
+    CreateAccountUpdaterJobGlobals$outboundSchema.parse(
+      createAccountUpdaterJobGlobals,
+    ),
+  );
+}
+
+export function createAccountUpdaterJobGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateAccountUpdaterJobGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateAccountUpdaterJobGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateAccountUpdaterJobGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateAccountUpdaterJobRequest$inboundSchema: z.ZodType<
@@ -25,12 +85,11 @@ export const CreateAccountUpdaterJobRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   AccountUpdaterJobCreate: components.AccountUpdaterJobCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "AccountUpdaterJobCreate": "accountUpdaterJobCreate",
   });
 });
@@ -38,7 +97,7 @@ export const CreateAccountUpdaterJobRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateAccountUpdaterJobRequest$Outbound = {
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   AccountUpdaterJobCreate: components.AccountUpdaterJobCreate$Outbound;
 };
 
@@ -49,12 +108,11 @@ export const CreateAccountUpdaterJobRequest$outboundSchema: z.ZodType<
   CreateAccountUpdaterJobRequest
 > = z.object({
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   accountUpdaterJobCreate: components.AccountUpdaterJobCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     accountUpdaterJobCreate: "AccountUpdaterJobCreate",
   });
 });

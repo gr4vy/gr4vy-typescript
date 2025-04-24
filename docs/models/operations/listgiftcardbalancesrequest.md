@@ -6,7 +6,6 @@
 import { ListGiftCardBalancesRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListGiftCardBalancesRequest = {
-  xGr4vyMerchantAccountId: "default",
   giftCardBalanceRequest: {
     items: [
       {
@@ -19,8 +18,8 @@ let value: ListGiftCardBalancesRequest = {
 
 ## Fields
 
-| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `timeoutInSeconds`                                                                     | *number*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |
-| `xGr4vyMerchantAccountId`                                                              | *string*                                                                               | :heavy_minus_sign:                                                                     | The ID of the merchant account to use for this request.                                | default                                                                                |
-| `giftCardBalanceRequest`                                                               | [components.GiftCardBalanceRequest](../../models/components/giftcardbalancerequest.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |                                                                                        |
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `timeoutInSeconds`                                                                     | *number*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `merchantAccountId`                                                                    | *string*                                                                               | :heavy_minus_sign:                                                                     | The ID of the merchant account to use for this request.                                |
+| `giftCardBalanceRequest`                                                               | [components.GiftCardBalanceRequest](../../models/components/giftcardbalancerequest.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |

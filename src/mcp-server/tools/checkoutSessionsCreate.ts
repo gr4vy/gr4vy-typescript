@@ -11,7 +11,7 @@ const args = {
   requestBody: z.nullable(operations.CreateCheckoutSessionBody$inboundSchema)
     .optional(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$checkoutSessionsCreate: ToolDefinition<typeof args> = {
@@ -25,7 +25,7 @@ Create a new checkout session.`,
       client,
       args.requestBody,
       args.timeoutInSeconds,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

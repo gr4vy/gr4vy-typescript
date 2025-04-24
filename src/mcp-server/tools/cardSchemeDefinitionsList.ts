@@ -7,7 +7,7 @@ import { cardSchemeDefinitionsList } from "../../funcs/cardSchemeDefinitionsList
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$cardSchemeDefinitionsList: ToolDefinition<typeof args> = {
@@ -19,7 +19,7 @@ Fetch a list of the definitions of each card scheme.`,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await cardSchemeDefinitionsList(
       client,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

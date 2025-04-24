@@ -35,7 +35,7 @@ export function paymentMethodsCreate(
   client: Gr4vyCore,
   requestBody: operations.CreatePaymentMethodBody,
   timeoutInSeconds?: number | undefined,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -65,7 +65,7 @@ export function paymentMethodsCreate(
     client,
     requestBody,
     timeoutInSeconds,
-    xGr4vyMerchantAccountId,
+    merchantAccountId,
     options,
   ));
 }
@@ -74,7 +74,7 @@ async function $do(
   client: Gr4vyCore,
   requestBody: operations.CreatePaymentMethodBody,
   timeoutInSeconds?: number | undefined,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -106,7 +106,7 @@ async function $do(
   const input: operations.CreatePaymentMethodRequest = {
     requestBody: requestBody,
     timeoutInSeconds: timeoutInSeconds,
-    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -132,7 +132,7 @@ async function $do(
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
-      payload["x-gr4vy-merchant-account-id"],
+      payload.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
   }));

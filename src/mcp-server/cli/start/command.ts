@@ -57,6 +57,15 @@ export const startCommand = buildCommand({
           return z.string().parse(value);
         },
       },
+      "merchant-account-id": {
+        kind: "parsed",
+        brief:
+          "Allows setting the merchantAccountId parameter for all supported operations",
+        optional: true,
+        parse: (value) => {
+          return z.string().parse(value);
+        },
+      },
       "server-url": {
         kind: "parsed",
         brief: "Overrides the default server URL used by the SDK",

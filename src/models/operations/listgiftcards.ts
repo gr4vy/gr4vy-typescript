@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListGiftCardsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListGiftCardsRequest = {
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
@@ -17,12 +21,66 @@ export type ListGiftCardsRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 export type ListGiftCardsResponse = {
   result: components.CollectionGiftCard;
 };
+
+/** @internal */
+export const ListGiftCardsGlobals$inboundSchema: z.ZodType<
+  ListGiftCardsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListGiftCardsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListGiftCardsGlobals$outboundSchema: z.ZodType<
+  ListGiftCardsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListGiftCardsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListGiftCardsGlobals$ {
+  /** @deprecated use `ListGiftCardsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListGiftCardsGlobals$inboundSchema;
+  /** @deprecated use `ListGiftCardsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListGiftCardsGlobals$outboundSchema;
+  /** @deprecated use `ListGiftCardsGlobals$Outbound` instead. */
+  export type Outbound = ListGiftCardsGlobals$Outbound;
+}
+
+export function listGiftCardsGlobalsToJSON(
+  listGiftCardsGlobals: ListGiftCardsGlobals,
+): string {
+  return JSON.stringify(
+    ListGiftCardsGlobals$outboundSchema.parse(listGiftCardsGlobals),
+  );
+}
+
+export function listGiftCardsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListGiftCardsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListGiftCardsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListGiftCardsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListGiftCardsRequest$inboundSchema: z.ZodType<
@@ -34,12 +92,11 @@ export const ListGiftCardsRequest$inboundSchema: z.ZodType<
   buyer_id: z.nullable(z.string()).optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_external_identifier": "buyerExternalIdentifier",
     "buyer_id": "buyerId",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -49,7 +106,7 @@ export type ListGiftCardsRequest$Outbound = {
   buyer_id?: string | null | undefined;
   cursor?: string | null | undefined;
   limit: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -62,12 +119,11 @@ export const ListGiftCardsRequest$outboundSchema: z.ZodType<
   buyerId: z.nullable(z.string()).optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerExternalIdentifier: "buyer_external_identifier",
     buyerId: "buyer_id",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

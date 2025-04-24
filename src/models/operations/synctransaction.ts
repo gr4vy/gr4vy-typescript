@@ -8,14 +8,72 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type SyncTransactionGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type SyncTransactionRequest = {
   transactionId: string;
   timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const SyncTransactionGlobals$inboundSchema: z.ZodType<
+  SyncTransactionGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type SyncTransactionGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const SyncTransactionGlobals$outboundSchema: z.ZodType<
+  SyncTransactionGlobals$Outbound,
+  z.ZodTypeDef,
+  SyncTransactionGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SyncTransactionGlobals$ {
+  /** @deprecated use `SyncTransactionGlobals$inboundSchema` instead. */
+  export const inboundSchema = SyncTransactionGlobals$inboundSchema;
+  /** @deprecated use `SyncTransactionGlobals$outboundSchema` instead. */
+  export const outboundSchema = SyncTransactionGlobals$outboundSchema;
+  /** @deprecated use `SyncTransactionGlobals$Outbound` instead. */
+  export type Outbound = SyncTransactionGlobals$Outbound;
+}
+
+export function syncTransactionGlobalsToJSON(
+  syncTransactionGlobals: SyncTransactionGlobals,
+): string {
+  return JSON.stringify(
+    SyncTransactionGlobals$outboundSchema.parse(syncTransactionGlobals),
+  );
+}
+
+export function syncTransactionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<SyncTransactionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SyncTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SyncTransactionGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const SyncTransactionRequest$inboundSchema: z.ZodType<
@@ -25,12 +83,11 @@ export const SyncTransactionRequest$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string(),
   timeout_in_seconds: z.number().default(1),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
     "timeout_in_seconds": "timeoutInSeconds",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -38,7 +95,7 @@ export const SyncTransactionRequest$inboundSchema: z.ZodType<
 export type SyncTransactionRequest$Outbound = {
   transaction_id: string;
   timeout_in_seconds: number;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -49,12 +106,11 @@ export const SyncTransactionRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
     timeoutInSeconds: "timeout_in_seconds",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 

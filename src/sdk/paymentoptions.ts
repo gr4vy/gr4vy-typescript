@@ -16,13 +16,13 @@ export class PaymentOptions extends ClientSDK {
    */
   async list(
     paymentOptionRequest: components.PaymentOptionRequest,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorPaymentOption> {
     return unwrapAsync(paymentOptionsList(
       this,
       paymentOptionRequest,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

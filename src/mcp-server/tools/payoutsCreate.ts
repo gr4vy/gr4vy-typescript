@@ -10,7 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   payoutCreate: components.PayoutCreate$inboundSchema,
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$payoutsCreate: ToolDefinition<typeof args> = {
@@ -24,7 +24,7 @@ Creates a new payout.`,
       client,
       args.payoutCreate,
       args.timeoutInSeconds,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -24,7 +24,7 @@ export class Gr4vyRefunds extends ClientSDK {
     transactionRefundCreate: components.TransactionRefundCreate,
     transactionId: string,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Refund> {
     return unwrapAsync(transactionRefundsCreate(
@@ -32,7 +32,7 @@ export class Gr4vyRefunds extends ClientSDK {
       transactionRefundCreate,
       transactionId,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

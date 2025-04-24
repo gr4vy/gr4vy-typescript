@@ -9,13 +9,71 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListPaymentOptionsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListPaymentOptionsRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   paymentOptionRequest: components.PaymentOptionRequest;
 };
+
+/** @internal */
+export const ListPaymentOptionsGlobals$inboundSchema: z.ZodType<
+  ListPaymentOptionsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListPaymentOptionsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListPaymentOptionsGlobals$outboundSchema: z.ZodType<
+  ListPaymentOptionsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListPaymentOptionsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListPaymentOptionsGlobals$ {
+  /** @deprecated use `ListPaymentOptionsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListPaymentOptionsGlobals$inboundSchema;
+  /** @deprecated use `ListPaymentOptionsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListPaymentOptionsGlobals$outboundSchema;
+  /** @deprecated use `ListPaymentOptionsGlobals$Outbound` instead. */
+  export type Outbound = ListPaymentOptionsGlobals$Outbound;
+}
+
+export function listPaymentOptionsGlobalsToJSON(
+  listPaymentOptionsGlobals: ListPaymentOptionsGlobals,
+): string {
+  return JSON.stringify(
+    ListPaymentOptionsGlobals$outboundSchema.parse(listPaymentOptionsGlobals),
+  );
+}
+
+export function listPaymentOptionsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPaymentOptionsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListPaymentOptionsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPaymentOptionsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListPaymentOptionsRequest$inboundSchema: z.ZodType<
@@ -23,18 +81,17 @@ export const ListPaymentOptionsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   PaymentOptionRequest: components.PaymentOptionRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
     "PaymentOptionRequest": "paymentOptionRequest",
   });
 });
 
 /** @internal */
 export type ListPaymentOptionsRequest$Outbound = {
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
   PaymentOptionRequest: components.PaymentOptionRequest$Outbound;
 };
 
@@ -44,11 +101,10 @@ export const ListPaymentOptionsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPaymentOptionsRequest
 > = z.object({
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
   paymentOptionRequest: components.PaymentOptionRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
     paymentOptionRequest: "PaymentOptionRequest",
   });
 });

@@ -9,7 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   paymentOptionRequest: components.PaymentOptionRequest$inboundSchema,
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$paymentOptionsList: ToolDefinition<typeof args> = {
@@ -22,7 +22,7 @@ List the payment options available at checkout. filtering by country, currency, 
     const [result, apiCall] = await paymentOptionsList(
       client,
       args.paymentOptionRequest,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

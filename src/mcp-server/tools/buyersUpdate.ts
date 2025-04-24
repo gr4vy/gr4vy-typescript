@@ -11,7 +11,7 @@ const args = {
   buyerUpdate: components.BuyerUpdate$inboundSchema,
   buyerId: z.string(),
   timeoutInSeconds: z.number().default(1),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$buyersUpdate: ToolDefinition<typeof args> = {
@@ -26,7 +26,7 @@ Updates a buyer record.`,
       args.buyerUpdate,
       args.buyerId,
       args.timeoutInSeconds,
-      args.xGr4vyMerchantAccountId,
+      args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

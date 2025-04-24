@@ -17,14 +17,14 @@ export class Jobs extends ClientSDK {
   async create(
     accountUpdaterJobCreate: components.AccountUpdaterJobCreate,
     timeoutInSeconds?: number | undefined,
-    xGr4vyMerchantAccountId?: string | null | undefined,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.AccountUpdaterJob | undefined> {
     return unwrapAsync(accountUpdaterJobsCreate(
       this,
       accountUpdaterJobCreate,
       timeoutInSeconds,
-      xGr4vyMerchantAccountId,
+      merchantAccountId,
       options,
     ));
   }

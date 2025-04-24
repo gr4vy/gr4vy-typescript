@@ -26,7 +26,6 @@ async function run() {
     buyerExternalIdentifier: "buyer-12345",
     country: "US",
     currency: "USD",
-    xGr4vyMerchantAccountId: "default",
   });
 
   // Handle the result
@@ -56,7 +55,6 @@ async function run() {
     buyerExternalIdentifier: "buyer-12345",
     country: "US",
     currency: "USD",
-    xGr4vyMerchantAccountId: "default",
   });
 
   if (!res.ok) {

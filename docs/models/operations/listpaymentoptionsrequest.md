@@ -6,7 +6,6 @@
 import { ListPaymentOptionsRequest } from "@gr4vy/sdk/models/operations";
 
 let value: ListPaymentOptionsRequest = {
-  xGr4vyMerchantAccountId: "default",
   paymentOptionRequest: {
     metadata: {
       "cohort": "a",
@@ -40,7 +39,7 @@ let value: ListPaymentOptionsRequest = {
 
 ## Fields
 
-| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `xGr4vyMerchantAccountId`                                                          | *string*                                                                           | :heavy_minus_sign:                                                                 | The ID of the merchant account to use for this request.                            | default                                                                            |
-| `paymentOptionRequest`                                                             | [components.PaymentOptionRequest](../../models/components/paymentoptionrequest.md) | :heavy_check_mark:                                                                 | N/A                                                                                |                                                                                    |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `merchantAccountId`                                                                | *string*                                                                           | :heavy_minus_sign:                                                                 | The ID of the merchant account to use for this request.                            |
+| `paymentOptionRequest`                                                             | [components.PaymentOptionRequest](../../models/components/paymentoptionrequest.md) | :heavy_check_mark:                                                                 | N/A                                                                                |

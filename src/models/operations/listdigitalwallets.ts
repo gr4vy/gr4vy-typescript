@@ -3,17 +3,74 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type ListDigitalWalletsGlobals = {
+  merchantAccountId?: string | undefined;
+};
 
 export type ListDigitalWalletsRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
+
+/** @internal */
+export const ListDigitalWalletsGlobals$inboundSchema: z.ZodType<
+  ListDigitalWalletsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListDigitalWalletsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListDigitalWalletsGlobals$outboundSchema: z.ZodType<
+  ListDigitalWalletsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListDigitalWalletsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListDigitalWalletsGlobals$ {
+  /** @deprecated use `ListDigitalWalletsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListDigitalWalletsGlobals$inboundSchema;
+  /** @deprecated use `ListDigitalWalletsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListDigitalWalletsGlobals$outboundSchema;
+  /** @deprecated use `ListDigitalWalletsGlobals$Outbound` instead. */
+  export type Outbound = ListDigitalWalletsGlobals$Outbound;
+}
+
+export function listDigitalWalletsGlobalsToJSON(
+  listDigitalWalletsGlobals: ListDigitalWalletsGlobals,
+): string {
+  return JSON.stringify(
+    ListDigitalWalletsGlobals$outboundSchema.parse(listDigitalWalletsGlobals),
+  );
+}
+
+export function listDigitalWalletsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListDigitalWalletsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListDigitalWalletsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListDigitalWalletsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListDigitalWalletsRequest$inboundSchema: z.ZodType<
@@ -21,16 +78,12 @@ export const ListDigitalWalletsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
-  });
+  merchantAccountId: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
 export type ListDigitalWalletsRequest$Outbound = {
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -39,11 +92,7 @@ export const ListDigitalWalletsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListDigitalWalletsRequest
 > = z.object({
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
-  });
+  merchantAccountId: z.nullable(z.string()).optional(),
 });
 
 /**

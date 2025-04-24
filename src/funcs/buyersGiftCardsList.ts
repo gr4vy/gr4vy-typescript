@@ -36,7 +36,7 @@ export function buyersGiftCardsList(
   buyerExternalIdentifier?: string | null | undefined,
   buyerId?: string | null | undefined,
   timeoutInSeconds?: number | undefined,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -67,7 +67,7 @@ export function buyersGiftCardsList(
     buyerExternalIdentifier,
     buyerId,
     timeoutInSeconds,
-    xGr4vyMerchantAccountId,
+    merchantAccountId,
     options,
   ));
 }
@@ -77,7 +77,7 @@ async function $do(
   buyerExternalIdentifier?: string | null | undefined,
   buyerId?: string | null | undefined,
   timeoutInSeconds?: number | undefined,
-  xGr4vyMerchantAccountId?: string | null | undefined,
+  merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -110,7 +110,7 @@ async function $do(
     buyerExternalIdentifier: buyerExternalIdentifier,
     buyerId: buyerId,
     timeoutInSeconds: timeoutInSeconds,
-    xGr4vyMerchantAccountId: xGr4vyMerchantAccountId,
+    merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
@@ -139,7 +139,7 @@ async function $do(
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
-      payload?.["x-gr4vy-merchant-account-id"],
+      payload?.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
   }));

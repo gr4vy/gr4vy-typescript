@@ -9,7 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   googlePaySessionRequest: components.GooglePaySessionRequest$inboundSchema,
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 };
 
 export const tool$digitalWalletsSessionsGooglePay: ToolDefinition<typeof args> =
@@ -23,7 +23,7 @@ Create a session for use with Google Pay.`,
       const [result, apiCall] = await digitalWalletsSessionsGooglePay(
         client,
         args.googlePaySessionRequest,
-        args.xGr4vyMerchantAccountId,
+        args.merchantAccountId,
         { fetchOptions: { signal: ctx.signal } },
       ).$inspect();
 

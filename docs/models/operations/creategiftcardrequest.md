@@ -6,7 +6,6 @@
 import { CreateGiftCardRequest } from "@gr4vy/sdk/models/operations";
 
 let value: CreateGiftCardRequest = {
-  xGr4vyMerchantAccountId: "default",
   giftCardCreate: {
     number: "4123455541234561234",
     pin: "1234",
@@ -18,8 +17,8 @@ let value: CreateGiftCardRequest = {
 
 ## Fields
 
-| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `timeoutInSeconds`                                                     | *number*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |                                                                        |
-| `xGr4vyMerchantAccountId`                                              | *string*                                                               | :heavy_minus_sign:                                                     | The ID of the merchant account to use for this request.                | default                                                                |
-| `giftCardCreate`                                                       | [components.GiftCardCreate](../../models/components/giftcardcreate.md) | :heavy_check_mark:                                                     | N/A                                                                    |                                                                        |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `timeoutInSeconds`                                                     | *number*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `merchantAccountId`                                                    | *string*                                                               | :heavy_minus_sign:                                                     | The ID of the merchant account to use for this request.                |
+| `giftCardCreate`                                                       | [components.GiftCardCreate](../../models/components/giftcardcreate.md) | :heavy_check_mark:                                                     | N/A                                                                    |

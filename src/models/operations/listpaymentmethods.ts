@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type ListPaymentMethodsGlobals = {
+  merchantAccountId?: string | undefined;
+};
+
 export type ListPaymentMethodsRequest = {
   /**
    * A pointer to the page of results to return.
@@ -34,12 +38,66 @@ export type ListPaymentMethodsRequest = {
   /**
    * The ID of the merchant account to use for this request.
    */
-  xGr4vyMerchantAccountId?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 export type ListPaymentMethodsResponse = {
   result: components.CollectionPaymentMethod;
 };
+
+/** @internal */
+export const ListPaymentMethodsGlobals$inboundSchema: z.ZodType<
+  ListPaymentMethodsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/** @internal */
+export type ListPaymentMethodsGlobals$Outbound = {
+  merchantAccountId?: string | undefined;
+};
+
+/** @internal */
+export const ListPaymentMethodsGlobals$outboundSchema: z.ZodType<
+  ListPaymentMethodsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListPaymentMethodsGlobals
+> = z.object({
+  merchantAccountId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListPaymentMethodsGlobals$ {
+  /** @deprecated use `ListPaymentMethodsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListPaymentMethodsGlobals$inboundSchema;
+  /** @deprecated use `ListPaymentMethodsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListPaymentMethodsGlobals$outboundSchema;
+  /** @deprecated use `ListPaymentMethodsGlobals$Outbound` instead. */
+  export type Outbound = ListPaymentMethodsGlobals$Outbound;
+}
+
+export function listPaymentMethodsGlobalsToJSON(
+  listPaymentMethodsGlobals: ListPaymentMethodsGlobals,
+): string {
+  return JSON.stringify(
+    ListPaymentMethodsGlobals$outboundSchema.parse(listPaymentMethodsGlobals),
+  );
+}
+
+export function listPaymentMethodsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPaymentMethodsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListPaymentMethodsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPaymentMethodsGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const ListPaymentMethodsRequest$inboundSchema: z.ZodType<
@@ -54,13 +112,12 @@ export const ListPaymentMethodsRequest$inboundSchema: z.ZodType<
   status: z.nullable(z.array(components.PaymentMethodStatus$inboundSchema))
     .optional(),
   external_identifier: z.nullable(z.string()).optional(),
-  "x-gr4vy-merchant-account-id": z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "buyer_external_identifier": "buyerExternalIdentifier",
     "external_identifier": "externalIdentifier",
-    "x-gr4vy-merchant-account-id": "xGr4vyMerchantAccountId",
   });
 });
 
@@ -72,7 +129,7 @@ export type ListPaymentMethodsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   status?: Array<string> | null | undefined;
   external_identifier?: string | null | undefined;
-  "x-gr4vy-merchant-account-id"?: string | null | undefined;
+  merchantAccountId?: string | null | undefined;
 };
 
 /** @internal */
@@ -88,13 +145,12 @@ export const ListPaymentMethodsRequest$outboundSchema: z.ZodType<
   status: z.nullable(z.array(components.PaymentMethodStatus$outboundSchema))
     .optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
-  xGr4vyMerchantAccountId: z.nullable(z.string()).optional(),
+  merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     buyerExternalIdentifier: "buyer_external_identifier",
     externalIdentifier: "external_identifier",
-    xGr4vyMerchantAccountId: "x-gr4vy-merchant-account-id",
   });
 });
 
