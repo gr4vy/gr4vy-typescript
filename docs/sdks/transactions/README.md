@@ -855,7 +855,7 @@ run();
 
 ## capture
 
-Capture an authorized transaction.
+Capture a previously authorized transaction.
 
 ### Example Usage
 

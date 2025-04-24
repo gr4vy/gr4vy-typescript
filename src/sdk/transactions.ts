@@ -87,7 +87,7 @@ export class Transactions extends ClientSDK {
    * Capture transaction
    *
    * @remarks
-   * Capture an authorized transaction.
+   * Capture a previously authorized transaction.
    */
   async capture(
     transactionCapture: components.TransactionCapture,

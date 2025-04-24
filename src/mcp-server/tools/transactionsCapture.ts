@@ -18,7 +18,7 @@ export const tool$transactionsCapture: ToolDefinition<typeof args> = {
   name: "transactions-capture",
   description: `Capture transaction
 
-Capture an authorized transaction.`,
+Capture a previously authorized transaction.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await transactionsCapture(

@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Capture transaction
  *
  * @remarks
- * Capture an authorized transaction.
+ * Capture a previously authorized transaction.
  */
 export function transactionsCapture(
   client: Gr4vyCore,
