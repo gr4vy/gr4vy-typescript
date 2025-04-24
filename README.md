@@ -92,7 +92,7 @@ async function run() {
         bearerAuth: withToken({ privateKey }),
     });
 
-    const checkoutSession = sdk.checkoutSessions.create()
+    const checkoutSession = await sdk.checkoutSessions.create()
 
     const token = await getEmbedToken({ 
       privateKey,
@@ -111,6 +111,29 @@ run();
 
 > **Note:** This will only create a token once. Use `withToken` to dynamically generate a token
 > for every request.
+
+## Merchant account ID selection
+
+Depending on the key used, you might need to explicitly define a merchant account ID to use. In our API, 
+this uses the `X-GR4VY-MERCHANT-ACCOUNT-ID` header. When using the SDK, you can set the `merchantAccountId`
+on every request.
+
+```js
+const result = await sdk.transactions.list({
+    merchantAccountId: 'merchant-12345'
+})
+```
+
+Alternatively, the merchant account ID can also be set when initializing the SDK.
+
+```js
+const sdk = new SDK({
+    server: "sandbox",
+    id: "example",
+    merchantAccountId: 'merchant-12345',
+    bearerAuth: withToken({ privateKey }),
+});
+```
 
 
 ## Webhooks verification
