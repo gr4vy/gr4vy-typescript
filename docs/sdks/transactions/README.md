@@ -1082,7 +1082,7 @@ run();
 
 ## void
 
-Void an authorized transaction.
+Void a previously authorized transaction.
 
 ### Example Usage
 

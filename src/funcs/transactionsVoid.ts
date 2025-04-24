@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Void transaction
  *
  * @remarks
- * Void an authorized transaction.
+ * Void a previously authorized transaction.
  */
 export function transactionsVoid(
   client: Gr4vyCore,

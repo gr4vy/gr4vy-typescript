@@ -110,7 +110,7 @@ export class Transactions extends ClientSDK {
    * Void transaction
    *
    * @remarks
-   * Void an authorized transaction.
+   * Void a previously authorized transaction.
    */
   async void(
     transactionId: string,

@@ -16,7 +16,7 @@ export const tool$transactionsVoid: ToolDefinition<typeof args> = {
   name: "transactions-void",
   description: `Void transaction
 
-Void an authorized transaction.`,
+Void a previously authorized transaction.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await transactionsVoid(
