@@ -22,6 +22,6 @@ targets:
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-typescript-code-samples
-            blocking: false
             labelOverride:
-              fixedValue: Typescript
+                fixedValue: Typescript
+            blocking: false

@@ -925,6 +925,7 @@ Gr4vy: The Gr4vy API.
   * [SDK Example Usage](#sdk-example-usage)
   * [Bearer token generation](#bearer-token-generation)
   * [Embed token generation](#embed-token-generation)
+  * [Merchant account ID selection](#merchant-account-id-selection)
   * [Webhooks verification](#webhooks-verification)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
