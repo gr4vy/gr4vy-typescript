@@ -34,10 +34,10 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 
 ```typescript
 import fs from "fs";
-import { SDK, withToken } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
 
 async function run() {
-    const sdk = new SDK({
+    const gr4vy = new Gr4vy({
         server: "sandbox",
         id: "example",
         bearerAuth: withToken({
@@ -45,7 +45,7 @@ async function run() {
         }),
     });
 
-    const result = await sdk.transactions.listTransactions({});
+    const result = await gr4vy.transactions.listTransactions({});
 
     // Handle the result
     console.log(result);
@@ -81,18 +81,18 @@ run();
 Alternatively, you can create a token for use with Embed as follows.
 
 ```js
-import { SDK, getEmbedToken } from "@gr4vy/sdk";
+import { Gr4vy, getEmbedToken } from "@gr4vy/sdk";
 
 async function run() {
     const privateKey = fs.readFileSync("private_key.pem", "utf8")
 
-    const sdk = new SDK({
+    const gr4vy = new Gr4vy({
         server: "sandbox",
         id: "example",
         bearerAuth: withToken({ privateKey }),
     });
 
-    const checkoutSession = await sdk.checkoutSessions.create()
+    const checkoutSession = await gr4vy.checkoutSessions.create()
 
     const token = await getEmbedToken({ 
       privateKey,
@@ -102,7 +102,8 @@ async function run() {
         currency: 'USD',
         buyerExternalIdentifier: 'user-1234',
       }
-     });
+    });
+
     console.log(token);
 }
 
@@ -119,7 +120,7 @@ this uses the `X-GR4VY-MERCHANT-ACCOUNT-ID` header. When using the SDK, you can 
 on every request.
 
 ```js
-const result = await sdk.transactions.list({
+const result = await gr4vy.transactions.list({
     merchantAccountId: 'merchant-12345'
 })
 ```
@@ -127,7 +128,7 @@ const result = await sdk.transactions.list({
 Alternatively, the merchant account ID can also be set when initializing the SDK.
 
 ```js
-const sdk = new SDK({
+const gr4vy = new Gr4vy({
     server: "sandbox",
     id: "example",
     merchantAccountId: 'merchant-12345',
