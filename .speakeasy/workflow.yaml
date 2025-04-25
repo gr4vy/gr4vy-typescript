@@ -25,3 +25,5 @@ targets:
             labelOverride:
                 fixedValue: Typescript
             blocking: false
+            labelOverride:
+              fixedValue: Typescript
