@@ -8,8 +8,9 @@ on:
       - main
 
 jobs:
-  test-pr:
+  test:
     runs-on: ubuntu-latest
+    
     timeout-minutes: 3
     strategy:
       matrix:
@@ -36,11 +37,15 @@ jobs:
         run: |
           npx vitest
 
-  mergepal:
+  merge:
     runs-on: ubuntu-latest
-    if: "contains(github.event.pull_request.title, 'Update SDK - Generate')"
+    permissions:
+      contents: write
+      pull-requests: write
+    if: "github.triggering_actor == 'speakeasy-github[bot]'"
     steps:
-      - uses: actions/checkout@v1
-      - uses: maxkomarychev/merge-pal-action@v0.5.1
-        with:
-          token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.16.4"
+        env:
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
