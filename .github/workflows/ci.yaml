@@ -63,7 +63,8 @@ jobs:
           MERGE_LABELS: ''
           MERGE_REQUIRED_APPROVALS: 0
           MERGE_METHOD: squash
-          MERGE_COMMIT_MESSAGE: "pull-request-description"
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
           MERGE_ERROR_FAIL: true
           MERGE_DELETE_BRANCH: true
           MERGE_FORKS: false
+          UPDATE_METHOD: rebase
