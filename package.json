@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.18.4",
+  "version": "0.18.5",
   "author": "Gr4vy",
   "bin": {
     "mcp": "bin/mcp-server.js"
@@ -15,17 +15,14 @@
     "lint": "eslint --cache --max-warnings=0 src",
     "build:mcp": "bun src/mcp-server/build.mts",
     "build": "npm run build:mcp && tsc",
-    "prepublishOnly": "npm run build",
-    "test": "vitest"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "zod": ">= 3"
   },
   "peerDependenciesMeta": {
-    "@modelcontextprotocol/sdk": {
-      "optional": true
-    }
+    "@modelcontextprotocol/sdk": {"optional":true}
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -42,7 +39,6 @@
     "globals": "^15.14.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.22.0",
-    "vitest": "^3.1.2",
     "zod": "^3.23.4"
   },
   "dependencies": {
@@ -50,7 +46,6 @@
     "jsonwebtoken": "^9.0.2",
     "jwk-thumbprint": "^0.1.4",
     "snakecase-keys": "^6.0.0",
-    "timekeeper": "^2.3.1",
     "uuid": "^9.0.1"
   }
 }
