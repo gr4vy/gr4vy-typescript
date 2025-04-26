@@ -38,9 +38,9 @@ jobs:
 
   mergepal:
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, 'Update SDK - Generate')"
+    if: "contains(github.event.pull_request.title, 'Update SDK - Generate')"
     steps:
       - uses: actions/checkout@v1
-      - uses: maxkomarychev/merge-pal-action@vX.Y.Z
+      - uses: maxkomarychev/merge-pal-action@v0.5.1
         with:
           token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
