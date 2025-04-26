@@ -1,9 +1,9 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import snakeCaseKeys from "snakecase-keys";
 import { v4 as uuid } from "uuid";
 
+import { CartItem } from "../models/components";
 import { SDK_METADATA } from "./config";
-// import { CartItem } from "../models/components/cartitem";
 import { getKeyId, getRuntime } from "./helpers";
 
 const ua = getRuntime();
@@ -70,6 +70,38 @@ export const getToken = async (options: {
     issuer,
   });
 };
+
+export const updateToken = async (options: {
+  token: string
+  privateKey: string;
+  expiresIn?: string;
+  scopes?: JWTScope[] | string[];
+  embedParams?: EmbedParams;
+  checkoutSessionId?: string;
+}): Promise<string> => {
+  const {
+    token,
+    privateKey,
+    scopes,
+    checkoutSessionId,
+    embedParams,
+    expiresIn = "30s",
+  } = options;
+
+  const payload = jwt.verify(token, privateKey, {
+    algorithms: ['ES512'],
+    ignoreExpiration: true,
+  }) as JwtPayload | Claims
+
+
+  return getToken({
+    privateKey,
+    scopes: scopes ?? payload.scopes,
+    expiresIn,
+    embedParams: embedParams ?? payload.embed,
+    checkoutSessionId: checkoutSessionId ?? payload.checkout_session_id
+  })
+}
 
 /**
  * Helper method for generating a bearer token for use with Embed
@@ -141,7 +173,7 @@ export type EmbedParams = {
   buyerId?: string;
   buyerExternalIdentifier?: string;
   metadata?: Record<string, string>;
-  // cartItems?: Array<CartItem>;
+  cartItems?: Array<CartItem>;
   merchantAccountId?: string;
   connectionOptions?: Record<string, any>;
 };
