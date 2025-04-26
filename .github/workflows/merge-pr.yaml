@@ -42,12 +42,12 @@ jobs:
           npx vitest
       
       - name: Mark for automerge
-        if: "github.actor == 'github-actions[bot]'"
+        if: "github.event.pull_request.user.login == 'github-actions[bot]'"
         uses: actions/labeler@v5
 
       - id: automerge
         name: automerge
-        if: "github.actor == 'github-actions[bot]'"
+        if: "github.event.pull_request.user.login == 'github-actions[bot]'"
         uses: "pascalgn/automerge-action@v0.16.4"
         env:
           GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
