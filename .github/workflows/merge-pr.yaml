@@ -42,7 +42,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    if: "github.actor == 'github-actions'"
+    # if: "github.actor == 'github-actions'"
     steps:
       - id: automerge
         name: automerge
