@@ -44,6 +44,8 @@ jobs:
       - name: Mark for automerge
         if: "github.event.pull_request.user.login == 'github-actions[bot]'"
         uses: actions/labeler@v5
+        with:
+          repo-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
 
       - id: automerge
         name: automerge
