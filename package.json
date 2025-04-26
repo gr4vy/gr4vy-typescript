@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.18.10",
+  "version": "0.18.11",
   "author": "Gr4vy",
   "bin": {
     "mcp": "bin/mcp-server.js"
