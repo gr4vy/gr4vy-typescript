@@ -1,11 +1,11 @@
-name: CI
+name: CI (Main)
 on:
   push:
     branches:
       - main
 
 jobs:
-  test-and-merge:
+  test:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     strategy:
