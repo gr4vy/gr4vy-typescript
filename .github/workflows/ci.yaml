@@ -43,7 +43,7 @@ jobs:
 
       - uses: hmarr/auto-approve-action@v4
         with:
-          github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_PAT }}
 
   merge:
     needs: test
@@ -59,7 +59,7 @@ jobs:
         if: "github.event.pull_request.user.login == 'github-actions[bot]'"
         uses: "pascalgn/automerge-action@v0.16.4"
         env:
-          GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
           MERGE_LABELS: ''
           MERGE_REQUIRED_APPROVALS: 0
           MERGE_METHOD: squash
