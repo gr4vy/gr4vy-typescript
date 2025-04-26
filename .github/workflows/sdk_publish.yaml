@@ -14,11 +14,10 @@ permissions:
 jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
-    # if: "!contains(github.event.head_commit.message, 'ci: regenerated')"
     with:
       target: typescript
     secrets:
-      github_access_token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
 

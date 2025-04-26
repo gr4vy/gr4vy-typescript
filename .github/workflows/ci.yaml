@@ -35,3 +35,12 @@ jobs:
           # GR4VY_ID: ${{ secrets.GR4VY_ID }}
         run: |
           npx vitest
+
+  mergepal:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Update SDK - Generate')"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: maxkomarychev/merge-pal-action@vX.Y.Z
+        with:
+          token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}

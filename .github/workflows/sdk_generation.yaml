@@ -23,7 +23,7 @@ jobs:
       mode: pr 
       speakeasy_version: latest
     secrets:
-      github_access_token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
 
@@ -38,6 +38,6 @@ jobs:
       - name: Notify SDKs
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: sdk_updated
