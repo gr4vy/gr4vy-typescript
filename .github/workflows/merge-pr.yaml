@@ -17,6 +17,10 @@ jobs:
         node:
           - 22.x
 
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -36,16 +40,18 @@ jobs:
           # GR4VY_ID: ${{ secrets.GR4VY_ID }}
         run: |
           npx vitest
+      
+      - name: View PR author
+        run: echo "This PR is opened by ${{ github.event.pull_request.user.login }} ."
 
-  merge:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    # if: "github.actor == 'github-actions'"
-    steps:
-      - id: automerge
-        name: automerge
-        uses: "pascalgn/automerge-action@v0.16.4"
-        env:
-          GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+  # merge:
+  #   requires: test
+  #   runs-on: ubuntu-latest
+   
+  #   # if: "github.actor == 'github-actions'"
+  #   steps:
+  #     - id: automerge
+  #       name: automerge
+  #       uses: "pascalgn/automerge-action@v0.16.4"
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
