@@ -41,6 +41,15 @@ jobs:
         run: |
           npx vitest
 
+  merge:
+    needs: test
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
       - id: automerge
         name: automerge
         if: "github.event.pull_request.user.login == 'github-actions[bot]'"
