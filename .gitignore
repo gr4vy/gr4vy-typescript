@@ -24,3 +24,4 @@
 /cjs
 /node_modules
 /.tsbuildinfo
+private_key.pem

@@ -23,6 +23,10 @@ export const withToken = (options: {
     expiresIn = "30s",
   } = options;
 
+  if (!privateKey) {
+    throw new Error("Private key is null, undefined or empty");
+  }
+
   return async (): Promise<string> => {
     const bearerAuth = await getToken({ privateKey, scopes, expiresIn });
     return bearerAuth;
