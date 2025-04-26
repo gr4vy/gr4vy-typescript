@@ -48,3 +48,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
           MERGE_LABELS: ''
+          MERGE_REQUIRED_APPROVALS: 0
+          UPDATE_METHOD: squash
+          MERGE_COMMIT_MESSAGE: "pull-request-description"
+          MERGE_ERROR_FAIL: true
+          MERGE_DELETE_BRANCH: true
+          MERGE_FORKS: false
