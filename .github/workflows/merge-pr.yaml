@@ -42,7 +42,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    if: "github.triggering_actor == 'speakeasy-github[bot]'"
+    if: "github.actor == 'speakeasy-github[bot]'"
     steps:
       - id: automerge
         name: automerge
