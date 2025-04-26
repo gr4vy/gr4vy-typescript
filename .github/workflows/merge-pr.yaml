@@ -41,6 +41,10 @@ jobs:
         run: |
           npx vitest
 
+      - uses: hmarr/auto-approve-action@v4
+        with:
+          github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+
   merge:
     needs: test
     runs-on: ubuntu-latest
