@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test-and-merge:
@@ -32,3 +35,12 @@ jobs:
           # GR4VY_ID: ${{ secrets.GR4VY_ID }}
         run: |
           npx vitest
+
+  mergepal:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.pull_request.title, 'Update SDK - Generate')"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: maxkomarychev/merge-pal-action@v0.5.1
+        with:
+          token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
