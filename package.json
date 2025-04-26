@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "0.18.4",
+  "version": "0.18.8",
   "author": "Gr4vy",
   "bin": {
     "mcp": "bin/mcp-server.js"
@@ -15,17 +15,14 @@
     "lint": "eslint --cache --max-warnings=0 src",
     "build:mcp": "bun src/mcp-server/build.mts",
     "build": "npm run build:mcp && tsc",
-    "prepublishOnly": "npm run build",
-    "test": "vitest"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "zod": ">= 3"
   },
   "peerDependenciesMeta": {
-    "@modelcontextprotocol/sdk": {
-      "optional": true
-    }
+    "@modelcontextprotocol/sdk": {"optional":true}
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

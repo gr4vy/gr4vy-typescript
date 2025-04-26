@@ -15,7 +15,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.18.4
+  version: 0.18.8
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -27,6 +27,8 @@ typescript:
       '@types/jsonwebtoken': ^9.0.6
       '@types/trust__keyto': ^1.0.4
       '@types/uuid': ^9.0.8
+      timekeeper: ^2.3.1
+      vitest: ^3.1.2
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Gr4vy

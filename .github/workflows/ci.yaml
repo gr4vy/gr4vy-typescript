@@ -34,4 +34,4 @@ jobs:
           # PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           # GR4VY_ID: ${{ secrets.GR4VY_ID }}
         run: |
-          npm test
+          npx vitest
