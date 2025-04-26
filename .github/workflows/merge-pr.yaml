@@ -40,12 +40,6 @@ jobs:
           # GR4VY_ID: ${{ secrets.GR4VY_ID }}
         run: |
           npx vitest
-      
-      - name: Mark for automerge
-        if: "github.event.pull_request.user.login == 'github-actions[bot]'"
-        uses: actions/labeler@v5
-        with:
-          repo-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
 
       - id: automerge
         name: automerge
@@ -53,3 +47,4 @@ jobs:
         uses: "pascalgn/automerge-action@v0.16.4"
         env:
           GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+          MERGE_LABELS: ''
