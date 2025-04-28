@@ -377,7 +377,11 @@ import {
 } from "@gr4vy/sdk/models/errors";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -520,7 +524,11 @@ import { Gr4vy } from "@gr4vy/sdk";
 const gr4vy = new Gr4vy({
   server: "sandbox",
   id: "<id>",
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -547,7 +555,11 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
   serverURL: "https://api.example.gr4vy.app",
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -632,7 +644,11 @@ To authenticate with the API the `bearerAuth` parameter must be set when initial
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -781,7 +797,11 @@ npx -y --package @gr4vy/sdk -- mcp start --help
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -817,7 +837,11 @@ Here's an example of one such pagination call:
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -848,7 +872,11 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -897,7 +925,11 @@ const gr4vy = new Gr4vy({
     },
     retryConnectionErrors: false,
   },
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
