@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 2cfa14557c26523154f83f5a7729fa0f
+  docChecksum: 03abec67e7582687ef971f66d46859e5
   docVersion: 1.0.0
-  speakeasyVersion: 1.540.0
-  generationVersion: 2.593.3
-  releaseVersion: 0.18.13
-  configChecksum: 4b0ccf81e018d76cfaec19dbc161b31f
+  speakeasyVersion: 1.540.1
+  generationVersion: 2.593.4
+  releaseVersion: 0.18.14
+  configChecksum: e3fe0d0088b97c21b14f8ff6e36f2fe9
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -89,6 +89,7 @@ generatedFiles:
   - docs/models/components/collectionauditlogentry.md
   - docs/models/components/collectionbuyer.md
   - docs/models/components/collectiongiftcard.md
+  - docs/models/components/collectionmerchantaccount.md
   - docs/models/components/collectionnocursorcardschemedefinition.md
   - docs/models/components/collectionnocursordigitalwallet.md
   - docs/models/components/collectionnocursorgiftcardsummary.md
@@ -140,6 +141,9 @@ generatedFiles:
   - docs/models/components/instrumenttype.md
   - docs/models/components/items.md
   - docs/models/components/loc.md
+  - docs/models/components/merchantaccount.md
+  - docs/models/components/merchantaccountcreate.md
+  - docs/models/components/merchantaccountupdate.md
   - docs/models/components/method.md
   - docs/models/components/mode.md
   - docs/models/components/networktoken.md
@@ -226,6 +230,7 @@ generatedFiles:
   - docs/models/errors/createfulltransactionrefundresponse403createfulltransactionrefund.md
   - docs/models/errors/creategiftcardresponse403creategiftcard.md
   - docs/models/errors/creategooglepaydigitalwalletsessionresponse403creategooglepaydigitalwalletsession.md
+  - docs/models/errors/createmerchantaccountresponse403createmerchantaccount.md
   - docs/models/errors/createpaymentmethodnetworktokencryptogramresponse403createpaymentmethodnetworktokencryptogram.md
   - docs/models/errors/createpaymentmethodnetworktokenresponse403createpaymentmethodnetworktoken.md
   - docs/models/errors/createpaymentmethodpaymentservicetokenresponse403createpaymentmethodpaymentservicetoken.md
@@ -259,6 +264,7 @@ generatedFiles:
   - docs/models/errors/getcheckoutsessionresponse403getcheckoutsession.md
   - docs/models/errors/getdigitalwalletresponse403getdigitalwallet.md
   - docs/models/errors/getgiftcardresponse403getgiftcard.md
+  - docs/models/errors/getmerchantaccountresponse403getmerchantaccount.md
   - docs/models/errors/getpaymentmethodresponse403getpaymentmethod.md
   - docs/models/errors/getpayoutresponse403getpayout.md
   - docs/models/errors/getrefundresponse403getrefund.md
@@ -275,6 +281,7 @@ generatedFiles:
   - docs/models/errors/listdigitalwalletsresponse403listdigitalwallets.md
   - docs/models/errors/listgiftcardbalancesresponse403listgiftcardbalances.md
   - docs/models/errors/listgiftcardsresponse403listgiftcards.md
+  - docs/models/errors/listmerchantaccountsresponse403listmerchantaccounts.md
   - docs/models/errors/listpaymentmethodnetworktokensresponse403listpaymentmethodnetworktokens.md
   - docs/models/errors/listpaymentmethodpaymentservicetokensresponse403listpaymentmethodpaymentservicetokens.md
   - docs/models/errors/listpaymentmethodsresponse403listpaymentmethods.md
@@ -291,6 +298,7 @@ generatedFiles:
   - docs/models/errors/updatebuyershippingdetailsresponse403updatebuyershippingdetails.md
   - docs/models/errors/updatecheckoutsessionresponse403updatecheckoutsession.md
   - docs/models/errors/updatedigitalwalletresponse403updatedigitalwallet.md
+  - docs/models/errors/updatemerchantaccountresponse403updatemerchantaccount.md
   - docs/models/errors/voidtransactionresponse403voidtransaction.md
   - docs/models/operations/addbuyerglobals.md
   - docs/models/operations/addbuyerrequest.md
@@ -313,6 +321,7 @@ generatedFiles:
   - docs/models/operations/creategiftcardrequest.md
   - docs/models/operations/creategooglepaydigitalwalletsessionglobals.md
   - docs/models/operations/creategooglepaydigitalwalletsessionrequest.md
+  - docs/models/operations/createmerchantaccountrequest.md
   - docs/models/operations/createpaymentmethodbody.md
   - docs/models/operations/createpaymentmethodglobals.md
   - docs/models/operations/createpaymentmethodnetworktokencryptogramglobals.md
@@ -355,6 +364,7 @@ generatedFiles:
   - docs/models/operations/getdigitalwalletrequest.md
   - docs/models/operations/getgiftcardglobals.md
   - docs/models/operations/getgiftcardrequest.md
+  - docs/models/operations/getmerchantaccountrequest.md
   - docs/models/operations/getpaymentmethodglobals.md
   - docs/models/operations/getpaymentmethodrequest.md
   - docs/models/operations/getpayoutglobals.md
@@ -388,6 +398,8 @@ generatedFiles:
   - docs/models/operations/listgiftcardsglobals.md
   - docs/models/operations/listgiftcardsrequest.md
   - docs/models/operations/listgiftcardsresponse.md
+  - docs/models/operations/listmerchantaccountsrequest.md
+  - docs/models/operations/listmerchantaccountsresponse.md
   - docs/models/operations/listpaymentmethodnetworktokensglobals.md
   - docs/models/operations/listpaymentmethodnetworktokensrequest.md
   - docs/models/operations/listpaymentmethodpaymentservicetokensglobals.md
@@ -424,6 +436,7 @@ generatedFiles:
   - docs/models/operations/updatecheckoutsessionrequest.md
   - docs/models/operations/updatedigitalwalletglobals.md
   - docs/models/operations/updatedigitalwalletrequest.md
+  - docs/models/operations/updatemerchantaccountrequest.md
   - docs/models/operations/voidtransactionglobals.md
   - docs/models/operations/voidtransactionrequest.md
   - docs/sdks/accountupdater/README.md
@@ -443,6 +456,7 @@ generatedFiles:
   - docs/sdks/gr4vyrefunds/README.md
   - docs/sdks/gr4vytransactionsrefunds/README.md
   - docs/sdks/jobs/README.md
+  - docs/sdks/merchantaccounts/README.md
   - docs/sdks/networktokens/README.md
   - docs/sdks/paymentmethods/README.md
   - docs/sdks/paymentoptions/README.md
@@ -492,6 +506,10 @@ generatedFiles:
   - src/funcs/giftCardsDelete.ts
   - src/funcs/giftCardsGet.ts
   - src/funcs/giftCardsList.ts
+  - src/funcs/merchantAccountsCreate.ts
+  - src/funcs/merchantAccountsGet.ts
+  - src/funcs/merchantAccountsList.ts
+  - src/funcs/merchantAccountsUpdate.ts
   - src/funcs/paymentMethodsCreate.ts
   - src/funcs/paymentMethodsDelete.ts
   - src/funcs/paymentMethodsGet.ts
@@ -587,6 +605,10 @@ generatedFiles:
   - src/mcp-server/tools/giftCardsDelete.ts
   - src/mcp-server/tools/giftCardsGet.ts
   - src/mcp-server/tools/giftCardsList.ts
+  - src/mcp-server/tools/merchantAccountsCreate.ts
+  - src/mcp-server/tools/merchantAccountsGet.ts
+  - src/mcp-server/tools/merchantAccountsList.ts
+  - src/mcp-server/tools/merchantAccountsUpdate.ts
   - src/mcp-server/tools/paymentMethodsCreate.ts
   - src/mcp-server/tools/paymentMethodsDelete.ts
   - src/mcp-server/tools/paymentMethodsGet.ts
@@ -659,6 +681,7 @@ generatedFiles:
   - src/models/components/collectionauditlogentry.ts
   - src/models/components/collectionbuyer.ts
   - src/models/components/collectiongiftcard.ts
+  - src/models/components/collectionmerchantaccount.ts
   - src/models/components/collectionnocursorcardschemedefinition.ts
   - src/models/components/collectionnocursordigitalwallet.ts
   - src/models/components/collectionnocursorgiftcardsummary.ts
@@ -707,6 +730,9 @@ generatedFiles:
   - src/models/components/guestbuyeroutput.ts
   - src/models/components/index.ts
   - src/models/components/instrumenttype.ts
+  - src/models/components/merchantaccount.ts
+  - src/models/components/merchantaccountcreate.ts
+  - src/models/components/merchantaccountupdate.ts
   - src/models/components/method.ts
   - src/models/components/mode.ts
   - src/models/components/networktoken.ts
@@ -782,6 +808,7 @@ generatedFiles:
   - src/models/errors/createfulltransactionrefund.ts
   - src/models/errors/creategiftcard.ts
   - src/models/errors/creategooglepaydigitalwalletsession.ts
+  - src/models/errors/createmerchantaccount.ts
   - src/models/errors/createpaymentmethod.ts
   - src/models/errors/createpaymentmethodnetworktoken.ts
   - src/models/errors/createpaymentmethodnetworktokencryptogram.ts
@@ -815,6 +842,7 @@ generatedFiles:
   - src/models/errors/getcheckoutsession.ts
   - src/models/errors/getdigitalwallet.ts
   - src/models/errors/getgiftcard.ts
+  - src/models/errors/getmerchantaccount.ts
   - src/models/errors/getpaymentmethod.ts
   - src/models/errors/getpayout.ts
   - src/models/errors/getrefund.ts
@@ -833,6 +861,7 @@ generatedFiles:
   - src/models/errors/listdigitalwallets.ts
   - src/models/errors/listgiftcardbalances.ts
   - src/models/errors/listgiftcards.ts
+  - src/models/errors/listmerchantaccounts.ts
   - src/models/errors/listpaymentmethodnetworktokens.ts
   - src/models/errors/listpaymentmethodpaymentservicetokens.ts
   - src/models/errors/listpaymentmethods.ts
@@ -851,6 +880,7 @@ generatedFiles:
   - src/models/errors/updatebuyershippingdetails.ts
   - src/models/errors/updatecheckoutsession.ts
   - src/models/errors/updatedigitalwallet.ts
+  - src/models/errors/updatemerchantaccount.ts
   - src/models/errors/voidtransaction.ts
   - src/models/operations/addbuyer.ts
   - src/models/operations/addbuyershippingdetails.ts
@@ -862,6 +892,7 @@ generatedFiles:
   - src/models/operations/createfulltransactionrefund.ts
   - src/models/operations/creategiftcard.ts
   - src/models/operations/creategooglepaydigitalwalletsession.ts
+  - src/models/operations/createmerchantaccount.ts
   - src/models/operations/createpaymentmethod.ts
   - src/models/operations/createpaymentmethodnetworktoken.ts
   - src/models/operations/createpaymentmethodnetworktokencryptogram.ts
@@ -882,6 +913,7 @@ generatedFiles:
   - src/models/operations/getcheckoutsession.ts
   - src/models/operations/getdigitalwallet.ts
   - src/models/operations/getgiftcard.ts
+  - src/models/operations/getmerchantaccount.ts
   - src/models/operations/getpaymentmethod.ts
   - src/models/operations/getpayout.ts
   - src/models/operations/getrefund.ts
@@ -898,6 +930,7 @@ generatedFiles:
   - src/models/operations/listdigitalwallets.ts
   - src/models/operations/listgiftcardbalances.ts
   - src/models/operations/listgiftcards.ts
+  - src/models/operations/listmerchantaccounts.ts
   - src/models/operations/listpaymentmethodnetworktokens.ts
   - src/models/operations/listpaymentmethodpaymentservicetokens.ts
   - src/models/operations/listpaymentmethods.ts
@@ -914,6 +947,7 @@ generatedFiles:
   - src/models/operations/updatebuyershippingdetails.ts
   - src/models/operations/updatecheckoutsession.ts
   - src/models/operations/updatedigitalwallet.ts
+  - src/models/operations/updatemerchantaccount.ts
   - src/models/operations/voidtransaction.ts
   - src/sdk/accountupdater.ts
   - src/sdk/all.ts
@@ -932,6 +966,7 @@ generatedFiles:
   - src/sdk/gr4vytransactionsrefunds.ts
   - src/sdk/index.ts
   - src/sdk/jobs.ts
+  - src/sdk/merchantaccounts.ts
   - src/sdk/networktokens.ts
   - src/sdk/paymentmethods.ts
   - src/sdk/paymentoptions.ts
@@ -3237,5 +3272,139 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  list_merchant_accounts:
+    speakeasy-default-list-merchant-accounts:
+      parameters:
+        query:
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [{"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  create_merchant_account:
+    speakeasy-default-create-merchant-account:
+      parameters:
+        query:
+          timeout_in_seconds: 1
+      requestBody:
+        application/json: {"account_updater_enabled": true, "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "over_capture_amount": 1299, "over_capture_percentage": 25, "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "id": "merchant-12345", "display_name": "Example"}
+      responses:
+        "201":
+          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "The resource could not be removed as it is currently active", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  get_merchant_account:
+    speakeasy-default-get-merchant-account:
+      parameters:
+        path:
+          merchant_account_id: "<id>"
+      responses:
+        "200":
+          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Invalid credentials", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  update_merchant_account:
+    speakeasy-default-update-merchant-account:
+      parameters:
+        path:
+          merchant_account_id: "<id>"
+        query:
+          timeout_in_seconds: 1
+      requestBody:
+        application/json: {"account_updater_enabled": true, "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "over_capture_amount": 1299, "over_capture_percentage": 25, "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "display_name": "Example", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345"}
+      responses:
+        "200":
+          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Invalid credentials", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
 examplesVersion: 1.0.1
 generatedTests: {}
