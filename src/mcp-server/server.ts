@@ -47,6 +47,10 @@ import { tool$giftCardsCreate } from "./tools/giftCardsCreate.js";
 import { tool$giftCardsDelete } from "./tools/giftCardsDelete.js";
 import { tool$giftCardsGet } from "./tools/giftCardsGet.js";
 import { tool$giftCardsList } from "./tools/giftCardsList.js";
+import { tool$merchantAccountsCreate } from "./tools/merchantAccountsCreate.js";
+import { tool$merchantAccountsGet } from "./tools/merchantAccountsGet.js";
+import { tool$merchantAccountsList } from "./tools/merchantAccountsList.js";
+import { tool$merchantAccountsUpdate } from "./tools/merchantAccountsUpdate.js";
 import { tool$paymentMethodsCreate } from "./tools/paymentMethodsCreate.js";
 import { tool$paymentMethodsDelete } from "./tools/paymentMethodsDelete.js";
 import { tool$paymentMethodsGet } from "./tools/paymentMethodsGet.js";
@@ -89,7 +93,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Gr4vy",
-    version: "0.18.13",
+    version: "0.18.14",
   });
 
   const client = new Gr4vyCore({
@@ -154,6 +158,10 @@ export function createMCPServer(deps: {
   tool(tool$checkoutSessionsUpdate);
   tool(tool$checkoutSessionsGet);
   tool(tool$checkoutSessionsDelete);
+  tool(tool$merchantAccountsList);
+  tool(tool$merchantAccountsCreate);
+  tool(tool$merchantAccountsGet);
+  tool(tool$merchantAccountsUpdate);
   tool(tool$payoutsList);
   tool(tool$payoutsCreate);
   tool(tool$payoutsGet);

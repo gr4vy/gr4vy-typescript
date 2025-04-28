@@ -10,6 +10,7 @@ import { CardSchemeDefinitions } from "./cardschemedefinitions.js";
 import { CheckoutSessions } from "./checkoutsessions.js";
 import { DigitalWallets } from "./digitalwallets.js";
 import { GiftCards } from "./giftcards.js";
+import { MerchantAccounts } from "./merchantaccounts.js";
 import { PaymentMethods } from "./paymentmethods.js";
 import { PaymentOptions } from "./paymentoptions.js";
 import { Payouts } from "./payouts.js";
@@ -78,6 +79,11 @@ export class Gr4vy extends ClientSDK {
   private _checkoutSessions?: CheckoutSessions;
   get checkoutSessions(): CheckoutSessions {
     return (this._checkoutSessions ??= new CheckoutSessions(this._options));
+  }
+
+  private _merchantAccounts?: MerchantAccounts;
+  get merchantAccounts(): MerchantAccounts {
+    return (this._merchantAccounts ??= new MerchantAccounts(this._options));
   }
 
   private _payouts?: Payouts;

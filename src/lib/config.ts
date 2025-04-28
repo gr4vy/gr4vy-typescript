@@ -13,7 +13,7 @@ export const ServerSandbox = "sandbox";
  * Contains the list of servers available to the SDK
  */
 export const ServerList = {
-  [ServerProduction]: "https://api.{id}.gr4vy.app",
+  [ServerProduction]: "https://api.example.gr4vy.app",
   [ServerSandbox]: "https://api.sandbox.{id}.gr4vy.app",
 } as const;
 
@@ -73,7 +73,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "0.18.13",
-  genVersion: "2.593.3",
-  userAgent: "speakeasy-sdk/typescript 0.18.13 2.593.3 1.0.0 @gr4vy/sdk",
+  sdkVersion: "0.18.14",
+  genVersion: "2.593.4",
+  userAgent: "speakeasy-sdk/typescript 0.18.14 2.593.4 1.0.0 @gr4vy/sdk",
 } as const;

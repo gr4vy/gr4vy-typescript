@@ -256,6 +256,13 @@ try {
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
 
 
+### [merchantAccounts](docs/sdks/merchantaccounts/README.md)
+
+* [list](docs/sdks/merchantaccounts/README.md#list) - List all merchant accounts
+* [create](docs/sdks/merchantaccounts/README.md#create) - Create a merchant account
+* [get](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
+* [update](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
+
 ### [paymentMethods](docs/sdks/paymentmethods/README.md)
 
 * [list](docs/sdks/paymentmethods/README.md#list) - List all payment methods
@@ -993,6 +1000,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`giftCardsDelete`](docs/sdks/giftcards/README.md#delete) - Delete a gift card
 - [`giftCardsGet`](docs/sdks/giftcards/README.md#get) - Get gift card
 - [`giftCardsList`](docs/sdks/giftcards/README.md#list) - List gift cards
+- [`merchantAccountsCreate`](docs/sdks/merchantaccounts/README.md#create) - Create a merchant account
+- [`merchantAccountsGet`](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
+- [`merchantAccountsList`](docs/sdks/merchantaccounts/README.md#list) - List all merchant accounts
+- [`merchantAccountsUpdate`](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
 - [`paymentMethodsCreate`](docs/sdks/paymentmethods/README.md#create) - Create payment method
 - [`paymentMethodsDelete`](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
 - [`paymentMethodsGet`](docs/sdks/paymentmethods/README.md#get) - Get payment method
