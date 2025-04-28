@@ -34,6 +34,10 @@ typescript:
   additionalPackageJSON: {}
   author: Gr4vy
   clientServerStatusCodesAsErrors: true
+  compileCommand:
+    - bash
+    - -c
+    - ./.speakeasy/compile.sh
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
   enableMCPServer: true
