@@ -21,7 +21,11 @@ import { Gr4vy } from "@gr4vy/sdk";
 import { RFCDate } from "@gr4vy/sdk/types";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -161,12 +165,17 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { checkoutSessionsCreate } from "@gr4vy/sdk/funcs/checkoutSessionsCreate.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -233,7 +242,11 @@ import { Gr4vy } from "@gr4vy/sdk";
 import { RFCDate } from "@gr4vy/sdk/types";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -455,13 +468,18 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { checkoutSessionsUpdate } from "@gr4vy/sdk/funcs/checkoutSessionsUpdate.js";
 import { RFCDate } from "@gr4vy/sdk/types";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -729,7 +747,11 @@ Retrieve the information stored on a checkout session.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -748,12 +770,17 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { checkoutSessionsGet } from "@gr4vy/sdk/funcs/checkoutSessionsGet.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -816,7 +843,11 @@ Deleta a checkout session and all of its (PCI) data.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
@@ -834,12 +865,17 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { checkoutSessionsDelete } from "@gr4vy/sdk/funcs/checkoutSessionsDelete.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
-  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+  server: "sandbox",
+  id: "example",
+  bearerAuth: withToken({
+    privateKey: fs.readFileSync("private_key.pem", "utf8"),
+  }),
 });
 
 async function run() {
