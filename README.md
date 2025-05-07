@@ -1143,6 +1143,15 @@ You can also enable a default debug logger by setting an environment variable `G
 
 # Development
 
+## Testing
+
+To run the tests, install NPM and run the following.
+
+```sh
+npm install
+npx vitest
+```
+
 ## Maturity
 
 This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage

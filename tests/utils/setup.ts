@@ -1,10 +1,9 @@
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
-import { v4 as uuid } from "uuid";
 import { Gr4vy, withToken } from "../../src";
 
-
-const loadPrivateKey = () : string => {
+const loadPrivateKey = (): string => {
   let privateKey = process.env.GR4VY_PRIVATE_KEY;
 
   if (!privateKey) {
@@ -12,31 +11,41 @@ const loadPrivateKey = () : string => {
     privateKey = String(fs.readFileSync(filename));
   }
 
-  return privateKey
+  return privateKey;
 };
 
-const createGr4vyClient = (privateKey: string, merchantAccountId?: string): Gr4vy => {
+const createGr4vyClient = (
+  privateKey: string,
+  merchantAccountId?: string
+): Gr4vy => {
   return new Gr4vy({
-    server: "sandbox",    
-    id: "spider",
+    server: "sandbox",
+    id: "e2e",
     merchantAccountId,
     bearerAuth: withToken({ privateKey }),
   });
 };
 
-const createMerchantAccount = async (gr4vy: Gr4vy): Promise<string> => {
-  const merchantAccountId = uuid();
-  const merchantAccount = gr4vy.merchantAccounts.create({ id: merchantAccountId, displayName: merchantAccountId})
-  return merchantAccount.id;
-}
-
 export const setupEnvironment = async (): Promise<Gr4vy> => {
+  // Create a merchant account
   const privateKey = loadPrivateKey();
-  const gr4vy = createGr4vyClient(privateKey);
-  const merchantAccountId = await createMerchantAccount(gr4vy)
+  const adminClient = createGr4vyClient(privateKey);
+  const merchantAccountId = crypto.randomBytes(8).toString("hex");
+  const merchantAccount = await adminClient.merchantAccounts.create({
+    id: merchantAccountId,
+    displayName: merchantAccountId,
+  });
+  const merchantClient = createGr4vyClient(privateKey, merchantAccount.id);
+  // Setup a payment service
+  await merchantClient.paymentServices.create({
+    acceptedCountries: ["US"],
+    acceptedCurrencies: ["USD"],
+    displayName: "Payment service",
+    paymentServiceDefinitionId: "mock-card",
+    fields: [{ key: "merchant_id", value: "test" }],
+  });
 
-  return createGr4vyClient(privateKey, merchantAccountId);
-  ;
+  return merchantClient;
 };
 
 export const cleanupEnvironment = async (): Promise<void> => {
