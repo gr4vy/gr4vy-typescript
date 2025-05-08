@@ -28,15 +28,15 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The credentials were invalid or the caller did not have permission to act on the resource.
  */
-export type GetTreansactionRefundResponse403GetTreansactionRefund =
+export type GetTransactionRefundResponse403GetTransactionRefund =
   | Error403
   | Error403Forbidden
   | Error403Active;
 
 /** @internal */
-export const GetTreansactionRefundResponse403GetTreansactionRefund$inboundSchema:
+export const GetTransactionRefundResponse403GetTransactionRefund$inboundSchema:
   z.ZodType<
-    GetTreansactionRefundResponse403GetTreansactionRefund,
+    GetTransactionRefundResponse403GetTransactionRefund,
     z.ZodTypeDef,
     unknown
   > = z.union([
@@ -46,17 +46,17 @@ export const GetTreansactionRefundResponse403GetTreansactionRefund$inboundSchema
   ]);
 
 /** @internal */
-export type GetTreansactionRefundResponse403GetTreansactionRefund$Outbound =
+export type GetTransactionRefundResponse403GetTransactionRefund$Outbound =
   | Error403$Outbound
   | Error403Forbidden$Outbound
   | Error403Active$Outbound;
 
 /** @internal */
-export const GetTreansactionRefundResponse403GetTreansactionRefund$outboundSchema:
+export const GetTransactionRefundResponse403GetTransactionRefund$outboundSchema:
   z.ZodType<
-    GetTreansactionRefundResponse403GetTreansactionRefund$Outbound,
+    GetTransactionRefundResponse403GetTransactionRefund$Outbound,
     z.ZodTypeDef,
-    GetTreansactionRefundResponse403GetTreansactionRefund
+    GetTransactionRefundResponse403GetTransactionRefund
   > = z.union([
     Error403$outboundSchema,
     Error403Forbidden$outboundSchema,
@@ -67,41 +67,41 @@ export const GetTreansactionRefundResponse403GetTreansactionRefund$outboundSchem
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetTreansactionRefundResponse403GetTreansactionRefund$ {
-  /** @deprecated use `GetTreansactionRefundResponse403GetTreansactionRefund$inboundSchema` instead. */
+export namespace GetTransactionRefundResponse403GetTransactionRefund$ {
+  /** @deprecated use `GetTransactionRefundResponse403GetTransactionRefund$inboundSchema` instead. */
   export const inboundSchema =
-    GetTreansactionRefundResponse403GetTreansactionRefund$inboundSchema;
-  /** @deprecated use `GetTreansactionRefundResponse403GetTreansactionRefund$outboundSchema` instead. */
+    GetTransactionRefundResponse403GetTransactionRefund$inboundSchema;
+  /** @deprecated use `GetTransactionRefundResponse403GetTransactionRefund$outboundSchema` instead. */
   export const outboundSchema =
-    GetTreansactionRefundResponse403GetTreansactionRefund$outboundSchema;
-  /** @deprecated use `GetTreansactionRefundResponse403GetTreansactionRefund$Outbound` instead. */
+    GetTransactionRefundResponse403GetTransactionRefund$outboundSchema;
+  /** @deprecated use `GetTransactionRefundResponse403GetTransactionRefund$Outbound` instead. */
   export type Outbound =
-    GetTreansactionRefundResponse403GetTreansactionRefund$Outbound;
+    GetTransactionRefundResponse403GetTransactionRefund$Outbound;
 }
 
-export function getTreansactionRefundResponse403GetTreansactionRefundToJSON(
-  getTreansactionRefundResponse403GetTreansactionRefund:
-    GetTreansactionRefundResponse403GetTreansactionRefund,
+export function getTransactionRefundResponse403GetTransactionRefundToJSON(
+  getTransactionRefundResponse403GetTransactionRefund:
+    GetTransactionRefundResponse403GetTransactionRefund,
 ): string {
   return JSON.stringify(
-    GetTreansactionRefundResponse403GetTreansactionRefund$outboundSchema.parse(
-      getTreansactionRefundResponse403GetTreansactionRefund,
+    GetTransactionRefundResponse403GetTransactionRefund$outboundSchema.parse(
+      getTransactionRefundResponse403GetTransactionRefund,
     ),
   );
 }
 
-export function getTreansactionRefundResponse403GetTreansactionRefundFromJSON(
+export function getTransactionRefundResponse403GetTransactionRefundFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GetTreansactionRefundResponse403GetTreansactionRefund,
+  GetTransactionRefundResponse403GetTransactionRefund,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GetTreansactionRefundResponse403GetTreansactionRefund$inboundSchema.parse(
+      GetTransactionRefundResponse403GetTransactionRefund$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'GetTreansactionRefundResponse403GetTreansactionRefund' from JSON`,
+    `Failed to parse 'GetTransactionRefundResponse403GetTransactionRefund' from JSON`,
   );
 }

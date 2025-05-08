@@ -79,12 +79,12 @@ import { tool$payoutsCreate } from "./tools/payoutsCreate.js";
 import { tool$payoutsGet } from "./tools/payoutsGet.js";
 import { tool$payoutsList } from "./tools/payoutsList.js";
 import { tool$refundsGet } from "./tools/refundsGet.js";
-import { tool$transactionRefundsAllCreate } from "./tools/transactionRefundsAllCreate.js";
-import { tool$transactionRefundsCreate } from "./tools/transactionRefundsCreate.js";
 import { tool$transactionsCapture } from "./tools/transactionsCapture.js";
 import { tool$transactionsCreate } from "./tools/transactionsCreate.js";
 import { tool$transactionsGet } from "./tools/transactionsGet.js";
 import { tool$transactionsList } from "./tools/transactionsList.js";
+import { tool$transactionsRefundsAllCreate } from "./tools/transactionsRefundsAllCreate.js";
+import { tool$transactionsRefundsCreate } from "./tools/transactionsRefundsCreate.js";
 import { tool$transactionsRefundsGet } from "./tools/transactionsRefundsGet.js";
 import { tool$transactionsRefundsList } from "./tools/transactionsRefundsList.js";
 import { tool$transactionsSummary } from "./tools/transactionsSummary.js";
@@ -103,7 +103,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Gr4vy",
-    version: "0.18.17",
+    version: "0.18.18",
   });
 
   const client = new Gr4vyCore({
@@ -208,10 +208,10 @@ export function createMCPServer(deps: {
   tool(tool$digitalWalletsDomainsCreate);
   tool(tool$digitalWalletsDomainsDelete);
   tool(tool$transactionsRefundsList);
+  tool(tool$transactionsRefundsCreate);
   tool(tool$transactionsRefundsGet);
-  tool(tool$transactionRefundsCreate);
   tool(tool$paymentMethodsNetworkTokensCryptogramCreate);
-  tool(tool$transactionRefundsAllCreate);
+  tool(tool$transactionsRefundsAllCreate);
 
   return server;
 }

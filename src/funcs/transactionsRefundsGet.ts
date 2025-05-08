@@ -42,7 +42,7 @@ export function transactionsRefundsGet(
     components.Refund,
     | errors.Error400
     | errors.Error401
-    | errors.GetTreansactionRefundResponse403GetTreansactionRefund
+    | errors.GetTransactionRefundResponse403GetTransactionRefund
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -82,7 +82,7 @@ async function $do(
       components.Refund,
       | errors.Error400
       | errors.Error401
-      | errors.GetTreansactionRefundResponse403GetTreansactionRefund
+      | errors.GetTransactionRefundResponse403GetTransactionRefund
       | errors.Error404
       | errors.Error405
       | errors.Error409
@@ -103,7 +103,7 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.GetTreansactionRefundRequest = {
+  const input: operations.GetTransactionRefundRequest = {
     transactionId: transactionId,
     refundId: refundId,
     merchantAccountId: merchantAccountId,
@@ -112,7 +112,7 @@ async function $do(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.GetTreansactionRefundRequest$outboundSchema.parse(value),
+      operations.GetTransactionRefundRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -151,7 +151,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "get_treansaction_refund",
+    operationID: "get_transaction_refund",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -221,7 +221,7 @@ async function $do(
     components.Refund,
     | errors.Error400
     | errors.Error401
-    | errors.GetTreansactionRefundResponse403GetTreansactionRefund
+    | errors.GetTransactionRefundResponse403GetTransactionRefund
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -244,8 +244,7 @@ async function $do(
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(
       403,
-      errors
-        .GetTreansactionRefundResponse403GetTreansactionRefund$inboundSchema,
+      errors.GetTransactionRefundResponse403GetTransactionRefund$inboundSchema,
     ),
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),

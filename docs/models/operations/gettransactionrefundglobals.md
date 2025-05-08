@@ -1,11 +1,11 @@
-# GetTreansactionRefundGlobals
+# GetTransactionRefundGlobals
 
 ## Example Usage
 
 ```typescript
-import { GetTreansactionRefundGlobals } from "@gr4vy/sdk/models/operations";
+import { GetTransactionRefundGlobals } from "@gr4vy/sdk/models/operations";
 
-let value: GetTreansactionRefundGlobals = {};
+let value: GetTransactionRefundGlobals = {};
 ```
 
 ## Fields

@@ -318,17 +318,6 @@ try {
 
 * [get](docs/sdks/refunds/README.md#get) - Get refund
 
-### [transaction](docs/sdks/transaction/README.md)
-
-
-#### [transaction.refunds](docs/sdks/gr4vyrefunds/README.md)
-
-* [create](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
-
-#### [transaction.refunds.all](docs/sdks/all/README.md)
-
-* [create](docs/sdks/all/README.md#create) - Create batch transaction refund
-
 ### [transactions](docs/sdks/transactions/README.md)
 
 * [list](docs/sdks/transactions/README.md#list) - List transactions
@@ -339,10 +328,15 @@ try {
 * [summary](docs/sdks/transactions/README.md#summary) - Get transaction summary
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
 
-#### [transactions.refunds](docs/sdks/gr4vytransactionsrefunds/README.md)
+#### [transactions.refunds](docs/sdks/gr4vyrefunds/README.md)
 
-* [list](docs/sdks/gr4vytransactionsrefunds/README.md#list) - List transaction refunds
-* [get](docs/sdks/gr4vytransactionsrefunds/README.md#get) - Get transaction refund
+* [list](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
+* [create](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
+* [get](docs/sdks/gr4vyrefunds/README.md#get) - Get transaction refund
+
+#### [transactions.refunds.all](docs/sdks/all/README.md)
+
+* [create](docs/sdks/all/README.md#create) - Create batch transaction refund
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -527,7 +521,7 @@ You can override the default server globally by passing a server name to the `se
 
 | Name         | Server                               | Variables | Description |
 | ------------ | ------------------------------------ | --------- | ----------- |
-| `production` | `https://api.{id}.gr4vy.app`         | `id`      |             |
+| `production` | `https://api.example.gr4vy.app`      | `id`      |             |
 | `sandbox`    | `https://api.sandbox.{id}.gr4vy.app` | `id`      |             |
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
@@ -1105,14 +1099,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout.
 - [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created.
 - [`refundsGet`](docs/sdks/refunds/README.md#get) - Get refund
-- [`transactionRefundsAllCreate`](docs/sdks/all/README.md#create) - Create batch transaction refund
-- [`transactionRefundsCreate`](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
 - [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
 - [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create transaction
 - [`transactionsGet`](docs/sdks/transactions/README.md#get) - Get transaction
 - [`transactionsList`](docs/sdks/transactions/README.md#list) - List transactions
-- [`transactionsRefundsGet`](docs/sdks/gr4vytransactionsrefunds/README.md#get) - Get transaction refund
-- [`transactionsRefundsList`](docs/sdks/gr4vytransactionsrefunds/README.md#list) - List transaction refunds
+- [`transactionsRefundsAllCreate`](docs/sdks/all/README.md#create) - Create batch transaction refund
+- [`transactionsRefundsCreate`](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
+- [`transactionsRefundsGet`](docs/sdks/gr4vyrefunds/README.md#get) - Get transaction refund
+- [`transactionsRefundsList`](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
 - [`transactionsSummary`](docs/sdks/transactions/README.md#summary) - Get transaction summary
 - [`transactionsSync`](docs/sdks/transactions/README.md#sync) - Sync transaction
 - [`transactionsVoid`](docs/sdks/transactions/README.md#void) - Void transaction
