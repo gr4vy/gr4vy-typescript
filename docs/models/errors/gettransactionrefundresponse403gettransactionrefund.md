@@ -1,4 +1,4 @@
-# GetTreansactionRefundResponse403GetTreansactionRefund
+# GetTransactionRefundResponse403GetTransactionRefund
 
 The credentials were invalid or the caller did not have permission to act on the resource.
 

@@ -26,24 +26,27 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create transaction refund
+ * Create batch transaction refund
  *
  * @remarks
- * Create a refund for a transaction.
+ * Create a refund for all instruments on a transaction.
  */
-export function transactionRefundsCreate(
+export function transactionsRefundsAllCreate(
   client: Gr4vyCore,
-  transactionRefundCreate: components.TransactionRefundCreate,
   transactionId: string,
+  transactionRefundAllCreate?:
+    | components.TransactionRefundAllCreate
+    | null
+    | undefined,
   timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.Refund,
+    components.CollectionNoCursorRefund,
     | errors.Error400
     | errors.Error401
-    | errors.CreateTransactionRefundResponse403CreateTransactionRefund
+    | errors.CreateFullTransactionRefundResponse403CreateFullTransactionRefund
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -64,8 +67,8 @@ export function transactionRefundsCreate(
 > {
   return new APIPromise($do(
     client,
-    transactionRefundCreate,
     transactionId,
+    transactionRefundAllCreate,
     timeoutInSeconds,
     merchantAccountId,
     options,
@@ -74,18 +77,21 @@ export function transactionRefundsCreate(
 
 async function $do(
   client: Gr4vyCore,
-  transactionRefundCreate: components.TransactionRefundCreate,
   transactionId: string,
+  transactionRefundAllCreate?:
+    | components.TransactionRefundAllCreate
+    | null
+    | undefined,
   timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.Refund,
+      components.CollectionNoCursorRefund,
       | errors.Error400
       | errors.Error401
-      | errors.CreateTransactionRefundResponse403CreateTransactionRefund
+      | errors.CreateFullTransactionRefundResponse403CreateFullTransactionRefund
       | errors.Error404
       | errors.Error405
       | errors.Error409
@@ -106,9 +112,9 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.CreateTransactionRefundRequest = {
-    transactionRefundCreate: transactionRefundCreate,
+  const input: operations.CreateFullTransactionRefundRequest = {
     transactionId: transactionId,
+    transactionRefundAllCreate: transactionRefundAllCreate,
     timeoutInSeconds: timeoutInSeconds,
     merchantAccountId: merchantAccountId,
   };
@@ -116,14 +122,14 @@ async function $do(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.CreateTransactionRefundRequest$outboundSchema.parse(value),
+      operations.CreateFullTransactionRefundRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.TransactionRefundCreate, {
+  const body = encodeJSON("body", payload.TransactionRefundAllCreate, {
     explode: true,
   });
 
@@ -134,7 +140,9 @@ async function $do(
     }),
   };
 
-  const path = pathToFunc("/transactions/{transaction_id}/refunds")(pathParams);
+  const path = pathToFunc("/transactions/{transaction_id}/refunds/all")(
+    pathParams,
+  );
 
   const query = encodeFormQuery({
     "timeout_in_seconds": payload.timeout_in_seconds,
@@ -156,7 +164,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "create_transaction_refund",
+    operationID: "create_full_transaction_refund",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -214,10 +222,10 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.Refund,
+    components.CollectionNoCursorRefund,
     | errors.Error400
     | errors.Error401
-    | errors.CreateTransactionRefundResponse403CreateTransactionRefund
+    | errors.CreateFullTransactionRefundResponse403CreateFullTransactionRefund
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -235,13 +243,13 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, components.Refund$inboundSchema),
+    M.json(201, components.CollectionNoCursorRefund$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(
       403,
       errors
-        .CreateTransactionRefundResponse403CreateTransactionRefund$inboundSchema,
+        .CreateFullTransactionRefundResponse403CreateFullTransactionRefund$inboundSchema,
     ),
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),

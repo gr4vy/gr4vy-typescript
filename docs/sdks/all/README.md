@@ -1,5 +1,5 @@
 # All
-(*transaction.refunds.all*)
+(*transactions.refunds.all*)
 
 ## Overview
 
@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transaction.refunds.all.create("7099948d-7286-47e4-aad8-b68f7eb44591", {
+  const result = await gr4vy.transactions.refunds.all.create("7099948d-7286-47e4-aad8-b68f7eb44591", {
     reason: "Refund due to user request.",
     externalIdentifier: "refund-12345",
   }, 1, "default");
@@ -44,7 +44,7 @@ The standalone function version of this method:
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
 import { withToken } from "@gr4vy/sdk/lib/auth.js";
-import { transactionRefundsAllCreate } from "@gr4vy/sdk/funcs/transactionRefundsAllCreate.js";
+import { transactionsRefundsAllCreate } from "@gr4vy/sdk/funcs/transactionsRefundsAllCreate.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -57,7 +57,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionRefundsAllCreate(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591", {
+  const res = await transactionsRefundsAllCreate(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591", {
     reason: "Refund due to user request.",
     externalIdentifier: "refund-12345",
   }, 1, "default");

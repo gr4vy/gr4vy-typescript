@@ -14,12 +14,12 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
-import { Gr4vyTransactionsRefunds } from "./gr4vytransactionsrefunds.js";
+import { Gr4vyRefunds } from "./gr4vyrefunds.js";
 
 export class Transactions extends ClientSDK {
-  private _refunds?: Gr4vyTransactionsRefunds;
-  get refunds(): Gr4vyTransactionsRefunds {
-    return (this._refunds ??= new Gr4vyTransactionsRefunds(this._options));
+  private _refunds?: Gr4vyRefunds;
+  get refunds(): Gr4vyRefunds {
+    return (this._refunds ??= new Gr4vyRefunds(this._options));
   }
 
   /**

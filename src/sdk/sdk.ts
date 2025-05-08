@@ -17,7 +17,6 @@ import { PaymentServiceDefinitions } from "./paymentservicedefinitions.js";
 import { PaymentServices } from "./paymentservices.js";
 import { Payouts } from "./payouts.js";
 import { Refunds } from "./refunds.js";
-import { Transaction } from "./transaction.js";
 import { Transactions } from "./transactions.js";
 
 export class Gr4vy extends ClientSDK {
@@ -56,11 +55,6 @@ export class Gr4vy extends ClientSDK {
   private _transactions?: Transactions;
   get transactions(): Transactions {
     return (this._transactions ??= new Transactions(this._options));
-  }
-
-  private _transaction?: Transaction;
-  get transaction(): Transaction {
-    return (this._transaction ??= new Transaction(this._options));
   }
 
   private _refunds?: Refunds;

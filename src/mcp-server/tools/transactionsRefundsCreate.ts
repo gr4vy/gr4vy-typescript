@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod";
-import { transactionRefundsCreate } from "../../funcs/transactionRefundsCreate.js";
+import { transactionsRefundsCreate } from "../../funcs/transactionsRefundsCreate.js";
 import * as components from "../../models/components/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
@@ -14,14 +14,14 @@ const args = {
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
-export const tool$transactionRefundsCreate: ToolDefinition<typeof args> = {
-  name: "transaction-refunds-create",
+export const tool$transactionsRefundsCreate: ToolDefinition<typeof args> = {
+  name: "transactions-refunds-create",
   description: `Create transaction refund
 
 Create a refund for a transaction.`,
   args,
   tool: async (client, args, ctx) => {
-    const [result, apiCall] = await transactionRefundsCreate(
+    const [result, apiCall] = await transactionsRefundsCreate(
       client,
       args.transactionRefundCreate,
       args.transactionId,
