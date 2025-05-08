@@ -5,13 +5,16 @@
 ```typescript
 import { ListMerchantAccountsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListMerchantAccountsRequest = {};
+let value: ListMerchantAccountsRequest = {
+  cursor: "ZXhhbXBsZTE",
+  search: "merchant-12345",
+};
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `cursor`           | *string*           | :heavy_minus_sign: | N/A                |
-| `limit`            | *number*           | :heavy_minus_sign: | N/A                |
-| `search`           | *string*           | :heavy_minus_sign: | N/A                |
+| Field                                             | Type                                              | Required                                          | Description                                       | Example                                           |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `cursor`                                          | *string*                                          | :heavy_minus_sign:                                | A pointer to the page of results to return.       | ZXhhbXBsZTE                                       |
+| `limit`                                           | *number*                                          | :heavy_minus_sign:                                | The maximum number of items that are at returned. | 20                                                |
+| `search`                                          | *string*                                          | :heavy_minus_sign:                                | The search term to filter merchant accounts by.   | merchant-12345                                    |

@@ -10,8 +10,17 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListMerchantAccountsRequest = {
+  /**
+   * A pointer to the page of results to return.
+   */
   cursor?: string | null | undefined;
+  /**
+   * The maximum number of items that are at returned.
+   */
   limit?: number | undefined;
+  /**
+   * The search term to filter merchant accounts by.
+   */
   search?: string | null | undefined;
 };
 

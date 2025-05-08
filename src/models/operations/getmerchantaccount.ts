@@ -9,6 +9,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMerchantAccountRequest = {
+  /**
+   * The ID of the merchant account
+   */
   merchantAccountId: string;
 };
 

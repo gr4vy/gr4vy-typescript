@@ -65,6 +65,16 @@ import { tool$paymentMethodsPaymentServiceTokensCreate } from "./tools/paymentMe
 import { tool$paymentMethodsPaymentServiceTokensDelete } from "./tools/paymentMethodsPaymentServiceTokensDelete.js";
 import { tool$paymentMethodsPaymentServiceTokensList } from "./tools/paymentMethodsPaymentServiceTokensList.js";
 import { tool$paymentOptionsList } from "./tools/paymentOptionsList.js";
+import { tool$paymentServiceDefinitionsGet } from "./tools/paymentServiceDefinitionsGet.js";
+import { tool$paymentServiceDefinitionsList } from "./tools/paymentServiceDefinitionsList.js";
+import { tool$paymentServiceDefinitionsSession } from "./tools/paymentServiceDefinitionsSession.js";
+import { tool$paymentServicesCreate } from "./tools/paymentServicesCreate.js";
+import { tool$paymentServicesDelete } from "./tools/paymentServicesDelete.js";
+import { tool$paymentServicesGet } from "./tools/paymentServicesGet.js";
+import { tool$paymentServicesList } from "./tools/paymentServicesList.js";
+import { tool$paymentServicesSession } from "./tools/paymentServicesSession.js";
+import { tool$paymentServicesUpdate } from "./tools/paymentServicesUpdate.js";
+import { tool$paymentServicesVerify } from "./tools/paymentServicesVerify.js";
 import { tool$payoutsCreate } from "./tools/payoutsCreate.js";
 import { tool$payoutsGet } from "./tools/payoutsGet.js";
 import { tool$payoutsList } from "./tools/payoutsList.js";
@@ -93,7 +103,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Gr4vy",
-    version: "0.18.16",
+    version: "0.18.17",
   });
 
   const client = new Gr4vyCore({
@@ -153,6 +163,16 @@ export function createMCPServer(deps: {
   tool(tool$transactionsSync);
   tool(tool$refundsGet);
   tool(tool$paymentOptionsList);
+  tool(tool$paymentServiceDefinitionsList);
+  tool(tool$paymentServiceDefinitionsGet);
+  tool(tool$paymentServiceDefinitionsSession);
+  tool(tool$paymentServicesList);
+  tool(tool$paymentServicesCreate);
+  tool(tool$paymentServicesGet);
+  tool(tool$paymentServicesUpdate);
+  tool(tool$paymentServicesDelete);
+  tool(tool$paymentServicesVerify);
+  tool(tool$paymentServicesSession);
   tool(tool$auditLogsList);
   tool(tool$checkoutSessionsCreate);
   tool(tool$checkoutSessionsUpdate);

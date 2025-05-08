@@ -10,6 +10,9 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateMerchantAccountRequest = {
+  /**
+   * The ID of the merchant account
+   */
   merchantAccountId: string;
   timeoutInSeconds?: number | undefined;
   merchantAccountUpdate: components.MerchantAccountUpdate;

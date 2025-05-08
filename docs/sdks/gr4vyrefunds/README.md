@@ -30,7 +30,7 @@ async function run() {
     targetId: "7a6c366d-9205-45ab-8021-0d9ee37f20f2",
     reason: "Refund due to user request.",
     externalIdentifier: "refund-12345",
-  }, "7099948d-7286-47e4-aad8-b68f7eb44591", "default");
+  }, "7099948d-7286-47e4-aad8-b68f7eb44591", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -64,7 +64,7 @@ async function run() {
     targetId: "7a6c366d-9205-45ab-8021-0d9ee37f20f2",
     reason: "Refund due to user request.",
     externalIdentifier: "refund-12345",
-  }, "7099948d-7286-47e4-aad8-b68f7eb44591", "default");
+  }, "7099948d-7286-47e4-aad8-b68f7eb44591", 1, "default");
 
   if (!res.ok) {
     throw res.error;

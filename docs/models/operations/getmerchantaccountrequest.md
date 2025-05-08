@@ -6,12 +6,12 @@
 import { GetMerchantAccountRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetMerchantAccountRequest = {
-  merchantAccountId: "<id>",
+  merchantAccountId: "merchant-12345",
 };
 ```
 
 ## Fields
 
-| Field               | Type                | Required            | Description         |
-| ------------------- | ------------------- | ------------------- | ------------------- |
-| `merchantAccountId` | *string*            | :heavy_check_mark:  | N/A                 |
+| Field                          | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `merchantAccountId`            | *string*                       | :heavy_check_mark:             | The ID of the merchant account | merchant-12345                 |

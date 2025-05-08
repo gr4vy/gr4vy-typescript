@@ -150,7 +150,7 @@ async function run() {
       travelAgencyPlanName: "B733",
     },
     expiresIn: 3600,
-  }, "default");
+  }, 1, "default");
 
   // Handle the result
   console.log(result);
@@ -181,7 +181,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await checkoutSessionsCreate(gr4vy, [
     {},
-  ], "default");
+  ], 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -453,7 +453,7 @@ async function run() {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
-  }, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "default");
+  }, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -686,7 +686,7 @@ async function run() {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
-  }, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "default");
+  }, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -755,7 +755,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.checkoutSessions.get("4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "default");
+  const result = await gr4vy.checkoutSessions.get("4137b1cf-39ac-42a8-bad6-1c680d5dab6b", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -784,7 +784,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await checkoutSessionsGet(gr4vy, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "default");
+  const res = await checkoutSessionsGet(gr4vy, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -851,7 +851,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  await gr4vy.checkoutSessions.delete("4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "default");
+  await gr4vy.checkoutSessions.delete("4137b1cf-39ac-42a8-bad6-1c680d5dab6b", 1, "default");
 
 
 }
@@ -879,7 +879,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await checkoutSessionsDelete(gr4vy, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", "default");
+  const res = await checkoutSessionsDelete(gr4vy, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b", 1, "default");
 
   if (!res.ok) {
     throw res.error;

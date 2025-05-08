@@ -13,6 +13,8 @@ import { GiftCards } from "./giftcards.js";
 import { MerchantAccounts } from "./merchantaccounts.js";
 import { PaymentMethods } from "./paymentmethods.js";
 import { PaymentOptions } from "./paymentoptions.js";
+import { PaymentServiceDefinitions } from "./paymentservicedefinitions.js";
+import { PaymentServices } from "./paymentservices.js";
 import { Payouts } from "./payouts.js";
 import { Refunds } from "./refunds.js";
 import { Transaction } from "./transaction.js";
@@ -69,6 +71,18 @@ export class Gr4vy extends ClientSDK {
   private _paymentOptions?: PaymentOptions;
   get paymentOptions(): PaymentOptions {
     return (this._paymentOptions ??= new PaymentOptions(this._options));
+  }
+
+  private _paymentServiceDefinitions?: PaymentServiceDefinitions;
+  get paymentServiceDefinitions(): PaymentServiceDefinitions {
+    return (this._paymentServiceDefinitions ??= new PaymentServiceDefinitions(
+      this._options,
+    ));
+  }
+
+  private _paymentServices?: PaymentServices;
+  get paymentServices(): PaymentServices {
+    return (this._paymentServices ??= new PaymentServices(this._options));
   }
 
   private _auditLogs?: AuditLogs;

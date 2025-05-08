@@ -160,7 +160,7 @@ async function run() {
         kind: "jp.cn",
       },
     },
-  }, "default");
+  }, 1, "default");
 
   // Handle the result
   console.log(result);
@@ -213,7 +213,7 @@ async function run() {
         kind: "jp.cn",
       },
     },
-  }, "default");
+  }, 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -401,7 +401,7 @@ async function run() {
         kind: "th.id",
       },
     },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -454,7 +454,7 @@ async function run() {
         kind: "th.id",
       },
     },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -523,7 +523,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  await gr4vy.buyers.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  await gr4vy.buyers.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
 
 
 }
@@ -551,7 +551,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  const res = await buyersDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
 
   if (!res.ok) {
     throw res.error;

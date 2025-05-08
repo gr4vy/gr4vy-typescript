@@ -292,6 +292,22 @@ try {
 
 * [list](docs/sdks/paymentoptions/README.md#list) - List payment options
 
+### [paymentServiceDefinitions](docs/sdks/paymentservicedefinitions/README.md)
+
+* [list](docs/sdks/paymentservicedefinitions/README.md#list) - List payment service definitions
+* [get](docs/sdks/paymentservicedefinitions/README.md#get) - Get a payment service definition
+* [session](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for apayment service definition
+
+### [paymentServices](docs/sdks/paymentservices/README.md)
+
+* [list](docs/sdks/paymentservices/README.md#list) - List payment services
+* [create](docs/sdks/paymentservices/README.md#create) - Update a configured payment service
+* [get](docs/sdks/paymentservices/README.md#get) - Get payment service
+* [update](docs/sdks/paymentservices/README.md#update) - Configure a payment service
+* [delete](docs/sdks/paymentservices/README.md#delete) - Delete a configured payment service
+* [verify](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
+* [session](docs/sdks/paymentservices/README.md#session) - Create a session for apayment service definition
+
 ### [payouts](docs/sdks/payouts/README.md)
 
 * [list](docs/sdks/payouts/README.md#list) - List payouts created.
@@ -387,12 +403,16 @@ const gr4vy = new Gr4vy({
 async function run() {
   let result;
   try {
-    result = await gr4vy.accountUpdater.jobs.create({
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    }, "default");
+    result = await gr4vy.accountUpdater.jobs.create(
+      {
+        paymentMethodIds: [
+          "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+          "f29e886e-93cc-4714-b4a3-12b7a718e595",
+        ],
+      },
+      1,
+      "default",
+    );
 
     // Handle the result
     console.log(result);
@@ -532,12 +552,16 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  }, "default");
+  const result = await gr4vy.accountUpdater.jobs.create(
+    {
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
+    },
+    1,
+    "default",
+  );
 
   // Handle the result
   console.log(result);
@@ -563,12 +587,16 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  }, "default");
+  const result = await gr4vy.accountUpdater.jobs.create(
+    {
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
+    },
+    1,
+    "default",
+  );
 
   // Handle the result
   console.log(result);
@@ -652,12 +680,16 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  }, "default");
+  const result = await gr4vy.accountUpdater.jobs.create(
+    {
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
+    },
+    1,
+    "default",
+  );
 
   // Handle the result
   console.log(result);
@@ -805,12 +837,16 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  }, "default");
+  const result = await gr4vy.accountUpdater.jobs.create(
+    {
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
+    },
+    1,
+    "default",
+  );
 
   // Handle the result
   console.log(result);
@@ -887,6 +923,7 @@ async function run() {
         "f29e886e-93cc-4714-b4a3-12b7a718e595",
       ],
     },
+    1,
     "default",
     {
       retries: {
@@ -933,12 +970,16 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  }, "default");
+  const result = await gr4vy.accountUpdater.jobs.create(
+    {
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
+    },
+    1,
+    "default",
+  );
 
   // Handle the result
   console.log(result);
@@ -1050,6 +1091,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentMethodsPaymentServiceTokensDelete`](docs/sdks/paymentservicetokens/README.md#delete) - Delete payment service token
 - [`paymentMethodsPaymentServiceTokensList`](docs/sdks/paymentservicetokens/README.md#list) - List payment service tokens
 - [`paymentOptionsList`](docs/sdks/paymentoptions/README.md#list) - List payment options
+- [`paymentServiceDefinitionsGet`](docs/sdks/paymentservicedefinitions/README.md#get) - Get a payment service definition
+- [`paymentServiceDefinitionsList`](docs/sdks/paymentservicedefinitions/README.md#list) - List payment service definitions
+- [`paymentServiceDefinitionsSession`](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for apayment service definition
+- [`paymentServicesCreate`](docs/sdks/paymentservices/README.md#create) - Update a configured payment service
+- [`paymentServicesDelete`](docs/sdks/paymentservices/README.md#delete) - Delete a configured payment service
+- [`paymentServicesGet`](docs/sdks/paymentservices/README.md#get) - Get payment service
+- [`paymentServicesList`](docs/sdks/paymentservices/README.md#list) - List payment services
+- [`paymentServicesSession`](docs/sdks/paymentservices/README.md#session) - Create a session for apayment service definition
+- [`paymentServicesUpdate`](docs/sdks/paymentservices/README.md#update) - Configure a payment service
+- [`paymentServicesVerify`](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
 - [`payoutsCreate`](docs/sdks/payouts/README.md#create) - Create a payout.
 - [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout.
 - [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created.
