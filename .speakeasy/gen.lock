@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 03abec67e7582687ef971f66d46859e5
+  docChecksum: fa9ae01de3455fcc071714c756663fde
   docVersion: 1.0.0
-  speakeasyVersion: 1.540.1
-  generationVersion: 2.593.4
-  releaseVersion: 0.18.16
-  configChecksum: c1b3c73d414aab5d120f0a1852014125
+  speakeasyVersion: 1.542.3
+  generationVersion: 2.597.9
+  releaseVersion: 0.18.17
+  configChecksum: b096939637cf56228ed561f8edb019b8
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.6
+    core: 3.21.7
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -100,15 +100,21 @@ generatedFiles:
   - docs/models/components/collectionnocursorrefund.md
   - docs/models/components/collectionnocursorshippingdetails.md
   - docs/models/components/collectionpaymentmethod.md
+  - docs/models/components/collectionpaymentservice.md
+  - docs/models/components/collectionpaymentservicedefinition.md
   - docs/models/components/collectionpayoutsummary.md
   - docs/models/components/collectionrefund.md
   - docs/models/components/collectiontransactionsummary.md
   - docs/models/components/connectionoptions.md
   - docs/models/components/context.md
+  - docs/models/components/createsession.md
+  - docs/models/components/createsessionstatus.md
   - docs/models/components/creator.md
   - docs/models/components/cryptogram.md
   - docs/models/components/cryptogramcreate.md
   - docs/models/components/cvvresponsecode.md
+  - docs/models/components/definitionfield.md
+  - docs/models/components/definitionfieldformat.md
   - docs/models/components/digitalwallet.md
   - docs/models/components/digitalwalletcreate.md
   - docs/models/components/digitalwalletdomain.md
@@ -116,6 +122,7 @@ generatedFiles:
   - docs/models/components/digitalwalletupdate.md
   - docs/models/components/errordetail.md
   - docs/models/components/errorlocation.md
+  - docs/models/components/field.md
   - docs/models/components/giftcard.md
   - docs/models/components/giftcardbalancerequest.md
   - docs/models/components/giftcardcreate.md
@@ -144,6 +151,8 @@ generatedFiles:
   - docs/models/components/merchantaccount.md
   - docs/models/components/merchantaccountcreate.md
   - docs/models/components/merchantaccountupdate.md
+  - docs/models/components/merchantprofilescheme.md
+  - docs/models/components/merchantprofileschemesummary.md
   - docs/models/components/method.md
   - docs/models/components/mode.md
   - docs/models/components/networktoken.md
@@ -160,8 +169,14 @@ generatedFiles:
   - docs/models/components/paymentoptioncontext.md
   - docs/models/components/paymentoptioncontextapprovalui.md
   - docs/models/components/paymentoptionrequest.md
+  - docs/models/components/paymentservice.md
+  - docs/models/components/paymentserviceconfiguration.md
+  - docs/models/components/paymentservicecreate.md
+  - docs/models/components/paymentservicedefinition.md
+  - docs/models/components/paymentservicestatus.md
   - docs/models/components/paymentservicetoken.md
   - docs/models/components/paymentservicetokencreate.md
+  - docs/models/components/paymentserviceupdate.md
   - docs/models/components/payoutcategory.md
   - docs/models/components/payoutcreate.md
   - docs/models/components/payoutcreatepaymentmethod.md
@@ -177,6 +192,7 @@ generatedFiles:
   - docs/models/components/refund.md
   - docs/models/components/refundstatus.md
   - docs/models/components/refundtargettype.md
+  - docs/models/components/requiredcheckoutfields.md
   - docs/models/components/requiredfields.md
   - docs/models/components/responsedata.md
   - docs/models/components/routetype.md
@@ -218,6 +234,8 @@ generatedFiles:
   - docs/models/components/userdevice.md
   - docs/models/components/userstatus.md
   - docs/models/components/validationerror.md
+  - docs/models/components/verifycredentials.md
+  - docs/models/components/voidablefield.md
   - docs/models/components/walletpaymentoptioncontext.md
   - docs/models/errors/addbuyerresponse403addbuyer.md
   - docs/models/errors/addbuyershippingdetailsresponse403addbuyershippingdetails.md
@@ -235,6 +253,9 @@ generatedFiles:
   - docs/models/errors/createpaymentmethodnetworktokenresponse403createpaymentmethodnetworktoken.md
   - docs/models/errors/createpaymentmethodpaymentservicetokenresponse403createpaymentmethodpaymentservicetoken.md
   - docs/models/errors/createpaymentmethodresponse403createpaymentmethod.md
+  - docs/models/errors/createpaymentservicedefinitionsessionresponse403createpaymentservicedefinitionsession.md
+  - docs/models/errors/createpaymentserviceresponse403createpaymentservice.md
+  - docs/models/errors/createpaymentservicesessionresponse403createpaymentservicesession.md
   - docs/models/errors/createpayoutresponse403createpayout.md
   - docs/models/errors/createtransactionrefundresponse403createtransactionrefund.md
   - docs/models/errors/createtransactionresponse403createtransaction.md
@@ -246,6 +267,7 @@ generatedFiles:
   - docs/models/errors/deletepaymentmethodnetworktokenresponse403deletepaymentmethodnetworktoken.md
   - docs/models/errors/deletepaymentmethodpaymentservicetokenresponse403deletepaymentmethodpaymentservicetoken.md
   - docs/models/errors/deletepaymentmethodresponse403deletepaymentmethod.md
+  - docs/models/errors/deletepaymentserviceresponse403deletepaymentservice.md
   - docs/models/errors/error400.md
   - docs/models/errors/error401.md
   - docs/models/errors/error403.md
@@ -266,6 +288,8 @@ generatedFiles:
   - docs/models/errors/getgiftcardresponse403getgiftcard.md
   - docs/models/errors/getmerchantaccountresponse403getmerchantaccount.md
   - docs/models/errors/getpaymentmethodresponse403getpaymentmethod.md
+  - docs/models/errors/getpaymentservicedefinitionresponse403getpaymentservicedefinition.md
+  - docs/models/errors/getpaymentserviceresponse403getpaymentservice.md
   - docs/models/errors/getpayoutresponse403getpayout.md
   - docs/models/errors/getrefundresponse403getrefund.md
   - docs/models/errors/gettransactionresponse403gettransaction.md
@@ -286,6 +310,8 @@ generatedFiles:
   - docs/models/errors/listpaymentmethodpaymentservicetokensresponse403listpaymentmethodpaymentservicetokens.md
   - docs/models/errors/listpaymentmethodsresponse403listpaymentmethods.md
   - docs/models/errors/listpaymentoptionsresponse403listpaymentoptions.md
+  - docs/models/errors/listpaymentservicedefinitionsresponse403listpaymentservicedefinitions.md
+  - docs/models/errors/listpaymentservicesresponse403listpaymentservices.md
   - docs/models/errors/listpayoutsresponse403listpayouts.md
   - docs/models/errors/listtransactionrefundsresponse403listtransactionrefunds.md
   - docs/models/errors/listtransactionsresponse403listtransactions.md
@@ -299,6 +325,8 @@ generatedFiles:
   - docs/models/errors/updatecheckoutsessionresponse403updatecheckoutsession.md
   - docs/models/errors/updatedigitalwalletresponse403updatedigitalwallet.md
   - docs/models/errors/updatemerchantaccountresponse403updatemerchantaccount.md
+  - docs/models/errors/updatepaymentserviceresponse403updatepaymentservice.md
+  - docs/models/errors/verifypaymentservicecredentialsresponse403verifypaymentservicecredentials.md
   - docs/models/errors/voidtransactionresponse403voidtransaction.md
   - docs/models/operations/addbuyerglobals.md
   - docs/models/operations/addbuyerrequest.md
@@ -331,6 +359,11 @@ generatedFiles:
   - docs/models/operations/createpaymentmethodpaymentservicetokenglobals.md
   - docs/models/operations/createpaymentmethodpaymentservicetokenrequest.md
   - docs/models/operations/createpaymentmethodrequest.md
+  - docs/models/operations/createpaymentservicedefinitionsessionrequest.md
+  - docs/models/operations/createpaymentserviceglobals.md
+  - docs/models/operations/createpaymentservicerequest.md
+  - docs/models/operations/createpaymentservicesessionglobals.md
+  - docs/models/operations/createpaymentservicesessionrequest.md
   - docs/models/operations/createpayoutglobals.md
   - docs/models/operations/createpayoutrequest.md
   - docs/models/operations/createtransactionglobals.md
@@ -354,6 +387,8 @@ generatedFiles:
   - docs/models/operations/deletepaymentmethodpaymentservicetokenglobals.md
   - docs/models/operations/deletepaymentmethodpaymentservicetokenrequest.md
   - docs/models/operations/deletepaymentmethodrequest.md
+  - docs/models/operations/deletepaymentserviceglobals.md
+  - docs/models/operations/deletepaymentservicerequest.md
   - docs/models/operations/getbuyerglobals.md
   - docs/models/operations/getbuyerrequest.md
   - docs/models/operations/getbuyershippingdetailsglobals.md
@@ -367,6 +402,9 @@ generatedFiles:
   - docs/models/operations/getmerchantaccountrequest.md
   - docs/models/operations/getpaymentmethodglobals.md
   - docs/models/operations/getpaymentmethodrequest.md
+  - docs/models/operations/getpaymentservicedefinitionrequest.md
+  - docs/models/operations/getpaymentserviceglobals.md
+  - docs/models/operations/getpaymentservicerequest.md
   - docs/models/operations/getpayoutglobals.md
   - docs/models/operations/getpayoutrequest.md
   - docs/models/operations/getrefundglobals.md
@@ -409,6 +447,11 @@ generatedFiles:
   - docs/models/operations/listpaymentmethodsresponse.md
   - docs/models/operations/listpaymentoptionsglobals.md
   - docs/models/operations/listpaymentoptionsrequest.md
+  - docs/models/operations/listpaymentservicedefinitionsrequest.md
+  - docs/models/operations/listpaymentservicedefinitionsresponse.md
+  - docs/models/operations/listpaymentservicesglobals.md
+  - docs/models/operations/listpaymentservicesrequest.md
+  - docs/models/operations/listpaymentservicesresponse.md
   - docs/models/operations/listpayoutsglobals.md
   - docs/models/operations/listpayoutsrequest.md
   - docs/models/operations/listpayoutsresponse.md
@@ -437,6 +480,10 @@ generatedFiles:
   - docs/models/operations/updatedigitalwalletglobals.md
   - docs/models/operations/updatedigitalwalletrequest.md
   - docs/models/operations/updatemerchantaccountrequest.md
+  - docs/models/operations/updatepaymentserviceglobals.md
+  - docs/models/operations/updatepaymentservicerequest.md
+  - docs/models/operations/verifypaymentservicecredentialsglobals.md
+  - docs/models/operations/verifypaymentservicecredentialsrequest.md
   - docs/models/operations/voidtransactionglobals.md
   - docs/models/operations/voidtransactionrequest.md
   - docs/sdks/accountupdater/README.md
@@ -460,6 +507,8 @@ generatedFiles:
   - docs/sdks/networktokens/README.md
   - docs/sdks/paymentmethods/README.md
   - docs/sdks/paymentoptions/README.md
+  - docs/sdks/paymentservicedefinitions/README.md
+  - docs/sdks/paymentservices/README.md
   - docs/sdks/paymentservicetokens/README.md
   - docs/sdks/payouts/README.md
   - docs/sdks/refunds/README.md
@@ -524,6 +573,16 @@ generatedFiles:
   - src/funcs/paymentMethodsPaymentServiceTokensDelete.ts
   - src/funcs/paymentMethodsPaymentServiceTokensList.ts
   - src/funcs/paymentOptionsList.ts
+  - src/funcs/paymentServiceDefinitionsGet.ts
+  - src/funcs/paymentServiceDefinitionsList.ts
+  - src/funcs/paymentServiceDefinitionsSession.ts
+  - src/funcs/paymentServicesCreate.ts
+  - src/funcs/paymentServicesDelete.ts
+  - src/funcs/paymentServicesGet.ts
+  - src/funcs/paymentServicesList.ts
+  - src/funcs/paymentServicesSession.ts
+  - src/funcs/paymentServicesUpdate.ts
+  - src/funcs/paymentServicesVerify.ts
   - src/funcs/payoutsCreate.ts
   - src/funcs/payoutsGet.ts
   - src/funcs/payoutsList.ts
@@ -623,6 +682,16 @@ generatedFiles:
   - src/mcp-server/tools/paymentMethodsPaymentServiceTokensDelete.ts
   - src/mcp-server/tools/paymentMethodsPaymentServiceTokensList.ts
   - src/mcp-server/tools/paymentOptionsList.ts
+  - src/mcp-server/tools/paymentServiceDefinitionsGet.ts
+  - src/mcp-server/tools/paymentServiceDefinitionsList.ts
+  - src/mcp-server/tools/paymentServiceDefinitionsSession.ts
+  - src/mcp-server/tools/paymentServicesCreate.ts
+  - src/mcp-server/tools/paymentServicesDelete.ts
+  - src/mcp-server/tools/paymentServicesGet.ts
+  - src/mcp-server/tools/paymentServicesList.ts
+  - src/mcp-server/tools/paymentServicesSession.ts
+  - src/mcp-server/tools/paymentServicesUpdate.ts
+  - src/mcp-server/tools/paymentServicesVerify.ts
   - src/mcp-server/tools/payoutsCreate.ts
   - src/mcp-server/tools/payoutsGet.ts
   - src/mcp-server/tools/payoutsList.ts
@@ -692,14 +761,20 @@ generatedFiles:
   - src/models/components/collectionnocursorrefund.ts
   - src/models/components/collectionnocursorshippingdetails.ts
   - src/models/components/collectionpaymentmethod.ts
+  - src/models/components/collectionpaymentservice.ts
+  - src/models/components/collectionpaymentservicedefinition.ts
   - src/models/components/collectionpayoutsummary.ts
   - src/models/components/collectionrefund.ts
   - src/models/components/collectiontransactionsummary.ts
   - src/models/components/connectionoptions.ts
+  - src/models/components/createsession.ts
+  - src/models/components/createsessionstatus.ts
   - src/models/components/creator.ts
   - src/models/components/cryptogram.ts
   - src/models/components/cryptogramcreate.ts
   - src/models/components/cvvresponsecode.ts
+  - src/models/components/definitionfield.ts
+  - src/models/components/definitionfieldformat.ts
   - src/models/components/digitalwallet.ts
   - src/models/components/digitalwalletcreate.ts
   - src/models/components/digitalwalletdomain.ts
@@ -707,6 +782,7 @@ generatedFiles:
   - src/models/components/digitalwalletupdate.ts
   - src/models/components/errordetail.ts
   - src/models/components/errorlocation.ts
+  - src/models/components/field.ts
   - src/models/components/giftcard.ts
   - src/models/components/giftcardbalancerequest.ts
   - src/models/components/giftcardcreate.ts
@@ -733,6 +809,8 @@ generatedFiles:
   - src/models/components/merchantaccount.ts
   - src/models/components/merchantaccountcreate.ts
   - src/models/components/merchantaccountupdate.ts
+  - src/models/components/merchantprofilescheme.ts
+  - src/models/components/merchantprofileschemesummary.ts
   - src/models/components/method.ts
   - src/models/components/mode.ts
   - src/models/components/networktoken.ts
@@ -749,8 +827,14 @@ generatedFiles:
   - src/models/components/paymentoptioncontext.ts
   - src/models/components/paymentoptioncontextapprovalui.ts
   - src/models/components/paymentoptionrequest.ts
+  - src/models/components/paymentservice.ts
+  - src/models/components/paymentserviceconfiguration.ts
+  - src/models/components/paymentservicecreate.ts
+  - src/models/components/paymentservicedefinition.ts
+  - src/models/components/paymentservicestatus.ts
   - src/models/components/paymentservicetoken.ts
   - src/models/components/paymentservicetokencreate.ts
+  - src/models/components/paymentserviceupdate.ts
   - src/models/components/payoutcategory.ts
   - src/models/components/payoutcreate.ts
   - src/models/components/payoutmerchant.ts
@@ -764,6 +848,7 @@ generatedFiles:
   - src/models/components/refund.ts
   - src/models/components/refundstatus.ts
   - src/models/components/refundtargettype.ts
+  - src/models/components/requiredcheckoutfields.ts
   - src/models/components/security.ts
   - src/models/components/shippingdetails.ts
   - src/models/components/shippingdetailscreate.ts
@@ -796,6 +881,8 @@ generatedFiles:
   - src/models/components/transactionthreedsecuresummary.ts
   - src/models/components/userstatus.ts
   - src/models/components/validationerror.ts
+  - src/models/components/verifycredentials.ts
+  - src/models/components/voidablefield.ts
   - src/models/components/walletpaymentoptioncontext.ts
   - src/models/errors/addbuyer.ts
   - src/models/errors/addbuyershippingdetails.ts
@@ -813,6 +900,9 @@ generatedFiles:
   - src/models/errors/createpaymentmethodnetworktoken.ts
   - src/models/errors/createpaymentmethodnetworktokencryptogram.ts
   - src/models/errors/createpaymentmethodpaymentservicetoken.ts
+  - src/models/errors/createpaymentservice.ts
+  - src/models/errors/createpaymentservicedefinitionsession.ts
+  - src/models/errors/createpaymentservicesession.ts
   - src/models/errors/createpayout.ts
   - src/models/errors/createtransaction.ts
   - src/models/errors/createtransactionrefund.ts
@@ -824,6 +914,7 @@ generatedFiles:
   - src/models/errors/deletepaymentmethod.ts
   - src/models/errors/deletepaymentmethodnetworktoken.ts
   - src/models/errors/deletepaymentmethodpaymentservicetoken.ts
+  - src/models/errors/deletepaymentservice.ts
   - src/models/errors/error400.ts
   - src/models/errors/error401.ts
   - src/models/errors/error403.ts
@@ -844,6 +935,8 @@ generatedFiles:
   - src/models/errors/getgiftcard.ts
   - src/models/errors/getmerchantaccount.ts
   - src/models/errors/getpaymentmethod.ts
+  - src/models/errors/getpaymentservice.ts
+  - src/models/errors/getpaymentservicedefinition.ts
   - src/models/errors/getpayout.ts
   - src/models/errors/getrefund.ts
   - src/models/errors/gettransaction.ts
@@ -866,6 +959,8 @@ generatedFiles:
   - src/models/errors/listpaymentmethodpaymentservicetokens.ts
   - src/models/errors/listpaymentmethods.ts
   - src/models/errors/listpaymentoptions.ts
+  - src/models/errors/listpaymentservicedefinitions.ts
+  - src/models/errors/listpaymentservices.ts
   - src/models/errors/listpayouts.ts
   - src/models/errors/listtransactionrefunds.ts
   - src/models/errors/listtransactions.ts
@@ -881,6 +976,8 @@ generatedFiles:
   - src/models/errors/updatecheckoutsession.ts
   - src/models/errors/updatedigitalwallet.ts
   - src/models/errors/updatemerchantaccount.ts
+  - src/models/errors/updatepaymentservice.ts
+  - src/models/errors/verifypaymentservicecredentials.ts
   - src/models/errors/voidtransaction.ts
   - src/models/operations/addbuyer.ts
   - src/models/operations/addbuyershippingdetails.ts
@@ -897,6 +994,9 @@ generatedFiles:
   - src/models/operations/createpaymentmethodnetworktoken.ts
   - src/models/operations/createpaymentmethodnetworktokencryptogram.ts
   - src/models/operations/createpaymentmethodpaymentservicetoken.ts
+  - src/models/operations/createpaymentservice.ts
+  - src/models/operations/createpaymentservicedefinitionsession.ts
+  - src/models/operations/createpaymentservicesession.ts
   - src/models/operations/createpayout.ts
   - src/models/operations/createtransaction.ts
   - src/models/operations/createtransactionrefund.ts
@@ -908,6 +1008,7 @@ generatedFiles:
   - src/models/operations/deletepaymentmethod.ts
   - src/models/operations/deletepaymentmethodnetworktoken.ts
   - src/models/operations/deletepaymentmethodpaymentservicetoken.ts
+  - src/models/operations/deletepaymentservice.ts
   - src/models/operations/getbuyer.ts
   - src/models/operations/getbuyershippingdetails.ts
   - src/models/operations/getcheckoutsession.ts
@@ -915,6 +1016,8 @@ generatedFiles:
   - src/models/operations/getgiftcard.ts
   - src/models/operations/getmerchantaccount.ts
   - src/models/operations/getpaymentmethod.ts
+  - src/models/operations/getpaymentservice.ts
+  - src/models/operations/getpaymentservicedefinition.ts
   - src/models/operations/getpayout.ts
   - src/models/operations/getrefund.ts
   - src/models/operations/gettransaction.ts
@@ -935,6 +1038,8 @@ generatedFiles:
   - src/models/operations/listpaymentmethodpaymentservicetokens.ts
   - src/models/operations/listpaymentmethods.ts
   - src/models/operations/listpaymentoptions.ts
+  - src/models/operations/listpaymentservicedefinitions.ts
+  - src/models/operations/listpaymentservices.ts
   - src/models/operations/listpayouts.ts
   - src/models/operations/listtransactionrefunds.ts
   - src/models/operations/listtransactions.ts
@@ -948,6 +1053,8 @@ generatedFiles:
   - src/models/operations/updatecheckoutsession.ts
   - src/models/operations/updatedigitalwallet.ts
   - src/models/operations/updatemerchantaccount.ts
+  - src/models/operations/updatepaymentservice.ts
+  - src/models/operations/verifypaymentservicecredentials.ts
   - src/models/operations/voidtransaction.ts
   - src/sdk/accountupdater.ts
   - src/sdk/all.ts
@@ -970,6 +1077,8 @@ generatedFiles:
   - src/sdk/networktokens.ts
   - src/sdk/paymentmethods.ts
   - src/sdk/paymentoptions.ts
+  - src/sdk/paymentservicedefinitions.ts
+  - src/sdk/paymentservices.ts
   - src/sdk/paymentservicetokens.ts
   - src/sdk/payouts.ts
   - src/sdk/refunds.ts
@@ -3177,7 +3286,7 @@ examples:
           x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
-          application/json: {"items": [{"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "li.uid"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "dlocal", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "my.nric"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pix", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ar.cuil"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "EUR", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pagoefectivo", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+          application/json: {"items": [{"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "li.uid"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "1234", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "dlocal", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "my.nric"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "1234", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pix", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ar.cuil"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "EUR", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "1234", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "pagoefectivo", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "401":
@@ -3213,7 +3322,7 @@ examples:
         application/json: {"amount": 1299, "currency": "GBP", "payment_service_id": "ed8bd87d-85ad-40cf-8e8f-007e21e55aad", "payment_method": {"method": "id", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077"}, "category": "online_gambling", "external_identifier": "payout-12345", "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "buyer": {"display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "id.nik"}}, "shipping_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}}, "buyer_external_identifier": "buyer-12345", "merchant": {"name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "connection_options": {"checkout-card": {"processing_channel_id": "channel-1234", "source_id": "acct-1234"}}}
       responses:
         "201":
-          application/json: {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ar.cuil"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "GBP", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "abitab", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "ar.cuil"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "GBP", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+14155552671", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "1234", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "abitab", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "declined", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "401":
@@ -3247,7 +3356,7 @@ examples:
           x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
-          application/json: {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "123456", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "webpay", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "failed", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "payout", "id": "6f96a57e-a35b-4f98-b192-d298995f811a", "amount": 1299, "buyer": {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "display_name": "John Doe", "external_identifier": "buyer-12345", "billing_details": {"first_name": "John", "last_name": "Doe", "email_address": "john@example.com", "phone_number": "+1234567890", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}, "tax_id": {"value": "12345678931", "kind": "us.ein"}}}, "category": "online_gambling", "created_at": "2013-07-16T19:23:00.000+00:00", "currency": "USD", "external_identifier": "payout-12345", "merchant": {"type": "merchant", "name": "Acme Inc", "identification_number": "12345", "phone_number": "+442071838750", "url": "https://example.com", "statement_descriptor": "Winnings", "merchant_category_code": "1234", "address": {"city": "San Jose", "country": "US", "postal_code": "94560", "state": "California", "state_code": "US-CA", "house_number_or_name": "10", "line1": "Stafford Appartments", "line2": "29th Street", "organization": "Gr4vy"}}, "merchant_account_id": "default", "payment_method": {"type": "payment-method", "approval_url": "https://gr4vy.app/redirect/12345", "country": "US", "currency": "USD", "expiration_date": "12/30", "fingerprint": "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", "label": "1234", "last_replaced_at": "2013-07-16T19:23:00.000+00:00", "method": "webpay", "mode": "card", "scheme": "visa", "id": "852b951c-d7ea-4c98-b09e-4a1c9e97c077", "approval_target": "any", "external_identifier": "card-12345", "payment_account_reference": "V0010014629724763377327521982"}, "payment_service": {"type": "payment-service", "id": "b6c9eb12-2b62-4103-99b9-e3efc94e396d", "method": "card", "payment_service_definition_id": "nuvei-card", "display_name": "Nuvei"}, "payment_service_payout_id": "pout-12345", "status": "failed", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "401":
@@ -3277,6 +3386,8 @@ examples:
       parameters:
         query:
           limit: 20
+          cursor: "ZXhhbXBsZTE"
+          search: "merchant-12345"
       responses:
         "200":
           application/json: {"items": [{"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -3342,7 +3453,7 @@ examples:
     speakeasy-default-get-merchant-account:
       parameters:
         path:
-          merchant_account_id: "<id>"
+          merchant_account_id: "merchant-12345"
       responses:
         "200":
           application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -3374,7 +3485,7 @@ examples:
     speakeasy-default-update-merchant-account:
       parameters:
         path:
-          merchant_account_id: "<id>"
+          merchant_account_id: "merchant-12345"
         query:
           timeout_in_seconds: 1
       requestBody:
@@ -3406,5 +3517,343 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  list_payment_service_definitions:
+    speakeasy-default-list-payment-service-definitions:
+      parameters:
+        query:
+          cursor: "ZXhhbXBsZTE"
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [{"id": "stripe-card", "type": "payment-service-definition", "display_name": "Stripe", "method": "chaseorbital", "fields": [], "reporting_fields": [], "supported_currencies": ["EUR", "GBP", "USD"], "supported_countries": ["DE", "GB", "US"], "mode": "card", "icon_url": "https://example.com/icons/adyen-ideal.svg", "supported_features": {"key": true, "key1": false}, "required_checkout_fields": [], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "50vw", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}}, {"id": "stripe-card", "type": "payment-service-definition", "display_name": "Stripe", "method": "abitab", "fields": [], "reporting_fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "number", "secret": true}], "supported_currencies": ["EUR", "GBP", "USD"], "supported_countries": ["DE", "GB", "US"], "mode": "card", "icon_url": "https://example.com/icons/adyen-ideal.svg", "supported_features": {"key": false, "key1": false, "key2": true}, "required_checkout_fields": [], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "50vw", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}}, {"id": "adyen-ideal", "type": "payment-service-definition", "display_name": "Stripe", "method": "klarna", "fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "text", "secret": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "text", "secret": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "boolean", "secret": true}], "reporting_fields": [], "supported_currencies": ["EUR", "GBP", "USD"], "supported_countries": ["DE", "GB", "US"], "mode": "card", "icon_url": "https://example.com/icons/adyen-ideal.svg", "supported_features": {"key": true}, "required_checkout_fields": [{"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"], "conditions": {"country": ["IN"]}}], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "50vw", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "The resource could not be removed as it is currently active", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  get_payment_service_definition:
+    speakeasy-default-get-payment-service-definition:
+      parameters:
+        path:
+          payment_service_definition_id: "adyen-ideal"
+      responses:
+        "200":
+          application/json: {"id": "stripe-card", "type": "payment-service-definition", "display_name": "Stripe", "method": "network-token", "fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "boolean", "secret": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "number", "secret": true}], "reporting_fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true}], "supported_currencies": ["EUR", "GBP", "USD"], "supported_countries": ["DE", "GB", "US"], "mode": "card", "icon_url": "https://example.com/icons/adyen-ideal.svg", "supported_features": {"key": true, "key1": false, "key2": true}, "required_checkout_fields": [], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "100px", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Invalid credentials", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  create_payment_service_definition_session:
+    speakeasy-default-create-payment-service-definition-session:
+      parameters:
+        path:
+          payment_service_definition_id: "adyen-ideal"
+      requestBody:
+        application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+      responses:
+        "200":
+          application/json: {"type": "payment-service-session", "status": "succeeded", "code": "UNKNOWN_ERROR", "status_code": 201, "response_body": {"sessionId": "12345"}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  list_payment_services:
+    speakeasy-default-list-payment-services:
+      parameters:
+        query:
+          cursor: "ZXhhbXBsZTE"
+          limit: 20
+          deleted: true
+        header: {}
+      responses:
+        "200":
+          application/json: {"items": [{"type": "payment-service", "id": "fffd152a-9532-4087-9a4f-de58754210f0", "merchant_account_id": "default", "payment_service_definition_id": "stripe-card", "active": false, "method": "paypalpaylater", "display_name": "Stripe", "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}}, "fields": [{"key": "api_key", "value": "key-12345"}], "reporting_fields": [{"key": "api_key", "value": "key-12345"}], "is_deleted": false, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-service", "id": "fffd152a-9532-4087-9a4f-de58754210f0", "merchant_account_id": "default", "payment_service_definition_id": "stripe-card", "active": false, "method": "pagoefectivo", "display_name": "Stripe", "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}}, "fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}], "reporting_fields": [{"key": "api_key", "value": "key-12345"}], "is_deleted": false, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "payment-service", "id": "fffd152a-9532-4087-9a4f-de58754210f0", "merchant_account_id": "default", "payment_service_definition_id": "stripe-card", "active": true, "method": "payto", "display_name": "Stripe", "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}, "key1": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}}, "fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}], "reporting_fields": [{"key": "api_key", "value": "key-12345"}], "is_deleted": false, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  update_payment_service:
+    speakeasy-default-update-payment-service:
+      requestBody:
+        application/json: {"display_name": "Stripe", "payment_service_definition_id": "stripe-card", "fields": [{"key": "api_key", "value": "key-12345"}], "reporting_fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}], "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "active": true, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234"}}, "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true}
+      responses:
+        "201":
+          application/json: {"type": "payment-service", "id": "fffd152a-9532-4087-9a4f-de58754210f0", "merchant_account_id": "default", "payment_service_definition_id": "stripe-card", "active": true, "method": "servipag", "display_name": "Stripe", "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}, "key1": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}, "key2": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}}, "fields": [{"key": "api_key", "value": "key-12345"}], "reporting_fields": [{"key": "api_key", "value": "key-12345"}], "is_deleted": false, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  get_payment_service:
+    speakeasy-default-get-payment-service:
+      parameters:
+        path:
+          payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        header: {}
+      responses:
+        "200":
+          application/json: {"type": "payment-service", "id": "fffd152a-9532-4087-9a4f-de58754210f0", "merchant_account_id": "default", "payment_service_definition_id": "stripe-card", "active": false, "method": "nupay", "display_name": "Stripe", "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}, "key1": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}}, "fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}], "reporting_fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}], "is_deleted": false, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  create_payment_service:
+    speakeasy-default-create-payment-service:
+      parameters:
+        path:
+          payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        header: {}
+      requestBody:
+        application/json: {"display_name": "Stripe", "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "active": false, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234"}, "key1": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234"}}, "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true}
+      responses:
+        "200":
+          application/json: {"type": "payment-service", "id": "fffd152a-9532-4087-9a4f-de58754210f0", "merchant_account_id": "default", "payment_service_definition_id": "stripe-card", "active": true, "method": "zippay", "display_name": "Stripe", "position": 1, "accepted_currencies": ["EUR", "GBP", "USD"], "accepted_countries": ["DE", "GB", "US"], "payment_method_tokenization_enabled": true, "network_tokens_enabled": true, "open_loop": true, "settlement_reporting_enabled": true, "three_d_secure_enabled": true, "merchant_profile": {"key": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}, "key1": {"merchant_acquirer_bin": "516327", "merchant_url": "https://example.com", "merchant_acquirer_id": "123456789012345", "merchant_name": "Acme Inc.", "merchant_country_code": "USD", "merchant_category_code": "1234", "created_at": "2013-07-16T19:23:00.000+00:00"}}, "fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}], "reporting_fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}], "is_deleted": false, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Invalid credentials", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  delete_payment_service:
+    speakeasy-default-delete-payment-service:
+      parameters:
+        path:
+          payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        query:
+          timeout_in_seconds: 1
+        header: {}
+      responses:
+        "200":
+          application/json: "<value>"
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "The resource could not be removed as it is currently active", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  verify_payment_service_credentials:
+    speakeasy-default-verify-payment-service-credentials:
+      parameters:
+        query:
+          timeout_in_seconds: 1
+        header: {}
+      requestBody:
+        application/json: {"payment_service_definition_id": "stripe-card", "payment_service_id": "fffd152a-9532-4087-9a4f-de58754210f0", "fields": [{"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}, {"key": "api_key", "value": "key-12345"}]}
+      responses:
+        "200":
+          application/json: "<value>"
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+  create_payment_service_session:
+    speakeasy-default-create-payment-service-session:
+      parameters:
+        path:
+          payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        header: {}
+      requestBody:
+        application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+      responses:
+        "200":
+          application/json: {"type": "payment-service-session", "status": "succeeded", "code": "UNKNOWN_ERROR", "status_code": 201, "response_body": {"sessionId": "12345"}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation", "details": [{"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation", "details": [{"location": "unknown", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "body", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "query", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
 examplesVersion: 1.0.1
 generatedTests: {}

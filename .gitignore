@@ -1,3 +1,5 @@
+**/.speakeasy/temp/
+**/.speakeasy/logs/
 /mcp-server
 /bin
 /.eslintcache

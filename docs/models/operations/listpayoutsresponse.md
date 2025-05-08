@@ -47,7 +47,7 @@ let value: ListPayoutsResponse = {
           phoneNumber: "+442071838750",
           url: "https://example.com",
           statementDescriptor: "Winnings",
-          merchantCategoryCode: "123456",
+          merchantCategoryCode: "1234",
           address: {
             city: "San Jose",
             country: "US",

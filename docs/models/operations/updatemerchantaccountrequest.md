@@ -6,7 +6,7 @@
 import { UpdateMerchantAccountRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateMerchantAccountRequest = {
-  merchantAccountId: "<id>",
+  merchantAccountId: "merchant-12345",
   merchantAccountUpdate: {
     accountUpdaterRequestEncryptionKey: "key-1234",
     accountUpdaterRequestEncryptionKeyId: "key-id-1234",
@@ -35,8 +35,8 @@ let value: UpdateMerchantAccountRequest = {
 
 ## Fields
 
-| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `merchantAccountId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
-| `timeoutInSeconds`                                                                   | *number*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
-| `merchantAccountUpdate`                                                              | [components.MerchantAccountUpdate](../../models/components/merchantaccountupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `merchantAccountId`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | The ID of the merchant account                                                       | merchant-12345                                                                       |
+| `timeoutInSeconds`                                                                   | *number*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |
+| `merchantAccountUpdate`                                                              | [components.MerchantAccountUpdate](../../models/components/merchantaccountupdate.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |                                                                                      |

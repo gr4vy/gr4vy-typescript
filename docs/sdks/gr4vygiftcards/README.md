@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.giftCards.list("default");
+  const result = await gr4vy.buyers.giftCards.list("<value>", "c8a232aa-0b11-4b8a-b005-71e9e705d0e6", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -54,7 +54,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersGiftCardsList(gr4vy, "default");
+  const res = await buyersGiftCardsList(gr4vy, "<value>", "dc2a4c81-04fb-4451-8a70-cfc8fe07fbc6", 1, "default");
 
   if (!res.ok) {
     throw res.error;

@@ -470,7 +470,7 @@ async function run() {
       accountNumber: "act12345",
       dateOfBirth: new RFCDate("1995-12-23"),
     },
-  }, "default", "request-12345");
+  }, 1, "default", "request-12345");
 
   // Handle the result
   console.log(result);
@@ -733,7 +733,7 @@ async function run() {
       accountNumber: "act12345",
       dateOfBirth: new RFCDate("1995-12-23"),
     },
-  }, "default", "request-12345");
+  }, 1, "default", "request-12345");
 
   if (!res.ok) {
     throw res.error;
@@ -967,7 +967,7 @@ async function run() {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
-  }, "cac402e8-3f44-4782-bac4-283b15a3b3e2", "default");
+  }, "cac402e8-3f44-4782-bac4-283b15a3b3e2", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -1065,7 +1065,7 @@ async function run() {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
-  }, "cac402e8-3f44-4782-bac4-283b15a3b3e2", "default");
+  }, "cac402e8-3f44-4782-bac4-283b15a3b3e2", 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -1134,7 +1134,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.void("26740073-c9e5-4864-9ecf-5856a8e566d6", "default");
+  const result = await gr4vy.transactions.void("26740073-c9e5-4864-9ecf-5856a8e566d6", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -1163,7 +1163,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsVoid(gr4vy, "26740073-c9e5-4864-9ecf-5856a8e566d6", "default");
+  const res = await transactionsVoid(gr4vy, "26740073-c9e5-4864-9ecf-5856a8e566d6", 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -1327,7 +1327,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.sync("f0897be3-0808-45c9-a63b-509c0142ddd3", "default");
+  const result = await gr4vy.transactions.sync("f0897be3-0808-45c9-a63b-509c0142ddd3", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -1356,7 +1356,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsSync(gr4vy, "f0897be3-0808-45c9-a63b-509c0142ddd3", "default");
+  const res = await transactionsSync(gr4vy, "f0897be3-0808-45c9-a63b-509c0142ddd3", 1, "default");
 
   if (!res.ok) {
     throw res.error;

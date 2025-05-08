@@ -145,7 +145,7 @@ async function run() {
     currency: "GBP",
     redirectUrl: "https://standard-utilization.com/",
     externalIdentifier: "payment-method-12345",
-  }, "default");
+  }, 1, "default");
 
   // Handle the result
   console.log(result);
@@ -182,7 +182,7 @@ async function run() {
     currency: "GBP",
     redirectUrl: "https://standard-utilization.com/",
     externalIdentifier: "payment-method-12345",
-  }, "default");
+  }, 1, "default");
 
   if (!res.ok) {
     throw res.error;

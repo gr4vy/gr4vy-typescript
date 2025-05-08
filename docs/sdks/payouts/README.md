@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.payouts.list("ZXhhbXBsZTE", "default");
+  const result = await gr4vy.payouts.list("ZXhhbXBsZTE", 20, "default");
 
   for await (const page of result) {
     // Handle the page
@@ -58,7 +58,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await payoutsList(gr4vy, "ZXhhbXBsZTE", "default");
+  const res = await payoutsList(gr4vy, "ZXhhbXBsZTE", 20, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -206,7 +206,7 @@ async function run() {
         sourceId: "acct-1234",
       },
     },
-  }, "default");
+  }, 1, "default");
 
   // Handle the result
   console.log(result);
@@ -313,7 +313,7 @@ async function run() {
         sourceId: "acct-1234",
       },
     },
-  }, "default");
+  }, 1, "default");
 
   if (!res.ok) {
     throw res.error;

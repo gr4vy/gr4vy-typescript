@@ -128,7 +128,7 @@ async function run() {
     securityCode: "123",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     redirectUrl: "https://probable-heating.com/",
-  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", 1, "default");
 
   // Handle the result
   console.log(result);
@@ -161,7 +161,7 @@ async function run() {
     securityCode: "123",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     redirectUrl: "https://probable-heating.com/",
-  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", 1, "default");
 
   if (!res.ok) {
     throw res.error;
@@ -230,7 +230,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  await gr4vy.paymentMethods.paymentServiceTokens.delete("ef9496d8-53a5-4aad-8ca2-00eb68334389", "703f2d99-3fd1-44bc-9cbd-a25a2d597886", "default");
+  await gr4vy.paymentMethods.paymentServiceTokens.delete("ef9496d8-53a5-4aad-8ca2-00eb68334389", "703f2d99-3fd1-44bc-9cbd-a25a2d597886", 1, "default");
 
 
 }
@@ -258,7 +258,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsPaymentServiceTokensDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "703f2d99-3fd1-44bc-9cbd-a25a2d597886", "default");
+  const res = await paymentMethodsPaymentServiceTokensDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "703f2d99-3fd1-44bc-9cbd-a25a2d597886", 1, "default");
 
   if (!res.ok) {
     throw res.error;
