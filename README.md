@@ -1013,6 +1013,7 @@ Gr4vy: The Gr4vy API.
   * [Standalone functions](#standalone-functions)
   * [Debugging](#debugging)
 * [Development](#development)
+  * [Testing](#testing)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
 
