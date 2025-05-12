@@ -37,7 +37,7 @@ export type AirlineLeg = {
    */
   arrivalCountry?: string | null | undefined;
   /**
-   * 2 character airline code as set by IATA.
+   * 3 character airline code as set by IATA.
    */
   carrierCode?: string | null | undefined;
   /**

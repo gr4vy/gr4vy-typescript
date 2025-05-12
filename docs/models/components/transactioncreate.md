@@ -88,14 +88,14 @@ let value: TransactionCreate = {
     bookingCode: "X36Q9C",
     issuedAddress: "123 Broadway, New York",
     issuedAt: new Date("2013-07-16T19:23:00.000+00:00"),
-    issuingCarrierCode: "A3",
+    issuingCarrierCode: "649",
     legs: [
       {
         arrivalAirport: "LAX",
         arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
         arrivalCity: "Los Angeles",
         arrivalCountry: "US",
-        carrierCode: "BA",
+        carrierCode: "649",
         couponNumber: "15885566",
         departureAirport: "LHR",
         departureAt: new Date("2013-07-16T19:23:00.000+00:00"),

@@ -12,14 +12,14 @@ let value: Airline = {
   bookingCode: "X36Q9C",
   issuedAddress: "123 Broadway, New York",
   issuedAt: new Date("2013-07-16T19:23:00.000+00:00"),
-  issuingCarrierCode: "A3",
+  issuingCarrierCode: "649",
   legs: [
     {
       arrivalAirport: "LAX",
       arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
       arrivalCity: "Los Angeles",
       arrivalCountry: "US",
-      carrierCode: "BA",
+      carrierCode: "649",
       couponNumber: "15885566",
       departureAirport: "LHR",
       departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
@@ -70,7 +70,7 @@ let value: Airline = {
 | `bookingCode`                                                                                 | *string*                                                                                      | :heavy_minus_sign:                                                                            | The unique identifier of the reservation in the global distribution system.                   | X36Q9C                                                                                        |
 | `issuedAddress`                                                                               | *string*                                                                                      | :heavy_minus_sign:                                                                            | The address of the place/agency that issued the ticket.                                       | 123 Broadway, New York                                                                        |
 | `issuedAt`                                                                                    | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | The date that the ticket was last issued in the airline reservation system.                   | 2013-07-16T19:23:00.000+00:00                                                                 |
-| `issuingCarrierCode`                                                                          | *string*                                                                                      | :heavy_minus_sign:                                                                            | For airline aggregators, two-character IATA code of the airline issuing the ticket.           | A3                                                                                            |
+| `issuingCarrierCode`                                                                          | *string*                                                                                      | :heavy_minus_sign:                                                                            | For airline aggregators, three-character IATA code of the airline issuing the ticket.         | 649                                                                                           |
 | `legs`                                                                                        | [components.AirlineLeg](../../models/components/airlineleg.md)[]                              | :heavy_minus_sign:                                                                            | An array of separate trip segments. Each leg contains detailed itinerary information.         |                                                                                               |
 | `passengerNameRecord`                                                                         | *string*                                                                                      | :heavy_minus_sign:                                                                            | The Passenger Name Record (PNR) in the airline reservation system.                            | JOHN L                                                                                        |
 | `passengers`                                                                                  | [components.AirlinePassenger](../../models/components/airlinepassenger.md)[]                  | :heavy_minus_sign:                                                                            | An array of the travelling passengers.                                                        |                                                                                               |

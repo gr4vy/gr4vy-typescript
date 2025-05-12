@@ -48,7 +48,7 @@ export type Airline = {
    */
   issuedAt?: Date | null | undefined;
   /**
-   * For airline aggregators, two-character IATA code of the airline issuing the ticket.
+   * For airline aggregators, three-character IATA code of the airline issuing the ticket.
    */
   issuingCarrierCode?: string | null | undefined;
   /**
