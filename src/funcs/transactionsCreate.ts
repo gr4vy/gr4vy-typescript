@@ -40,7 +40,7 @@ export function transactionsCreate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.CreateTransactionResponse,
+    components.Transaction,
     | errors.Error400
     | errors.Error401
     | errors.CreateTransactionResponse403CreateTransaction
@@ -82,7 +82,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.CreateTransactionResponse,
+      components.Transaction,
       | errors.Error400
       | errors.Error401
       | errors.CreateTransactionResponse403CreateTransaction
@@ -209,7 +209,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.CreateTransactionResponse,
+    components.Transaction,
     | errors.Error400
     | errors.Error401
     | errors.CreateTransactionResponse403CreateTransaction
@@ -230,8 +230,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.CreateTransactionResponse$inboundSchema),
-    M.json(201, operations.CreateTransactionResponse$inboundSchema),
+    M.json(201, components.Transaction$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(

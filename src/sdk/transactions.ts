@@ -53,7 +53,7 @@ export class Transactions extends ClientSDK {
     merchantAccountId?: string | null | undefined,
     idempotencyKey?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<operations.CreateTransactionResponse> {
+  ): Promise<components.Transaction> {
     return unwrapAsync(transactionsCreate(
       this,
       transactionCreate,

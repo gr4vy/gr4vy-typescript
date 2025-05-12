@@ -762,7 +762,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateTransactionResponse](../../models/operations/createtransactionresponse.md)\>**
+**Promise\<[components.Transaction](../../models/components/transaction.md)\>**
 
 ### Errors
 

@@ -26,8 +26,6 @@ export type CreateTransactionRequest = {
   transactionCreate: components.TransactionCreate;
 };
 
-export type CreateTransactionResponse = components.Transaction | any;
-
 /** @internal */
 export const CreateTransactionGlobals$inboundSchema: z.ZodType<
   CreateTransactionGlobals,
@@ -154,55 +152,5 @@ export function createTransactionRequestFromJSON(
     jsonString,
     (x) => CreateTransactionRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'CreateTransactionRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateTransactionResponse$inboundSchema: z.ZodType<
-  CreateTransactionResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.union([components.Transaction$inboundSchema, z.any()]);
-
-/** @internal */
-export type CreateTransactionResponse$Outbound =
-  | components.Transaction$Outbound
-  | any;
-
-/** @internal */
-export const CreateTransactionResponse$outboundSchema: z.ZodType<
-  CreateTransactionResponse$Outbound,
-  z.ZodTypeDef,
-  CreateTransactionResponse
-> = z.union([components.Transaction$outboundSchema, z.any()]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateTransactionResponse$ {
-  /** @deprecated use `CreateTransactionResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateTransactionResponse$inboundSchema;
-  /** @deprecated use `CreateTransactionResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateTransactionResponse$outboundSchema;
-  /** @deprecated use `CreateTransactionResponse$Outbound` instead. */
-  export type Outbound = CreateTransactionResponse$Outbound;
-}
-
-export function createTransactionResponseToJSON(
-  createTransactionResponse: CreateTransactionResponse,
-): string {
-  return JSON.stringify(
-    CreateTransactionResponse$outboundSchema.parse(createTransactionResponse),
-  );
-}
-
-export function createTransactionResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateTransactionResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateTransactionResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateTransactionResponse' from JSON`,
   );
 }
