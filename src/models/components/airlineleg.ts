@@ -41,6 +41,18 @@ export type AirlineLeg = {
    */
   carrierCode?: string | null | undefined;
   /**
+   * Name of the airline.
+   */
+  carrierName?: string | null | undefined;
+  /**
+   * Two-character IATA code of the airline.
+   */
+  iataDesignator?: string | null | undefined;
+  /**
+   * Three-character ICAO code of the airline.
+   */
+  icaoCode?: string | null | undefined;
+  /**
    * Coupon number associated with the leg.
    */
   couponNumber?: string | null | undefined;
@@ -143,6 +155,9 @@ export const AirlineLeg$inboundSchema: z.ZodType<
   arrival_city: z.nullable(z.string()).optional(),
   arrival_country: z.nullable(z.string()).optional(),
   carrier_code: z.nullable(z.string()).optional(),
+  carrier_name: z.nullable(z.string()).optional(),
+  iata_designator: z.nullable(z.string()).optional(),
+  icao_code: z.nullable(z.string()).optional(),
   coupon_number: z.nullable(z.string()).optional(),
   departure_airport: z.nullable(z.string()).optional(),
   departure_at: z.nullable(
@@ -166,6 +181,9 @@ export const AirlineLeg$inboundSchema: z.ZodType<
     "arrival_city": "arrivalCity",
     "arrival_country": "arrivalCountry",
     "carrier_code": "carrierCode",
+    "carrier_name": "carrierName",
+    "iata_designator": "iataDesignator",
+    "icao_code": "icaoCode",
     "coupon_number": "couponNumber",
     "departure_airport": "departureAirport",
     "departure_at": "departureAt",
@@ -190,6 +208,9 @@ export type AirlineLeg$Outbound = {
   arrival_city?: string | null | undefined;
   arrival_country?: string | null | undefined;
   carrier_code?: string | null | undefined;
+  carrier_name?: string | null | undefined;
+  iata_designator?: string | null | undefined;
+  icao_code?: string | null | undefined;
   coupon_number?: string | null | undefined;
   departure_airport?: string | null | undefined;
   departure_at?: string | null | undefined;
@@ -217,6 +238,9 @@ export const AirlineLeg$outboundSchema: z.ZodType<
   arrivalCity: z.nullable(z.string()).optional(),
   arrivalCountry: z.nullable(z.string()).optional(),
   carrierCode: z.nullable(z.string()).optional(),
+  carrierName: z.nullable(z.string()).optional(),
+  iataDesignator: z.nullable(z.string()).optional(),
+  icaoCode: z.nullable(z.string()).optional(),
   couponNumber: z.nullable(z.string()).optional(),
   departureAirport: z.nullable(z.string()).optional(),
   departureAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
@@ -238,6 +262,9 @@ export const AirlineLeg$outboundSchema: z.ZodType<
     arrivalCity: "arrival_city",
     arrivalCountry: "arrival_country",
     carrierCode: "carrier_code",
+    carrierName: "carrier_name",
+    iataDesignator: "iata_designator",
+    icaoCode: "icao_code",
     couponNumber: "coupon_number",
     departureAirport: "departure_airport",
     departureAt: "departure_at",

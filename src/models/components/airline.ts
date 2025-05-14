@@ -52,6 +52,18 @@ export type Airline = {
    */
   issuingCarrierCode?: string | null | undefined;
   /**
+   * For airline aggregators, name of the airline issuing the ticket.
+   */
+  issuingCarrierName?: string | null | undefined;
+  /**
+   * For airline aggregators, two-character IATA code of the airline issuing the ticket.
+   */
+  issuingIataDesignator?: string | null | undefined;
+  /**
+   * For airline aggregators, three-character ICAO code of the airline issuing the ticket.
+   */
+  issuingIcaoCode?: string | null | undefined;
+  /**
    * An array of separate trip segments. Each leg contains detailed itinerary information.
    */
   legs?: Array<AirlineLeg> | null | undefined;
@@ -138,6 +150,9 @@ export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
     issuing_carrier_code: z.nullable(z.string()).optional(),
+    issuing_carrier_name: z.nullable(z.string()).optional(),
+    issuing_iata_designator: z.nullable(z.string()).optional(),
+    issuing_icao_code: z.nullable(z.string()).optional(),
     legs: z.nullable(z.array(AirlineLeg$inboundSchema)).optional(),
     passenger_name_record: z.nullable(z.string()).optional(),
     passengers: z.nullable(z.array(AirlinePassenger$inboundSchema)).optional(),
@@ -156,6 +171,9 @@ export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
       "issued_address": "issuedAddress",
       "issued_at": "issuedAt",
       "issuing_carrier_code": "issuingCarrierCode",
+      "issuing_carrier_name": "issuingCarrierName",
+      "issuing_iata_designator": "issuingIataDesignator",
+      "issuing_icao_code": "issuingIcaoCode",
       "passenger_name_record": "passengerNameRecord",
       "reservation_system": "reservationSystem",
       "restricted_ticket": "restrictedTicket",
@@ -174,6 +192,9 @@ export type Airline$Outbound = {
   issued_address?: string | null | undefined;
   issued_at?: string | null | undefined;
   issuing_carrier_code?: string | null | undefined;
+  issuing_carrier_name?: string | null | undefined;
+  issuing_iata_designator?: string | null | undefined;
+  issuing_icao_code?: string | null | undefined;
   legs?: Array<AirlineLeg$Outbound> | null | undefined;
   passenger_name_record?: string | null | undefined;
   passengers?: Array<AirlinePassenger$Outbound> | null | undefined;
@@ -197,6 +218,9 @@ export const Airline$outboundSchema: z.ZodType<
   issuedAddress: z.nullable(z.string()).optional(),
   issuedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   issuingCarrierCode: z.nullable(z.string()).optional(),
+  issuingCarrierName: z.nullable(z.string()).optional(),
+  issuingIataDesignator: z.nullable(z.string()).optional(),
+  issuingIcaoCode: z.nullable(z.string()).optional(),
   legs: z.nullable(z.array(AirlineLeg$outboundSchema)).optional(),
   passengerNameRecord: z.nullable(z.string()).optional(),
   passengers: z.nullable(z.array(AirlinePassenger$outboundSchema)).optional(),
@@ -215,6 +239,9 @@ export const Airline$outboundSchema: z.ZodType<
     issuedAddress: "issued_address",
     issuedAt: "issued_at",
     issuingCarrierCode: "issuing_carrier_code",
+    issuingCarrierName: "issuing_carrier_name",
+    issuingIataDesignator: "issuing_iata_designator",
+    issuingIcaoCode: "issuing_icao_code",
     passengerNameRecord: "passenger_name_record",
     reservationSystem: "reservation_system",
     restrictedTicket: "restricted_ticket",

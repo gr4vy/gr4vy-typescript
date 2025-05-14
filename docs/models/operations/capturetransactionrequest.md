@@ -15,6 +15,9 @@ let value: CaptureTransactionRequest = {
       issuedAddress: "123 Broadway, New York",
       issuedAt: new Date("2013-07-16T19:23:00.000+00:00"),
       issuingCarrierCode: "649",
+      issuingCarrierName: "Air Transat A.T. Inc",
+      issuingIataDesignator: "TS",
+      issuingIcaoCode: "TSC",
       legs: [
         {
           arrivalAirport: "LAX",
@@ -22,6 +25,9 @@ let value: CaptureTransactionRequest = {
           arrivalCity: "Los Angeles",
           arrivalCountry: "US",
           carrierCode: "649",
+          carrierName: "Air Transat A.T. Inc",
+          iataDesignator: "TS",
+          icaoCode: "TSC",
           couponNumber: "15885566",
           departureAirport: "LHR",
           departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
