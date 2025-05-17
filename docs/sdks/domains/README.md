@@ -28,7 +28,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.digitalWallets.domains.create({
     domainName: "example.com",
-  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5", 1, "default");
+  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   // Handle the result
   console.log(result);
@@ -59,7 +59,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await digitalWalletsDomainsCreate(gr4vy, {
     domainName: "example.com",
-  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5", 1, "default");
+  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   if (!res.ok) {
     throw res.error;
@@ -130,7 +130,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.digitalWallets.domains.delete({
     domainName: "example.com",
-  }, "", 1, "default");
+  }, "");
 
   // Handle the result
   console.log(result);
@@ -161,7 +161,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await digitalWalletsDomainsDelete(gr4vy, {
     domainName: "example.com",
-  }, "", 1, "default");
+  }, "");
 
   if (!res.ok) {
     throw res.error;

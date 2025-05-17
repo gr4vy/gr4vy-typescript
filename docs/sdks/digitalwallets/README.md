@@ -30,11 +30,11 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.digitalWallets.create({
-    provider: "google",
+    provider: "click-to-pay",
     merchantName: "<value>",
-    merchantCountryCode: "GB",
-    acceptTermsAndConditions: true,
-  }, 1, "default");
+    merchantCountryCode: "US",
+    acceptTermsAndConditions: false,
+  });
 
   // Handle the result
   console.log(result);
@@ -64,11 +64,11 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await digitalWalletsCreate(gr4vy, {
-    provider: "google",
+    provider: "click-to-pay",
     merchantName: "<value>",
-    merchantCountryCode: "GB",
-    acceptTermsAndConditions: true,
-  }, 1, "default");
+    merchantCountryCode: "US",
+    acceptTermsAndConditions: false,
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -136,7 +136,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.digitalWallets.list("default");
+  const result = await gr4vy.digitalWallets.list();
 
   // Handle the result
   console.log(result);
@@ -165,7 +165,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await digitalWalletsList(gr4vy, "default");
+  const res = await digitalWalletsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;
@@ -231,7 +231,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.digitalWallets.get("1808f5e6-b49c-4db9-94fa-22371ea352f5", "default");
+  const result = await gr4vy.digitalWallets.get("1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   // Handle the result
   console.log(result);
@@ -260,7 +260,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await digitalWalletsGet(gr4vy, "1808f5e6-b49c-4db9-94fa-22371ea352f5", "default");
+  const res = await digitalWalletsGet(gr4vy, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   if (!res.ok) {
     throw res.error;
@@ -327,7 +327,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.digitalWallets.delete("1808f5e6-b49c-4db9-94fa-22371ea352f5", 1, "default");
+  const result = await gr4vy.digitalWallets.delete("1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   // Handle the result
   console.log(result);
@@ -356,7 +356,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await digitalWalletsDelete(gr4vy, "1808f5e6-b49c-4db9-94fa-22371ea352f5", 1, "default");
+  const res = await digitalWalletsDelete(gr4vy, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   if (!res.ok) {
     throw res.error;
@@ -425,8 +425,8 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.digitalWallets.update({
-    merchantCountryCode: "US",
-  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5", 1, "default");
+    merchantCountryCode: "DE",
+  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   // Handle the result
   console.log(result);
@@ -456,8 +456,8 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await digitalWalletsUpdate(gr4vy, {
-    merchantCountryCode: "US",
-  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5", 1, "default");
+    merchantCountryCode: "DE",
+  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   if (!res.ok) {
     throw res.error;

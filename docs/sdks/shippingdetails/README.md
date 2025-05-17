@@ -45,7 +45,7 @@ async function run() {
       line2: "29th Street",
       organization: "Gr4vy",
     },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
+  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   // Handle the result
   console.log(result);
@@ -90,7 +90,7 @@ async function run() {
       line2: "29th Street",
       organization: "Gr4vy",
     },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
+  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   if (!res.ok) {
     throw res.error;
@@ -159,7 +159,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.shippingDetails.list("fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  const result = await gr4vy.buyers.shippingDetails.list("fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   // Handle the result
   console.log(result);
@@ -188,7 +188,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersShippingDetailsList(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  const res = await buyersShippingDetailsList(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   if (!res.ok) {
     throw res.error;
@@ -255,7 +255,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.shippingDetails.get("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341", "default");
+  const result = await gr4vy.buyers.shippingDetails.get("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
   // Handle the result
   console.log(result);
@@ -284,7 +284,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersShippingDetailsGet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341", "default");
+  const res = await buyersShippingDetailsGet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
   if (!res.ok) {
     throw res.error;
@@ -487,7 +487,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.shippingDetails.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341", 1, "default");
+  const result = await gr4vy.buyers.shippingDetails.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
   // Handle the result
   console.log(result);
@@ -516,7 +516,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersShippingDetailsDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341", 1, "default");
+  const res = await buyersShippingDetailsDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
   if (!res.ok) {
     throw res.error;

@@ -395,16 +395,12 @@ const gr4vy = new Gr4vy({
 async function run() {
   let result;
   try {
-    result = await gr4vy.accountUpdater.jobs.create(
-      {
-        paymentMethodIds: [
-          "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-          "f29e886e-93cc-4714-b4a3-12b7a718e595",
-        ],
-      },
-      1,
-      "default",
-    );
+    result = await gr4vy.accountUpdater.jobs.create({
+      paymentMethodIds: [
+        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+        "f29e886e-93cc-4714-b4a3-12b7a718e595",
+      ],
+    });
 
     // Handle the result
     console.log(result);
@@ -544,16 +540,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create(
-    {
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    },
-    1,
-    "default",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -579,16 +571,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create(
-    {
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    },
-    1,
-    "default",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -672,16 +660,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create(
-    {
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    },
-    1,
-    "default",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -829,16 +813,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create(
-    {
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    },
-    1,
-    "default",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -908,28 +888,23 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create(
-    {
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    },
-    1,
-    "default",
-    {
-      retries: {
-        strategy: "backoff",
-        backoff: {
-          initialInterval: 1,
-          maxInterval: 50,
-          exponent: 1.1,
-          maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
       },
+      retryConnectionErrors: false,
     },
-  );
+  });
 
   // Handle the result
   console.log(result);
@@ -962,16 +937,12 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create(
-    {
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    },
-    1,
-    "default",
-  );
+  const result = await gr4vy.accountUpdater.jobs.create({
+    paymentMethodIds: [
+      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+      "f29e886e-93cc-4714-b4a3-12b7a718e595",
+    ],
+  });
 
   // Handle the result
   console.log(result);
