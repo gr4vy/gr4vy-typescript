@@ -223,9 +223,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentServiceDefinitions.session({
-    "key": "<value>",
-    "key1": "<value>",
-    "key2": "<value>",
+
   }, "adyen-ideal");
 
   // Handle the result
@@ -256,9 +254,7 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentServiceDefinitionsSession(gr4vy, {
-    "key": "<value>",
-    "key1": "<value>",
-    "key2": "<value>",
+  
   }, "adyen-ideal");
 
   if (!res.ok) {

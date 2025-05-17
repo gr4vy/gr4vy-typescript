@@ -239,15 +239,16 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.create({
     amount: 1299,
-    currency: "GBP",
+    currency: "EUR",
     country: "US",
     paymentMethod: {
-      token: "4111123456789012",
-      cryptogram: "A3F9C2D47E1B56A9",
       expirationDate: "12/30",
-      buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+      number: "4111111111111111",
       buyerExternalIdentifier: "buyer-12345",
+      buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
       externalIdentifier: "payment-method-12345",
+      cardType: "credit",
+      securityCode: "123",
     },
     buyer: {
       displayName: "John Doe",
@@ -270,7 +271,7 @@ async function run() {
         },
         taxId: {
           value: "12345678931",
-          kind: "id.nik",
+          kind: "br.cnpj",
         },
       },
       shippingDetails: {
@@ -295,6 +296,14 @@ async function run() {
     buyerExternalIdentifier: "buyer-12345",
     giftCards: [
       {
+        id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e",
+        amount: 1299,
+      },
+      {
+        id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e",
+        amount: 1299,
+      },
+      {
         number: "4123455541234561234",
         pin: "1234",
         amount: 1299,
@@ -308,7 +317,8 @@ async function run() {
       directoryResponse: "C",
       scheme: "visa",
       authenticationResponse: "Y",
-      directoryTransactionId: "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+      cavvAlgorithm: "A",
+      xid: "12345",
     },
     metadata: {
       "cohort": "cohort-12345",
@@ -344,6 +354,7 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
@@ -368,6 +379,7 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
@@ -392,12 +404,39 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
       ],
       passengerNameRecord: "JOHN L",
       passengers: [
+        {
+          ageGroup: "adult",
+          dateOfBirth: new RFCDate("2013-07-16"),
+          emailAddress: "john@example.com",
+          firstName: "John",
+          frequentFlyerNumber: "15885566",
+          lastName: "Luhn",
+          passportNumber: "11117700225",
+          phoneNumber: "+1234567890",
+          ticketNumber: "BA1236699999",
+          title: "Mr.",
+          countryCode: "US",
+        },
+        {
+          ageGroup: "adult",
+          dateOfBirth: new RFCDate("2013-07-16"),
+          emailAddress: "john@example.com",
+          firstName: "John",
+          frequentFlyerNumber: "15885566",
+          lastName: "Luhn",
+          passportNumber: "11117700225",
+          phoneNumber: "+1234567890",
+          ticketNumber: "BA1236699999",
+          title: "Mr.",
+          countryCode: "US",
+        },
         {
           ageGroup: "adult",
           dateOfBirth: new RFCDate("2013-07-16"),
@@ -440,6 +479,42 @@ async function run() {
         productType: "physical",
         sellerCountry: "US",
       },
+      {
+        name: "GoPro HD",
+        quantity: 2,
+        unitAmount: 1299,
+        discountAmount: 0,
+        taxAmount: 0,
+        externalIdentifier: "goprohd",
+        sku: "GPHD1078",
+        productUrl: "https://example.com/catalog/go-pro-hd",
+        imageUrl: "https://example.com/images/go-pro-hd.jpg",
+        categories: [
+          "camera",
+          "travel",
+          "gear",
+        ],
+        productType: "physical",
+        sellerCountry: "US",
+      },
+      {
+        name: "GoPro HD",
+        quantity: 2,
+        unitAmount: 1299,
+        discountAmount: 0,
+        taxAmount: 0,
+        externalIdentifier: "goprohd",
+        sku: "GPHD1078",
+        productUrl: "https://example.com/catalog/go-pro-hd",
+        imageUrl: "https://example.com/images/go-pro-hd.jpg",
+        categories: [
+          "camera",
+          "travel",
+          "gear",
+        ],
+        productType: "physical",
+        sellerCountry: "US",
+      },
     ],
     statementDescriptor: {
       name: "ACME",
@@ -454,10 +529,10 @@ async function run() {
       javascriptEnabled: false,
       javaEnabled: false,
       language: "<value>",
-      colorDepth: 586220,
-      screenHeight: 752438,
-      screenWidth: 957409,
-      timeZoneOffset: 357021,
+      colorDepth: 242405,
+      screenHeight: 557747,
+      screenWidth: 288219,
+      timeZoneOffset: 538274,
       userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       userDevice: "desktop",
       acceptHeader: "*/*",
@@ -482,7 +557,7 @@ async function run() {
       accountNumber: "act12345",
       dateOfBirth: new RFCDate("1995-12-23"),
     },
-  }, 1, "default", "request-12345");
+  }, 1, "<id>", "request-12345");
 
   // Handle the result
   console.log(result);
@@ -514,15 +589,16 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await transactionsCreate(gr4vy, {
     amount: 1299,
-    currency: "GBP",
+    currency: "EUR",
     country: "US",
     paymentMethod: {
-      token: "4111123456789012",
-      cryptogram: "A3F9C2D47E1B56A9",
       expirationDate: "12/30",
-      buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+      number: "4111111111111111",
       buyerExternalIdentifier: "buyer-12345",
+      buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
       externalIdentifier: "payment-method-12345",
+      cardType: "credit",
+      securityCode: "123",
     },
     buyer: {
       displayName: "John Doe",
@@ -545,7 +621,7 @@ async function run() {
         },
         taxId: {
           value: "12345678931",
-          kind: "id.nik",
+          kind: "br.cnpj",
         },
       },
       shippingDetails: {
@@ -570,6 +646,14 @@ async function run() {
     buyerExternalIdentifier: "buyer-12345",
     giftCards: [
       {
+        id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e",
+        amount: 1299,
+      },
+      {
+        id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e",
+        amount: 1299,
+      },
+      {
         number: "4123455541234561234",
         pin: "1234",
         amount: 1299,
@@ -583,7 +667,8 @@ async function run() {
       directoryResponse: "C",
       scheme: "visa",
       authenticationResponse: "Y",
-      directoryTransactionId: "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
+      cavvAlgorithm: "A",
+      xid: "12345",
     },
     metadata: {
       "cohort": "cohort-12345",
@@ -619,6 +704,7 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
@@ -643,6 +729,7 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
@@ -667,12 +754,39 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
       ],
       passengerNameRecord: "JOHN L",
       passengers: [
+        {
+          ageGroup: "adult",
+          dateOfBirth: new RFCDate("2013-07-16"),
+          emailAddress: "john@example.com",
+          firstName: "John",
+          frequentFlyerNumber: "15885566",
+          lastName: "Luhn",
+          passportNumber: "11117700225",
+          phoneNumber: "+1234567890",
+          ticketNumber: "BA1236699999",
+          title: "Mr.",
+          countryCode: "US",
+        },
+        {
+          ageGroup: "adult",
+          dateOfBirth: new RFCDate("2013-07-16"),
+          emailAddress: "john@example.com",
+          firstName: "John",
+          frequentFlyerNumber: "15885566",
+          lastName: "Luhn",
+          passportNumber: "11117700225",
+          phoneNumber: "+1234567890",
+          ticketNumber: "BA1236699999",
+          title: "Mr.",
+          countryCode: "US",
+        },
         {
           ageGroup: "adult",
           dateOfBirth: new RFCDate("2013-07-16"),
@@ -715,6 +829,42 @@ async function run() {
         productType: "physical",
         sellerCountry: "US",
       },
+      {
+        name: "GoPro HD",
+        quantity: 2,
+        unitAmount: 1299,
+        discountAmount: 0,
+        taxAmount: 0,
+        externalIdentifier: "goprohd",
+        sku: "GPHD1078",
+        productUrl: "https://example.com/catalog/go-pro-hd",
+        imageUrl: "https://example.com/images/go-pro-hd.jpg",
+        categories: [
+          "camera",
+          "travel",
+          "gear",
+        ],
+        productType: "physical",
+        sellerCountry: "US",
+      },
+      {
+        name: "GoPro HD",
+        quantity: 2,
+        unitAmount: 1299,
+        discountAmount: 0,
+        taxAmount: 0,
+        externalIdentifier: "goprohd",
+        sku: "GPHD1078",
+        productUrl: "https://example.com/catalog/go-pro-hd",
+        imageUrl: "https://example.com/images/go-pro-hd.jpg",
+        categories: [
+          "camera",
+          "travel",
+          "gear",
+        ],
+        productType: "physical",
+        sellerCountry: "US",
+      },
     ],
     statementDescriptor: {
       name: "ACME",
@@ -729,10 +879,10 @@ async function run() {
       javascriptEnabled: false,
       javaEnabled: false,
       language: "<value>",
-      colorDepth: 586220,
-      screenHeight: 752438,
-      screenWidth: 957409,
-      timeZoneOffset: 357021,
+      colorDepth: 242405,
+      screenHeight: 557747,
+      screenWidth: 288219,
+      timeZoneOffset: 538274,
       userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       userDevice: "desktop",
       acceptHeader: "*/*",
@@ -757,7 +907,7 @@ async function run() {
       accountNumber: "act12345",
       dateOfBirth: new RFCDate("1995-12-23"),
     },
-  }, 1, "default", "request-12345");
+  }, 1, "<id>", "request-12345");
 
   if (!res.ok) {
     throw res.error;
@@ -826,7 +976,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.get("b888f774-3e7c-4135-a18c-6b985523c4bc", "default");
+  const result = await gr4vy.transactions.get("bde12786-dce8-4654-b031-196961d1ddcc");
 
   // Handle the result
   console.log(result);
@@ -855,7 +1005,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsGet(gr4vy, "b888f774-3e7c-4135-a18c-6b985523c4bc", "default");
+  const res = await transactionsGet(gr4vy, "bde12786-dce8-4654-b031-196961d1ddcc");
 
   if (!res.ok) {
     throw res.error;
@@ -955,6 +1105,57 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
+          stopOver: false,
+          taxAmount: 1200,
+        },
+        {
+          arrivalAirport: "LAX",
+          arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          arrivalCity: "Los Angeles",
+          arrivalCountry: "US",
+          carrierCode: "649",
+          carrierName: "Air Transat A.T. Inc",
+          iataDesignator: "TS",
+          icaoCode: "TSC",
+          couponNumber: "15885566",
+          departureAirport: "LHR",
+          departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          departureCity: "London",
+          departureCountry: "GB",
+          departureTaxAmount: 1200,
+          fareAmount: 129900,
+          fareBasisCode: "FY",
+          feeAmount: 1200,
+          flightClass: "E",
+          flightNumber: "101",
+          routeType: "round_trip",
+          seatClass: "F",
+          stopOver: false,
+          taxAmount: 1200,
+        },
+        {
+          arrivalAirport: "LAX",
+          arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          arrivalCity: "Los Angeles",
+          arrivalCountry: "US",
+          carrierCode: "649",
+          carrierName: "Air Transat A.T. Inc",
+          iataDesignator: "TS",
+          icaoCode: "TSC",
+          couponNumber: "15885566",
+          departureAirport: "LHR",
+          departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          departureCity: "London",
+          departureCountry: "GB",
+          departureTaxAmount: 1200,
+          fareAmount: 129900,
+          fareBasisCode: "FY",
+          feeAmount: 1200,
+          flightClass: "E",
+          flightNumber: "101",
+          routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
@@ -997,7 +1198,7 @@ async function run() {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
-  }, "cac402e8-3f44-4782-bac4-283b15a3b3e2", 1, "default");
+  }, "9a049029-b958-45dd-86d7-d7f9fc92c411");
 
   // Handle the result
   console.log(result);
@@ -1059,6 +1260,57 @@ async function run() {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
+          stopOver: false,
+          taxAmount: 1200,
+        },
+        {
+          arrivalAirport: "LAX",
+          arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          arrivalCity: "Los Angeles",
+          arrivalCountry: "US",
+          carrierCode: "649",
+          carrierName: "Air Transat A.T. Inc",
+          iataDesignator: "TS",
+          icaoCode: "TSC",
+          couponNumber: "15885566",
+          departureAirport: "LHR",
+          departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          departureCity: "London",
+          departureCountry: "GB",
+          departureTaxAmount: 1200,
+          fareAmount: 129900,
+          fareBasisCode: "FY",
+          feeAmount: 1200,
+          flightClass: "E",
+          flightNumber: "101",
+          routeType: "round_trip",
+          seatClass: "F",
+          stopOver: false,
+          taxAmount: 1200,
+        },
+        {
+          arrivalAirport: "LAX",
+          arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          arrivalCity: "Los Angeles",
+          arrivalCountry: "US",
+          carrierCode: "649",
+          carrierName: "Air Transat A.T. Inc",
+          iataDesignator: "TS",
+          icaoCode: "TSC",
+          couponNumber: "15885566",
+          departureAirport: "LHR",
+          departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
+          departureCity: "London",
+          departureCountry: "GB",
+          departureTaxAmount: 1200,
+          fareAmount: 129900,
+          fareBasisCode: "FY",
+          feeAmount: 1200,
+          flightClass: "E",
+          flightNumber: "101",
+          routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },
@@ -1101,7 +1353,7 @@ async function run() {
       travelAgencyName: "ACME Agency",
       travelAgencyPlanName: "B733",
     },
-  }, "cac402e8-3f44-4782-bac4-283b15a3b3e2", 1, "default");
+  }, "9a049029-b958-45dd-86d7-d7f9fc92c411");
 
   if (!res.ok) {
     throw res.error;
@@ -1170,7 +1422,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.void("26740073-c9e5-4864-9ecf-5856a8e566d6", 1, "default");
+  const result = await gr4vy.transactions.void("7dbc44c9-1ea3-4853-87be-9923dd281b0d");
 
   // Handle the result
   console.log(result);
@@ -1199,7 +1451,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsVoid(gr4vy, "26740073-c9e5-4864-9ecf-5856a8e566d6", 1, "default");
+  const res = await transactionsVoid(gr4vy, "7dbc44c9-1ea3-4853-87be-9923dd281b0d");
 
   if (!res.ok) {
     throw res.error;
@@ -1267,7 +1519,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.summary("7099948d-7286-47e4-aad8-b68f7eb44591", "default");
+  const result = await gr4vy.transactions.summary("7099948d-7286-47e4-aad8-b68f7eb44591");
 
   // Handle the result
   console.log(result);
@@ -1296,7 +1548,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsSummary(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591", "default");
+  const res = await transactionsSummary(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
   if (!res.ok) {
     throw res.error;
@@ -1363,7 +1615,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.sync("f0897be3-0808-45c9-a63b-509c0142ddd3", 1, "default");
+  const result = await gr4vy.transactions.sync("2ee546e0-3b11-478e-afec-fdb362611e22");
 
   // Handle the result
   console.log(result);
@@ -1392,7 +1644,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsSync(gr4vy, "f0897be3-0808-45c9-a63b-509c0142ddd3", 1, "default");
+  const res = await transactionsSync(gr4vy, "2ee546e0-3b11-478e-afec-fdb362611e22");
 
   if (!res.ok) {
     throw res.error;

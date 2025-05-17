@@ -38,7 +38,7 @@ async function run() {
         pin: "1234",
       },
     ],
-  }, 1, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -80,7 +80,7 @@ async function run() {
         pin: "1234",
       },
     ],
-  }, 1, "default");
+  });
 
   if (!res.ok) {
     throw res.error;

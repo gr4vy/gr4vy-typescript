@@ -144,8 +144,16 @@ async function run() {
         key: "api_key",
         value: "key-12345",
       },
+      {
+        key: "api_key",
+        value: "key-12345",
+      },
     ],
     reportingFields: [
+      {
+        key: "api_key",
+        value: "key-12345",
+      },
       {
         key: "api_key",
         value: "key-12345",
@@ -166,9 +174,17 @@ async function run() {
       "GB",
       "US",
     ],
-    active: true,
+    active: false,
     merchantProfile: {
       "key": {
+        merchantAcquirerBin: "516327",
+        merchantUrl: "https://example.com",
+        merchantAcquirerId: "123456789012345",
+        merchantName: "Acme Inc.",
+        merchantCountryCode: "USD",
+        merchantCategoryCode: "1234",
+      },
+      "key1": {
         merchantAcquirerBin: "516327",
         merchantUrl: "https://example.com",
         merchantAcquirerId: "123456789012345",
@@ -217,8 +233,16 @@ async function run() {
         key: "api_key",
         value: "key-12345",
       },
+      {
+        key: "api_key",
+        value: "key-12345",
+      },
     ],
     reportingFields: [
+      {
+        key: "api_key",
+        value: "key-12345",
+      },
       {
         key: "api_key",
         value: "key-12345",
@@ -239,9 +263,17 @@ async function run() {
       "GB",
       "US",
     ],
-    active: true,
+    active: false,
     merchantProfile: {
       "key": {
+        merchantAcquirerBin: "516327",
+        merchantUrl: "https://example.com",
+        merchantAcquirerId: "123456789012345",
+        merchantName: "Acme Inc.",
+        merchantCountryCode: "USD",
+        merchantCategoryCode: "1234",
+      },
+      "key1": {
         merchantAcquirerBin: "516327",
         merchantUrl: "https://example.com",
         merchantAcquirerId: "123456789012345",
@@ -440,14 +472,6 @@ async function run() {
         merchantCountryCode: "USD",
         merchantCategoryCode: "1234",
       },
-      "key1": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
     },
     paymentMethodTokenizationEnabled: true,
     networkTokensEnabled: true,
@@ -498,14 +522,6 @@ async function run() {
     threeDSecureEnabled: true,
     merchantProfile: {
       "key": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-      "key1": {
         merchantAcquirerBin: "516327",
         merchantUrl: "https://example.com",
         merchantAcquirerId: "123456789012345",
@@ -685,20 +701,7 @@ async function run() {
   const result = await gr4vy.paymentServices.verify({
     paymentServiceDefinitionId: "stripe-card",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    fields: [
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-    ],
+    fields: [],
   });
 
   // Handle the result
@@ -731,20 +734,7 @@ async function run() {
   const res = await paymentServicesVerify(gr4vy, {
     paymentServiceDefinitionId: "stripe-card",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    fields: [
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-    ],
+    fields: [],
   });
 
   if (!res.ok) {
@@ -814,9 +804,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentServices.session({
-    "key": "<value>",
-    "key1": "<value>",
-    "key2": "<value>",
+
   }, "fffd152a-9532-4087-9a4f-de58754210f0");
 
   // Handle the result
@@ -847,9 +835,7 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentServicesSession(gr4vy, {
-    "key": "<value>",
-    "key1": "<value>",
-    "key2": "<value>",
+  
   }, "fffd152a-9532-4087-9a4f-de58754210f0");
 
   if (!res.ok) {
