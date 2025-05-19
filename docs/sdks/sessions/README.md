@@ -29,7 +29,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.digitalWallets.sessions.googlePay({
     originDomain: "example.com",
-  }, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -60,7 +60,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await digitalWalletsSessionsGooglePay(gr4vy, {
     originDomain: "example.com",
-  }, "default");
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -130,7 +130,7 @@ async function run() {
   const result = await gr4vy.digitalWallets.sessions.applePay({
     validationUrl: "https://apple-pay-gateway-cert.apple.com",
     domainName: "example.com",
-  }, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -162,7 +162,7 @@ async function run() {
   const res = await digitalWalletsSessionsApplePay(gr4vy, {
     validationUrl: "https://apple-pay-gateway-cert.apple.com",
     domainName: "example.com",
-  }, "default");
+  });
 
   if (!res.ok) {
     throw res.error;

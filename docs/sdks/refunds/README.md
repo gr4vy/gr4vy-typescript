@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.refunds.get("6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "default");
+  const result = await gr4vy.refunds.get("6a1d4e46-14ed-4fe1-a45f-eff4e025d211");
 
   // Handle the result
   console.log(result);
@@ -54,7 +54,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await refundsGet(gr4vy, "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "default");
+  const res = await refundsGet(gr4vy, "6a1d4e46-14ed-4fe1-a45f-eff4e025d211");
 
   if (!res.ok) {
     throw res.error;

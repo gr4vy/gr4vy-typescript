@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.refunds.list("7099948d-7286-47e4-aad8-b68f7eb44591", "default");
+  const result = await gr4vy.transactions.refunds.list("7099948d-7286-47e4-aad8-b68f7eb44591");
 
   // Handle the result
   console.log(result);
@@ -56,7 +56,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsRefundsList(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591", "default");
+  const res = await transactionsRefundsList(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
   if (!res.ok) {
     throw res.error;
@@ -128,7 +128,7 @@ async function run() {
     targetId: "7a6c366d-9205-45ab-8021-0d9ee37f20f2",
     reason: "Refund due to user request.",
     externalIdentifier: "refund-12345",
-  }, "7099948d-7286-47e4-aad8-b68f7eb44591", 1, "default");
+  }, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
   // Handle the result
   console.log(result);
@@ -162,7 +162,7 @@ async function run() {
     targetId: "7a6c366d-9205-45ab-8021-0d9ee37f20f2",
     reason: "Refund due to user request.",
     externalIdentifier: "refund-12345",
-  }, "7099948d-7286-47e4-aad8-b68f7eb44591", 1, "default");
+  }, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
   if (!res.ok) {
     throw res.error;

@@ -157,10 +157,10 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "jp.cn",
+        kind: "ca.pst_mb",
       },
     },
-  }, 1, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -210,10 +210,10 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "jp.cn",
+        kind: "ca.pst_mb",
       },
     },
-  }, 1, "default");
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -281,7 +281,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.get("fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  const result = await gr4vy.buyers.get("fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   // Handle the result
   console.log(result);
@@ -310,7 +310,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersGet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "default");
+  const res = await buyersGet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   if (!res.ok) {
     throw res.error;
@@ -398,10 +398,10 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "th.id",
+        kind: "au.abn",
       },
     },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
+  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   // Handle the result
   console.log(result);
@@ -451,10 +451,10 @@ async function run() {
       },
       taxId: {
         value: "12345678931",
-        kind: "th.id",
+        kind: "au.abn",
       },
     },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
+  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   if (!res.ok) {
     throw res.error;
@@ -523,7 +523,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  await gr4vy.buyers.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
+  await gr4vy.buyers.delete("fe26475d-ec3e-4884-9553-f7356683f7f9");
 
 
 }
@@ -551,7 +551,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", 1, "default");
+  const res = await buyersDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   if (!res.ok) {
     throw res.error;

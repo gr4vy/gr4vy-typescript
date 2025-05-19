@@ -105,6 +105,7 @@ let value: UpdateCheckoutSessionRequest = {
           flightClass: "E",
           flightNumber: "101",
           routeType: "round_trip",
+          seatClass: "F",
           stopOver: false,
           taxAmount: 1200,
         },

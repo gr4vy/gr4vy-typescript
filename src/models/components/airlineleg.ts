@@ -101,6 +101,10 @@ export type AirlineLeg = {
    */
   routeType?: RouteType | null | undefined;
   /**
+   * Indicates seat class (first class, business class, etc.).
+   */
+  seatClass?: string | null | undefined;
+  /**
    * Indicates whether a stopover is allowed on this ticket.
    */
   stopOver?: boolean | null | undefined;
@@ -172,6 +176,7 @@ export const AirlineLeg$inboundSchema: z.ZodType<
   flight_class: z.nullable(z.string()).optional(),
   flight_number: z.nullable(z.string()).optional(),
   route_type: z.nullable(RouteType$inboundSchema).optional(),
+  seat_class: z.nullable(z.string()).optional(),
   stop_over: z.nullable(z.boolean()).optional(),
   tax_amount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
@@ -196,6 +201,7 @@ export const AirlineLeg$inboundSchema: z.ZodType<
     "flight_class": "flightClass",
     "flight_number": "flightNumber",
     "route_type": "routeType",
+    "seat_class": "seatClass",
     "stop_over": "stopOver",
     "tax_amount": "taxAmount",
   });
@@ -223,6 +229,7 @@ export type AirlineLeg$Outbound = {
   flight_class?: string | null | undefined;
   flight_number?: string | null | undefined;
   route_type?: string | null | undefined;
+  seat_class?: string | null | undefined;
   stop_over?: boolean | null | undefined;
   tax_amount?: number | null | undefined;
 };
@@ -253,6 +260,7 @@ export const AirlineLeg$outboundSchema: z.ZodType<
   flightClass: z.nullable(z.string()).optional(),
   flightNumber: z.nullable(z.string()).optional(),
   routeType: z.nullable(RouteType$outboundSchema).optional(),
+  seatClass: z.nullable(z.string()).optional(),
   stopOver: z.nullable(z.boolean()).optional(),
   taxAmount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
@@ -277,6 +285,7 @@ export const AirlineLeg$outboundSchema: z.ZodType<
     flightClass: "flight_class",
     flightNumber: "flight_number",
     routeType: "route_type",
+    seatClass: "seat_class",
     stopOver: "stop_over",
     taxAmount: "tax_amount",
   });

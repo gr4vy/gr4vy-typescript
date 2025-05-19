@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.payouts.list("ZXhhbXBsZTE", 20, "default");
+  const result = await gr4vy.payouts.list("ZXhhbXBsZTE");
 
   for await (const page of result) {
     // Handle the page
@@ -58,7 +58,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await payoutsList(gr4vy, "ZXhhbXBsZTE", 20, "default");
+  const res = await payoutsList(gr4vy, "ZXhhbXBsZTE");
 
   if (!res.ok) {
     throw res.error;
@@ -130,7 +130,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.payouts.create({
     amount: 1299,
-    currency: "GBP",
+    currency: "USD",
     paymentServiceId: "ed8bd87d-85ad-40cf-8e8f-007e21e55aad",
     paymentMethod: {
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
@@ -159,7 +159,7 @@ async function run() {
         },
         taxId: {
           value: "12345678931",
-          kind: "id.nik",
+          kind: "no.vat",
         },
       },
       shippingDetails: {
@@ -206,7 +206,7 @@ async function run() {
         sourceId: "acct-1234",
       },
     },
-  }, 1, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -237,7 +237,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await payoutsCreate(gr4vy, {
     amount: 1299,
-    currency: "GBP",
+    currency: "USD",
     paymentServiceId: "ed8bd87d-85ad-40cf-8e8f-007e21e55aad",
     paymentMethod: {
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
@@ -266,7 +266,7 @@ async function run() {
         },
         taxId: {
           value: "12345678931",
-          kind: "id.nik",
+          kind: "no.vat",
         },
       },
       shippingDetails: {
@@ -313,7 +313,7 @@ async function run() {
         sourceId: "acct-1234",
       },
     },
-  }, 1, "default");
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -381,7 +381,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.payouts.get("b888f774-3e7c-4135-a18c-6b985523c4bc", "default");
+  const result = await gr4vy.payouts.get("4344fef2-bc2f-49a6-924f-343e62f67224");
 
   // Handle the result
   console.log(result);
@@ -410,7 +410,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await payoutsGet(gr4vy, "b888f774-3e7c-4135-a18c-6b985523c4bc", "default");
+  const res = await payoutsGet(gr4vy, "4344fef2-bc2f-49a6-924f-343e62f67224");
 
   if (!res.ok) {
     throw res.error;

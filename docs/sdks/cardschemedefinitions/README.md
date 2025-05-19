@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.cardSchemeDefinitions.list("default");
+  const result = await gr4vy.cardSchemeDefinitions.list();
 
   // Handle the result
   console.log(result);
@@ -54,7 +54,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await cardSchemeDefinitionsList(gr4vy, "default");
+  const res = await cardSchemeDefinitionsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;

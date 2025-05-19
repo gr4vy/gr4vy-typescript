@@ -49,46 +49,10 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "GB",
-      },
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "GB",
-      },
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "GB",
+        sellerCountry: "US",
       },
     ],
-  }, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -141,46 +105,10 @@ async function run() {
           "gear",
         ],
         productType: "physical",
-        sellerCountry: "GB",
-      },
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "GB",
-      },
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "GB",
+        sellerCountry: "US",
       },
     ],
-  }, "default");
+  });
 
   if (!res.ok) {
     throw res.error;

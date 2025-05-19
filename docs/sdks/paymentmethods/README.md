@@ -138,14 +138,11 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentMethods.create({
-    method: "paypal",
+    id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
+    externalIdentifier: "card-12345",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-    country: "GB",
-    currency: "GBP",
-    redirectUrl: "https://standard-utilization.com/",
-    externalIdentifier: "payment-method-12345",
-  }, 1, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -175,14 +172,11 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsCreate(gr4vy, {
-    method: "paypal",
+    id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
+    externalIdentifier: "card-12345",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-    country: "GB",
-    currency: "GBP",
-    redirectUrl: "https://standard-utilization.com/",
-    externalIdentifier: "payment-method-12345",
-  }, 1, "default");
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -250,7 +244,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentMethods.get("ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  const result = await gr4vy.paymentMethods.get("ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   // Handle the result
   console.log(result);
@@ -279,7 +273,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsGet(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  const res = await paymentMethodsGet(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   if (!res.ok) {
     throw res.error;
@@ -346,7 +340,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  await gr4vy.paymentMethods.delete("ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  await gr4vy.paymentMethods.delete("ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
 
 }
@@ -374,7 +368,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  const res = await paymentMethodsDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   if (!res.ok) {
     throw res.error;

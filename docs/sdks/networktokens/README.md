@@ -29,7 +29,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentMethods.networkTokens.list("ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  const result = await gr4vy.paymentMethods.networkTokens.list("ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   // Handle the result
   console.log(result);
@@ -58,7 +58,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsNetworkTokensList(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "default");
+  const res = await paymentMethodsNetworkTokensList(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   if (!res.ok) {
     throw res.error;
@@ -129,7 +129,7 @@ async function run() {
     securityCode: "123",
     merchantInitiated: false,
     isSubsequentPayment: false,
-  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", 1, "default");
+  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   // Handle the result
   console.log(result);
@@ -162,7 +162,7 @@ async function run() {
     securityCode: "123",
     merchantInitiated: false,
     isSubsequentPayment: false,
-  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", 1, "default");
+  }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   if (!res.ok) {
     throw res.error;
@@ -231,7 +231,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentMethods.networkTokens.suspend("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298", 1, "default");
+  const result = await gr4vy.paymentMethods.networkTokens.suspend("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
   // Handle the result
   console.log(result);
@@ -260,7 +260,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsNetworkTokensSuspend(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298", 1, "default");
+  const res = await paymentMethodsNetworkTokensSuspend(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
   if (!res.ok) {
     throw res.error;
@@ -329,7 +329,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentMethods.networkTokens.resume("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298", 1, "default");
+  const result = await gr4vy.paymentMethods.networkTokens.resume("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
   // Handle the result
   console.log(result);
@@ -358,7 +358,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsNetworkTokensResume(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298", 1, "default");
+  const res = await paymentMethodsNetworkTokensResume(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
   if (!res.ok) {
     throw res.error;
@@ -427,7 +427,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  await gr4vy.paymentMethods.networkTokens.delete("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298", 1, "default");
+  await gr4vy.paymentMethods.networkTokens.delete("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
 
 }
@@ -455,7 +455,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsNetworkTokensDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298", 1, "default");
+  const res = await paymentMethodsNetworkTokensDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
   if (!res.ok) {
     throw res.error;

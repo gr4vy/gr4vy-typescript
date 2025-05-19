@@ -28,7 +28,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.giftCards.get("356d56e5-fe16-42ae-97ee-8d55d846ae2e", "default");
+  const result = await gr4vy.giftCards.get("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
 
   // Handle the result
   console.log(result);
@@ -57,7 +57,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await giftCardsGet(gr4vy, "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "default");
+  const res = await giftCardsGet(gr4vy, "356d56e5-fe16-42ae-97ee-8d55d846ae2e");
 
   if (!res.ok) {
     throw res.error;
@@ -124,7 +124,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.giftCards.delete("356d56e5-fe16-42ae-97ee-8d55d846ae2e", 1, "default");
+  const result = await gr4vy.giftCards.delete("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
 
   // Handle the result
   console.log(result);
@@ -153,7 +153,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await giftCardsDelete(gr4vy, "356d56e5-fe16-42ae-97ee-8d55d846ae2e", 1, "default");
+  const res = await giftCardsDelete(gr4vy, "356d56e5-fe16-42ae-97ee-8d55d846ae2e");
 
   if (!res.ok) {
     throw res.error;
@@ -226,7 +226,7 @@ async function run() {
     pin: "1234",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-  }, 1, "default");
+  });
 
   // Handle the result
   console.log(result);
@@ -260,7 +260,7 @@ async function run() {
     pin: "1234",
     buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
     buyerExternalIdentifier: "buyer-12345",
-  }, 1, "default");
+  });
 
   if (!res.ok) {
     throw res.error;
