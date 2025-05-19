@@ -49,7 +49,7 @@ export function payoutsList(
       operations.ListPayoutsResponse,
       | errors.Error400
       | errors.Error401
-      | errors.ListPayoutsResponse403ListPayouts
+      | errors.Error403
       | errors.Error404
       | errors.Error405
       | errors.Error409
@@ -92,7 +92,7 @@ async function $do(
         operations.ListPayoutsResponse,
         | errors.Error400
         | errors.Error401
-        | errors.ListPayoutsResponse403ListPayouts
+        | errors.Error403
         | errors.Error404
         | errors.Error405
         | errors.Error409
@@ -226,7 +226,7 @@ async function $do(
     operations.ListPayoutsResponse,
     | errors.Error400
     | errors.Error401
-    | errors.ListPayoutsResponse403ListPayouts
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -249,7 +249,7 @@ async function $do(
     }),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
-    M.jsonErr(403, errors.ListPayoutsResponse403ListPayouts$inboundSchema),
+    M.jsonErr(403, errors.Error403$inboundSchema),
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),
     M.jsonErr(409, errors.Error409$inboundSchema),
@@ -278,7 +278,7 @@ async function $do(
         operations.ListPayoutsResponse,
         | errors.Error400
         | errors.Error401
-        | errors.ListPayoutsResponse403ListPayouts
+        | errors.Error403
         | errors.Error404
         | errors.Error405
         | errors.Error409

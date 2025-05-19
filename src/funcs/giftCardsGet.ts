@@ -41,7 +41,7 @@ export function giftCardsGet(
     components.GiftCard,
     | errors.Error400
     | errors.Error401
-    | errors.GetGiftCardResponse403GetGiftCard
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -79,7 +79,7 @@ async function $do(
       components.GiftCard,
       | errors.Error400
       | errors.Error401
-      | errors.GetGiftCardResponse403GetGiftCard
+      | errors.Error403
       | errors.Error404
       | errors.Error405
       | errors.Error409
@@ -210,7 +210,7 @@ async function $do(
     components.GiftCard,
     | errors.Error400
     | errors.Error401
-    | errors.GetGiftCardResponse403GetGiftCard
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -231,7 +231,7 @@ async function $do(
     M.json(200, components.GiftCard$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
-    M.jsonErr(403, errors.GetGiftCardResponse403GetGiftCard$inboundSchema),
+    M.jsonErr(403, errors.Error403$inboundSchema),
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),
     M.jsonErr(409, errors.Error409$inboundSchema),

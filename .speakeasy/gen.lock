@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 348b7e9be853c306a63764640bd016e3
+  docChecksum: 189c63ad8df539db768cd92aee15a2e8
   docVersion: 1.0.0
-  speakeasyVersion: 1.546.2
-  generationVersion: 2.604.4
-  releaseVersion: 1.0.0-beta.5
-  configChecksum: a67a7fc5fb51f6a22b77eec381e3137c
+  speakeasyVersion: 1.547.1
+  generationVersion: 2.605.0
+  releaseVersion: 1.0.0-beta.6
+  configChecksum: db9854c31e7f87a9ce710010956e87dd
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -18,7 +18,6 @@ features:
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    errorUnions: 0.1.1
     flattening: 2.82.1
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
@@ -237,42 +236,9 @@ generatedFiles:
   - docs/models/components/verifycredentials.md
   - docs/models/components/voidablefield.md
   - docs/models/components/walletpaymentoptioncontext.md
-  - docs/models/errors/addbuyerresponse403addbuyer.md
-  - docs/models/errors/addbuyershippingdetailsresponse403addbuyershippingdetails.md
-  - docs/models/errors/capturetransactionresponse403capturetransaction.md
-  - docs/models/errors/configuredigitalwalletresponse403configuredigitalwallet.md
-  - docs/models/errors/createaccountupdaterjobresponse403createaccountupdaterjob.md
-  - docs/models/errors/createapplepaydigitalwalletsessionresponse403createapplepaydigitalwalletsession.md
-  - docs/models/errors/createcheckoutsessionresponse403createcheckoutsession.md
-  - docs/models/errors/createclicktopaydigitalwalletsessionresponse403createclicktopaydigitalwalletsession.md
-  - docs/models/errors/createfulltransactionrefundresponse403createfulltransactionrefund.md
-  - docs/models/errors/creategiftcardresponse403creategiftcard.md
-  - docs/models/errors/creategooglepaydigitalwalletsessionresponse403creategooglepaydigitalwalletsession.md
-  - docs/models/errors/createmerchantaccountresponse403createmerchantaccount.md
-  - docs/models/errors/createpaymentmethodnetworktokencryptogramresponse403createpaymentmethodnetworktokencryptogram.md
-  - docs/models/errors/createpaymentmethodnetworktokenresponse403createpaymentmethodnetworktoken.md
-  - docs/models/errors/createpaymentmethodpaymentservicetokenresponse403createpaymentmethodpaymentservicetoken.md
-  - docs/models/errors/createpaymentmethodresponse403createpaymentmethod.md
-  - docs/models/errors/createpaymentservicedefinitionsessionresponse403createpaymentservicedefinitionsession.md
-  - docs/models/errors/createpaymentserviceresponse403createpaymentservice.md
-  - docs/models/errors/createpaymentservicesessionresponse403createpaymentservicesession.md
-  - docs/models/errors/createpayoutresponse403createpayout.md
-  - docs/models/errors/createtransactionrefundresponse403createtransactionrefund.md
-  - docs/models/errors/createtransactionresponse403createtransaction.md
-  - docs/models/errors/deletebuyerresponse403deletebuyer.md
-  - docs/models/errors/deletebuyershippingdetailsresponse403deletebuyershippingdetails.md
-  - docs/models/errors/deletecheckoutsessionresponse403deletecheckoutsession.md
-  - docs/models/errors/deletedigitalwalletresponse403deletedigitalwallet.md
-  - docs/models/errors/deletegiftcardresponse403deletegiftcard.md
-  - docs/models/errors/deletepaymentmethodnetworktokenresponse403deletepaymentmethodnetworktoken.md
-  - docs/models/errors/deletepaymentmethodpaymentservicetokenresponse403deletepaymentmethodpaymentservicetoken.md
-  - docs/models/errors/deletepaymentmethodresponse403deletepaymentmethod.md
-  - docs/models/errors/deletepaymentserviceresponse403deletepaymentservice.md
   - docs/models/errors/error400.md
   - docs/models/errors/error401.md
   - docs/models/errors/error403.md
-  - docs/models/errors/error403active.md
-  - docs/models/errors/error403forbidden.md
   - docs/models/errors/error404.md
   - docs/models/errors/error405.md
   - docs/models/errors/error409.md
@@ -281,53 +247,7 @@ generatedFiles:
   - docs/models/errors/error500.md
   - docs/models/errors/error502.md
   - docs/models/errors/error504.md
-  - docs/models/errors/getbuyerresponse403getbuyer.md
-  - docs/models/errors/getbuyershippingdetailsresponse403getbuyershippingdetails.md
-  - docs/models/errors/getcheckoutsessionresponse403getcheckoutsession.md
-  - docs/models/errors/getdigitalwalletresponse403getdigitalwallet.md
-  - docs/models/errors/getgiftcardresponse403getgiftcard.md
-  - docs/models/errors/getmerchantaccountresponse403getmerchantaccount.md
-  - docs/models/errors/getpaymentmethodresponse403getpaymentmethod.md
-  - docs/models/errors/getpaymentservicedefinitionresponse403getpaymentservicedefinition.md
-  - docs/models/errors/getpaymentserviceresponse403getpaymentservice.md
-  - docs/models/errors/getpayoutresponse403getpayout.md
-  - docs/models/errors/getrefundresponse403getrefund.md
-  - docs/models/errors/gettransactionrefundresponse403gettransactionrefund.md
-  - docs/models/errors/gettransactionresponse403gettransaction.md
-  - docs/models/errors/gettransactionsummaryresponse403gettransactionsummary.md
   - docs/models/errors/httpvalidationerror.md
-  - docs/models/errors/listauditlogsresponse403listauditlogs.md
-  - docs/models/errors/listbuyergiftcardsresponse403listbuyergiftcards.md
-  - docs/models/errors/listbuyerpaymentmethodsresponse403listbuyerpaymentmethods.md
-  - docs/models/errors/listbuyershippingdetailsresponse403listbuyershippingdetails.md
-  - docs/models/errors/listbuyersresponse403listbuyers.md
-  - docs/models/errors/listcardschemedefinitionsresponse403listcardschemedefinitions.md
-  - docs/models/errors/listdigitalwalletsresponse403listdigitalwallets.md
-  - docs/models/errors/listgiftcardbalancesresponse403listgiftcardbalances.md
-  - docs/models/errors/listgiftcardsresponse403listgiftcards.md
-  - docs/models/errors/listmerchantaccountsresponse403listmerchantaccounts.md
-  - docs/models/errors/listpaymentmethodnetworktokensresponse403listpaymentmethodnetworktokens.md
-  - docs/models/errors/listpaymentmethodpaymentservicetokensresponse403listpaymentmethodpaymentservicetokens.md
-  - docs/models/errors/listpaymentmethodsresponse403listpaymentmethods.md
-  - docs/models/errors/listpaymentoptionsresponse403listpaymentoptions.md
-  - docs/models/errors/listpaymentservicedefinitionsresponse403listpaymentservicedefinitions.md
-  - docs/models/errors/listpaymentservicesresponse403listpaymentservices.md
-  - docs/models/errors/listpayoutsresponse403listpayouts.md
-  - docs/models/errors/listtransactionrefundsresponse403listtransactionrefunds.md
-  - docs/models/errors/listtransactionsresponse403listtransactions.md
-  - docs/models/errors/registerdigitalwalletdomainresponse403registerdigitalwalletdomain.md
-  - docs/models/errors/resumepaymentmethodnetworktokenresponse403resumepaymentmethodnetworktoken.md
-  - docs/models/errors/suspendpaymentmethodnetworktokenresponse403suspendpaymentmethodnetworktoken.md
-  - docs/models/errors/synctransactionresponse403synctransaction.md
-  - docs/models/errors/unregisterdigitalwalletdomainresponse403unregisterdigitalwalletdomain.md
-  - docs/models/errors/updatebuyerresponse403updatebuyer.md
-  - docs/models/errors/updatebuyershippingdetailsresponse403updatebuyershippingdetails.md
-  - docs/models/errors/updatecheckoutsessionresponse403updatecheckoutsession.md
-  - docs/models/errors/updatedigitalwalletresponse403updatedigitalwallet.md
-  - docs/models/errors/updatemerchantaccountresponse403updatemerchantaccount.md
-  - docs/models/errors/updatepaymentserviceresponse403updatepaymentservice.md
-  - docs/models/errors/verifypaymentservicecredentialsresponse403verifypaymentservicecredentials.md
-  - docs/models/errors/voidtransactionresponse403voidtransaction.md
   - docs/models/operations/addbuyerglobals.md
   - docs/models/operations/addbuyerrequest.md
   - docs/models/operations/addbuyershippingdetailsglobals.md
@@ -881,42 +801,9 @@ generatedFiles:
   - src/models/components/verifycredentials.ts
   - src/models/components/voidablefield.ts
   - src/models/components/walletpaymentoptioncontext.ts
-  - src/models/errors/addbuyer.ts
-  - src/models/errors/addbuyershippingdetails.ts
-  - src/models/errors/capturetransaction.ts
-  - src/models/errors/configuredigitalwallet.ts
-  - src/models/errors/createaccountupdaterjob.ts
-  - src/models/errors/createapplepaydigitalwalletsession.ts
-  - src/models/errors/createcheckoutsession.ts
-  - src/models/errors/createclicktopaydigitalwalletsession.ts
-  - src/models/errors/createfulltransactionrefund.ts
-  - src/models/errors/creategiftcard.ts
-  - src/models/errors/creategooglepaydigitalwalletsession.ts
-  - src/models/errors/createmerchantaccount.ts
-  - src/models/errors/createpaymentmethod.ts
-  - src/models/errors/createpaymentmethodnetworktoken.ts
-  - src/models/errors/createpaymentmethodnetworktokencryptogram.ts
-  - src/models/errors/createpaymentmethodpaymentservicetoken.ts
-  - src/models/errors/createpaymentservice.ts
-  - src/models/errors/createpaymentservicedefinitionsession.ts
-  - src/models/errors/createpaymentservicesession.ts
-  - src/models/errors/createpayout.ts
-  - src/models/errors/createtransaction.ts
-  - src/models/errors/createtransactionrefund.ts
-  - src/models/errors/deletebuyer.ts
-  - src/models/errors/deletebuyershippingdetails.ts
-  - src/models/errors/deletecheckoutsession.ts
-  - src/models/errors/deletedigitalwallet.ts
-  - src/models/errors/deletegiftcard.ts
-  - src/models/errors/deletepaymentmethod.ts
-  - src/models/errors/deletepaymentmethodnetworktoken.ts
-  - src/models/errors/deletepaymentmethodpaymentservicetoken.ts
-  - src/models/errors/deletepaymentservice.ts
   - src/models/errors/error400.ts
   - src/models/errors/error401.ts
   - src/models/errors/error403.ts
-  - src/models/errors/error403active.ts
-  - src/models/errors/error403forbidden.ts
   - src/models/errors/error404.ts
   - src/models/errors/error405.ts
   - src/models/errors/error409.ts
@@ -925,57 +812,11 @@ generatedFiles:
   - src/models/errors/error500.ts
   - src/models/errors/error502.ts
   - src/models/errors/error504.ts
-  - src/models/errors/getbuyer.ts
-  - src/models/errors/getbuyershippingdetails.ts
-  - src/models/errors/getcheckoutsession.ts
-  - src/models/errors/getdigitalwallet.ts
-  - src/models/errors/getgiftcard.ts
-  - src/models/errors/getmerchantaccount.ts
-  - src/models/errors/getpaymentmethod.ts
-  - src/models/errors/getpaymentservice.ts
-  - src/models/errors/getpaymentservicedefinition.ts
-  - src/models/errors/getpayout.ts
-  - src/models/errors/getrefund.ts
-  - src/models/errors/gettransaction.ts
-  - src/models/errors/gettransactionrefund.ts
-  - src/models/errors/gettransactionsummary.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/httpvalidationerror.ts
   - src/models/errors/index.ts
-  - src/models/errors/listauditlogs.ts
-  - src/models/errors/listbuyergiftcards.ts
-  - src/models/errors/listbuyerpaymentmethods.ts
-  - src/models/errors/listbuyers.ts
-  - src/models/errors/listbuyershippingdetails.ts
-  - src/models/errors/listcardschemedefinitions.ts
-  - src/models/errors/listdigitalwallets.ts
-  - src/models/errors/listgiftcardbalances.ts
-  - src/models/errors/listgiftcards.ts
-  - src/models/errors/listmerchantaccounts.ts
-  - src/models/errors/listpaymentmethodnetworktokens.ts
-  - src/models/errors/listpaymentmethodpaymentservicetokens.ts
-  - src/models/errors/listpaymentmethods.ts
-  - src/models/errors/listpaymentoptions.ts
-  - src/models/errors/listpaymentservicedefinitions.ts
-  - src/models/errors/listpaymentservices.ts
-  - src/models/errors/listpayouts.ts
-  - src/models/errors/listtransactionrefunds.ts
-  - src/models/errors/listtransactions.ts
-  - src/models/errors/registerdigitalwalletdomain.ts
-  - src/models/errors/resumepaymentmethodnetworktoken.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
-  - src/models/errors/suspendpaymentmethodnetworktoken.ts
-  - src/models/errors/synctransaction.ts
-  - src/models/errors/unregisterdigitalwalletdomain.ts
-  - src/models/errors/updatebuyer.ts
-  - src/models/errors/updatebuyershippingdetails.ts
-  - src/models/errors/updatecheckoutsession.ts
-  - src/models/errors/updatedigitalwallet.ts
-  - src/models/errors/updatemerchantaccount.ts
-  - src/models/errors/updatepaymentservice.ts
-  - src/models/errors/verifypaymentservicecredentials.ts
-  - src/models/errors/voidtransaction.ts
   - src/models/operations/addbuyer.ts
   - src/models/operations/addbuyershippingdetails.ts
   - src/models/operations/capturetransaction.ts

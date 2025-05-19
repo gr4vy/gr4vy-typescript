@@ -42,7 +42,7 @@ export function digitalWalletsCreate(
     components.DigitalWallet,
     | errors.Error400
     | errors.Error401
-    | errors.ConfigureDigitalWalletResponse403ConfigureDigitalWallet
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -82,7 +82,7 @@ async function $do(
       components.DigitalWallet,
       | errors.Error400
       | errors.Error401
-      | errors.ConfigureDigitalWalletResponse403ConfigureDigitalWallet
+      | errors.Error403
       | errors.Error404
       | errors.Error405
       | errors.Error409
@@ -206,7 +206,7 @@ async function $do(
     components.DigitalWallet,
     | errors.Error400
     | errors.Error401
-    | errors.ConfigureDigitalWalletResponse403ConfigureDigitalWallet
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -227,11 +227,7 @@ async function $do(
     M.json(201, components.DigitalWallet$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
-    M.jsonErr(
-      403,
-      errors
-        .ConfigureDigitalWalletResponse403ConfigureDigitalWallet$inboundSchema,
-    ),
+    M.jsonErr(403, errors.Error403$inboundSchema),
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),
     M.jsonErr(409, errors.Error409$inboundSchema),

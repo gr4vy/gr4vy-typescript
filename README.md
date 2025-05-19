@@ -349,8 +349,6 @@ Some methods specify known errors which can be thrown. All the known errors are 
 | errors.Error400            | 400         | application/json |
 | errors.Error401            | 401         | application/json |
 | errors.Error403            | 403         | application/json |
-| errors.Error403Forbidden   | 403         | application/json |
-| errors.Error403Active      | 403         | application/json |
 | errors.Error404            | 404         | application/json |
 | errors.Error405            | 405         | application/json |
 | errors.Error409            | 409         | application/json |
@@ -370,8 +368,6 @@ import {
   Error400,
   Error401,
   Error403,
-  Error403Active,
-  Error403Forbidden,
   Error404,
   Error405,
   Error409,
@@ -426,14 +422,7 @@ async function run() {
       }
       case (err instanceof Error403): {
         // Handle err.data$: Error403Data
-        return;
-      }
-      case (err instanceof Error403Forbidden): {
-        // Handle err.data$: Error403ForbiddenData
-        return;
-      }
-      case (err instanceof Error403Active): {
-        // Handle err.data$: Error403ActiveData
+        console.error(err);
         return;
       }
       case (err instanceof Error404): {

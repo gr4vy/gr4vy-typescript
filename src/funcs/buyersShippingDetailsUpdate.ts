@@ -40,7 +40,7 @@ export function buyersShippingDetailsUpdate(
     components.ShippingDetails,
     | errors.Error400
     | errors.Error401
-    | errors.UpdateBuyerShippingDetailsResponse403UpdateBuyerShippingDetails
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -76,7 +76,7 @@ async function $do(
       components.ShippingDetails,
       | errors.Error400
       | errors.Error401
-      | errors.UpdateBuyerShippingDetailsResponse403UpdateBuyerShippingDetails
+      | errors.Error403
       | errors.Error404
       | errors.Error405
       | errors.Error409
@@ -208,7 +208,7 @@ async function $do(
     components.ShippingDetails,
     | errors.Error400
     | errors.Error401
-    | errors.UpdateBuyerShippingDetailsResponse403UpdateBuyerShippingDetails
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -229,11 +229,7 @@ async function $do(
     M.json(200, components.ShippingDetails$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
-    M.jsonErr(
-      403,
-      errors
-        .UpdateBuyerShippingDetailsResponse403UpdateBuyerShippingDetails$inboundSchema,
-    ),
+    M.jsonErr(403, errors.Error403$inboundSchema),
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),
     M.jsonErr(409, errors.Error409$inboundSchema),

@@ -43,7 +43,7 @@ export function buyersUpdate(
     components.Buyer,
     | errors.Error400
     | errors.Error401
-    | errors.UpdateBuyerResponse403UpdateBuyer
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -85,7 +85,7 @@ async function $do(
       components.Buyer,
       | errors.Error400
       | errors.Error401
-      | errors.UpdateBuyerResponse403UpdateBuyer
+      | errors.Error403
       | errors.Error404
       | errors.Error405
       | errors.Error409
@@ -214,7 +214,7 @@ async function $do(
     components.Buyer,
     | errors.Error400
     | errors.Error401
-    | errors.UpdateBuyerResponse403UpdateBuyer
+    | errors.Error403
     | errors.Error404
     | errors.Error405
     | errors.Error409
@@ -235,7 +235,7 @@ async function $do(
     M.json(200, components.Buyer$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
-    M.jsonErr(403, errors.UpdateBuyerResponse403UpdateBuyer$inboundSchema),
+    M.jsonErr(403, errors.Error403$inboundSchema),
     M.jsonErr(404, errors.Error404$inboundSchema),
     M.jsonErr(405, errors.Error405$inboundSchema),
     M.jsonErr(409, errors.Error409$inboundSchema),

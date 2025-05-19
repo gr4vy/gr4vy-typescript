@@ -100,8 +100,6 @@ run();
 | errors.Error400            | 400                        | application/json           |
 | errors.Error401            | 401                        | application/json           |
 | errors.Error403            | 403                        | application/json           |
-| errors.Error403Forbidden   | 403                        | application/json           |
-| errors.Error403Active      | 403                        | application/json           |
 | errors.Error404            | 404                        | application/json           |
 | errors.Error405            | 405                        | application/json           |
 | errors.Error409            | 409                        | application/json           |
@@ -592,8 +590,6 @@ run();
 | errors.Error400            | 400                        | application/json           |
 | errors.Error401            | 401                        | application/json           |
 | errors.Error403            | 403                        | application/json           |
-| errors.Error403Forbidden   | 403                        | application/json           |
-| errors.Error403Active      | 403                        | application/json           |
 | errors.Error404            | 404                        | application/json           |
 | errors.Error405            | 405                        | application/json           |
 | errors.Error409            | 409                        | application/json           |
@@ -684,22 +680,20 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.Error400          | 400                      | application/json         |
-| errors.Error401          | 401                      | application/json         |
-| errors.Error403          | 403                      | application/json         |
-| errors.Error403Forbidden | 403                      | application/json         |
-| errors.Error403Active    | 403                      | application/json         |
-| errors.Error404          | 404                      | application/json         |
-| errors.Error405          | 405                      | application/json         |
-| errors.Error409          | 409                      | application/json         |
-| errors.Error425          | 425                      | application/json         |
-| errors.Error429          | 429                      | application/json         |
-| errors.Error500          | 500                      | application/json         |
-| errors.Error502          | 502                      | application/json         |
-| errors.Error504          | 504                      | application/json         |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error400  | 400              | application/json |
+| errors.Error401  | 401              | application/json |
+| errors.Error403  | 403              | application/json |
+| errors.Error404  | 404              | application/json |
+| errors.Error405  | 405              | application/json |
+| errors.Error409  | 409              | application/json |
+| errors.Error425  | 425              | application/json |
+| errors.Error429  | 429              | application/json |
+| errors.Error500  | 500              | application/json |
+| errors.Error502  | 502              | application/json |
+| errors.Error504  | 504              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## delete
 
@@ -783,8 +777,6 @@ run();
 | errors.Error400            | 400                        | application/json           |
 | errors.Error401            | 401                        | application/json           |
 | errors.Error403            | 403                        | application/json           |
-| errors.Error403Forbidden   | 403                        | application/json           |
-| errors.Error403Active      | 403                        | application/json           |
 | errors.Error404            | 404                        | application/json           |
 | errors.Error405            | 405                        | application/json           |
 | errors.Error409            | 409                        | application/json           |

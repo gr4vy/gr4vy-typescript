@@ -21,7 +21,7 @@ export type Error403Data = {
   /**
    * A human readable message that provides more context to the error.
    */
-  message?: string;
+  message: string | null;
   /**
    * A list of details that further ellaborate on the error.
    */
@@ -74,7 +74,7 @@ export const Error403$inboundSchema: z.ZodType<
   type: z.literal("error").default("error"),
   code: z.string().default("forbidden"),
   status: z.number().int().default(403),
-  message: z.string().default("Invalid credentials"),
+  message: z.nullable(z.string()),
   details: z.array(components.ErrorDetail$inboundSchema).optional(),
 })
   .transform((v) => {
@@ -86,7 +86,7 @@ export type Error403$Outbound = {
   type?: "error";
   code?: string;
   status?: number;
-  message?: string;
+  message: string | null;
   details?: Array<components.ErrorDetail$Outbound> | undefined;
 };
 
@@ -101,7 +101,7 @@ export const Error403$outboundSchema: z.ZodType<
     type: z.literal("error").default("error" as const),
     code: z.string().default("forbidden"),
     status: z.number().int().default(403),
-    message: z.string().default("Invalid credentials"),
+    message: z.nullable(z.string()),
     details: z.array(components.ErrorDetail$outboundSchema).optional(),
   }));
 
