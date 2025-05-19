@@ -103,7 +103,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Gr4vy",
-    version: "1.0.0-beta.6",
+    version: "1.0.0-beta.7",
   });
 
   const client = new Gr4vyCore({

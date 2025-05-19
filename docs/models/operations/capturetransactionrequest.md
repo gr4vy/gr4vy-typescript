@@ -12,6 +12,7 @@ let value: CaptureTransactionRequest = {
     amount: 1299,
     airline: {
       bookingCode: "X36Q9C",
+      isCardholderTraveling: true,
       issuedAddress: "123 Broadway, New York",
       issuedAt: new Date("2013-07-16T19:23:00.000+00:00"),
       issuingCarrierCode: "649",

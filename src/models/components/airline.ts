@@ -40,6 +40,10 @@ export type Airline = {
    */
   bookingCode?: string | null | undefined;
   /**
+   * Indicates whether the cardholder is traveling.
+   */
+  isCardholderTraveling?: boolean | null | undefined;
+  /**
    * The address of the place/agency that issued the ticket.
    */
   issuedAddress?: string | null | undefined;
@@ -145,6 +149,7 @@ export namespace TicketDeliveryMethod$ {
 export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
   z.object({
     booking_code: z.nullable(z.string()).optional(),
+    is_cardholder_traveling: z.nullable(z.boolean()).optional(),
     issued_address: z.nullable(z.string()).optional(),
     issued_at: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -168,6 +173,7 @@ export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
   }).transform((v) => {
     return remap$(v, {
       "booking_code": "bookingCode",
+      "is_cardholder_traveling": "isCardholderTraveling",
       "issued_address": "issuedAddress",
       "issued_at": "issuedAt",
       "issuing_carrier_code": "issuingCarrierCode",
@@ -189,6 +195,7 @@ export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
 /** @internal */
 export type Airline$Outbound = {
   booking_code?: string | null | undefined;
+  is_cardholder_traveling?: boolean | null | undefined;
   issued_address?: string | null | undefined;
   issued_at?: string | null | undefined;
   issuing_carrier_code?: string | null | undefined;
@@ -215,6 +222,7 @@ export const Airline$outboundSchema: z.ZodType<
   Airline
 > = z.object({
   bookingCode: z.nullable(z.string()).optional(),
+  isCardholderTraveling: z.nullable(z.boolean()).optional(),
   issuedAddress: z.nullable(z.string()).optional(),
   issuedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   issuingCarrierCode: z.nullable(z.string()).optional(),
@@ -236,6 +244,7 @@ export const Airline$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     bookingCode: "booking_code",
+    isCardholderTraveling: "is_cardholder_traveling",
     issuedAddress: "issued_address",
     issuedAt: "issued_at",
     issuingCarrierCode: "issuing_carrier_code",
