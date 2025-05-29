@@ -8,7 +8,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   transactionId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,7 +21,6 @@ Fetch the latest status for a transaction.`,
     const [result, apiCall] = await transactionsSync(
       client,
       args.transactionId,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

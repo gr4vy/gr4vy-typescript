@@ -17,7 +17,6 @@ export type DeleteGiftCardRequest = {
    * The ID of the gift card.
    */
   giftCardId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -85,19 +84,16 @@ export const DeleteGiftCardRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   gift_card_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "gift_card_id": "giftCardId",
-    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
 /** @internal */
 export type DeleteGiftCardRequest$Outbound = {
   gift_card_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -108,12 +104,10 @@ export const DeleteGiftCardRequest$outboundSchema: z.ZodType<
   DeleteGiftCardRequest
 > = z.object({
   giftCardId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     giftCardId: "gift_card_id",
-    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

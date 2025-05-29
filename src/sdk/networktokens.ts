@@ -46,7 +46,6 @@ export class NetworkTokens extends ClientSDK {
   async create(
     networkTokenCreate: components.NetworkTokenCreate,
     paymentMethodId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
@@ -54,7 +53,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       networkTokenCreate,
       paymentMethodId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -69,7 +67,6 @@ export class NetworkTokens extends ClientSDK {
   async suspend(
     paymentMethodId: string,
     networkTokenId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
@@ -77,7 +74,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       paymentMethodId,
       networkTokenId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -92,7 +88,6 @@ export class NetworkTokens extends ClientSDK {
   async resume(
     paymentMethodId: string,
     networkTokenId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
@@ -100,7 +95,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       paymentMethodId,
       networkTokenId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -115,7 +109,6 @@ export class NetworkTokens extends ClientSDK {
   async delete(
     paymentMethodId: string,
     networkTokenId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
@@ -123,7 +116,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       paymentMethodId,
       networkTokenId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

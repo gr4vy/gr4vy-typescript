@@ -14,7 +14,6 @@ export type CreateCheckoutSessionGlobals = {
 };
 
 export type CreateCheckoutSessionRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,20 +83,17 @@ export const CreateCheckoutSessionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   CheckoutSessionCreate: components.CheckoutSessionCreate$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "CheckoutSessionCreate": "checkoutSessionCreate",
   });
 });
 
 /** @internal */
 export type CreateCheckoutSessionRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   CheckoutSessionCreate?: components.CheckoutSessionCreate$Outbound | undefined;
 };
@@ -108,13 +104,11 @@ export const CreateCheckoutSessionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateCheckoutSessionRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   checkoutSessionCreate: components.CheckoutSessionCreate$outboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     checkoutSessionCreate: "CheckoutSessionCreate",
   });
 });

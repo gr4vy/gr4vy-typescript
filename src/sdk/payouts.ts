@@ -41,14 +41,12 @@ export class Payouts extends ClientSDK {
    */
   async create(
     payoutCreate: components.PayoutCreate,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PayoutSummary> {
     return unwrapAsync(payoutsCreate(
       this,
       payoutCreate,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

@@ -14,7 +14,6 @@ export type SyncTransactionGlobals = {
 
 export type SyncTransactionRequest = {
   transactionId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -82,19 +81,16 @@ export const SyncTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
 /** @internal */
 export type SyncTransactionRequest$Outbound = {
   transaction_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -105,12 +101,10 @@ export const SyncTransactionRequest$outboundSchema: z.ZodType<
   SyncTransactionRequest
 > = z.object({
   transactionId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

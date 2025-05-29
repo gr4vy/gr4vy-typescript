@@ -14,7 +14,6 @@ export type ListGiftCardBalancesGlobals = {
 };
 
 export type ListGiftCardBalancesRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,19 +83,16 @@ export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "GiftCardBalanceRequest": "giftCardBalanceRequest",
   });
 });
 
 /** @internal */
 export type ListGiftCardBalancesRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$Outbound;
 };
@@ -107,12 +103,10 @@ export const ListGiftCardBalancesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListGiftCardBalancesRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   giftCardBalanceRequest: components.GiftCardBalanceRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     giftCardBalanceRequest: "GiftCardBalanceRequest",
   });
 });

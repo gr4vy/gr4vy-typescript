@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   accountUpdaterJobCreate: components.AccountUpdaterJobCreate$inboundSchema,
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -23,7 +22,6 @@ Schedule one or more stored cards for an account update.`,
     const [result, apiCall] = await accountUpdaterJobsCreate(
       client,
       args.accountUpdaterJobCreate,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

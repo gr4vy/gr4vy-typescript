@@ -14,7 +14,6 @@ export type CreateTransactionGlobals = {
 };
 
 export type CreateTransactionRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -86,13 +85,11 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   "idempotency-key": z.nullable(z.string()).optional(),
   TransactionCreate: components.TransactionCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "idempotency-key": "idempotencyKey",
     "TransactionCreate": "transactionCreate",
   });
@@ -100,7 +97,6 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateTransactionRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   "idempotency-key"?: string | null | undefined;
   TransactionCreate: components.TransactionCreate$Outbound;
@@ -112,13 +108,11 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateTransactionRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   idempotencyKey: z.nullable(z.string()).optional(),
   transactionCreate: components.TransactionCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     idempotencyKey: "idempotency-key",
     transactionCreate: "TransactionCreate",
   });

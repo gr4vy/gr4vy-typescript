@@ -57,14 +57,12 @@ export class Buyers extends ClientSDK {
    */
   async create(
     buyerCreate: components.BuyerCreate,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Buyer> {
     return unwrapAsync(buyersCreate(
       this,
       buyerCreate,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -98,7 +96,6 @@ export class Buyers extends ClientSDK {
   async update(
     buyerUpdate: components.BuyerUpdate,
     buyerId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Buyer> {
@@ -106,7 +103,6 @@ export class Buyers extends ClientSDK {
       this,
       buyerUpdate,
       buyerId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -120,14 +116,12 @@ export class Buyers extends ClientSDK {
    */
   async delete(
     buyerId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(buyersDelete(
       this,
       buyerId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

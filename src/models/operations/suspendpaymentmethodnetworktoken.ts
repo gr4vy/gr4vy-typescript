@@ -21,7 +21,6 @@ export type SuspendPaymentMethodNetworkTokenRequest = {
    * The ID of the network token
    */
   networkTokenId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -101,13 +100,11 @@ export const SuspendPaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
 > = z.object({
   payment_method_id: z.string(),
   network_token_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
     "network_token_id": "networkTokenId",
-    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
@@ -115,7 +112,6 @@ export const SuspendPaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
 export type SuspendPaymentMethodNetworkTokenRequest$Outbound = {
   payment_method_id: string;
   network_token_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -127,13 +123,11 @@ export const SuspendPaymentMethodNetworkTokenRequest$outboundSchema: z.ZodType<
 > = z.object({
   paymentMethodId: z.string(),
   networkTokenId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",
     networkTokenId: "network_token_id",
-    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

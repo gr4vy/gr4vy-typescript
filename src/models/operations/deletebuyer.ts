@@ -17,7 +17,6 @@ export type DeleteBuyerRequest = {
    * The ID of the buyer to delete.
    */
   buyerId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -85,19 +84,16 @@ export const DeleteBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
-    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
 /** @internal */
 export type DeleteBuyerRequest$Outbound = {
   buyer_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -108,12 +104,10 @@ export const DeleteBuyerRequest$outboundSchema: z.ZodType<
   DeleteBuyerRequest
 > = z.object({
   buyerId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
-    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

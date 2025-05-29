@@ -42,6 +42,8 @@ export type ListTransactionsRequest = {
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
   buyerEmailAddress?: string | null | undefined;
+  buyerSearch?: string | null | undefined;
+  ipAddress?: string | null | undefined;
   /**
    * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
    */
@@ -70,11 +72,23 @@ export type ListTransactionsRequest = {
    */
   currency?: Array<string> | null | undefined;
   /**
+   * Filters for transactions that have matching `country` values.
+   */
+  country?: Array<string> | null | undefined;
+  /**
    * Filters for transactions that were processed by the provided `payment_service_id` values.
    */
   paymentServiceId?: Array<string> | null | undefined;
   paymentMethodId?: string | null | undefined;
   paymentMethodLabel?: string | null | undefined;
+  /**
+   * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+   */
+  paymentMethodScheme?: string | null | undefined;
+  /**
+   * Filters for transactions that have a payment method with a country that matches with the provided value.
+   */
+  paymentMethodCountry?: string | null | undefined;
   paymentMethodFingerprint?: string | null | undefined;
   /**
    * Filters for transactions that have matching `method` values.
@@ -132,6 +146,10 @@ export type ListTransactionsRequest = {
    * Filters for transactions where the `merchant_initiated` matches the provided value.
    */
   merchantInitiated?: boolean | null | undefined;
+  /**
+   * Filters for transactions that attempted 3DS authentication or not.
+   */
+  used3ds?: boolean | null | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -220,6 +238,8 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   buyer_external_identifier: z.nullable(z.string()).optional(),
   buyer_id: z.nullable(z.string()).optional(),
   buyer_email_address: z.nullable(z.string()).optional(),
+  buyer_search: z.nullable(z.string()).optional(),
+  ip_address: z.nullable(z.string()).optional(),
   status: z.nullable(z.array(components.TransactionStatus$inboundSchema))
     .optional(),
   id: z.nullable(z.string()).optional(),
@@ -230,9 +250,12 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   amount_lte: z.nullable(z.number().int()).optional(),
   amount_gte: z.nullable(z.number().int()).optional(),
   currency: z.nullable(z.array(z.string())).optional(),
+  country: z.nullable(z.array(z.string())).optional(),
   payment_service_id: z.nullable(z.array(z.string())).optional(),
   payment_method_id: z.nullable(z.string()).optional(),
   payment_method_label: z.nullable(z.string()).optional(),
+  payment_method_scheme: z.nullable(z.string()).optional(),
+  payment_method_country: z.nullable(z.string()).optional(),
   payment_method_fingerprint: z.nullable(z.string()).optional(),
   method: z.nullable(z.array(components.Method$inboundSchema)).optional(),
   error_code: z.nullable(z.array(z.string())).optional(),
@@ -250,6 +273,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   ).optional(),
   is_subsequent_payment: z.nullable(z.boolean()).optional(),
   merchant_initiated: z.nullable(z.boolean()).optional(),
+  used_3ds: z.nullable(z.boolean()).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -260,6 +284,8 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     "buyer_external_identifier": "buyerExternalIdentifier",
     "buyer_id": "buyerId",
     "buyer_email_address": "buyerEmailAddress",
+    "buyer_search": "buyerSearch",
+    "ip_address": "ipAddress",
     "payment_service_transaction_id": "paymentServiceTransactionId",
     "external_identifier": "externalIdentifier",
     "amount_eq": "amountEq",
@@ -268,6 +294,8 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     "payment_service_id": "paymentServiceId",
     "payment_method_id": "paymentMethodId",
     "payment_method_label": "paymentMethodLabel",
+    "payment_method_scheme": "paymentMethodScheme",
+    "payment_method_country": "paymentMethodCountry",
     "payment_method_fingerprint": "paymentMethodFingerprint",
     "error_code": "errorCode",
     "has_refunds": "hasRefunds",
@@ -282,6 +310,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     "payment_source": "paymentSource",
     "is_subsequent_payment": "isSubsequentPayment",
     "merchant_initiated": "merchantInitiated",
+    "used_3ds": "used3ds",
   });
 });
 
@@ -297,6 +326,8 @@ export type ListTransactionsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
   buyer_email_address?: string | null | undefined;
+  buyer_search?: string | null | undefined;
+  ip_address?: string | null | undefined;
   status?: Array<string> | null | undefined;
   id?: string | null | undefined;
   payment_service_transaction_id?: string | null | undefined;
@@ -306,9 +337,12 @@ export type ListTransactionsRequest$Outbound = {
   amount_lte?: number | null | undefined;
   amount_gte?: number | null | undefined;
   currency?: Array<string> | null | undefined;
+  country?: Array<string> | null | undefined;
   payment_service_id?: Array<string> | null | undefined;
   payment_method_id?: string | null | undefined;
   payment_method_label?: string | null | undefined;
+  payment_method_scheme?: string | null | undefined;
+  payment_method_country?: string | null | undefined;
   payment_method_fingerprint?: string | null | undefined;
   method?: Array<string> | null | undefined;
   error_code?: Array<string> | null | undefined;
@@ -324,6 +358,7 @@ export type ListTransactionsRequest$Outbound = {
   payment_source?: Array<string> | null | undefined;
   is_subsequent_payment?: boolean | null | undefined;
   merchant_initiated?: boolean | null | undefined;
+  used_3ds?: boolean | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -343,6 +378,8 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   buyerEmailAddress: z.nullable(z.string()).optional(),
+  buyerSearch: z.nullable(z.string()).optional(),
+  ipAddress: z.nullable(z.string()).optional(),
   status: z.nullable(z.array(components.TransactionStatus$outboundSchema))
     .optional(),
   id: z.nullable(z.string()).optional(),
@@ -353,9 +390,12 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   amountLte: z.nullable(z.number().int()).optional(),
   amountGte: z.nullable(z.number().int()).optional(),
   currency: z.nullable(z.array(z.string())).optional(),
+  country: z.nullable(z.array(z.string())).optional(),
   paymentServiceId: z.nullable(z.array(z.string())).optional(),
   paymentMethodId: z.nullable(z.string()).optional(),
   paymentMethodLabel: z.nullable(z.string()).optional(),
+  paymentMethodScheme: z.nullable(z.string()).optional(),
+  paymentMethodCountry: z.nullable(z.string()).optional(),
   paymentMethodFingerprint: z.nullable(z.string()).optional(),
   method: z.nullable(z.array(components.Method$outboundSchema)).optional(),
   errorCode: z.nullable(z.array(z.string())).optional(),
@@ -373,6 +413,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   ).optional(),
   isSubsequentPayment: z.nullable(z.boolean()).optional(),
   merchantInitiated: z.nullable(z.boolean()).optional(),
+  used3ds: z.nullable(z.boolean()).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -383,6 +424,8 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     buyerExternalIdentifier: "buyer_external_identifier",
     buyerId: "buyer_id",
     buyerEmailAddress: "buyer_email_address",
+    buyerSearch: "buyer_search",
+    ipAddress: "ip_address",
     paymentServiceTransactionId: "payment_service_transaction_id",
     externalIdentifier: "external_identifier",
     amountEq: "amount_eq",
@@ -391,6 +434,8 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     paymentServiceId: "payment_service_id",
     paymentMethodId: "payment_method_id",
     paymentMethodLabel: "payment_method_label",
+    paymentMethodScheme: "payment_method_scheme",
+    paymentMethodCountry: "payment_method_country",
     paymentMethodFingerprint: "payment_method_fingerprint",
     errorCode: "error_code",
     hasRefunds: "has_refunds",
@@ -405,6 +450,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     paymentSource: "payment_source",
     isSubsequentPayment: "is_subsequent_payment",
     merchantInitiated: "merchant_initiated",
+    used3ds: "used_3ds",
   });
 });
 

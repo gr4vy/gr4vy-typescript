@@ -14,7 +14,6 @@ export type UpdateMerchantAccountRequest = {
    * The ID of the merchant account
    */
   merchantAccountId: string;
-  timeoutInSeconds?: number | undefined;
   merchantAccountUpdate: components.MerchantAccountUpdate;
 };
 
@@ -25,12 +24,10 @@ export const UpdateMerchantAccountRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   merchant_account_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   MerchantAccountUpdate: components.MerchantAccountUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "merchant_account_id": "merchantAccountId",
-    "timeout_in_seconds": "timeoutInSeconds",
     "MerchantAccountUpdate": "merchantAccountUpdate",
   });
 });
@@ -38,7 +35,6 @@ export const UpdateMerchantAccountRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateMerchantAccountRequest$Outbound = {
   merchant_account_id: string;
-  timeout_in_seconds: number;
   MerchantAccountUpdate: components.MerchantAccountUpdate$Outbound;
 };
 
@@ -49,12 +45,10 @@ export const UpdateMerchantAccountRequest$outboundSchema: z.ZodType<
   UpdateMerchantAccountRequest
 > = z.object({
   merchantAccountId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountUpdate: components.MerchantAccountUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     merchantAccountId: "merchant_account_id",
-    timeoutInSeconds: "timeout_in_seconds",
     merchantAccountUpdate: "MerchantAccountUpdate",
   });
 });

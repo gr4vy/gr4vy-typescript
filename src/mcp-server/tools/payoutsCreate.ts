@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   payoutCreate: components.PayoutCreate$inboundSchema,
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -23,7 +22,6 @@ Creates a new payout.`,
     const [result, apiCall] = await payoutsCreate(
       client,
       args.payoutCreate,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

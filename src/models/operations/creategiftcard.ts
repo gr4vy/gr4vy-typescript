@@ -14,7 +14,6 @@ export type CreateGiftCardGlobals = {
 };
 
 export type CreateGiftCardRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -82,19 +81,16 @@ export const CreateGiftCardRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   GiftCardCreate: components.GiftCardCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "GiftCardCreate": "giftCardCreate",
   });
 });
 
 /** @internal */
 export type CreateGiftCardRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   GiftCardCreate: components.GiftCardCreate$Outbound;
 };
@@ -105,12 +101,10 @@ export const CreateGiftCardRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateGiftCardRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   giftCardCreate: components.GiftCardCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     giftCardCreate: "GiftCardCreate",
   });
 });

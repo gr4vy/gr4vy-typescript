@@ -15,7 +15,6 @@ export type CreateTransactionRefundGlobals = {
 
 export type CreateTransactionRefundRequest = {
   transactionId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -86,13 +85,11 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   TransactionRefundCreate: components.TransactionRefundCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "timeout_in_seconds": "timeoutInSeconds",
     "TransactionRefundCreate": "transactionRefundCreate",
   });
 });
@@ -100,7 +97,6 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateTransactionRefundRequest$Outbound = {
   transaction_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   TransactionRefundCreate: components.TransactionRefundCreate$Outbound;
 };
@@ -112,13 +108,11 @@ export const CreateTransactionRefundRequest$outboundSchema: z.ZodType<
   CreateTransactionRefundRequest
 > = z.object({
   transactionId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   transactionRefundCreate: components.TransactionRefundCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    timeoutInSeconds: "timeout_in_seconds",
     transactionRefundCreate: "TransactionRefundCreate",
   });
 });

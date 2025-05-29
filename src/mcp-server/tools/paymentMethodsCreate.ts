@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   requestBody: operations.CreatePaymentMethodBody$inboundSchema,
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -23,7 +22,6 @@ Store a new payment method.`,
     const [result, apiCall] = await paymentMethodsCreate(
       client,
       args.requestBody,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

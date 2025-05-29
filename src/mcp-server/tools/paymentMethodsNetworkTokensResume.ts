@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   paymentMethodId: z.string(),
   networkTokenId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -26,7 +25,6 @@ Resume a suspended network token for a payment method.`,
       client,
       args.paymentMethodId,
       args.networkTokenId,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

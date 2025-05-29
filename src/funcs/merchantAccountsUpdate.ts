@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,7 +35,6 @@ export function merchantAccountsUpdate(
   client: Gr4vyCore,
   merchantAccountUpdate: components.MerchantAccountUpdate,
   merchantAccountId: string,
-  timeoutInSeconds?: number | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -65,7 +64,6 @@ export function merchantAccountsUpdate(
     client,
     merchantAccountUpdate,
     merchantAccountId,
-    timeoutInSeconds,
     options,
   ));
 }
@@ -74,7 +72,6 @@ async function $do(
   client: Gr4vyCore,
   merchantAccountUpdate: components.MerchantAccountUpdate,
   merchantAccountId: string,
-  timeoutInSeconds?: number | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -106,7 +103,6 @@ async function $do(
   const input: operations.UpdateMerchantAccountRequest = {
     merchantAccountUpdate: merchantAccountUpdate,
     merchantAccountId: merchantAccountId,
-    timeoutInSeconds: timeoutInSeconds,
   };
 
   const parsed = safeParse(
@@ -134,10 +130,6 @@ async function $do(
   const path = pathToFunc("/merchant-accounts/{merchant_account_id}")(
     pathParams,
   );
-
-  const query = encodeFormQuery({
-    "timeout_in_seconds": payload.timeout_in_seconds,
-  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -168,7 +160,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

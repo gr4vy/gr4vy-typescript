@@ -12,7 +12,6 @@ const args = {
   transactionRefundAllCreate: z.nullable(
     components.TransactionRefundAllCreate$inboundSchema,
   ).optional(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -27,7 +26,6 @@ Create a refund for all instruments on a transaction.`,
       client,
       args.transactionId,
       args.transactionRefundAllCreate,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

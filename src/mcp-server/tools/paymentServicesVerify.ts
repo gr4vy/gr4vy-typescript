@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   verifyCredentials: components.VerifyCredentials$inboundSchema,
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -23,7 +22,6 @@ Verify the credentials of a configured payment service`,
     const [result, apiCall] = await paymentServicesVerify(
       client,
       args.verifyCredentials,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

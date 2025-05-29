@@ -15,7 +15,6 @@ export type ListBuyerGiftCardsGlobals = {
 export type ListBuyerGiftCardsRequest = {
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,13 +83,11 @@ export const ListBuyerGiftCardsRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_external_identifier: z.nullable(z.string()).optional(),
   buyer_id: z.nullable(z.string()).optional(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_external_identifier": "buyerExternalIdentifier",
     "buyer_id": "buyerId",
-    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
@@ -98,7 +95,6 @@ export const ListBuyerGiftCardsRequest$inboundSchema: z.ZodType<
 export type ListBuyerGiftCardsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -110,13 +106,11 @@ export const ListBuyerGiftCardsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerExternalIdentifier: "buyer_external_identifier",
     buyerId: "buyer_id",
-    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

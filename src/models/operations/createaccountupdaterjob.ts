@@ -14,7 +14,6 @@ export type CreateAccountUpdaterJobGlobals = {
 };
 
 export type CreateAccountUpdaterJobRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,19 +83,16 @@ export const CreateAccountUpdaterJobRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   AccountUpdaterJobCreate: components.AccountUpdaterJobCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "AccountUpdaterJobCreate": "accountUpdaterJobCreate",
   });
 });
 
 /** @internal */
 export type CreateAccountUpdaterJobRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   AccountUpdaterJobCreate: components.AccountUpdaterJobCreate$Outbound;
 };
@@ -107,12 +103,10 @@ export const CreateAccountUpdaterJobRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateAccountUpdaterJobRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   accountUpdaterJobCreate: components.AccountUpdaterJobCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     accountUpdaterJobCreate: "AccountUpdaterJobCreate",
   });
 });

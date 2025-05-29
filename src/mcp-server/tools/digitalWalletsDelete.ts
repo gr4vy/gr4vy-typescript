@@ -8,7 +8,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   digitalWalletId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,7 +21,6 @@ Delete a configured digital wallet.`,
     const [result, apiCall] = await digitalWalletsDelete(
       client,
       args.digitalWalletId,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

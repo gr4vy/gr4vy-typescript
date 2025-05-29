@@ -14,7 +14,6 @@ export type ConfigureDigitalWalletGlobals = {
 };
 
 export type ConfigureDigitalWalletRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,19 +83,16 @@ export const ConfigureDigitalWalletRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   DigitalWalletCreate: components.DigitalWalletCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "DigitalWalletCreate": "digitalWalletCreate",
   });
 });
 
 /** @internal */
 export type ConfigureDigitalWalletRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   DigitalWalletCreate: components.DigitalWalletCreate$Outbound;
 };
@@ -107,12 +103,10 @@ export const ConfigureDigitalWalletRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConfigureDigitalWalletRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletCreate: components.DigitalWalletCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     digitalWalletCreate: "DigitalWalletCreate",
   });
 });

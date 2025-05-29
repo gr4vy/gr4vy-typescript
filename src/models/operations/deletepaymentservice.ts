@@ -17,7 +17,6 @@ export type DeletePaymentServiceRequest = {
    * the ID of the payment service
    */
   paymentServiceId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -87,19 +86,16 @@ export const DeletePaymentServiceRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_service_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_service_id": "paymentServiceId",
-    "timeout_in_seconds": "timeoutInSeconds",
   });
 });
 
 /** @internal */
 export type DeletePaymentServiceRequest$Outbound = {
   payment_service_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -110,12 +106,10 @@ export const DeletePaymentServiceRequest$outboundSchema: z.ZodType<
   DeletePaymentServiceRequest
 > = z.object({
   paymentServiceId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentServiceId: "payment_service_id",
-    timeoutInSeconds: "timeout_in_seconds",
   });
 });
 

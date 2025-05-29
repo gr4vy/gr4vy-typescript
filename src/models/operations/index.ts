@@ -12,7 +12,6 @@ export * from "./createcheckoutsession.js";
 export * from "./createfulltransactionrefund.js";
 export * from "./creategiftcard.js";
 export * from "./creategooglepaydigitalwalletsession.js";
-export * from "./createmerchantaccount.js";
 export * from "./createpaymentmethod.js";
 export * from "./createpaymentmethodnetworktoken.js";
 export * from "./createpaymentmethodnetworktokencryptogram.js";

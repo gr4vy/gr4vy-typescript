@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,7 +35,6 @@ import { Result } from "../types/fp.js";
 export function paymentServicesVerify(
   client: Gr4vyCore,
   verifyCredentials: components.VerifyCredentials,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -65,7 +64,6 @@ export function paymentServicesVerify(
   return new APIPromise($do(
     client,
     verifyCredentials,
-    timeoutInSeconds,
     merchantAccountId,
     options,
   ));
@@ -74,7 +72,6 @@ export function paymentServicesVerify(
 async function $do(
   client: Gr4vyCore,
   verifyCredentials: components.VerifyCredentials,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -106,7 +103,6 @@ async function $do(
 > {
   const input: operations.VerifyPaymentServiceCredentialsRequest = {
     verifyCredentials: verifyCredentials,
-    timeoutInSeconds: timeoutInSeconds,
     merchantAccountId: merchantAccountId,
   };
 
@@ -125,10 +121,6 @@ async function $do(
   const body = encodeJSON("body", payload.VerifyCredentials, { explode: true });
 
   const path = pathToFunc("/payment-services/verify")();
-
-  const query = encodeFormQuery({
-    "timeout_in_seconds": payload.timeout_in_seconds,
-  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -164,7 +156,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

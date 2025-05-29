@@ -102,14 +102,12 @@ export class PaymentServices extends ClientSDK {
    */
   async delete(
     paymentServiceId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(paymentServicesDelete(
       this,
       paymentServiceId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -123,14 +121,12 @@ export class PaymentServices extends ClientSDK {
    */
   async verify(
     verifyCredentials: components.VerifyCredentials,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(paymentServicesVerify(
       this,
       verifyCredentials,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

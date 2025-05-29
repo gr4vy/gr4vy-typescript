@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,7 +35,6 @@ export function buyersShippingDetailsDelete(
   client: Gr4vyCore,
   buyerId: string,
   shippingDetailsId: string,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -66,7 +65,6 @@ export function buyersShippingDetailsDelete(
     client,
     buyerId,
     shippingDetailsId,
-    timeoutInSeconds,
     merchantAccountId,
     options,
   ));
@@ -76,7 +74,6 @@ async function $do(
   client: Gr4vyCore,
   buyerId: string,
   shippingDetailsId: string,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -109,7 +106,6 @@ async function $do(
   const input: operations.DeleteBuyerShippingDetailsRequest = {
     buyerId: buyerId,
     shippingDetailsId: shippingDetailsId,
-    timeoutInSeconds: timeoutInSeconds,
     merchantAccountId: merchantAccountId,
   };
 
@@ -140,10 +136,6 @@ async function $do(
   const path = pathToFunc(
     "/buyers/{buyer_id}/shipping-details/{shipping_details_id}",
   )(pathParams);
-
-  const query = encodeFormQuery({
-    "timeout_in_seconds": payload.timeout_in_seconds,
-  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -178,7 +170,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

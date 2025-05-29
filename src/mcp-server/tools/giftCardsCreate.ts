@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   giftCardCreate: components.GiftCardCreate$inboundSchema,
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -23,7 +22,6 @@ Store a new gift card in the vault.`,
     const [result, apiCall] = await giftCardsCreate(
       client,
       args.giftCardCreate,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

@@ -22,7 +22,6 @@ export type CreatePaymentMethodNetworkTokenCryptogramRequest = {
    * The ID of the network token
    */
   networkTokenId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -107,14 +106,12 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     network_token_id: z.string(),
-    timeout_in_seconds: z.number().default(1),
     merchantAccountId: z.nullable(z.string()).optional(),
     CryptogramCreate: components.CryptogramCreate$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "network_token_id": "networkTokenId",
-      "timeout_in_seconds": "timeoutInSeconds",
       "CryptogramCreate": "cryptogramCreate",
     });
   });
@@ -123,7 +120,6 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$inboundSchema:
 export type CreatePaymentMethodNetworkTokenCryptogramRequest$Outbound = {
   payment_method_id: string;
   network_token_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   CryptogramCreate: components.CryptogramCreate$Outbound;
 };
@@ -137,14 +133,12 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     networkTokenId: z.string(),
-    timeoutInSeconds: z.number().default(1),
     merchantAccountId: z.nullable(z.string()).optional(),
     cryptogramCreate: components.CryptogramCreate$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       networkTokenId: "network_token_id",
-      timeoutInSeconds: "timeout_in_seconds",
       cryptogramCreate: "CryptogramCreate",
     });
   });

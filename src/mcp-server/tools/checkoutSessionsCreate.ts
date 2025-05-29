@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   checkoutSessionCreate: components.CheckoutSessionCreate$inboundSchema
     .optional(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -24,7 +23,6 @@ Create a new checkout session.`,
     const [result, apiCall] = await checkoutSessionsCreate(
       client,
       args.checkoutSessionCreate,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

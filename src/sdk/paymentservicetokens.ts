@@ -40,7 +40,6 @@ export class PaymentServiceTokens extends ClientSDK {
   async create(
     paymentServiceTokenCreate: components.PaymentServiceTokenCreate,
     paymentMethodId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentServiceToken> {
@@ -48,7 +47,6 @@ export class PaymentServiceTokens extends ClientSDK {
       this,
       paymentServiceTokenCreate,
       paymentMethodId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -63,7 +61,6 @@ export class PaymentServiceTokens extends ClientSDK {
   async delete(
     paymentMethodId: string,
     paymentServiceTokenId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
@@ -71,7 +68,6 @@ export class PaymentServiceTokens extends ClientSDK {
       this,
       paymentMethodId,
       paymentServiceTokenId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

@@ -18,7 +18,6 @@ export type AddBuyerShippingDetailsRequest = {
    * The ID of the buyer to add shipping details to.
    */
   buyerId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -89,13 +88,11 @@ export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   ShippingDetailsCreate: components.ShippingDetailsCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
-    "timeout_in_seconds": "timeoutInSeconds",
     "ShippingDetailsCreate": "shippingDetailsCreate",
   });
 });
@@ -103,7 +100,6 @@ export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type AddBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   ShippingDetailsCreate: components.ShippingDetailsCreate$Outbound;
 };
@@ -115,13 +111,11 @@ export const AddBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   AddBuyerShippingDetailsRequest
 > = z.object({
   buyerId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   shippingDetailsCreate: components.ShippingDetailsCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
-    timeoutInSeconds: "timeout_in_seconds",
     shippingDetailsCreate: "ShippingDetailsCreate",
   });
 });

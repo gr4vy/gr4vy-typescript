@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -24,7 +23,6 @@ List all the stored gift cards for a specific buyer.`,
       client,
       args.buyerExternalIdentifier,
       args.buyerId,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: daa09d98bd8ccd7aeceb94c2df3c2d12
+  docChecksum: 273f52ce84b0b427bb36e06e2d3798f4
   docVersion: 1.0.0
-  speakeasyVersion: 1.548.4
-  generationVersion: 2.605.6
-  releaseVersion: 1.0.0-beta.9
-  configChecksum: 0f0f7a22e12bdba265d0645dc80af8d6
+  speakeasyVersion: 1.552.0
+  generationVersion: 2.610.0
+  releaseVersion: 1.0.0-beta.10
+  configChecksum: 9c71039079b588bb517a4c4d8fe29c4e
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -267,7 +267,6 @@ generatedFiles:
   - docs/models/operations/creategiftcardrequest.md
   - docs/models/operations/creategooglepaydigitalwalletsessionglobals.md
   - docs/models/operations/creategooglepaydigitalwalletsessionrequest.md
-  - docs/models/operations/createmerchantaccountrequest.md
   - docs/models/operations/createpaymentmethodbody.md
   - docs/models/operations/createpaymentmethodglobals.md
   - docs/models/operations/createpaymentmethodnetworktokencryptogramglobals.md
@@ -824,7 +823,6 @@ generatedFiles:
   - src/models/operations/createfulltransactionrefund.ts
   - src/models/operations/creategiftcard.ts
   - src/models/operations/creategooglepaydigitalwalletsession.ts
-  - src/models/operations/createmerchantaccount.ts
   - src/models/operations/createpaymentmethod.ts
   - src/models/operations/createpaymentmethodnetworktoken.ts
   - src/models/operations/createpaymentmethodnetworktokencryptogram.ts
@@ -2422,6 +2420,12 @@ examples:
           payment_source: ["recurring"]
           is_subsequent_payment: true
           merchant_initiated: true
+          buyer_search: "John"
+          ip_address: "8.214.133.47"
+          country: ["US"]
+          payment_method_scheme: "[\"visa\"]"
+          payment_method_country: "[\"US\"]"
+          used_3ds: true
         header: {}
       responses:
         "200":

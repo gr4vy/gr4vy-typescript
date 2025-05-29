@@ -32,14 +32,12 @@ export class DigitalWallets extends ClientSDK {
    */
   async create(
     digitalWalletCreate: components.DigitalWalletCreate,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsCreate(
       this,
       digitalWalletCreate,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -89,14 +87,12 @@ export class DigitalWallets extends ClientSDK {
    */
   async delete(
     digitalWalletId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(digitalWalletsDelete(
       this,
       digitalWalletId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -111,7 +107,6 @@ export class DigitalWallets extends ClientSDK {
   async update(
     digitalWalletUpdate: components.DigitalWalletUpdate,
     digitalWalletId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
@@ -119,7 +114,6 @@ export class DigitalWallets extends ClientSDK {
       this,
       digitalWalletUpdate,
       digitalWalletId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

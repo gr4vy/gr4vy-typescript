@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   digitalWalletUpdate: components.DigitalWalletUpdate$inboundSchema,
   digitalWalletId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -25,7 +24,6 @@ Update a digital wallet.`,
       client,
       args.digitalWalletUpdate,
       args.digitalWalletId,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

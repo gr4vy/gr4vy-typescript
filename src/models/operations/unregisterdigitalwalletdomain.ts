@@ -15,7 +15,6 @@ export type UnregisterDigitalWalletDomainGlobals = {
 
 export type UnregisterDigitalWalletDomainRequest = {
   digitalWalletId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -89,13 +88,11 @@ export const UnregisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   digital_wallet_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   DigitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
-    "timeout_in_seconds": "timeoutInSeconds",
     "DigitalWalletDomain": "digitalWalletDomain",
   });
 });
@@ -103,7 +100,6 @@ export const UnregisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UnregisterDigitalWalletDomainRequest$Outbound = {
   digital_wallet_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   DigitalWalletDomain: components.DigitalWalletDomain$Outbound;
 };
@@ -115,13 +111,11 @@ export const UnregisterDigitalWalletDomainRequest$outboundSchema: z.ZodType<
   UnregisterDigitalWalletDomainRequest
 > = z.object({
   digitalWalletId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletDomain: components.DigitalWalletDomain$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
-    timeoutInSeconds: "timeout_in_seconds",
     digitalWalletDomain: "DigitalWalletDomain",
   });
 });

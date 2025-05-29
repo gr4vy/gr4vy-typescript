@@ -35,7 +35,6 @@ export function buyersGiftCardsList(
   client: Gr4vyCore,
   buyerExternalIdentifier?: string | null | undefined,
   buyerId?: string | null | undefined,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -66,7 +65,6 @@ export function buyersGiftCardsList(
     client,
     buyerExternalIdentifier,
     buyerId,
-    timeoutInSeconds,
     merchantAccountId,
     options,
   ));
@@ -76,7 +74,6 @@ async function $do(
   client: Gr4vyCore,
   buyerExternalIdentifier?: string | null | undefined,
   buyerId?: string | null | undefined,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -109,7 +106,6 @@ async function $do(
   const input: operations.ListBuyerGiftCardsRequest | undefined = {
     buyerExternalIdentifier: buyerExternalIdentifier,
     buyerId: buyerId,
-    timeoutInSeconds: timeoutInSeconds,
     merchantAccountId: merchantAccountId,
   };
 
@@ -132,7 +128,6 @@ async function $do(
   const query = encodeFormQuery({
     "buyer_external_identifier": payload?.buyer_external_identifier,
     "buyer_id": payload?.buyer_id,
-    "timeout_in_seconds": payload?.timeout_in_seconds,
   });
 
   const headers = new Headers(compactMap({

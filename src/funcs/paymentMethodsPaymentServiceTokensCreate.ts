@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,7 +35,6 @@ export function paymentMethodsPaymentServiceTokensCreate(
   client: Gr4vyCore,
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate,
   paymentMethodId: string,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -66,7 +65,6 @@ export function paymentMethodsPaymentServiceTokensCreate(
     client,
     paymentServiceTokenCreate,
     paymentMethodId,
-    timeoutInSeconds,
     merchantAccountId,
     options,
   ));
@@ -76,7 +74,6 @@ async function $do(
   client: Gr4vyCore,
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate,
   paymentMethodId: string,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -109,7 +106,6 @@ async function $do(
   const input: operations.CreatePaymentMethodPaymentServiceTokenRequest = {
     paymentServiceTokenCreate: paymentServiceTokenCreate,
     paymentMethodId: paymentMethodId,
-    timeoutInSeconds: timeoutInSeconds,
     merchantAccountId: merchantAccountId,
   };
 
@@ -139,10 +135,6 @@ async function $do(
   const path = pathToFunc(
     "/payment-methods/{payment_method_id}/payment-service-tokens",
   )(pathParams);
-
-  const query = encodeFormQuery({
-    "timeout_in_seconds": payload.timeout_in_seconds,
-  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -178,7 +170,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

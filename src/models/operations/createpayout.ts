@@ -14,7 +14,6 @@ export type CreatePayoutGlobals = {
 };
 
 export type CreatePayoutRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -82,19 +81,16 @@ export const CreatePayoutRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   PayoutCreate: components.PayoutCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "PayoutCreate": "payoutCreate",
   });
 });
 
 /** @internal */
 export type CreatePayoutRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   PayoutCreate: components.PayoutCreate$Outbound;
 };
@@ -105,12 +101,10 @@ export const CreatePayoutRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreatePayoutRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   payoutCreate: components.PayoutCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     payoutCreate: "PayoutCreate",
   });
 });

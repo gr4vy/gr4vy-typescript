@@ -46,14 +46,12 @@ export class GiftCards extends ClientSDK {
    */
   async delete(
     giftCardId: string,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(giftCardsDelete(
       this,
       giftCardId,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));
@@ -67,14 +65,12 @@ export class GiftCards extends ClientSDK {
    */
   async create(
     giftCardCreate: components.GiftCardCreate,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.GiftCard> {
     return unwrapAsync(giftCardsCreate(
       this,
       giftCardCreate,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

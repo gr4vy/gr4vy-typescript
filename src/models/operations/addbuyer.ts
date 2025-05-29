@@ -14,7 +14,6 @@ export type AddBuyerGlobals = {
 };
 
 export type AddBuyerRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -80,19 +79,16 @@ export const AddBuyerRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   BuyerCreate: components.BuyerCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "BuyerCreate": "buyerCreate",
   });
 });
 
 /** @internal */
 export type AddBuyerRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   BuyerCreate: components.BuyerCreate$Outbound;
 };
@@ -103,12 +99,10 @@ export const AddBuyerRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AddBuyerRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   buyerCreate: components.BuyerCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     buyerCreate: "BuyerCreate",
   });
 });

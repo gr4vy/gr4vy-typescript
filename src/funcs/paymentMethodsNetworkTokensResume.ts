@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,7 +35,6 @@ export function paymentMethodsNetworkTokensResume(
   client: Gr4vyCore,
   paymentMethodId: string,
   networkTokenId: string,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -66,7 +65,6 @@ export function paymentMethodsNetworkTokensResume(
     client,
     paymentMethodId,
     networkTokenId,
-    timeoutInSeconds,
     merchantAccountId,
     options,
   ));
@@ -76,7 +74,6 @@ async function $do(
   client: Gr4vyCore,
   paymentMethodId: string,
   networkTokenId: string,
-  timeoutInSeconds?: number | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -109,7 +106,6 @@ async function $do(
   const input: operations.ResumePaymentMethodNetworkTokenRequest = {
     paymentMethodId: paymentMethodId,
     networkTokenId: networkTokenId,
-    timeoutInSeconds: timeoutInSeconds,
     merchantAccountId: merchantAccountId,
   };
 
@@ -144,10 +140,6 @@ async function $do(
     "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/resume",
   )(pathParams);
 
-  const query = encodeFormQuery({
-    "timeout_in_seconds": payload.timeout_in_seconds,
-  });
-
   const headers = new Headers(compactMap({
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
@@ -181,7 +173,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

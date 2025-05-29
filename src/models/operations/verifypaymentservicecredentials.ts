@@ -14,7 +14,6 @@ export type VerifyPaymentServiceCredentialsGlobals = {
 };
 
 export type VerifyPaymentServiceCredentialsRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -88,19 +87,16 @@ export const VerifyPaymentServiceCredentialsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   VerifyCredentials: components.VerifyCredentials$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "VerifyCredentials": "verifyCredentials",
   });
 });
 
 /** @internal */
 export type VerifyPaymentServiceCredentialsRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   VerifyCredentials: components.VerifyCredentials$Outbound;
 };
@@ -111,12 +107,10 @@ export const VerifyPaymentServiceCredentialsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VerifyPaymentServiceCredentialsRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   verifyCredentials: components.VerifyCredentials$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     verifyCredentials: "VerifyCredentials",
   });
 });

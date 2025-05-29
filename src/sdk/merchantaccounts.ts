@@ -43,14 +43,12 @@ export class MerchantAccounts extends ClientSDK {
    * Create a new merchant account in an instance.
    */
   async create(
-    merchantAccountCreate: components.MerchantAccountCreate,
-    timeoutInSeconds?: number | undefined,
+    request: components.MerchantAccountCreate,
     options?: RequestOptions,
   ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsCreate(
       this,
-      merchantAccountCreate,
-      timeoutInSeconds,
+      request,
       options,
     ));
   }
@@ -81,14 +79,12 @@ export class MerchantAccounts extends ClientSDK {
   async update(
     merchantAccountUpdate: components.MerchantAccountUpdate,
     merchantAccountId: string,
-    timeoutInSeconds?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsUpdate(
       this,
       merchantAccountUpdate,
       merchantAccountId,
-      timeoutInSeconds,
       options,
     ));
   }

@@ -19,7 +19,6 @@ export type CreatePaymentMethodBody =
   | components.CardPaymentMethodCreate;
 
 export type CreatePaymentMethodRequest = {
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -149,7 +148,6 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   RequestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$inboundSchema,
@@ -158,14 +156,12 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
   ]),
 }).transform((v) => {
   return remap$(v, {
-    "timeout_in_seconds": "timeoutInSeconds",
     "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type CreatePaymentMethodRequest$Outbound = {
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   RequestBody:
     | components.CheckoutSessionPaymentMethodCreate$Outbound
@@ -179,7 +175,6 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreatePaymentMethodRequest
 > = z.object({
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   requestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$outboundSchema,
@@ -188,7 +183,6 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   ]),
 }).transform((v) => {
   return remap$(v, {
-    timeoutInSeconds: "timeout_in_seconds",
     requestBody: "RequestBody",
   });
 });

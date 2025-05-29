@@ -16,14 +16,12 @@ export class Balances extends ClientSDK {
    */
   async list(
     giftCardBalanceRequest: components.GiftCardBalanceRequest,
-    timeoutInSeconds?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorGiftCardSummary> {
     return unwrapAsync(giftCardsBalancesList(
       this,
       giftCardBalanceRequest,
-      timeoutInSeconds,
       merchantAccountId,
       options,
     ));

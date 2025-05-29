@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate$inboundSchema,
   paymentMethodId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -27,7 +26,6 @@ Create a gateway tokens for a payment method.`,
       client,
       args.paymentServiceTokenCreate,
       args.paymentMethodId,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

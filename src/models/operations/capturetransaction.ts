@@ -15,7 +15,6 @@ export type CaptureTransactionGlobals = {
 
 export type CaptureTransactionRequest = {
   transactionId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,13 +83,11 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   TransactionCapture: components.TransactionCapture$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "timeout_in_seconds": "timeoutInSeconds",
     "TransactionCapture": "transactionCapture",
   });
 });
@@ -98,7 +95,6 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CaptureTransactionRequest$Outbound = {
   transaction_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   TransactionCapture: components.TransactionCapture$Outbound;
 };
@@ -110,13 +106,11 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
   CaptureTransactionRequest
 > = z.object({
   transactionId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   transactionCapture: components.TransactionCapture$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    timeoutInSeconds: "timeout_in_seconds",
     transactionCapture: "TransactionCapture",
   });
 });

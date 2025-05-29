@@ -18,7 +18,6 @@ export type UpdateDigitalWalletRequest = {
    * The ID of the digital wallet to edit.
    */
   digitalWalletId: string;
-  timeoutInSeconds?: number | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -87,13 +86,11 @@ export const UpdateDigitalWalletRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   digital_wallet_id: z.string(),
-  timeout_in_seconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   DigitalWalletUpdate: components.DigitalWalletUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
-    "timeout_in_seconds": "timeoutInSeconds",
     "DigitalWalletUpdate": "digitalWalletUpdate",
   });
 });
@@ -101,7 +98,6 @@ export const UpdateDigitalWalletRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateDigitalWalletRequest$Outbound = {
   digital_wallet_id: string;
-  timeout_in_seconds: number;
   merchantAccountId?: string | null | undefined;
   DigitalWalletUpdate: components.DigitalWalletUpdate$Outbound;
 };
@@ -113,13 +109,11 @@ export const UpdateDigitalWalletRequest$outboundSchema: z.ZodType<
   UpdateDigitalWalletRequest
 > = z.object({
   digitalWalletId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletUpdate: components.DigitalWalletUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
-    timeoutInSeconds: "timeout_in_seconds",
     digitalWalletUpdate: "DigitalWalletUpdate",
   });
 });

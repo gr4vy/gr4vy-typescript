@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   buyerId: z.string(),
   shippingDetailsId: z.string(),
-  timeoutInSeconds: z.number().default(1),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -24,7 +23,6 @@ Delete the shipping details associated to a specific buyer.`,
       client,
       args.buyerId,
       args.shippingDetailsId,
-      args.timeoutInSeconds,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

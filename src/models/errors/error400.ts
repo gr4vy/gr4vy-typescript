@@ -21,7 +21,7 @@ export type Error400Data = {
   /**
    * A human readable message that provides more context to the error.
    */
-  message: string | null;
+  message?: string;
   /**
    * A list of details that further ellaborate on the error.
    */
@@ -74,7 +74,7 @@ export const Error400$inboundSchema: z.ZodType<
   type: z.literal("error").default("error"),
   code: z.string().default("bad_request"),
   status: z.number().int().default(400),
-  message: z.nullable(z.string()),
+  message: z.string().default("Generic error"),
   details: z.array(components.ErrorDetail$inboundSchema).optional(),
 })
   .transform((v) => {
@@ -86,7 +86,7 @@ export type Error400$Outbound = {
   type?: "error";
   code?: string;
   status?: number;
-  message: string | null;
+  message?: string;
   details?: Array<components.ErrorDetail$Outbound> | undefined;
 };
 
@@ -101,7 +101,7 @@ export const Error400$outboundSchema: z.ZodType<
     type: z.literal("error").default("error" as const),
     code: z.string().default("bad_request"),
     status: z.number().int().default(400),
-    message: z.nullable(z.string()),
+    message: z.string().default("Generic error"),
     details: z.array(components.ErrorDetail$outboundSchema).optional(),
   }));
 
