@@ -373,6 +373,10 @@ try {
 * [summary](docs/sdks/transactions/README.md#summary) - Get transaction summary
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
 
+#### [transactions.events](docs/sdks/events/README.md)
+
+* [list](docs/sdks/events/README.md#list) - List transaction events
+
 #### [transactions.refunds](docs/sdks/gr4vyrefunds/README.md)
 
 * [list](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
@@ -1107,6 +1111,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`refundsGet`](docs/sdks/refunds/README.md#get) - Get refund
 - [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
 - [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create transaction
+- [`transactionsEventsList`](docs/sdks/events/README.md#list) - List transaction events
 - [`transactionsGet`](docs/sdks/transactions/README.md#get) - Get transaction
 - [`transactionsList`](docs/sdks/transactions/README.md#list) - List transactions
 - [`transactionsRefundsAllCreate`](docs/sdks/all/README.md#create) - Create batch transaction refund

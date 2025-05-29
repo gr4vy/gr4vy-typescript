@@ -81,6 +81,7 @@ import { tool$payoutsList } from "./tools/payoutsList.js";
 import { tool$refundsGet } from "./tools/refundsGet.js";
 import { tool$transactionsCapture } from "./tools/transactionsCapture.js";
 import { tool$transactionsCreate } from "./tools/transactionsCreate.js";
+import { tool$transactionsEventsList } from "./tools/transactionsEventsList.js";
 import { tool$transactionsGet } from "./tools/transactionsGet.js";
 import { tool$transactionsList } from "./tools/transactionsList.js";
 import { tool$transactionsRefundsAllCreate } from "./tools/transactionsRefundsAllCreate.js";
@@ -103,7 +104,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Gr4vy",
-    version: "1.0.0-beta.12",
+    version: "1.0.0-beta.13",
   });
 
   const client = new Gr4vyCore({
@@ -210,6 +211,7 @@ export function createMCPServer(deps: {
   tool(tool$transactionsRefundsList);
   tool(tool$transactionsRefundsCreate);
   tool(tool$transactionsRefundsGet);
+  tool(tool$transactionsEventsList);
   tool(tool$paymentMethodsNetworkTokensCryptogramCreate);
   tool(tool$transactionsRefundsAllCreate);
 

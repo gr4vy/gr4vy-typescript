@@ -6,13 +6,13 @@
 import { GetTransactionRequest } from "@gr4vy/sdk/models/operations";
 
 let value: GetTransactionRequest = {
-  transactionId: "d67fce85-de10-40ff-b99c-87a39f749f05",
+  transactionId: "7099948d-7286-47e4-aad8-b68f7eb44591",
 };
 ```
 
 ## Fields
 
-| Field                                                   | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `transactionId`                                         | *string*                                                | :heavy_check_mark:                                      | N/A                                                     |
-| `merchantAccountId`                                     | *string*                                                | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
+| Field                                                   | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `transactionId`                                         | *string*                                                | :heavy_check_mark:                                      | N/A                                                     | 7099948d-7286-47e4-aad8-b68f7eb44591                    |
+| `merchantAccountId`                                     | *string*                                                | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |

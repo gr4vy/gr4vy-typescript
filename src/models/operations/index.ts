@@ -62,6 +62,7 @@ export * from "./listpaymentoptions.js";
 export * from "./listpaymentservicedefinitions.js";
 export * from "./listpaymentservices.js";
 export * from "./listpayouts.js";
+export * from "./listtransactionevents.js";
 export * from "./listtransactionrefunds.js";
 export * from "./listtransactions.js";
 export * from "./registerdigitalwalletdomain.js";
