@@ -16,7 +16,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 1.0.0-beta.10
+  version: 1.0.0-beta.11
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
