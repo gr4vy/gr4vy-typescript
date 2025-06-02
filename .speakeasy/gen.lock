@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: c17f79dde1d3279930e9475a80017a7e
+  docChecksum: fa78a4fc643f1b73e1f52fea1820c023
   docVersion: 1.0.0
-  speakeasyVersion: 1.553.2
-  generationVersion: 2.614.0
-  releaseVersion: 1.0.0-beta.13
-  configChecksum: 7c0a2674a86f52e46ab10fd549a54428
+  speakeasyVersion: 1.554.1
+  generationVersion: 2.616.1
+  releaseVersion: 1.0.0-beta.14
+  configChecksum: 00369a8927d7c95774597fa8056cc653
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -228,7 +228,6 @@ generatedFiles:
   - docs/models/components/transactionrefundallcreate.md
   - docs/models/components/transactionrefundcreate.md
   - docs/models/components/transactionstatus.md
-  - docs/models/components/transactionstatussummary.md
   - docs/models/components/transactionsummary.md
   - docs/models/components/transactionthreedsecuresummary.md
   - docs/models/components/two.md
@@ -332,8 +331,6 @@ generatedFiles:
   - docs/models/operations/gettransactionrefundglobals.md
   - docs/models/operations/gettransactionrefundrequest.md
   - docs/models/operations/gettransactionrequest.md
-  - docs/models/operations/gettransactionsummaryglobals.md
-  - docs/models/operations/gettransactionsummaryrequest.md
   - docs/models/operations/listauditlogsglobals.md
   - docs/models/operations/listauditlogsrequest.md
   - docs/models/operations/listauditlogsresponse.md
@@ -516,7 +513,6 @@ generatedFiles:
   - src/funcs/transactionsRefundsCreate.ts
   - src/funcs/transactionsRefundsGet.ts
   - src/funcs/transactionsRefundsList.ts
-  - src/funcs/transactionsSummary.ts
   - src/funcs/transactionsSync.ts
   - src/funcs/transactionsVoid.ts
   - src/hooks/hooks.ts
@@ -626,7 +622,6 @@ generatedFiles:
   - src/mcp-server/tools/transactionsRefundsCreate.ts
   - src/mcp-server/tools/transactionsRefundsGet.ts
   - src/mcp-server/tools/transactionsRefundsList.ts
-  - src/mcp-server/tools/transactionsSummary.ts
   - src/mcp-server/tools/transactionsSync.ts
   - src/mcp-server/tools/transactionsVoid.ts
   - src/models/components/accountupdaterinquirysummary.ts
@@ -799,7 +794,6 @@ generatedFiles:
   - src/models/components/transactionrefundallcreate.ts
   - src/models/components/transactionrefundcreate.ts
   - src/models/components/transactionstatus.ts
-  - src/models/components/transactionstatussummary.ts
   - src/models/components/transactionsummary.ts
   - src/models/components/transactionthreedsecuresummary.ts
   - src/models/components/userstatus.ts
@@ -865,7 +859,6 @@ generatedFiles:
   - src/models/operations/getrefund.ts
   - src/models/operations/gettransaction.ts
   - src/models/operations/gettransactionrefund.ts
-  - src/models/operations/gettransactionsummary.ts
   - src/models/operations/index.ts
   - src/models/operations/listauditlogs.ts
   - src/models/operations/listbuyergiftcards.ts

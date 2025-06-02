@@ -44,7 +44,6 @@ export * from "./getpayout.js";
 export * from "./getrefund.js";
 export * from "./gettransaction.js";
 export * from "./gettransactionrefund.js";
-export * from "./gettransactionsummary.js";
 export * from "./listauditlogs.js";
 export * from "./listbuyergiftcards.js";
 export * from "./listbuyerpaymentmethods.js";

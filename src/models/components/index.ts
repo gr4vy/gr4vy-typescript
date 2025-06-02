@@ -171,7 +171,6 @@ export * from "./transactionpaymentsource.js";
 export * from "./transactionrefundallcreate.js";
 export * from "./transactionrefundcreate.js";
 export * from "./transactionstatus.js";
-export * from "./transactionstatussummary.js";
 export * from "./transactionsummary.js";
 export * from "./transactionthreedsecuresummary.js";
 export * from "./userstatus.js";

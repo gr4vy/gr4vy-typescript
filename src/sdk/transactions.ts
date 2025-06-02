@@ -6,7 +6,6 @@ import { transactionsCapture } from "../funcs/transactionsCapture.js";
 import { transactionsCreate } from "../funcs/transactionsCreate.js";
 import { transactionsGet } from "../funcs/transactionsGet.js";
 import { transactionsList } from "../funcs/transactionsList.js";
-import { transactionsSummary } from "../funcs/transactionsSummary.js";
 import { transactionsSync } from "../funcs/transactionsSync.js";
 import { transactionsVoid } from "../funcs/transactionsVoid.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -120,25 +119,6 @@ export class Transactions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsVoid(
-      this,
-      transactionId,
-      merchantAccountId,
-      options,
-    ));
-  }
-
-  /**
-   * Get transaction summary
-   *
-   * @remarks
-   * Fetch a summary for a transaction.
-   */
-  async summary(
-    transactionId: string,
-    merchantAccountId?: string | null | undefined,
-    options?: RequestOptions,
-  ): Promise<components.TransactionStatusSummary> {
-    return unwrapAsync(transactionsSummary(
       this,
       transactionId,
       merchantAccountId,
