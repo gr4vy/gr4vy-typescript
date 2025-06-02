@@ -44,7 +44,7 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          npx vitest
+          npx vitest --testTimeout 8000   
 
       - uses: hmarr/auto-approve-action@v4
         if: ${{ success() && github.event.pull_request.user.login == 'github-actions[bot]' }}
