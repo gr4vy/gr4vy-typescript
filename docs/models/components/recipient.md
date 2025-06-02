@@ -6,24 +6,10 @@ Recipient of an account funding transaction
 
 ```typescript
 import { Recipient } from "@gr4vy/sdk/models/components";
-import { RFCDate } from "@gr4vy/sdk/types";
 
 let value: Recipient = {
   firstName: "",
   lastName: "",
-  address: {
-    city: "San Jose",
-    country: "US",
-    postalCode: "94560",
-    state: "California",
-    stateCode: "US-CA",
-    houseNumberOrName: "10",
-    line1: "Stafford Appartments",
-    line2: "29th Street",
-    organization: "Gr4vy",
-  },
-  accountNumber: "act12345",
-  dateOfBirth: new RFCDate("1995-12-23"),
 };
 ```
 

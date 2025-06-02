@@ -5,9 +5,7 @@
 ```typescript
 import { ListPayoutsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListPayoutsRequest = {
-  cursor: "ZXhhbXBsZTE",
-};
+let value: ListPayoutsRequest = {};
 ```
 
 ## Fields

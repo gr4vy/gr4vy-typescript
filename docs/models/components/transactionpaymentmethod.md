@@ -6,21 +6,7 @@
 import { TransactionPaymentMethod } from "@gr4vy/sdk/models/components";
 
 let value: TransactionPaymentMethod = {
-  approvalUrl: "https://gr4vy.app/redirect/12345",
-  country: "US",
-  currency: "USD",
-  expirationDate: "12/30",
-  fingerprint:
-    "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17",
-  label: "1234",
-  lastReplacedAt: new Date("2013-07-16T19:23:00.000+00:00"),
   method: "giropay",
-  mode: "card",
-  scheme: "visa",
-  id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
-  approvalTarget: "any",
-  externalIdentifier: "card-12345",
-  paymentAccountReference: "V0010014629724763377327521982",
 };
 ```
 

@@ -124,7 +124,6 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.create({
-    securityCode: "123",
     merchantInitiated: false,
     isSubsequentPayment: false,
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
@@ -157,7 +156,6 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsNetworkTokensCreate(gr4vy, {
-    securityCode: "123",
     merchantInitiated: false,
     isSubsequentPayment: false,
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");

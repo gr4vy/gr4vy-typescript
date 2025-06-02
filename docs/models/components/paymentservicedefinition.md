@@ -37,7 +37,6 @@ let value: PaymentServiceDefinition = {
     "DE",
   ],
   mode: "card",
-  iconUrl: "https://example.com/icons/adyen-ideal.svg",
   supportedFeatures: {
     "key": false,
   },
@@ -49,11 +48,6 @@ let value: PaymentServiceDefinition = {
         "address.city",
         "address.postal_code",
       ],
-      conditions: {
-        "country": [
-          "IN",
-        ],
-      },
     },
   ],
   configuration: {

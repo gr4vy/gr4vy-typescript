@@ -27,36 +27,10 @@ let value: CollectionPaymentService = {
       networkTokensEnabled: true,
       openLoop: true,
       settlementReportingEnabled: true,
-      threeDSecureEnabled: true,
-      merchantProfile: {
-        "key": {
-          merchantAcquirerBin: "516327",
-          merchantUrl: "https://example.com",
-          merchantAcquirerId: "123456789012345",
-          merchantName: "Acme Inc.",
-          merchantCountryCode: "USD",
-          merchantCategoryCode: "1234",
-          createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
-        },
-      },
-      fields: [
-        {
-          key: "api_key",
-          value: "key-12345",
-        },
-      ],
-      reportingFields: [
-        {
-          key: "api_key",
-          value: "key-12345",
-        },
-      ],
       createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
       updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
     },
   ],
-  nextCursor: "ZXhhbXBsZTE",
-  previousCursor: "Xkjss7asS",
 };
 ```
 

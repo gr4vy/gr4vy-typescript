@@ -5,12 +5,7 @@
 ```typescript
 import { ListAuditLogsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListAuditLogsRequest = {
-  cursor: "ZXhhbXBsZTE",
-  action: "created",
-  userId: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef",
-  resourceType: "user",
-};
+let value: ListAuditLogsRequest = {};
 ```
 
 ## Fields

@@ -5,12 +5,7 @@
 ```typescript
 import { TransactionRefundCreate } from "@gr4vy/sdk/models/components";
 
-let value: TransactionRefundCreate = {
-  amount: 1299,
-  targetId: "7a6c366d-9205-45ab-8021-0d9ee37f20f2",
-  reason: "Refund due to user request.",
-  externalIdentifier: "refund-12345",
-};
+let value: TransactionRefundCreate = {};
 ```
 
 ## Fields

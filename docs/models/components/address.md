@@ -5,17 +5,7 @@
 ```typescript
 import { Address } from "@gr4vy/sdk/models/components";
 
-let value: Address = {
-  city: "San Jose",
-  country: "US",
-  postalCode: "94560",
-  state: "California",
-  stateCode: "US-CA",
-  houseNumberOrName: "10",
-  line1: "Stafford Appartments",
-  line2: "29th Street",
-  organization: "Gr4vy",
-};
+let value: Address = {};
 ```
 
 ## Fields

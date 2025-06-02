@@ -7,14 +7,7 @@ Information to show the user on their payments statement
 ```typescript
 import { StatementDescriptor } from "@gr4vy/sdk/models/components";
 
-let value: StatementDescriptor = {
-  name: "ACME",
-  description: "ACME San Jose Electronics",
-  city: "San Jose",
-  country: "US",
-  phoneNumber: "+1234567890",
-  url: "www.example.com",
-};
+let value: StatementDescriptor = {};
 ```
 
 ## Fields

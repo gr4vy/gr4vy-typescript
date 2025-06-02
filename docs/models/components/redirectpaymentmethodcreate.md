@@ -9,12 +9,9 @@ import { RedirectPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: RedirectPaymentMethodCreate = {
   method: "zippay",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerExternalIdentifier: "buyer-12345",
   country: "GB",
   currency: "EUR",
   redirectUrl: "https://wee-captain.com",
-  externalIdentifier: "payment-method-12345",
 };
 ```
 

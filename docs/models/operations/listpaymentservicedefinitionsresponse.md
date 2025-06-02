@@ -40,7 +40,6 @@ let value: ListPaymentServiceDefinitionsResponse = {
           "AUD",
         ],
         mode: "card",
-        iconUrl: "https://example.com/icons/adyen-ideal.svg",
         supportedFeatures: {
           "key": false,
         },
@@ -52,11 +51,6 @@ let value: ListPaymentServiceDefinitionsResponse = {
               "address.city",
               "address.postal_code",
             ],
-            conditions: {
-              "country": [
-                "IN",
-              ],
-            },
           },
         ],
         configuration: {
@@ -69,8 +63,6 @@ let value: ListPaymentServiceDefinitionsResponse = {
         },
       },
     ],
-    nextCursor: "ZXhhbXBsZTE",
-    previousCursor: "Xkjss7asS",
   },
 };
 ```

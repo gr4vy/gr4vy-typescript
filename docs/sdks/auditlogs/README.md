@@ -25,12 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.auditLogs.list({
-    cursor: "ZXhhbXBsZTE",
-    action: "created",
-    userId: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef",
-    resourceType: "user",
-  });
+  const result = await gr4vy.auditLogs.list();
 
   for await (const page of result) {
     // Handle the page
@@ -61,12 +56,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await auditLogsList(gr4vy, {
-    cursor: "ZXhhbXBsZTE",
-    action: "created",
-    userId: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef",
-    resourceType: "user",
-  });
+  const res = await auditLogsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;

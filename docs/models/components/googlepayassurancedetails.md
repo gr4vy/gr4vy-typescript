@@ -7,10 +7,7 @@ The assurance details provided by Google Pay
 ```typescript
 import { GooglePayAssuranceDetails } from "@gr4vy/sdk/models/components";
 
-let value: GooglePayAssuranceDetails = {
-  accountVerified: true,
-  cardHolderAuthenticated: true,
-};
+let value: GooglePayAssuranceDetails = {};
 ```
 
 ## Fields

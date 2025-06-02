@@ -6,7 +6,6 @@
 import { NetworkTokenCreate } from "@gr4vy/sdk/models/components";
 
 let value: NetworkTokenCreate = {
-  securityCode: "123",
   merchantInitiated: false,
   isSubsequentPayment: false,
 };

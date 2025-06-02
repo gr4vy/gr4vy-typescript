@@ -9,7 +9,6 @@ let value: ConfigureDigitalWalletRequest = {
   digitalWalletCreate: {
     provider: "google",
     merchantName: "<value>",
-    merchantCountryCode: "US",
     acceptTermsAndConditions: false,
   },
 };

@@ -8,12 +8,6 @@ import { NetworkTokenPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 let value: NetworkTokenPaymentMethodCreate = {
   token: "4111123456789012",
   expirationDate: "12/30",
-  cryptogram: "A3F9C2D47E1B56A9",
-  cardSource: "apple-pay",
-  cardScheme: "visa",
-  cardSuffix: "1234",
-  cardholderName: "John Luhn",
-  eci: "05",
 };
 ```
 

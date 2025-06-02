@@ -5,31 +5,7 @@
 ```typescript
 import { AirlineLeg } from "@gr4vy/sdk/models/components";
 
-let value: AirlineLeg = {
-  arrivalAirport: "LAX",
-  arrivalAt: new Date("2013-07-16T19:23:00.000+00:00"),
-  arrivalCity: "Los Angeles",
-  arrivalCountry: "US",
-  carrierCode: "649",
-  carrierName: "Air Transat A.T. Inc",
-  iataDesignator: "TS",
-  icaoCode: "TSC",
-  couponNumber: "15885566",
-  departureAirport: "LHR",
-  departureAt: new Date("2013-07-16T19:23:00.000+00:00"),
-  departureCity: "London",
-  departureCountry: "GB",
-  departureTaxAmount: 1200,
-  fareAmount: 129900,
-  fareBasisCode: "FY",
-  feeAmount: 1200,
-  flightClass: "E",
-  flightNumber: "101",
-  routeType: "round_trip",
-  seatClass: "F",
-  stopOver: false,
-  taxAmount: 1200,
-};
+let value: AirlineLeg = {};
 ```
 
 ## Fields

@@ -25,10 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.refunds.all.create("7099948d-7286-47e4-aad8-b68f7eb44591", {
-    reason: "Refund due to user request.",
-    externalIdentifier: "refund-12345",
-  });
+  const result = await gr4vy.transactions.refunds.all.create("7099948d-7286-47e4-aad8-b68f7eb44591");
 
   // Handle the result
   console.log(result);
@@ -57,10 +54,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsRefundsAllCreate(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591", {
-    reason: "Refund due to user request.",
-    externalIdentifier: "refund-12345",
-  });
+  const res = await transactionsRefundsAllCreate(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
   if (!res.ok) {
     throw res.error;

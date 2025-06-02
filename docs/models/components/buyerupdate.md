@@ -7,31 +7,7 @@ Request body for updating an existing buyer
 ```typescript
 import { BuyerUpdate } from "@gr4vy/sdk/models/components";
 
-let value: BuyerUpdate = {
-  displayName: "John Doe",
-  externalIdentifier: "buyer-12345",
-  billingDetails: {
-    firstName: "John",
-    lastName: "Doe",
-    emailAddress: "john@example.com",
-    phoneNumber: "+1234567890",
-    address: {
-      city: "San Jose",
-      country: "US",
-      postalCode: "94560",
-      state: "California",
-      stateCode: "US-CA",
-      houseNumberOrName: "10",
-      line1: "Stafford Appartments",
-      line2: "29th Street",
-      organization: "Gr4vy",
-    },
-    taxId: {
-      value: "12345678931",
-      kind: "bo.ci",
-    },
-  },
-};
+let value: BuyerUpdate = {};
 ```
 
 ## Fields

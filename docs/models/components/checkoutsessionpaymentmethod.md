@@ -5,18 +5,7 @@
 ```typescript
 import { CheckoutSessionPaymentMethod } from "@gr4vy/sdk/models/components";
 
-let value: CheckoutSessionPaymentMethod = {
-  id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-  details: {
-    bin: "411111",
-    cardCountry: "US",
-    cardIssuerName: "Bank of America NA",
-  },
-  label: "1234",
-  scheme: "visa",
-  fingerprint:
-    "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4",
-};
+let value: CheckoutSessionPaymentMethod = {};
 ```
 
 ## Fields

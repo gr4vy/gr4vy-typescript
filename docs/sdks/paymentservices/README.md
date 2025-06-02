@@ -31,10 +31,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentServices.list({
-    cursor: "ZXhhbXBsZTE",
-    deleted: true,
-  });
+  const result = await gr4vy.paymentServices.list();
 
   for await (const page of result) {
     // Handle the page
@@ -65,10 +62,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentServicesList(gr4vy, {
-    cursor: "ZXhhbXBsZTE",
-    deleted: true,
-  });
+  const res = await paymentServicesList(gr4vy);
 
   if (!res.ok) {
     throw res.error;
@@ -147,21 +141,6 @@ async function run() {
         value: "key-12345",
       },
     ],
-    reportingFields: [
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-    ],
-    position: 1,
     acceptedCurrencies: [
       "USD",
       "EUR",
@@ -172,28 +151,6 @@ async function run() {
       "DE",
       "GB",
     ],
-    active: true,
-    merchantProfile: {
-      "key": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-      "key1": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-    },
-    paymentMethodTokenizationEnabled: true,
-    networkTokensEnabled: true,
-    openLoop: true,
   });
 
   // Handle the result
@@ -236,21 +193,6 @@ async function run() {
         value: "key-12345",
       },
     ],
-    reportingFields: [
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-    ],
-    position: 1,
     acceptedCurrencies: [
       "USD",
       "EUR",
@@ -261,28 +203,6 @@ async function run() {
       "DE",
       "GB",
     ],
-    active: true,
-    merchantProfile: {
-      "key": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-      "key1": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-    },
-    paymentMethodTokenizationEnabled: true,
-    networkTokensEnabled: true,
-    openLoop: true,
   });
 
   if (!res.ok) {
@@ -442,35 +362,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentServices.update({
-    displayName: "Stripe",
-    position: 1,
-    acceptedCurrencies: [
-      "USD",
-      "EUR",
-      "GBP",
-    ],
-    acceptedCountries: [
-      "US",
-      "DE",
-      "GB",
-    ],
-    active: true,
-    threeDSecureEnabled: true,
-    merchantProfile: {
-      "key": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-    },
-    paymentMethodTokenizationEnabled: true,
-    networkTokensEnabled: true,
-    openLoop: true,
-  }, "fffd152a-9532-4087-9a4f-de58754210f0");
+  const result = await gr4vy.paymentServices.update({}, "fffd152a-9532-4087-9a4f-de58754210f0");
 
   // Handle the result
   console.log(result);
@@ -499,35 +391,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentServicesUpdate(gr4vy, {
-    displayName: "Stripe",
-    position: 1,
-    acceptedCurrencies: [
-      "USD",
-      "EUR",
-      "GBP",
-    ],
-    acceptedCountries: [
-      "US",
-      "DE",
-      "GB",
-    ],
-    active: true,
-    threeDSecureEnabled: true,
-    merchantProfile: {
-      "key": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-    },
-    paymentMethodTokenizationEnabled: true,
-    networkTokensEnabled: true,
-    openLoop: true,
-  }, "fffd152a-9532-4087-9a4f-de58754210f0");
+  const res = await paymentServicesUpdate(gr4vy, {}, "fffd152a-9532-4087-9a4f-de58754210f0");
 
   if (!res.ok) {
     throw res.error;
@@ -689,7 +553,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentServices.verify({
     paymentServiceDefinitionId: "stripe-card",
-    paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     fields: [],
   });
 
@@ -722,7 +585,6 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await paymentServicesVerify(gr4vy, {
     paymentServiceDefinitionId: "stripe-card",
-    paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     fields: [],
   });
 

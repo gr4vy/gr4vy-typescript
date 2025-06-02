@@ -892,11 +892,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list({
-    cursor: "ZXhhbXBsZTE",
-    search: "John",
-    externalIdentifier: "buyer-12345",
-  });
+  const result = await gr4vy.buyers.list();
 
   for await (const page of result) {
     // Handle the page

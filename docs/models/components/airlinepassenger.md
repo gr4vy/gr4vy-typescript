@@ -4,21 +4,8 @@
 
 ```typescript
 import { AirlinePassenger } from "@gr4vy/sdk/models/components";
-import { RFCDate } from "@gr4vy/sdk/types";
 
-let value: AirlinePassenger = {
-  ageGroup: "adult",
-  dateOfBirth: new RFCDate("2013-07-16"),
-  emailAddress: "john@example.com",
-  firstName: "John",
-  frequentFlyerNumber: "15885566",
-  lastName: "Luhn",
-  passportNumber: "11117700225",
-  phoneNumber: "+1234567890",
-  ticketNumber: "BA1236699999",
-  title: "Mr.",
-  countryCode: "US",
-};
+let value: AirlinePassenger = {};
 ```
 
 ## Fields

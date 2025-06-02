@@ -5,67 +5,7 @@
 ```typescript
 import { ListTransactionsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListTransactionsRequest = {
-  cursor: "ZXhhbXBsZTE",
-  createdAtLte: new Date("2022-01-01T12:00:00+08:00"),
-  createdAtGte: new Date("2022-01-01T12:00:00+08:00"),
-  updatedAtLte: new Date("2022-01-01T12:00:00+08:00"),
-  updatedAtGte: new Date("2022-01-01T12:00:00+08:00"),
-  search: "transaction-12345",
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerEmailAddress: "john@example.com",
-  buyerSearch: "John",
-  ipAddress: "8.214.133.47",
-  status: [
-    "authorization_succeeded",
-  ],
-  id: "7099948d-7286-47e4-aad8-b68f7eb44591",
-  paymentServiceTransactionId: "tx-12345",
-  externalIdentifier: "transaction-12345",
-  metadata: [
-    "{\"first_key\":\"first_value\",\"second_key\":\"second_value\"}",
-  ],
-  amountEq: 1299,
-  amountLte: 1299,
-  amountGte: 1299,
-  currency: [
-    "USD",
-  ],
-  country: [
-    "US",
-  ],
-  paymentServiceId: [
-    "fffd152a-9532-4087-9a4f-de58754210f0",
-  ],
-  paymentMethodId: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-  paymentMethodLabel: "1234",
-  paymentMethodScheme: "[\"visa\"]",
-  paymentMethodCountry: "[\"US\"]",
-  paymentMethodFingerprint:
-    "a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4",
-  method: [
-    "card",
-  ],
-  errorCode: [
-    "insufficient_funds",
-  ],
-  hasRefunds: true,
-  pendingReview: true,
-  checkoutSessionId: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
-  reconciliationId: "7jZXl4gBUNl0CnaLEnfXbt",
-  hasGiftCardRedemptions: true,
-  giftCardId: "356d56e5-fe16-42ae-97ee-8d55d846ae2e",
-  giftCardLast4: "7890",
-  hasSettlements: true,
-  paymentMethodBin: "411111",
-  paymentSource: [
-    "recurring",
-  ],
-  isSubsequentPayment: true,
-  merchantInitiated: true,
-  used3ds: true,
-};
+let value: ListTransactionsRequest = {};
 ```
 
 ## Fields

@@ -8,12 +8,6 @@ Create an Apple Pay transaction with a device or merchant token.
 import { ApplePayPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: ApplePayPaymentMethodCreate = {
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  cardholderName: "John Luhn",
-  cardSuffix: "1234",
-  cardScheme: "visa",
-  cardType: "credit",
   token: {
     "paymentData": {
       "data":

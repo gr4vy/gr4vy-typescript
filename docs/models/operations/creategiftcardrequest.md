@@ -9,8 +9,6 @@ let value: CreateGiftCardRequest = {
   giftCardCreate: {
     number: "4123455541234561234",
     pin: "1234",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
   },
 };
 ```

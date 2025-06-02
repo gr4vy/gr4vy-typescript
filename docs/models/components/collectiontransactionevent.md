@@ -16,8 +16,6 @@ let value: CollectionTransactionEvent = {
       },
     },
   ],
-  nextCursor: "ZXhhbXBsZTE",
-  previousCursor: "Xkjss7asS",
 };
 ```
 

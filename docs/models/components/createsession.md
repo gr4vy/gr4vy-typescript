@@ -9,11 +9,6 @@ import { CreateSession } from "@gr4vy/sdk/models/components";
 
 let value: CreateSession = {
   status: "succeeded",
-  code: "UNKNOWN_ERROR",
-  statusCode: 201,
-  responseBody: {
-    "sessionId": "12345",
-  },
 };
 ```
 

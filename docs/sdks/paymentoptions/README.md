@@ -25,34 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentOptions.list({
-    metadata: {
-      "cohort": "a",
-    },
-    country: "US",
-    currency: "USD",
-    amount: 1299,
-    cartItems: [
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "US",
-      },
-    ],
-  });
+  const result = await gr4vy.paymentOptions.list({});
 
   // Handle the result
   console.log(result);
@@ -81,34 +54,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentOptionsList(gr4vy, {
-    metadata: {
-      "cohort": "a",
-    },
-    country: "US",
-    currency: "USD",
-    amount: 1299,
-    cartItems: [
-      {
-        name: "GoPro HD",
-        quantity: 2,
-        unitAmount: 1299,
-        discountAmount: 0,
-        taxAmount: 0,
-        externalIdentifier: "goprohd",
-        sku: "GPHD1078",
-        productUrl: "https://example.com/catalog/go-pro-hd",
-        imageUrl: "https://example.com/images/go-pro-hd.jpg",
-        categories: [
-          "camera",
-          "travel",
-          "gear",
-        ],
-        productType: "physical",
-        sellerCountry: "US",
-      },
-    ],
-  });
+  const res = await paymentOptionsList(gr4vy, {});
 
   if (!res.ok) {
     throw res.error;

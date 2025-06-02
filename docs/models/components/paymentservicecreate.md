@@ -16,13 +16,6 @@ let value: PaymentServiceCreate = {
       value: "key-12345",
     },
   ],
-  reportingFields: [
-    {
-      key: "api_key",
-      value: "key-12345",
-    },
-  ],
-  position: 1,
   acceptedCurrencies: [
     "USD",
     "EUR",
@@ -33,20 +26,6 @@ let value: PaymentServiceCreate = {
     "DE",
     "GB",
   ],
-  active: true,
-  merchantProfile: {
-    "key": {
-      merchantAcquirerBin: "516327",
-      merchantUrl: "https://example.com",
-      merchantAcquirerId: "123456789012345",
-      merchantName: "Acme Inc.",
-      merchantCountryCode: "USD",
-      merchantCategoryCode: "1234",
-    },
-  },
-  paymentMethodTokenizationEnabled: true,
-  networkTokensEnabled: true,
-  openLoop: true,
 };
 ```
 

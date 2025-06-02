@@ -25,12 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.paymentMethods.list({
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
-    country: "US",
-    currency: "USD",
-  });
+  const result = await gr4vy.buyers.paymentMethods.list();
 
   // Handle the result
   console.log(result);
@@ -59,12 +54,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersPaymentMethodsList(gr4vy, {
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
-    country: "US",
-    currency: "USD",
-  });
+  const res = await buyersPaymentMethodsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;

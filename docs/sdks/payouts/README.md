@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.payouts.list("ZXhhbXBsZTE");
+  const result = await gr4vy.payouts.list();
 
   for await (const page of result) {
     // Handle the page
@@ -58,7 +58,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await payoutsList(gr4vy, "ZXhhbXBsZTE");
+  const res = await payoutsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;
@@ -133,77 +133,6 @@ async function run() {
     paymentMethod: {
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
     },
-    category: "online_gambling",
-    externalIdentifier: "payout-12345",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyer: {
-      displayName: "John Doe",
-      externalIdentifier: "buyer-12345",
-      billingDetails: {
-        firstName: "John",
-        lastName: "Doe",
-        emailAddress: "john@example.com",
-        phoneNumber: "+1234567890",
-        address: {
-          city: "San Jose",
-          country: "US",
-          postalCode: "94560",
-          state: "California",
-          stateCode: "US-CA",
-          houseNumberOrName: "10",
-          line1: "Stafford Appartments",
-          line2: "29th Street",
-          organization: "Gr4vy",
-        },
-        taxId: {
-          value: "12345678931",
-          kind: "no.vat",
-        },
-      },
-      shippingDetails: {
-        firstName: "John",
-        lastName: "Doe",
-        emailAddress: "john@example.com",
-        phoneNumber: "+1234567890",
-        address: {
-          city: "San Jose",
-          country: "US",
-          postalCode: "94560",
-          state: "California",
-          stateCode: "US-CA",
-          houseNumberOrName: "10",
-          line1: "Stafford Appartments",
-          line2: "29th Street",
-          organization: "Gr4vy",
-        },
-      },
-    },
-    buyerExternalIdentifier: "buyer-12345",
-    merchant: {
-      name: "Acme Inc",
-      identificationNumber: "12345",
-      phoneNumber: "+14155552671",
-      url: "https://example.com",
-      statementDescriptor: "Winnings",
-      merchantCategoryCode: "123456",
-      address: {
-        city: "San Jose",
-        country: "US",
-        postalCode: "94560",
-        state: "California",
-        stateCode: "US-CA",
-        houseNumberOrName: "10",
-        line1: "Stafford Appartments",
-        line2: "29th Street",
-        organization: "Gr4vy",
-      },
-    },
-    connectionOptions: {
-      checkoutCard: {
-        processingChannelId: "channel-1234",
-        sourceId: "acct-1234",
-      },
-    },
   });
 
   // Handle the result
@@ -239,77 +168,6 @@ async function run() {
     paymentServiceId: "ed8bd87d-85ad-40cf-8e8f-007e21e55aad",
     paymentMethod: {
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
-    },
-    category: "online_gambling",
-    externalIdentifier: "payout-12345",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyer: {
-      displayName: "John Doe",
-      externalIdentifier: "buyer-12345",
-      billingDetails: {
-        firstName: "John",
-        lastName: "Doe",
-        emailAddress: "john@example.com",
-        phoneNumber: "+1234567890",
-        address: {
-          city: "San Jose",
-          country: "US",
-          postalCode: "94560",
-          state: "California",
-          stateCode: "US-CA",
-          houseNumberOrName: "10",
-          line1: "Stafford Appartments",
-          line2: "29th Street",
-          organization: "Gr4vy",
-        },
-        taxId: {
-          value: "12345678931",
-          kind: "no.vat",
-        },
-      },
-      shippingDetails: {
-        firstName: "John",
-        lastName: "Doe",
-        emailAddress: "john@example.com",
-        phoneNumber: "+1234567890",
-        address: {
-          city: "San Jose",
-          country: "US",
-          postalCode: "94560",
-          state: "California",
-          stateCode: "US-CA",
-          houseNumberOrName: "10",
-          line1: "Stafford Appartments",
-          line2: "29th Street",
-          organization: "Gr4vy",
-        },
-      },
-    },
-    buyerExternalIdentifier: "buyer-12345",
-    merchant: {
-      name: "Acme Inc",
-      identificationNumber: "12345",
-      phoneNumber: "+14155552671",
-      url: "https://example.com",
-      statementDescriptor: "Winnings",
-      merchantCategoryCode: "123456",
-      address: {
-        city: "San Jose",
-        country: "US",
-        postalCode: "94560",
-        state: "California",
-        stateCode: "US-CA",
-        houseNumberOrName: "10",
-        line1: "Stafford Appartments",
-        line2: "29th Street",
-        organization: "Gr4vy",
-      },
-    },
-    connectionOptions: {
-      checkoutCard: {
-        processingChannelId: "channel-1234",
-        sourceId: "acct-1234",
-      },
     },
   });
 

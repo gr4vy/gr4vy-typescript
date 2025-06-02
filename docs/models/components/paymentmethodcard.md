@@ -8,8 +8,6 @@ import { PaymentMethodCard } from "@gr4vy/sdk/models/components";
 let value: PaymentMethodCard = {
   number: "4242424242424242",
   expirationDate: "12/30",
-  cardScheme: "visa",
-  externalIdentifier: "card-12345",
 };
 ```
 

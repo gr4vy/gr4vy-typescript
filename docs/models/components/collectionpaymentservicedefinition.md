@@ -39,7 +39,6 @@ let value: CollectionPaymentServiceDefinition = {
         "GB",
       ],
       mode: "card",
-      iconUrl: "https://example.com/icons/adyen-ideal.svg",
       supportedFeatures: {
         "key": false,
       },
@@ -51,11 +50,6 @@ let value: CollectionPaymentServiceDefinition = {
             "address.city",
             "address.postal_code",
           ],
-          conditions: {
-            "country": [
-              "IN",
-            ],
-          },
         },
       ],
       configuration: {
@@ -68,8 +62,6 @@ let value: CollectionPaymentServiceDefinition = {
       },
     },
   ],
-  nextCursor: "ZXhhbXBsZTE",
-  previousCursor: "Xkjss7asS",
 };
 ```
 

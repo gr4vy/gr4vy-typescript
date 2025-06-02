@@ -11,8 +11,6 @@ The type of payment method to send funds too.
 const value: components.PaymentMethodCard = {
   number: "4242424242424242",
   expirationDate: "12/30",
-  cardScheme: "visa",
-  externalIdentifier: "card-12345",
 };
 ```
 

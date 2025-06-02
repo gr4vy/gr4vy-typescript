@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentServiceDefinitions.list("ZXhhbXBsZTE");
+  const result = await gr4vy.paymentServiceDefinitions.list();
 
   for await (const page of result) {
     // Handle the page
@@ -58,7 +58,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentServiceDefinitionsList(gr4vy, "ZXhhbXBsZTE");
+  const res = await paymentServiceDefinitionsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;

@@ -5,10 +5,7 @@
 ```typescript
 import { ListPaymentServicesRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListPaymentServicesRequest = {
-  cursor: "ZXhhbXBsZTE",
-  deleted: true,
-};
+let value: ListPaymentServicesRequest = {};
 ```
 
 ## Fields

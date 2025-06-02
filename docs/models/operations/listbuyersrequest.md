@@ -5,11 +5,7 @@
 ```typescript
 import { ListBuyersRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListBuyersRequest = {
-  cursor: "ZXhhbXBsZTE",
-  search: "John",
-  externalIdentifier: "buyer-12345",
-};
+let value: ListBuyersRequest = {};
 ```
 
 ## Fields

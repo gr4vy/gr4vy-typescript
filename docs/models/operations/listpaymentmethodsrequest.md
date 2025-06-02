@@ -5,12 +5,7 @@
 ```typescript
 import { ListPaymentMethodsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListPaymentMethodsRequest = {
-  cursor: "ZXhhbXBsZTE",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerExternalIdentifier: "buyer-12345",
-  externalIdentifier: "payment-method-12345",
-};
+let value: ListPaymentMethodsRequest = {};
 ```
 
 ## Fields

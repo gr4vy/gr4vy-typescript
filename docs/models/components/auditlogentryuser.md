@@ -6,9 +6,7 @@
 import { AuditLogEntryUser } from "@gr4vy/sdk/models/components";
 
 let value: AuditLogEntryUser = {
-  id: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef",
   name: "John Doe",
-  emailAddress: "john@example.com",
   isStaff: false,
   status: "active",
 };

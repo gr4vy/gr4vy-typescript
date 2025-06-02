@@ -5,10 +5,7 @@
 ```typescript
 import { ListMerchantAccountsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListMerchantAccountsRequest = {
-  cursor: "ZXhhbXBsZTE",
-  search: "merchant-12345",
-};
+let value: ListMerchantAccountsRequest = {};
 ```
 
 ## Fields

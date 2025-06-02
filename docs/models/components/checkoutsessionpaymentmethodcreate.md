@@ -7,9 +7,6 @@ import { CheckoutSessionPaymentMethodCreate } from "@gr4vy/sdk/models/components
 
 let value: CheckoutSessionPaymentMethodCreate = {
   id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
-  externalIdentifier: "card-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerExternalIdentifier: "buyer-12345",
 };
 ```
 

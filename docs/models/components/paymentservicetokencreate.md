@@ -6,7 +6,6 @@
 import { PaymentServiceTokenCreate } from "@gr4vy/sdk/models/components";
 
 let value: PaymentServiceTokenCreate = {
-  securityCode: "123",
   paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
   redirectUrl: "https://ironclad-granny.biz",
 };

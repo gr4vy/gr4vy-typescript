@@ -12,17 +12,9 @@ let value: CollectionNoCursorDigitalWallet = {
       merchantAccountId: "default",
       provider: "google",
       merchantName: "ACME Inc.",
-      merchantDisplayName: "ACME",
-      merchantUrl: "https://example.com",
-      merchantCountryCode: "US",
       domainNames: [
         "example.com",
       ],
-      fields: {
-        "digital_payment_application_id":
-          "8faebf73-5b43-4514-b170-cbfb50c99fff",
-        "digital_payment_application_name": "ACME",
-      },
       createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
       updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
     },

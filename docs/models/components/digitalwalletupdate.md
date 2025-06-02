@@ -7,9 +7,7 @@ Request body for editing a registered digital wallet
 ```typescript
 import { DigitalWalletUpdate } from "@gr4vy/sdk/models/components";
 
-let value: DigitalWalletUpdate = {
-  merchantCountryCode: "DE",
-};
+let value: DigitalWalletUpdate = {};
 ```
 
 ## Fields

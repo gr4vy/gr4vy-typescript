@@ -13,9 +13,6 @@ let value: ClickToPayPaymentMethodCreate = {
   token: "4111123456789012",
   cryptogram: "A3F9C2D47E1B56A9",
   expirationDate: "12/30",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerExternalIdentifier: "buyer-12345",
-  externalIdentifier: "payment-method-12345",
 };
 ```
 

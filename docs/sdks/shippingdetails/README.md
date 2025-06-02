@@ -29,23 +29,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.shippingDetails.create({
-    firstName: "John",
-    lastName: "Doe",
-    emailAddress: "john@example.com",
-    phoneNumber: "+1234567890",
-    address: {
-      city: "San Jose",
-      country: "US",
-      postalCode: "94560",
-      state: "California",
-      stateCode: "US-CA",
-      houseNumberOrName: "10",
-      line1: "Stafford Appartments",
-      line2: "29th Street",
-      organization: "Gr4vy",
-    },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
+  const result = await gr4vy.buyers.shippingDetails.create({}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   // Handle the result
   console.log(result);
@@ -74,23 +58,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersShippingDetailsCreate(gr4vy, {
-    firstName: "John",
-    lastName: "Doe",
-    emailAddress: "john@example.com",
-    phoneNumber: "+1234567890",
-    address: {
-      city: "San Jose",
-      country: "US",
-      postalCode: "94560",
-      state: "California",
-      stateCode: "US-CA",
-      houseNumberOrName: "10",
-      line1: "Stafford Appartments",
-      line2: "29th Street",
-      organization: "Gr4vy",
-    },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
+  const res = await buyersShippingDetailsCreate(gr4vy, {}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   if (!res.ok) {
     throw res.error;
@@ -345,23 +313,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.shippingDetails.update({
-    firstName: "John",
-    lastName: "Doe",
-    emailAddress: "john@example.com",
-    phoneNumber: "+1234567890",
-    address: {
-      city: "San Jose",
-      country: "US",
-      postalCode: "94560",
-      state: "California",
-      stateCode: "US-CA",
-      houseNumberOrName: "10",
-      line1: "Stafford Appartments",
-      line2: "29th Street",
-      organization: "Gr4vy",
-    },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
+  const result = await gr4vy.buyers.shippingDetails.update({}, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
   // Handle the result
   console.log(result);
@@ -390,23 +342,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersShippingDetailsUpdate(gr4vy, {
-    firstName: "John",
-    lastName: "Doe",
-    emailAddress: "john@example.com",
-    phoneNumber: "+1234567890",
-    address: {
-      city: "San Jose",
-      country: "US",
-      postalCode: "94560",
-      state: "California",
-      stateCode: "US-CA",
-      houseNumberOrName: "10",
-      line1: "Stafford Appartments",
-      line2: "29th Street",
-      organization: "Gr4vy",
-    },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
+  const res = await buyersShippingDetailsUpdate(gr4vy, {}, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
   if (!res.ok) {
     throw res.error;

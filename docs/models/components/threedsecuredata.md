@@ -13,7 +13,6 @@ const value: components.ThreeDSecureDataV1 = {
   eci: "05",
   version: "2.1.0",
   directoryResponse: "C",
-  scheme: "visa",
   authenticationResponse: "Y",
   cavvAlgorithm: "A",
   xid: "12345",
@@ -28,8 +27,6 @@ const value: components.ThreeDSecureDataV2 = {
   eci: "05",
   version: "2.1.0",
   directoryResponse: "C",
-  scheme: "visa",
-  authenticationResponse: "Y",
   directoryTransactionId: "c4e59ceb-a382-4d6a-bc87-385d591fa09d",
 };
 ```

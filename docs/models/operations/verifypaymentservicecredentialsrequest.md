@@ -8,7 +8,6 @@ import { VerifyPaymentServiceCredentialsRequest } from "@gr4vy/sdk/models/operat
 let value: VerifyPaymentServiceCredentialsRequest = {
   verifyCredentials: {
     paymentServiceDefinitionId: "stripe-card",
-    paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     fields: [
       {
         key: "api_key",

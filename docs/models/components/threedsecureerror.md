@@ -5,12 +5,7 @@
 ```typescript
 import { ThreeDSecureError } from "@gr4vy/sdk/models/components";
 
-let value: ThreeDSecureError = {
-  code: "305",
-  description: "Invalid ThreeDSCompInd",
-  detail: "The threeDSCompInd must be 'Y' when successful",
-  component: "C",
-};
+let value: ThreeDSecureError = {};
 ```
 
 ## Fields

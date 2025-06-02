@@ -7,35 +7,7 @@ Request body for updating a Payment Service
 ```typescript
 import { PaymentServiceUpdate } from "@gr4vy/sdk/models/components";
 
-let value: PaymentServiceUpdate = {
-  displayName: "Stripe",
-  position: 1,
-  acceptedCurrencies: [
-    "USD",
-    "EUR",
-    "GBP",
-  ],
-  acceptedCountries: [
-    "US",
-    "DE",
-    "GB",
-  ],
-  active: false,
-  threeDSecureEnabled: true,
-  merchantProfile: {
-    "key": {
-      merchantAcquirerBin: "516327",
-      merchantUrl: "https://example.com",
-      merchantAcquirerId: "123456789012345",
-      merchantName: "Acme Inc.",
-      merchantCountryCode: "USD",
-      merchantCategoryCode: "1234",
-    },
-  },
-  paymentMethodTokenizationEnabled: true,
-  networkTokensEnabled: true,
-  openLoop: true,
-};
+let value: PaymentServiceUpdate = {};
 ```
 
 ## Fields

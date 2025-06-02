@@ -11,11 +11,6 @@ The optional payment method to use for this transaction. This field is required 
 const value: components.CardWithUrlPaymentMethodCreate = {
   expirationDate: "12/30",
   number: "4111111111111111",
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  externalIdentifier: "payment-method-12345",
-  cardType: "credit",
-  securityCode: "123",
 };
 ```
 
@@ -24,12 +19,9 @@ const value: components.CardWithUrlPaymentMethodCreate = {
 ```typescript
 const value: components.RedirectPaymentMethodCreate = {
   method: "zippay",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerExternalIdentifier: "buyer-12345",
   country: "GB",
   currency: "EUR",
   redirectUrl: "https://troubled-scale.name/",
-  externalIdentifier: "payment-method-12345",
 };
 ```
 
@@ -38,7 +30,6 @@ const value: components.RedirectPaymentMethodCreate = {
 ```typescript
 const value: components.TokenPaymentMethodCreate = {
   id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-  securityCode: "123",
 };
 ```
 
@@ -46,12 +37,6 @@ const value: components.TokenPaymentMethodCreate = {
 
 ```typescript
 const value: components.ApplePayPaymentMethodCreate = {
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  cardholderName: "John Luhn",
-  cardSuffix: "1234",
-  cardScheme: "visa",
-  cardType: "credit",
   token: {
     "paymentData": {
       "data":
@@ -85,9 +70,6 @@ const value: components.ClickToPayPaymentMethodCreate = {
   token: "4111123456789012",
   cryptogram: "A3F9C2D47E1B56A9",
   expirationDate: "12/30",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerExternalIdentifier: "buyer-12345",
-  externalIdentifier: "payment-method-12345",
 };
 ```
 
@@ -97,11 +79,6 @@ const value: components.ClickToPayPaymentMethodCreate = {
 const value: components.ClickToPayFPANPaymentMethodCreate = {
   expirationDate: "12/30",
   number: "4111111111111111",
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  externalIdentifier: "payment-method-12345",
-  cardType: "credit",
-  securityCode: "123",
 };
 ```
 
@@ -109,17 +86,7 @@ const value: components.ClickToPayFPANPaymentMethodCreate = {
 
 ```typescript
 const value: components.GooglePayPaymentMethodCreate = {
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  cardholderName: "John Luhn",
-  cardSuffix: "1234",
-  cardScheme: "visa",
-  cardType: "credit",
   token: "{\"signature\":\"MEUCIEg4a4A+pu+AUjgVjBpfz9msLqQOkT5kz7htz...",
-  assuranceDetails: {
-    accountVerified: true,
-    cardHolderAuthenticated: true,
-  },
 };
 ```
 
@@ -129,11 +96,6 @@ const value: components.GooglePayPaymentMethodCreate = {
 const value: components.GooglePayFPANPaymentMethodCreate = {
   expirationDate: "12/30",
   number: "4111111111111111",
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  externalIdentifier: "payment-method-12345",
-  cardType: "credit",
-  securityCode: "123",
 };
 ```
 
@@ -143,12 +105,6 @@ const value: components.GooglePayFPANPaymentMethodCreate = {
 const value: components.NetworkTokenPaymentMethodCreate = {
   token: "4111123456789012",
   expirationDate: "12/30",
-  cryptogram: "A3F9C2D47E1B56A9",
-  cardSource: "apple-pay",
-  cardScheme: "visa",
-  cardSuffix: "1234",
-  cardholderName: "John Luhn",
-  eci: "05",
 };
 ```
 
@@ -157,9 +113,6 @@ const value: components.NetworkTokenPaymentMethodCreate = {
 ```typescript
 const value: components.CheckoutSessionWithUrlPaymentMethodCreate = {
   id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
-  externalIdentifier: "card-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  buyerExternalIdentifier: "buyer-12345",
 };
 ```
 

@@ -10,11 +10,6 @@ import { ClickToPayFPANPaymentMethodCreate } from "@gr4vy/sdk/models/components"
 let value: ClickToPayFPANPaymentMethodCreate = {
   expirationDate: "12/30",
   number: "4111111111111111",
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  externalIdentifier: "payment-method-12345",
-  cardType: "credit",
-  securityCode: "123",
 };
 ```
 

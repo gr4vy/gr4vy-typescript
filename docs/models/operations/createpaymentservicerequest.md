@@ -7,35 +7,7 @@ import { CreatePaymentServiceRequest } from "@gr4vy/sdk/models/operations";
 
 let value: CreatePaymentServiceRequest = {
   paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-  paymentServiceUpdate: {
-    displayName: "Stripe",
-    position: 1,
-    acceptedCurrencies: [
-      "USD",
-      "EUR",
-      "GBP",
-    ],
-    acceptedCountries: [
-      "US",
-      "DE",
-      "GB",
-    ],
-    active: true,
-    threeDSecureEnabled: true,
-    merchantProfile: {
-      "key": {
-        merchantAcquirerBin: "516327",
-        merchantUrl: "https://example.com",
-        merchantAcquirerId: "123456789012345",
-        merchantName: "Acme Inc.",
-        merchantCountryCode: "USD",
-        merchantCategoryCode: "1234",
-      },
-    },
-    paymentMethodTokenizationEnabled: true,
-    networkTokensEnabled: true,
-    openLoop: true,
-  },
+  paymentServiceUpdate: {},
 };
 ```
 

@@ -10,7 +10,6 @@ import { DigitalWalletCreate } from "@gr4vy/sdk/models/components";
 let value: DigitalWalletCreate = {
   provider: "click-to-pay",
   merchantName: "<value>",
-  merchantCountryCode: "US",
   acceptTermsAndConditions: false,
 };
 ```

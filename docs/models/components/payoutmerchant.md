@@ -12,17 +12,6 @@ let value: PayoutMerchant = {
   url: "https://example.com",
   statementDescriptor: "Winnings",
   merchantCategoryCode: "123456",
-  address: {
-    city: "San Jose",
-    country: "US",
-    postalCode: "94560",
-    state: "California",
-    stateCode: "US-CA",
-    houseNumberOrName: "10",
-    line1: "Stafford Appartments",
-    line2: "29th Street",
-    organization: "Gr4vy",
-  },
 };
 ```
 

@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentMethods.paymentServiceTokens.list("ef9496d8-53a5-4aad-8ca2-00eb68334389", "fffd152a-9532-4087-9a4f-de58754210f0");
+  const result = await gr4vy.paymentMethods.paymentServiceTokens.list("ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   // Handle the result
   console.log(result);
@@ -56,7 +56,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsPaymentServiceTokensList(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "fffd152a-9532-4087-9a4f-de58754210f0");
+  const res = await paymentMethodsPaymentServiceTokensList(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   if (!res.ok) {
     throw res.error;
@@ -123,7 +123,6 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentMethods.paymentServiceTokens.create({
-    securityCode: "123",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     redirectUrl: "https://dual-futon.biz",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
@@ -156,7 +155,6 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsPaymentServiceTokensCreate(gr4vy, {
-    securityCode: "123",
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     redirectUrl: "https://dual-futon.biz",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");

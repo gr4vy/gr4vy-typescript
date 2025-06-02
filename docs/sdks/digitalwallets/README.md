@@ -32,7 +32,6 @@ async function run() {
   const result = await gr4vy.digitalWallets.create({
     provider: "click-to-pay",
     merchantName: "<value>",
-    merchantCountryCode: "DE",
     acceptTermsAndConditions: false,
   });
 
@@ -66,7 +65,6 @@ async function run() {
   const res = await digitalWalletsCreate(gr4vy, {
     provider: "click-to-pay",
     merchantName: "<value>",
-    merchantCountryCode: "DE",
     acceptTermsAndConditions: false,
   });
 
@@ -414,9 +412,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.digitalWallets.update({
-    merchantCountryCode: "DE",
-  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
+  const result = await gr4vy.digitalWallets.update({}, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   // Handle the result
   console.log(result);
@@ -445,9 +441,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await digitalWalletsUpdate(gr4vy, {
-    merchantCountryCode: "DE",
-  }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
+  const res = await digitalWalletsUpdate(gr4vy, {}, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
   if (!res.ok) {
     throw res.error;

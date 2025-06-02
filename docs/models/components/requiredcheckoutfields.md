@@ -14,11 +14,6 @@ let value: RequiredCheckoutFields = {
     "address.city",
     "address.postal_code",
   ],
-  conditions: {
-    "country": [
-      "IN",
-    ],
-  },
 };
 ```
 

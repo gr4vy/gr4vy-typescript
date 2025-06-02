@@ -5,12 +5,7 @@
 ```typescript
 import { ConnectionOptions } from "@gr4vy/sdk/models/components";
 
-let value: ConnectionOptions = {
-  checkoutCard: {
-    processingChannelId: "channel-1234",
-    sourceId: "acct-1234",
-  },
-};
+let value: ConnectionOptions = {};
 ```
 
 ## Fields

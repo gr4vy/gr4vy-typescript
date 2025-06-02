@@ -28,12 +28,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentMethods.list({
-    cursor: "ZXhhbXBsZTE",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
-    externalIdentifier: "payment-method-12345",
-  });
+  const result = await gr4vy.paymentMethods.list();
 
   for await (const page of result) {
     // Handle the page
@@ -64,12 +59,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentMethodsList(gr4vy, {
-    cursor: "ZXhhbXBsZTE",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
-    externalIdentifier: "payment-method-12345",
-  });
+  const res = await paymentMethodsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;
@@ -137,9 +127,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.create({
     id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
-    externalIdentifier: "card-12345",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
   });
 
   // Handle the result
@@ -171,9 +158,6 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await paymentMethodsCreate(gr4vy, {
     id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
-    externalIdentifier: "card-12345",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
   });
 
   if (!res.ok) {

@@ -10,7 +10,6 @@ let value: ThreeDSecureDataV1 = {
   eci: "05",
   version: "2.1.0",
   directoryResponse: "C",
-  scheme: "visa",
   authenticationResponse: "Y",
   cavvAlgorithm: "A",
   xid: "12345",

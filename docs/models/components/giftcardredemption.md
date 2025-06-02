@@ -10,12 +10,7 @@ let value: GiftCardRedemption = {
   status: "failed",
   amount: 100,
   refundedAmount: 50,
-  giftCardServiceRedemptionId: "xYqd43gySMtori",
-  errorCode: "incorrect_currency",
-  rawErrorCode: "10001",
-  rawErrorMessage: "Card expired",
   giftCard: {
-    id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e",
     bin: "412345",
     subBin: "554",
     last4: "1234",

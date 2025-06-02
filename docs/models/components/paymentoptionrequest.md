@@ -5,34 +5,7 @@
 ```typescript
 import { PaymentOptionRequest } from "@gr4vy/sdk/models/components";
 
-let value: PaymentOptionRequest = {
-  metadata: {
-    "cohort": "a",
-  },
-  country: "US",
-  currency: "USD",
-  amount: 1299,
-  cartItems: [
-    {
-      name: "GoPro HD",
-      quantity: 2,
-      unitAmount: 1299,
-      discountAmount: 0,
-      taxAmount: 0,
-      externalIdentifier: "goprohd",
-      sku: "GPHD1078",
-      productUrl: "https://example.com/catalog/go-pro-hd",
-      imageUrl: "https://example.com/images/go-pro-hd.jpg",
-      categories: [
-        "camera",
-        "travel",
-        "gear",
-      ],
-      productType: "physical",
-      sellerCountry: "US",
-    },
-  ],
-};
+let value: PaymentOptionRequest = {};
 ```
 
 ## Fields

@@ -8,17 +8,7 @@ Create a Google Pay transaction with a device token.
 import { GooglePayPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: GooglePayPaymentMethodCreate = {
-  buyerExternalIdentifier: "buyer-12345",
-  buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  cardholderName: "John Luhn",
-  cardSuffix: "1234",
-  cardScheme: "visa",
-  cardType: "credit",
   token: "{\"signature\":\"MEUCIEg4a4A+pu+AUjgVjBpfz9msLqQOkT5kz7htz...",
-  assuranceDetails: {
-    accountVerified: true,
-    cardHolderAuthenticated: true,
-  },
 };
 ```
 

@@ -29,11 +29,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list({
-    cursor: "ZXhhbXBsZTE",
-    search: "John",
-    externalIdentifier: "buyer-12345",
-  });
+  const result = await gr4vy.buyers.list();
 
   for await (const page of result) {
     // Handle the page
@@ -64,11 +60,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersList(gr4vy, {
-    cursor: "ZXhhbXBsZTE",
-    search: "John",
-    externalIdentifier: "buyer-12345",
-  });
+  const res = await buyersList(gr4vy);
 
   if (!res.ok) {
     throw res.error;
@@ -134,31 +126,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.create({
-    displayName: "John Doe",
-    externalIdentifier: "buyer-12345",
-    billingDetails: {
-      firstName: "John",
-      lastName: "Doe",
-      emailAddress: "john@example.com",
-      phoneNumber: "+1234567890",
-      address: {
-        city: "San Jose",
-        country: "US",
-        postalCode: "94560",
-        state: "California",
-        stateCode: "US-CA",
-        houseNumberOrName: "10",
-        line1: "Stafford Appartments",
-        line2: "29th Street",
-        organization: "Gr4vy",
-      },
-      taxId: {
-        value: "12345678931",
-        kind: "ca.pst_mb",
-      },
-    },
-  });
+  const result = await gr4vy.buyers.create({});
 
   // Handle the result
   console.log(result);
@@ -187,31 +155,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersCreate(gr4vy, {
-    displayName: "John Doe",
-    externalIdentifier: "buyer-12345",
-    billingDetails: {
-      firstName: "John",
-      lastName: "Doe",
-      emailAddress: "john@example.com",
-      phoneNumber: "+1234567890",
-      address: {
-        city: "San Jose",
-        country: "US",
-        postalCode: "94560",
-        state: "California",
-        stateCode: "US-CA",
-        houseNumberOrName: "10",
-        line1: "Stafford Appartments",
-        line2: "29th Street",
-        organization: "Gr4vy",
-      },
-      taxId: {
-        value: "12345678931",
-        kind: "ca.pst_mb",
-      },
-    },
-  });
+  const res = await buyersCreate(gr4vy, {});
 
   if (!res.ok) {
     throw res.error;
@@ -370,31 +314,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.update({
-    displayName: "John Doe",
-    externalIdentifier: "buyer-12345",
-    billingDetails: {
-      firstName: "John",
-      lastName: "Doe",
-      emailAddress: "john@example.com",
-      phoneNumber: "+1234567890",
-      address: {
-        city: "San Jose",
-        country: "US",
-        postalCode: "94560",
-        state: "California",
-        stateCode: "US-CA",
-        houseNumberOrName: "10",
-        line1: "Stafford Appartments",
-        line2: "29th Street",
-        organization: "Gr4vy",
-      },
-      taxId: {
-        value: "12345678931",
-        kind: "au.abn",
-      },
-    },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
+  const result = await gr4vy.buyers.update({}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   // Handle the result
   console.log(result);
@@ -423,31 +343,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await buyersUpdate(gr4vy, {
-    displayName: "John Doe",
-    externalIdentifier: "buyer-12345",
-    billingDetails: {
-      firstName: "John",
-      lastName: "Doe",
-      emailAddress: "john@example.com",
-      phoneNumber: "+1234567890",
-      address: {
-        city: "San Jose",
-        country: "US",
-        postalCode: "94560",
-        state: "California",
-        stateCode: "US-CA",
-        houseNumberOrName: "10",
-        line1: "Stafford Appartments",
-        line2: "29th Street",
-        organization: "Gr4vy",
-      },
-      taxId: {
-        value: "12345678931",
-        kind: "au.abn",
-      },
-    },
-  }, "fe26475d-ec3e-4884-9553-f7356683f7f9");
+  const res = await buyersUpdate(gr4vy, {}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   if (!res.ok) {
     throw res.error;

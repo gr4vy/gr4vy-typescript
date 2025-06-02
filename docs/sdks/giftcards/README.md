@@ -219,8 +219,6 @@ async function run() {
   const result = await gr4vy.giftCards.create({
     number: "4123455541234561234",
     pin: "1234",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
   });
 
   // Handle the result
@@ -253,8 +251,6 @@ async function run() {
   const res = await giftCardsCreate(gr4vy, {
     number: "4123455541234561234",
     pin: "1234",
-    buyerId: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    buyerExternalIdentifier: "buyer-12345",
   });
 
   if (!res.ok) {
@@ -320,7 +316,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.giftCards.list({});
+  const result = await gr4vy.giftCards.list();
 
   for await (const page of result) {
     // Handle the page
@@ -351,7 +347,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await giftCardsList(gr4vy, {});
+  const res = await giftCardsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;

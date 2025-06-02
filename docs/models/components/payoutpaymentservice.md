@@ -6,9 +6,7 @@
 import { PayoutPaymentService } from "@gr4vy/sdk/models/components";
 
 let value: PayoutPaymentService = {
-  id: "b6c9eb12-2b62-4103-99b9-e3efc94e396d",
   paymentServiceDefinitionId: "nuvei-card",
-  displayName: "Nuvei",
 };
 ```
 

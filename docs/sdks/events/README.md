@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.transactions.events.list("7099948d-7286-47e4-aad8-b68f7eb44591", "ZXhhbXBsZTE");
+  const result = await gr4vy.transactions.events.list("7099948d-7286-47e4-aad8-b68f7eb44591");
 
   // Handle the result
   console.log(result);
@@ -54,7 +54,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await transactionsEventsList(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591", "ZXhhbXBsZTE");
+  const res = await transactionsEventsList(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
   if (!res.ok) {
     throw res.error;

@@ -28,7 +28,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.merchantAccounts.list("ZXhhbXBsZTE", 20, "merchant-12345");
+  const result = await gr4vy.merchantAccounts.list();
 
   for await (const page of result) {
     // Handle the page
@@ -59,7 +59,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await merchantAccountsList(gr4vy, "ZXhhbXBsZTE", 20, "merchant-12345");
+  const res = await merchantAccountsList(gr4vy);
 
   if (!res.ok) {
     throw res.error;
@@ -128,26 +128,6 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.merchantAccounts.create({
-    accountUpdaterRequestEncryptionKey: "key-1234",
-    accountUpdaterRequestEncryptionKeyId: "key-id-1234",
-    accountUpdaterResponseDecryptionKey: "key-1234",
-    accountUpdaterResponseDecryptionKeyId: "key-id-1234",
-    overCaptureAmount: 1299,
-    overCapturePercentage: 25,
-    loonClientKey: "client-key-1234",
-    loonSecretKey: "key-12345",
-    loonAcceptedSchemes: [
-      "visa",
-    ],
-    visaNetworkTokensRequestorId: "id-12345",
-    visaNetworkTokensAppId: "id-12345",
-    amexNetworkTokensRequestorId: "id-12345",
-    amexNetworkTokensAppId: "id-12345",
-    mastercardNetworkTokensRequestorId: "id-12345",
-    mastercardNetworkTokensAppId: "id-12345",
-    outboundWebhookUrl: "https://example.com/callback",
-    outboundWebhookUsername: "user-12345",
-    outboundWebhookPassword: "password-12345",
     id: "merchant-12345",
     displayName: "Example",
   });
@@ -180,26 +160,6 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await merchantAccountsCreate(gr4vy, {
-    accountUpdaterRequestEncryptionKey: "key-1234",
-    accountUpdaterRequestEncryptionKeyId: "key-id-1234",
-    accountUpdaterResponseDecryptionKey: "key-1234",
-    accountUpdaterResponseDecryptionKeyId: "key-id-1234",
-    overCaptureAmount: 1299,
-    overCapturePercentage: 25,
-    loonClientKey: "client-key-1234",
-    loonSecretKey: "key-12345",
-    loonAcceptedSchemes: [
-      "visa",
-    ],
-    visaNetworkTokensRequestorId: "id-12345",
-    visaNetworkTokensAppId: "id-12345",
-    amexNetworkTokensRequestorId: "id-12345",
-    amexNetworkTokensAppId: "id-12345",
-    mastercardNetworkTokensRequestorId: "id-12345",
-    mastercardNetworkTokensAppId: "id-12345",
-    outboundWebhookUrl: "https://example.com/callback",
-    outboundWebhookUsername: "user-12345",
-    outboundWebhookPassword: "password-12345",
     id: "merchant-12345",
     displayName: "Example",
   });
@@ -359,29 +319,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.merchantAccounts.update({
-    accountUpdaterRequestEncryptionKey: "key-1234",
-    accountUpdaterRequestEncryptionKeyId: "key-id-1234",
-    accountUpdaterResponseDecryptionKey: "key-1234",
-    accountUpdaterResponseDecryptionKeyId: "key-id-1234",
-    overCaptureAmount: 1299,
-    overCapturePercentage: 25,
-    loonClientKey: "client-key-1234",
-    loonSecretKey: "key-12345",
-    loonAcceptedSchemes: [
-      "visa",
-    ],
-    visaNetworkTokensRequestorId: "id-12345",
-    visaNetworkTokensAppId: "id-12345",
-    amexNetworkTokensRequestorId: "id-12345",
-    amexNetworkTokensAppId: "id-12345",
-    mastercardNetworkTokensRequestorId: "id-12345",
-    mastercardNetworkTokensAppId: "id-12345",
-    displayName: "Example",
-    outboundWebhookUrl: "https://example.com/callback",
-    outboundWebhookUsername: "user-12345",
-    outboundWebhookPassword: "password-12345",
-  }, "merchant-12345");
+  const result = await gr4vy.merchantAccounts.update({}, "merchant-12345");
 
   // Handle the result
   console.log(result);
@@ -410,29 +348,7 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await merchantAccountsUpdate(gr4vy, {
-    accountUpdaterRequestEncryptionKey: "key-1234",
-    accountUpdaterRequestEncryptionKeyId: "key-id-1234",
-    accountUpdaterResponseDecryptionKey: "key-1234",
-    accountUpdaterResponseDecryptionKeyId: "key-id-1234",
-    overCaptureAmount: 1299,
-    overCapturePercentage: 25,
-    loonClientKey: "client-key-1234",
-    loonSecretKey: "key-12345",
-    loonAcceptedSchemes: [
-      "visa",
-    ],
-    visaNetworkTokensRequestorId: "id-12345",
-    visaNetworkTokensAppId: "id-12345",
-    amexNetworkTokensRequestorId: "id-12345",
-    amexNetworkTokensAppId: "id-12345",
-    mastercardNetworkTokensRequestorId: "id-12345",
-    mastercardNetworkTokensAppId: "id-12345",
-    displayName: "Example",
-    outboundWebhookUrl: "https://example.com/callback",
-    outboundWebhookUsername: "user-12345",
-    outboundWebhookPassword: "password-12345",
-  }, "merchant-12345");
+  const res = await merchantAccountsUpdate(gr4vy, {}, "merchant-12345");
 
   if (!res.ok) {
     throw res.error;

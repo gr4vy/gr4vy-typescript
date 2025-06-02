@@ -5,20 +5,7 @@
 ```typescript
 import { TransactionThreeDSecureSummary } from "@gr4vy/sdk/models/components";
 
-let value: TransactionThreeDSecureSummary = {
-  version: "2.2.0",
-  status: "complete",
-  method: "challenge",
-  responseData: {
-    version: "<value>",
-  },
-  errorData: {
-    code: "305",
-    description: "Invalid ThreeDSCompInd",
-    detail: "The threeDSCompInd must be 'Y' when successful",
-    component: "C",
-  },
-};
+let value: TransactionThreeDSecureSummary = {};
 ```
 
 ## Fields

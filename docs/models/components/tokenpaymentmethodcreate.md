@@ -9,7 +9,6 @@ import { TokenPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: TokenPaymentMethodCreate = {
   id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-  securityCode: "123",
 };
 ```
 
