@@ -9,7 +9,6 @@ import { buyersShippingDetailsList } from "../funcs/buyersShippingDetailsList.js
 import { buyersShippingDetailsUpdate } from "../funcs/buyersShippingDetailsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ShippingDetails extends ClientSDK {
@@ -22,7 +21,6 @@ export class ShippingDetails extends ClientSDK {
   async create(
     shippingDetailsCreate: components.ShippingDetailsCreate,
     buyerId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
@@ -30,7 +28,6 @@ export class ShippingDetails extends ClientSDK {
       this,
       shippingDetailsCreate,
       buyerId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -44,14 +41,12 @@ export class ShippingDetails extends ClientSDK {
    */
   async list(
     buyerId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorShippingDetails> {
     return unwrapAsync(buyersShippingDetailsList(
       this,
       buyerId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -66,7 +61,6 @@ export class ShippingDetails extends ClientSDK {
   async get(
     buyerId: string,
     shippingDetailsId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
@@ -74,7 +68,6 @@ export class ShippingDetails extends ClientSDK {
       this,
       buyerId,
       shippingDetailsId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -87,12 +80,18 @@ export class ShippingDetails extends ClientSDK {
    * Update the shipping details associated to a specific buyer.
    */
   async update(
-    request: operations.UpdateBuyerShippingDetailsRequest,
+    shippingDetailsUpdate: components.ShippingDetailsUpdate,
+    buyerId: string,
+    shippingDetailsId: string,
+    merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ShippingDetails> {
     return unwrapAsync(buyersShippingDetailsUpdate(
       this,
-      request,
+      shippingDetailsUpdate,
+      buyerId,
+      shippingDetailsId,
+      merchantAccountId,
       options,
     ));
   }
@@ -106,7 +105,6 @@ export class ShippingDetails extends ClientSDK {
   async delete(
     buyerId: string,
     shippingDetailsId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
@@ -114,7 +112,6 @@ export class ShippingDetails extends ClientSDK {
       this,
       buyerId,
       shippingDetailsId,
-      applicationName,
       merchantAccountId,
       options,
     ));

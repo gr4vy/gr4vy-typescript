@@ -14,7 +14,6 @@ export type ListPaymentOptionsGlobals = {
 };
 
 export type ListPaymentOptionsRequest = {
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -82,19 +81,16 @@ export const ListPaymentOptionsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   PaymentOptionRequest: components.PaymentOptionRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "application_name": "applicationName",
     "PaymentOptionRequest": "paymentOptionRequest",
   });
 });
 
 /** @internal */
 export type ListPaymentOptionsRequest$Outbound = {
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   PaymentOptionRequest: components.PaymentOptionRequest$Outbound;
 };
@@ -105,12 +101,10 @@ export const ListPaymentOptionsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPaymentOptionsRequest
 > = z.object({
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   paymentOptionRequest: components.PaymentOptionRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    applicationName: "application_name",
     paymentOptionRequest: "PaymentOptionRequest",
   });
 });

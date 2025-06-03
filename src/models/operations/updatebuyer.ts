@@ -18,7 +18,6 @@ export type UpdateBuyerRequest = {
    * The ID of the buyer to edit.
    */
   buyerId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -87,13 +86,11 @@ export const UpdateBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   BuyerUpdate: components.BuyerUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
-    "application_name": "applicationName",
     "BuyerUpdate": "buyerUpdate",
   });
 });
@@ -101,7 +98,6 @@ export const UpdateBuyerRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateBuyerRequest$Outbound = {
   buyer_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   BuyerUpdate: components.BuyerUpdate$Outbound;
 };
@@ -113,13 +109,11 @@ export const UpdateBuyerRequest$outboundSchema: z.ZodType<
   UpdateBuyerRequest
 > = z.object({
   buyerId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   buyerUpdate: components.BuyerUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
-    applicationName: "application_name",
     buyerUpdate: "BuyerUpdate",
   });
 });

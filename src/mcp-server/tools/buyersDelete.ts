@@ -8,7 +8,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   buyerId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,7 +21,6 @@ Permanently removes a buyer record.`,
     const [result, apiCall] = await buyersDelete(
       client,
       args.buyerId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

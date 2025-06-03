@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   requestBody: z.record(z.any()),
   paymentServiceDefinitionId: z.string(),
-  applicationName: z.string().default("core-api"),
 };
 
 export const tool$paymentServiceDefinitionsSession: ToolDefinition<
@@ -25,7 +24,6 @@ Creates a session for a payment service that supports sessions.`,
       client,
       args.requestBody,
       args.paymentServiceDefinitionId,
-      args.applicationName,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

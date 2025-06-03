@@ -35,7 +35,6 @@ export type ListPaymentMethodsRequest = {
    * The external identifier of the payment method to filter by.
    */
   externalIdentifier?: string | null | undefined;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -113,14 +112,12 @@ export const ListPaymentMethodsRequest$inboundSchema: z.ZodType<
   status: z.nullable(z.array(components.PaymentMethodStatus$inboundSchema))
     .optional(),
   external_identifier: z.nullable(z.string()).optional(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "buyer_external_identifier": "buyerExternalIdentifier",
     "external_identifier": "externalIdentifier",
-    "application_name": "applicationName",
   });
 });
 
@@ -132,7 +129,6 @@ export type ListPaymentMethodsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   status?: Array<string> | null | undefined;
   external_identifier?: string | null | undefined;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -149,14 +145,12 @@ export const ListPaymentMethodsRequest$outboundSchema: z.ZodType<
   status: z.nullable(z.array(components.PaymentMethodStatus$outboundSchema))
     .optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     buyerExternalIdentifier: "buyer_external_identifier",
     externalIdentifier: "external_identifier",
-    applicationName: "application_name",
   });
 });
 

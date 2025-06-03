@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreatePaymentServiceDefinitionSessionRequest = {
   paymentServiceDefinitionId: string;
-  applicationName?: string | undefined;
   requestBody: { [k: string]: any };
 };
 
@@ -22,12 +21,10 @@ export const CreatePaymentServiceDefinitionSessionRequest$inboundSchema:
     unknown
   > = z.object({
     payment_service_definition_id: z.string(),
-    application_name: z.string().default("core-api"),
     RequestBody: z.record(z.any()),
   }).transform((v) => {
     return remap$(v, {
       "payment_service_definition_id": "paymentServiceDefinitionId",
-      "application_name": "applicationName",
       "RequestBody": "requestBody",
     });
   });
@@ -35,7 +32,6 @@ export const CreatePaymentServiceDefinitionSessionRequest$inboundSchema:
 /** @internal */
 export type CreatePaymentServiceDefinitionSessionRequest$Outbound = {
   payment_service_definition_id: string;
-  application_name: string;
   RequestBody: { [k: string]: any };
 };
 
@@ -47,12 +43,10 @@ export const CreatePaymentServiceDefinitionSessionRequest$outboundSchema:
     CreatePaymentServiceDefinitionSessionRequest
   > = z.object({
     paymentServiceDefinitionId: z.string(),
-    applicationName: z.string().default("core-api"),
     requestBody: z.record(z.any()),
   }).transform((v) => {
     return remap$(v, {
       paymentServiceDefinitionId: "payment_service_definition_id",
-      applicationName: "application_name",
       requestBody: "RequestBody",
     });
   });

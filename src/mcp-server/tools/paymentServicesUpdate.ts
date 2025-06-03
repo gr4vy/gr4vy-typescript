@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   paymentServiceUpdate: components.PaymentServiceUpdate$inboundSchema,
   paymentServiceId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -25,7 +24,6 @@ Configures a new payment service for use by merchants.`,
       client,
       args.paymentServiceUpdate,
       args.paymentServiceId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 85ba7707907d8021dc9141b223acede6
+  docChecksum: 61316b2167c37c8d046202e604959b9e
   docVersion: 1.0.0
   speakeasyVersion: 1.555.0
   generationVersion: 2.618.0
-  releaseVersion: 1.0.0-beta.16
-  configChecksum: d1dfc5f9f7680326809753033823d2c1
+  releaseVersion: 1.0.0-beta.17
+  configChecksum: 09b5c53edd2ac3cf3c64e7092ca60815
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -262,14 +262,12 @@ generatedFiles:
   - docs/models/operations/createapplepaydigitalwalletsessionrequest.md
   - docs/models/operations/createcheckoutsessionglobals.md
   - docs/models/operations/createcheckoutsessionrequest.md
-  - docs/models/operations/createclicktopaydigitalwalletsessionrequest.md
   - docs/models/operations/createfulltransactionrefundglobals.md
   - docs/models/operations/createfulltransactionrefundrequest.md
   - docs/models/operations/creategiftcardglobals.md
   - docs/models/operations/creategiftcardrequest.md
   - docs/models/operations/creategooglepaydigitalwalletsessionglobals.md
   - docs/models/operations/creategooglepaydigitalwalletsessionrequest.md
-  - docs/models/operations/createmerchantaccountrequest.md
   - docs/models/operations/createpaymentmethodbody.md
   - docs/models/operations/createpaymentmethodglobals.md
   - docs/models/operations/createpaymentmethodnetworktokencryptogramglobals.md
@@ -824,11 +822,9 @@ generatedFiles:
   - src/models/operations/createaccountupdaterjob.ts
   - src/models/operations/createapplepaydigitalwalletsession.ts
   - src/models/operations/createcheckoutsession.ts
-  - src/models/operations/createclicktopaydigitalwalletsession.ts
   - src/models/operations/createfulltransactionrefund.ts
   - src/models/operations/creategiftcard.ts
   - src/models/operations/creategooglepaydigitalwalletsession.ts
-  - src/models/operations/createmerchantaccount.ts
   - src/models/operations/createpaymentmethod.ts
   - src/models/operations/createpaymentmethodnetworktoken.ts
   - src/models/operations/createpaymentmethodnetworktokencryptogram.ts

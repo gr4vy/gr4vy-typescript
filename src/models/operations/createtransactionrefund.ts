@@ -15,7 +15,6 @@ export type CreateTransactionRefundGlobals = {
 
 export type CreateTransactionRefundRequest = {
   transactionId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -86,13 +85,11 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   TransactionRefundCreate: components.TransactionRefundCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "application_name": "applicationName",
     "TransactionRefundCreate": "transactionRefundCreate",
   });
 });
@@ -100,7 +97,6 @@ export const CreateTransactionRefundRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateTransactionRefundRequest$Outbound = {
   transaction_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   TransactionRefundCreate: components.TransactionRefundCreate$Outbound;
 };
@@ -112,13 +108,11 @@ export const CreateTransactionRefundRequest$outboundSchema: z.ZodType<
   CreateTransactionRefundRequest
 > = z.object({
   transactionId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   transactionRefundCreate: components.TransactionRefundCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    applicationName: "application_name",
     transactionRefundCreate: "TransactionRefundCreate",
   });
 });

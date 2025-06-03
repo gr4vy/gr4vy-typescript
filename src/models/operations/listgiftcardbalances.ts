@@ -14,7 +14,6 @@ export type ListGiftCardBalancesGlobals = {
 };
 
 export type ListGiftCardBalancesRequest = {
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,19 +83,16 @@ export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "application_name": "applicationName",
     "GiftCardBalanceRequest": "giftCardBalanceRequest",
   });
 });
 
 /** @internal */
 export type ListGiftCardBalancesRequest$Outbound = {
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   GiftCardBalanceRequest: components.GiftCardBalanceRequest$Outbound;
 };
@@ -107,12 +103,10 @@ export const ListGiftCardBalancesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListGiftCardBalancesRequest
 > = z.object({
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   giftCardBalanceRequest: components.GiftCardBalanceRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    applicationName: "application_name",
     giftCardBalanceRequest: "GiftCardBalanceRequest",
   });
 });

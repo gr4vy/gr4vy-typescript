@@ -18,7 +18,6 @@ export type ListPaymentServiceDefinitionsRequest = {
    * The maximum number of items that are at returned.
    */
   limit?: number | undefined;
-  applicationName?: string | undefined;
 };
 
 export type ListPaymentServiceDefinitionsResponse = {
@@ -33,18 +32,12 @@ export const ListPaymentServiceDefinitionsRequest$inboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  application_name: z.string().default("core-api"),
-}).transform((v) => {
-  return remap$(v, {
-    "application_name": "applicationName",
-  });
 });
 
 /** @internal */
 export type ListPaymentServiceDefinitionsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
-  application_name: string;
 };
 
 /** @internal */
@@ -55,11 +48,6 @@ export const ListPaymentServiceDefinitionsRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  applicationName: z.string().default("core-api"),
-}).transform((v) => {
-  return remap$(v, {
-    applicationName: "application_name",
-  });
 });
 
 /**

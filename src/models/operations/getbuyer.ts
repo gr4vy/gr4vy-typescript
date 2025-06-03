@@ -17,7 +17,6 @@ export type GetBuyerRequest = {
    * The ID of the buyer to retrieve.
    */
   buyerId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -83,19 +82,16 @@ export const GetBuyerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetBuyerRequest$Outbound = {
   buyer_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -106,12 +102,10 @@ export const GetBuyerRequest$outboundSchema: z.ZodType<
   GetBuyerRequest
 > = z.object({
   buyerId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
-    applicationName: "application_name",
   });
 });
 

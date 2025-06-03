@@ -16,14 +16,12 @@ export class Refunds extends ClientSDK {
    */
   async get(
     refundId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Refund> {
     return unwrapAsync(refundsGet(
       this,
       refundId,
-      applicationName,
       merchantAccountId,
       options,
     ));

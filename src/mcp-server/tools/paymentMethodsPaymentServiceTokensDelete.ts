@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   paymentMethodId: z.string(),
   paymentServiceTokenId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -26,7 +25,6 @@ Delete a gateway tokens for a payment method.`,
       client,
       args.paymentMethodId,
       args.paymentServiceTokenId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

@@ -54,7 +54,6 @@ export class Transactions extends ClientSDK {
    */
   async create(
     transactionCreate: components.TransactionCreate,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     idempotencyKey?: string | null | undefined,
     options?: RequestOptions,
@@ -62,7 +61,6 @@ export class Transactions extends ClientSDK {
     return unwrapAsync(transactionsCreate(
       this,
       transactionCreate,
-      applicationName,
       merchantAccountId,
       idempotencyKey,
       options,
@@ -77,14 +75,12 @@ export class Transactions extends ClientSDK {
    */
   async get(
     transactionId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsGet(
       this,
       transactionId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -99,7 +95,6 @@ export class Transactions extends ClientSDK {
   async capture(
     transactionCapture: components.TransactionCapture,
     transactionId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
@@ -107,7 +102,6 @@ export class Transactions extends ClientSDK {
       this,
       transactionCapture,
       transactionId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -121,14 +115,12 @@ export class Transactions extends ClientSDK {
    */
   async void(
     transactionId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsVoid(
       this,
       transactionId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -142,14 +134,12 @@ export class Transactions extends ClientSDK {
    */
   async sync(
     transactionId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsSync(
       this,
       transactionId,
-      applicationName,
       merchantAccountId,
       options,
     ));

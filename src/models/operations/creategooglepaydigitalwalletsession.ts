@@ -14,7 +14,6 @@ export type CreateGooglePayDigitalWalletSessionGlobals = {
 };
 
 export type CreateGooglePayDigitalWalletSessionRequest = {
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -90,19 +89,16 @@ export function createGooglePayDigitalWalletSessionGlobalsFromJSON(
 export const CreateGooglePayDigitalWalletSessionRequest$inboundSchema:
   z.ZodType<CreateGooglePayDigitalWalletSessionRequest, z.ZodTypeDef, unknown> =
     z.object({
-      application_name: z.string().default("core-api"),
       merchantAccountId: z.nullable(z.string()).optional(),
       GooglePaySessionRequest: components.GooglePaySessionRequest$inboundSchema,
     }).transform((v) => {
       return remap$(v, {
-        "application_name": "applicationName",
         "GooglePaySessionRequest": "googlePaySessionRequest",
       });
     });
 
 /** @internal */
 export type CreateGooglePayDigitalWalletSessionRequest$Outbound = {
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   GooglePaySessionRequest: components.GooglePaySessionRequest$Outbound;
 };
@@ -114,12 +110,10 @@ export const CreateGooglePayDigitalWalletSessionRequest$outboundSchema:
     z.ZodTypeDef,
     CreateGooglePayDigitalWalletSessionRequest
   > = z.object({
-    applicationName: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
     googlePaySessionRequest: components.GooglePaySessionRequest$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      applicationName: "application_name",
       googlePaySessionRequest: "GooglePaySessionRequest",
     });
   });

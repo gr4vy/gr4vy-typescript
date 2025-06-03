@@ -8,7 +8,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   sessionId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,7 +21,6 @@ Deleta a checkout session and all of its (PCI) data.`,
     const [result, apiCall] = await checkoutSessionsDelete(
       client,
       args.sessionId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

@@ -8,7 +8,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   giftCardId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,7 +21,6 @@ Fetch details about a gift card.`,
     const [result, apiCall] = await giftCardsGet(
       client,
       args.giftCardId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

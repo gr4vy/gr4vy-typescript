@@ -17,7 +17,6 @@ export type DeletePaymentServiceRequest = {
    * the ID of the payment service
    */
   paymentServiceId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -87,19 +86,16 @@ export const DeletePaymentServiceRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_service_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_service_id": "paymentServiceId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type DeletePaymentServiceRequest$Outbound = {
   payment_service_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -110,12 +106,10 @@ export const DeletePaymentServiceRequest$outboundSchema: z.ZodType<
   DeletePaymentServiceRequest
 > = z.object({
   paymentServiceId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentServiceId: "payment_service_id",
-    applicationName: "application_name",
   });
 });
 

@@ -17,7 +17,6 @@ export type GetGiftCardRequest = {
    * The ID of the gift card.
    */
   giftCardId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -85,19 +84,16 @@ export const GetGiftCardRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   gift_card_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "gift_card_id": "giftCardId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetGiftCardRequest$Outbound = {
   gift_card_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -108,12 +104,10 @@ export const GetGiftCardRequest$outboundSchema: z.ZodType<
   GetGiftCardRequest
 > = z.object({
   giftCardId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     giftCardId: "gift_card_id",
-    applicationName: "application_name",
   });
 });
 

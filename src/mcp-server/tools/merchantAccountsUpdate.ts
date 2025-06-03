@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   merchantAccountUpdate: components.MerchantAccountUpdate$inboundSchema,
   merchantAccountId: z.string(),
-  applicationName: z.string().default("core-api"),
 };
 
 export const tool$merchantAccountsUpdate: ToolDefinition<typeof args> = {
@@ -24,7 +23,6 @@ Update info for a merchant account in an instance.`,
       client,
       args.merchantAccountUpdate,
       args.merchantAccountId,
-      args.applicationName,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

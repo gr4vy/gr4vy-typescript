@@ -14,7 +14,6 @@ export type ConfigureDigitalWalletGlobals = {
 };
 
 export type ConfigureDigitalWalletRequest = {
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,19 +83,16 @@ export const ConfigureDigitalWalletRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   DigitalWalletCreate: components.DigitalWalletCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "application_name": "applicationName",
     "DigitalWalletCreate": "digitalWalletCreate",
   });
 });
 
 /** @internal */
 export type ConfigureDigitalWalletRequest$Outbound = {
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   DigitalWalletCreate: components.DigitalWalletCreate$Outbound;
 };
@@ -107,12 +103,10 @@ export const ConfigureDigitalWalletRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConfigureDigitalWalletRequest
 > = z.object({
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletCreate: components.DigitalWalletCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    applicationName: "application_name",
     digitalWalletCreate: "DigitalWalletCreate",
   });
 });

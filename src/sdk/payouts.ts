@@ -21,7 +21,6 @@ export class Payouts extends ClientSDK {
   async list(
     cursor?: string | null | undefined,
     limit?: number | undefined,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<PageIterator<operations.ListPayoutsResponse, { cursor: string }>> {
@@ -29,7 +28,6 @@ export class Payouts extends ClientSDK {
       this,
       cursor,
       limit,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -43,14 +41,12 @@ export class Payouts extends ClientSDK {
    */
   async create(
     payoutCreate: components.PayoutCreate,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PayoutSummary> {
     return unwrapAsync(payoutsCreate(
       this,
       payoutCreate,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -64,14 +60,12 @@ export class Payouts extends ClientSDK {
    */
   async get(
     payoutId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PayoutSummary> {
     return unwrapAsync(payoutsGet(
       this,
       payoutId,
-      applicationName,
       merchantAccountId,
       options,
     ));

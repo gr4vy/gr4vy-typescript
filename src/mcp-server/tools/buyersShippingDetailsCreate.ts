@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   shippingDetailsCreate: components.ShippingDetailsCreate$inboundSchema,
   buyerId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -25,7 +24,6 @@ Associate shipping details to a buyer.`,
       client,
       args.shippingDetailsCreate,
       args.buyerId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

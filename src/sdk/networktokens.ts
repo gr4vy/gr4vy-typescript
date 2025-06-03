@@ -26,14 +26,12 @@ export class NetworkTokens extends ClientSDK {
    */
   async list(
     paymentMethodId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorNetworkToken> {
     return unwrapAsync(paymentMethodsNetworkTokensList(
       this,
       paymentMethodId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -48,7 +46,6 @@ export class NetworkTokens extends ClientSDK {
   async create(
     networkTokenCreate: components.NetworkTokenCreate,
     paymentMethodId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
@@ -56,7 +53,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       networkTokenCreate,
       paymentMethodId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -71,7 +67,6 @@ export class NetworkTokens extends ClientSDK {
   async suspend(
     paymentMethodId: string,
     networkTokenId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
@@ -79,7 +74,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       paymentMethodId,
       networkTokenId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -94,7 +88,6 @@ export class NetworkTokens extends ClientSDK {
   async resume(
     paymentMethodId: string,
     networkTokenId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.NetworkToken> {
@@ -102,7 +95,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       paymentMethodId,
       networkTokenId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -117,7 +109,6 @@ export class NetworkTokens extends ClientSDK {
   async delete(
     paymentMethodId: string,
     networkTokenId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
@@ -125,7 +116,6 @@ export class NetworkTokens extends ClientSDK {
       this,
       paymentMethodId,
       networkTokenId,
-      applicationName,
       merchantAccountId,
       options,
     ));

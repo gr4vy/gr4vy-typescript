@@ -42,7 +42,6 @@ export function merchantAccountsList(
   cursor?: string | null | undefined,
   limit?: number | undefined,
   search?: string | null | undefined,
-  applicationName?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -76,7 +75,6 @@ export function merchantAccountsList(
     cursor,
     limit,
     search,
-    applicationName,
     options,
   ));
 }
@@ -86,7 +84,6 @@ async function $do(
   cursor?: string | null | undefined,
   limit?: number | undefined,
   search?: string | null | undefined,
-  applicationName?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -122,7 +119,6 @@ async function $do(
     cursor: cursor,
     limit: limit,
     search: search,
-    applicationName: applicationName,
   };
 
   const parsed = safeParse(
@@ -142,7 +138,6 @@ async function $do(
   const path = pathToFunc("/merchant-accounts")();
 
   const query = encodeFormQuery({
-    "application_name": payload?.application_name,
     "cursor": payload?.cursor,
     "limit": payload?.limit,
     "search": payload?.search,
@@ -315,7 +310,6 @@ async function $do(
         nextCursor,
         limit,
         search,
-        applicationName,
         options,
       );
 

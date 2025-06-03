@@ -14,7 +14,6 @@ export type UpdateMerchantAccountRequest = {
    * The ID of the merchant account
    */
   merchantAccountId: string;
-  applicationName?: string | undefined;
   merchantAccountUpdate: components.MerchantAccountUpdate;
 };
 
@@ -25,12 +24,10 @@ export const UpdateMerchantAccountRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   merchant_account_id: z.string(),
-  application_name: z.string().default("core-api"),
   MerchantAccountUpdate: components.MerchantAccountUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "merchant_account_id": "merchantAccountId",
-    "application_name": "applicationName",
     "MerchantAccountUpdate": "merchantAccountUpdate",
   });
 });
@@ -38,7 +35,6 @@ export const UpdateMerchantAccountRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateMerchantAccountRequest$Outbound = {
   merchant_account_id: string;
-  application_name: string;
   MerchantAccountUpdate: components.MerchantAccountUpdate$Outbound;
 };
 
@@ -49,12 +45,10 @@ export const UpdateMerchantAccountRequest$outboundSchema: z.ZodType<
   UpdateMerchantAccountRequest
 > = z.object({
   merchantAccountId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountUpdate: components.MerchantAccountUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     merchantAccountId: "merchant_account_id",
-    applicationName: "application_name",
     merchantAccountUpdate: "MerchantAccountUpdate",
   });
 });

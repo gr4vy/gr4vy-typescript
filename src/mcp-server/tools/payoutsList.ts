@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -24,7 +23,6 @@ Returns a list of payouts made.`,
       client,
       args.cursor,
       args.limit,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

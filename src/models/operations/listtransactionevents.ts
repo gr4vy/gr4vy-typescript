@@ -22,7 +22,6 @@ export type ListTransactionEventsRequest = {
    * The maximum number of items that are at returned.
    */
   limit?: number | undefined;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -94,12 +93,10 @@ export const ListTransactionEventsRequest$inboundSchema: z.ZodType<
   transaction_id: z.string(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(100),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "application_name": "applicationName",
   });
 });
 
@@ -108,7 +105,6 @@ export type ListTransactionEventsRequest$Outbound = {
   transaction_id: string;
   cursor?: string | null | undefined;
   limit: number;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -121,12 +117,10 @@ export const ListTransactionEventsRequest$outboundSchema: z.ZodType<
   transactionId: z.string(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(100),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    applicationName: "application_name",
   });
 });
 

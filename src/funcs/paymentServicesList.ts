@@ -126,7 +126,6 @@ async function $do(
   const path = pathToFunc("/payment-services")();
 
   const query = encodeFormQuery({
-    "application_name": payload?.application_name,
     "cursor": payload?.cursor,
     "deleted": payload?.deleted,
     "limit": payload?.limit,

@@ -14,7 +14,6 @@ export type GetRefundGlobals = {
 
 export type GetRefundRequest = {
   refundId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -82,19 +81,16 @@ export const GetRefundRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   refund_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "refund_id": "refundId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetRefundRequest$Outbound = {
   refund_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -105,12 +101,10 @@ export const GetRefundRequest$outboundSchema: z.ZodType<
   GetRefundRequest
 > = z.object({
   refundId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     refundId: "refund_id",
-    applicationName: "application_name",
   });
 });
 

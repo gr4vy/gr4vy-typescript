@@ -127,7 +127,6 @@ async function $do(
     "amount_eq": payload?.amount_eq,
     "amount_gte": payload?.amount_gte,
     "amount_lte": payload?.amount_lte,
-    "application_name": payload?.application_name,
     "buyer_email_address": payload?.buyer_email_address,
     "buyer_external_identifier": payload?.buyer_external_identifier,
     "buyer_id": payload?.buyer_id,

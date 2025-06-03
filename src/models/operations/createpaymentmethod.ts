@@ -19,7 +19,6 @@ export type CreatePaymentMethodBody =
   | components.CardPaymentMethodCreate;
 
 export type CreatePaymentMethodRequest = {
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -149,7 +148,6 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   RequestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$inboundSchema,
@@ -158,14 +156,12 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
   ]),
 }).transform((v) => {
   return remap$(v, {
-    "application_name": "applicationName",
     "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type CreatePaymentMethodRequest$Outbound = {
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   RequestBody:
     | components.CheckoutSessionPaymentMethodCreate$Outbound
@@ -179,7 +175,6 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreatePaymentMethodRequest
 > = z.object({
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   requestBody: z.union([
     components.CheckoutSessionPaymentMethodCreate$outboundSchema,
@@ -188,7 +183,6 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   ]),
 }).transform((v) => {
   return remap$(v, {
-    applicationName: "application_name",
     requestBody: "RequestBody",
   });
 });

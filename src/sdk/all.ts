@@ -20,7 +20,6 @@ export class All extends ClientSDK {
       | components.TransactionRefundAllCreate
       | null
       | undefined,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionRefund> {
@@ -28,7 +27,6 @@ export class All extends ClientSDK {
       this,
       transactionId,
       transactionRefundAllCreate,
-      applicationName,
       merchantAccountId,
       options,
     ));

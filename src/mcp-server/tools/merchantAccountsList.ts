@@ -10,7 +10,6 @@ const args = {
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   search: z.nullable(z.string()).optional(),
-  applicationName: z.string().default("core-api"),
 };
 
 export const tool$merchantAccountsList: ToolDefinition<typeof args> = {
@@ -25,7 +24,6 @@ List all merchant accounts in an instance.`,
       args.cursor,
       args.limit,
       args.search,
-      args.applicationName,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

@@ -150,7 +150,6 @@ export type ListTransactionsRequest = {
    * Filters for transactions that attempted 3DS authentication or not.
    */
   used3ds?: boolean | null | undefined;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -275,7 +274,6 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   is_subsequent_payment: z.nullable(z.boolean()).optional(),
   merchant_initiated: z.nullable(z.boolean()).optional(),
   used_3ds: z.nullable(z.boolean()).optional(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -313,7 +311,6 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     "is_subsequent_payment": "isSubsequentPayment",
     "merchant_initiated": "merchantInitiated",
     "used_3ds": "used3ds",
-    "application_name": "applicationName",
   });
 });
 
@@ -362,7 +359,6 @@ export type ListTransactionsRequest$Outbound = {
   is_subsequent_payment?: boolean | null | undefined;
   merchant_initiated?: boolean | null | undefined;
   used_3ds?: boolean | null | undefined;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -418,7 +414,6 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   isSubsequentPayment: z.nullable(z.boolean()).optional(),
   merchantInitiated: z.nullable(z.boolean()).optional(),
   used3ds: z.nullable(z.boolean()).optional(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -456,7 +451,6 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     isSubsequentPayment: "is_subsequent_payment",
     merchantInitiated: "merchant_initiated",
     used3ds: "used_3ds",
-    applicationName: "application_name",
   });
 });
 

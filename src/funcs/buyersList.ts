@@ -124,7 +124,6 @@ async function $do(
   const path = pathToFunc("/buyers")();
 
   const query = encodeFormQuery({
-    "application_name": payload?.application_name,
     "cursor": payload?.cursor,
     "external_identifier": payload?.external_identifier,
     "limit": payload?.limit,

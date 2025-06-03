@@ -54,14 +54,12 @@ export class PaymentMethods extends ClientSDK {
    */
   async create(
     requestBody: operations.CreatePaymentMethodBody,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentMethod> {
     return unwrapAsync(paymentMethodsCreate(
       this,
       requestBody,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -75,14 +73,12 @@ export class PaymentMethods extends ClientSDK {
    */
   async get(
     paymentMethodId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentMethod> {
     return unwrapAsync(paymentMethodsGet(
       this,
       paymentMethodId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -96,14 +92,12 @@ export class PaymentMethods extends ClientSDK {
    */
   async delete(
     paymentMethodId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(paymentMethodsDelete(
       this,
       paymentMethodId,
-      applicationName,
       merchantAccountId,
       options,
     ));

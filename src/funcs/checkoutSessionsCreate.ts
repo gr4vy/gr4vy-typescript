@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -34,7 +34,6 @@ import { Result } from "../types/fp.js";
 export function checkoutSessionsCreate(
   client: Gr4vyCore,
   checkoutSessionCreate?: components.CheckoutSessionCreate | undefined,
-  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -64,7 +63,6 @@ export function checkoutSessionsCreate(
   return new APIPromise($do(
     client,
     checkoutSessionCreate,
-    applicationName,
     merchantAccountId,
     options,
   ));
@@ -73,7 +71,6 @@ export function checkoutSessionsCreate(
 async function $do(
   client: Gr4vyCore,
   checkoutSessionCreate?: components.CheckoutSessionCreate | undefined,
-  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -105,7 +102,6 @@ async function $do(
 > {
   const input: operations.CreateCheckoutSessionRequest | undefined = {
     checkoutSessionCreate: checkoutSessionCreate,
-    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -126,10 +122,6 @@ async function $do(
   });
 
   const path = pathToFunc("/checkout/sessions")();
-
-  const query = encodeFormQuery({
-    "application_name": payload?.application_name,
-  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -166,7 +158,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

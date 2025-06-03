@@ -54,7 +54,6 @@ export type ListBuyerPaymentMethodsRequest = {
    * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
    */
   currency?: string | null | undefined;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -155,7 +154,6 @@ export const ListBuyerPaymentMethodsRequest$inboundSchema: z.ZodType<
   order_by: OrderBy$inboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -163,7 +161,6 @@ export const ListBuyerPaymentMethodsRequest$inboundSchema: z.ZodType<
     "buyer_external_identifier": "buyerExternalIdentifier",
     "sort_by": "sortBy",
     "order_by": "orderBy",
-    "application_name": "applicationName",
   });
 });
 
@@ -175,7 +172,6 @@ export type ListBuyerPaymentMethodsRequest$Outbound = {
   order_by: string;
   country?: string | null | undefined;
   currency?: string | null | undefined;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -193,7 +189,6 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
   orderBy: OrderBy$outboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -201,7 +196,6 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
     buyerExternalIdentifier: "buyer_external_identifier",
     sortBy: "sort_by",
     orderBy: "order_by",
-    applicationName: "application_name",
   });
 });
 

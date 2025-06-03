@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   digitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
   digitalWalletId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -25,7 +24,6 @@ Remove a digital wallet domain (Apple Pay only).`,
       client,
       args.digitalWalletDomain,
       args.digitalWalletId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

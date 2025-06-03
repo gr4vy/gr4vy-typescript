@@ -18,7 +18,6 @@ export type CreatePaymentMethodPaymentServiceTokenRequest = {
    * The ID of the payment method
    */
   paymentMethodId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -101,14 +100,12 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
     unknown
   > = z.object({
     payment_method_id: z.string(),
-    application_name: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
     PaymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
-      "application_name": "applicationName",
       "PaymentServiceTokenCreate": "paymentServiceTokenCreate",
     });
   });
@@ -116,7 +113,6 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$inboundSchema:
 /** @internal */
 export type CreatePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   PaymentServiceTokenCreate: components.PaymentServiceTokenCreate$Outbound;
 };
@@ -129,14 +125,12 @@ export const CreatePaymentMethodPaymentServiceTokenRequest$outboundSchema:
     CreatePaymentMethodPaymentServiceTokenRequest
   > = z.object({
     paymentMethodId: z.string(),
-    applicationName: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
     paymentServiceTokenCreate:
       components.PaymentServiceTokenCreate$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
-      applicationName: "application_name",
       paymentServiceTokenCreate: "PaymentServiceTokenCreate",
     });
   });

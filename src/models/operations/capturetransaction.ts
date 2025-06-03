@@ -15,7 +15,6 @@ export type CaptureTransactionGlobals = {
 
 export type CaptureTransactionRequest = {
   transactionId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,13 +83,11 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   TransactionCapture: components.TransactionCapture$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "application_name": "applicationName",
     "TransactionCapture": "transactionCapture",
   });
 });
@@ -98,7 +95,6 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CaptureTransactionRequest$Outbound = {
   transaction_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   TransactionCapture: components.TransactionCapture$Outbound;
 };
@@ -110,13 +106,11 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
   CaptureTransactionRequest
 > = z.object({
   transactionId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   transactionCapture: components.TransactionCapture$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    applicationName: "application_name",
     transactionCapture: "TransactionCapture",
   });
 });

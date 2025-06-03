@@ -10,7 +10,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   paymentServiceTokenCreate: components.PaymentServiceTokenCreate$inboundSchema,
   paymentMethodId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -27,7 +26,6 @@ Create a gateway tokens for a payment method.`,
       client,
       args.paymentServiceTokenCreate,
       args.paymentMethodId,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

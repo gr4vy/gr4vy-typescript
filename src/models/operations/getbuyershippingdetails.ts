@@ -21,7 +21,6 @@ export type GetBuyerShippingDetailsRequest = {
    * The ID of the shipping details to retrieve.
    */
   shippingDetailsId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -92,13 +91,11 @@ export const GetBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_id: z.string(),
   shipping_details_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
     "shipping_details_id": "shippingDetailsId",
-    "application_name": "applicationName",
   });
 });
 
@@ -106,7 +103,6 @@ export const GetBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 export type GetBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
   shipping_details_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -118,13 +114,11 @@ export const GetBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.string(),
   shippingDetailsId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
     shippingDetailsId: "shipping_details_id",
-    applicationName: "application_name",
   });
 });
 

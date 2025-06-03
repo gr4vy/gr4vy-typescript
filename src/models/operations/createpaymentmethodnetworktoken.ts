@@ -18,7 +18,6 @@ export type CreatePaymentMethodNetworkTokenRequest = {
    * The ID of the payment method
    */
   paymentMethodId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -93,13 +92,11 @@ export const CreatePaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_method_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   NetworkTokenCreate: components.NetworkTokenCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
-    "application_name": "applicationName",
     "NetworkTokenCreate": "networkTokenCreate",
   });
 });
@@ -107,7 +104,6 @@ export const CreatePaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreatePaymentMethodNetworkTokenRequest$Outbound = {
   payment_method_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   NetworkTokenCreate: components.NetworkTokenCreate$Outbound;
 };
@@ -119,13 +115,11 @@ export const CreatePaymentMethodNetworkTokenRequest$outboundSchema: z.ZodType<
   CreatePaymentMethodNetworkTokenRequest
 > = z.object({
   paymentMethodId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   networkTokenCreate: components.NetworkTokenCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",
-    applicationName: "application_name",
     networkTokenCreate: "NetworkTokenCreate",
   });
 });

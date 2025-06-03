@@ -35,7 +35,6 @@ export function buyersGiftCardsList(
   client: Gr4vyCore,
   buyerExternalIdentifier?: string | null | undefined,
   buyerId?: string | null | undefined,
-  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -66,7 +65,6 @@ export function buyersGiftCardsList(
     client,
     buyerExternalIdentifier,
     buyerId,
-    applicationName,
     merchantAccountId,
     options,
   ));
@@ -76,7 +74,6 @@ async function $do(
   client: Gr4vyCore,
   buyerExternalIdentifier?: string | null | undefined,
   buyerId?: string | null | undefined,
-  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -109,7 +106,6 @@ async function $do(
   const input: operations.ListBuyerGiftCardsRequest | undefined = {
     buyerExternalIdentifier: buyerExternalIdentifier,
     buyerId: buyerId,
-    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -130,7 +126,6 @@ async function $do(
   const path = pathToFunc("/buyers/gift-cards")();
 
   const query = encodeFormQuery({
-    "application_name": payload?.application_name,
     "buyer_external_identifier": payload?.buyer_external_identifier,
     "buyer_id": payload?.buyer_id,
   });

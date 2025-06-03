@@ -15,7 +15,6 @@ export type ListBuyerGiftCardsGlobals = {
 export type ListBuyerGiftCardsRequest = {
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,13 +83,11 @@ export const ListBuyerGiftCardsRequest$inboundSchema: z.ZodType<
 > = z.object({
   buyer_external_identifier: z.nullable(z.string()).optional(),
   buyer_id: z.nullable(z.string()).optional(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "buyer_external_identifier": "buyerExternalIdentifier",
     "buyer_id": "buyerId",
-    "application_name": "applicationName",
   });
 });
 
@@ -98,7 +95,6 @@ export const ListBuyerGiftCardsRequest$inboundSchema: z.ZodType<
 export type ListBuyerGiftCardsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -110,13 +106,11 @@ export const ListBuyerGiftCardsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerExternalIdentifier: "buyer_external_identifier",
     buyerId: "buyer_id",
-    applicationName: "application_name",
   });
 });
 

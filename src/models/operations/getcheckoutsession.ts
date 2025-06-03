@@ -17,7 +17,6 @@ export type GetCheckoutSessionRequest = {
    * The ID of the checkout session.
    */
   sessionId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -85,19 +84,16 @@ export const GetCheckoutSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   session_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "session_id": "sessionId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetCheckoutSessionRequest$Outbound = {
   session_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -108,12 +104,10 @@ export const GetCheckoutSessionRequest$outboundSchema: z.ZodType<
   GetCheckoutSessionRequest
 > = z.object({
   sessionId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     sessionId: "session_id",
-    applicationName: "application_name",
   });
 });
 

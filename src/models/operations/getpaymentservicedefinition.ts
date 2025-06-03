@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetPaymentServiceDefinitionRequest = {
   paymentServiceDefinitionId: string;
-  applicationName?: string | undefined;
 };
 
 /** @internal */
@@ -20,18 +19,15 @@ export const GetPaymentServiceDefinitionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_service_definition_id: z.string(),
-  application_name: z.string().default("core-api"),
 }).transform((v) => {
   return remap$(v, {
     "payment_service_definition_id": "paymentServiceDefinitionId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetPaymentServiceDefinitionRequest$Outbound = {
   payment_service_definition_id: string;
-  application_name: string;
 };
 
 /** @internal */
@@ -41,11 +37,9 @@ export const GetPaymentServiceDefinitionRequest$outboundSchema: z.ZodType<
   GetPaymentServiceDefinitionRequest
 > = z.object({
   paymentServiceDefinitionId: z.string(),
-  applicationName: z.string().default("core-api"),
 }).transform((v) => {
   return remap$(v, {
     paymentServiceDefinitionId: "payment_service_definition_id",
-    applicationName: "application_name",
   });
 });
 

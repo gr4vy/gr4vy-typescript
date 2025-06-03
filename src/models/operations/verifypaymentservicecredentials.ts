@@ -14,7 +14,6 @@ export type VerifyPaymentServiceCredentialsGlobals = {
 };
 
 export type VerifyPaymentServiceCredentialsRequest = {
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -88,19 +87,16 @@ export const VerifyPaymentServiceCredentialsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   VerifyCredentials: components.VerifyCredentials$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "application_name": "applicationName",
     "VerifyCredentials": "verifyCredentials",
   });
 });
 
 /** @internal */
 export type VerifyPaymentServiceCredentialsRequest$Outbound = {
-  application_name: string;
   merchantAccountId?: string | null | undefined;
   VerifyCredentials: components.VerifyCredentials$Outbound;
 };
@@ -111,12 +107,10 @@ export const VerifyPaymentServiceCredentialsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VerifyPaymentServiceCredentialsRequest
 > = z.object({
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   verifyCredentials: components.VerifyCredentials$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    applicationName: "application_name",
     verifyCredentials: "VerifyCredentials",
   });
 });

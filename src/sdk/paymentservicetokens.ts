@@ -19,7 +19,6 @@ export class PaymentServiceTokens extends ClientSDK {
   async list(
     paymentMethodId: string,
     paymentServiceId?: string | null | undefined,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorPaymentServiceToken> {
@@ -27,7 +26,6 @@ export class PaymentServiceTokens extends ClientSDK {
       this,
       paymentMethodId,
       paymentServiceId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -42,7 +40,6 @@ export class PaymentServiceTokens extends ClientSDK {
   async create(
     paymentServiceTokenCreate: components.PaymentServiceTokenCreate,
     paymentMethodId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentServiceToken> {
@@ -50,7 +47,6 @@ export class PaymentServiceTokens extends ClientSDK {
       this,
       paymentServiceTokenCreate,
       paymentMethodId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -65,7 +61,6 @@ export class PaymentServiceTokens extends ClientSDK {
   async delete(
     paymentMethodId: string,
     paymentServiceTokenId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
@@ -73,7 +68,6 @@ export class PaymentServiceTokens extends ClientSDK {
       this,
       paymentMethodId,
       paymentServiceTokenId,
-      applicationName,
       merchantAccountId,
       options,
     ));

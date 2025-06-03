@@ -21,7 +21,6 @@ export type ListPaymentMethodPaymentServiceTokensRequest = {
    * The ID of the payment service
    */
   paymentServiceId?: string | null | undefined;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -104,13 +103,11 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     payment_service_id: z.nullable(z.string()).optional(),
-    application_name: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "payment_service_id": "paymentServiceId",
-      "application_name": "applicationName",
     });
   });
 
@@ -118,7 +115,6 @@ export const ListPaymentMethodPaymentServiceTokensRequest$inboundSchema:
 export type ListPaymentMethodPaymentServiceTokensRequest$Outbound = {
   payment_method_id: string;
   payment_service_id?: string | null | undefined;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -131,13 +127,11 @@ export const ListPaymentMethodPaymentServiceTokensRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     paymentServiceId: z.nullable(z.string()).optional(),
-    applicationName: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       paymentServiceId: "payment_service_id",
-      applicationName: "application_name",
     });
   });
 

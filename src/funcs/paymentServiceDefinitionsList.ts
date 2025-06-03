@@ -41,7 +41,6 @@ export function paymentServiceDefinitionsList(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
-  applicationName?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -74,7 +73,6 @@ export function paymentServiceDefinitionsList(
     client,
     cursor,
     limit,
-    applicationName,
     options,
   ));
 }
@@ -83,7 +81,6 @@ async function $do(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
-  applicationName?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -118,7 +115,6 @@ async function $do(
   const input: operations.ListPaymentServiceDefinitionsRequest | undefined = {
     cursor: cursor,
     limit: limit,
-    applicationName: applicationName,
   };
 
   const parsed = safeParse(
@@ -137,7 +133,6 @@ async function $do(
   const path = pathToFunc("/payment-service-definitions")();
 
   const query = encodeFormQuery({
-    "application_name": payload?.application_name,
     "cursor": payload?.cursor,
     "limit": payload?.limit,
   });
@@ -310,7 +305,6 @@ async function $do(
         client,
         nextCursor,
         limit,
-        applicationName,
         options,
       );
 

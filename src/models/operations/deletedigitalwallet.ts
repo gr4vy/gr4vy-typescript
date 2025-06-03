@@ -17,7 +17,6 @@ export type DeleteDigitalWalletRequest = {
    * The ID of the digital wallet to delete.
    */
   digitalWalletId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -85,19 +84,16 @@ export const DeleteDigitalWalletRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   digital_wallet_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type DeleteDigitalWalletRequest$Outbound = {
   digital_wallet_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -108,12 +104,10 @@ export const DeleteDigitalWalletRequest$outboundSchema: z.ZodType<
   DeleteDigitalWalletRequest
 > = z.object({
   digitalWalletId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
-    applicationName: "application_name",
   });
 });
 

@@ -30,7 +30,6 @@ export type ListPaymentServicesRequest = {
    * Return any deleted payment service.
    */
   deleted?: boolean | null | undefined;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -105,12 +104,7 @@ export const ListPaymentServicesRequest$inboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   deleted: z.nullable(z.boolean()).optional(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "application_name": "applicationName",
-  });
 });
 
 /** @internal */
@@ -119,7 +113,6 @@ export type ListPaymentServicesRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
   deleted?: boolean | null | undefined;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -133,12 +126,7 @@ export const ListPaymentServicesRequest$outboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   deleted: z.nullable(z.boolean()).optional(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    applicationName: "application_name",
-  });
 });
 
 /**

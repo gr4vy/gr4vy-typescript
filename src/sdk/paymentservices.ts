@@ -43,14 +43,12 @@ export class PaymentServices extends ClientSDK {
    */
   async create(
     paymentServiceCreate: components.PaymentServiceCreate,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentService> {
     return unwrapAsync(paymentServicesCreate(
       this,
       paymentServiceCreate,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -64,14 +62,12 @@ export class PaymentServices extends ClientSDK {
    */
   async get(
     paymentServiceId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentService> {
     return unwrapAsync(paymentServicesGet(
       this,
       paymentServiceId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -86,7 +82,6 @@ export class PaymentServices extends ClientSDK {
   async update(
     paymentServiceUpdate: components.PaymentServiceUpdate,
     paymentServiceId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentService> {
@@ -94,7 +89,6 @@ export class PaymentServices extends ClientSDK {
       this,
       paymentServiceUpdate,
       paymentServiceId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -108,14 +102,12 @@ export class PaymentServices extends ClientSDK {
    */
   async delete(
     paymentServiceId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(paymentServicesDelete(
       this,
       paymentServiceId,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -129,14 +121,12 @@ export class PaymentServices extends ClientSDK {
    */
   async verify(
     verifyCredentials: components.VerifyCredentials,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(paymentServicesVerify(
       this,
       verifyCredentials,
-      applicationName,
       merchantAccountId,
       options,
     ));
@@ -151,7 +141,6 @@ export class PaymentServices extends ClientSDK {
   async session(
     requestBody: { [k: string]: any },
     paymentServiceId: string,
-    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CreateSession> {
@@ -159,7 +148,6 @@ export class PaymentServices extends ClientSDK {
       this,
       requestBody,
       paymentServiceId,
-      applicationName,
       merchantAccountId,
       options,
     ));

@@ -9,7 +9,6 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   paymentServiceCreate: components.PaymentServiceCreate$inboundSchema,
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -23,7 +22,6 @@ Updates the configuration of a payment service.`,
     const [result, apiCall] = await paymentServicesCreate(
       client,
       args.paymentServiceCreate,
-      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

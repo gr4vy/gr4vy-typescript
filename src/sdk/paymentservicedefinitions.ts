@@ -21,7 +21,6 @@ export class PaymentServiceDefinitions extends ClientSDK {
   async list(
     cursor?: string | null | undefined,
     limit?: number | undefined,
-    applicationName?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<
@@ -33,7 +32,6 @@ export class PaymentServiceDefinitions extends ClientSDK {
       this,
       cursor,
       limit,
-      applicationName,
       options,
     ));
   }
@@ -46,13 +44,11 @@ export class PaymentServiceDefinitions extends ClientSDK {
    */
   async get(
     paymentServiceDefinitionId: string,
-    applicationName?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.PaymentServiceDefinition> {
     return unwrapAsync(paymentServiceDefinitionsGet(
       this,
       paymentServiceDefinitionId,
-      applicationName,
       options,
     ));
   }
@@ -66,14 +62,12 @@ export class PaymentServiceDefinitions extends ClientSDK {
   async session(
     requestBody: { [k: string]: any },
     paymentServiceDefinitionId: string,
-    applicationName?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.CreateSession> {
     return unwrapAsync(paymentServiceDefinitionsSession(
       this,
       requestBody,
       paymentServiceDefinitionId,
-      applicationName,
       options,
     ));
   }

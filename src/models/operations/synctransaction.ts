@@ -14,7 +14,6 @@ export type SyncTransactionGlobals = {
 
 export type SyncTransactionRequest = {
   transactionId: string;
-  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -82,19 +81,16 @@ export const SyncTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type SyncTransactionRequest$Outbound = {
   transaction_id: string;
-  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -105,12 +101,10 @@ export const SyncTransactionRequest$outboundSchema: z.ZodType<
   SyncTransactionRequest
 > = z.object({
   transactionId: z.string(),
-  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    applicationName: "application_name",
   });
 });
 

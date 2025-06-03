@@ -30,7 +30,6 @@ export type ListAuditLogsRequest = {
    * Filters the results to only the items for which the `user` has an `id` that matches this value.
    */
   userId?: string | null | undefined;
-  applicationName?: string | undefined;
   /**
    * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
    */
@@ -109,13 +108,11 @@ export const ListAuditLogsRequest$inboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   action: z.nullable(components.AuditLogAction$inboundSchema).optional(),
   user_id: z.nullable(z.string()).optional(),
-  application_name: z.string().default("core-api"),
   resource_type: z.nullable(z.string()).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "user_id": "userId",
-    "application_name": "applicationName",
     "resource_type": "resourceType",
   });
 });
@@ -126,7 +123,6 @@ export type ListAuditLogsRequest$Outbound = {
   limit: number;
   action?: string | null | undefined;
   user_id?: string | null | undefined;
-  application_name: string;
   resource_type?: string | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
@@ -141,13 +137,11 @@ export const ListAuditLogsRequest$outboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   action: z.nullable(components.AuditLogAction$outboundSchema).optional(),
   userId: z.nullable(z.string()).optional(),
-  applicationName: z.string().default("core-api"),
   resourceType: z.nullable(z.string()).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     userId: "user_id",
-    applicationName: "application_name",
     resourceType: "resource_type",
   });
 });
