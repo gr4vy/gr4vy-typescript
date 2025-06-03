@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   transactionCapture: components.TransactionCapture$inboundSchema,
   transactionId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -24,6 +25,7 @@ Capture a previously authorized transaction.`,
       client,
       args.transactionCapture,
       args.transactionId,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

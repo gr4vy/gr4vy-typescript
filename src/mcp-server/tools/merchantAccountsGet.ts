@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   merchantAccountId: z.string(),
+  applicationName: z.string().default("core-api"),
 };
 
 export const tool$merchantAccountsGet: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ Get info about a merchant account in an instance.`,
     const [result, apiCall] = await merchantAccountsGet(
       client,
       args.merchantAccountId,
+      args.applicationName,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

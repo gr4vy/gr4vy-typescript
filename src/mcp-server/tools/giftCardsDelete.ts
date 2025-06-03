@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   giftCardId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -21,6 +22,7 @@ Removes a gift card from our system.`,
     const [result, apiCall] = await giftCardsDelete(
       client,
       args.giftCardId,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

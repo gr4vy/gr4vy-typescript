@@ -30,6 +30,7 @@ export type ListBuyersRequest = {
    * Filters the results to only the buyers for which the `external_identifier` matches this value.
    */
   externalIdentifier?: string | null | undefined;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -104,10 +105,12 @@ export const ListBuyersRequest$inboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   search: z.nullable(z.string()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "external_identifier": "externalIdentifier",
+    "application_name": "applicationName",
   });
 });
 
@@ -117,6 +120,7 @@ export type ListBuyersRequest$Outbound = {
   limit: number;
   search?: string | null | undefined;
   external_identifier?: string | null | undefined;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -130,10 +134,12 @@ export const ListBuyersRequest$outboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   search: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     externalIdentifier: "external_identifier",
+    applicationName: "application_name",
   });
 });
 

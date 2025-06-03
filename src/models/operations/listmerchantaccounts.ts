@@ -22,6 +22,7 @@ export type ListMerchantAccountsRequest = {
    * The search term to filter merchant accounts by.
    */
   search?: string | null | undefined;
+  applicationName?: string | undefined;
 };
 
 export type ListMerchantAccountsResponse = {
@@ -37,6 +38,11 @@ export const ListMerchantAccountsRequest$inboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   search: z.nullable(z.string()).optional(),
+  application_name: z.string().default("core-api"),
+}).transform((v) => {
+  return remap$(v, {
+    "application_name": "applicationName",
+  });
 });
 
 /** @internal */
@@ -44,6 +50,7 @@ export type ListMerchantAccountsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
   search?: string | null | undefined;
+  application_name: string;
 };
 
 /** @internal */
@@ -55,6 +62,11 @@ export const ListMerchantAccountsRequest$outboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   search: z.nullable(z.string()).optional(),
+  applicationName: z.string().default("core-api"),
+}).transform((v) => {
+  return remap$(v, {
+    applicationName: "application_name",
+  });
 });
 
 /**

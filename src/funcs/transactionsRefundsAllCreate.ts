@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -38,11 +38,12 @@ export function transactionsRefundsAllCreate(
     | components.TransactionRefundAllCreate
     | null
     | undefined,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.CollectionNoCursorRefund,
+    components.CollectionRefund,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -68,6 +69,7 @@ export function transactionsRefundsAllCreate(
     client,
     transactionId,
     transactionRefundAllCreate,
+    applicationName,
     merchantAccountId,
     options,
   ));
@@ -80,12 +82,13 @@ async function $do(
     | components.TransactionRefundAllCreate
     | null
     | undefined,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.CollectionNoCursorRefund,
+      components.CollectionRefund,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -112,6 +115,7 @@ async function $do(
   const input: operations.CreateFullTransactionRefundRequest = {
     transactionId: transactionId,
     transactionRefundAllCreate: transactionRefundAllCreate,
+    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -139,6 +143,10 @@ async function $do(
   const path = pathToFunc("/transactions/{transaction_id}/refunds/all")(
     pathParams,
   );
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -175,6 +183,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
@@ -215,7 +224,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.CollectionNoCursorRefund,
+    components.CollectionRefund,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -236,7 +245,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, components.CollectionNoCursorRefund$inboundSchema),
+    M.json(201, components.CollectionRefund$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),

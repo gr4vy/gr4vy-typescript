@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,6 +13,7 @@ export type ListDigitalWalletsGlobals = {
 };
 
 export type ListDigitalWalletsRequest = {
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -78,11 +80,17 @@ export const ListDigitalWalletsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "application_name": "applicationName",
+  });
 });
 
 /** @internal */
 export type ListDigitalWalletsRequest$Outbound = {
+  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -92,7 +100,12 @@ export const ListDigitalWalletsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListDigitalWalletsRequest
 > = z.object({
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    applicationName: "application_name",
+  });
 });
 
 /**

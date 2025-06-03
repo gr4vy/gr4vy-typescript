@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -34,6 +34,7 @@ import { Result } from "../types/fp.js";
 export function transactionsCreate(
   client: Gr4vyCore,
   transactionCreate: components.TransactionCreate,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
@@ -64,6 +65,7 @@ export function transactionsCreate(
   return new APIPromise($do(
     client,
     transactionCreate,
+    applicationName,
     merchantAccountId,
     idempotencyKey,
     options,
@@ -73,6 +75,7 @@ export function transactionsCreate(
 async function $do(
   client: Gr4vyCore,
   transactionCreate: components.TransactionCreate,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
@@ -105,6 +108,7 @@ async function $do(
 > {
   const input: operations.CreateTransactionRequest = {
     transactionCreate: transactionCreate,
+    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
     idempotencyKey: idempotencyKey,
   };
@@ -121,6 +125,10 @@ async function $do(
   const body = encodeJSON("body", payload.TransactionCreate, { explode: true });
 
   const path = pathToFunc("/transactions")();
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -162,6 +170,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

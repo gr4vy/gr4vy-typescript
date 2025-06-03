@@ -14,6 +14,7 @@ export type CreateApplePayDigitalWalletSessionGlobals = {
 };
 
 export type CreateApplePayDigitalWalletSessionRequest = {
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -93,16 +94,19 @@ export const CreateApplePayDigitalWalletSessionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   ApplePaySessionRequest: components.ApplePaySessionRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    "application_name": "applicationName",
     "ApplePaySessionRequest": "applePaySessionRequest",
   });
 });
 
 /** @internal */
 export type CreateApplePayDigitalWalletSessionRequest$Outbound = {
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   ApplePaySessionRequest: components.ApplePaySessionRequest$Outbound;
 };
@@ -114,10 +118,12 @@ export const CreateApplePayDigitalWalletSessionRequest$outboundSchema:
     z.ZodTypeDef,
     CreateApplePayDigitalWalletSessionRequest
   > = z.object({
+    applicationName: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
     applePaySessionRequest: components.ApplePaySessionRequest$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
+      applicationName: "application_name",
       applePaySessionRequest: "ApplePaySessionRequest",
     });
   });

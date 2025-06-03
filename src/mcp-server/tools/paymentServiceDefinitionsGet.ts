@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   paymentServiceDefinitionId: z.string(),
+  applicationName: z.string().default("core-api"),
 };
 
 export const tool$paymentServiceDefinitionsGet: ToolDefinition<typeof args> = {
@@ -20,6 +21,7 @@ Get the definition of a payment service that can be configured.`,
     const [result, apiCall] = await paymentServiceDefinitionsGet(
       client,
       args.paymentServiceDefinitionId,
+      args.applicationName,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

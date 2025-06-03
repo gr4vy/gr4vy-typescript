@@ -5,6 +5,7 @@
 import { transactionsEventsList } from "../funcs/transactionsEventsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Events extends ClientSDK {
@@ -15,18 +16,12 @@ export class Events extends ClientSDK {
    * Fetch a list of events for a transaction.
    */
   async list(
-    transactionId: string,
-    cursor?: string | null | undefined,
-    limit?: number | undefined,
-    merchantAccountId?: string | null | undefined,
+    request: operations.ListTransactionEventsRequest,
     options?: RequestOptions,
   ): Promise<components.CollectionTransactionEvent> {
     return unwrapAsync(transactionsEventsList(
       this,
-      transactionId,
-      cursor,
-      limit,
-      merchantAccountId,
+      request,
       options,
     ));
   }

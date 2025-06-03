@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,6 +35,7 @@ export function paymentServiceDefinitionsSession(
   client: Gr4vyCore,
   requestBody: { [k: string]: any },
   paymentServiceDefinitionId: string,
+  applicationName?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,6 +65,7 @@ export function paymentServiceDefinitionsSession(
     client,
     requestBody,
     paymentServiceDefinitionId,
+    applicationName,
     options,
   ));
 }
@@ -72,6 +74,7 @@ async function $do(
   client: Gr4vyCore,
   requestBody: { [k: string]: any },
   paymentServiceDefinitionId: string,
+  applicationName?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -103,6 +106,7 @@ async function $do(
   const input: operations.CreatePaymentServiceDefinitionSessionRequest = {
     requestBody: requestBody,
     paymentServiceDefinitionId: paymentServiceDefinitionId,
+    applicationName: applicationName,
   };
 
   const parsed = safeParse(
@@ -129,6 +133,10 @@ async function $do(
   const path = pathToFunc(
     "/payment-service-definitions/{payment_service_definition_id}/sessions",
   )(pathParams);
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -160,6 +168,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

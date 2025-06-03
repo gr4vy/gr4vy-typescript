@@ -14,6 +14,7 @@ export type GetPayoutGlobals = {
 
 export type GetPayoutRequest = {
   payoutId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -81,16 +82,19 @@ export const GetPayoutRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payout_id: z.string(),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payout_id": "payoutId",
+    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetPayoutRequest$Outbound = {
   payout_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -101,10 +105,12 @@ export const GetPayoutRequest$outboundSchema: z.ZodType<
   GetPayoutRequest
 > = z.object({
   payoutId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     payoutId: "payout_id",
+    applicationName: "application_name",
   });
 });
 

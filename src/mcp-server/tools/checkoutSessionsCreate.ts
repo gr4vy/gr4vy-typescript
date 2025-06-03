@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   checkoutSessionCreate: components.CheckoutSessionCreate$inboundSchema
     .optional(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -23,6 +24,7 @@ Create a new checkout session.`,
     const [result, apiCall] = await checkoutSessionsCreate(
       client,
       args.checkoutSessionCreate,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

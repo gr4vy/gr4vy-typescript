@@ -22,6 +22,7 @@ export type ListPayoutsRequest = {
    * The maximum number of items that are at returned.
    */
   limit?: number | undefined;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -94,13 +95,19 @@ export const ListPayoutsRequest$inboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "application_name": "applicationName",
+  });
 });
 
 /** @internal */
 export type ListPayoutsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -112,7 +119,12 @@ export const ListPayoutsRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    applicationName: "application_name",
+  });
 });
 
 /**

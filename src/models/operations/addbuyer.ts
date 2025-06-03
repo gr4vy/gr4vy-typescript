@@ -14,6 +14,7 @@ export type AddBuyerGlobals = {
 };
 
 export type AddBuyerRequest = {
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -79,16 +80,19 @@ export const AddBuyerRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   BuyerCreate: components.BuyerCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    "application_name": "applicationName",
     "BuyerCreate": "buyerCreate",
   });
 });
 
 /** @internal */
 export type AddBuyerRequest$Outbound = {
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   BuyerCreate: components.BuyerCreate$Outbound;
 };
@@ -99,10 +103,12 @@ export const AddBuyerRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AddBuyerRequest
 > = z.object({
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   buyerCreate: components.BuyerCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    applicationName: "application_name",
     buyerCreate: "BuyerCreate",
   });
 });

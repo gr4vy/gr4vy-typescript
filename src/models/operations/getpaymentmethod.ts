@@ -17,6 +17,7 @@ export type GetPaymentMethodRequest = {
    * The ID of the payment method
    */
   paymentMethodId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -84,16 +85,19 @@ export const GetPaymentMethodRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_method_id: z.string(),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method_id": "paymentMethodId",
+    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetPaymentMethodRequest$Outbound = {
   payment_method_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -104,10 +108,12 @@ export const GetPaymentMethodRequest$outboundSchema: z.ZodType<
   GetPaymentMethodRequest
 > = z.object({
   paymentMethodId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethodId: "payment_method_id",
+    applicationName: "application_name",
   });
 });
 

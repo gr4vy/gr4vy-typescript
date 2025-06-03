@@ -5,6 +5,7 @@
 import { paymentMethodsNetworkTokensCryptogramCreate } from "../funcs/paymentMethodsNetworkTokensCryptogramCreate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Cryptogram extends ClientSDK {
@@ -15,18 +16,12 @@ export class Cryptogram extends ClientSDK {
    * Provision a cryptogram for a network token.
    */
   async create(
-    cryptogramCreate: components.CryptogramCreate,
-    paymentMethodId: string,
-    networkTokenId: string,
-    merchantAccountId?: string | null | undefined,
+    request: operations.CreatePaymentMethodNetworkTokenCryptogramRequest,
     options?: RequestOptions,
   ): Promise<components.Cryptogram> {
     return unwrapAsync(paymentMethodsNetworkTokensCryptogramCreate(
       this,
-      cryptogramCreate,
-      paymentMethodId,
-      networkTokenId,
-      merchantAccountId,
+      request,
       options,
     ));
   }

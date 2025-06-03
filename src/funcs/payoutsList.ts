@@ -41,6 +41,7 @@ export function payoutsList(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -74,6 +75,7 @@ export function payoutsList(
     client,
     cursor,
     limit,
+    applicationName,
     merchantAccountId,
     options,
   ));
@@ -83,6 +85,7 @@ async function $do(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -118,6 +121,7 @@ async function $do(
   const input: operations.ListPayoutsRequest | undefined = {
     cursor: cursor,
     limit: limit,
+    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -136,6 +140,7 @@ async function $do(
   const path = pathToFunc("/payouts")();
 
   const query = encodeFormQuery({
+    "application_name": payload?.application_name,
     "cursor": payload?.cursor,
     "limit": payload?.limit,
   });
@@ -311,6 +316,7 @@ async function $do(
         client,
         nextCursor,
         limit,
+        applicationName,
         merchantAccountId,
         options,
       );

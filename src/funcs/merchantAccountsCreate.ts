@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -32,7 +33,8 @@ import { Result } from "../types/fp.js";
  */
 export function merchantAccountsCreate(
   client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
+  merchantAccountCreate: components.MerchantAccountCreate,
+  applicationName?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,14 +62,16 @@ export function merchantAccountsCreate(
 > {
   return new APIPromise($do(
     client,
-    request,
+    merchantAccountCreate,
+    applicationName,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
+  merchantAccountCreate: components.MerchantAccountCreate,
+  applicationName?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -96,18 +100,30 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.CreateMerchantAccountRequest = {
+    merchantAccountCreate: merchantAccountCreate,
+    applicationName: applicationName,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => components.MerchantAccountCreate$outboundSchema.parse(value),
+    input,
+    (value) =>
+      operations.CreateMerchantAccountRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.MerchantAccountCreate, {
+    explode: true,
+  });
 
   const path = pathToFunc("/merchant-accounts")();
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -139,6 +155,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

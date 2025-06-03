@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -32,7 +33,8 @@ import { Result } from "../types/fp.js";
  */
 export function digitalWalletsSessionsClickToPay(
   client: Gr4vyCore,
-  request: components.ClickToPaySessionRequest,
+  clickToPaySessionRequest: components.ClickToPaySessionRequest,
+  applicationName?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,14 +62,16 @@ export function digitalWalletsSessionsClickToPay(
 > {
   return new APIPromise($do(
     client,
-    request,
+    clickToPaySessionRequest,
+    applicationName,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  request: components.ClickToPaySessionRequest,
+  clickToPaySessionRequest: components.ClickToPaySessionRequest,
+  applicationName?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -96,18 +100,31 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.CreateClickToPayDigitalWalletSessionRequest = {
+    clickToPaySessionRequest: clickToPaySessionRequest,
+    applicationName: applicationName,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => components.ClickToPaySessionRequest$outboundSchema.parse(value),
+    input,
+    (value) =>
+      operations.CreateClickToPayDigitalWalletSessionRequest$outboundSchema
+        .parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.ClickToPaySessionRequest, {
+    explode: true,
+  });
 
   const path = pathToFunc("/digital-wallets/click-to-pay/session")();
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -139,6 +156,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

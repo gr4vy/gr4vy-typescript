@@ -22,6 +22,7 @@ export type CreatePaymentMethodNetworkTokenCryptogramRequest = {
    * The ID of the network token
    */
   networkTokenId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -106,12 +107,14 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     network_token_id: z.string(),
+    application_name: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
     CryptogramCreate: components.CryptogramCreate$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "network_token_id": "networkTokenId",
+      "application_name": "applicationName",
       "CryptogramCreate": "cryptogramCreate",
     });
   });
@@ -120,6 +123,7 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$inboundSchema:
 export type CreatePaymentMethodNetworkTokenCryptogramRequest$Outbound = {
   payment_method_id: string;
   network_token_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   CryptogramCreate: components.CryptogramCreate$Outbound;
 };
@@ -133,12 +137,14 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     networkTokenId: z.string(),
+    applicationName: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
     cryptogramCreate: components.CryptogramCreate$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       networkTokenId: "network_token_id",
+      applicationName: "application_name",
       cryptogramCreate: "CryptogramCreate",
     });
   });

@@ -126,6 +126,7 @@ async function $do(
   const path = pathToFunc("/payment-methods")();
 
   const query = encodeFormQuery({
+    "application_name": payload?.application_name,
     "buyer_external_identifier": payload?.buyer_external_identifier,
     "buyer_id": payload?.buyer_id,
     "cursor": payload?.cursor,

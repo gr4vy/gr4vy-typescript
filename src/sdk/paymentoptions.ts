@@ -16,12 +16,14 @@ export class PaymentOptions extends ClientSDK {
    */
   async list(
     paymentOptionRequest: components.PaymentOptionRequest,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorPaymentOption> {
     return unwrapAsync(paymentOptionsList(
       this,
       paymentOptionRequest,
+      applicationName,
       merchantAccountId,
       options,
     ));

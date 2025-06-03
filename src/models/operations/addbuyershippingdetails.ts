@@ -18,6 +18,7 @@ export type AddBuyerShippingDetailsRequest = {
    * The ID of the buyer to add shipping details to.
    */
   buyerId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -88,11 +89,13 @@ export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   buyer_id: z.string(),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   ShippingDetailsCreate: components.ShippingDetailsCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "buyer_id": "buyerId",
+    "application_name": "applicationName",
     "ShippingDetailsCreate": "shippingDetailsCreate",
   });
 });
@@ -100,6 +103,7 @@ export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type AddBuyerShippingDetailsRequest$Outbound = {
   buyer_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   ShippingDetailsCreate: components.ShippingDetailsCreate$Outbound;
 };
@@ -111,11 +115,13 @@ export const AddBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   AddBuyerShippingDetailsRequest
 > = z.object({
   buyerId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   shippingDetailsCreate: components.ShippingDetailsCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     buyerId: "buyer_id",
+    applicationName: "application_name",
     shippingDetailsCreate: "ShippingDetailsCreate",
   });
 });

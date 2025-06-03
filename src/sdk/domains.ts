@@ -18,6 +18,7 @@ export class Domains extends ClientSDK {
   async create(
     digitalWalletDomain: components.DigitalWalletDomain,
     digitalWalletId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
@@ -25,6 +26,7 @@ export class Domains extends ClientSDK {
       this,
       digitalWalletDomain,
       digitalWalletId,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -39,6 +41,7 @@ export class Domains extends ClientSDK {
   async delete(
     digitalWalletDomain: components.DigitalWalletDomain,
     digitalWalletId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
@@ -46,6 +49,7 @@ export class Domains extends ClientSDK {
       this,
       digitalWalletDomain,
       digitalWalletId,
+      applicationName,
       merchantAccountId,
       options,
     ));

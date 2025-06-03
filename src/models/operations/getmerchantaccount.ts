@@ -13,6 +13,7 @@ export type GetMerchantAccountRequest = {
    * The ID of the merchant account
    */
   merchantAccountId: string;
+  applicationName?: string | undefined;
 };
 
 /** @internal */
@@ -22,15 +23,18 @@ export const GetMerchantAccountRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   merchant_account_id: z.string(),
+  application_name: z.string().default("core-api"),
 }).transform((v) => {
   return remap$(v, {
     "merchant_account_id": "merchantAccountId",
+    "application_name": "applicationName",
   });
 });
 
 /** @internal */
 export type GetMerchantAccountRequest$Outbound = {
   merchant_account_id: string;
+  application_name: string;
 };
 
 /** @internal */
@@ -40,9 +44,11 @@ export const GetMerchantAccountRequest$outboundSchema: z.ZodType<
   GetMerchantAccountRequest
 > = z.object({
   merchantAccountId: z.string(),
+  applicationName: z.string().default("core-api"),
 }).transform((v) => {
   return remap$(v, {
     merchantAccountId: "merchant_account_id",
+    applicationName: "application_name",
   });
 });
 

@@ -35,6 +35,7 @@ export function paymentMethodsPaymentServiceTokensList(
   client: Gr4vyCore,
   paymentMethodId: string,
   paymentServiceId?: string | null | undefined,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -65,6 +66,7 @@ export function paymentMethodsPaymentServiceTokensList(
     client,
     paymentMethodId,
     paymentServiceId,
+    applicationName,
     merchantAccountId,
     options,
   ));
@@ -74,6 +76,7 @@ async function $do(
   client: Gr4vyCore,
   paymentMethodId: string,
   paymentServiceId?: string | null | undefined,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -106,6 +109,7 @@ async function $do(
   const input: operations.ListPaymentMethodPaymentServiceTokensRequest = {
     paymentMethodId: paymentMethodId,
     paymentServiceId: paymentServiceId,
+    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -135,6 +139,7 @@ async function $do(
   )(pathParams);
 
   const query = encodeFormQuery({
+    "application_name": payload.application_name,
     "payment_service_id": payload.payment_service_id,
   });
 

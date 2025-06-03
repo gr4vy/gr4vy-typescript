@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   buyerUpdate: components.BuyerUpdate$inboundSchema,
   buyerId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -24,6 +25,7 @@ Updates a buyer record.`,
       client,
       args.buyerUpdate,
       args.buyerId,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

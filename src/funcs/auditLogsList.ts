@@ -125,6 +125,7 @@ async function $do(
 
   const query = encodeFormQuery({
     "action": payload?.action,
+    "application_name": payload?.application_name,
     "cursor": payload?.cursor,
     "limit": payload?.limit,
     "resource_type": payload?.resource_type,

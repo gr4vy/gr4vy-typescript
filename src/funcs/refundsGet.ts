@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -34,6 +34,7 @@ import { Result } from "../types/fp.js";
 export function refundsGet(
   client: Gr4vyCore,
   refundId: string,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -63,6 +64,7 @@ export function refundsGet(
   return new APIPromise($do(
     client,
     refundId,
+    applicationName,
     merchantAccountId,
     options,
   ));
@@ -71,6 +73,7 @@ export function refundsGet(
 async function $do(
   client: Gr4vyCore,
   refundId: string,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -102,6 +105,7 @@ async function $do(
 > {
   const input: operations.GetRefundRequest = {
     refundId: refundId,
+    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -124,6 +128,10 @@ async function $do(
   };
 
   const path = pathToFunc("/refunds/{refund_id}")(pathParams);
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -169,6 +177,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

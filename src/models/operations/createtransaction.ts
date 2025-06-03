@@ -14,6 +14,7 @@ export type CreateTransactionGlobals = {
 };
 
 export type CreateTransactionRequest = {
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -85,11 +86,13 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   "idempotency-key": z.nullable(z.string()).optional(),
   TransactionCreate: components.TransactionCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    "application_name": "applicationName",
     "idempotency-key": "idempotencyKey",
     "TransactionCreate": "transactionCreate",
   });
@@ -97,6 +100,7 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateTransactionRequest$Outbound = {
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   "idempotency-key"?: string | null | undefined;
   TransactionCreate: components.TransactionCreate$Outbound;
@@ -108,11 +112,13 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateTransactionRequest
 > = z.object({
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   idempotencyKey: z.nullable(z.string()).optional(),
   transactionCreate: components.TransactionCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    applicationName: "application_name",
     idempotencyKey: "idempotency-key",
     transactionCreate: "TransactionCreate",
   });

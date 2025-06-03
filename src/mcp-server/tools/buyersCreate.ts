@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   buyerCreate: components.BuyerCreate$inboundSchema,
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,6 +23,7 @@ Create a new buyer record.`,
     const [result, apiCall] = await buyersCreate(
       client,
       args.buyerCreate,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

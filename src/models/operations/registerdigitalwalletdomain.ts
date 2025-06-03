@@ -18,6 +18,7 @@ export type RegisterDigitalWalletDomainRequest = {
    * The ID of the digital wallet to remove a domain for.
    */
   digitalWalletId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -90,11 +91,13 @@ export const RegisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   digital_wallet_id: z.string(),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   DigitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "digital_wallet_id": "digitalWalletId",
+    "application_name": "applicationName",
     "DigitalWalletDomain": "digitalWalletDomain",
   });
 });
@@ -102,6 +105,7 @@ export const RegisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type RegisterDigitalWalletDomainRequest$Outbound = {
   digital_wallet_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   DigitalWalletDomain: components.DigitalWalletDomain$Outbound;
 };
@@ -113,11 +117,13 @@ export const RegisterDigitalWalletDomainRequest$outboundSchema: z.ZodType<
   RegisterDigitalWalletDomainRequest
 > = z.object({
   digitalWalletId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   digitalWalletDomain: components.DigitalWalletDomain$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     digitalWalletId: "digital_wallet_id",
+    applicationName: "application_name",
     digitalWalletDomain: "DigitalWalletDomain",
   });
 });

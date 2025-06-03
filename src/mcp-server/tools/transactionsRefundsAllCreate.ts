@@ -12,6 +12,7 @@ const args = {
   transactionRefundAllCreate: z.nullable(
     components.TransactionRefundAllCreate$inboundSchema,
   ).optional(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -26,6 +27,7 @@ Create a refund for all instruments on a transaction.`,
       client,
       args.transactionId,
       args.transactionRefundAllCreate,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   paymentOptionRequest: components.PaymentOptionRequest$inboundSchema,
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,6 +23,7 @@ List the payment options available at checkout. filtering by country, currency, 
     const [result, apiCall] = await paymentOptionsList(
       client,
       args.paymentOptionRequest,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

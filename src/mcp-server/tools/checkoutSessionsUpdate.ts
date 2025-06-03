@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   checkoutSessionCreate: components.CheckoutSessionCreate$inboundSchema,
   sessionId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -24,6 +25,7 @@ Update the information stored on a checkout session.`,
       client,
       args.checkoutSessionCreate,
       args.sessionId,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

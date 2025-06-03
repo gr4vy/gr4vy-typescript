@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   networkTokenCreate: components.NetworkTokenCreate$inboundSchema,
   paymentMethodId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -26,6 +27,7 @@ Provision a network token for a payment method.`,
       client,
       args.networkTokenCreate,
       args.paymentMethodId,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

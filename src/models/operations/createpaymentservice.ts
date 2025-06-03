@@ -18,6 +18,7 @@ export type CreatePaymentServiceRequest = {
    * the ID of the payment service
    */
   paymentServiceId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -88,11 +89,13 @@ export const CreatePaymentServiceRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   payment_service_id: z.string(),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   PaymentServiceUpdate: components.PaymentServiceUpdate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "payment_service_id": "paymentServiceId",
+    "application_name": "applicationName",
     "PaymentServiceUpdate": "paymentServiceUpdate",
   });
 });
@@ -100,6 +103,7 @@ export const CreatePaymentServiceRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreatePaymentServiceRequest$Outbound = {
   payment_service_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   PaymentServiceUpdate: components.PaymentServiceUpdate$Outbound;
 };
@@ -111,11 +115,13 @@ export const CreatePaymentServiceRequest$outboundSchema: z.ZodType<
   CreatePaymentServiceRequest
 > = z.object({
   paymentServiceId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   paymentServiceUpdate: components.PaymentServiceUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     paymentServiceId: "payment_service_id",
+    applicationName: "application_name",
     paymentServiceUpdate: "PaymentServiceUpdate",
   });
 });

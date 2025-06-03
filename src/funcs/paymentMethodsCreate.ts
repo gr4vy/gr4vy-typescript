@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -34,6 +34,7 @@ import { Result } from "../types/fp.js";
 export function paymentMethodsCreate(
   client: Gr4vyCore,
   requestBody: operations.CreatePaymentMethodBody,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -63,6 +64,7 @@ export function paymentMethodsCreate(
   return new APIPromise($do(
     client,
     requestBody,
+    applicationName,
     merchantAccountId,
     options,
   ));
@@ -71,6 +73,7 @@ export function paymentMethodsCreate(
 async function $do(
   client: Gr4vyCore,
   requestBody: operations.CreatePaymentMethodBody,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -102,6 +105,7 @@ async function $do(
 > {
   const input: operations.CreatePaymentMethodRequest = {
     requestBody: requestBody,
+    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -118,6 +122,10 @@ async function $do(
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const path = pathToFunc("/payment-methods")();
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -154,6 +162,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

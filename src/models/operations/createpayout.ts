@@ -14,6 +14,7 @@ export type CreatePayoutGlobals = {
 };
 
 export type CreatePayoutRequest = {
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -81,16 +82,19 @@ export const CreatePayoutRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   PayoutCreate: components.PayoutCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    "application_name": "applicationName",
     "PayoutCreate": "payoutCreate",
   });
 });
 
 /** @internal */
 export type CreatePayoutRequest$Outbound = {
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   PayoutCreate: components.PayoutCreate$Outbound;
 };
@@ -101,10 +105,12 @@ export const CreatePayoutRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreatePayoutRequest
 > = z.object({
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   payoutCreate: components.PayoutCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    applicationName: "application_name",
     payoutCreate: "PayoutCreate",
   });
 });

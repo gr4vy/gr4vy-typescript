@@ -23,6 +23,7 @@ export class MerchantAccounts extends ClientSDK {
     cursor?: string | null | undefined,
     limit?: number | undefined,
     search?: string | null | undefined,
+    applicationName?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<operations.ListMerchantAccountsResponse, { cursor: string }>
@@ -32,6 +33,7 @@ export class MerchantAccounts extends ClientSDK {
       cursor,
       limit,
       search,
+      applicationName,
       options,
     ));
   }
@@ -43,12 +45,14 @@ export class MerchantAccounts extends ClientSDK {
    * Create a new merchant account in an instance.
    */
   async create(
-    request: components.MerchantAccountCreate,
+    merchantAccountCreate: components.MerchantAccountCreate,
+    applicationName?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsCreate(
       this,
-      request,
+      merchantAccountCreate,
+      applicationName,
       options,
     ));
   }
@@ -61,11 +65,13 @@ export class MerchantAccounts extends ClientSDK {
    */
   async get(
     merchantAccountId: string,
+    applicationName?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsGet(
       this,
       merchantAccountId,
+      applicationName,
       options,
     ));
   }
@@ -79,12 +85,14 @@ export class MerchantAccounts extends ClientSDK {
   async update(
     merchantAccountUpdate: components.MerchantAccountUpdate,
     merchantAccountId: string,
+    applicationName?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsUpdate(
       this,
       merchantAccountUpdate,
       merchantAccountId,
+      applicationName,
       options,
     ));
   }

@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   accountUpdaterJobCreate: components.AccountUpdaterJobCreate$inboundSchema,
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,6 +23,7 @@ Schedule one or more stored cards for an account update.`,
     const [result, apiCall] = await accountUpdaterJobsCreate(
       client,
       args.accountUpdaterJobCreate,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

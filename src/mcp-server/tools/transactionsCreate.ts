@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   transactionCreate: components.TransactionCreate$inboundSchema,
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   idempotencyKey: z.nullable(z.string()).optional(),
 };
@@ -23,6 +24,7 @@ Create a transaction.`,
     const [result, apiCall] = await transactionsCreate(
       client,
       args.transactionCreate,
+      args.applicationName,
       args.merchantAccountId,
       args.idempotencyKey,
       { fetchOptions: { signal: ctx.signal } },

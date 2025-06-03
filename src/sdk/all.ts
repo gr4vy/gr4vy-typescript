@@ -20,13 +20,15 @@ export class All extends ClientSDK {
       | components.TransactionRefundAllCreate
       | null
       | undefined,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorRefund> {
+  ): Promise<components.CollectionRefund> {
     return unwrapAsync(transactionsRefundsAllCreate(
       this,
       transactionId,
       transactionRefundAllCreate,
+      applicationName,
       merchantAccountId,
       options,
     ));

@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -35,6 +35,7 @@ import { Result } from "../types/fp.js";
 export function paymentServicesVerify(
   client: Gr4vyCore,
   verifyCredentials: components.VerifyCredentials,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -64,6 +65,7 @@ export function paymentServicesVerify(
   return new APIPromise($do(
     client,
     verifyCredentials,
+    applicationName,
     merchantAccountId,
     options,
   ));
@@ -72,6 +74,7 @@ export function paymentServicesVerify(
 async function $do(
   client: Gr4vyCore,
   verifyCredentials: components.VerifyCredentials,
+  applicationName?: string | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -103,6 +106,7 @@ async function $do(
 > {
   const input: operations.VerifyPaymentServiceCredentialsRequest = {
     verifyCredentials: verifyCredentials,
+    applicationName: applicationName,
     merchantAccountId: merchantAccountId,
   };
 
@@ -121,6 +125,10 @@ async function $do(
   const body = encodeJSON("body", payload.VerifyCredentials, { explode: true });
 
   const path = pathToFunc("/payment-services/verify")();
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -157,6 +165,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

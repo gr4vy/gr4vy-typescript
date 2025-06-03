@@ -18,6 +18,7 @@ export type UpdateCheckoutSessionRequest = {
    * The ID of the checkout session.
    */
   sessionId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -88,11 +89,13 @@ export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   session_id: z.string(),
+  application_name: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   CheckoutSessionCreate: components.CheckoutSessionCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "session_id": "sessionId",
+    "application_name": "applicationName",
     "CheckoutSessionCreate": "checkoutSessionCreate",
   });
 });
@@ -100,6 +103,7 @@ export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateCheckoutSessionRequest$Outbound = {
   session_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
   CheckoutSessionCreate: components.CheckoutSessionCreate$Outbound;
 };
@@ -111,11 +115,13 @@ export const UpdateCheckoutSessionRequest$outboundSchema: z.ZodType<
   UpdateCheckoutSessionRequest
 > = z.object({
   sessionId: z.string(),
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
   checkoutSessionCreate: components.CheckoutSessionCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     sessionId: "session_id",
+    applicationName: "application_name",
     checkoutSessionCreate: "CheckoutSessionCreate",
   });
 });

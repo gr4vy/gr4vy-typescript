@@ -7,6 +7,7 @@ import { digitalWalletsList } from "../../funcs/digitalWalletsList.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -19,6 +20,7 @@ List configured digital wallets.`,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await digitalWalletsList(
       client,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

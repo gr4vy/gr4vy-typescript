@@ -32,12 +32,14 @@ export class DigitalWallets extends ClientSDK {
    */
   async create(
     digitalWalletCreate: components.DigitalWalletCreate,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsCreate(
       this,
       digitalWalletCreate,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -50,11 +52,13 @@ export class DigitalWallets extends ClientSDK {
    * List configured digital wallets.
    */
   async list(
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CollectionNoCursorDigitalWallet> {
     return unwrapAsync(digitalWalletsList(
       this,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -68,12 +72,14 @@ export class DigitalWallets extends ClientSDK {
    */
   async get(
     digitalWalletId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
     return unwrapAsync(digitalWalletsGet(
       this,
       digitalWalletId,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -87,12 +93,14 @@ export class DigitalWallets extends ClientSDK {
    */
   async delete(
     digitalWalletId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(digitalWalletsDelete(
       this,
       digitalWalletId,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -107,6 +115,7 @@ export class DigitalWallets extends ClientSDK {
   async update(
     digitalWalletUpdate: components.DigitalWalletUpdate,
     digitalWalletId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.DigitalWallet> {
@@ -114,6 +123,7 @@ export class DigitalWallets extends ClientSDK {
       this,
       digitalWalletUpdate,
       digitalWalletId,
+      applicationName,
       merchantAccountId,
       options,
     ));

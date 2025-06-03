@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   digitalWalletCreate: components.DigitalWalletCreate$inboundSchema,
+  applicationName: z.string().default("core-api"),
   merchantAccountId: z.nullable(z.string()).optional(),
 };
 
@@ -22,6 +23,7 @@ Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.`,
     const [result, apiCall] = await digitalWalletsCreate(
       client,
       args.digitalWalletCreate,
+      args.applicationName,
       args.merchantAccountId,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

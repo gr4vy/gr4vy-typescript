@@ -21,6 +21,7 @@ export type DeletePaymentMethodPaymentServiceTokenRequest = {
    * The ID of the payment service token
    */
   paymentServiceTokenId: string;
+  applicationName?: string | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -103,11 +104,13 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$inboundSchema:
   > = z.object({
     payment_method_id: z.string(),
     payment_service_token_id: z.string(),
+    application_name: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "payment_method_id": "paymentMethodId",
       "payment_service_token_id": "paymentServiceTokenId",
+      "application_name": "applicationName",
     });
   });
 
@@ -115,6 +118,7 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$inboundSchema:
 export type DeletePaymentMethodPaymentServiceTokenRequest$Outbound = {
   payment_method_id: string;
   payment_service_token_id: string;
+  application_name: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -127,11 +131,13 @@ export const DeletePaymentMethodPaymentServiceTokenRequest$outboundSchema:
   > = z.object({
     paymentMethodId: z.string(),
     paymentServiceTokenId: z.string(),
+    applicationName: z.string().default("core-api"),
     merchantAccountId: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       paymentMethodId: "payment_method_id",
       paymentServiceTokenId: "payment_service_token_id",
+      applicationName: "application_name",
     });
   });
 

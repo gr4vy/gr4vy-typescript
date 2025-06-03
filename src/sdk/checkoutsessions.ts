@@ -19,12 +19,14 @@ export class CheckoutSessions extends ClientSDK {
    */
   async create(
     checkoutSessionCreate?: components.CheckoutSessionCreate | undefined,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CheckoutSession> {
     return unwrapAsync(checkoutSessionsCreate(
       this,
       checkoutSessionCreate,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -39,6 +41,7 @@ export class CheckoutSessions extends ClientSDK {
   async update(
     checkoutSessionCreate: components.CheckoutSessionCreate,
     sessionId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CheckoutSession> {
@@ -46,6 +49,7 @@ export class CheckoutSessions extends ClientSDK {
       this,
       checkoutSessionCreate,
       sessionId,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -59,12 +63,14 @@ export class CheckoutSessions extends ClientSDK {
    */
   async get(
     sessionId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.CheckoutSession> {
     return unwrapAsync(checkoutSessionsGet(
       this,
       sessionId,
+      applicationName,
       merchantAccountId,
       options,
     ));
@@ -78,12 +84,14 @@ export class CheckoutSessions extends ClientSDK {
    */
   async delete(
     sessionId: string,
+    applicationName?: string | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(checkoutSessionsDelete(
       this,
       sessionId,
+      applicationName,
       merchantAccountId,
       options,
     ));

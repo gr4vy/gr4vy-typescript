@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -33,10 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function paymentMethodsNetworkTokensCryptogramCreate(
   client: Gr4vyCore,
-  cryptogramCreate: components.CryptogramCreate,
-  paymentMethodId: string,
-  networkTokenId: string,
-  merchantAccountId?: string | null | undefined,
+  request: operations.CreatePaymentMethodNetworkTokenCryptogramRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,20 +61,14 @@ export function paymentMethodsNetworkTokensCryptogramCreate(
 > {
   return new APIPromise($do(
     client,
-    cryptogramCreate,
-    paymentMethodId,
-    networkTokenId,
-    merchantAccountId,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  cryptogramCreate: components.CryptogramCreate,
-  paymentMethodId: string,
-  networkTokenId: string,
-  merchantAccountId?: string | null | undefined,
+  request: operations.CreatePaymentMethodNetworkTokenCryptogramRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -106,15 +97,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.CreatePaymentMethodNetworkTokenCryptogramRequest = {
-    cryptogramCreate: cryptogramCreate,
-    paymentMethodId: paymentMethodId,
-    networkTokenId: networkTokenId,
-    merchantAccountId: merchantAccountId,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.CreatePaymentMethodNetworkTokenCryptogramRequest$outboundSchema
         .parse(value),
@@ -142,6 +126,10 @@ async function $do(
   const path = pathToFunc(
     "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/cryptogram",
   )(pathParams);
+
+  const query = encodeFormQuery({
+    "application_name": payload.application_name,
+  });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -178,6 +166,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

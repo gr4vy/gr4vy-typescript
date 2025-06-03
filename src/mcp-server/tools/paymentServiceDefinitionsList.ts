@@ -9,6 +9,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  applicationName: z.string().default("core-api"),
 };
 
 export const tool$paymentServiceDefinitionsList: ToolDefinition<typeof args> = {
@@ -22,6 +23,7 @@ List the definitions of each payment service that can be configured.`,
       client,
       args.cursor,
       args.limit,
+      args.applicationName,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

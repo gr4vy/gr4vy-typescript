@@ -33,10 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function transactionsEventsList(
   client: Gr4vyCore,
-  transactionId: string,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  merchantAccountId?: string | null | undefined,
+  request: operations.ListTransactionEventsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -64,20 +61,14 @@ export function transactionsEventsList(
 > {
   return new APIPromise($do(
     client,
-    transactionId,
-    cursor,
-    limit,
-    merchantAccountId,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  transactionId: string,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  merchantAccountId?: string | null | undefined,
+  request: operations.ListTransactionEventsRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -106,15 +97,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListTransactionEventsRequest = {
-    transactionId: transactionId,
-    cursor: cursor,
-    limit: limit,
-    merchantAccountId: merchantAccountId,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListTransactionEventsRequest$outboundSchema.parse(value),
     "Input validation failed",
@@ -135,6 +119,7 @@ async function $do(
   const path = pathToFunc("/transactions/{transaction_id}/events")(pathParams);
 
   const query = encodeFormQuery({
+    "application_name": payload.application_name,
     "cursor": payload.cursor,
     "limit": payload.limit,
   });
