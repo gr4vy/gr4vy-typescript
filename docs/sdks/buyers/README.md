@@ -21,6 +21,7 @@ List all buyers or search for a specific buyer.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -32,7 +33,6 @@ async function run() {
   const result = await gr4vy.buyers.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -52,6 +52,7 @@ import { buyersList } from "@gr4vy/sdk/funcs/buyersList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -61,16 +62,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("buyersList failed:", res.error);
   }
 }
 
@@ -118,6 +116,7 @@ Create a new buyer record.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -128,7 +127,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.create({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -147,6 +145,7 @@ import { buyersCreate } from "@gr4vy/sdk/funcs/buyersCreate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -156,15 +155,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersCreate(gr4vy, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -212,6 +208,7 @@ Fetches a buyer by its ID.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -222,7 +219,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.get("fe26475d-ec3e-4884-9553-f7356683f7f9");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -241,6 +237,7 @@ import { buyersGet } from "@gr4vy/sdk/funcs/buyersGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -250,15 +247,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersGet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -306,6 +300,7 @@ Updates a buyer record.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -316,7 +311,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.update({}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -335,6 +329,7 @@ import { buyersUpdate } from "@gr4vy/sdk/funcs/buyersUpdate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -344,15 +339,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersUpdate(gr4vy, {}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -401,6 +393,7 @@ Permanently removes a buyer record.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -429,6 +422,7 @@ import { buyersDelete } from "@gr4vy/sdk/funcs/buyersDelete.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -438,14 +432,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("buyersDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

@@ -9,12 +9,12 @@ import { BrowserInfo } from "@gr4vy/sdk/models/components";
 
 let value: BrowserInfo = {
   javascriptEnabled: false,
-  javaEnabled: false,
+  javaEnabled: true,
   language: "<value>",
-  colorDepth: 600113,
-  screenHeight: 468675,
-  screenWidth: 884131,
-  timeZoneOffset: 838116,
+  colorDepth: 884131,
+  screenHeight: 838116,
+  screenWidth: 115815,
+  timeZoneOffset: 828368,
   userAgent:
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
   userDevice: "desktop",

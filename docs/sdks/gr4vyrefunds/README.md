@@ -19,6 +19,7 @@ List refunds for a transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -29,7 +30,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.refunds.list("7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,6 +48,7 @@ import { transactionsRefundsList } from "@gr4vy/sdk/funcs/transactionsRefundsLis
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -57,15 +58,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsRefundsList(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsRefundsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -83,7 +81,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionRefund](../../models/components/collectionrefund.md)\>**
+**Promise\<[components.Refunds](../../models/components/refunds.md)\>**
 
 ### Errors
 
@@ -113,6 +111,7 @@ Create a refund for a transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -123,7 +122,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.refunds.create({}, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -142,6 +140,7 @@ import { transactionsRefundsCreate } from "@gr4vy/sdk/funcs/transactionsRefundsC
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -151,15 +150,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsRefundsCreate(gr4vy, {}, "7099948d-7286-47e4-aad8-b68f7eb44591");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsRefundsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -208,6 +204,7 @@ Fetch refund for a transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -218,7 +215,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.refunds.get("7099948d-7286-47e4-aad8-b68f7eb44591", "6a1d4e46-14ed-4fe1-a45f-eff4e025d211");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -237,6 +233,7 @@ import { transactionsRefundsGet } from "@gr4vy/sdk/funcs/transactionsRefundsGet.
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -246,15 +243,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsRefundsGet(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591", "6a1d4e46-14ed-4fe1-a45f-eff4e025d211");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsRefundsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

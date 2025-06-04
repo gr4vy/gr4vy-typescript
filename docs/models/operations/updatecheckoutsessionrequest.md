@@ -7,7 +7,6 @@ import { UpdateCheckoutSessionRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateCheckoutSessionRequest = {
   sessionId: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
-  checkoutSessionCreate: {},
 };
 ```
 

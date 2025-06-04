@@ -9,7 +9,7 @@ let value: Refund = {
   id: "6a1d4e46-14ed-4fe1-a45f-eff4e025d211",
   transactionId: "7099948d-7286-47e4-aad8-b68f7eb44591",
   status: "voided",
-  currency: "GBP",
+  currency: "EUR",
   amount: 1299,
   targetType: "payment-method",
   reconciliationId: "7jZXl4gBUNl0CnaLEnfXbt",

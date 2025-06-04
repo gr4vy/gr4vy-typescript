@@ -21,6 +21,7 @@ Associate shipping details to a buyer.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -31,7 +32,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.create({}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -50,6 +50,7 @@ import { buyersShippingDetailsCreate } from "@gr4vy/sdk/funcs/buyersShippingDeta
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -59,15 +60,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersShippingDetailsCreate(gr4vy, {}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersShippingDetailsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -116,6 +114,7 @@ List all the shipping details associated to a specific buyer.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -126,7 +125,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.list("fe26475d-ec3e-4884-9553-f7356683f7f9");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -145,6 +143,7 @@ import { buyersShippingDetailsList } from "@gr4vy/sdk/funcs/buyersShippingDetail
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -154,15 +153,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersShippingDetailsList(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersShippingDetailsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -180,7 +176,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionNoCursorShippingDetails](../../models/components/collectionnocursorshippingdetails.md)\>**
+**Promise\<[components.ShippingDetailsList](../../models/components/shippingdetailslist.md)\>**
 
 ### Errors
 
@@ -210,6 +206,7 @@ Get a buyer's shipping details.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -220,7 +217,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.get("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -239,6 +235,7 @@ import { buyersShippingDetailsGet } from "@gr4vy/sdk/funcs/buyersShippingDetails
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -248,15 +245,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersShippingDetailsGet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersShippingDetailsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -305,6 +299,7 @@ Update the shipping details associated to a specific buyer.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -315,7 +310,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.update({}, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -334,6 +328,7 @@ import { buyersShippingDetailsUpdate } from "@gr4vy/sdk/funcs/buyersShippingDeta
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -343,15 +338,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersShippingDetailsUpdate(gr4vy, {}, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersShippingDetailsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -401,6 +393,7 @@ Delete the shipping details associated to a specific buyer.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -411,7 +404,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -430,6 +422,7 @@ import { buyersShippingDetailsDelete } from "@gr4vy/sdk/funcs/buyersShippingDeta
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -439,15 +432,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersShippingDetailsDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersShippingDetailsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

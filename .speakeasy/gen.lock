@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 61316b2167c37c8d046202e604959b9e
+  docChecksum: cd3d54939fe329c37386749e112ab91b
   docVersion: 1.0.0
-  speakeasyVersion: 1.555.0
-  generationVersion: 2.618.0
-  releaseVersion: 1.0.0-beta.17
-  configChecksum: 09b5c53edd2ac3cf3c64e7092ca60815
+  speakeasyVersion: 1.555.2
+  generationVersion: 2.620.2
+  releaseVersion: 1.0.0-beta.18
+  configChecksum: 629e8cd261061781e9c8c680717c6cdf
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -25,7 +25,6 @@ features:
     globalServerURLs: 2.82.5
     globals: 2.82.2
     groups: 2.81.2
-    mcpServer: 0.9.2
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
@@ -56,6 +55,7 @@ generatedFiles:
   - docs/models/components/applepaysessionrequest.md
   - docs/models/components/approvaltarget.md
   - docs/models/components/auditlogaction.md
+  - docs/models/components/auditlogentries.md
   - docs/models/components/auditlogentry.md
   - docs/models/components/auditlogentryresource.md
   - docs/models/components/auditlogentryuser.md
@@ -65,10 +65,12 @@ generatedFiles:
   - docs/models/components/browserinfo.md
   - docs/models/components/buyer.md
   - docs/models/components/buyercreate.md
+  - docs/models/components/buyers.md
   - docs/models/components/buyerupdate.md
   - docs/models/components/cardpaymentmethodcreate.md
   - docs/models/components/cardscheme.md
   - docs/models/components/cardschemedefinition.md
+  - docs/models/components/cardschemedefinitions.md
   - docs/models/components/cardsource.md
   - docs/models/components/cardtype.md
   - docs/models/components/cardwithurlpaymentmethodcreate.md
@@ -84,25 +86,7 @@ generatedFiles:
   - docs/models/components/clicktopaypaymentmethodcreate.md
   - docs/models/components/clicktopaysession.md
   - docs/models/components/clicktopaysessionrequest.md
-  - docs/models/components/collectionauditlogentry.md
-  - docs/models/components/collectionbuyer.md
-  - docs/models/components/collectiongiftcard.md
-  - docs/models/components/collectionmerchantaccount.md
-  - docs/models/components/collectionnocursorcardschemedefinition.md
-  - docs/models/components/collectionnocursordigitalwallet.md
-  - docs/models/components/collectionnocursorgiftcardsummary.md
-  - docs/models/components/collectionnocursornetworktoken.md
-  - docs/models/components/collectionnocursorpaymentmethodsummary.md
-  - docs/models/components/collectionnocursorpaymentoption.md
-  - docs/models/components/collectionnocursorpaymentservicetoken.md
-  - docs/models/components/collectionnocursorshippingdetails.md
-  - docs/models/components/collectionpaymentmethod.md
-  - docs/models/components/collectionpaymentservice.md
-  - docs/models/components/collectionpaymentservicedefinition.md
-  - docs/models/components/collectionpayoutsummary.md
-  - docs/models/components/collectionrefund.md
-  - docs/models/components/collectiontransactionevent.md
-  - docs/models/components/collectiontransactionsummary.md
+  - docs/models/components/collectionpaymentlink.md
   - docs/models/components/connectionoptions.md
   - docs/models/components/context.md
   - docs/models/components/createsession.md
@@ -113,10 +97,12 @@ generatedFiles:
   - docs/models/components/cvvresponsecode.md
   - docs/models/components/definitionfield.md
   - docs/models/components/definitionfieldformat.md
+  - docs/models/components/detailedsettlementreportspec.md
   - docs/models/components/digitalwallet.md
   - docs/models/components/digitalwalletcreate.md
   - docs/models/components/digitalwalletdomain.md
   - docs/models/components/digitalwalletprovider.md
+  - docs/models/components/digitalwallets.md
   - docs/models/components/digitalwalletupdate.md
   - docs/models/components/errordetail.md
   - docs/models/components/errorlocation.md
@@ -132,6 +118,7 @@ generatedFiles:
   - docs/models/components/giftcardservice.md
   - docs/models/components/giftcardserviceprovider.md
   - docs/models/components/giftcardstoredrequest.md
+  - docs/models/components/giftcardsummaries.md
   - docs/models/components/giftcardsummary.md
   - docs/models/components/giftcardtokentransactioncreate.md
   - docs/models/components/giftcardtransactioncreate.md
@@ -146,8 +133,10 @@ generatedFiles:
   - docs/models/components/instrumenttype.md
   - docs/models/components/items.md
   - docs/models/components/loc.md
+  - docs/models/components/locale.md
   - docs/models/components/merchantaccount.md
   - docs/models/components/merchantaccountcreate.md
+  - docs/models/components/merchantaccounts.md
   - docs/models/components/merchantaccountupdate.md
   - docs/models/components/merchantprofilescheme.md
   - docs/models/components/merchantprofileschemesummary.md
@@ -157,24 +146,34 @@ generatedFiles:
   - docs/models/components/networktoken.md
   - docs/models/components/networktokencreate.md
   - docs/models/components/networktokenpaymentmethodcreate.md
+  - docs/models/components/networktokens.md
   - docs/models/components/networktokenstatus.md
+  - docs/models/components/paymentlink.md
+  - docs/models/components/paymentlinkcreate.md
+  - docs/models/components/paymentlinkstatus.md
   - docs/models/components/paymentmethod.md
   - docs/models/components/paymentmethodcard.md
   - docs/models/components/paymentmethoddetailscard.md
+  - docs/models/components/paymentmethods.md
   - docs/models/components/paymentmethodstatus.md
   - docs/models/components/paymentmethodstoredcard.md
+  - docs/models/components/paymentmethodsummaries.md
   - docs/models/components/paymentmethodsummary.md
   - docs/models/components/paymentoption.md
   - docs/models/components/paymentoptioncontext.md
   - docs/models/components/paymentoptioncontextapprovalui.md
   - docs/models/components/paymentoptionrequest.md
+  - docs/models/components/paymentoptions.md
   - docs/models/components/paymentservice.md
   - docs/models/components/paymentserviceconfiguration.md
   - docs/models/components/paymentservicecreate.md
   - docs/models/components/paymentservicedefinition.md
+  - docs/models/components/paymentservicedefinitions.md
+  - docs/models/components/paymentservices.md
   - docs/models/components/paymentservicestatus.md
   - docs/models/components/paymentservicetoken.md
   - docs/models/components/paymentservicetokencreate.md
+  - docs/models/components/paymentservicetokens.md
   - docs/models/components/paymentserviceupdate.md
   - docs/models/components/payoutcategory.md
   - docs/models/components/payoutcreate.md
@@ -183,14 +182,31 @@ generatedFiles:
   - docs/models/components/payoutmerchantsummary.md
   - docs/models/components/payoutpaymentservice.md
   - docs/models/components/payoutstatus.md
+  - docs/models/components/payoutsummaries.md
   - docs/models/components/payoutsummary.md
   - docs/models/components/producttype.md
   - docs/models/components/recipient.md
   - docs/models/components/redirectpaymentmethodcreate.md
   - docs/models/components/redirectpaymentmethodcreatemethod.md
   - docs/models/components/refund.md
+  - docs/models/components/refunds.md
   - docs/models/components/refundstatus.md
   - docs/models/components/refundtargettype.md
+  - docs/models/components/report.md
+  - docs/models/components/reportcreate.md
+  - docs/models/components/reportcreatortype.md
+  - docs/models/components/reportexecution.md
+  - docs/models/components/reportexecutioncontext.md
+  - docs/models/components/reportexecutions.md
+  - docs/models/components/reportexecutionstatus.md
+  - docs/models/components/reportexecutionsummary.md
+  - docs/models/components/reportexecutionurl.md
+  - docs/models/components/reports.md
+  - docs/models/components/reportschedule.md
+  - docs/models/components/reportspec.md
+  - docs/models/components/reportspecmodel.md
+  - docs/models/components/reportsummary.md
+  - docs/models/components/reportupdate.md
   - docs/models/components/requiredcheckoutfields.md
   - docs/models/components/requiredfields.md
   - docs/models/components/responsedata.md
@@ -198,7 +214,9 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/components/shippingdetails.md
   - docs/models/components/shippingdetailscreate.md
+  - docs/models/components/shippingdetailslist.md
   - docs/models/components/shippingdetailsupdate.md
+  - docs/models/components/spec.md
   - docs/models/components/statementdescriptor.md
   - docs/models/components/taxid.md
   - docs/models/components/taxidkind.md
@@ -216,8 +234,10 @@ generatedFiles:
   - docs/models/components/transactionbuyer.md
   - docs/models/components/transactioncapture.md
   - docs/models/components/transactioncreate.md
+  - docs/models/components/transactioncreategiftcards.md
   - docs/models/components/transactioncreatepaymentmethod.md
   - docs/models/components/transactionevent.md
+  - docs/models/components/transactionevents.md
   - docs/models/components/transactiongiftcard.md
   - docs/models/components/transactionintent.md
   - docs/models/components/transactionintentoutcome.md
@@ -226,7 +246,10 @@ generatedFiles:
   - docs/models/components/transactionpaymentsource.md
   - docs/models/components/transactionrefundallcreate.md
   - docs/models/components/transactionrefundcreate.md
+  - docs/models/components/transactionretriesreportspec.md
+  - docs/models/components/transactionsreportspec.md
   - docs/models/components/transactionstatus.md
+  - docs/models/components/transactionsummaries.md
   - docs/models/components/transactionsummary.md
   - docs/models/components/transactionthreedsecuresummary.md
   - docs/models/components/two.md
@@ -252,6 +275,10 @@ generatedFiles:
   - docs/models/operations/addbuyerrequest.md
   - docs/models/operations/addbuyershippingdetailsglobals.md
   - docs/models/operations/addbuyershippingdetailsrequest.md
+  - docs/models/operations/addpaymentlinkglobals.md
+  - docs/models/operations/addpaymentlinkrequest.md
+  - docs/models/operations/addreportglobals.md
+  - docs/models/operations/addreportrequest.md
   - docs/models/operations/capturetransactionglobals.md
   - docs/models/operations/capturetransactionrequest.md
   - docs/models/operations/configuredigitalwalletglobals.md
@@ -284,6 +311,8 @@ generatedFiles:
   - docs/models/operations/createpaymentservicesessionrequest.md
   - docs/models/operations/createpayoutglobals.md
   - docs/models/operations/createpayoutrequest.md
+  - docs/models/operations/createreportexecutionurlglobals.md
+  - docs/models/operations/createreportexecutionurlrequest.md
   - docs/models/operations/createtransactionglobals.md
   - docs/models/operations/createtransactionrefundglobals.md
   - docs/models/operations/createtransactionrefundrequest.md
@@ -306,6 +335,8 @@ generatedFiles:
   - docs/models/operations/deletepaymentmethodrequest.md
   - docs/models/operations/deletepaymentserviceglobals.md
   - docs/models/operations/deletepaymentservicerequest.md
+  - docs/models/operations/expirepaymentlinkglobals.md
+  - docs/models/operations/expirepaymentlinkrequest.md
   - docs/models/operations/getbuyerglobals.md
   - docs/models/operations/getbuyerrequest.md
   - docs/models/operations/getbuyershippingdetailsglobals.md
@@ -317,6 +348,8 @@ generatedFiles:
   - docs/models/operations/getgiftcardglobals.md
   - docs/models/operations/getgiftcardrequest.md
   - docs/models/operations/getmerchantaccountrequest.md
+  - docs/models/operations/getpaymentlinkglobals.md
+  - docs/models/operations/getpaymentlinkrequest.md
   - docs/models/operations/getpaymentmethodglobals.md
   - docs/models/operations/getpaymentmethodrequest.md
   - docs/models/operations/getpaymentservicedefinitionrequest.md
@@ -326,10 +359,17 @@ generatedFiles:
   - docs/models/operations/getpayoutrequest.md
   - docs/models/operations/getrefundglobals.md
   - docs/models/operations/getrefundrequest.md
+  - docs/models/operations/getreportexecutionglobals.md
+  - docs/models/operations/getreportexecutionrequest.md
+  - docs/models/operations/getreportglobals.md
+  - docs/models/operations/getreportrequest.md
   - docs/models/operations/gettransactionglobals.md
   - docs/models/operations/gettransactionrefundglobals.md
   - docs/models/operations/gettransactionrefundrequest.md
   - docs/models/operations/gettransactionrequest.md
+  - docs/models/operations/listallreportexecutionsglobals.md
+  - docs/models/operations/listallreportexecutionsrequest.md
+  - docs/models/operations/listallreportexecutionsresponse.md
   - docs/models/operations/listauditlogsglobals.md
   - docs/models/operations/listauditlogsrequest.md
   - docs/models/operations/listauditlogsresponse.md
@@ -353,6 +393,9 @@ generatedFiles:
   - docs/models/operations/listgiftcardsresponse.md
   - docs/models/operations/listmerchantaccountsrequest.md
   - docs/models/operations/listmerchantaccountsresponse.md
+  - docs/models/operations/listpaymentlinksglobals.md
+  - docs/models/operations/listpaymentlinksrequest.md
+  - docs/models/operations/listpaymentlinksresponse.md
   - docs/models/operations/listpaymentmethodnetworktokensglobals.md
   - docs/models/operations/listpaymentmethodnetworktokensrequest.md
   - docs/models/operations/listpaymentmethodpaymentservicetokensglobals.md
@@ -370,6 +413,12 @@ generatedFiles:
   - docs/models/operations/listpayoutsglobals.md
   - docs/models/operations/listpayoutsrequest.md
   - docs/models/operations/listpayoutsresponse.md
+  - docs/models/operations/listreportexecutionsglobals.md
+  - docs/models/operations/listreportexecutionsrequest.md
+  - docs/models/operations/listreportexecutionsresponse.md
+  - docs/models/operations/listreportsglobals.md
+  - docs/models/operations/listreportsrequest.md
+  - docs/models/operations/listreportsresponse.md
   - docs/models/operations/listtransactioneventsglobals.md
   - docs/models/operations/listtransactioneventsrequest.md
   - docs/models/operations/listtransactionrefundsglobals.md
@@ -399,6 +448,8 @@ generatedFiles:
   - docs/models/operations/updatemerchantaccountrequest.md
   - docs/models/operations/updatepaymentserviceglobals.md
   - docs/models/operations/updatepaymentservicerequest.md
+  - docs/models/operations/updatereportglobals.md
+  - docs/models/operations/updatereportrequest.md
   - docs/models/operations/verifypaymentservicecredentialsglobals.md
   - docs/models/operations/verifypaymentservicecredentialsrequest.md
   - docs/models/operations/voidtransactionglobals.md
@@ -414,6 +465,7 @@ generatedFiles:
   - docs/sdks/digitalwallets/README.md
   - docs/sdks/domains/README.md
   - docs/sdks/events/README.md
+  - docs/sdks/executions/README.md
   - docs/sdks/giftcards/README.md
   - docs/sdks/gr4vy/README.md
   - docs/sdks/gr4vygiftcards/README.md
@@ -422,6 +474,7 @@ generatedFiles:
   - docs/sdks/jobs/README.md
   - docs/sdks/merchantaccounts/README.md
   - docs/sdks/networktokens/README.md
+  - docs/sdks/paymentlinks/README.md
   - docs/sdks/paymentmethods/README.md
   - docs/sdks/paymentoptions/README.md
   - docs/sdks/paymentservicedefinitions/README.md
@@ -429,6 +482,7 @@ generatedFiles:
   - docs/sdks/paymentservicetokens/README.md
   - docs/sdks/payouts/README.md
   - docs/sdks/refunds/README.md
+  - docs/sdks/reports/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/shippingdetails/README.md
   - docs/sdks/transactions/README.md
@@ -475,6 +529,10 @@ generatedFiles:
   - src/funcs/merchantAccountsGet.ts
   - src/funcs/merchantAccountsList.ts
   - src/funcs/merchantAccountsUpdate.ts
+  - src/funcs/paymentLinksCreate.ts
+  - src/funcs/paymentLinksExpire.ts
+  - src/funcs/paymentLinksGet.ts
+  - src/funcs/paymentLinksList.ts
   - src/funcs/paymentMethodsCreate.ts
   - src/funcs/paymentMethodsDelete.ts
   - src/funcs/paymentMethodsGet.ts
@@ -503,6 +561,14 @@ generatedFiles:
   - src/funcs/payoutsGet.ts
   - src/funcs/payoutsList.ts
   - src/funcs/refundsGet.ts
+  - src/funcs/reportsCreate.ts
+  - src/funcs/reportsExecutionsAll.ts
+  - src/funcs/reportsExecutionsGet.ts
+  - src/funcs/reportsExecutionsList.ts
+  - src/funcs/reportsExecutionsUrl.ts
+  - src/funcs/reportsGet.ts
+  - src/funcs/reportsList.ts
+  - src/funcs/reportsPut.ts
   - src/funcs/transactionsCapture.ts
   - src/funcs/transactionsCreate.ts
   - src/funcs/transactionsEventsList.ts
@@ -533,96 +599,6 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/mcp-server/build.mts
-  - src/mcp-server/cli.ts
-  - src/mcp-server/cli/start/command.ts
-  - src/mcp-server/cli/start/impl.ts
-  - src/mcp-server/console-logger.ts
-  - src/mcp-server/extensions.ts
-  - src/mcp-server/mcp-server.ts
-  - src/mcp-server/prompts.ts
-  - src/mcp-server/resources.ts
-  - src/mcp-server/scopes.ts
-  - src/mcp-server/server.ts
-  - src/mcp-server/shared.ts
-  - src/mcp-server/tools.ts
-  - src/mcp-server/tools/accountUpdaterJobsCreate.ts
-  - src/mcp-server/tools/auditLogsList.ts
-  - src/mcp-server/tools/buyersCreate.ts
-  - src/mcp-server/tools/buyersDelete.ts
-  - src/mcp-server/tools/buyersGet.ts
-  - src/mcp-server/tools/buyersGiftCardsList.ts
-  - src/mcp-server/tools/buyersList.ts
-  - src/mcp-server/tools/buyersPaymentMethodsList.ts
-  - src/mcp-server/tools/buyersShippingDetailsCreate.ts
-  - src/mcp-server/tools/buyersShippingDetailsDelete.ts
-  - src/mcp-server/tools/buyersShippingDetailsGet.ts
-  - src/mcp-server/tools/buyersShippingDetailsList.ts
-  - src/mcp-server/tools/buyersShippingDetailsUpdate.ts
-  - src/mcp-server/tools/buyersUpdate.ts
-  - src/mcp-server/tools/cardSchemeDefinitionsList.ts
-  - src/mcp-server/tools/checkoutSessionsCreate.ts
-  - src/mcp-server/tools/checkoutSessionsDelete.ts
-  - src/mcp-server/tools/checkoutSessionsGet.ts
-  - src/mcp-server/tools/checkoutSessionsUpdate.ts
-  - src/mcp-server/tools/digitalWalletsCreate.ts
-  - src/mcp-server/tools/digitalWalletsDelete.ts
-  - src/mcp-server/tools/digitalWalletsDomainsCreate.ts
-  - src/mcp-server/tools/digitalWalletsDomainsDelete.ts
-  - src/mcp-server/tools/digitalWalletsGet.ts
-  - src/mcp-server/tools/digitalWalletsList.ts
-  - src/mcp-server/tools/digitalWalletsSessionsApplePay.ts
-  - src/mcp-server/tools/digitalWalletsSessionsClickToPay.ts
-  - src/mcp-server/tools/digitalWalletsSessionsGooglePay.ts
-  - src/mcp-server/tools/digitalWalletsUpdate.ts
-  - src/mcp-server/tools/giftCardsBalancesList.ts
-  - src/mcp-server/tools/giftCardsCreate.ts
-  - src/mcp-server/tools/giftCardsDelete.ts
-  - src/mcp-server/tools/giftCardsGet.ts
-  - src/mcp-server/tools/giftCardsList.ts
-  - src/mcp-server/tools/merchantAccountsCreate.ts
-  - src/mcp-server/tools/merchantAccountsGet.ts
-  - src/mcp-server/tools/merchantAccountsList.ts
-  - src/mcp-server/tools/merchantAccountsUpdate.ts
-  - src/mcp-server/tools/paymentMethodsCreate.ts
-  - src/mcp-server/tools/paymentMethodsDelete.ts
-  - src/mcp-server/tools/paymentMethodsGet.ts
-  - src/mcp-server/tools/paymentMethodsList.ts
-  - src/mcp-server/tools/paymentMethodsNetworkTokensCreate.ts
-  - src/mcp-server/tools/paymentMethodsNetworkTokensCryptogramCreate.ts
-  - src/mcp-server/tools/paymentMethodsNetworkTokensDelete.ts
-  - src/mcp-server/tools/paymentMethodsNetworkTokensList.ts
-  - src/mcp-server/tools/paymentMethodsNetworkTokensResume.ts
-  - src/mcp-server/tools/paymentMethodsNetworkTokensSuspend.ts
-  - src/mcp-server/tools/paymentMethodsPaymentServiceTokensCreate.ts
-  - src/mcp-server/tools/paymentMethodsPaymentServiceTokensDelete.ts
-  - src/mcp-server/tools/paymentMethodsPaymentServiceTokensList.ts
-  - src/mcp-server/tools/paymentOptionsList.ts
-  - src/mcp-server/tools/paymentServiceDefinitionsGet.ts
-  - src/mcp-server/tools/paymentServiceDefinitionsList.ts
-  - src/mcp-server/tools/paymentServiceDefinitionsSession.ts
-  - src/mcp-server/tools/paymentServicesCreate.ts
-  - src/mcp-server/tools/paymentServicesDelete.ts
-  - src/mcp-server/tools/paymentServicesGet.ts
-  - src/mcp-server/tools/paymentServicesList.ts
-  - src/mcp-server/tools/paymentServicesSession.ts
-  - src/mcp-server/tools/paymentServicesUpdate.ts
-  - src/mcp-server/tools/paymentServicesVerify.ts
-  - src/mcp-server/tools/payoutsCreate.ts
-  - src/mcp-server/tools/payoutsGet.ts
-  - src/mcp-server/tools/payoutsList.ts
-  - src/mcp-server/tools/refundsGet.ts
-  - src/mcp-server/tools/transactionsCapture.ts
-  - src/mcp-server/tools/transactionsCreate.ts
-  - src/mcp-server/tools/transactionsEventsList.ts
-  - src/mcp-server/tools/transactionsGet.ts
-  - src/mcp-server/tools/transactionsList.ts
-  - src/mcp-server/tools/transactionsRefundsAllCreate.ts
-  - src/mcp-server/tools/transactionsRefundsCreate.ts
-  - src/mcp-server/tools/transactionsRefundsGet.ts
-  - src/mcp-server/tools/transactionsRefundsList.ts
-  - src/mcp-server/tools/transactionsSync.ts
-  - src/mcp-server/tools/transactionsVoid.ts
   - src/models/components/accountupdaterinquirysummary.ts
   - src/models/components/accountupdaterjob.ts
   - src/models/components/accountupdaterjobcreate.ts
@@ -635,6 +611,7 @@ generatedFiles:
   - src/models/components/applepaysessionrequest.ts
   - src/models/components/approvaltarget.ts
   - src/models/components/auditlogaction.ts
+  - src/models/components/auditlogentries.ts
   - src/models/components/auditlogentry.ts
   - src/models/components/auditlogentryresource.ts
   - src/models/components/auditlogentryuser.ts
@@ -644,10 +621,12 @@ generatedFiles:
   - src/models/components/browserinfo.ts
   - src/models/components/buyer.ts
   - src/models/components/buyercreate.ts
+  - src/models/components/buyers.ts
   - src/models/components/buyerupdate.ts
   - src/models/components/cardpaymentmethodcreate.ts
   - src/models/components/cardscheme.ts
   - src/models/components/cardschemedefinition.ts
+  - src/models/components/cardschemedefinitions.ts
   - src/models/components/cardtype.ts
   - src/models/components/cardwithurlpaymentmethodcreate.ts
   - src/models/components/cartitem.ts
@@ -662,25 +641,7 @@ generatedFiles:
   - src/models/components/clicktopaypaymentmethodcreate.ts
   - src/models/components/clicktopaysession.ts
   - src/models/components/clicktopaysessionrequest.ts
-  - src/models/components/collectionauditlogentry.ts
-  - src/models/components/collectionbuyer.ts
-  - src/models/components/collectiongiftcard.ts
-  - src/models/components/collectionmerchantaccount.ts
-  - src/models/components/collectionnocursorcardschemedefinition.ts
-  - src/models/components/collectionnocursordigitalwallet.ts
-  - src/models/components/collectionnocursorgiftcardsummary.ts
-  - src/models/components/collectionnocursornetworktoken.ts
-  - src/models/components/collectionnocursorpaymentmethodsummary.ts
-  - src/models/components/collectionnocursorpaymentoption.ts
-  - src/models/components/collectionnocursorpaymentservicetoken.ts
-  - src/models/components/collectionnocursorshippingdetails.ts
-  - src/models/components/collectionpaymentmethod.ts
-  - src/models/components/collectionpaymentservice.ts
-  - src/models/components/collectionpaymentservicedefinition.ts
-  - src/models/components/collectionpayoutsummary.ts
-  - src/models/components/collectionrefund.ts
-  - src/models/components/collectiontransactionevent.ts
-  - src/models/components/collectiontransactionsummary.ts
+  - src/models/components/collectionpaymentlink.ts
   - src/models/components/connectionoptions.ts
   - src/models/components/createsession.ts
   - src/models/components/createsessionstatus.ts
@@ -690,10 +651,12 @@ generatedFiles:
   - src/models/components/cvvresponsecode.ts
   - src/models/components/definitionfield.ts
   - src/models/components/definitionfieldformat.ts
+  - src/models/components/detailedsettlementreportspec.ts
   - src/models/components/digitalwallet.ts
   - src/models/components/digitalwalletcreate.ts
   - src/models/components/digitalwalletdomain.ts
   - src/models/components/digitalwalletprovider.ts
+  - src/models/components/digitalwallets.ts
   - src/models/components/digitalwalletupdate.ts
   - src/models/components/errordetail.ts
   - src/models/components/errorlocation.ts
@@ -705,9 +668,11 @@ generatedFiles:
   - src/models/components/giftcardredemption.ts
   - src/models/components/giftcardredemptionstatus.ts
   - src/models/components/giftcardrequest.ts
+  - src/models/components/giftcards.ts
   - src/models/components/giftcardservice.ts
   - src/models/components/giftcardserviceprovider.ts
   - src/models/components/giftcardstoredrequest.ts
+  - src/models/components/giftcardsummaries.ts
   - src/models/components/giftcardsummary.ts
   - src/models/components/giftcardtokentransactioncreate.ts
   - src/models/components/giftcardtransactioncreate.ts
@@ -723,6 +688,7 @@ generatedFiles:
   - src/models/components/instrumenttype.ts
   - src/models/components/merchantaccount.ts
   - src/models/components/merchantaccountcreate.ts
+  - src/models/components/merchantaccounts.ts
   - src/models/components/merchantaccountupdate.ts
   - src/models/components/merchantprofilescheme.ts
   - src/models/components/merchantprofileschemesummary.ts
@@ -731,24 +697,34 @@ generatedFiles:
   - src/models/components/networktoken.ts
   - src/models/components/networktokencreate.ts
   - src/models/components/networktokenpaymentmethodcreate.ts
+  - src/models/components/networktokens.ts
   - src/models/components/networktokenstatus.ts
+  - src/models/components/paymentlink.ts
+  - src/models/components/paymentlinkcreate.ts
+  - src/models/components/paymentlinkstatus.ts
   - src/models/components/paymentmethod.ts
   - src/models/components/paymentmethodcard.ts
   - src/models/components/paymentmethoddetailscard.ts
+  - src/models/components/paymentmethods.ts
   - src/models/components/paymentmethodstatus.ts
   - src/models/components/paymentmethodstoredcard.ts
+  - src/models/components/paymentmethodsummaries.ts
   - src/models/components/paymentmethodsummary.ts
   - src/models/components/paymentoption.ts
   - src/models/components/paymentoptioncontext.ts
   - src/models/components/paymentoptioncontextapprovalui.ts
   - src/models/components/paymentoptionrequest.ts
+  - src/models/components/paymentoptions.ts
   - src/models/components/paymentservice.ts
   - src/models/components/paymentserviceconfiguration.ts
   - src/models/components/paymentservicecreate.ts
   - src/models/components/paymentservicedefinition.ts
+  - src/models/components/paymentservicedefinitions.ts
+  - src/models/components/paymentservices.ts
   - src/models/components/paymentservicestatus.ts
   - src/models/components/paymentservicetoken.ts
   - src/models/components/paymentservicetokencreate.ts
+  - src/models/components/paymentservicetokens.ts
   - src/models/components/paymentserviceupdate.ts
   - src/models/components/payoutcategory.ts
   - src/models/components/payoutcreate.ts
@@ -756,17 +732,35 @@ generatedFiles:
   - src/models/components/payoutmerchantsummary.ts
   - src/models/components/payoutpaymentservice.ts
   - src/models/components/payoutstatus.ts
+  - src/models/components/payoutsummaries.ts
   - src/models/components/payoutsummary.ts
   - src/models/components/producttype.ts
   - src/models/components/recipient.ts
   - src/models/components/redirectpaymentmethodcreate.ts
   - src/models/components/refund.ts
+  - src/models/components/refunds.ts
   - src/models/components/refundstatus.ts
   - src/models/components/refundtargettype.ts
+  - src/models/components/report.ts
+  - src/models/components/reportcreate.ts
+  - src/models/components/reportcreatortype.ts
+  - src/models/components/reportexecution.ts
+  - src/models/components/reportexecutioncontext.ts
+  - src/models/components/reportexecutions.ts
+  - src/models/components/reportexecutionstatus.ts
+  - src/models/components/reportexecutionsummary.ts
+  - src/models/components/reportexecutionurl.ts
+  - src/models/components/reports.ts
+  - src/models/components/reportschedule.ts
+  - src/models/components/reportspec.ts
+  - src/models/components/reportspecmodel.ts
+  - src/models/components/reportsummary.ts
+  - src/models/components/reportupdate.ts
   - src/models/components/requiredcheckoutfields.ts
   - src/models/components/security.ts
   - src/models/components/shippingdetails.ts
   - src/models/components/shippingdetailscreate.ts
+  - src/models/components/shippingdetailslist.ts
   - src/models/components/shippingdetailsupdate.ts
   - src/models/components/statementdescriptor.ts
   - src/models/components/taxid.ts
@@ -783,6 +777,7 @@ generatedFiles:
   - src/models/components/transactioncapture.ts
   - src/models/components/transactioncreate.ts
   - src/models/components/transactionevent.ts
+  - src/models/components/transactionevents.ts
   - src/models/components/transactiongiftcard.ts
   - src/models/components/transactionintent.ts
   - src/models/components/transactionintentoutcome.ts
@@ -791,7 +786,10 @@ generatedFiles:
   - src/models/components/transactionpaymentsource.ts
   - src/models/components/transactionrefundallcreate.ts
   - src/models/components/transactionrefundcreate.ts
+  - src/models/components/transactionretriesreportspec.ts
+  - src/models/components/transactionsreportspec.ts
   - src/models/components/transactionstatus.ts
+  - src/models/components/transactionsummaries.ts
   - src/models/components/transactionsummary.ts
   - src/models/components/transactionthreedsecuresummary.ts
   - src/models/components/userstatus.ts
@@ -817,6 +815,8 @@ generatedFiles:
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/addbuyer.ts
   - src/models/operations/addbuyershippingdetails.ts
+  - src/models/operations/addpaymentlink.ts
+  - src/models/operations/addreport.ts
   - src/models/operations/capturetransaction.ts
   - src/models/operations/configuredigitalwallet.ts
   - src/models/operations/createaccountupdaterjob.ts
@@ -833,6 +833,7 @@ generatedFiles:
   - src/models/operations/createpaymentservicedefinitionsession.ts
   - src/models/operations/createpaymentservicesession.ts
   - src/models/operations/createpayout.ts
+  - src/models/operations/createreportexecutionurl.ts
   - src/models/operations/createtransaction.ts
   - src/models/operations/createtransactionrefund.ts
   - src/models/operations/deletebuyer.ts
@@ -844,20 +845,25 @@ generatedFiles:
   - src/models/operations/deletepaymentmethodnetworktoken.ts
   - src/models/operations/deletepaymentmethodpaymentservicetoken.ts
   - src/models/operations/deletepaymentservice.ts
+  - src/models/operations/expirepaymentlink.ts
   - src/models/operations/getbuyer.ts
   - src/models/operations/getbuyershippingdetails.ts
   - src/models/operations/getcheckoutsession.ts
   - src/models/operations/getdigitalwallet.ts
   - src/models/operations/getgiftcard.ts
   - src/models/operations/getmerchantaccount.ts
+  - src/models/operations/getpaymentlink.ts
   - src/models/operations/getpaymentmethod.ts
   - src/models/operations/getpaymentservice.ts
   - src/models/operations/getpaymentservicedefinition.ts
   - src/models/operations/getpayout.ts
   - src/models/operations/getrefund.ts
+  - src/models/operations/getreport.ts
+  - src/models/operations/getreportexecution.ts
   - src/models/operations/gettransaction.ts
   - src/models/operations/gettransactionrefund.ts
   - src/models/operations/index.ts
+  - src/models/operations/listallreportexecutions.ts
   - src/models/operations/listauditlogs.ts
   - src/models/operations/listbuyergiftcards.ts
   - src/models/operations/listbuyerpaymentmethods.ts
@@ -868,6 +874,7 @@ generatedFiles:
   - src/models/operations/listgiftcardbalances.ts
   - src/models/operations/listgiftcards.ts
   - src/models/operations/listmerchantaccounts.ts
+  - src/models/operations/listpaymentlinks.ts
   - src/models/operations/listpaymentmethodnetworktokens.ts
   - src/models/operations/listpaymentmethodpaymentservicetokens.ts
   - src/models/operations/listpaymentmethods.ts
@@ -875,6 +882,8 @@ generatedFiles:
   - src/models/operations/listpaymentservicedefinitions.ts
   - src/models/operations/listpaymentservices.ts
   - src/models/operations/listpayouts.ts
+  - src/models/operations/listreportexecutions.ts
+  - src/models/operations/listreports.ts
   - src/models/operations/listtransactionevents.ts
   - src/models/operations/listtransactionrefunds.ts
   - src/models/operations/listtransactions.ts
@@ -889,6 +898,7 @@ generatedFiles:
   - src/models/operations/updatedigitalwallet.ts
   - src/models/operations/updatemerchantaccount.ts
   - src/models/operations/updatepaymentservice.ts
+  - src/models/operations/updatereport.ts
   - src/models/operations/verifypaymentservicecredentials.ts
   - src/models/operations/voidtransaction.ts
   - src/sdk/accountupdater.ts
@@ -902,6 +912,7 @@ generatedFiles:
   - src/sdk/digitalwallets.ts
   - src/sdk/domains.ts
   - src/sdk/events.ts
+  - src/sdk/executions.ts
   - src/sdk/giftcards.ts
   - src/sdk/gr4vygiftcards.ts
   - src/sdk/gr4vypaymentmethods.ts
@@ -910,6 +921,7 @@ generatedFiles:
   - src/sdk/jobs.ts
   - src/sdk/merchantaccounts.ts
   - src/sdk/networktokens.ts
+  - src/sdk/paymentlinks.ts
   - src/sdk/paymentmethods.ts
   - src/sdk/paymentoptions.ts
   - src/sdk/paymentservicedefinitions.ts
@@ -917,6 +929,7 @@ generatedFiles:
   - src/sdk/paymentservicetokens.ts
   - src/sdk/payouts.ts
   - src/sdk/refunds.ts
+  - src/sdk/reports.ts
   - src/sdk/sdk.ts
   - src/sdk/sessions.ts
   - src/sdk/shippingdetails.ts
@@ -3743,6 +3756,391 @@ examples:
       responses:
         "200":
           application/json: {"items": [{"type": "transaction-event", "id": "f133a3b7-e67e-4d83-bcd3-3e438fedf348", "name": "transaction-api-request", "created_at": "2013-07-16T19:23:00.000+00:00", "context": {}}], "limit": 20}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  list_reports:
+    speakeasy-default-list-reports:
+      parameters:
+        query:
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [{"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "schedule": "weekly", "schedule_enabled": true, "schedule_timezone": "UTC", "spec": {"model": "detailed_settlement", "params": {"fields": ["id", "status"], "filters": {"status": ["succeeded"]}}}}], "limit": 20}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  add_report:
+    speakeasy-default-add-report:
+      requestBody:
+        application/json: {"name": "Monthly Transaction Report", "schedule": "daily", "schedule_enabled": true, "schedule_timezone": "UTC", "spec": {"model": "detailed_settlement", "params": {"filters": {"ingested_at": {"end": "day_end", "start": "day_start"}}}}}
+      responses:
+        "201":
+          application/json: {"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "schedule": "daily", "schedule_enabled": true, "schedule_timezone": "UTC", "spec": {"model": "detailed_settlement", "params": {"fields": ["id", "status"], "filters": {"status": ["succeeded"]}}}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  get_report:
+    speakeasy-default-get-report:
+      parameters:
+        path:
+          report_id: "4d4c7123-b794-4fad-b1b9-5ab2606e6bbe"
+      responses:
+        "200":
+          application/json: {"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "schedule": "daily", "schedule_enabled": true, "schedule_timezone": "UTC", "spec": {"model": "transaction_retries", "params": {"fields": ["id", "status"], "filters": {"status": ["succeeded"]}}}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  update_report:
+    speakeasy-default-update-report:
+      parameters:
+        path:
+          report_id: "4d4c7123-b794-4fad-b1b9-5ab2606e6bbe"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "schedule": "daily", "schedule_enabled": true, "schedule_timezone": "UTC", "spec": {"model": "detailed_settlement", "params": {"fields": ["id", "status"], "filters": {"status": ["succeeded"]}}}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  list_report_executions:
+    speakeasy-default-list-report-executions:
+      parameters:
+        path:
+          report_id: "4d4c7123-b794-4fad-b1b9-5ab2606e6bbe"
+        query:
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [{"type": "report-execution", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "failed", "context": {"reference_timestamp": "2024-05-30T12:34:56.000Z", "reference_timezone": "UTC"}, "report": {"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report"}}], "limit": 20}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  create_report_execution_url:
+    speakeasy-default-create-report-execution-url:
+      parameters:
+        path:
+          report_id: "4d4c7123-b794-4fad-b1b9-5ab2606e6bbe"
+          report_execution_id: "003bc416-f32a-420c-8eb2-062a386e1fb0"
+      responses:
+        "200":
+          application/json: {"url": "https://example.com/download/report.csv?signature=abc123", "expires_at": "2024-06-01T00:00:00.000Z"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  list_all_report_executions:
+    speakeasy-default-list-all-report-executions:
+      parameters:
+        query:
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [{"type": "report-execution", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "failed", "context": {"reference_timestamp": "2024-05-30T12:34:56.000Z", "reference_timezone": "UTC"}, "report": {"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report"}}], "limit": 20}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  get_report_execution:
+    speakeasy-default-get-report-execution:
+      parameters:
+        path:
+          report_execution_id: "003bc416-f32a-420c-8eb2-062a386e1fb0"
+      responses:
+        "200":
+          application/json: {"type": "report-execution", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "dispatched", "context": {"reference_timestamp": "2024-05-30T12:34:56.000Z", "reference_timezone": "UTC"}, "report": {"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report"}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  add_payment_link:
+    speakeasy-default-add-payment-link:
+      requestBody:
+        application/json: {"amount": 1299, "country": "DE", "currency": "EUR"}
+      responses:
+        "201":
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "capture", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "moto", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "completed"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  list_payment_links:
+    speakeasy-default-list-payment-links:
+      parameters:
+        query:
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [], "limit": 20}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  expire_payment_link:
+    speakeasy-default-expire-payment-link:
+      parameters:
+        path:
+          payment_link_id: "a1b2c3d4-5678-90ab-cdef-1234567890ab"
+      responses:
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  get_payment_link:
+    speakeasy-default-get-payment-link:
+      parameters:
+        path:
+          payment_link_id: "a1b2c3d4-5678-90ab-cdef-1234567890ab"
+      responses:
+        "200":
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "authorize", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "recurring", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "active"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":

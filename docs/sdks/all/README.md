@@ -17,6 +17,7 @@ Create a refund for all instruments on a transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -27,7 +28,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.refunds.all.create("7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -46,6 +46,7 @@ import { transactionsRefundsAllCreate } from "@gr4vy/sdk/funcs/transactionsRefun
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -55,15 +56,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsRefundsAllCreate(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsRefundsAllCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -82,7 +80,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionRefund](../../models/components/collectionrefund.md)\>**
+**Promise\<[components.Refunds](../../models/components/refunds.md)\>**
 
 ### Errors
 

@@ -7,7 +7,7 @@ import { PaymentOptionContext } from "@gr4vy/sdk/models/components";
 
 let value: PaymentOptionContext = {
   redirectRequiresPopup: false,
-  requiresTokenizedRedirectPopup: false,
+  requiresTokenizedRedirectPopup: true,
 };
 ```
 

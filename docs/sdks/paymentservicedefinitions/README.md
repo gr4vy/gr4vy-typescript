@@ -30,7 +30,6 @@ async function run() {
   const result = await gr4vy.paymentServiceDefinitions.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -59,16 +58,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentServiceDefinitionsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("paymentServiceDefinitionsList failed:", res.error);
   }
 }
 
@@ -127,7 +123,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentServiceDefinitions.get("adyen-ideal");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -155,15 +150,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentServiceDefinitionsGet(gr4vy, "adyen-ideal");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServiceDefinitionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -222,7 +214,6 @@ async function run() {
 
   }, "adyen-ideal");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -252,15 +243,12 @@ async function run() {
   const res = await paymentServiceDefinitionsSession(gr4vy, {
   
   }, "adyen-ideal");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServiceDefinitionsSession failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

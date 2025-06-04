@@ -17,6 +17,7 @@ Fetch a list of the definitions of each card scheme.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -27,7 +28,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.cardSchemeDefinitions.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -46,6 +46,7 @@ import { cardSchemeDefinitionsList } from "@gr4vy/sdk/funcs/cardSchemeDefinition
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -55,15 +56,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await cardSchemeDefinitionsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("cardSchemeDefinitionsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -80,7 +78,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionNoCursorCardSchemeDefinition](../../models/components/collectionnocursorcardschemedefinition.md)\>**
+**Promise\<[components.CardSchemeDefinitions](../../models/components/cardschemedefinitions.md)\>**
 
 ### Errors
 

@@ -21,7 +21,7 @@ export type ListPaymentServiceDefinitionsRequest = {
 };
 
 export type ListPaymentServiceDefinitionsResponse = {
-  result: components.CollectionPaymentServiceDefinition;
+  result: components.PaymentServiceDefinitions;
 };
 
 /** @internal */
@@ -92,7 +92,7 @@ export const ListPaymentServiceDefinitionsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionPaymentServiceDefinition$inboundSchema,
+  Result: components.PaymentServiceDefinitions$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -101,7 +101,7 @@ export const ListPaymentServiceDefinitionsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListPaymentServiceDefinitionsResponse$Outbound = {
-  Result: components.CollectionPaymentServiceDefinition$Outbound;
+  Result: components.PaymentServiceDefinitions$Outbound;
 };
 
 /** @internal */
@@ -110,7 +110,7 @@ export const ListPaymentServiceDefinitionsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPaymentServiceDefinitionsResponse
 > = z.object({
-  result: components.CollectionPaymentServiceDefinition$outboundSchema,
+  result: components.PaymentServiceDefinitions$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

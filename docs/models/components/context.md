@@ -9,7 +9,9 @@
 const value: components.WalletPaymentOptionContext = {
   merchantName: "<value>",
   supportedSchemes: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
 };
 ```
@@ -20,7 +22,8 @@ const value: components.WalletPaymentOptionContext = {
 const value: components.GooglePayPaymentOptionContext = {
   merchantName: "<value>",
   supportedSchemes: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
   ],
   gateway: "<value>",
   gatewayMerchantId: "<id>",
@@ -32,7 +35,7 @@ const value: components.GooglePayPaymentOptionContext = {
 ```typescript
 const value: components.PaymentOptionContext = {
   redirectRequiresPopup: false,
-  requiresTokenizedRedirectPopup: false,
+  requiresTokenizedRedirectPopup: true,
 };
 ```
 

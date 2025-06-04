@@ -18,7 +18,7 @@ export class Balances extends ClientSDK {
     giftCardBalanceRequest: components.GiftCardBalanceRequest,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorGiftCardSummary> {
+  ): Promise<components.GiftCardSummaries> {
     return unwrapAsync(giftCardsBalancesList(
       this,
       giftCardBalanceRequest,

@@ -38,7 +38,7 @@ export function giftCardsBalancesList(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.CollectionNoCursorGiftCardSummary,
+    components.GiftCardSummaries,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -76,7 +76,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      components.CollectionNoCursorGiftCardSummary,
+      components.GiftCardSummaries,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -196,7 +196,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.CollectionNoCursorGiftCardSummary,
+    components.GiftCardSummaries,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -217,7 +217,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.CollectionNoCursorGiftCardSummary$inboundSchema),
+    M.json(200, components.GiftCardSummaries$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),

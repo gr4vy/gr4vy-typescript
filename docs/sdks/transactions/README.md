@@ -22,6 +22,7 @@ List all transactions for a specific merchant account sorted by most recently cr
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -33,7 +34,6 @@ async function run() {
   const result = await gr4vy.transactions.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -53,6 +53,7 @@ import { transactionsList } from "@gr4vy/sdk/funcs/transactionsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -62,16 +63,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("transactionsList failed:", res.error);
   }
 }
 
@@ -119,6 +117,7 @@ Create a transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -130,9 +129,13 @@ async function run() {
   const result = await gr4vy.transactions.create({
     amount: 1299,
     currency: "EUR",
+    store: true,
+    isSubsequentPayment: true,
+    merchantInitiated: true,
+    asyncCapture: true,
+    accountFundingTransaction: true,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -151,6 +154,7 @@ import { transactionsCreate } from "@gr4vy/sdk/funcs/transactionsCreate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -162,16 +166,18 @@ async function run() {
   const res = await transactionsCreate(gr4vy, {
     amount: 1299,
     currency: "EUR",
+    store: true,
+    isSubsequentPayment: true,
+    merchantInitiated: true,
+    asyncCapture: true,
+    accountFundingTransaction: true,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -220,6 +226,7 @@ Fetch a single transaction by its ID.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -230,7 +237,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.get("7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -249,6 +255,7 @@ import { transactionsGet } from "@gr4vy/sdk/funcs/transactionsGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -258,15 +265,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsGet(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -314,6 +318,7 @@ Capture a previously authorized transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -324,7 +329,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.capture({}, "7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -343,6 +347,7 @@ import { transactionsCapture } from "@gr4vy/sdk/funcs/transactionsCapture.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -352,15 +357,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsCapture(gr4vy, {}, "7099948d-7286-47e4-aad8-b68f7eb44591");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsCapture failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -409,6 +411,7 @@ Void a previously authorized transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -419,7 +422,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.void("7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -438,6 +440,7 @@ import { transactionsVoid } from "@gr4vy/sdk/funcs/transactionsVoid.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -447,15 +450,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsVoid(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsVoid failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -503,6 +503,7 @@ Fetch the latest status for a transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -513,7 +514,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.sync("2ee546e0-3b11-478e-afec-fdb362611e22");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -532,6 +532,7 @@ import { transactionsSync } from "@gr4vy/sdk/funcs/transactionsSync.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -541,15 +542,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsSync(gr4vy, "2ee546e0-3b11-478e-afec-fdb362611e22");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsSync failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -8,7 +8,8 @@ import { GooglePayPaymentOptionContext } from "@gr4vy/sdk/models/components";
 let value: GooglePayPaymentOptionContext = {
   merchantName: "<value>",
   supportedSchemes: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
   ],
   gateway: "<value>",
   gatewayMerchantId: "<id>",

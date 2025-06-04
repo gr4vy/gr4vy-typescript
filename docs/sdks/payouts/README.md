@@ -19,6 +19,7 @@ Returns a list of payouts made.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -30,7 +31,6 @@ async function run() {
   const result = await gr4vy.payouts.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -50,6 +50,7 @@ import { payoutsList } from "@gr4vy/sdk/funcs/payoutsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -59,16 +60,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await payoutsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("payoutsList failed:", res.error);
   }
 }
 
@@ -118,6 +116,7 @@ Creates a new payout.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -135,7 +134,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -154,6 +152,7 @@ import { payoutsCreate } from "@gr4vy/sdk/funcs/payoutsCreate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -170,15 +169,12 @@ async function run() {
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("payoutsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -226,6 +222,7 @@ Retreives a payout.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -236,7 +233,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.payouts.get("4344fef2-bc2f-49a6-924f-343e62f67224");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -255,6 +251,7 @@ import { payoutsGet } from "@gr4vy/sdk/funcs/payoutsGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -264,15 +261,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await payoutsGet(gr4vy, "4344fef2-bc2f-49a6-924f-343e62f67224");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("payoutsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

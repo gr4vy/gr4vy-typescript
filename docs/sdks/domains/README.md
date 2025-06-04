@@ -18,6 +18,7 @@ Register a digital wallet domain (Apple Pay only).
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -30,7 +31,6 @@ async function run() {
     domainName: "example.com",
   }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,6 +49,7 @@ import { digitalWalletsDomainsCreate } from "@gr4vy/sdk/funcs/digitalWalletsDoma
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -60,15 +61,12 @@ async function run() {
   const res = await digitalWalletsDomainsCreate(gr4vy, {
     domainName: "example.com",
   }, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsDomainsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -117,6 +115,7 @@ Remove a digital wallet domain (Apple Pay only).
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -129,7 +128,6 @@ async function run() {
     domainName: "example.com",
   }, "");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -148,6 +146,7 @@ import { digitalWalletsDomainsDelete } from "@gr4vy/sdk/funcs/digitalWalletsDoma
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -159,15 +158,12 @@ async function run() {
   const res = await digitalWalletsDomainsDelete(gr4vy, {
     domainName: "example.com",
   }, "");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsDomainsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

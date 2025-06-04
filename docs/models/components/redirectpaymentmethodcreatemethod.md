@@ -7,7 +7,7 @@ The method to use, this can be any of the methods that support redirect requests
 ```typescript
 import { RedirectPaymentMethodCreateMethod } from "@gr4vy/sdk/models/components";
 
-let value: RedirectPaymentMethodCreateMethod = "zippay";
+let value: RedirectPaymentMethodCreateMethod = "paypal";
 ```
 
 ## Values

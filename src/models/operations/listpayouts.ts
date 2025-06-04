@@ -29,7 +29,7 @@ export type ListPayoutsRequest = {
 };
 
 export type ListPayoutsResponse = {
-  result: components.CollectionPayoutSummary;
+  result: components.PayoutSummaries;
 };
 
 /** @internal */
@@ -152,7 +152,7 @@ export const ListPayoutsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionPayoutSummary$inboundSchema,
+  Result: components.PayoutSummaries$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -161,7 +161,7 @@ export const ListPayoutsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListPayoutsResponse$Outbound = {
-  Result: components.CollectionPayoutSummary$Outbound;
+  Result: components.PayoutSummaries$Outbound;
 };
 
 /** @internal */
@@ -170,7 +170,7 @@ export const ListPayoutsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPayoutsResponse
 > = z.object({
-  result: components.CollectionPayoutSummary$outboundSchema,
+  result: components.PayoutSummaries$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

@@ -17,7 +17,7 @@ export class CardSchemeDefinitions extends ClientSDK {
   async list(
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorCardSchemeDefinition> {
+  ): Promise<components.CardSchemeDefinitions> {
     return unwrapAsync(cardSchemeDefinitionsList(
       this,
       merchantAccountId,

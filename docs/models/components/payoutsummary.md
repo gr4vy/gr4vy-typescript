@@ -12,14 +12,14 @@ import { PayoutSummary } from "@gr4vy/sdk/models/components";
 let value: PayoutSummary = {
   amount: 1299,
   createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
-  currency: "USD",
+  currency: "EUR",
   paymentMethod: {
-    method: "linkaja",
+    method: "touchngo",
   },
   paymentService: {
     paymentServiceDefinitionId: "nuvei-card",
   },
-  status: "succeeded",
+  status: "failed",
   updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
 };
 ```

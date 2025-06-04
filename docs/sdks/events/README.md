@@ -17,6 +17,7 @@ Fetch a list of events for a transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -27,7 +28,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.events.list("7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -46,6 +46,7 @@ import { transactionsEventsList } from "@gr4vy/sdk/funcs/transactionsEventsList.
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -55,15 +56,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await transactionsEventsList(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsEventsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -83,7 +81,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionTransactionEvent](../../models/components/collectiontransactionevent.md)\>**
+**Promise\<[components.TransactionEvents](../../models/components/transactionevents.md)\>**
 
 ### Errors
 

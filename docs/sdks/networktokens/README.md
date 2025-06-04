@@ -21,6 +21,7 @@ List all network tokens stored for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -31,7 +32,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.list("ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -50,6 +50,7 @@ import { paymentMethodsNetworkTokensList } from "@gr4vy/sdk/funcs/paymentMethods
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -59,15 +60,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsNetworkTokensList(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsNetworkTokensList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -85,7 +83,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionNoCursorNetworkToken](../../models/components/collectionnocursornetworktoken.md)\>**
+**Promise\<[components.NetworkTokens](../../models/components/networktokens.md)\>**
 
 ### Errors
 
@@ -115,6 +113,7 @@ Provision a network token for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -128,7 +127,6 @@ async function run() {
     isSubsequentPayment: false,
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -147,6 +145,7 @@ import { paymentMethodsNetworkTokensCreate } from "@gr4vy/sdk/funcs/paymentMetho
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -159,15 +158,12 @@ async function run() {
     merchantInitiated: false,
     isSubsequentPayment: false,
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsNetworkTokensCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -216,6 +212,7 @@ Suspend a network token for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -226,7 +223,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.suspend("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -245,6 +241,7 @@ import { paymentMethodsNetworkTokensSuspend } from "@gr4vy/sdk/funcs/paymentMeth
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -254,15 +251,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsNetworkTokensSuspend(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsNetworkTokensSuspend failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -311,6 +305,7 @@ Resume a suspended network token for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -321,7 +316,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.resume("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -340,6 +334,7 @@ import { paymentMethodsNetworkTokensResume } from "@gr4vy/sdk/funcs/paymentMetho
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -349,15 +344,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsNetworkTokensResume(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsNetworkTokensResume failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -406,6 +398,7 @@ Delete a network token for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -434,6 +427,7 @@ import { paymentMethodsNetworkTokensDelete } from "@gr4vy/sdk/funcs/paymentMetho
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -443,14 +437,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsNetworkTokensDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("paymentMethodsNetworkTokensDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

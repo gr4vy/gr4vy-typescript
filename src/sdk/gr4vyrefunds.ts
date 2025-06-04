@@ -26,7 +26,7 @@ export class Gr4vyRefunds extends ClientSDK {
     transactionId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionRefund> {
+  ): Promise<components.Refunds> {
     return unwrapAsync(transactionsRefundsList(
       this,
       transactionId,

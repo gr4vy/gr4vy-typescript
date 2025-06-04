@@ -17,6 +17,7 @@ Provision a cryptogram for a network token.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -29,7 +30,6 @@ async function run() {
     merchantInitiated: false,
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,6 +48,7 @@ import { paymentMethodsNetworkTokensCryptogramCreate } from "@gr4vy/sdk/funcs/pa
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -59,15 +60,12 @@ async function run() {
   const res = await paymentMethodsNetworkTokensCryptogramCreate(gr4vy, {
     merchantInitiated: false,
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsNetworkTokensCryptogramCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

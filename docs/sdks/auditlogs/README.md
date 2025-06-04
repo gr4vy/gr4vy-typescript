@@ -17,6 +17,7 @@ Returns a list of activity by dashboard users.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -28,7 +29,6 @@ async function run() {
   const result = await gr4vy.auditLogs.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -48,6 +48,7 @@ import { auditLogsList } from "@gr4vy/sdk/funcs/auditLogsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -57,16 +58,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await auditLogsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("auditLogsList failed:", res.error);
   }
 }
 

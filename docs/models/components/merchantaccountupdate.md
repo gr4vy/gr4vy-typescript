@@ -5,7 +5,9 @@
 ```typescript
 import { MerchantAccountUpdate } from "@gr4vy/sdk/models/components";
 
-let value: MerchantAccountUpdate = {};
+let value: MerchantAccountUpdate = {
+  accountUpdaterEnabled: true,
+};
 ```
 
 ## Fields

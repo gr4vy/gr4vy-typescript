@@ -8,7 +8,7 @@ import { PaymentServiceConfiguration } from "@gr4vy/sdk/models/components";
 let value: PaymentServiceConfiguration = {
   approvalUiTarget: "any",
   approvalUiHeight: "100px",
-  approvalUiWidth: "50vw",
+  approvalUiWidth: "100px",
   cartItemsLimit: 100,
   cartItemsRequired: true,
   cartItemsShouldMatchAmount: true,

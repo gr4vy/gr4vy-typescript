@@ -18,10 +18,10 @@ const value: components.CardWithUrlPaymentMethodCreate = {
 
 ```typescript
 const value: components.RedirectPaymentMethodCreate = {
-  method: "zippay",
-  country: "GB",
+  method: "paypal",
+  country: "DE",
   currency: "EUR",
-  redirectUrl: "https://troubled-scale.name/",
+  redirectUrl: "https://oblong-convection.name",
 };
 ```
 

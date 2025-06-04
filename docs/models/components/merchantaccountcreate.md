@@ -6,6 +6,7 @@
 import { MerchantAccountCreate } from "@gr4vy/sdk/models/components";
 
 let value: MerchantAccountCreate = {
+  accountUpdaterEnabled: true,
   id: "merchant-12345",
   displayName: "Example",
 };

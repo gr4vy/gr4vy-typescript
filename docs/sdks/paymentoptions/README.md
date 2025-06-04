@@ -17,6 +17,7 @@ List the payment options available at checkout. filtering by country, currency, 
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -27,7 +28,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentOptions.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -46,6 +46,7 @@ import { paymentOptionsList } from "@gr4vy/sdk/funcs/paymentOptionsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -55,15 +56,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentOptionsList(gr4vy, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentOptionsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -81,7 +79,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionNoCursorPaymentOption](../../models/components/collectionnocursorpaymentoption.md)\>**
+**Promise\<[components.PaymentOptions](../../models/components/paymentoptions.md)\>**
 
 ### Errors
 

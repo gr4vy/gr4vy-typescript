@@ -5,9 +5,7 @@
 ```typescript
 import { ListPaymentOptionsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListPaymentOptionsRequest = {
-  paymentOptionRequest: {},
-};
+let value: ListPaymentOptionsRequest = {};
 ```
 
 ## Fields

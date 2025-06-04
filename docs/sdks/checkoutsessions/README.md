@@ -20,6 +20,7 @@ Create a new checkout session.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -30,7 +31,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.checkoutSessions.create();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,6 +49,7 @@ import { checkoutSessionsCreate } from "@gr4vy/sdk/funcs/checkoutSessionsCreate.
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -58,15 +59,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await checkoutSessionsCreate(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("checkoutSessionsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -114,6 +112,7 @@ Update the information stored on a checkout session.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -124,7 +123,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.checkoutSessions.update({}, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -143,6 +141,7 @@ import { checkoutSessionsUpdate } from "@gr4vy/sdk/funcs/checkoutSessionsUpdate.
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -152,15 +151,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await checkoutSessionsUpdate(gr4vy, {}, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("checkoutSessionsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -209,6 +205,7 @@ Retrieve the information stored on a checkout session.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -219,7 +216,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.checkoutSessions.get("4137b1cf-39ac-42a8-bad6-1c680d5dab6b");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -238,6 +234,7 @@ import { checkoutSessionsGet } from "@gr4vy/sdk/funcs/checkoutSessionsGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -247,15 +244,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await checkoutSessionsGet(gr4vy, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("checkoutSessionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -302,6 +296,7 @@ Deleta a checkout session and all of its (PCI) data.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -330,6 +325,7 @@ import { checkoutSessionsDelete } from "@gr4vy/sdk/funcs/checkoutSessionsDelete.
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -339,14 +335,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await checkoutSessionsDelete(gr4vy, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("checkoutSessionsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

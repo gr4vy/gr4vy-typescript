@@ -11,6 +11,7 @@ let value: TransactionEvent = {
   createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
   context: {
     "key": "<value>",
+    "key1": "<value>",
   },
 };
 ```

@@ -20,7 +20,7 @@ export class Events extends ClientSDK {
     limit?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionTransactionEvent> {
+  ): Promise<components.TransactionEvents> {
     return unwrapAsync(transactionsEventsList(
       this,
       transactionId,

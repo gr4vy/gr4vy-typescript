@@ -153,7 +153,7 @@ export type TransactionCreatePaymentMethod =
   | GooglePayPaymentMethodCreate
   | NetworkTokenPaymentMethodCreate;
 
-export type GiftCards =
+export type TransactionCreateGiftCards =
   | GiftCardTokenTransactionCreate
   | GiftCardTransactionCreate;
 
@@ -400,8 +400,8 @@ export function transactionCreatePaymentMethodFromJSON(
 }
 
 /** @internal */
-export const GiftCards$inboundSchema: z.ZodType<
-  GiftCards,
+export const TransactionCreateGiftCards$inboundSchema: z.ZodType<
+  TransactionCreateGiftCards,
   z.ZodTypeDef,
   unknown
 > = z.union([
@@ -410,15 +410,15 @@ export const GiftCards$inboundSchema: z.ZodType<
 ]);
 
 /** @internal */
-export type GiftCards$Outbound =
+export type TransactionCreateGiftCards$Outbound =
   | GiftCardTokenTransactionCreate$Outbound
   | GiftCardTransactionCreate$Outbound;
 
 /** @internal */
-export const GiftCards$outboundSchema: z.ZodType<
-  GiftCards$Outbound,
+export const TransactionCreateGiftCards$outboundSchema: z.ZodType<
+  TransactionCreateGiftCards$Outbound,
   z.ZodTypeDef,
-  GiftCards
+  TransactionCreateGiftCards
 > = z.union([
   GiftCardTokenTransactionCreate$outboundSchema,
   GiftCardTransactionCreate$outboundSchema,
@@ -428,26 +428,30 @@ export const GiftCards$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GiftCards$ {
-  /** @deprecated use `GiftCards$inboundSchema` instead. */
-  export const inboundSchema = GiftCards$inboundSchema;
-  /** @deprecated use `GiftCards$outboundSchema` instead. */
-  export const outboundSchema = GiftCards$outboundSchema;
-  /** @deprecated use `GiftCards$Outbound` instead. */
-  export type Outbound = GiftCards$Outbound;
+export namespace TransactionCreateGiftCards$ {
+  /** @deprecated use `TransactionCreateGiftCards$inboundSchema` instead. */
+  export const inboundSchema = TransactionCreateGiftCards$inboundSchema;
+  /** @deprecated use `TransactionCreateGiftCards$outboundSchema` instead. */
+  export const outboundSchema = TransactionCreateGiftCards$outboundSchema;
+  /** @deprecated use `TransactionCreateGiftCards$Outbound` instead. */
+  export type Outbound = TransactionCreateGiftCards$Outbound;
 }
 
-export function giftCardsToJSON(giftCards: GiftCards): string {
-  return JSON.stringify(GiftCards$outboundSchema.parse(giftCards));
+export function transactionCreateGiftCardsToJSON(
+  transactionCreateGiftCards: TransactionCreateGiftCards,
+): string {
+  return JSON.stringify(
+    TransactionCreateGiftCards$outboundSchema.parse(transactionCreateGiftCards),
+  );
 }
 
-export function giftCardsFromJSON(
+export function transactionCreateGiftCardsFromJSON(
   jsonString: string,
-): SafeParseResult<GiftCards, SDKValidationError> {
+): SafeParseResult<TransactionCreateGiftCards, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GiftCards$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GiftCards' from JSON`,
+    (x) => TransactionCreateGiftCards$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionCreateGiftCards' from JSON`,
   );
 }
 

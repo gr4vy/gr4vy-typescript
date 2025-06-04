@@ -20,6 +20,7 @@ Fetch details about a gift card.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -30,7 +31,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.giftCards.get("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,6 +49,7 @@ import { giftCardsGet } from "@gr4vy/sdk/funcs/giftCardsGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -58,15 +59,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await giftCardsGet(gr4vy, "356d56e5-fe16-42ae-97ee-8d55d846ae2e");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("giftCardsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -114,6 +112,7 @@ Removes a gift card from our system.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -124,7 +123,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.giftCards.delete("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -143,6 +141,7 @@ import { giftCardsDelete } from "@gr4vy/sdk/funcs/giftCardsDelete.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -152,15 +151,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await giftCardsDelete(gr4vy, "356d56e5-fe16-42ae-97ee-8d55d846ae2e");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("giftCardsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -208,6 +204,7 @@ Store a new gift card in the vault.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -221,7 +218,6 @@ async function run() {
     pin: "1234",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -240,6 +236,7 @@ import { giftCardsCreate } from "@gr4vy/sdk/funcs/giftCardsCreate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -252,15 +249,12 @@ async function run() {
     number: "4123455541234561234",
     pin: "1234",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("giftCardsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -308,6 +302,7 @@ Browser all gift cards.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -319,7 +314,6 @@ async function run() {
   const result = await gr4vy.giftCards.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -339,6 +333,7 @@ import { giftCardsList } from "@gr4vy/sdk/funcs/giftCardsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -348,16 +343,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await giftCardsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("giftCardsList failed:", res.error);
   }
 }
 

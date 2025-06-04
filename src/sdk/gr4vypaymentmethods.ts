@@ -18,7 +18,7 @@ export class Gr4vyPaymentMethods extends ClientSDK {
   async list(
     request?: operations.ListBuyerPaymentMethodsRequest | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorPaymentMethodSummary> {
+  ): Promise<components.PaymentMethodSummaries> {
     return unwrapAsync(buyersPaymentMethodsList(
       this,
       request,

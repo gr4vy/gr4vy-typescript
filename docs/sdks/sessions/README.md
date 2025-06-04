@@ -19,6 +19,7 @@ Create a session for use with Google Pay.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -31,7 +32,6 @@ async function run() {
     originDomain: "example.com",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -50,6 +50,7 @@ import { digitalWalletsSessionsGooglePay } from "@gr4vy/sdk/funcs/digitalWallets
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -61,15 +62,12 @@ async function run() {
   const res = await digitalWalletsSessionsGooglePay(gr4vy, {
     originDomain: "example.com",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsSessionsGooglePay failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -117,6 +115,7 @@ Create a session for use with Apple Pay.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -130,7 +129,6 @@ async function run() {
     domainName: "example.com",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -149,6 +147,7 @@ import { digitalWalletsSessionsApplePay } from "@gr4vy/sdk/funcs/digitalWalletsS
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -161,15 +160,12 @@ async function run() {
     validationUrl: "https://apple-pay-gateway-cert.apple.com",
     domainName: "example.com",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsSessionsApplePay failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -229,7 +225,6 @@ async function run() {
     checkoutSessionId: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -259,15 +254,12 @@ async function run() {
   const res = await digitalWalletsSessionsClickToPay(gr4vy, {
     checkoutSessionId: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsSessionsClickToPay failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

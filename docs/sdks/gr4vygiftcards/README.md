@@ -17,6 +17,7 @@ List all the stored gift cards for a specific buyer.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -27,7 +28,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.buyers.giftCards.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -46,6 +46,7 @@ import { buyersGiftCardsList } from "@gr4vy/sdk/funcs/buyersGiftCardsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -55,15 +56,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await buyersGiftCardsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("buyersGiftCardsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -82,7 +80,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionNoCursorGiftCardSummary](../../models/components/collectionnocursorgiftcardsummary.md)\>**
+**Promise\<[components.GiftCardSummaries](../../models/components/giftcardsummaries.md)\>**
 
 ### Errors
 

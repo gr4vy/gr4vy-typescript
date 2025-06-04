@@ -3,6 +3,7 @@
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -18,7 +19,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 

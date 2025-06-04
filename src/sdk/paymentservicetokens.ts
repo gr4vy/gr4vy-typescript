@@ -21,7 +21,7 @@ export class PaymentServiceTokens extends ClientSDK {
     paymentServiceId?: string | null | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorPaymentServiceToken> {
+  ): Promise<components.PaymentServiceTokens> {
     return unwrapAsync(paymentMethodsPaymentServiceTokensList(
       this,
       paymentMethodId,

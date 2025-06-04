@@ -21,6 +21,7 @@ Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -35,7 +36,6 @@ async function run() {
     acceptTermsAndConditions: false,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -54,6 +54,7 @@ import { digitalWalletsCreate } from "@gr4vy/sdk/funcs/digitalWalletsCreate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -67,15 +68,12 @@ async function run() {
     merchantName: "<value>",
     acceptTermsAndConditions: false,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -123,6 +121,7 @@ List configured digital wallets.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -133,7 +132,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.digitalWallets.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -152,6 +150,7 @@ import { digitalWalletsList } from "@gr4vy/sdk/funcs/digitalWalletsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -161,15 +160,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await digitalWalletsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -186,7 +182,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionNoCursorDigitalWallet](../../models/components/collectionnocursordigitalwallet.md)\>**
+**Promise\<[components.DigitalWallets](../../models/components/digitalwallets.md)\>**
 
 ### Errors
 
@@ -216,6 +212,7 @@ Fetch the details a digital wallet.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -226,7 +223,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.digitalWallets.get("1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -245,6 +241,7 @@ import { digitalWalletsGet } from "@gr4vy/sdk/funcs/digitalWalletsGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -254,15 +251,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await digitalWalletsGet(gr4vy, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -310,6 +304,7 @@ Delete a configured digital wallet.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -320,7 +315,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.digitalWallets.delete("1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -339,6 +333,7 @@ import { digitalWalletsDelete } from "@gr4vy/sdk/funcs/digitalWalletsDelete.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -348,15 +343,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await digitalWalletsDelete(gr4vy, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -404,6 +396,7 @@ Update a digital wallet.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -414,7 +407,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.digitalWallets.update({}, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -433,6 +425,7 @@ import { digitalWalletsUpdate } from "@gr4vy/sdk/funcs/digitalWalletsUpdate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -442,15 +435,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await digitalWalletsUpdate(gr4vy, {}, "1808f5e6-b49c-4db9-94fa-22371ea352f5");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("digitalWalletsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

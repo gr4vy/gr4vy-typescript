@@ -15,7 +15,7 @@ let value: AuditLogEntry = {
   user: {
     name: "John Doe",
     isStaff: false,
-    status: "active",
+    status: "pending",
   },
   timestamp: new Date("2022-01-01T00:00:00+00:00"),
 };

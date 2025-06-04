@@ -43,7 +43,7 @@ export class ShippingDetails extends ClientSDK {
     buyerId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorShippingDetails> {
+  ): Promise<components.ShippingDetailsList> {
     return unwrapAsync(buyersShippingDetailsList(
       this,
       buyerId,

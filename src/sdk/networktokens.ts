@@ -28,7 +28,7 @@ export class NetworkTokens extends ClientSDK {
     paymentMethodId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorNetworkToken> {
+  ): Promise<components.NetworkTokens> {
     return unwrapAsync(paymentMethodsNetworkTokensList(
       this,
       paymentMethodId,

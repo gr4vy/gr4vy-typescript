@@ -10,12 +10,7 @@ import { PaymentServiceCreate } from "@gr4vy/sdk/models/components";
 let value: PaymentServiceCreate = {
   displayName: "Stripe",
   paymentServiceDefinitionId: "stripe-card",
-  fields: [
-    {
-      key: "api_key",
-      value: "key-12345",
-    },
-  ],
+  fields: [],
   acceptedCurrencies: [
     "USD",
     "EUR",
@@ -26,6 +21,8 @@ let value: PaymentServiceCreate = {
     "DE",
     "GB",
   ],
+  threeDSecureEnabled: true,
+  settlementReportingEnabled: true,
 };
 ```
 

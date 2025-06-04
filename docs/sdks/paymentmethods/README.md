@@ -20,6 +20,7 @@ List all stored payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -31,7 +32,6 @@ async function run() {
   const result = await gr4vy.paymentMethods.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -51,6 +51,7 @@ import { paymentMethodsList } from "@gr4vy/sdk/funcs/paymentMethodsList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -60,16 +61,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("paymentMethodsList failed:", res.error);
   }
 }
 
@@ -117,6 +115,7 @@ Store a new payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -129,7 +128,6 @@ async function run() {
     id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -148,6 +146,7 @@ import { paymentMethodsCreate } from "@gr4vy/sdk/funcs/paymentMethodsCreate.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -159,15 +158,12 @@ async function run() {
   const res = await paymentMethodsCreate(gr4vy, {
     id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -215,6 +211,7 @@ Retrieve a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -225,7 +222,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.get("ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -244,6 +240,7 @@ import { paymentMethodsGet } from "@gr4vy/sdk/funcs/paymentMethodsGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -253,15 +250,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsGet(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -309,6 +303,7 @@ Delete a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -337,6 +332,7 @@ import { paymentMethodsDelete } from "@gr4vy/sdk/funcs/paymentMethodsDelete.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -346,14 +342,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("paymentMethodsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

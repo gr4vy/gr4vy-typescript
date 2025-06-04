@@ -5,11 +5,7 @@
 ```typescript
 import { CreatePaymentMethodRequest } from "@gr4vy/sdk/models/operations";
 
-let value: CreatePaymentMethodRequest = {
-  requestBody: {
-    id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
-  },
-};
+let value: CreatePaymentMethodRequest = {};
 ```
 
 ## Fields

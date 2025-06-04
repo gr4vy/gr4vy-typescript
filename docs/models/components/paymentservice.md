@@ -6,6 +6,7 @@
 import { PaymentService } from "@gr4vy/sdk/models/components";
 
 let value: PaymentService = {
+  id: "fffd152a-9532-4087-9a4f-de58754210f0",
   merchantAccountId: "default",
   paymentServiceDefinitionId: "stripe-card",
   method: "shopeepay",

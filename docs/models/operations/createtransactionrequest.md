@@ -5,12 +5,7 @@
 ```typescript
 import { CreateTransactionRequest } from "@gr4vy/sdk/models/operations";
 
-let value: CreateTransactionRequest = {
-  transactionCreate: {
-    amount: 1299,
-    currency: "EUR",
-  },
-};
+let value: CreateTransactionRequest = {};
 ```
 
 ## Fields

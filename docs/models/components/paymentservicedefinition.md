@@ -6,15 +6,15 @@
 import { PaymentServiceDefinition } from "@gr4vy/sdk/models/components";
 
 let value: PaymentServiceDefinition = {
-  id: "stripe-card",
-  displayName: "Stripe",
-  method: "shopeepay",
+  id: "adyen-ideal",
+  displayName: "iDEAL",
+  method: "picpay",
   fields: [
     {
       key: "private_api_key",
       displayName: "Private API key",
       required: true,
-      format: "timezone",
+      format: "boolean",
       secret: true,
     },
   ],
@@ -34,11 +34,12 @@ let value: PaymentServiceDefinition = {
     "AUD",
   ],
   supportedCountries: [
-    "DE",
+    "US",
   ],
   mode: "card",
   supportedFeatures: {
     "key": false,
+    "key1": true,
   },
   requiredCheckoutFields: [
     {
@@ -52,7 +53,7 @@ let value: PaymentServiceDefinition = {
   ],
   configuration: {
     approvalUiTarget: "any",
-    approvalUiHeight: "50vh",
+    approvalUiHeight: "100px",
     approvalUiWidth: "100px",
     cartItemsLimit: 100,
     cartItemsRequired: true,

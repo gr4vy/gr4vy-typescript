@@ -8,12 +8,7 @@ import { AccountUpdaterJob } from "@gr4vy/sdk/models/components";
 let value: AccountUpdaterJob = {
   id: "cc18c7c6-c1d4-4194-92a7-d5a985108b68",
   merchantAccountId: "default",
-  inquiries: [
-    {
-      id: "aadb3ea8-5ad6-408b-8c3d-82da77c8d619",
-      paymentMethodId: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-    },
-  ],
+  inquiries: [],
   createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
   updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
 };

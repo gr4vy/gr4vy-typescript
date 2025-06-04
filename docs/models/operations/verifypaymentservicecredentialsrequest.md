@@ -5,17 +5,7 @@
 ```typescript
 import { VerifyPaymentServiceCredentialsRequest } from "@gr4vy/sdk/models/operations";
 
-let value: VerifyPaymentServiceCredentialsRequest = {
-  verifyCredentials: {
-    paymentServiceDefinitionId: "stripe-card",
-    fields: [
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
-    ],
-  },
-};
+let value: VerifyPaymentServiceCredentialsRequest = {};
 ```
 
 ## Fields

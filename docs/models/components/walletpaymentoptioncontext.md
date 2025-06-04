@@ -8,7 +8,9 @@ import { WalletPaymentOptionContext } from "@gr4vy/sdk/models/components";
 let value: WalletPaymentOptionContext = {
   merchantName: "<value>",
   supportedSchemes: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
 };
 ```

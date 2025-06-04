@@ -52,7 +52,7 @@ export class DigitalWallets extends ClientSDK {
   async list(
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorDigitalWallet> {
+  ): Promise<components.DigitalWallets> {
     return unwrapAsync(digitalWalletsList(
       this,
       merchantAccountId,

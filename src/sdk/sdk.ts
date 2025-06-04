@@ -11,12 +11,14 @@ import { CheckoutSessions } from "./checkoutsessions.js";
 import { DigitalWallets } from "./digitalwallets.js";
 import { GiftCards } from "./giftcards.js";
 import { MerchantAccounts } from "./merchantaccounts.js";
+import { PaymentLinks } from "./paymentlinks.js";
 import { PaymentMethods } from "./paymentmethods.js";
 import { PaymentOptions } from "./paymentoptions.js";
 import { PaymentServiceDefinitions } from "./paymentservicedefinitions.js";
 import { PaymentServices } from "./paymentservices.js";
 import { Payouts } from "./payouts.js";
 import { Refunds } from "./refunds.js";
+import { Reports } from "./reports.js";
 import { Transactions } from "./transactions.js";
 
 export class Gr4vy extends ClientSDK {
@@ -84,6 +86,11 @@ export class Gr4vy extends ClientSDK {
     return (this._auditLogs ??= new AuditLogs(this._options));
   }
 
+  private _reports?: Reports;
+  get reports(): Reports {
+    return (this._reports ??= new Reports(this._options));
+  }
+
   private _checkoutSessions?: CheckoutSessions;
   get checkoutSessions(): CheckoutSessions {
     return (this._checkoutSessions ??= new CheckoutSessions(this._options));
@@ -97,5 +104,10 @@ export class Gr4vy extends ClientSDK {
   private _payouts?: Payouts;
   get payouts(): Payouts {
     return (this._payouts ??= new Payouts(this._options));
+  }
+
+  private _paymentLinks?: PaymentLinks;
+  get paymentLinks(): PaymentLinks {
+    return (this._paymentLinks ??= new PaymentLinks(this._options));
   }
 }

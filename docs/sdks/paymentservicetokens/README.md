@@ -19,6 +19,7 @@ List all gateway tokens stored for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -29,7 +30,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.paymentServiceTokens.list("ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,6 +48,7 @@ import { paymentMethodsPaymentServiceTokensList } from "@gr4vy/sdk/funcs/payment
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -57,15 +58,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsPaymentServiceTokensList(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsPaymentServiceTokensList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -84,7 +82,7 @@ run();
 
 ### Response
 
-**Promise\<[components.CollectionNoCursorPaymentServiceToken](../../models/components/collectionnocursorpaymentservicetoken.md)\>**
+**Promise\<[components.PaymentServiceTokens](../../models/components/paymentservicetokens.md)\>**
 
 ### Errors
 
@@ -114,6 +112,7 @@ Create a gateway tokens for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -127,7 +126,6 @@ async function run() {
     redirectUrl: "https://dual-futon.biz",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -146,6 +144,7 @@ import { paymentMethodsPaymentServiceTokensCreate } from "@gr4vy/sdk/funcs/payme
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -158,15 +157,12 @@ async function run() {
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
     redirectUrl: "https://dual-futon.biz",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentMethodsPaymentServiceTokensCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -215,6 +211,7 @@ Delete a gateway tokens for a payment method.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -243,6 +240,7 @@ import { paymentMethodsPaymentServiceTokensDelete } from "@gr4vy/sdk/funcs/payme
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -252,14 +250,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsPaymentServiceTokensDelete(gr4vy, "ef9496d8-53a5-4aad-8ca2-00eb68334389", "703f2d99-3fd1-44bc-9cbd-a25a2d597886");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("paymentMethodsPaymentServiceTokensDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

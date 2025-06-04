@@ -6,14 +6,14 @@
 ### `boolean`
 
 ```typescript
-const value: boolean = false;
+const value: boolean = true;
 ```
 
 ### `{ [k: string]: components.Two }`
 
 ```typescript
 const value: { [k: string]: components.Two } = {
-  "key": "<value>",
+  "key": false,
 };
 ```
 

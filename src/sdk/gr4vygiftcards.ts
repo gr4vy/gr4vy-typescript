@@ -19,7 +19,7 @@ export class Gr4vyGiftCards extends ClientSDK {
     buyerId?: string | null | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionNoCursorGiftCardSummary> {
+  ): Promise<components.GiftCardSummaries> {
     return unwrapAsync(buyersGiftCardsList(
       this,
       buyerExternalIdentifier,

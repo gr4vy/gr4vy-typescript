@@ -37,7 +37,7 @@ export type ListBuyersRequest = {
 };
 
 export type ListBuyersResponse = {
-  result: components.CollectionBuyer;
+  result: components.Buyers;
 };
 
 /** @internal */
@@ -174,7 +174,7 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionBuyer$inboundSchema,
+  Result: components.Buyers$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -183,7 +183,7 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListBuyersResponse$Outbound = {
-  Result: components.CollectionBuyer$Outbound;
+  Result: components.Buyers$Outbound;
 };
 
 /** @internal */
@@ -192,7 +192,7 @@ export const ListBuyersResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListBuyersResponse
 > = z.object({
-  result: components.CollectionBuyer$outboundSchema,
+  result: components.Buyers$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

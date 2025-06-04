@@ -7,12 +7,7 @@ import { VerifyCredentials } from "@gr4vy/sdk/models/components";
 
 let value: VerifyCredentials = {
   paymentServiceDefinitionId: "stripe-card",
-  fields: [
-    {
-      key: "api_key",
-      value: "key-12345",
-    },
-  ],
+  fields: [],
 };
 ```
 

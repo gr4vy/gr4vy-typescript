@@ -7,10 +7,6 @@ import { CreatePaymentMethodPaymentServiceTokenRequest } from "@gr4vy/sdk/models
 
 let value: CreatePaymentMethodPaymentServiceTokenRequest = {
   paymentMethodId: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-  paymentServiceTokenCreate: {
-    paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    redirectUrl: "https://murky-nerve.name/",
-  },
 };
 ```
 

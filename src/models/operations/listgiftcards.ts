@@ -25,7 +25,7 @@ export type ListGiftCardsRequest = {
 };
 
 export type ListGiftCardsResponse = {
-  result: components.CollectionGiftCard;
+  result: components.GiftCards;
 };
 
 /** @internal */
@@ -164,7 +164,7 @@ export const ListGiftCardsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionGiftCard$inboundSchema,
+  Result: components.GiftCards$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -173,7 +173,7 @@ export const ListGiftCardsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListGiftCardsResponse$Outbound = {
-  Result: components.CollectionGiftCard$Outbound;
+  Result: components.GiftCards$Outbound;
 };
 
 /** @internal */
@@ -182,7 +182,7 @@ export const ListGiftCardsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListGiftCardsResponse
 > = z.object({
-  result: components.CollectionGiftCard$outboundSchema,
+  result: components.GiftCards$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

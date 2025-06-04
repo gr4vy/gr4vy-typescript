@@ -31,7 +31,6 @@ async function run() {
   const result = await gr4vy.merchantAccounts.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -60,16 +59,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await merchantAccountsList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("merchantAccountsList failed:", res.error);
   }
 }
 
@@ -128,11 +124,11 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.merchantAccounts.create({
+    accountUpdaterEnabled: true,
     id: "merchant-12345",
     displayName: "Example",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -160,18 +156,16 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await merchantAccountsCreate(gr4vy, {
+    accountUpdaterEnabled: true,
     id: "merchant-12345",
     displayName: "Example",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("merchantAccountsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -228,7 +222,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.merchantAccounts.get("merchant-12345");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -256,15 +249,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await merchantAccountsGet(gr4vy, "merchant-12345");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("merchantAccountsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -319,9 +309,10 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.merchantAccounts.update({}, "merchant-12345");
+  const result = await gr4vy.merchantAccounts.update({
+    accountUpdaterEnabled: true,
+  }, "merchant-12345");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -348,16 +339,15 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await merchantAccountsUpdate(gr4vy, {}, "merchant-12345");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await merchantAccountsUpdate(gr4vy, {
+    accountUpdaterEnabled: true,
+  }, "merchant-12345");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("merchantAccountsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

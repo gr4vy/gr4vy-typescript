@@ -157,7 +157,7 @@ export type ListTransactionsRequest = {
 };
 
 export type ListTransactionsResponse = {
-  result: components.CollectionTransactionSummary;
+  result: components.TransactionSummaries;
 };
 
 /** @internal */
@@ -491,7 +491,7 @@ export const ListTransactionsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionTransactionSummary$inboundSchema,
+  Result: components.TransactionSummaries$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -500,7 +500,7 @@ export const ListTransactionsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListTransactionsResponse$Outbound = {
-  Result: components.CollectionTransactionSummary$Outbound;
+  Result: components.TransactionSummaries$Outbound;
 };
 
 /** @internal */
@@ -509,7 +509,7 @@ export const ListTransactionsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListTransactionsResponse
 > = z.object({
-  result: components.CollectionTransactionSummary$outboundSchema,
+  result: components.TransactionSummaries$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

@@ -7,7 +7,9 @@ Request body for updating a Payment Service
 ```typescript
 import { PaymentServiceUpdate } from "@gr4vy/sdk/models/components";
 
-let value: PaymentServiceUpdate = {};
+let value: PaymentServiceUpdate = {
+  settlementReportingEnabled: true,
+};
 ```
 
 ## Fields

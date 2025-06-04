@@ -22,7 +22,7 @@ export class All extends ClientSDK {
       | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.CollectionRefund> {
+  ): Promise<components.Refunds> {
     return unwrapAsync(transactionsRefundsAllCreate(
       this,
       transactionId,

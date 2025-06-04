@@ -8,10 +8,10 @@ Create a transaction for an APM/LPM that requires a redirect.
 import { RedirectPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: RedirectPaymentMethodCreate = {
-  method: "zippay",
-  country: "GB",
+  method: "paypal",
+  country: "DE",
   currency: "EUR",
-  redirectUrl: "https://wee-captain.com",
+  redirectUrl: "https://oblong-convection.name",
 };
 ```
 

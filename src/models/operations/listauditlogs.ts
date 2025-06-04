@@ -41,7 +41,7 @@ export type ListAuditLogsRequest = {
 };
 
 export type ListAuditLogsResponse = {
-  result: components.CollectionAuditLogEntry;
+  result: components.AuditLogEntries;
 };
 
 /** @internal */
@@ -183,7 +183,7 @@ export const ListAuditLogsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionAuditLogEntry$inboundSchema,
+  Result: components.AuditLogEntries$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -192,7 +192,7 @@ export const ListAuditLogsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListAuditLogsResponse$Outbound = {
-  Result: components.CollectionAuditLogEntry$Outbound;
+  Result: components.AuditLogEntries$Outbound;
 };
 
 /** @internal */
@@ -201,7 +201,7 @@ export const ListAuditLogsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListAuditLogsResponse
 > = z.object({
-  result: components.CollectionAuditLogEntry$outboundSchema,
+  result: components.AuditLogEntries$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

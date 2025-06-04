@@ -9,7 +9,7 @@ let value: PaymentOption = {
   method: "<value>",
   mode: "card",
   canStorePaymentMethod: false,
-  canDelayCapture: false,
+  canDelayCapture: true,
 };
 ```
 

@@ -38,7 +38,7 @@ export function paymentOptionsList(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.CollectionNoCursorPaymentOption,
+    components.PaymentOptions,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -76,7 +76,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      components.CollectionNoCursorPaymentOption,
+      components.PaymentOptions,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -195,7 +195,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.CollectionNoCursorPaymentOption,
+    components.PaymentOptions,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -216,7 +216,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.CollectionNoCursorPaymentOption$inboundSchema),
+    M.json(200, components.PaymentOptions$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),

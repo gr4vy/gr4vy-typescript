@@ -23,6 +23,7 @@ List the configured payment services.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -34,7 +35,6 @@ async function run() {
   const result = await gr4vy.paymentServices.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -54,6 +54,7 @@ import { paymentServicesList } from "@gr4vy/sdk/funcs/paymentServicesList.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -63,16 +64,13 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentServicesList(gr4vy);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("paymentServicesList failed:", res.error);
   }
 }
 
@@ -120,6 +118,7 @@ Updates the configuration of a payment service.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -151,9 +150,10 @@ async function run() {
       "DE",
       "GB",
     ],
+    threeDSecureEnabled: true,
+    settlementReportingEnabled: true,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -172,6 +172,7 @@ import { paymentServicesCreate } from "@gr4vy/sdk/funcs/paymentServicesCreate.js
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -203,16 +204,15 @@ async function run() {
       "DE",
       "GB",
     ],
+    threeDSecureEnabled: true,
+    settlementReportingEnabled: true,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServicesCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -260,6 +260,7 @@ Get the details of a configured payment service.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -270,7 +271,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentServices.get("fffd152a-9532-4087-9a4f-de58754210f0");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -289,6 +289,7 @@ import { paymentServicesGet } from "@gr4vy/sdk/funcs/paymentServicesGet.js";
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -298,15 +299,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentServicesGet(gr4vy, "fffd152a-9532-4087-9a4f-de58754210f0");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServicesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -354,6 +352,7 @@ Configures a new payment service for use by merchants.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -362,9 +361,10 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentServices.update({}, "fffd152a-9532-4087-9a4f-de58754210f0");
+  const result = await gr4vy.paymentServices.update({
+    settlementReportingEnabled: true,
+  }, "fffd152a-9532-4087-9a4f-de58754210f0");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -383,6 +383,7 @@ import { paymentServicesUpdate } from "@gr4vy/sdk/funcs/paymentServicesUpdate.js
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -391,16 +392,15 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await paymentServicesUpdate(gr4vy, {}, "fffd152a-9532-4087-9a4f-de58754210f0");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await paymentServicesUpdate(gr4vy, {
+    settlementReportingEnabled: true,
+  }, "fffd152a-9532-4087-9a4f-de58754210f0");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServicesUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -449,6 +449,7 @@ Deletes all the configuration of a payment service.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -459,7 +460,6 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentServices.delete("fffd152a-9532-4087-9a4f-de58754210f0");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -478,6 +478,7 @@ import { paymentServicesDelete } from "@gr4vy/sdk/funcs/paymentServicesDelete.js
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -487,15 +488,12 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentServicesDelete(gr4vy, "fffd152a-9532-4087-9a4f-de58754210f0");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServicesDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -543,6 +541,7 @@ Verify the credentials of a configured payment service
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -556,7 +555,6 @@ async function run() {
     fields: [],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -575,6 +573,7 @@ import { paymentServicesVerify } from "@gr4vy/sdk/funcs/paymentServicesVerify.js
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -587,15 +586,12 @@ async function run() {
     paymentServiceDefinitionId: "stripe-card",
     fields: [],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServicesVerify failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -643,6 +639,7 @@ Creates a session for a payment service that supports sessions.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -655,7 +652,6 @@ async function run() {
 
   }, "fffd152a-9532-4087-9a4f-de58754210f0");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -674,6 +670,7 @@ import { paymentServicesSession } from "@gr4vy/sdk/funcs/paymentServicesSession.
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -685,15 +682,12 @@ async function run() {
   const res = await paymentServicesSession(gr4vy, {
   
   }, "fffd152a-9532-4087-9a4f-de58754210f0");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentServicesSession failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

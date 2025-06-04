@@ -308,6 +308,13 @@ try {
 * [get](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
 * [update](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
 
+### [paymentLinks](docs/sdks/paymentlinks/README.md)
+
+* [create](docs/sdks/paymentlinks/README.md#create) - Add a payment link
+* [list](docs/sdks/paymentlinks/README.md#list) - List all payment links
+* [expire](docs/sdks/paymentlinks/README.md#expire) - Expire a payment link
+* [get](docs/sdks/paymentlinks/README.md#get) - Get payment link
+
 ### [paymentMethods](docs/sdks/paymentmethods/README.md)
 
 * [list](docs/sdks/paymentmethods/README.md#list) - List all payment methods
@@ -363,6 +370,20 @@ try {
 
 * [get](docs/sdks/refunds/README.md#get) - Get refund
 
+### [reports](docs/sdks/reports/README.md)
+
+* [list](docs/sdks/reports/README.md#list) - List configured reports
+* [create](docs/sdks/reports/README.md#create) - Add a report
+* [get](docs/sdks/reports/README.md#get) - Get a report
+* [put](docs/sdks/reports/README.md#put) - Update a report
+
+#### [reports.executions](docs/sdks/executions/README.md)
+
+* [list](docs/sdks/executions/README.md#list) - List executions for report
+* [url](docs/sdks/executions/README.md#url) - Create URL for executed report
+* [all](docs/sdks/executions/README.md#all) - List executed reports
+* [get](docs/sdks/executions/README.md#get) - Get executed report
+
 ### [transactions](docs/sdks/transactions/README.md)
 
 * [list](docs/sdks/transactions/README.md#list) - List transactions
@@ -392,45 +413,25 @@ try {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `create` method may throw the following errors:
+This table shows properties which are common on error classes. For full details see [error classes](#error-classes).
 
-| Error Type                 | Status Code | Content Type     |
-| -------------------------- | ----------- | ---------------- |
-| errors.Error400            | 400         | application/json |
-| errors.Error401            | 401         | application/json |
-| errors.Error403            | 403         | application/json |
-| errors.Error404            | 404         | application/json |
-| errors.Error405            | 405         | application/json |
-| errors.Error409            | 409         | application/json |
-| errors.HTTPValidationError | 422         | application/json |
-| errors.Error425            | 425         | application/json |
-| errors.Error429            | 429         | application/json |
-| errors.Error500            | 500         | application/json |
-| errors.Error502            | 502         | application/json |
-| errors.Error504            | 504         | application/json |
-| errors.SDKError            | 4XX, 5XX    | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.name`        | `string`   | Error class name eg `SDKError`                                                          |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP status code eg `404`                                                               |
+| `error.contentType` | `string`   | HTTP content type eg `application/json`                                                 |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response. Access to headers and more.                                          |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
-
+### Example
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
-import {
-  Error400,
-  Error401,
-  Error403,
-  Error404,
-  Error405,
-  Error409,
-  Error425,
-  Error429,
-  Error500,
-  Error502,
-  Error504,
-  HTTPValidationError,
-  SDKValidationError,
-} from "@gr4vy/sdk/models/errors";
+import * as errors from "@gr4vy/sdk/models/errors";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -439,91 +440,32 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  let result;
   try {
-    result = await gr4vy.accountUpdater.jobs.create({
+    const result = await gr4vy.accountUpdater.jobs.create({
       paymentMethodIds: [
         "ef9496d8-53a5-4aad-8ca2-00eb68334389",
         "f29e886e-93cc-4714-b4a3-12b7a718e595",
       ],
     });
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof Error400): {
-        // Handle err.data$: Error400Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error401): {
-        // Handle err.data$: Error401Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error403): {
-        // Handle err.data$: Error403Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error404): {
-        // Handle err.data$: Error404Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error405): {
-        // Handle err.data$: Error405Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error409): {
-        // Handle err.data$: Error409Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof HTTPValidationError): {
-        // Handle err.data$: HTTPValidationErrorData
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error425): {
-        // Handle err.data$: Error425Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error429): {
-        // Handle err.data$: Error429Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error500): {
-        // Handle err.data$: Error500Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error502): {
-        // Handle err.data$: Error502Data
-        console.error(err);
-        return;
-      }
-      case (err instanceof Error504): {
-        // Handle err.data$: Error504Data
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
-      }
+  } catch (error) {
+    // Depending on the method different errors may be thrown
+    if (error instanceof errors.Error400) {
+      console.log(error.message);
+      console.log(error.data$.type); // string
+      console.log(error.data$.code); // string
+      console.log(error.data$.status); // number
+      console.log(error.data$.message); // string
+      console.log(error.data$.details); // ErrorDetail[]
+    }
+
+    // Fallback error class, if no other more specific error class is matched
+    if (error instanceof errors.SDKError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.rawResponse.headers);
     }
   }
 }
@@ -532,17 +474,27 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
-
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
-
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+### Error Classes
+* [`Error400`](docs/models/errors/error400.md): The request was invalid. Status code `400`.
+* [`Error401`](docs/models/errors/error401.md): The request was unauthorized. Status code `401`.
+* [`Error403`](docs/models/errors/error403.md): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`.
+* [`Error404`](docs/models/errors/error404.md): The resource was not found. Status code `404`.
+* [`Error405`](docs/models/errors/error405.md): The request method was not allowed. Status code `405`.
+* [`Error409`](docs/models/errors/error409.md): A duplicate record was found. Status code `409`.
+* [`Error425`](docs/models/errors/error425.md): The request was too early. Status code `425`.
+* [`Error429`](docs/models/errors/error429.md): Too many requests were made. Status code `429`.
+* [`Error500`](docs/models/errors/error500.md): The server encountered an error. Status code `500`.
+* [`Error502`](docs/models/errors/error502.md): The server encountered an error. Status code `502`.
+* [`Error504`](docs/models/errors/error504.md): The server encountered an error. Status code `504`.
+* [`HTTPValidationError`](docs/models/errors/httpvalidationerror.md): Validation Error. Status code `422`.
+* `SDKError`: The fallback error class, if no other more specific error class is matched.
+* `SDKValidationError`: Type mismatch between the data returned from the server and the structure expected by the SDK. This can also be thrown for invalid method arguments. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+* Network errors:
+    * `ConnectionError`: HTTP client was unable to make a request to a server.
+    * `RequestTimeoutError`: HTTP request timed out due to an AbortSignal signal.
+    * `RequestAbortedError`: HTTP request was aborted by the client.
+    * `InvalidRequestError`: Any input used to create a request is invalid.
+    * `UnexpectedClientError`: Unrecognised or unexpected error.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -571,6 +523,7 @@ import { Gr4vy } from "@gr4vy/sdk";
 const gr4vy = new Gr4vy({
   server: "sandbox",
   id: "<id>",
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -586,7 +539,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -602,6 +554,7 @@ import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
   serverURL: "https://api.example.gr4vy.app",
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -617,7 +570,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -696,6 +648,7 @@ const gr4vy = new Gr4vy({
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
+  merchantAccountId: "<id>",
 });
 
 async function run() {
@@ -706,7 +659,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -746,93 +698,6 @@ yarn add @gr4vy/sdk zod
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
 ```
-
-
-
-### Model Context Protocol (MCP) Server
-
-This SDK is also an installable MCP server where the various SDK methods are
-exposed as tools that can be invoked by AI applications.
-
-> Node.js v20 or greater is required to run the MCP server from npm.
-
-<details>
-<summary>Claude installation steps</summary>
-
-Add the following server definition to your `claude_desktop_config.json` file:
-
-```json
-{
-  "mcpServers": {
-    "Gr4vy": {
-      "command": "npx",
-      "args": [
-        "-y", "--package", "@gr4vy/sdk",
-        "--",
-        "mcp", "start",
-        "--bearer-auth", "...",
-        "--merchant-account-id", "..."
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details>
-<summary>Cursor installation steps</summary>
-
-Create a `.cursor/mcp.json` file in your project root with the following content:
-
-```json
-{
-  "mcpServers": {
-    "Gr4vy": {
-      "command": "npx",
-      "args": [
-        "-y", "--package", "@gr4vy/sdk",
-        "--",
-        "mcp", "start",
-        "--bearer-auth", "...",
-        "--merchant-account-id", "..."
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
-
-```bash
-curl -L -o mcp-server \
-    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
-chmod +x mcp-server
-```
-
-If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
-
-
-```json
-{
-  "mcpServers": {
-    "Todos": {
-      "command": "./DOWNLOAD/PATH/mcp-server",
-      "args": [
-        "start"
-      ]
-    }
-  }
-}
-```
-
-For a full list of server arguments, run:
-
-```sh
-npx -y --package @gr4vy/sdk -- mcp start --help
-```
 <!-- End SDK Installation [installation] -->
 
 <!-- Start SDK Example Usage [usage] -->
@@ -844,6 +709,7 @@ npx -y --package @gr4vy/sdk -- mcp start --help
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -859,7 +725,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -884,6 +749,7 @@ Here's an example of one such pagination call:
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -895,7 +761,6 @@ async function run() {
   const result = await gr4vy.buyers.list();
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -915,6 +780,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -941,7 +807,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -964,6 +829,7 @@ const gr4vy = new Gr4vy({
     },
     retryConnectionErrors: false,
   },
+  merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",
   bearerAuth: withToken({
@@ -979,7 +845,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1076,6 +941,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`merchantAccountsGet`](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
 - [`merchantAccountsList`](docs/sdks/merchantaccounts/README.md#list) - List all merchant accounts
 - [`merchantAccountsUpdate`](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
+- [`paymentLinksCreate`](docs/sdks/paymentlinks/README.md#create) - Add a payment link
+- [`paymentLinksExpire`](docs/sdks/paymentlinks/README.md#expire) - Expire a payment link
+- [`paymentLinksGet`](docs/sdks/paymentlinks/README.md#get) - Get payment link
+- [`paymentLinksList`](docs/sdks/paymentlinks/README.md#list) - List all payment links
 - [`paymentMethodsCreate`](docs/sdks/paymentmethods/README.md#create) - Create payment method
 - [`paymentMethodsDelete`](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
 - [`paymentMethodsGet`](docs/sdks/paymentmethods/README.md#get) - Get payment method
@@ -1104,6 +973,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout.
 - [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created.
 - [`refundsGet`](docs/sdks/refunds/README.md#get) - Get refund
+- [`reportsCreate`](docs/sdks/reports/README.md#create) - Add a report
+- [`reportsExecutionsAll`](docs/sdks/executions/README.md#all) - List executed reports
+- [`reportsExecutionsGet`](docs/sdks/executions/README.md#get) - Get executed report
+- [`reportsExecutionsList`](docs/sdks/executions/README.md#list) - List executions for report
+- [`reportsExecutionsUrl`](docs/sdks/executions/README.md#url) - Create URL for executed report
+- [`reportsGet`](docs/sdks/reports/README.md#get) - Get a report
+- [`reportsList`](docs/sdks/reports/README.md#list) - List configured reports
+- [`reportsPut`](docs/sdks/reports/README.md#put) - Update a report
 - [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
 - [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create transaction
 - [`transactionsEventsList`](docs/sdks/events/README.md#list) - List transaction events

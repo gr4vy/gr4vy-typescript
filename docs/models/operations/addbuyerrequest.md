@@ -5,9 +5,7 @@
 ```typescript
 import { AddBuyerRequest } from "@gr4vy/sdk/models/operations";
 
-let value: AddBuyerRequest = {
-  buyerCreate: {},
-};
+let value: AddBuyerRequest = {};
 ```
 
 ## Fields

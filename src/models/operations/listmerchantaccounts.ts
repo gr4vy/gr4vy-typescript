@@ -25,7 +25,7 @@ export type ListMerchantAccountsRequest = {
 };
 
 export type ListMerchantAccountsResponse = {
-  result: components.CollectionMerchantAccount;
+  result: components.MerchantAccounts;
 };
 
 /** @internal */
@@ -96,7 +96,7 @@ export const ListMerchantAccountsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionMerchantAccount$inboundSchema,
+  Result: components.MerchantAccounts$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -105,7 +105,7 @@ export const ListMerchantAccountsResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListMerchantAccountsResponse$Outbound = {
-  Result: components.CollectionMerchantAccount$Outbound;
+  Result: components.MerchantAccounts$Outbound;
 };
 
 /** @internal */
@@ -114,7 +114,7 @@ export const ListMerchantAccountsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListMerchantAccountsResponse
 > = z.object({
-  result: components.CollectionMerchantAccount$outboundSchema,
+  result: components.MerchantAccounts$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

@@ -42,7 +42,7 @@ export function transactionsRefundsAllCreate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.CollectionRefund,
+    components.Refunds,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -85,7 +85,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      components.CollectionRefund,
+      components.Refunds,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -215,7 +215,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.CollectionRefund,
+    components.Refunds,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -236,7 +236,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, components.CollectionRefund$inboundSchema),
+    M.json(201, components.Refunds$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),
