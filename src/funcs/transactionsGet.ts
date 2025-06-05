@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get transaction
  *
  * @remarks
- * Fetch a single transaction by its ID.
+ * Retrieve the details of a transaction by its unique identifier.
  */
 export function transactionsGet(
   client: Gr4vyCore,

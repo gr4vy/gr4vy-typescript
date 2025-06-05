@@ -98,19 +98,19 @@ export type TransactionSummary = {
    */
   authorizedAmount: number;
   /**
-   * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
+   * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
    */
   capturedAmount: number;
   /**
-   * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
+   * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
    */
   refundedAmount: number;
   /**
-   * The currency of this transaction's settlement in ISO 4217 three-letter code format.
+   * The ISO 4217 currency code of this transaction's settlement.
    */
   settledCurrency?: string | null | undefined;
   /**
-   * The net amount settled for this transaction.
+   * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
    */
   settledAmount: number;
   /**
@@ -118,7 +118,7 @@ export type TransactionSummary = {
    */
   settled: boolean;
   /**
-   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.
+   * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
    */
   country?: string | null | undefined;
   /**
@@ -179,11 +179,11 @@ export type TransactionSummary = {
    */
   giftCardService?: GiftCardService | null | undefined;
   /**
-   * The date this buyer was created at.
+   * The date and time when the transaction was created, in ISO 8601 format.
    */
   createdAt: Date;
   /**
-   * The date this buyer was last updated at.
+   * The date and time when the transaction was last updated, in ISO 8601 format.
    */
   updatedAt: Date;
 };

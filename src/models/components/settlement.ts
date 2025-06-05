@@ -25,19 +25,19 @@ export type Settlement = {
    */
   merchantAccountId: string;
   /**
-   * Date and time the settlement was created.
+   * The date and time the settlement was created, in ISO 8601 format.
    */
   createdAt: Date;
   /**
-   * Date and time the settlement was last updated.
+   * The date and time the settlement was last updated, in ISO 8601 format.
    */
   updatedAt: Date;
   /**
-   * Date and time the settlement was posted.
+   * The date and time the settlement was posted, in ISO 8601 format.
    */
   postedAt: Date;
   /**
-   * Date and time the settlement was ingested.
+   * The date and time the settlement was ingested, in ISO 8601 format.
    */
   ingestedAt: Date;
   /**

@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Void transaction
  *
  * @remarks
- * Void a previously authorized transaction.
+ * Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
  */
 export function transactionsVoid(
   client: Gr4vyCore,

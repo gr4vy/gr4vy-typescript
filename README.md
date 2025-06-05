@@ -370,6 +370,10 @@ try {
 
 * [get](docs/sdks/refunds/README.md#get) - Get refund
 
+### [reportExecutions](docs/sdks/reportexecutions/README.md)
+
+* [list](docs/sdks/reportexecutions/README.md#list) - List executed reports
+
 ### [reports](docs/sdks/reports/README.md)
 
 * [list](docs/sdks/reports/README.md#list) - List configured reports
@@ -381,7 +385,6 @@ try {
 
 * [list](docs/sdks/executions/README.md#list) - List executions for report
 * [url](docs/sdks/executions/README.md#url) - Create URL for executed report
-* [all](docs/sdks/executions/README.md#all) - List executed reports
 * [get](docs/sdks/executions/README.md#get) - Get executed report
 
 ### [transactions](docs/sdks/transactions/README.md)
@@ -978,8 +981,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout.
 - [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created.
 - [`refundsGet`](docs/sdks/refunds/README.md#get) - Get refund
+- [`reportExecutionsList`](docs/sdks/reportexecutions/README.md#list) - List executed reports
 - [`reportsCreate`](docs/sdks/reports/README.md#create) - Add a report
-- [`reportsExecutionsAll`](docs/sdks/executions/README.md#all) - List executed reports
 - [`reportsExecutionsGet`](docs/sdks/executions/README.md#get) - Get executed report
 - [`reportsExecutionsList`](docs/sdks/executions/README.md#list) - List executions for report
 - [`reportsExecutionsUrl`](docs/sdks/executions/README.md#url) - Create URL for executed report

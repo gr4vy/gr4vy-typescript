@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: a5506c8438f9ce4dcea194bde55c4b46
+  docChecksum: ab8b8ca9248dacf6627d77256fd8d94b
   docVersion: 1.0.0
   speakeasyVersion: 1.556.2
   generationVersion: 2.621.3
-  releaseVersion: 1.0.0-beta.20
-  configChecksum: d0899af0f0e16c6b56972906ac9bfa9d
+  releaseVersion: 1.0.0-beta.21
+  configChecksum: c30e4d7249ec132e648430bdd12e9fe6
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -488,6 +488,7 @@ generatedFiles:
   - docs/sdks/paymentservicetokens/README.md
   - docs/sdks/payouts/README.md
   - docs/sdks/refunds/README.md
+  - docs/sdks/reportexecutions/README.md
   - docs/sdks/reports/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/settlements/README.md
@@ -568,8 +569,8 @@ generatedFiles:
   - src/funcs/payoutsGet.ts
   - src/funcs/payoutsList.ts
   - src/funcs/refundsGet.ts
+  - src/funcs/reportExecutionsList.ts
   - src/funcs/reportsCreate.ts
-  - src/funcs/reportsExecutionsAll.ts
   - src/funcs/reportsExecutionsGet.ts
   - src/funcs/reportsExecutionsList.ts
   - src/funcs/reportsExecutionsUrl.ts
@@ -942,6 +943,7 @@ generatedFiles:
   - src/sdk/paymentservicetokens.ts
   - src/sdk/payouts.ts
   - src/sdk/refunds.ts
+  - src/sdk/reportexecutions.ts
   - src/sdk/reports.ts
   - src/sdk/sdk.ts
   - src/sdk/sessions.ts

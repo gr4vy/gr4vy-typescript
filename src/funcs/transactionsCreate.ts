@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create transaction
  *
  * @remarks
- * Create a transaction.
+ * Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
  */
 export function transactionsCreate(
   client: Gr4vyCore,

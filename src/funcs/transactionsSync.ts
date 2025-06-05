@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Sync transaction
  *
  * @remarks
- * Fetch the latest status for a transaction.
+ * Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
  */
 export function transactionsSync(
   client: Gr4vyCore,

@@ -35,7 +35,7 @@ import {
  * List transactions
  *
  * @remarks
- * List all transactions for a specific merchant account sorted by most recently created.
+ * Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
  */
 export function transactionsList(
   client: Gr4vyCore,

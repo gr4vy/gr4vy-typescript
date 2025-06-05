@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Capture transaction
  *
  * @remarks
- * Capture a previously authorized transaction.
+ * Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
  */
 export function transactionsCapture(
   client: Gr4vyCore,

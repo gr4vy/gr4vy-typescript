@@ -18,6 +18,7 @@ import { PaymentServiceDefinitions } from "./paymentservicedefinitions.js";
 import { PaymentServices } from "./paymentservices.js";
 import { Payouts } from "./payouts.js";
 import { Refunds } from "./refunds.js";
+import { ReportExecutions } from "./reportexecutions.js";
 import { Reports } from "./reports.js";
 import { Transactions } from "./transactions.js";
 
@@ -89,6 +90,11 @@ export class Gr4vy extends ClientSDK {
   private _reports?: Reports;
   get reports(): Reports {
     return (this._reports ??= new Reports(this._options));
+  }
+
+  private _reportExecutions?: ReportExecutions;
+  get reportExecutions(): ReportExecutions {
+    return (this._reportExecutions ??= new ReportExecutions(this._options));
   }
 
   private _checkoutSessions?: CheckoutSessions;

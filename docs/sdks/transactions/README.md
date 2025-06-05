@@ -14,7 +14,7 @@
 
 ## list
 
-List all transactions for a specific merchant account sorted by most recently created.
+Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
 
 ### Example Usage
 
@@ -109,7 +109,7 @@ run();
 
 ## create
 
-Create a transaction.
+Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
 
 ### Example Usage
 
@@ -218,7 +218,7 @@ run();
 
 ## get
 
-Fetch a single transaction by its ID.
+Retrieve the details of a transaction by its unique identifier.
 
 ### Example Usage
 
@@ -310,7 +310,7 @@ run();
 
 ## capture
 
-Capture a previously authorized transaction.
+Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
 
 ### Example Usage
 
@@ -403,7 +403,7 @@ run();
 
 ## void
 
-Void a previously authorized transaction.
+Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
 
 ### Example Usage
 
@@ -495,7 +495,7 @@ run();
 
 ## sync
 
-Fetch the latest status for a transaction.
+Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
 
 ### Example Usage
 

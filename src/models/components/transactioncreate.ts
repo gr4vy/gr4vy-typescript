@@ -168,7 +168,7 @@ export type TransactionCreate = {
    */
   amount: number;
   /**
-   * A supported ISO-4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+   * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
    */
   currency: string;
   /**

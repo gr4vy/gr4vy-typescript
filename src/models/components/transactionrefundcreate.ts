@@ -15,7 +15,7 @@ import {
 
 export type TransactionRefundCreate = {
   /**
-   * The amount requested to refund. If omitted, a full refund will be requested.
+   * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
    */
   amount?: number | null | undefined;
   targetType?: RefundTargetType | undefined;

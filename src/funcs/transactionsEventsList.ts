@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * List transaction events
  *
  * @remarks
- * Fetch a list of events for a transaction.
+ * Retrieve a paginated list of events related to processing a transaction, including status changes, API requests, and webhook delivery attempts. Events are listed in chronological order, with the most recent events first.
  */
 export function transactionsEventsList(
   client: Gr4vyCore,

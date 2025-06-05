@@ -37,7 +37,7 @@ import {
  * @remarks
  * List all executed reports that have been generated.
  */
-export function reportsExecutionsAll(
+export function reportExecutionsList(
   client: Gr4vyCore,
   request?: operations.ListAllReportExecutionsRequest | undefined,
   options?: RequestOptions,
@@ -302,7 +302,7 @@ async function $do(
     }
 
     const nextVal = () =>
-      reportsExecutionsAll(
+      reportExecutionsList(
         client,
         {
           ...request,
