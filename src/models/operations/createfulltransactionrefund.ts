@@ -14,6 +14,9 @@ export type CreateFullTransactionRefundGlobals = {
 };
 
 export type CreateFullTransactionRefundRequest = {
+  /**
+   * The ID of the transaction
+   */
   transactionId: string;
   /**
    * The ID of the merchant account to use for this request.

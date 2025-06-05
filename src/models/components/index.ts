@@ -160,6 +160,8 @@ export * from "./reportsummary.js";
 export * from "./reportupdate.js";
 export * from "./requiredcheckoutfields.js";
 export * from "./security.js";
+export * from "./settlement.js";
+export * from "./settlements.js";
 export * from "./shippingdetails.js";
 export * from "./shippingdetailscreate.js";
 export * from "./shippingdetailslist.js";

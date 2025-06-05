@@ -407,6 +407,11 @@ try {
 
 * [create](docs/sdks/all/README.md#create) - Create batch transaction refund
 
+#### [transactions.settlements](docs/sdks/settlements/README.md)
+
+* [get](docs/sdks/settlements/README.md#get) - Get transaction settlement
+* [list](docs/sdks/settlements/README.md#list) - List transaction settlements
+
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -990,6 +995,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transactionsRefundsCreate`](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
 - [`transactionsRefundsGet`](docs/sdks/gr4vyrefunds/README.md#get) - Get transaction refund
 - [`transactionsRefundsList`](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
+- [`transactionsSettlementsGet`](docs/sdks/settlements/README.md#get) - Get transaction settlement
+- [`transactionsSettlementsList`](docs/sdks/settlements/README.md#list) - List transaction settlements
 - [`transactionsSync`](docs/sdks/transactions/README.md#sync) - Sync transaction
 - [`transactionsVoid`](docs/sdks/transactions/README.md#void) - Void transaction
 

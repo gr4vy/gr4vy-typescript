@@ -13,7 +13,13 @@ export type GetTransactionRefundGlobals = {
 };
 
 export type GetTransactionRefundRequest = {
+  /**
+   * The ID of the transaction
+   */
   transactionId: string;
+  /**
+   * The ID of the refund
+   */
   refundId: string;
   /**
    * The ID of the merchant account to use for this request.

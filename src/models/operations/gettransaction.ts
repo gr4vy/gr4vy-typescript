@@ -13,6 +13,9 @@ export type GetTransactionGlobals = {
 };
 
 export type GetTransactionRequest = {
+  /**
+   * The ID of the transaction
+   */
   transactionId: string;
   /**
    * The ID of the merchant account to use for this request.

@@ -13,6 +13,9 @@ export type GetRefundGlobals = {
 };
 
 export type GetRefundRequest = {
+  /**
+   * The ID of the refund
+   */
   refundId: string;
   /**
    * The ID of the merchant account to use for this request.

@@ -13,6 +13,9 @@ export type ListTransactionEventsGlobals = {
 };
 
 export type ListTransactionEventsRequest = {
+  /**
+   * The ID of the transaction
+   */
   transactionId: string;
   /**
    * A pointer to the page of results to return.

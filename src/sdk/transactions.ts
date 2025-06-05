@@ -15,6 +15,7 @@ import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Events } from "./events.js";
 import { Gr4vyRefunds } from "./gr4vyrefunds.js";
+import { Settlements } from "./settlements.js";
 
 export class Transactions extends ClientSDK {
   private _refunds?: Gr4vyRefunds;
@@ -25,6 +26,11 @@ export class Transactions extends ClientSDK {
   private _events?: Events;
   get events(): Events {
     return (this._events ??= new Events(this._options));
+  }
+
+  private _settlements?: Settlements;
+  get settlements(): Settlements {
+    return (this._settlements ??= new Settlements(this._options));
   }
 
   /**
