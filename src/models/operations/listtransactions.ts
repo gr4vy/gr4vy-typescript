@@ -42,7 +42,10 @@ export type ListTransactionsRequest = {
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
   buyerEmailAddress?: string | null | undefined;
-  buyerSearch?: string | null | undefined;
+  /**
+   * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+   */
+  buyerSearch?: Array<string> | null | undefined;
   ipAddress?: string | null | undefined;
   /**
    * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
@@ -238,7 +241,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   buyer_external_identifier: z.nullable(z.string()).optional(),
   buyer_id: z.nullable(z.string()).optional(),
   buyer_email_address: z.nullable(z.string()).optional(),
-  buyer_search: z.nullable(z.string()).optional(),
+  buyer_search: z.nullable(z.array(z.string())).optional(),
   ip_address: z.nullable(z.string()).optional(),
   status: z.nullable(z.array(components.TransactionStatus$inboundSchema))
     .optional(),
@@ -326,7 +329,7 @@ export type ListTransactionsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
   buyer_email_address?: string | null | undefined;
-  buyer_search?: string | null | undefined;
+  buyer_search?: Array<string> | null | undefined;
   ip_address?: string | null | undefined;
   status?: Array<string> | null | undefined;
   id?: string | null | undefined;
@@ -378,7 +381,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   buyerEmailAddress: z.nullable(z.string()).optional(),
-  buyerSearch: z.nullable(z.string()).optional(),
+  buyerSearch: z.nullable(z.array(z.string())).optional(),
   ipAddress: z.nullable(z.string()).optional(),
   status: z.nullable(z.array(components.TransactionStatus$outboundSchema))
     .optional(),
