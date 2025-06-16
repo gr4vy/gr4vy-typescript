@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -27,19 +27,19 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Add a report
+ * Get transaction summary
  *
  * @remarks
- * Create a new report.
+ * Fetch a summary for a transaction.
  */
-export function reportsCreate(
+export function transactionsSummary(
   client: Gr4vyCore,
-  reportCreate: components.ReportCreate,
+  transactionId: string,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.Report,
+    components.TransactionStatusSummary,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -64,7 +64,7 @@ export function reportsCreate(
 > {
   return new APIPromise($do(
     client,
-    reportCreate,
+    transactionId,
     merchantAccountId,
     options,
   ));
@@ -72,13 +72,13 @@ export function reportsCreate(
 
 async function $do(
   client: Gr4vyCore,
-  reportCreate: components.ReportCreate,
+  transactionId: string,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.Report,
+      components.TransactionStatusSummary,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -103,26 +103,33 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.AddReportRequest = {
-    reportCreate: reportCreate,
+  const input: operations.GetTransactionSummaryRequest = {
+    transactionId: transactionId,
     merchantAccountId: merchantAccountId,
   };
 
   const parsed = safeParse(
     input,
-    (value) => operations.AddReportRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.GetTransactionSummaryRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.ReportCreate, { explode: true });
+  const body = null;
 
-  const path = pathToFunc("/reports")();
+  const pathParams = {
+    transaction_id: encodeSimple("transaction_id", payload.transaction_id, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+
+  const path = pathToFunc("/transactions/{transaction_id}/summary")(pathParams);
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
@@ -138,7 +145,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "add_report",
+    operationID: "get_transaction_summary",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -146,13 +153,23 @@ async function $do(
     securitySource: client._options.bearerAuth,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 200,
+          maxInterval: 200,
+          exponent: 1,
+          maxElapsedTime: 1000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["5XX"],
   };
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "POST",
+    method: "GET",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -196,7 +213,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.Report,
+    components.TransactionStatusSummary,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -218,7 +235,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(201, components.Report$inboundSchema),
+    M.json(200, components.TransactionStatusSummary$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),

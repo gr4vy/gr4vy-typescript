@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import * as components from "../components/index.js";
+import { Gr4vyError } from "./gr4vyerror.js";
 
 export type Error502Data = {
   /**
@@ -28,7 +29,7 @@ export type Error502Data = {
   details?: Array<components.ErrorDetail> | undefined;
 };
 
-export class Error502 extends Error {
+export class Error502 extends Gr4vyError {
   /**
    * Always `error`.
    */
@@ -49,13 +50,15 @@ export class Error502 extends Error {
   /** The original data that was passed to this error instance. */
   data$: Error502Data;
 
-  constructor(err: Error502Data) {
+  constructor(
+    err: Error502Data,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.type != null) this.type = err.type;
     if (err.code != null) this.code = err.code;
     if (err.status != null) this.status = err.status;
@@ -76,9 +79,16 @@ export const Error502$inboundSchema: z.ZodType<
   status: z.number().int().default(502),
   message: z.string().default("Request could not be processed"),
   details: z.array(components.ErrorDetail$inboundSchema).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new Error502(v);
+    return new Error502(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

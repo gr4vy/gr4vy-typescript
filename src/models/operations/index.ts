@@ -52,6 +52,7 @@ export * from "./getreportexecution.js";
 export * from "./gettransaction.js";
 export * from "./gettransactionrefund.js";
 export * from "./gettransactionsettlement.js";
+export * from "./gettransactionsummary.js";
 export * from "./listallreportexecutions.js";
 export * from "./listauditlogs.js";
 export * from "./listbuyergiftcards.js";

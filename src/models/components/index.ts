@@ -193,6 +193,7 @@ export * from "./transactionrefundcreate.js";
 export * from "./transactionretriesreportspec.js";
 export * from "./transactionsreportspec.js";
 export * from "./transactionstatus.js";
+export * from "./transactionstatussummary.js";
 export * from "./transactionsummaries.js";
 export * from "./transactionsummary.js";
 export * from "./transactionthreedsecuresummary.js";

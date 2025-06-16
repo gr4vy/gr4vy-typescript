@@ -17,7 +17,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 1.0.0-beta.21
+  version: 1.0.0-beta.22
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -34,6 +34,7 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Gr4vy
+  baseErrorName: Gr4vyError
   clientServerStatusCodesAsErrors: true
   compileCommand:
     - bash

@@ -15,5 +15,6 @@ export * from "./error502.js";
 export * from "./error504.js";
 export * from "./httpclienterrors.js";
 export * from "./httpvalidationerror.js";
+export * from "./responsevalidationerror.js";
 export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";

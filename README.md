@@ -394,6 +394,7 @@ try {
 * [get](docs/sdks/transactions/README.md#get) - Get transaction
 * [capture](docs/sdks/transactions/README.md#capture) - Capture transaction
 * [void](docs/sdks/transactions/README.md#void) - Void transaction
+* [summary](docs/sdks/transactions/README.md#summary) - Get transaction summary
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
 
 #### [transactions.events](docs/sdks/events/README.md)
@@ -421,16 +422,15 @@ try {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-This table shows properties which are common on error classes. For full details see [error classes](#error-classes).
+[`Gr4vyError`](./src/models/errors/gr4vyerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
 | Property            | Type       | Description                                                                             |
 | ------------------- | ---------- | --------------------------------------------------------------------------------------- |
-| `error.name`        | `string`   | Error class name eg `SDKError`                                                          |
 | `error.message`     | `string`   | Error message                                                                           |
-| `error.statusCode`  | `number`   | HTTP status code eg `404`                                                               |
-| `error.contentType` | `string`   | HTTP content type eg `application/json`                                                 |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
 | `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
-| `error.rawResponse` | `Response` | Raw HTTP response. Access to headers and more.                                          |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
 | `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
 ### Example
@@ -458,22 +458,21 @@ async function run() {
 
     console.log(result);
   } catch (error) {
-    // Depending on the method different errors may be thrown
-    if (error instanceof errors.Error400) {
-      console.log(error.message);
-      console.log(error.data$.type); // string
-      console.log(error.data$.code); // string
-      console.log(error.data$.status); // number
-      console.log(error.data$.message); // string
-      console.log(error.data$.details); // ErrorDetail[]
-    }
-
-    // Fallback error class, if no other more specific error class is matched
-    if (error instanceof errors.SDKError) {
+    // The base class for HTTP error responses
+    if (error instanceof errors.Gr4vyError) {
       console.log(error.message);
       console.log(error.statusCode);
       console.log(error.body);
-      console.log(error.rawResponse.headers);
+      console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.Error400) {
+        console.log(error.data$.type); // string
+        console.log(error.data$.code); // string
+        console.log(error.data$.status); // number
+        console.log(error.data$.message); // string
+        console.log(error.data$.details); // ErrorDetail[]
+      }
     }
   }
 }
@@ -483,26 +482,39 @@ run();
 ```
 
 ### Error Classes
-* [`Error400`](docs/models/errors/error400.md): The request was invalid. Status code `400`.
-* [`Error401`](docs/models/errors/error401.md): The request was unauthorized. Status code `401`.
-* [`Error403`](docs/models/errors/error403.md): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`.
-* [`Error404`](docs/models/errors/error404.md): The resource was not found. Status code `404`.
-* [`Error405`](docs/models/errors/error405.md): The request method was not allowed. Status code `405`.
-* [`Error409`](docs/models/errors/error409.md): A duplicate record was found. Status code `409`.
-* [`Error425`](docs/models/errors/error425.md): The request was too early. Status code `425`.
-* [`Error429`](docs/models/errors/error429.md): Too many requests were made. Status code `429`.
-* [`Error500`](docs/models/errors/error500.md): The server encountered an error. Status code `500`.
-* [`Error502`](docs/models/errors/error502.md): The server encountered an error. Status code `502`.
-* [`Error504`](docs/models/errors/error504.md): The server encountered an error. Status code `504`.
-* [`HTTPValidationError`](docs/models/errors/httpvalidationerror.md): Validation Error. Status code `422`.
-* `SDKError`: The fallback error class, if no other more specific error class is matched.
-* `SDKValidationError`: Type mismatch between the data returned from the server and the structure expected by the SDK. This can also be thrown for invalid method arguments. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
-* Network errors:
-    * `ConnectionError`: HTTP client was unable to make a request to a server.
-    * `RequestTimeoutError`: HTTP request timed out due to an AbortSignal signal.
-    * `RequestAbortedError`: HTTP request was aborted by the client.
-    * `InvalidRequestError`: Any input used to create a request is invalid.
-    * `UnexpectedClientError`: Unrecognised or unexpected error.
+**Primary errors:**
+* [`Gr4vyError`](./src/models/errors/gr4vyerror.ts): The base class for HTTP error responses.
+  * [`Error400`](docs/models/errors/error400.md): The request was invalid. Status code `400`.
+  * [`Error401`](docs/models/errors/error401.md): The request was unauthorized. Status code `401`.
+  * [`Error403`](docs/models/errors/error403.md): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`.
+  * [`Error404`](docs/models/errors/error404.md): The resource was not found. Status code `404`.
+  * [`Error405`](docs/models/errors/error405.md): The request method was not allowed. Status code `405`.
+  * [`Error409`](docs/models/errors/error409.md): A duplicate record was found. Status code `409`.
+  * [`Error425`](docs/models/errors/error425.md): The request was too early. Status code `425`.
+  * [`Error429`](docs/models/errors/error429.md): Too many requests were made. Status code `429`.
+  * [`Error500`](docs/models/errors/error500.md): The server encountered an error. Status code `500`.
+  * [`Error502`](docs/models/errors/error502.md): The server encountered an error. Status code `502`.
+  * [`Error504`](docs/models/errors/error504.md): The server encountered an error. Status code `504`.
+  * [`HTTPValidationError`](docs/models/errors/httpvalidationerror.md): Validation Error. Status code `422`. *
+
+<details><summary>Less common errors (6)</summary>
+
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`Gr4vyError`](./src/models/errors/gr4vyerror.ts)**:
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -1000,6 +1012,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transactionsRefundsList`](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
 - [`transactionsSettlementsGet`](docs/sdks/settlements/README.md#get) - Get transaction settlement
 - [`transactionsSettlementsList`](docs/sdks/settlements/README.md#list) - List transaction settlements
+- [`transactionsSummary`](docs/sdks/transactions/README.md#summary) - Get transaction summary
 - [`transactionsSync`](docs/sdks/transactions/README.md#sync) - Sync transaction
 - [`transactionsVoid`](docs/sdks/transactions/README.md#void) - Void transaction
 
