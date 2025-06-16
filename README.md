@@ -394,7 +394,6 @@ try {
 * [get](docs/sdks/transactions/README.md#get) - Get transaction
 * [capture](docs/sdks/transactions/README.md#capture) - Capture transaction
 * [void](docs/sdks/transactions/README.md#void) - Void transaction
-* [summary](docs/sdks/transactions/README.md#summary) - Get transaction summary
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
 
 #### [transactions.events](docs/sdks/events/README.md)
@@ -1012,7 +1011,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transactionsRefundsList`](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
 - [`transactionsSettlementsGet`](docs/sdks/settlements/README.md#get) - Get transaction settlement
 - [`transactionsSettlementsList`](docs/sdks/settlements/README.md#list) - List transaction settlements
-- [`transactionsSummary`](docs/sdks/transactions/README.md#summary) - Get transaction summary
 - [`transactionsSync`](docs/sdks/transactions/README.md#sync) - Sync transaction
 - [`transactionsVoid`](docs/sdks/transactions/README.md#void) - Void transaction
 
