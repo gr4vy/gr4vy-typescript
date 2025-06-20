@@ -119,7 +119,7 @@ export const GooglePayPaymentMethodCreate$inboundSchema: z.ZodType<
   card_suffix: z.nullable(z.string()).optional(),
   card_scheme: z.nullable(z.string()).optional(),
   card_type: z.nullable(z.string()).optional(),
-  method: z.literal("googlepay").optional(),
+  method: z.literal("googlepay").default("googlepay").optional(),
   token: z.union([z.string(), z.record(z.any())]),
   assurance_details: z.nullable(GooglePayAssuranceDetails$inboundSchema)
     .optional(),

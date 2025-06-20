@@ -142,25 +142,25 @@ import {
  * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
  */
 export type TransactionCreatePaymentMethod =
-  | TokenPaymentMethodCreate
-  | CheckoutSessionWithUrlPaymentMethodCreate
   | RedirectPaymentMethodCreate
   | ClickToPayPaymentMethodCreate
-  | CardWithUrlPaymentMethodCreate
-  | ApplePayPaymentMethodCreate
   | ClickToPayFPANPaymentMethodCreate
   | GooglePayFPANPaymentMethodCreate
+  | NetworkTokenPaymentMethodCreate
+  | CardWithUrlPaymentMethodCreate
+  | ApplePayPaymentMethodCreate
   | GooglePayPaymentMethodCreate
-  | NetworkTokenPaymentMethodCreate;
+  | TokenPaymentMethodCreate
+  | CheckoutSessionWithUrlPaymentMethodCreate;
 
 export type TransactionCreateGiftCards =
-  | GiftCardTokenTransactionCreate
-  | GiftCardTransactionCreate;
+  | GiftCardTransactionCreate
+  | GiftCardTokenTransactionCreate;
 
 /**
  * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
  */
-export type ThreeDSecureData = ThreeDSecureDataV2 | ThreeDSecureDataV1;
+export type ThreeDSecureData = ThreeDSecureDataV1 | ThreeDSecureDataV2;
 
 export type TransactionCreate = {
   /**
@@ -179,16 +179,16 @@ export type TransactionCreate = {
    * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
    */
   paymentMethod?:
-    | TokenPaymentMethodCreate
-    | CheckoutSessionWithUrlPaymentMethodCreate
     | RedirectPaymentMethodCreate
     | ClickToPayPaymentMethodCreate
-    | CardWithUrlPaymentMethodCreate
-    | ApplePayPaymentMethodCreate
     | ClickToPayFPANPaymentMethodCreate
     | GooglePayFPANPaymentMethodCreate
-    | GooglePayPaymentMethodCreate
     | NetworkTokenPaymentMethodCreate
+    | CardWithUrlPaymentMethodCreate
+    | ApplePayPaymentMethodCreate
+    | GooglePayPaymentMethodCreate
+    | TokenPaymentMethodCreate
+    | CheckoutSessionWithUrlPaymentMethodCreate
     | null
     | undefined;
   /**
@@ -207,7 +207,7 @@ export type TransactionCreate = {
    * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
    */
   giftCards?:
-    | Array<GiftCardTokenTransactionCreate | GiftCardTransactionCreate>
+    | Array<GiftCardTransactionCreate | GiftCardTokenTransactionCreate>
     | null
     | undefined;
   /**
@@ -227,7 +227,7 @@ export type TransactionCreate = {
   /**
    * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
    */
-  threeDSecureData?: ThreeDSecureDataV2 | ThreeDSecureDataV1 | null | undefined;
+  threeDSecureData?: ThreeDSecureDataV1 | ThreeDSecureDataV2 | null | undefined;
   /**
    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
    */
@@ -323,30 +323,30 @@ export const TransactionCreatePaymentMethod$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  TokenPaymentMethodCreate$inboundSchema,
-  CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
   RedirectPaymentMethodCreate$inboundSchema,
   ClickToPayPaymentMethodCreate$inboundSchema,
-  CardWithUrlPaymentMethodCreate$inboundSchema,
-  ApplePayPaymentMethodCreate$inboundSchema,
   ClickToPayFPANPaymentMethodCreate$inboundSchema,
   GooglePayFPANPaymentMethodCreate$inboundSchema,
-  GooglePayPaymentMethodCreate$inboundSchema,
   NetworkTokenPaymentMethodCreate$inboundSchema,
+  CardWithUrlPaymentMethodCreate$inboundSchema,
+  ApplePayPaymentMethodCreate$inboundSchema,
+  GooglePayPaymentMethodCreate$inboundSchema,
+  TokenPaymentMethodCreate$inboundSchema,
+  CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
 ]);
 
 /** @internal */
 export type TransactionCreatePaymentMethod$Outbound =
-  | TokenPaymentMethodCreate$Outbound
-  | CheckoutSessionWithUrlPaymentMethodCreate$Outbound
   | RedirectPaymentMethodCreate$Outbound
   | ClickToPayPaymentMethodCreate$Outbound
-  | CardWithUrlPaymentMethodCreate$Outbound
-  | ApplePayPaymentMethodCreate$Outbound
   | ClickToPayFPANPaymentMethodCreate$Outbound
   | GooglePayFPANPaymentMethodCreate$Outbound
+  | NetworkTokenPaymentMethodCreate$Outbound
+  | CardWithUrlPaymentMethodCreate$Outbound
+  | ApplePayPaymentMethodCreate$Outbound
   | GooglePayPaymentMethodCreate$Outbound
-  | NetworkTokenPaymentMethodCreate$Outbound;
+  | TokenPaymentMethodCreate$Outbound
+  | CheckoutSessionWithUrlPaymentMethodCreate$Outbound;
 
 /** @internal */
 export const TransactionCreatePaymentMethod$outboundSchema: z.ZodType<
@@ -354,16 +354,16 @@ export const TransactionCreatePaymentMethod$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TransactionCreatePaymentMethod
 > = z.union([
-  TokenPaymentMethodCreate$outboundSchema,
-  CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
   RedirectPaymentMethodCreate$outboundSchema,
   ClickToPayPaymentMethodCreate$outboundSchema,
-  CardWithUrlPaymentMethodCreate$outboundSchema,
-  ApplePayPaymentMethodCreate$outboundSchema,
   ClickToPayFPANPaymentMethodCreate$outboundSchema,
   GooglePayFPANPaymentMethodCreate$outboundSchema,
-  GooglePayPaymentMethodCreate$outboundSchema,
   NetworkTokenPaymentMethodCreate$outboundSchema,
+  CardWithUrlPaymentMethodCreate$outboundSchema,
+  ApplePayPaymentMethodCreate$outboundSchema,
+  GooglePayPaymentMethodCreate$outboundSchema,
+  TokenPaymentMethodCreate$outboundSchema,
+  CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
 ]);
 
 /**
@@ -405,14 +405,14 @@ export const TransactionCreateGiftCards$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  GiftCardTokenTransactionCreate$inboundSchema,
   GiftCardTransactionCreate$inboundSchema,
+  GiftCardTokenTransactionCreate$inboundSchema,
 ]);
 
 /** @internal */
 export type TransactionCreateGiftCards$Outbound =
-  | GiftCardTokenTransactionCreate$Outbound
-  | GiftCardTransactionCreate$Outbound;
+  | GiftCardTransactionCreate$Outbound
+  | GiftCardTokenTransactionCreate$Outbound;
 
 /** @internal */
 export const TransactionCreateGiftCards$outboundSchema: z.ZodType<
@@ -420,8 +420,8 @@ export const TransactionCreateGiftCards$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TransactionCreateGiftCards
 > = z.union([
-  GiftCardTokenTransactionCreate$outboundSchema,
   GiftCardTransactionCreate$outboundSchema,
+  GiftCardTokenTransactionCreate$outboundSchema,
 ]);
 
 /**
@@ -461,14 +461,14 @@ export const ThreeDSecureData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  ThreeDSecureDataV2$inboundSchema,
   ThreeDSecureDataV1$inboundSchema,
+  ThreeDSecureDataV2$inboundSchema,
 ]);
 
 /** @internal */
 export type ThreeDSecureData$Outbound =
-  | ThreeDSecureDataV2$Outbound
-  | ThreeDSecureDataV1$Outbound;
+  | ThreeDSecureDataV1$Outbound
+  | ThreeDSecureDataV2$Outbound;
 
 /** @internal */
 export const ThreeDSecureData$outboundSchema: z.ZodType<
@@ -476,8 +476,8 @@ export const ThreeDSecureData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ThreeDSecureData
 > = z.union([
-  ThreeDSecureDataV2$outboundSchema,
   ThreeDSecureDataV1$outboundSchema,
+  ThreeDSecureDataV2$outboundSchema,
 ]);
 
 /**
@@ -522,16 +522,16 @@ export const TransactionCreate$inboundSchema: z.ZodType<
   country: z.nullable(z.string()).optional(),
   payment_method: z.nullable(
     z.union([
-      TokenPaymentMethodCreate$inboundSchema,
-      CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
       RedirectPaymentMethodCreate$inboundSchema,
       ClickToPayPaymentMethodCreate$inboundSchema,
-      CardWithUrlPaymentMethodCreate$inboundSchema,
-      ApplePayPaymentMethodCreate$inboundSchema,
       ClickToPayFPANPaymentMethodCreate$inboundSchema,
       GooglePayFPANPaymentMethodCreate$inboundSchema,
-      GooglePayPaymentMethodCreate$inboundSchema,
       NetworkTokenPaymentMethodCreate$inboundSchema,
+      CardWithUrlPaymentMethodCreate$inboundSchema,
+      ApplePayPaymentMethodCreate$inboundSchema,
+      GooglePayPaymentMethodCreate$inboundSchema,
+      TokenPaymentMethodCreate$inboundSchema,
+      CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
     ]),
   ).optional(),
   buyer: z.nullable(GuestBuyerInput$inboundSchema).optional(),
@@ -540,8 +540,8 @@ export const TransactionCreate$inboundSchema: z.ZodType<
   gift_cards: z.nullable(
     z.array(
       z.union([
-        GiftCardTokenTransactionCreate$inboundSchema,
         GiftCardTransactionCreate$inboundSchema,
+        GiftCardTokenTransactionCreate$inboundSchema,
       ]),
     ),
   ).optional(),
@@ -550,8 +550,8 @@ export const TransactionCreate$inboundSchema: z.ZodType<
   store: z.boolean().default(false),
   three_d_secure_data: z.nullable(
     z.union([
-      ThreeDSecureDataV2$inboundSchema,
       ThreeDSecureDataV1$inboundSchema,
+      ThreeDSecureDataV2$inboundSchema,
     ]),
   ).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
@@ -603,16 +603,16 @@ export type TransactionCreate$Outbound = {
   currency: string;
   country?: string | null | undefined;
   payment_method?:
-    | TokenPaymentMethodCreate$Outbound
-    | CheckoutSessionWithUrlPaymentMethodCreate$Outbound
     | RedirectPaymentMethodCreate$Outbound
     | ClickToPayPaymentMethodCreate$Outbound
-    | CardWithUrlPaymentMethodCreate$Outbound
-    | ApplePayPaymentMethodCreate$Outbound
     | ClickToPayFPANPaymentMethodCreate$Outbound
     | GooglePayFPANPaymentMethodCreate$Outbound
-    | GooglePayPaymentMethodCreate$Outbound
     | NetworkTokenPaymentMethodCreate$Outbound
+    | CardWithUrlPaymentMethodCreate$Outbound
+    | ApplePayPaymentMethodCreate$Outbound
+    | GooglePayPaymentMethodCreate$Outbound
+    | TokenPaymentMethodCreate$Outbound
+    | CheckoutSessionWithUrlPaymentMethodCreate$Outbound
     | null
     | undefined;
   buyer?: GuestBuyerInput$Outbound | null | undefined;
@@ -620,8 +620,8 @@ export type TransactionCreate$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   gift_cards?:
     | Array<
-      | GiftCardTokenTransactionCreate$Outbound
       | GiftCardTransactionCreate$Outbound
+      | GiftCardTokenTransactionCreate$Outbound
     >
     | null
     | undefined;
@@ -629,8 +629,8 @@ export type TransactionCreate$Outbound = {
   intent?: string | undefined;
   store: boolean;
   three_d_secure_data?:
-    | ThreeDSecureDataV2$Outbound
     | ThreeDSecureDataV1$Outbound
+    | ThreeDSecureDataV2$Outbound
     | null
     | undefined;
   metadata?: { [k: string]: string } | null | undefined;
@@ -663,16 +663,16 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   country: z.nullable(z.string()).optional(),
   paymentMethod: z.nullable(
     z.union([
-      TokenPaymentMethodCreate$outboundSchema,
-      CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
       RedirectPaymentMethodCreate$outboundSchema,
       ClickToPayPaymentMethodCreate$outboundSchema,
-      CardWithUrlPaymentMethodCreate$outboundSchema,
-      ApplePayPaymentMethodCreate$outboundSchema,
       ClickToPayFPANPaymentMethodCreate$outboundSchema,
       GooglePayFPANPaymentMethodCreate$outboundSchema,
-      GooglePayPaymentMethodCreate$outboundSchema,
       NetworkTokenPaymentMethodCreate$outboundSchema,
+      CardWithUrlPaymentMethodCreate$outboundSchema,
+      ApplePayPaymentMethodCreate$outboundSchema,
+      GooglePayPaymentMethodCreate$outboundSchema,
+      TokenPaymentMethodCreate$outboundSchema,
+      CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
     ]),
   ).optional(),
   buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
@@ -681,8 +681,8 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   giftCards: z.nullable(
     z.array(
       z.union([
-        GiftCardTokenTransactionCreate$outboundSchema,
         GiftCardTransactionCreate$outboundSchema,
+        GiftCardTokenTransactionCreate$outboundSchema,
       ]),
     ),
   ).optional(),
@@ -691,8 +691,8 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   store: z.boolean().default(false),
   threeDSecureData: z.nullable(
     z.union([
-      ThreeDSecureDataV2$outboundSchema,
       ThreeDSecureDataV1$outboundSchema,
+      ThreeDSecureDataV2$outboundSchema,
     ]),
   ).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),

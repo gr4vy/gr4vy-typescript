@@ -62,7 +62,7 @@ export const ClickToPayFPANPaymentMethodCreate$inboundSchema: z.ZodType<
   buyer_id: z.nullable(z.string()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
   card_type: z.nullable(z.string()).optional(),
-  method: z.literal("click-to-pay").optional(),
+  method: z.literal("click-to-pay").default("click-to-pay").optional(),
   redirect_url: z.nullable(z.string()).optional(),
   security_code: z.nullable(z.any()).optional(),
 }).transform((v) => {

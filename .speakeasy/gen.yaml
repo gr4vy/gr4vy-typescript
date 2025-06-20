@@ -17,7 +17,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 1.0.0-beta.23
+  version: 1.0.0
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -40,6 +40,7 @@ typescript:
     - bash
     - -c
     - ./.speakeasy/compile.sh
+  constFieldsAlwaysOptional: true
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
   enableMCPServer: false

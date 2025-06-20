@@ -62,7 +62,8 @@ export const GooglePayFPANPaymentMethodCreate$inboundSchema: z.ZodType<
   buyer_id: z.nullable(z.string()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
   card_type: z.nullable(z.string()).optional(),
-  method: z.literal("googlepay_pan_only").optional(),
+  method: z.literal("googlepay_pan_only").default("googlepay_pan_only")
+    .optional(),
   redirect_url: z.nullable(z.string()).optional(),
   security_code: z.nullable(z.any()).optional(),
 }).transform((v) => {

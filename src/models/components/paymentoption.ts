@@ -28,8 +28,8 @@ import {
 } from "./walletpaymentoptioncontext.js";
 
 export type Context =
-  | WalletPaymentOptionContext
   | GooglePayPaymentOptionContext
+  | WalletPaymentOptionContext
   | PaymentOptionContext;
 
 export type PaymentOption = {
@@ -41,8 +41,8 @@ export type PaymentOption = {
   canStorePaymentMethod: boolean;
   canDelayCapture: boolean;
   context?:
-    | WalletPaymentOptionContext
     | GooglePayPaymentOptionContext
+    | WalletPaymentOptionContext
     | PaymentOptionContext
     | null
     | undefined;
@@ -51,15 +51,15 @@ export type PaymentOption = {
 /** @internal */
 export const Context$inboundSchema: z.ZodType<Context, z.ZodTypeDef, unknown> =
   z.union([
-    WalletPaymentOptionContext$inboundSchema,
     GooglePayPaymentOptionContext$inboundSchema,
+    WalletPaymentOptionContext$inboundSchema,
     PaymentOptionContext$inboundSchema,
   ]);
 
 /** @internal */
 export type Context$Outbound =
-  | WalletPaymentOptionContext$Outbound
   | GooglePayPaymentOptionContext$Outbound
+  | WalletPaymentOptionContext$Outbound
   | PaymentOptionContext$Outbound;
 
 /** @internal */
@@ -68,8 +68,8 @@ export const Context$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Context
 > = z.union([
-  WalletPaymentOptionContext$outboundSchema,
   GooglePayPaymentOptionContext$outboundSchema,
+  WalletPaymentOptionContext$outboundSchema,
   PaymentOptionContext$outboundSchema,
 ]);
 
@@ -115,8 +115,8 @@ export const PaymentOption$inboundSchema: z.ZodType<
   can_delay_capture: z.boolean(),
   context: z.nullable(
     z.union([
-      WalletPaymentOptionContext$inboundSchema,
       GooglePayPaymentOptionContext$inboundSchema,
+      WalletPaymentOptionContext$inboundSchema,
       PaymentOptionContext$inboundSchema,
     ]),
   ).optional(),
@@ -138,8 +138,8 @@ export type PaymentOption$Outbound = {
   can_store_payment_method: boolean;
   can_delay_capture: boolean;
   context?:
-    | WalletPaymentOptionContext$Outbound
     | GooglePayPaymentOptionContext$Outbound
+    | WalletPaymentOptionContext$Outbound
     | PaymentOptionContext$Outbound
     | null
     | undefined;
@@ -160,8 +160,8 @@ export const PaymentOption$outboundSchema: z.ZodType<
   canDelayCapture: z.boolean(),
   context: z.nullable(
     z.union([
-      WalletPaymentOptionContext$outboundSchema,
       GooglePayPaymentOptionContext$outboundSchema,
+      WalletPaymentOptionContext$outboundSchema,
       PaymentOptionContext$outboundSchema,
     ]),
   ).optional(),

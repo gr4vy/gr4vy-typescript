@@ -56,7 +56,7 @@ export const ClickToPayPaymentMethodCreate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  method: z.literal("click-to-pay").optional(),
+  method: z.literal("click-to-pay").default("click-to-pay").optional(),
   token: z.string(),
   cryptogram: z.string(),
   expiration_date: z.string(),

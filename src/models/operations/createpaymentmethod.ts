@@ -14,9 +14,9 @@ export type CreatePaymentMethodGlobals = {
 };
 
 export type CreatePaymentMethodBody =
-  | components.CheckoutSessionPaymentMethodCreate
   | components.RedirectPaymentMethodCreate
-  | components.CardPaymentMethodCreate;
+  | components.CardPaymentMethodCreate
+  | components.CheckoutSessionPaymentMethodCreate;
 
 export type CreatePaymentMethodRequest = {
   /**
@@ -24,9 +24,9 @@ export type CreatePaymentMethodRequest = {
    */
   merchantAccountId?: string | null | undefined;
   requestBody:
-    | components.CheckoutSessionPaymentMethodCreate
     | components.RedirectPaymentMethodCreate
-    | components.CardPaymentMethodCreate;
+    | components.CardPaymentMethodCreate
+    | components.CheckoutSessionPaymentMethodCreate;
 };
 
 /** @internal */
@@ -89,16 +89,16 @@ export const CreatePaymentMethodBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  components.CheckoutSessionPaymentMethodCreate$inboundSchema,
   components.RedirectPaymentMethodCreate$inboundSchema,
   components.CardPaymentMethodCreate$inboundSchema,
+  components.CheckoutSessionPaymentMethodCreate$inboundSchema,
 ]);
 
 /** @internal */
 export type CreatePaymentMethodBody$Outbound =
-  | components.CheckoutSessionPaymentMethodCreate$Outbound
   | components.RedirectPaymentMethodCreate$Outbound
-  | components.CardPaymentMethodCreate$Outbound;
+  | components.CardPaymentMethodCreate$Outbound
+  | components.CheckoutSessionPaymentMethodCreate$Outbound;
 
 /** @internal */
 export const CreatePaymentMethodBody$outboundSchema: z.ZodType<
@@ -106,9 +106,9 @@ export const CreatePaymentMethodBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreatePaymentMethodBody
 > = z.union([
-  components.CheckoutSessionPaymentMethodCreate$outboundSchema,
   components.RedirectPaymentMethodCreate$outboundSchema,
   components.CardPaymentMethodCreate$outboundSchema,
+  components.CheckoutSessionPaymentMethodCreate$outboundSchema,
 ]);
 
 /**
@@ -150,9 +150,9 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
 > = z.object({
   merchantAccountId: z.nullable(z.string()).optional(),
   RequestBody: z.union([
-    components.CheckoutSessionPaymentMethodCreate$inboundSchema,
     components.RedirectPaymentMethodCreate$inboundSchema,
     components.CardPaymentMethodCreate$inboundSchema,
+    components.CheckoutSessionPaymentMethodCreate$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -164,9 +164,9 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
 export type CreatePaymentMethodRequest$Outbound = {
   merchantAccountId?: string | null | undefined;
   RequestBody:
-    | components.CheckoutSessionPaymentMethodCreate$Outbound
     | components.RedirectPaymentMethodCreate$Outbound
-    | components.CardPaymentMethodCreate$Outbound;
+    | components.CardPaymentMethodCreate$Outbound
+    | components.CheckoutSessionPaymentMethodCreate$Outbound;
 };
 
 /** @internal */
@@ -177,9 +177,9 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
 > = z.object({
   merchantAccountId: z.nullable(z.string()).optional(),
   requestBody: z.union([
-    components.CheckoutSessionPaymentMethodCreate$outboundSchema,
     components.RedirectPaymentMethodCreate$outboundSchema,
     components.CardPaymentMethodCreate$outboundSchema,
+    components.CheckoutSessionPaymentMethodCreate$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

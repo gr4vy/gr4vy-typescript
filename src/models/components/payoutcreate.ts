@@ -47,8 +47,8 @@ import {
  * The type of payment method to send funds too.
  */
 export type PayoutCreatePaymentMethod =
-  | PaymentMethodStoredCard
-  | PaymentMethodCard;
+  | PaymentMethodCard
+  | PaymentMethodStoredCard;
 
 /**
  * PayoutCreate
@@ -73,7 +73,7 @@ export type PayoutCreate = {
   /**
    * The type of payment method to send funds too.
    */
-  paymentMethod: PaymentMethodStoredCard | PaymentMethodCard;
+  paymentMethod: PaymentMethodCard | PaymentMethodStoredCard;
   /**
    * The type of payout to process.
    */
@@ -110,14 +110,14 @@ export const PayoutCreatePaymentMethod$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  PaymentMethodStoredCard$inboundSchema,
   PaymentMethodCard$inboundSchema,
+  PaymentMethodStoredCard$inboundSchema,
 ]);
 
 /** @internal */
 export type PayoutCreatePaymentMethod$Outbound =
-  | PaymentMethodStoredCard$Outbound
-  | PaymentMethodCard$Outbound;
+  | PaymentMethodCard$Outbound
+  | PaymentMethodStoredCard$Outbound;
 
 /** @internal */
 export const PayoutCreatePaymentMethod$outboundSchema: z.ZodType<
@@ -125,8 +125,8 @@ export const PayoutCreatePaymentMethod$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PayoutCreatePaymentMethod
 > = z.union([
-  PaymentMethodStoredCard$outboundSchema,
   PaymentMethodCard$outboundSchema,
+  PaymentMethodStoredCard$outboundSchema,
 ]);
 
 /**
@@ -170,8 +170,8 @@ export const PayoutCreate$inboundSchema: z.ZodType<
   currency: z.string(),
   payment_service_id: z.string(),
   payment_method: z.union([
-    PaymentMethodStoredCard$inboundSchema,
     PaymentMethodCard$inboundSchema,
+    PaymentMethodStoredCard$inboundSchema,
   ]),
   category: z.nullable(PayoutCategory$inboundSchema).optional(),
   external_identifier: z.nullable(z.string()).optional(),
@@ -196,7 +196,7 @@ export type PayoutCreate$Outbound = {
   amount: number;
   currency: string;
   payment_service_id: string;
-  payment_method: PaymentMethodStoredCard$Outbound | PaymentMethodCard$Outbound;
+  payment_method: PaymentMethodCard$Outbound | PaymentMethodStoredCard$Outbound;
   category?: string | null | undefined;
   external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
@@ -216,8 +216,8 @@ export const PayoutCreate$outboundSchema: z.ZodType<
   currency: z.string(),
   paymentServiceId: z.string(),
   paymentMethod: z.union([
-    PaymentMethodStoredCard$outboundSchema,
     PaymentMethodCard$outboundSchema,
+    PaymentMethodStoredCard$outboundSchema,
   ]),
   category: z.nullable(PayoutCategory$outboundSchema).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),

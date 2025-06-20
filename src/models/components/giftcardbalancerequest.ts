@@ -19,23 +19,23 @@ import {
   GiftCardStoredRequest$outboundSchema,
 } from "./giftcardstoredrequest.js";
 
-export type Items = GiftCardStoredRequest | GiftCardRequest;
+export type Items = GiftCardRequest | GiftCardStoredRequest;
 
 export type GiftCardBalanceRequest = {
   /**
    * A list of gift cards to request a balance for.
    */
-  items: Array<GiftCardStoredRequest | GiftCardRequest>;
+  items: Array<GiftCardRequest | GiftCardStoredRequest>;
 };
 
 /** @internal */
 export const Items$inboundSchema: z.ZodType<Items, z.ZodTypeDef, unknown> = z
-  .union([GiftCardStoredRequest$inboundSchema, GiftCardRequest$inboundSchema]);
+  .union([GiftCardRequest$inboundSchema, GiftCardStoredRequest$inboundSchema]);
 
 /** @internal */
 export type Items$Outbound =
-  | GiftCardStoredRequest$Outbound
-  | GiftCardRequest$Outbound;
+  | GiftCardRequest$Outbound
+  | GiftCardStoredRequest$Outbound;
 
 /** @internal */
 export const Items$outboundSchema: z.ZodType<
@@ -43,8 +43,8 @@ export const Items$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Items
 > = z.union([
-  GiftCardStoredRequest$outboundSchema,
   GiftCardRequest$outboundSchema,
+  GiftCardStoredRequest$outboundSchema,
 ]);
 
 /**
@@ -82,15 +82,15 @@ export const GiftCardBalanceRequest$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(
     z.union([
-      GiftCardStoredRequest$inboundSchema,
       GiftCardRequest$inboundSchema,
+      GiftCardStoredRequest$inboundSchema,
     ]),
   ),
 });
 
 /** @internal */
 export type GiftCardBalanceRequest$Outbound = {
-  items: Array<GiftCardStoredRequest$Outbound | GiftCardRequest$Outbound>;
+  items: Array<GiftCardRequest$Outbound | GiftCardStoredRequest$Outbound>;
 };
 
 /** @internal */
@@ -101,8 +101,8 @@ export const GiftCardBalanceRequest$outboundSchema: z.ZodType<
 > = z.object({
   items: z.array(
     z.union([
-      GiftCardStoredRequest$outboundSchema,
       GiftCardRequest$outboundSchema,
+      GiftCardStoredRequest$outboundSchema,
     ]),
   ),
 });

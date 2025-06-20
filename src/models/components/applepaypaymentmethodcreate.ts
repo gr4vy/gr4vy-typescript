@@ -63,7 +63,7 @@ export const ApplePayPaymentMethodCreate$inboundSchema: z.ZodType<
   card_suffix: z.nullable(z.string()).optional(),
   card_scheme: z.nullable(z.string()).optional(),
   card_type: z.nullable(z.string()).optional(),
-  method: z.literal("applepay").optional(),
+  method: z.literal("applepay").default("applepay").optional(),
   token: z.record(z.any()),
 }).transform((v) => {
   return remap$(v, {
