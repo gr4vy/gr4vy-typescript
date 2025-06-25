@@ -37,6 +37,7 @@ export function transactionsCreate(
   transactionCreate: components.TransactionCreate,
   merchantAccountId?: string | null | undefined,
   idempotencyKey?: string | null | undefined,
+  xForwardedFor?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -68,6 +69,7 @@ export function transactionsCreate(
     transactionCreate,
     merchantAccountId,
     idempotencyKey,
+    xForwardedFor,
     options,
   ));
 }
@@ -77,6 +79,7 @@ async function $do(
   transactionCreate: components.TransactionCreate,
   merchantAccountId?: string | null | undefined,
   idempotencyKey?: string | null | undefined,
+  xForwardedFor?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -110,6 +113,7 @@ async function $do(
     transactionCreate: transactionCreate,
     merchantAccountId: merchantAccountId,
     idempotencyKey: idempotencyKey,
+    xForwardedFor: xForwardedFor,
   };
 
   const parsed = safeParse(
@@ -128,6 +132,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "X-Forwarded-For": encodeSimple(
+      "X-Forwarded-For",
+      payload["X-Forwarded-For"],
+      { explode: false, charEncoding: "none" },
+    ),
     "idempotency-key": encodeSimple(
       "idempotency-key",
       payload["idempotency-key"],

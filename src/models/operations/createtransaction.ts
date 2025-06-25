@@ -22,6 +22,14 @@ export type CreateTransactionRequest = {
    * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
    */
   idempotencyKey?: string | null | undefined;
+  /**
+   * The IP address to forward from the customer. Use this when calling
+   *
+   * @remarks
+   * our API from the server side to ensure the customer's address is
+   * passed to downstream services, rather than your server IP.
+   */
+  xForwardedFor?: string | undefined;
   transactionCreate: components.TransactionCreate;
 };
 
@@ -87,10 +95,12 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
 > = z.object({
   merchantAccountId: z.nullable(z.string()).optional(),
   "idempotency-key": z.nullable(z.string()).optional(),
+  "X-Forwarded-For": z.string().optional(),
   TransactionCreate: components.TransactionCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "idempotency-key": "idempotencyKey",
+    "X-Forwarded-For": "xForwardedFor",
     "TransactionCreate": "transactionCreate",
   });
 });
@@ -99,6 +109,7 @@ export const CreateTransactionRequest$inboundSchema: z.ZodType<
 export type CreateTransactionRequest$Outbound = {
   merchantAccountId?: string | null | undefined;
   "idempotency-key"?: string | null | undefined;
+  "X-Forwarded-For"?: string | undefined;
   TransactionCreate: components.TransactionCreate$Outbound;
 };
 
@@ -110,10 +121,12 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
 > = z.object({
   merchantAccountId: z.nullable(z.string()).optional(),
   idempotencyKey: z.nullable(z.string()).optional(),
+  xForwardedFor: z.string().optional(),
   transactionCreate: components.TransactionCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     idempotencyKey: "idempotency-key",
+    xForwardedFor: "X-Forwarded-For",
     transactionCreate: "TransactionCreate",
   });
 });

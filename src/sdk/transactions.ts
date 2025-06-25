@@ -62,6 +62,7 @@ export class Transactions extends ClientSDK {
     transactionCreate: components.TransactionCreate,
     merchantAccountId?: string | null | undefined,
     idempotencyKey?: string | null | undefined,
+    xForwardedFor?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsCreate(
@@ -69,6 +70,7 @@ export class Transactions extends ClientSDK {
       transactionCreate,
       merchantAccountId,
       idempotencyKey,
+      xForwardedFor,
       options,
     ));
   }
