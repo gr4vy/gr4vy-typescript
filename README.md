@@ -47,7 +47,6 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
   * [Debugging](#debugging)
 * [Development](#development)
   * [Testing](#testing)
-  * [Maturity](#maturity)
   * [Contributions](#contributions)
 
 <!-- End Table of Contents [toc] -->
@@ -901,7 +900,6 @@ Gr4vy: The Gr4vy API.
   * [Debugging](#debugging)
 * [Development](#development)
   * [Testing](#testing)
-  * [Maturity](#maturity)
   * [Contributions](#contributions)
 
 <!-- End Table of Contents [toc] -->

@@ -338,6 +338,10 @@ export type Transaction = {
    * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
    */
   merchantAdviceCode?: string | null | undefined;
+  /**
+   * The number of installments for this transaction, if applicable.
+   */
+  installmentCount?: number | null | undefined;
 };
 
 /** @internal */
@@ -415,6 +419,7 @@ export const Transaction$inboundSchema: z.ZodType<
   account_funding_transaction: z.boolean(),
   recipient: z.nullable(Recipient$inboundSchema).optional(),
   merchant_advice_code: z.nullable(z.string()).optional(),
+  installment_count: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "reconciliation_id": "reconciliationId",
@@ -460,6 +465,7 @@ export const Transaction$inboundSchema: z.ZodType<
     "multi_tender": "multiTender",
     "account_funding_transaction": "accountFundingTransaction",
     "merchant_advice_code": "merchantAdviceCode",
+    "installment_count": "installmentCount",
   });
 });
 
@@ -521,6 +527,7 @@ export type Transaction$Outbound = {
   account_funding_transaction: boolean;
   recipient?: Recipient$Outbound | null | undefined;
   merchant_advice_code?: string | null | undefined;
+  installment_count?: number | null | undefined;
 };
 
 /** @internal */
@@ -590,6 +597,7 @@ export const Transaction$outboundSchema: z.ZodType<
   accountFundingTransaction: z.boolean(),
   recipient: z.nullable(Recipient$outboundSchema).optional(),
   merchantAdviceCode: z.nullable(z.string()).optional(),
+  installmentCount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     reconciliationId: "reconciliation_id",
@@ -635,6 +643,7 @@ export const Transaction$outboundSchema: z.ZodType<
     multiTender: "multi_tender",
     accountFundingTransaction: "account_funding_transaction",
     merchantAdviceCode: "merchant_advice_code",
+    installmentCount: "installment_count",
   });
 });
 
