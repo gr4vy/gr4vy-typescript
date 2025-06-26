@@ -315,6 +315,10 @@ export type TransactionCreate = {
    * The recipient of any account to account funding. For use with AFTs.
    */
   recipient?: Recipient | null | undefined;
+  /**
+   * The number of installments a buyer is required to make.
+   */
+  installmentCount?: number | null | undefined;
 };
 
 /** @internal */
@@ -572,6 +576,7 @@ export const TransactionCreate$inboundSchema: z.ZodType<
   account_funding_transaction: z.boolean().default(false),
   allow_partial_authorization: z.boolean().default(false),
   recipient: z.nullable(Recipient$inboundSchema).optional(),
+  installment_count: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method": "paymentMethod",
@@ -594,6 +599,7 @@ export const TransactionCreate$inboundSchema: z.ZodType<
     "payment_service_id": "paymentServiceId",
     "account_funding_transaction": "accountFundingTransaction",
     "allow_partial_authorization": "allowPartialAuthorization",
+    "installment_count": "installmentCount",
   });
 });
 
@@ -650,6 +656,7 @@ export type TransactionCreate$Outbound = {
   account_funding_transaction: boolean;
   allow_partial_authorization: boolean;
   recipient?: Recipient$Outbound | null | undefined;
+  installment_count?: number | null | undefined;
 };
 
 /** @internal */
@@ -713,6 +720,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   accountFundingTransaction: z.boolean().default(false),
   allowPartialAuthorization: z.boolean().default(false),
   recipient: z.nullable(Recipient$outboundSchema).optional(),
+  installmentCount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethod: "payment_method",
@@ -735,6 +743,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     paymentServiceId: "payment_service_id",
     accountFundingTransaction: "account_funding_transaction",
     allowPartialAuthorization: "allow_partial_authorization",
+    installmentCount: "installment_count",
   });
 });
 
