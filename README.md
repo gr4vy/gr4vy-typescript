@@ -523,8 +523,8 @@ You can override the default server globally by passing a server name to the `se
 
 | Name         | Server                               | Variables | Description |
 | ------------ | ------------------------------------ | --------- | ----------- |
-| `production` | `https://api.{id}.gr4vy.app`         | `id`      |             |
 | `sandbox`    | `https://api.sandbox.{id}.gr4vy.app` | `id`      |             |
+| `production` | `https://api.{id}.gr4vy.app`         | `id`      |             |
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
@@ -538,7 +538,7 @@ If the selected server has variables, you may override its default values throug
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  server: "sandbox",
+  server: "production",
   id: "<id>",
   merchantAccountId: "<id>",
   server: "sandbox",
@@ -570,7 +570,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  serverURL: "https://api.example.gr4vy.app",
+  serverURL: "https://api.sandbox.example.gr4vy.app",
   merchantAccountId: "<id>",
   server: "sandbox",
   id: "example",

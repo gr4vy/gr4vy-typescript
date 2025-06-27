@@ -7,14 +7,14 @@ import { Logger } from "./logger.js";
 import { RetryConfig } from "./retries.js";
 import { Params, pathToFunc } from "./url.js";
 
-export const ServerProduction = "production";
 export const ServerSandbox = "sandbox";
+export const ServerProduction = "production";
 /**
  * Contains the list of servers available to the SDK
  */
 export const ServerList = {
-  [ServerProduction]: "https://api.{id}.gr4vy.app",
   [ServerSandbox]: "https://api.sandbox.{id}.gr4vy.app",
+  [ServerProduction]: "https://api.{id}.gr4vy.app",
 } as const;
 
 export type SDKOptions = {
@@ -54,10 +54,10 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
   let serverURL = options.serverURL;
 
   const serverParams: Record<string, Params> = {
-    "production": {
+    "sandbox": {
       "id": options.id ?? "example",
     },
-    "sandbox": {
+    "production": {
       "id": options.id ?? "example",
     },
   };
@@ -65,7 +65,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
   let params: Params = {};
 
   if (!serverURL) {
-    const server = options.server ?? ServerProduction;
+    const server = options.server ?? ServerSandbox;
     serverURL = ServerList[server] || "";
     params = serverParams[server] || {};
   }
@@ -77,7 +77,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "1.0.3",
-  genVersion: "2.638.1",
-  userAgent: "speakeasy-sdk/typescript 1.0.3 2.638.1 1.0.0 @gr4vy/sdk",
+  sdkVersion: "1.0.4",
+  genVersion: "2.640.1",
+  userAgent: "speakeasy-sdk/typescript 1.0.4 2.640.1 1.0.0 @gr4vy/sdk",
 } as const;
