@@ -3,10 +3,10 @@ id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
   docChecksum: 25e93b698a2de37194024f34944884df
   docVersion: 1.0.0
-  speakeasyVersion: 1.571.0
-  generationVersion: 2.640.1
-  releaseVersion: 1.0.4
-  configChecksum: e21887912a810645e541752386a4b0b7
+  speakeasyVersion: 1.573.0
+  generationVersion: 2.644.1
+  releaseVersion: 1.0.5
+  configChecksum: cd26fb3012e88fa592ab22b756e767a8
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
