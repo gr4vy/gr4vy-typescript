@@ -29,6 +29,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Bcp: "bcp",
   Becs: "becs",
   Bitpay: "bitpay",
+  Blik: "blik",
   Boleto: "boleto",
   Boost: "boost",
   Cashapp: "cashapp",

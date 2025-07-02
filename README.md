@@ -479,18 +479,18 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`Gr4vyError`](./src/models/errors/gr4vyerror.ts): The base class for HTTP error responses.
-  * [`Error400`](docs/models/errors/error400.md): The request was invalid. Status code `400`.
-  * [`Error401`](docs/models/errors/error401.md): The request was unauthorized. Status code `401`.
-  * [`Error403`](docs/models/errors/error403.md): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`.
-  * [`Error404`](docs/models/errors/error404.md): The resource was not found. Status code `404`.
-  * [`Error405`](docs/models/errors/error405.md): The request method was not allowed. Status code `405`.
-  * [`Error409`](docs/models/errors/error409.md): A duplicate record was found. Status code `409`.
-  * [`Error425`](docs/models/errors/error425.md): The request was too early. Status code `425`.
-  * [`Error429`](docs/models/errors/error429.md): Too many requests were made. Status code `429`.
-  * [`Error500`](docs/models/errors/error500.md): The server encountered an error. Status code `500`.
-  * [`Error502`](docs/models/errors/error502.md): The server encountered an error. Status code `502`.
-  * [`Error504`](docs/models/errors/error504.md): The server encountered an error. Status code `504`.
-  * [`HTTPValidationError`](docs/models/errors/httpvalidationerror.md): Validation Error. Status code `422`. *
+  * [`Error400`](./src/models/errors/error400.ts): The request was invalid. Status code `400`.
+  * [`Error401`](./src/models/errors/error401.ts): The request was unauthorized. Status code `401`.
+  * [`Error403`](./src/models/errors/error403.ts): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`.
+  * [`Error404`](./src/models/errors/error404.ts): The resource was not found. Status code `404`.
+  * [`Error405`](./src/models/errors/error405.ts): The request method was not allowed. Status code `405`.
+  * [`Error409`](./src/models/errors/error409.ts): A duplicate record was found. Status code `409`.
+  * [`Error425`](./src/models/errors/error425.ts): The request was too early. Status code `425`.
+  * [`Error429`](./src/models/errors/error429.ts): Too many requests were made. Status code `429`.
+  * [`Error500`](./src/models/errors/error500.ts): The server encountered an error. Status code `500`.
+  * [`Error502`](./src/models/errors/error502.ts): The server encountered an error. Status code `502`.
+  * [`Error504`](./src/models/errors/error504.ts): The server encountered an error. Status code `504`.
+  * [`HTTPValidationError`](./src/models/errors/httpvalidationerror.ts): Validation Error. Status code `422`. *
 
 <details><summary>Less common errors (6)</summary>
 
