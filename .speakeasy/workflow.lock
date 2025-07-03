@@ -6,7 +6,7 @@ sources:
         sourceBlobDigest: sha256:8eacbe752c2eb8f40cf6412ce826bf979fe544606f4d9f27c685dabdbfd99b9e
         tags:
             - latest
-            - speakeasy-sdk-regen-1751547155
+            - speakeasy-sdk-regen-1751551294
             - 1.0.0
 targets:
     first-target:
@@ -20,7 +20,7 @@ targets:
         sourceRevisionDigest: sha256:4e54afd0836439aee835794e0ea90cf528af5af2ddbeb1eda3be8837ac401326
         sourceBlobDigest: sha256:8eacbe752c2eb8f40cf6412ce826bf979fe544606f4d9f27c685dabdbfd99b9e
         codeSamplesNamespace: openapi-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:fa25e060c88033ec638b780d05646e40e66b3f76d31c617ade30f92c0d1b4486
+        codeSamplesRevisionDigest: sha256:14326a5b70bf0225f8dc873ccfbfeccb8e517a6ffff31cbc53e000f49885dad0
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -51,5 +51,5 @@ workflow:
                 registry:
                     location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-typescript-code-samples
                 labelOverride:
-                    fixedValue: TypeScript
+                    fixedValue: JavaScript
                 blocking: false
