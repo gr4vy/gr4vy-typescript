@@ -125,6 +125,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   const result = await gr4vy.paymentMethods.create({
+    method: "checkout-session",
     id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
   });
 
@@ -156,6 +157,7 @@ const gr4vy = new Gr4vyCore({
 
 async function run() {
   const res = await paymentMethodsCreate(gr4vy, {
+    method: "checkout-session",
     id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b",
   });
   if (res.ok) {

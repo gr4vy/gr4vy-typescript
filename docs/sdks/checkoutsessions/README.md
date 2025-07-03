@@ -288,7 +288,7 @@ run();
 
 ## delete
 
-Deleta a checkout session and all of its (PCI) data.
+Delete a checkout session and all of its (PCI) data.
 
 ### Example Usage
 

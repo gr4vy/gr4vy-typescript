@@ -74,7 +74,7 @@ export class CheckoutSessions extends ClientSDK {
    * Delete checkout session
    *
    * @remarks
-   * Deleta a checkout session and all of its (PCI) data.
+   * Delete a checkout session and all of its (PCI) data.
    */
   async delete(
     sessionId: string,

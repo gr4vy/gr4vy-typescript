@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Delete checkout session
  *
  * @remarks
- * Deleta a checkout session and all of its (PCI) data.
+ * Delete a checkout session and all of its (PCI) data.
  */
 export function checkoutSessionsDelete(
   client: Gr4vyCore,

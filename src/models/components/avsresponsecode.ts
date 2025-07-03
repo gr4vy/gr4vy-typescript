@@ -14,6 +14,7 @@ export const AVSResponseCode = {
   NoMatch: "no_match",
   PartialMatchAddress: "partial_match_address",
   PartialMatchPostcode: "partial_match_postcode",
+  PartialMatchName: "partial_match_name",
   Unavailable: "unavailable",
 } as const;
 export type AVSResponseCode = OpenEnum<typeof AVSResponseCode>;

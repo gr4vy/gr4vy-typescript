@@ -130,6 +130,7 @@ async function run() {
     scheduleEnabled: true,
     scheduleTimezone: "UTC",
     spec: {
+      model: "detailed_settlement",
       params: {
         "filters": {
           "ingested_at": {
@@ -174,6 +175,7 @@ async function run() {
     scheduleEnabled: true,
     scheduleTimezone: "UTC",
     spec: {
+      model: "detailed_settlement",
       params: {
         "filters": {
           "ingested_at": {

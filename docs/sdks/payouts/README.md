@@ -130,6 +130,7 @@ async function run() {
     currency: "EUR",
     paymentServiceId: "ed8bd87d-85ad-40cf-8e8f-007e21e55aad",
     paymentMethod: {
+      method: "id",
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
     },
   });
@@ -166,6 +167,7 @@ async function run() {
     currency: "EUR",
     paymentServiceId: "ed8bd87d-85ad-40cf-8e8f-007e21e55aad",
     paymentMethod: {
+      method: "id",
       id: "852b951c-d7ea-4c98-b09e-4a1c9e97c077",
     },
   });
