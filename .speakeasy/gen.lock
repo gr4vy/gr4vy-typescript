@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 5cb4916add1fc5d533f4ad998ee95760
+  docChecksum: 32d5175b8c95a916481e103c6fc9606b
   docVersion: 1.0.0
-  speakeasyVersion: 1.575.5
-  generationVersion: 2.648.7
-  releaseVersion: 1.1.2
-  configChecksum: 2f69da0934355accc300df900c7bd4d4
+  speakeasyVersion: 1.576.1
+  generationVersion: 2.651.2
+  releaseVersion: 1.1.3
+  configChecksum: 12927e2f5c1631601ab82db53be2e559
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -497,6 +497,10 @@ generatedFiles:
   - docs/sdks/transactions/README.md
   - docs/types/rfcdate.md
   - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/accountUpdaterJobsCreate.example.ts
+  - examples/package.json
   - jsr.json
   - package.json
   - src/core.ts

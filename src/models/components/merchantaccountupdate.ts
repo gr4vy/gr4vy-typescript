@@ -82,18 +82,6 @@ export type MerchantAccountUpdate = {
    * The display name for the merchant account.
    */
   displayName?: string | null | undefined;
-  /**
-   * An optional endpoint URL to deliver webhook notifications to.
-   */
-  outboundWebhookUrl?: string | null | undefined;
-  /**
-   * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-   */
-  outboundWebhookUsername?: string | null | undefined;
-  /**
-   * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-   */
-  outboundWebhookPassword?: string | null | undefined;
 };
 
 /** @internal */
@@ -120,9 +108,6 @@ export const MerchantAccountUpdate$inboundSchema: z.ZodType<
   mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
   display_name: z.nullable(z.string()).optional(),
-  outbound_webhook_url: z.nullable(z.string()).optional(),
-  outbound_webhook_username: z.nullable(z.string()).optional(),
-  outbound_webhook_password: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "account_updater_enabled": "accountUpdaterEnabled",
@@ -147,9 +132,6 @@ export const MerchantAccountUpdate$inboundSchema: z.ZodType<
       "mastercardNetworkTokensRequestorId",
     "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
     "display_name": "displayName",
-    "outbound_webhook_url": "outboundWebhookUrl",
-    "outbound_webhook_username": "outboundWebhookUsername",
-    "outbound_webhook_password": "outboundWebhookPassword",
   });
 });
 
@@ -172,9 +154,6 @@ export type MerchantAccountUpdate$Outbound = {
   mastercard_network_tokens_requestor_id?: string | null | undefined;
   mastercard_network_tokens_app_id?: string | null | undefined;
   display_name?: string | null | undefined;
-  outbound_webhook_url?: string | null | undefined;
-  outbound_webhook_username?: string | null | undefined;
-  outbound_webhook_password?: string | null | undefined;
 };
 
 /** @internal */
@@ -201,9 +180,6 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
   mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
   displayName: z.nullable(z.string()).optional(),
-  outboundWebhookUrl: z.nullable(z.string()).optional(),
-  outboundWebhookUsername: z.nullable(z.string()).optional(),
-  outboundWebhookPassword: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     accountUpdaterEnabled: "account_updater_enabled",
@@ -228,9 +204,6 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
       "mastercard_network_tokens_requestor_id",
     mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
     displayName: "display_name",
-    outboundWebhookUrl: "outbound_webhook_url",
-    outboundWebhookUsername: "outbound_webhook_username",
-    outboundWebhookPassword: "outbound_webhook_password",
   });
 });
 

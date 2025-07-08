@@ -79,18 +79,6 @@ export type MerchantAccountCreate = {
    */
   mastercardNetworkTokensAppId?: string | null | undefined;
   /**
-   * An optional endpoint URL to deliver webhook notifications to.
-   */
-  outboundWebhookUrl?: string | null | undefined;
-  /**
-   * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-   */
-  outboundWebhookUsername?: string | null | undefined;
-  /**
-   * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-   */
-  outboundWebhookPassword?: string | null | undefined;
-  /**
    * The ID for the merchant account.
    */
   id: string;
@@ -123,9 +111,6 @@ export const MerchantAccountCreate$inboundSchema: z.ZodType<
   amex_network_tokens_app_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
-  outbound_webhook_url: z.nullable(z.string()).optional(),
-  outbound_webhook_username: z.nullable(z.string()).optional(),
-  outbound_webhook_password: z.nullable(z.string()).optional(),
   id: z.string(),
   display_name: z.string(),
 }).transform((v) => {
@@ -151,9 +136,6 @@ export const MerchantAccountCreate$inboundSchema: z.ZodType<
     "mastercard_network_tokens_requestor_id":
       "mastercardNetworkTokensRequestorId",
     "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
-    "outbound_webhook_url": "outboundWebhookUrl",
-    "outbound_webhook_username": "outboundWebhookUsername",
-    "outbound_webhook_password": "outboundWebhookPassword",
     "display_name": "displayName",
   });
 });
@@ -176,9 +158,6 @@ export type MerchantAccountCreate$Outbound = {
   amex_network_tokens_app_id?: string | null | undefined;
   mastercard_network_tokens_requestor_id?: string | null | undefined;
   mastercard_network_tokens_app_id?: string | null | undefined;
-  outbound_webhook_url?: string | null | undefined;
-  outbound_webhook_username?: string | null | undefined;
-  outbound_webhook_password?: string | null | undefined;
   id: string;
   display_name: string;
 };
@@ -206,9 +185,6 @@ export const MerchantAccountCreate$outboundSchema: z.ZodType<
   amexNetworkTokensAppId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
-  outboundWebhookUrl: z.nullable(z.string()).optional(),
-  outboundWebhookUsername: z.nullable(z.string()).optional(),
-  outboundWebhookPassword: z.nullable(z.string()).optional(),
   id: z.string(),
   displayName: z.string(),
 }).transform((v) => {
@@ -234,9 +210,6 @@ export const MerchantAccountCreate$outboundSchema: z.ZodType<
     mastercardNetworkTokensRequestorId:
       "mastercard_network_tokens_requestor_id",
     mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
-    outboundWebhookUrl: "outbound_webhook_url",
-    outboundWebhookUsername: "outbound_webhook_username",
-    outboundWebhookPassword: "outbound_webhook_password",
     displayName: "display_name",
   });
 });

@@ -27,18 +27,6 @@ export type MerchantAccount = {
    */
   displayName: string;
   /**
-   * An optional endpoint URL to deliver webhook notifications to.
-   */
-  outboundWebhookUrl?: string | null | undefined;
-  /**
-   * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-   */
-  outboundWebhookUsername?: string | null | undefined;
-  /**
-   * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-   */
-  outboundWebhookPassword?: string | null | undefined;
-  /**
    * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
    */
   loonClientKey?: string | null | undefined;
@@ -121,9 +109,6 @@ export const MerchantAccount$inboundSchema: z.ZodType<
   type: z.literal("merchant-account").default("merchant-account"),
   id: z.string(),
   display_name: z.string(),
-  outbound_webhook_url: z.nullable(z.string()).optional(),
-  outbound_webhook_username: z.nullable(z.string()).optional(),
-  outbound_webhook_password: z.nullable(z.string()).optional(),
   loon_client_key: z.nullable(z.string()).optional(),
   loon_secret_key: z.nullable(z.string()).optional(),
   loon_accepted_schemes: z.nullable(z.array(CardScheme$inboundSchema))
@@ -146,9 +131,6 @@ export const MerchantAccount$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",
-    "outbound_webhook_url": "outboundWebhookUrl",
-    "outbound_webhook_username": "outboundWebhookUsername",
-    "outbound_webhook_password": "outboundWebhookPassword",
     "loon_client_key": "loonClientKey",
     "loon_secret_key": "loonSecretKey",
     "loon_accepted_schemes": "loonAcceptedSchemes",
@@ -180,9 +162,6 @@ export type MerchantAccount$Outbound = {
   type: "merchant-account";
   id: string;
   display_name: string;
-  outbound_webhook_url?: string | null | undefined;
-  outbound_webhook_username?: string | null | undefined;
-  outbound_webhook_password?: string | null | undefined;
   loon_client_key?: string | null | undefined;
   loon_secret_key?: string | null | undefined;
   loon_accepted_schemes?: Array<string> | null | undefined;
@@ -212,9 +191,6 @@ export const MerchantAccount$outboundSchema: z.ZodType<
   type: z.literal("merchant-account").default("merchant-account" as const),
   id: z.string(),
   displayName: z.string(),
-  outboundWebhookUrl: z.nullable(z.string()).optional(),
-  outboundWebhookUsername: z.nullable(z.string()).optional(),
-  outboundWebhookPassword: z.nullable(z.string()).optional(),
   loonClientKey: z.nullable(z.string()).optional(),
   loonSecretKey: z.nullable(z.string()).optional(),
   loonAcceptedSchemes: z.nullable(z.array(CardScheme$outboundSchema))
@@ -237,9 +213,6 @@ export const MerchantAccount$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",
-    outboundWebhookUrl: "outbound_webhook_url",
-    outboundWebhookUsername: "outbound_webhook_username",
-    outboundWebhookPassword: "outbound_webhook_password",
     loonClientKey: "loon_client_key",
     loonSecretKey: "loon_secret_key",
     loonAcceptedSchemes: "loon_accepted_schemes",
