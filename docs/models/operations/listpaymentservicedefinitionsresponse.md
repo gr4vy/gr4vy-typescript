@@ -5,7 +5,68 @@
 ```typescript
 import { ListPaymentServiceDefinitionsResponse } from "@gr4vy/sdk/models/operations";
 
-let value: ListPaymentServiceDefinitionsResponse = {};
+let value: ListPaymentServiceDefinitionsResponse = {
+  result: {
+    items: [
+      {
+        id: "adyen-ideal",
+        displayName: "iDEAL",
+        method: "oney_12x",
+        fields: [
+          {
+            key: "private_api_key",
+            displayName: "Private API key",
+            required: true,
+            format: "boolean",
+            secret: true,
+          },
+        ],
+        reportingFields: [
+          {
+            key: "private_api_key",
+            displayName: "Private API key",
+            required: true,
+            format: "boolean",
+            secret: true,
+          },
+        ],
+        supportedCurrencies: [
+          "USD",
+          "GBP",
+          "EUR",
+          "AUD",
+        ],
+        supportedCountries: [
+          "US",
+        ],
+        mode: "card",
+        supportedFeatures: {
+          "key": false,
+          "key1": true,
+          "key2": false,
+        },
+        requiredCheckoutFields: [
+          {
+            requiredFields: [
+              "address.line1",
+              "address.country",
+              "address.city",
+              "address.postal_code",
+            ],
+          },
+        ],
+        configuration: {
+          approvalUiTarget: "any",
+          approvalUiHeight: "100px",
+          approvalUiWidth: "100px",
+          cartItemsLimit: 100,
+          cartItemsRequired: true,
+          cartItemsShouldMatchAmount: true,
+        },
+      },
+    ],
+  },
+};
 ```
 
 ## Fields

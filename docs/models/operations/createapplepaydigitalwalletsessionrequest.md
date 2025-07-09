@@ -5,7 +5,12 @@
 ```typescript
 import { CreateApplePayDigitalWalletSessionRequest } from "@gr4vy/sdk/models/operations";
 
-let value: CreateApplePayDigitalWalletSessionRequest = {};
+let value: CreateApplePayDigitalWalletSessionRequest = {
+  applePaySessionRequest: {
+    validationUrl: "https://apple-pay-gateway-cert.apple.com",
+    domainName: "example.com",
+  },
+};
 ```
 
 ## Fields

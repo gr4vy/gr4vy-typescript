@@ -7,6 +7,7 @@ import { UpdateReportRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateReportRequest = {
   reportId: "4d4c7123-b794-4fad-b1b9-5ab2606e6bbe",
+  reportUpdate: {},
 };
 ```
 

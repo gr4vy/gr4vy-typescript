@@ -5,7 +5,11 @@
 ```typescript
 import { CreateGooglePayDigitalWalletSessionRequest } from "@gr4vy/sdk/models/operations";
 
-let value: CreateGooglePayDigitalWalletSessionRequest = {};
+let value: CreateGooglePayDigitalWalletSessionRequest = {
+  googlePaySessionRequest: {
+    originDomain: "example.com",
+  },
+};
 ```
 
 ## Fields

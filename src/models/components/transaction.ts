@@ -5,11 +5,6 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -108,6 +103,11 @@ import {
   TransactionPaymentService$outboundSchema,
 } from "./transactionpaymentservice.js";
 import {
+  TransactionPaymentSource,
+  TransactionPaymentSource$inboundSchema,
+  TransactionPaymentSource$outboundSchema,
+} from "./transactionpaymentsource.js";
+import {
   TransactionStatus,
   TransactionStatus$inboundSchema,
   TransactionStatus$outboundSchema,
@@ -118,23 +118,6 @@ import {
   TransactionThreeDSecureSummary$Outbound,
   TransactionThreeDSecureSummary$outboundSchema,
 } from "./transactionthreedsecuresummary.js";
-
-/**
- * The source of the transaction.
- */
-export const TransactionPaymentSource1 = {
-  Ecommerce: "ecommerce",
-  Moto: "moto",
-  Recurring: "recurring",
-  Installment: "installment",
-  CardOnFile: "card_on_file",
-} as const;
-/**
- * The source of the transaction.
- */
-export type TransactionPaymentSource1 = OpenEnum<
-  typeof TransactionPaymentSource1
->;
 
 /**
  * A full transaction resource.
@@ -279,9 +262,9 @@ export type Transaction = {
    */
   antiFraudDecision?: AntiFraudDecision | null | undefined;
   /**
-   * The source of the transaction.
+   * The way payment method information made it to this transaction.
    */
-  paymentSource: TransactionPaymentSource1;
+  paymentSource: TransactionPaymentSource;
   /**
    * Indicates whether the transaction was initiated by the merchant or the customer.
    */
@@ -362,38 +345,6 @@ export type Transaction = {
 };
 
 /** @internal */
-export const TransactionPaymentSource1$inboundSchema: z.ZodType<
-  TransactionPaymentSource1,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(TransactionPaymentSource1),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const TransactionPaymentSource1$outboundSchema: z.ZodType<
-  TransactionPaymentSource1,
-  z.ZodTypeDef,
-  TransactionPaymentSource1
-> = z.union([
-  z.nativeEnum(TransactionPaymentSource1),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionPaymentSource1$ {
-  /** @deprecated use `TransactionPaymentSource1$inboundSchema` instead. */
-  export const inboundSchema = TransactionPaymentSource1$inboundSchema;
-  /** @deprecated use `TransactionPaymentSource1$outboundSchema` instead. */
-  export const outboundSchema = TransactionPaymentSource1$outboundSchema;
-}
-
-/** @internal */
 export const Transaction$inboundSchema: z.ZodType<
   Transaction,
   z.ZodTypeDef,
@@ -436,7 +387,7 @@ export const Transaction$inboundSchema: z.ZodType<
   avs_response_code: z.nullable(AVSResponseCode$inboundSchema).optional(),
   cvv_response_code: z.nullable(CVVResponseCode$inboundSchema).optional(),
   anti_fraud_decision: z.nullable(AntiFraudDecision$inboundSchema).optional(),
-  payment_source: TransactionPaymentSource1$inboundSchema,
+  payment_source: TransactionPaymentSource$inboundSchema,
   merchant_initiated: z.boolean(),
   is_subsequent_payment: z.boolean(),
   cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
@@ -622,7 +573,7 @@ export const Transaction$outboundSchema: z.ZodType<
   avsResponseCode: z.nullable(AVSResponseCode$outboundSchema).optional(),
   cvvResponseCode: z.nullable(CVVResponseCode$outboundSchema).optional(),
   antiFraudDecision: z.nullable(AntiFraudDecision$outboundSchema).optional(),
-  paymentSource: TransactionPaymentSource1$outboundSchema,
+  paymentSource: TransactionPaymentSource$outboundSchema,
   merchantInitiated: z.boolean(),
   isSubsequentPayment: z.boolean(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),

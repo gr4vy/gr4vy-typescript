@@ -7,6 +7,9 @@ import { UpdateMerchantAccountRequest } from "@gr4vy/sdk/models/operations";
 
 let value: UpdateMerchantAccountRequest = {
   merchantAccountId: "merchant-12345",
+  merchantAccountUpdate: {
+    accountUpdaterEnabled: true,
+  },
 };
 ```
 

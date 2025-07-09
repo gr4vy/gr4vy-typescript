@@ -7,6 +7,9 @@ import { CreatePaymentServiceRequest } from "@gr4vy/sdk/models/operations";
 
 let value: CreatePaymentServiceRequest = {
   paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
+  paymentServiceUpdate: {
+    settlementReportingEnabled: true,
+  },
 };
 ```
 

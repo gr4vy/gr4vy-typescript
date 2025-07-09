@@ -7,6 +7,9 @@ import { UnregisterDigitalWalletDomainRequest } from "@gr4vy/sdk/models/operatio
 
 let value: UnregisterDigitalWalletDomainRequest = {
   digitalWalletId: "",
+  digitalWalletDomain: {
+    domainName: "example.com",
+  },
 };
 ```
 

@@ -5,7 +5,12 @@
 ```typescript
 import { CreatePaymentMethodRequest } from "@gr4vy/sdk/models/operations";
 
-let value: CreatePaymentMethodRequest = {};
+let value: CreatePaymentMethodRequest = {
+  requestBody: {
+    expirationDate: "12/30",
+    number: "4111111111111111",
+  },
+};
 ```
 
 ## Fields

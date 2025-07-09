@@ -5,11 +5,6 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -46,23 +41,11 @@ import {
   TransactionIntent$inboundSchema,
   TransactionIntent$outboundSchema,
 } from "./transactionintent.js";
-
-/**
- * The payment source for the payment link.
- */
-export const PaymentLinkPaymentSource = {
-  Ecommerce: "ecommerce",
-  Moto: "moto",
-  Recurring: "recurring",
-  Installment: "installment",
-  CardOnFile: "card_on_file",
-} as const;
-/**
- * The payment source for the payment link.
- */
-export type PaymentLinkPaymentSource = OpenEnum<
-  typeof PaymentLinkPaymentSource
->;
+import {
+  TransactionPaymentSource,
+  TransactionPaymentSource$inboundSchema,
+  TransactionPaymentSource$outboundSchema,
+} from "./transactionpaymentsource.js";
 
 export type PaymentLink = {
   /**
@@ -147,9 +130,9 @@ export type PaymentLink = {
    */
   metadata?: { [k: string]: any } | null | undefined;
   /**
-   * The payment source for the payment link.
+   * The way payment method information made it to this transaction.
    */
-  paymentSource: PaymentLinkPaymentSource;
+  paymentSource: TransactionPaymentSource;
   /**
    * The date and time the payment link was created.
    */
@@ -168,38 +151,6 @@ export type PaymentLink = {
    */
   shippingDetails?: ShippingDetails | null | undefined;
 };
-
-/** @internal */
-export const PaymentLinkPaymentSource$inboundSchema: z.ZodType<
-  PaymentLinkPaymentSource,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(PaymentLinkPaymentSource),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const PaymentLinkPaymentSource$outboundSchema: z.ZodType<
-  PaymentLinkPaymentSource,
-  z.ZodTypeDef,
-  PaymentLinkPaymentSource
-> = z.union([
-  z.nativeEnum(PaymentLinkPaymentSource),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentLinkPaymentSource$ {
-  /** @deprecated use `PaymentLinkPaymentSource$inboundSchema` instead. */
-  export const inboundSchema = PaymentLinkPaymentSource$inboundSchema;
-  /** @deprecated use `PaymentLinkPaymentSource$outboundSchema` instead. */
-  export const outboundSchema = PaymentLinkPaymentSource$outboundSchema;
-}
 
 /** @internal */
 export const PaymentLink$inboundSchema: z.ZodType<
@@ -231,7 +182,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
   return_url: z.nullable(z.string()).optional(),
   cart_items: z.nullable(z.array(CartItem$inboundSchema)),
   metadata: z.nullable(z.record(z.any())).optional(),
-  payment_source: PaymentLinkPaymentSource$inboundSchema,
+  payment_source: TransactionPaymentSource$inboundSchema,
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   status: PaymentLinkStatus$inboundSchema,
@@ -317,7 +268,7 @@ export const PaymentLink$outboundSchema: z.ZodType<
   returnUrl: z.nullable(z.string()).optional(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)),
   metadata: z.nullable(z.record(z.any())).optional(),
-  paymentSource: PaymentLinkPaymentSource$outboundSchema,
+  paymentSource: TransactionPaymentSource$outboundSchema,
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
   status: PaymentLinkStatus$outboundSchema,

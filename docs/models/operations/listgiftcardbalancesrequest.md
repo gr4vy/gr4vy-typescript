@@ -5,7 +5,16 @@
 ```typescript
 import { ListGiftCardBalancesRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ListGiftCardBalancesRequest = {};
+let value: ListGiftCardBalancesRequest = {
+  giftCardBalanceRequest: {
+    items: [
+      {
+        number: "4123455541234561234",
+        pin: "1234",
+      },
+    ],
+  },
+};
 ```
 
 ## Fields

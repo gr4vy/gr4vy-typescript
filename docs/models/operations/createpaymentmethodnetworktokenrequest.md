@@ -7,6 +7,10 @@ import { CreatePaymentMethodNetworkTokenRequest } from "@gr4vy/sdk/models/operat
 
 let value: CreatePaymentMethodNetworkTokenRequest = {
   paymentMethodId: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+  networkTokenCreate: {
+    merchantInitiated: false,
+    isSubsequentPayment: false,
+  },
 };
 ```
 

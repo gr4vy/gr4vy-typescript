@@ -5,7 +5,11 @@
 ```typescript
 import { ListPayoutsResponse } from "@gr4vy/sdk/models/operations";
 
-let value: ListPayoutsResponse = {};
+let value: ListPayoutsResponse = {
+  result: {
+    items: [],
+  },
+};
 ```
 
 ## Fields

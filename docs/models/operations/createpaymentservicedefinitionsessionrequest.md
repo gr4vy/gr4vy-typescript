@@ -7,6 +7,9 @@ import { CreatePaymentServiceDefinitionSessionRequest } from "@gr4vy/sdk/models/
 
 let value: CreatePaymentServiceDefinitionSessionRequest = {
   paymentServiceDefinitionId: "adyen-ideal",
+  requestBody: {
+    "key": "<value>",
+  },
 };
 ```
 

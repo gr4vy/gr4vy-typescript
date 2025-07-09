@@ -5,7 +5,13 @@
 ```typescript
 import { ConfigureDigitalWalletRequest } from "@gr4vy/sdk/models/operations";
 
-let value: ConfigureDigitalWalletRequest = {};
+let value: ConfigureDigitalWalletRequest = {
+  digitalWalletCreate: {
+    provider: "google",
+    merchantName: "<value>",
+    acceptTermsAndConditions: false,
+  },
+};
 ```
 
 ## Fields

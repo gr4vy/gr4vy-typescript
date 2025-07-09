@@ -5,7 +5,17 @@
 ```typescript
 import { CreateTransactionRequest } from "@gr4vy/sdk/models/operations";
 
-let value: CreateTransactionRequest = {};
+let value: CreateTransactionRequest = {
+  transactionCreate: {
+    amount: 1299,
+    currency: "EUR",
+    store: true,
+    isSubsequentPayment: true,
+    merchantInitiated: true,
+    asyncCapture: true,
+    accountFundingTransaction: true,
+  },
+};
 ```
 
 ## Fields

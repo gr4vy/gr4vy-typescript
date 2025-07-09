@@ -5,7 +5,27 @@
 ```typescript
 import { AddReportRequest } from "@gr4vy/sdk/models/operations";
 
-let value: AddReportRequest = {};
+let value: AddReportRequest = {
+  reportCreate: {
+    name: "Monthly Transaction Report",
+    schedule: "daily",
+    scheduleEnabled: true,
+    scheduleTimezone: "UTC",
+    spec: {
+      params: {
+        "fields": [
+          "id",
+          "status",
+        ],
+        "filters": {
+          "status": [
+            "succeeded",
+          ],
+        },
+      },
+    },
+  },
+};
 ```
 
 ## Fields

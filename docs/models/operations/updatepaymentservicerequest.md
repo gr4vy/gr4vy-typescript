@@ -5,7 +5,25 @@
 ```typescript
 import { UpdatePaymentServiceRequest } from "@gr4vy/sdk/models/operations";
 
-let value: UpdatePaymentServiceRequest = {};
+let value: UpdatePaymentServiceRequest = {
+  paymentServiceCreate: {
+    displayName: "Stripe",
+    paymentServiceDefinitionId: "stripe-card",
+    fields: [],
+    acceptedCurrencies: [
+      "USD",
+      "EUR",
+      "GBP",
+    ],
+    acceptedCountries: [
+      "US",
+      "DE",
+      "GB",
+    ],
+    threeDSecureEnabled: true,
+    settlementReportingEnabled: true,
+  },
+};
 ```
 
 ## Fields

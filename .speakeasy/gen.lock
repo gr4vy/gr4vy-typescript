@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 7b6875d16e1ac9465e08d455b2bdc442
+  docChecksum: 32d5175b8c95a916481e103c6fc9606b
   docVersion: 1.0.0
-  speakeasyVersion: 1.577.0
-  generationVersion: 2.652.0
-  releaseVersion: 1.1.4
-  configChecksum: 6453aedbf4eae6d71767f3f857413e73
+  speakeasyVersion: 1.580.0
+  generationVersion: 2.654.2
+  releaseVersion: 1.1.5
+  configChecksum: 6d3e638489a1e46a7645b8782f054309
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -151,8 +151,6 @@ generatedFiles:
   - docs/models/components/networktokenstatus.md
   - docs/models/components/paymentlink.md
   - docs/models/components/paymentlinkcreate.md
-  - docs/models/components/paymentlinkcreatepaymentsource.md
-  - docs/models/components/paymentlinkpaymentsource.md
   - docs/models/components/paymentlinkstatus.md
   - docs/models/components/paymentmethod.md
   - docs/models/components/paymentmethodcard.md
@@ -178,7 +176,6 @@ generatedFiles:
   - docs/models/components/paymentservicetokencreate.md
   - docs/models/components/paymentservicetokens.md
   - docs/models/components/paymentserviceupdate.md
-  - docs/models/components/paymentsource.md
   - docs/models/components/payoutcategory.md
   - docs/models/components/payoutcreate.md
   - docs/models/components/payoutcreatepaymentmethod.md
@@ -250,7 +247,6 @@ generatedFiles:
   - docs/models/components/transactionpaymentmethod.md
   - docs/models/components/transactionpaymentservice.md
   - docs/models/components/transactionpaymentsource.md
-  - docs/models/components/transactionpaymentsource1.md
   - docs/models/components/transactionrefundallcreate.md
   - docs/models/components/transactionrefundcreate.md
   - docs/models/components/transactionretriesreportspec.md
@@ -2567,7 +2563,7 @@ examples:
         header:
           idempotency-key: "request-12345"
       requestBody:
-        application/json: {"amount": 1299, "currency": "EUR", "store": true, "is_subsequent_payment": true, "merchant_initiated": true, "payment_source": "ecommerce", "async_capture": true, "account_funding_transaction": true, "allow_partial_authorization": false}
+        application/json: {"amount": 1299, "currency": "EUR", "store": true, "is_subsequent_payment": true, "merchant_initiated": true, "async_capture": true, "account_funding_transaction": true, "allow_partial_authorization": false}
       responses:
         "201":
           application/json: {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "EUR", "amount": 1299, "status": "authorization_voided", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_amount": 1100, "settled": true, "intent": "capture", "pending_review": false, "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "failed", "amount": 100, "refunded_amount": 50, "gift_card": {"type": "gift-card", "bin": "412345", "sub_bin": "554", "last4": "1234"}}, {"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "failed", "amount": 100, "refunded_amount": 50, "gift_card": {"type": "gift-card", "bin": "412345", "sub_bin": "554", "last4": "1234"}}, {"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "failed", "amount": 100, "refunded_amount": 50, "gift_card": {"type": "gift-card", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "payment_source": "ecommerce", "merchant_initiated": true, "is_subsequent_payment": false, "intent_outcome": "pending", "multi_tender": true, "account_funding_transaction": true}
@@ -4070,7 +4066,7 @@ examples:
   add_payment_link:
     speakeasy-default-add-payment-link:
       requestBody:
-        application/json: {"amount": 1299, "country": "DE", "currency": "EUR", "payment_source": "ecommerce"}
+        application/json: {"amount": 1299, "country": "DE", "currency": "EUR"}
       responses:
         "201":
           application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "capture", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "completed"}

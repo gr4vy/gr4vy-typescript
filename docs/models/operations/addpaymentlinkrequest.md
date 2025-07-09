@@ -5,7 +5,13 @@
 ```typescript
 import { AddPaymentLinkRequest } from "@gr4vy/sdk/models/operations";
 
-let value: AddPaymentLinkRequest = {};
+let value: AddPaymentLinkRequest = {
+  paymentLinkCreate: {
+    amount: 1299,
+    country: "DE",
+    currency: "EUR",
+  },
+};
 ```
 
 ## Fields

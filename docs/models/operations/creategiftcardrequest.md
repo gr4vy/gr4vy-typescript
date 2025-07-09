@@ -5,7 +5,12 @@
 ```typescript
 import { CreateGiftCardRequest } from "@gr4vy/sdk/models/operations";
 
-let value: CreateGiftCardRequest = {};
+let value: CreateGiftCardRequest = {
+  giftCardCreate: {
+    number: "4123455541234561234",
+    pin: "1234",
+  },
+};
 ```
 
 ## Fields

@@ -5,11 +5,6 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -137,6 +132,11 @@ import {
   TransactionIntent$inboundSchema,
   TransactionIntent$outboundSchema,
 } from "./transactionintent.js";
+import {
+  TransactionPaymentSource,
+  TransactionPaymentSource$inboundSchema,
+  TransactionPaymentSource$outboundSchema,
+} from "./transactionpaymentsource.js";
 
 /**
  * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
@@ -161,21 +161,6 @@ export type TransactionCreateGiftCards =
  * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
  */
 export type ThreeDSecureData = ThreeDSecureDataV1 | ThreeDSecureDataV2;
-
-/**
- * The use-case for the the transaction.
- */
-export const PaymentSource = {
-  Ecommerce: "ecommerce",
-  Moto: "moto",
-  Recurring: "recurring",
-  Installment: "installment",
-  CardOnFile: "card_on_file",
-} as const;
-/**
- * The use-case for the the transaction.
- */
-export type PaymentSource = OpenEnum<typeof PaymentSource>;
 
 export type TransactionCreate = {
   /**
@@ -268,9 +253,9 @@ export type TransactionCreate = {
    */
   merchantInitiated?: boolean | undefined;
   /**
-   * The use-case for the the transaction.
+   * The way payment method information made it to this transaction.
    */
-  paymentSource?: PaymentSource | undefined;
+  paymentSource?: TransactionPaymentSource | undefined;
   /**
    * The airline addendum data which describes the airline booking associated with this transaction.
    */
@@ -531,38 +516,6 @@ export function threeDSecureDataFromJSON(
 }
 
 /** @internal */
-export const PaymentSource$inboundSchema: z.ZodType<
-  PaymentSource,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(PaymentSource),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const PaymentSource$outboundSchema: z.ZodType<
-  PaymentSource,
-  z.ZodTypeDef,
-  PaymentSource
-> = z.union([
-  z.nativeEnum(PaymentSource),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentSource$ {
-  /** @deprecated use `PaymentSource$inboundSchema` instead. */
-  export const inboundSchema = PaymentSource$inboundSchema;
-  /** @deprecated use `PaymentSource$outboundSchema` instead. */
-  export const outboundSchema = PaymentSource$outboundSchema;
-}
-
-/** @internal */
 export const TransactionCreate$inboundSchema: z.ZodType<
   TransactionCreate,
   z.ZodTypeDef,
@@ -608,7 +561,7 @@ export const TransactionCreate$inboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.string())).optional(),
   is_subsequent_payment: z.boolean().default(false),
   merchant_initiated: z.boolean().default(false),
-  payment_source: PaymentSource$inboundSchema.default("ecommerce"),
+  payment_source: TransactionPaymentSource$inboundSchema.optional(),
   airline: z.nullable(Airline$inboundSchema).optional(),
   cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
   statement_descriptor: z.nullable(StatementDescriptor$inboundSchema)
@@ -689,7 +642,7 @@ export type TransactionCreate$Outbound = {
   metadata?: { [k: string]: string } | null | undefined;
   is_subsequent_payment: boolean;
   merchant_initiated: boolean;
-  payment_source: string;
+  payment_source?: string | undefined;
   airline?: Airline$Outbound | null | undefined;
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   statement_descriptor?: StatementDescriptor$Outbound | null | undefined;
@@ -752,7 +705,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.string())).optional(),
   isSubsequentPayment: z.boolean().default(false),
   merchantInitiated: z.boolean().default(false),
-  paymentSource: PaymentSource$outboundSchema.default("ecommerce"),
+  paymentSource: TransactionPaymentSource$outboundSchema.optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
   statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
