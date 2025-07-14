@@ -85,9 +85,9 @@ export type ListTransactionsRequest = {
   paymentMethodId?: string | null | undefined;
   paymentMethodLabel?: string | null | undefined;
   /**
-   * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+   * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
    */
-  paymentMethodScheme?: string | null | undefined;
+  paymentMethodScheme?: Array<string> | null | undefined;
   /**
    * Filters for transactions that have a payment method with a country that matches with the provided value.
    */
@@ -257,7 +257,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   payment_service_id: z.nullable(z.array(z.string())).optional(),
   payment_method_id: z.nullable(z.string()).optional(),
   payment_method_label: z.nullable(z.string()).optional(),
-  payment_method_scheme: z.nullable(z.string()).optional(),
+  payment_method_scheme: z.nullable(z.array(z.string())).optional(),
   payment_method_country: z.nullable(z.string()).optional(),
   payment_method_fingerprint: z.nullable(z.string()).optional(),
   method: z.nullable(z.array(components.Method$inboundSchema)).optional(),
@@ -344,7 +344,7 @@ export type ListTransactionsRequest$Outbound = {
   payment_service_id?: Array<string> | null | undefined;
   payment_method_id?: string | null | undefined;
   payment_method_label?: string | null | undefined;
-  payment_method_scheme?: string | null | undefined;
+  payment_method_scheme?: Array<string> | null | undefined;
   payment_method_country?: string | null | undefined;
   payment_method_fingerprint?: string | null | undefined;
   method?: Array<string> | null | undefined;
@@ -397,7 +397,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   paymentServiceId: z.nullable(z.array(z.string())).optional(),
   paymentMethodId: z.nullable(z.string()).optional(),
   paymentMethodLabel: z.nullable(z.string()).optional(),
-  paymentMethodScheme: z.nullable(z.string()).optional(),
+  paymentMethodScheme: z.nullable(z.array(z.string())).optional(),
   paymentMethodCountry: z.nullable(z.string()).optional(),
   paymentMethodFingerprint: z.nullable(z.string()).optional(),
   method: z.nullable(z.array(components.Method$outboundSchema)).optional(),
