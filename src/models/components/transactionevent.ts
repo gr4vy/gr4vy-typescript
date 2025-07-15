@@ -20,6 +20,7 @@ export const Name = {
   TransactionUpdatedStatus: "transaction-updated-status",
   TransactionSyncEvent: "transaction-sync-event",
   TransactionSyncFailedEvent: "transaction-sync-failed-event",
+  TransactionModifiedEvent: "transaction-modified-event",
   TransactionApiRequest: "transaction-api-request",
   TransactionApiResponse: "transaction-api-response",
   BinLookupRequest: "bin-lookup-request",
