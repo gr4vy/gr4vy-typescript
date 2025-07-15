@@ -196,6 +196,7 @@ export * from "./transactionstatus.js";
 export * from "./transactionsummaries.js";
 export * from "./transactionsummary.js";
 export * from "./transactionthreedsecuresummary.js";
+export * from "./transactionupdate.js";
 export * from "./userstatus.js";
 export * from "./validationerror.js";
 export * from "./verifycredentials.js";

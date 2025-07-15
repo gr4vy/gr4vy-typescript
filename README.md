@@ -388,6 +388,7 @@ try {
 * [list](docs/sdks/transactions/README.md#list) - List transactions
 * [create](docs/sdks/transactions/README.md#create) - Create transaction
 * [get](docs/sdks/transactions/README.md#get) - Get transaction
+* [update](docs/sdks/transactions/README.md#update) - Manually update a transaction
 * [capture](docs/sdks/transactions/README.md#capture) - Capture transaction
 * [void](docs/sdks/transactions/README.md#void) - Void transaction
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
@@ -1007,6 +1008,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transactionsSettlementsGet`](docs/sdks/settlements/README.md#get) - Get transaction settlement
 - [`transactionsSettlementsList`](docs/sdks/settlements/README.md#list) - List transaction settlements
 - [`transactionsSync`](docs/sdks/transactions/README.md#sync) - Sync transaction
+- [`transactionsUpdate`](docs/sdks/transactions/README.md#update) - Manually update a transaction
 - [`transactionsVoid`](docs/sdks/transactions/README.md#void) - Void transaction
 
 </details>

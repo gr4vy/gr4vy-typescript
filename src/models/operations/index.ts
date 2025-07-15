@@ -89,5 +89,6 @@ export * from "./updatedigitalwallet.js";
 export * from "./updatemerchantaccount.js";
 export * from "./updatepaymentservice.js";
 export * from "./updatereport.js";
+export * from "./updatetransaction.js";
 export * from "./verifypaymentservicecredentials.js";
 export * from "./voidtransaction.js";

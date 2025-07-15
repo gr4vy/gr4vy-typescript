@@ -7,6 +7,7 @@ import { transactionsCreate } from "../funcs/transactionsCreate.js";
 import { transactionsGet } from "../funcs/transactionsGet.js";
 import { transactionsList } from "../funcs/transactionsList.js";
 import { transactionsSync } from "../funcs/transactionsSync.js";
+import { transactionsUpdate } from "../funcs/transactionsUpdate.js";
 import { transactionsVoid } from "../funcs/transactionsVoid.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -88,6 +89,27 @@ export class Transactions extends ClientSDK {
   ): Promise<components.Transaction> {
     return unwrapAsync(transactionsGet(
       this,
+      transactionId,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Manually update a transaction
+   *
+   * @remarks
+   * Manually updates a transaction.
+   */
+  async update(
+    transactionUpdate: components.TransactionUpdate,
+    transactionId: string,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.Transaction> {
+    return unwrapAsync(transactionsUpdate(
+      this,
+      transactionUpdate,
       transactionId,
       merchantAccountId,
       options,

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 61f24cbf7a97c2226c508d6e54346f2a
+  docChecksum: 18b68461c9dc1b1c710ab877a4d56a82
   docVersion: 1.0.0
-  speakeasyVersion: 1.581.0
-  generationVersion: 2.656.5
-  releaseVersion: 1.1.7
-  configChecksum: 0dfbcf625be1b76bf7aa63f264e8c88e
+  speakeasyVersion: 1.581.2
+  generationVersion: 2.656.9
+  releaseVersion: 1.1.8
+  configChecksum: 89d67d744df7b9da73af1768b133476d
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -255,6 +255,7 @@ generatedFiles:
   - docs/models/components/transactionsummaries.md
   - docs/models/components/transactionsummary.md
   - docs/models/components/transactionthreedsecuresummary.md
+  - docs/models/components/transactionupdate.md
   - docs/models/components/two.md
   - docs/models/components/userdevice.md
   - docs/models/components/userstatus.md
@@ -457,6 +458,8 @@ generatedFiles:
   - docs/models/operations/updatepaymentservicerequest.md
   - docs/models/operations/updatereportglobals.md
   - docs/models/operations/updatereportrequest.md
+  - docs/models/operations/updatetransactionglobals.md
+  - docs/models/operations/updatetransactionrequest.md
   - docs/models/operations/verifypaymentservicecredentialsglobals.md
   - docs/models/operations/verifypaymentservicecredentialsrequest.md
   - docs/models/operations/voidtransactionglobals.md
@@ -594,6 +597,7 @@ generatedFiles:
   - src/funcs/transactionsSettlementsGet.ts
   - src/funcs/transactionsSettlementsList.ts
   - src/funcs/transactionsSync.ts
+  - src/funcs/transactionsUpdate.ts
   - src/funcs/transactionsVoid.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -809,6 +813,7 @@ generatedFiles:
   - src/models/components/transactionsummaries.ts
   - src/models/components/transactionsummary.ts
   - src/models/components/transactionthreedsecuresummary.ts
+  - src/models/components/transactionupdate.ts
   - src/models/components/userstatus.ts
   - src/models/components/validationerror.ts
   - src/models/components/verifycredentials.ts
@@ -920,6 +925,7 @@ generatedFiles:
   - src/models/operations/updatemerchantaccount.ts
   - src/models/operations/updatepaymentservice.ts
   - src/models/operations/updatereport.ts
+  - src/models/operations/updatetransaction.ts
   - src/models/operations/verifypaymentservicecredentials.ts
   - src/models/operations/voidtransaction.ts
   - src/sdk/accountupdater.ts
@@ -4229,6 +4235,40 @@ examples:
       responses:
         "200":
           application/json: {"items": []}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  update_transaction:
+    speakeasy-default-update-transaction:
+      parameters:
+        path:
+          transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "EUR", "amount": 1299, "status": "authorization_failed", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_amount": 1100, "settled": true, "intent": "capture", "pending_review": false, "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "failed", "amount": 100, "refunded_amount": 50, "gift_card": {"type": "gift-card", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "payment_source": "card_on_file", "merchant_initiated": true, "is_subsequent_payment": false, "intent_outcome": "failed", "multi_tender": true, "account_funding_transaction": true}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
