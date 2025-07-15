@@ -33,6 +33,7 @@ export const GiftCardErrorCode = {
   ServiceError: "service_error",
   ServiceNetworkError: "service_network_error",
   UnknownError: "unknown_error",
+  MaxGiftCardsReached: "max_gift_cards_reached",
 } as const;
 /**
  * Gift card error codes.
