@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type CheckoutCardConnectionOptions = {
+export type CheckoutPayoutOptions = {
   /**
    * The processing channel to be used for the payment.
    */
@@ -20,8 +20,8 @@ export type CheckoutCardConnectionOptions = {
 };
 
 /** @internal */
-export const CheckoutCardConnectionOptions$inboundSchema: z.ZodType<
-  CheckoutCardConnectionOptions,
+export const CheckoutPayoutOptions$inboundSchema: z.ZodType<
+  CheckoutPayoutOptions,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -35,16 +35,16 @@ export const CheckoutCardConnectionOptions$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CheckoutCardConnectionOptions$Outbound = {
+export type CheckoutPayoutOptions$Outbound = {
   processing_channel_id: string;
   source_id: string;
 };
 
 /** @internal */
-export const CheckoutCardConnectionOptions$outboundSchema: z.ZodType<
-  CheckoutCardConnectionOptions$Outbound,
+export const CheckoutPayoutOptions$outboundSchema: z.ZodType<
+  CheckoutPayoutOptions$Outbound,
   z.ZodTypeDef,
-  CheckoutCardConnectionOptions
+  CheckoutPayoutOptions
 > = z.object({
   processingChannelId: z.string(),
   sourceId: z.string(),
@@ -59,31 +59,29 @@ export const CheckoutCardConnectionOptions$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CheckoutCardConnectionOptions$ {
-  /** @deprecated use `CheckoutCardConnectionOptions$inboundSchema` instead. */
-  export const inboundSchema = CheckoutCardConnectionOptions$inboundSchema;
-  /** @deprecated use `CheckoutCardConnectionOptions$outboundSchema` instead. */
-  export const outboundSchema = CheckoutCardConnectionOptions$outboundSchema;
-  /** @deprecated use `CheckoutCardConnectionOptions$Outbound` instead. */
-  export type Outbound = CheckoutCardConnectionOptions$Outbound;
+export namespace CheckoutPayoutOptions$ {
+  /** @deprecated use `CheckoutPayoutOptions$inboundSchema` instead. */
+  export const inboundSchema = CheckoutPayoutOptions$inboundSchema;
+  /** @deprecated use `CheckoutPayoutOptions$outboundSchema` instead. */
+  export const outboundSchema = CheckoutPayoutOptions$outboundSchema;
+  /** @deprecated use `CheckoutPayoutOptions$Outbound` instead. */
+  export type Outbound = CheckoutPayoutOptions$Outbound;
 }
 
-export function checkoutCardConnectionOptionsToJSON(
-  checkoutCardConnectionOptions: CheckoutCardConnectionOptions,
+export function checkoutPayoutOptionsToJSON(
+  checkoutPayoutOptions: CheckoutPayoutOptions,
 ): string {
   return JSON.stringify(
-    CheckoutCardConnectionOptions$outboundSchema.parse(
-      checkoutCardConnectionOptions,
-    ),
+    CheckoutPayoutOptions$outboundSchema.parse(checkoutPayoutOptions),
   );
 }
 
-export function checkoutCardConnectionOptionsFromJSON(
+export function checkoutPayoutOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<CheckoutCardConnectionOptions, SDKValidationError> {
+): SafeParseResult<CheckoutPayoutOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CheckoutCardConnectionOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutCardConnectionOptions' from JSON`,
+    (x) => CheckoutPayoutOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckoutPayoutOptions' from JSON`,
   );
 }

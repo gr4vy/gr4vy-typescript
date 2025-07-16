@@ -7,6 +7,12 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  TransactionConnectionOptions,
+  TransactionConnectionOptions$inboundSchema,
+  TransactionConnectionOptions$Outbound,
+  TransactionConnectionOptions$outboundSchema,
+} from "./transactionconnectionoptions.js";
 
 export type TransactionUpdate = {
   /**
@@ -20,7 +26,7 @@ export type TransactionUpdate = {
   /**
    * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
    */
-  connectionOptions?: { [k: string]: { [k: string]: any } } | null | undefined;
+  connectionOptions?: TransactionConnectionOptions | null | undefined;
 };
 
 /** @internal */
@@ -31,7 +37,8 @@ export const TransactionUpdate$inboundSchema: z.ZodType<
 > = z.object({
   external_identifier: z.nullable(z.string()).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  connection_options: z.nullable(z.record(z.record(z.any()))).optional(),
+  connection_options: z.nullable(TransactionConnectionOptions$inboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "external_identifier": "externalIdentifier",
@@ -43,7 +50,7 @@ export const TransactionUpdate$inboundSchema: z.ZodType<
 export type TransactionUpdate$Outbound = {
   external_identifier?: string | null | undefined;
   metadata?: { [k: string]: string } | null | undefined;
-  connection_options?: { [k: string]: { [k: string]: any } } | null | undefined;
+  connection_options?: TransactionConnectionOptions$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -54,7 +61,8 @@ export const TransactionUpdate$outboundSchema: z.ZodType<
 > = z.object({
   externalIdentifier: z.nullable(z.string()).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  connectionOptions: z.nullable(z.record(z.record(z.any()))).optional(),
+  connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     externalIdentifier: "external_identifier",

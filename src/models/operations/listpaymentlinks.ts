@@ -29,7 +29,7 @@ export type ListPaymentLinksRequest = {
 };
 
 export type ListPaymentLinksResponse = {
-  result: components.CollectionPaymentLink;
+  result: components.PaymentLinks;
 };
 
 /** @internal */
@@ -152,7 +152,7 @@ export const ListPaymentLinksResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Result: components.CollectionPaymentLink$inboundSchema,
+  Result: components.PaymentLinks$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Result": "result",
@@ -161,7 +161,7 @@ export const ListPaymentLinksResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListPaymentLinksResponse$Outbound = {
-  Result: components.CollectionPaymentLink$Outbound;
+  Result: components.PaymentLinks$Outbound;
 };
 
 /** @internal */
@@ -170,7 +170,7 @@ export const ListPaymentLinksResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListPaymentLinksResponse
 > = z.object({
-  result: components.CollectionPaymentLink$outboundSchema,
+  result: components.PaymentLinks$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     result: "Result",

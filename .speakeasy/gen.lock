@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 6f48b6800e966ae82af0f5358f6238ed
+  docChecksum: ab1dfb0ac55546ff61805b1ac6a71871
   docVersion: 1.0.0
   speakeasyVersion: 1.582.0
   generationVersion: 2.657.1
-  releaseVersion: 1.1.10
-  configChecksum: ce5beae8356084058408cbf900bc4b7d
+  releaseVersion: 1.1.11
+  configChecksum: abd3fb22ef4350ec1767c86dd0bd5f23
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -46,7 +46,15 @@ generatedFiles:
   - docs/models/components/accountupdaterinquirysummary.md
   - docs/models/components/accountupdaterjob.md
   - docs/models/components/accountupdaterjobcreate.md
+  - docs/models/components/accountupdateroptions.md
   - docs/models/components/address.md
+  - docs/models/components/adyenautorescuesepascenariosenum.md
+  - docs/models/components/adyencardautorescuescenariosenum.md
+  - docs/models/components/adyencardoptions.md
+  - docs/models/components/adyenoptions.md
+  - docs/models/components/adyensepaoptions.md
+  - docs/models/components/affirmitineraryoptions.md
+  - docs/models/components/affirmoptions.md
   - docs/models/components/agegroup.md
   - docs/models/components/airline.md
   - docs/models/components/airlineleg.md
@@ -63,6 +71,8 @@ generatedFiles:
   - docs/models/components/avsresponsecode.md
   - docs/models/components/billingdetailsinput.md
   - docs/models/components/billingdetailsoutput.md
+  - docs/models/components/braintreedynamicdatafieldsoptions.md
+  - docs/models/components/braintreeoptions.md
   - docs/models/components/browserinfo.md
   - docs/models/components/buyer.md
   - docs/models/components/buyercreate.md
@@ -76,7 +86,7 @@ generatedFiles:
   - docs/models/components/cardtype.md
   - docs/models/components/cardwithurlpaymentmethodcreate.md
   - docs/models/components/cartitem.md
-  - docs/models/components/checkoutcardconnectionoptions.md
+  - docs/models/components/checkoutpayoutoptions.md
   - docs/models/components/checkoutsession.md
   - docs/models/components/checkoutsessioncreate.md
   - docs/models/components/checkoutsessionpaymentmethod.md
@@ -87,8 +97,6 @@ generatedFiles:
   - docs/models/components/clicktopaypaymentmethodcreate.md
   - docs/models/components/clicktopaysession.md
   - docs/models/components/clicktopaysessionrequest.md
-  - docs/models/components/collectionpaymentlink.md
-  - docs/models/components/connectionoptions.md
   - docs/models/components/context.md
   - docs/models/components/createsession.md
   - docs/models/components/createsessionstatus.md
@@ -96,8 +104,11 @@ generatedFiles:
   - docs/models/components/cryptogram.md
   - docs/models/components/cryptogramcreate.md
   - docs/models/components/cvvresponsecode.md
+  - docs/models/components/cybersourceantifraudoptions.md
+  - docs/models/components/cybersourceoptions.md
   - docs/models/components/definitionfield.md
   - docs/models/components/definitionfieldformat.md
+  - docs/models/components/deliverytype.md
   - docs/models/components/detailedsettlementreportspec.md
   - docs/models/components/digitalwallet.md
   - docs/models/components/digitalwalletcreate.md
@@ -105,9 +116,25 @@ generatedFiles:
   - docs/models/components/digitalwalletprovider.md
   - docs/models/components/digitalwallets.md
   - docs/models/components/digitalwalletupdate.md
+  - docs/models/components/dlocaloptions.md
+  - docs/models/components/dlocalwalletoptions.md
   - docs/models/components/errordetail.md
   - docs/models/components/errorlocation.md
   - docs/models/components/field.md
+  - docs/models/components/fiservinstallmentoptions.md
+  - docs/models/components/fiservoptions.md
+  - docs/models/components/forterantifraudoptions.md
+  - docs/models/components/forterantifraudoptionscartitem.md
+  - docs/models/components/forterantifraudoptionscartitembasicitemdata.md
+  - docs/models/components/forterantifraudoptionscartitembeneficiary.md
+  - docs/models/components/forterantifraudoptionscartitembeneficiaryaddress.md
+  - docs/models/components/forterantifraudoptionscartitembeneficiarycomments.md
+  - docs/models/components/forterantifraudoptionscartitembeneficiarypersonaldetails.md
+  - docs/models/components/forterantifraudoptionscartitembeneficiaryphone.md
+  - docs/models/components/forterantifraudoptionscartitemdeliverydetails.md
+  - docs/models/components/forterantifraudoptionscartitemdeliverydetailsdeliverytype.md
+  - docs/models/components/forterantifraudoptionsdiscount.md
+  - docs/models/components/forterantifraudoptionsdiscountcoupondiscountamount.md
   - docs/models/components/giftcard.md
   - docs/models/components/giftcardbalancerequest.md
   - docs/models/components/giftcardcreate.md
@@ -123,6 +150,7 @@ generatedFiles:
   - docs/models/components/giftcardsummary.md
   - docs/models/components/giftcardtokentransactioncreate.md
   - docs/models/components/giftcardtransactioncreate.md
+  - docs/models/components/givingblockoptions.md
   - docs/models/components/googlepayassurancedetails.md
   - docs/models/components/googlepayfpanpaymentmethodcreate.md
   - docs/models/components/googlepaypaymentmethodcreate.md
@@ -133,8 +161,10 @@ generatedFiles:
   - docs/models/components/guestbuyeroutput.md
   - docs/models/components/instrumenttype.md
   - docs/models/components/items.md
+  - docs/models/components/latitudeoptions.md
   - docs/models/components/loc.md
   - docs/models/components/locale.md
+  - docs/models/components/mattildatapioptions.md
   - docs/models/components/merchantaccount.md
   - docs/models/components/merchantaccountcreate.md
   - docs/models/components/merchantaccounts.md
@@ -142,6 +172,8 @@ generatedFiles:
   - docs/models/components/merchantprofilescheme.md
   - docs/models/components/merchantprofileschemesummary.md
   - docs/models/components/method.md
+  - docs/models/components/mockcardmerchantadvicecodeoptions.md
+  - docs/models/components/mockcardoptions.md
   - docs/models/components/mode.md
   - docs/models/components/name.md
   - docs/models/components/networktoken.md
@@ -149,8 +181,12 @@ generatedFiles:
   - docs/models/components/networktokenpaymentmethodcreate.md
   - docs/models/components/networktokens.md
   - docs/models/components/networktokenstatus.md
+  - docs/models/components/nuveiairlinedataoptions.md
+  - docs/models/components/nuveioptions.md
+  - docs/models/components/oxxooptions.md
   - docs/models/components/paymentlink.md
   - docs/models/components/paymentlinkcreate.md
+  - docs/models/components/paymentlinks.md
   - docs/models/components/paymentlinkstatus.md
   - docs/models/components/paymentmethod.md
   - docs/models/components/paymentmethodcard.md
@@ -177,6 +213,7 @@ generatedFiles:
   - docs/models/components/paymentservicetokens.md
   - docs/models/components/paymentserviceupdate.md
   - docs/models/components/payoutcategory.md
+  - docs/models/components/payoutconnectionoptions.md
   - docs/models/components/payoutcreate.md
   - docs/models/components/payoutcreatepaymentmethod.md
   - docs/models/components/payoutmerchant.md
@@ -185,6 +222,8 @@ generatedFiles:
   - docs/models/components/payoutstatus.md
   - docs/models/components/payoutsummaries.md
   - docs/models/components/payoutsummary.md
+  - docs/models/components/paypaloptions.md
+  - docs/models/components/powertranzoptions.md
   - docs/models/components/producttype.md
   - docs/models/components/recipient.md
   - docs/models/components/redirectpaymentmethodcreate.md
@@ -221,6 +260,8 @@ generatedFiles:
   - docs/models/components/shippingdetailsupdate.md
   - docs/models/components/spec.md
   - docs/models/components/statementdescriptor.md
+  - docs/models/components/stripeconnectoptions.md
+  - docs/models/components/stripeoptions.md
   - docs/models/components/taxid.md
   - docs/models/components/taxidkind.md
   - docs/models/components/threedsecuredata.md
@@ -236,6 +277,7 @@ generatedFiles:
   - docs/models/components/transaction.md
   - docs/models/components/transactionbuyer.md
   - docs/models/components/transactioncapture.md
+  - docs/models/components/transactionconnectionoptions.md
   - docs/models/components/transactioncreate.md
   - docs/models/components/transactioncreategiftcards.md
   - docs/models/components/transactioncreatepaymentmethod.md
@@ -256,13 +298,21 @@ generatedFiles:
   - docs/models/components/transactionsummary.md
   - docs/models/components/transactionthreedsecuresummary.md
   - docs/models/components/transactionupdate.md
+  - docs/models/components/travelhubcustomdata.md
+  - docs/models/components/travelhuboptions.md
+  - docs/models/components/trustlyoptions.md
   - docs/models/components/two.md
+  - docs/models/components/type.md
   - docs/models/components/userdevice.md
   - docs/models/components/userstatus.md
   - docs/models/components/validationerror.md
   - docs/models/components/verifycredentials.md
   - docs/models/components/voidablefield.md
   - docs/models/components/walletpaymentoptioncontext.md
+  - docs/models/components/wpayeverdaypayoptions.md
+  - docs/models/components/wpaypaytooptions.md
+  - docs/models/components/wpaypaytoresourceoptions.md
+  - docs/models/components/wpaypaytosimulationoptions.md
   - docs/models/errors/error400.md
   - docs/models/errors/error401.md
   - docs/models/errors/error403.md
@@ -621,7 +671,15 @@ generatedFiles:
   - src/models/components/accountupdaterinquirysummary.ts
   - src/models/components/accountupdaterjob.ts
   - src/models/components/accountupdaterjobcreate.ts
+  - src/models/components/accountupdateroptions.ts
   - src/models/components/address.ts
+  - src/models/components/adyenautorescuesepascenariosenum.ts
+  - src/models/components/adyencardautorescuescenariosenum.ts
+  - src/models/components/adyencardoptions.ts
+  - src/models/components/adyenoptions.ts
+  - src/models/components/adyensepaoptions.ts
+  - src/models/components/affirmitineraryoptions.ts
+  - src/models/components/affirmoptions.ts
   - src/models/components/airline.ts
   - src/models/components/airlineleg.ts
   - src/models/components/airlinepassenger.ts
@@ -637,6 +695,8 @@ generatedFiles:
   - src/models/components/avsresponsecode.ts
   - src/models/components/billingdetailsinput.ts
   - src/models/components/billingdetailsoutput.ts
+  - src/models/components/braintreedynamicdatafieldsoptions.ts
+  - src/models/components/braintreeoptions.ts
   - src/models/components/browserinfo.ts
   - src/models/components/buyer.ts
   - src/models/components/buyercreate.ts
@@ -649,7 +709,7 @@ generatedFiles:
   - src/models/components/cardtype.ts
   - src/models/components/cardwithurlpaymentmethodcreate.ts
   - src/models/components/cartitem.ts
-  - src/models/components/checkoutcardconnectionoptions.ts
+  - src/models/components/checkoutpayoutoptions.ts
   - src/models/components/checkoutsession.ts
   - src/models/components/checkoutsessioncreate.ts
   - src/models/components/checkoutsessionpaymentmethod.ts
@@ -660,14 +720,14 @@ generatedFiles:
   - src/models/components/clicktopaypaymentmethodcreate.ts
   - src/models/components/clicktopaysession.ts
   - src/models/components/clicktopaysessionrequest.ts
-  - src/models/components/collectionpaymentlink.ts
-  - src/models/components/connectionoptions.ts
   - src/models/components/createsession.ts
   - src/models/components/createsessionstatus.ts
   - src/models/components/creator.ts
   - src/models/components/cryptogram.ts
   - src/models/components/cryptogramcreate.ts
   - src/models/components/cvvresponsecode.ts
+  - src/models/components/cybersourceantifraudoptions.ts
+  - src/models/components/cybersourceoptions.ts
   - src/models/components/definitionfield.ts
   - src/models/components/definitionfieldformat.ts
   - src/models/components/detailedsettlementreportspec.ts
@@ -677,9 +737,24 @@ generatedFiles:
   - src/models/components/digitalwalletprovider.ts
   - src/models/components/digitalwallets.ts
   - src/models/components/digitalwalletupdate.ts
+  - src/models/components/dlocaloptions.ts
+  - src/models/components/dlocalwalletoptions.ts
   - src/models/components/errordetail.ts
   - src/models/components/errorlocation.ts
   - src/models/components/field.ts
+  - src/models/components/fiservinstallmentoptions.ts
+  - src/models/components/fiservoptions.ts
+  - src/models/components/forterantifraudoptions.ts
+  - src/models/components/forterantifraudoptionscartitem.ts
+  - src/models/components/forterantifraudoptionscartitembasicitemdata.ts
+  - src/models/components/forterantifraudoptionscartitembeneficiary.ts
+  - src/models/components/forterantifraudoptionscartitembeneficiaryaddress.ts
+  - src/models/components/forterantifraudoptionscartitembeneficiarycomments.ts
+  - src/models/components/forterantifraudoptionscartitembeneficiarypersonaldetails.ts
+  - src/models/components/forterantifraudoptionscartitembeneficiaryphone.ts
+  - src/models/components/forterantifraudoptionscartitemdeliverydetails.ts
+  - src/models/components/forterantifraudoptionsdiscount.ts
+  - src/models/components/forterantifraudoptionsdiscountcoupondiscountamount.ts
   - src/models/components/giftcard.ts
   - src/models/components/giftcardbalancerequest.ts
   - src/models/components/giftcardcreate.ts
@@ -695,6 +770,7 @@ generatedFiles:
   - src/models/components/giftcardsummary.ts
   - src/models/components/giftcardtokentransactioncreate.ts
   - src/models/components/giftcardtransactioncreate.ts
+  - src/models/components/givingblockoptions.ts
   - src/models/components/googlepayassurancedetails.ts
   - src/models/components/googlepayfpanpaymentmethodcreate.ts
   - src/models/components/googlepaypaymentmethodcreate.ts
@@ -705,6 +781,8 @@ generatedFiles:
   - src/models/components/guestbuyeroutput.ts
   - src/models/components/index.ts
   - src/models/components/instrumenttype.ts
+  - src/models/components/latitudeoptions.ts
+  - src/models/components/mattildatapioptions.ts
   - src/models/components/merchantaccount.ts
   - src/models/components/merchantaccountcreate.ts
   - src/models/components/merchantaccounts.ts
@@ -712,14 +790,20 @@ generatedFiles:
   - src/models/components/merchantprofilescheme.ts
   - src/models/components/merchantprofileschemesummary.ts
   - src/models/components/method.ts
+  - src/models/components/mockcardmerchantadvicecodeoptions.ts
+  - src/models/components/mockcardoptions.ts
   - src/models/components/mode.ts
   - src/models/components/networktoken.ts
   - src/models/components/networktokencreate.ts
   - src/models/components/networktokenpaymentmethodcreate.ts
   - src/models/components/networktokens.ts
   - src/models/components/networktokenstatus.ts
+  - src/models/components/nuveiairlinedataoptions.ts
+  - src/models/components/nuveioptions.ts
+  - src/models/components/oxxooptions.ts
   - src/models/components/paymentlink.ts
   - src/models/components/paymentlinkcreate.ts
+  - src/models/components/paymentlinks.ts
   - src/models/components/paymentlinkstatus.ts
   - src/models/components/paymentmethod.ts
   - src/models/components/paymentmethodcard.ts
@@ -746,6 +830,7 @@ generatedFiles:
   - src/models/components/paymentservicetokens.ts
   - src/models/components/paymentserviceupdate.ts
   - src/models/components/payoutcategory.ts
+  - src/models/components/payoutconnectionoptions.ts
   - src/models/components/payoutcreate.ts
   - src/models/components/payoutmerchant.ts
   - src/models/components/payoutmerchantsummary.ts
@@ -753,6 +838,8 @@ generatedFiles:
   - src/models/components/payoutstatus.ts
   - src/models/components/payoutsummaries.ts
   - src/models/components/payoutsummary.ts
+  - src/models/components/paypaloptions.ts
+  - src/models/components/powertranzoptions.ts
   - src/models/components/producttype.ts
   - src/models/components/recipient.ts
   - src/models/components/redirectpaymentmethodcreate.ts
@@ -784,6 +871,8 @@ generatedFiles:
   - src/models/components/shippingdetailslist.ts
   - src/models/components/shippingdetailsupdate.ts
   - src/models/components/statementdescriptor.ts
+  - src/models/components/stripeconnectoptions.ts
+  - src/models/components/stripeoptions.ts
   - src/models/components/taxid.ts
   - src/models/components/taxidkind.ts
   - src/models/components/threedsecuredatav1.ts
@@ -796,6 +885,7 @@ generatedFiles:
   - src/models/components/transaction.ts
   - src/models/components/transactionbuyer.ts
   - src/models/components/transactioncapture.ts
+  - src/models/components/transactionconnectionoptions.ts
   - src/models/components/transactioncreate.ts
   - src/models/components/transactionevent.ts
   - src/models/components/transactionevents.ts
@@ -814,11 +904,18 @@ generatedFiles:
   - src/models/components/transactionsummary.ts
   - src/models/components/transactionthreedsecuresummary.ts
   - src/models/components/transactionupdate.ts
+  - src/models/components/travelhubcustomdata.ts
+  - src/models/components/travelhuboptions.ts
+  - src/models/components/trustlyoptions.ts
   - src/models/components/userstatus.ts
   - src/models/components/validationerror.ts
   - src/models/components/verifycredentials.ts
   - src/models/components/voidablefield.ts
   - src/models/components/walletpaymentoptioncontext.ts
+  - src/models/components/wpayeverdaypayoptions.ts
+  - src/models/components/wpaypaytooptions.ts
+  - src/models/components/wpaypaytoresourceoptions.ts
+  - src/models/components/wpaypaytosimulationoptions.ts
   - src/models/errors/error400.ts
   - src/models/errors/error401.ts
   - src/models/errors/error403.ts

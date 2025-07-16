@@ -1,0 +1,20 @@
+# ForterAntiFraudOptionsCartItemBeneficiary
+
+## Example Usage
+
+```typescript
+import { ForterAntiFraudOptionsCartItemBeneficiary } from "@gr4vy/sdk/models/components";
+
+let value: ForterAntiFraudOptionsCartItemBeneficiary = {
+  personalDetails: {},
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                      | Type                                                                                                                                                       | Required                                                                                                                                                   | Description                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `personalDetails`                                                                                                                                          | [components.ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails](../../models/components/forterantifraudoptionscartitembeneficiarypersonaldetails.md) | :heavy_check_mark:                                                                                                                                         | N/A                                                                                                                                                        |
+| `address`                                                                                                                                                  | [components.ForterAntiFraudOptionsCartItemBeneficiaryAddress](../../models/components/forterantifraudoptionscartitembeneficiaryaddress.md)                 | :heavy_minus_sign:                                                                                                                                         | Address information of the beneficiary.                                                                                                                    |
+| `phone`                                                                                                                                                    | [components.ForterAntiFraudOptionsCartItemBeneficiaryPhone](../../models/components/forterantifraudoptionscartitembeneficiaryphone.md)[]                   | :heavy_minus_sign:                                                                                                                                         | Phone numbers associated with the beneficiary.                                                                                                             |
+| `comments`                                                                                                                                                 | [components.ForterAntiFraudOptionsCartItemBeneficiaryComments](../../models/components/forterantifraudoptionscartitembeneficiarycomments.md)               | :heavy_minus_sign:                                                                                                                                         | Comments related to the beneficiary.                                                                                                                       |

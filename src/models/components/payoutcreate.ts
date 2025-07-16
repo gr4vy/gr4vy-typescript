@@ -8,12 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  ConnectionOptions,
-  ConnectionOptions$inboundSchema,
-  ConnectionOptions$Outbound,
-  ConnectionOptions$outboundSchema,
-} from "./connectionoptions.js";
-import {
   GuestBuyerInput,
   GuestBuyerInput$inboundSchema,
   GuestBuyerInput$Outbound,
@@ -36,6 +30,12 @@ import {
   PayoutCategory$inboundSchema,
   PayoutCategory$outboundSchema,
 } from "./payoutcategory.js";
+import {
+  PayoutConnectionOptions,
+  PayoutConnectionOptions$inboundSchema,
+  PayoutConnectionOptions$Outbound,
+  PayoutConnectionOptions$outboundSchema,
+} from "./payoutconnectionoptions.js";
 import {
   PayoutMerchant,
   PayoutMerchant$inboundSchema,
@@ -101,7 +101,7 @@ export type PayoutCreate = {
   /**
    * Optional fields for processing payouts on specific payment services.
    */
-  connectionOptions?: ConnectionOptions | null | undefined;
+  connectionOptions?: PayoutConnectionOptions | null | undefined;
 };
 
 /** @internal */
@@ -179,7 +179,8 @@ export const PayoutCreate$inboundSchema: z.ZodType<
   buyer: z.nullable(GuestBuyerInput$inboundSchema).optional(),
   buyer_external_identifier: z.nullable(z.string()).optional(),
   merchant: z.nullable(PayoutMerchant$inboundSchema).optional(),
-  connection_options: z.nullable(ConnectionOptions$inboundSchema).optional(),
+  connection_options: z.nullable(PayoutConnectionOptions$inboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_service_id": "paymentServiceId",
@@ -203,7 +204,7 @@ export type PayoutCreate$Outbound = {
   buyer?: GuestBuyerInput$Outbound | null | undefined;
   buyer_external_identifier?: string | null | undefined;
   merchant?: PayoutMerchant$Outbound | null | undefined;
-  connection_options?: ConnectionOptions$Outbound | null | undefined;
+  connection_options?: PayoutConnectionOptions$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -225,7 +226,8 @@ export const PayoutCreate$outboundSchema: z.ZodType<
   buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   merchant: z.nullable(PayoutMerchant$outboundSchema).optional(),
-  connectionOptions: z.nullable(ConnectionOptions$outboundSchema).optional(),
+  connectionOptions: z.nullable(PayoutConnectionOptions$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentServiceId: "payment_service_id",

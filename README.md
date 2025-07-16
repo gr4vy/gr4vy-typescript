@@ -358,9 +358,9 @@ try {
 
 ### [payouts](docs/sdks/payouts/README.md)
 
-* [list](docs/sdks/payouts/README.md#list) - List payouts created.
-* [create](docs/sdks/payouts/README.md#create) - Create a payout.
-* [get](docs/sdks/payouts/README.md#get) - Get a payout.
+* [list](docs/sdks/payouts/README.md#list) - List payouts created
+* [create](docs/sdks/payouts/README.md#create) - Create a payout
+* [get](docs/sdks/payouts/README.md#get) - Get a payout
 
 ### [refunds](docs/sdks/refunds/README.md)
 
@@ -984,9 +984,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentServicesSession`](docs/sdks/paymentservices/README.md#session) - Create a session for apayment service definition
 - [`paymentServicesUpdate`](docs/sdks/paymentservices/README.md#update) - Configure a payment service
 - [`paymentServicesVerify`](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
-- [`payoutsCreate`](docs/sdks/payouts/README.md#create) - Create a payout.
-- [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout.
-- [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created.
+- [`payoutsCreate`](docs/sdks/payouts/README.md#create) - Create a payout
+- [`payoutsGet`](docs/sdks/payouts/README.md#get) - Get a payout
+- [`payoutsList`](docs/sdks/payouts/README.md#list) - List payouts created
 - [`refundsGet`](docs/sdks/refunds/README.md#get) - Get refund
 - [`reportExecutionsList`](docs/sdks/reportexecutions/README.md#list) - List executed reports
 - [`reportsCreate`](docs/sdks/reports/README.md#create) - Add a report

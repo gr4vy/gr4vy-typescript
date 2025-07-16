@@ -1,11 +1,11 @@
-# CheckoutCardConnectionOptions
+# CheckoutPayoutOptions
 
 ## Example Usage
 
 ```typescript
-import { CheckoutCardConnectionOptions } from "@gr4vy/sdk/models/components";
+import { CheckoutPayoutOptions } from "@gr4vy/sdk/models/components";
 
-let value: CheckoutCardConnectionOptions = {
+let value: CheckoutPayoutOptions = {
   processingChannelId: "channel-1234",
   sourceId: "acct-1234",
 };

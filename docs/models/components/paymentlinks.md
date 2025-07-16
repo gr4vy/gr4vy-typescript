@@ -1,11 +1,11 @@
-# CollectionPaymentLink
+# PaymentLinks
 
 ## Example Usage
 
 ```typescript
-import { CollectionPaymentLink } from "@gr4vy/sdk/models/components";
+import { PaymentLinks } from "@gr4vy/sdk/models/components";
 
-let value: CollectionPaymentLink = {
+let value: PaymentLinks = {
   items: [],
 };
 ```

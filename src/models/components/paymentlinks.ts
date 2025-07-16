@@ -14,7 +14,7 @@ import {
   PaymentLink$outboundSchema,
 } from "./paymentlink.js";
 
-export type CollectionPaymentLink = {
+export type PaymentLinks = {
   /**
    * A list of items returned for this request.
    */
@@ -34,8 +34,8 @@ export type CollectionPaymentLink = {
 };
 
 /** @internal */
-export const CollectionPaymentLink$inboundSchema: z.ZodType<
-  CollectionPaymentLink,
+export const PaymentLinks$inboundSchema: z.ZodType<
+  PaymentLinks,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -51,7 +51,7 @@ export const CollectionPaymentLink$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CollectionPaymentLink$Outbound = {
+export type PaymentLinks$Outbound = {
   items: Array<PaymentLink$Outbound>;
   limit: number;
   next_cursor?: string | null | undefined;
@@ -59,10 +59,10 @@ export type CollectionPaymentLink$Outbound = {
 };
 
 /** @internal */
-export const CollectionPaymentLink$outboundSchema: z.ZodType<
-  CollectionPaymentLink$Outbound,
+export const PaymentLinks$outboundSchema: z.ZodType<
+  PaymentLinks$Outbound,
   z.ZodTypeDef,
-  CollectionPaymentLink
+  PaymentLinks
 > = z.object({
   items: z.array(PaymentLink$outboundSchema),
   limit: z.number().int().default(20),
@@ -79,29 +79,25 @@ export const CollectionPaymentLink$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CollectionPaymentLink$ {
-  /** @deprecated use `CollectionPaymentLink$inboundSchema` instead. */
-  export const inboundSchema = CollectionPaymentLink$inboundSchema;
-  /** @deprecated use `CollectionPaymentLink$outboundSchema` instead. */
-  export const outboundSchema = CollectionPaymentLink$outboundSchema;
-  /** @deprecated use `CollectionPaymentLink$Outbound` instead. */
-  export type Outbound = CollectionPaymentLink$Outbound;
+export namespace PaymentLinks$ {
+  /** @deprecated use `PaymentLinks$inboundSchema` instead. */
+  export const inboundSchema = PaymentLinks$inboundSchema;
+  /** @deprecated use `PaymentLinks$outboundSchema` instead. */
+  export const outboundSchema = PaymentLinks$outboundSchema;
+  /** @deprecated use `PaymentLinks$Outbound` instead. */
+  export type Outbound = PaymentLinks$Outbound;
 }
 
-export function collectionPaymentLinkToJSON(
-  collectionPaymentLink: CollectionPaymentLink,
-): string {
-  return JSON.stringify(
-    CollectionPaymentLink$outboundSchema.parse(collectionPaymentLink),
-  );
+export function paymentLinksToJSON(paymentLinks: PaymentLinks): string {
+  return JSON.stringify(PaymentLinks$outboundSchema.parse(paymentLinks));
 }
 
-export function collectionPaymentLinkFromJSON(
+export function paymentLinksFromJSON(
   jsonString: string,
-): SafeParseResult<CollectionPaymentLink, SDKValidationError> {
+): SafeParseResult<PaymentLinks, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CollectionPaymentLink$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CollectionPaymentLink' from JSON`,
+    (x) => PaymentLinks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentLinks' from JSON`,
   );
 }

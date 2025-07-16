@@ -27,7 +27,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create a payout.
+ * Create a payout
  *
  * @remarks
  * Creates a new payout.

@@ -33,7 +33,7 @@ import {
 } from "../types/operations.js";
 
 /**
- * List payouts created.
+ * List payouts created
  *
  * @remarks
  * Returns a list of payouts made.

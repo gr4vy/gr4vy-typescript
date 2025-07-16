@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [list](#list) - List payouts created.
-* [create](#create) - Create a payout.
-* [get](#get) - Get a payout.
+* [list](#list) - List payouts created
+* [create](#create) - Create a payout
+* [get](#get) - Get a payout
 
 ## list
 
@@ -216,7 +216,7 @@ run();
 
 ## get
 
-Retreives a payout.
+Retrieves a payout.
 
 ### Example Usage
 

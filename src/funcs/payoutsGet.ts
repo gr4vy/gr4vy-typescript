@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a payout.
+ * Get a payout
  *
  * @remarks
- * Retreives a payout.
+ * Retrieves a payout.
  */
 export function payoutsGet(
   client: Gr4vyCore,

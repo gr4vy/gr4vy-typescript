@@ -31,6 +31,12 @@ import {
   StatementDescriptor$outboundSchema,
 } from "./statementdescriptor.js";
 import {
+  TransactionConnectionOptions,
+  TransactionConnectionOptions$inboundSchema,
+  TransactionConnectionOptions$Outbound,
+  TransactionConnectionOptions$outboundSchema,
+} from "./transactionconnectionoptions.js";
+import {
   TransactionIntent,
   TransactionIntent$inboundSchema,
   TransactionIntent$outboundSchema,
@@ -62,7 +68,7 @@ export type PaymentLinkCreate = {
   /**
    * Connection options for the payment link.
    */
-  connectionOptions?: { [k: string]: { [k: string]: any } } | null | undefined;
+  connectionOptions?: TransactionConnectionOptions | null | undefined;
   /**
    * The merchant reference for the payment link.
    */
@@ -169,7 +175,8 @@ export const PaymentLinkCreate$inboundSchema: z.ZodType<
   expires_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
-  connection_options: z.nullable(z.record(z.record(z.any()))).optional(),
+  connection_options: z.nullable(TransactionConnectionOptions$inboundSchema)
+    .optional(),
   external_identifier: z.nullable(z.string()).optional(),
   statement_descriptor: z.nullable(StatementDescriptor$inboundSchema)
     .optional(),
@@ -212,7 +219,7 @@ export const PaymentLinkCreate$inboundSchema: z.ZodType<
 export type PaymentLinkCreate$Outbound = {
   buyer?: GuestBuyerInput$Outbound | null | undefined;
   expires_at?: string | null | undefined;
-  connection_options?: { [k: string]: { [k: string]: any } } | null | undefined;
+  connection_options?: TransactionConnectionOptions$Outbound | null | undefined;
   external_identifier?: string | null | undefined;
   statement_descriptor?: StatementDescriptor$Outbound | null | undefined;
   locale?: string | null | undefined;
@@ -241,7 +248,8 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
 > = z.object({
   buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
   expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  connectionOptions: z.nullable(z.record(z.record(z.any()))).optional(),
+  connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
+    .optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
   statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
     .optional(),

@@ -13,7 +13,7 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Payouts extends ClientSDK {
   /**
-   * List payouts created.
+   * List payouts created
    *
    * @remarks
    * Returns a list of payouts made.
@@ -34,7 +34,7 @@ export class Payouts extends ClientSDK {
   }
 
   /**
-   * Create a payout.
+   * Create a payout
    *
    * @remarks
    * Creates a new payout.
@@ -53,10 +53,10 @@ export class Payouts extends ClientSDK {
   }
 
   /**
-   * Get a payout.
+   * Get a payout
    *
    * @remarks
-   * Retreives a payout.
+   * Retrieves a payout.
    */
   async get(
     payoutId: string,

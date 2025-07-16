@@ -1,0 +1,19 @@
+# ForterAntiFraudOptions
+
+## Example Usage
+
+```typescript
+import { ForterAntiFraudOptions } from "@gr4vy/sdk/models/components";
+
+let value: ForterAntiFraudOptions = {};
+```
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              | Example                                                                                                  |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `deliveryType`                                                                                           | [components.DeliveryType](../../models/components/deliverytype.md)                                       | :heavy_minus_sign:                                                                                       | The delivery type                                                                                        | DIGITAL                                                                                                  |
+| `deliveryMethod`                                                                                         | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | The delivery method                                                                                      |                                                                                                          |
+| `isGuestBuyer`                                                                                           | *boolean*                                                                                                | :heavy_minus_sign:                                                                                       | Defines if this payment is made using guest checkout.                                                    | true                                                                                                     |
+| `cartItems`                                                                                              | [components.ForterAntiFraudOptionsCartItem](../../models/components/forterantifraudoptionscartitem.md)[] | :heavy_minus_sign:                                                                                       | A list of cart items details to pass to the Forter API.                                                  |                                                                                                          |
+| `totalDiscount`                                                                                          | [components.ForterAntiFraudOptionsDiscount](../../models/components/forterantifraudoptionsdiscount.md)   | :heavy_minus_sign:                                                                                       | Information about the discount applied to this order.                                                    |                                                                                                          |
