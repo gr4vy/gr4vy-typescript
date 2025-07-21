@@ -254,6 +254,10 @@ export type TransactionConnectionOptions = {
    */
   mattildaTapi?: MattildaTapiOptions | null | undefined;
   /**
+   * Custom options to be passed to the `mattilda-tapifintechs` connector.
+   */
+  mattildaTapifintechs?: MattildaTapiOptions | null | undefined;
+  /**
    * Custom options to be passed to the `mock-card` connector.
    */
   mockCard?: MockCardOptions | null | undefined;
@@ -334,6 +338,8 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
   "latitude-latitude": z.nullable(LatitudeOptions$inboundSchema).optional(),
   "latitude-latitudeds": z.nullable(LatitudeOptions$inboundSchema).optional(),
   "mattilda-tapi": z.nullable(MattildaTapiOptions$inboundSchema).optional(),
+  "mattilda-tapifintechs": z.nullable(MattildaTapiOptions$inboundSchema)
+    .optional(),
   "mock-card": z.nullable(MockCardOptions$inboundSchema).optional(),
   "nuvei-card": z.nullable(NuveiOptions$inboundSchema).optional(),
   "oxxo-oxxo": z.nullable(OxxoOptions$inboundSchema).optional(),
@@ -373,6 +379,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
     "latitude-latitude": "latitudeLatitude",
     "latitude-latitudeds": "latitudeLatitudeds",
     "mattilda-tapi": "mattildaTapi",
+    "mattilda-tapifintechs": "mattildaTapifintechs",
     "mock-card": "mockCard",
     "nuvei-card": "nuveiCard",
     "oxxo-oxxo": "oxxoOxxo",
@@ -417,6 +424,7 @@ export type TransactionConnectionOptions$Outbound = {
   "latitude-latitude"?: LatitudeOptions$Outbound | null | undefined;
   "latitude-latitudeds"?: LatitudeOptions$Outbound | null | undefined;
   "mattilda-tapi"?: MattildaTapiOptions$Outbound | null | undefined;
+  "mattilda-tapifintechs"?: MattildaTapiOptions$Outbound | null | undefined;
   "mock-card"?: MockCardOptions$Outbound | null | undefined;
   "nuvei-card"?: NuveiOptions$Outbound | null | undefined;
   "oxxo-oxxo"?: OxxoOptions$Outbound | null | undefined;
@@ -463,6 +471,8 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   latitudeLatitude: z.nullable(LatitudeOptions$outboundSchema).optional(),
   latitudeLatitudeds: z.nullable(LatitudeOptions$outboundSchema).optional(),
   mattildaTapi: z.nullable(MattildaTapiOptions$outboundSchema).optional(),
+  mattildaTapifintechs: z.nullable(MattildaTapiOptions$outboundSchema)
+    .optional(),
   mockCard: z.nullable(MockCardOptions$outboundSchema).optional(),
   nuveiCard: z.nullable(NuveiOptions$outboundSchema).optional(),
   oxxoOxxo: z.nullable(OxxoOptions$outboundSchema).optional(),
@@ -501,6 +511,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     latitudeLatitude: "latitude-latitude",
     latitudeLatitudeds: "latitude-latitudeds",
     mattildaTapi: "mattilda-tapi",
+    mattildaTapifintechs: "mattilda-tapifintechs",
     mockCard: "mock-card",
     nuveiCard: "nuvei-card",
     oxxoOxxo: "oxxo-oxxo",

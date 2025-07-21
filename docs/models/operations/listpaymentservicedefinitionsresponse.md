@@ -11,7 +11,7 @@ let value: ListPaymentServiceDefinitionsResponse = {
       {
         id: "adyen-ideal",
         displayName: "iDEAL",
-        method: "oney_12x",
+        method: "oney_3x",
         fields: [
           {
             key: "private_api_key",

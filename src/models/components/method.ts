@@ -99,6 +99,7 @@ export const Method = {
   Stitch: "stitch",
   Stripedd: "stripedd",
   Tapi: "tapi",
+  Tapifintechs: "tapifintechs",
   Thaiqr: "thaiqr",
   Touchngo: "touchngo",
   Truemoney: "truemoney",

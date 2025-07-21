@@ -98,6 +98,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Stitch: "stitch",
   Stripedd: "stripedd",
   Tapi: "tapi",
+  Tapifintechs: "tapifintechs",
   Thaiqr: "thaiqr",
   Touchngo: "touchngo",
   Truemoney: "truemoney",
