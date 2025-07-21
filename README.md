@@ -344,7 +344,7 @@ try {
 
 * [list](docs/sdks/paymentservicedefinitions/README.md#list) - List payment service definitions
 * [get](docs/sdks/paymentservicedefinitions/README.md#get) - Get a payment service definition
-* [session](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for apayment service definition
+* [session](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for a payment service definition
 
 ### [paymentServices](docs/sdks/paymentservices/README.md)
 
@@ -354,7 +354,7 @@ try {
 * [update](docs/sdks/paymentservices/README.md#update) - Configure a payment service
 * [delete](docs/sdks/paymentservices/README.md#delete) - Delete a configured payment service
 * [verify](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
-* [session](docs/sdks/paymentservices/README.md#session) - Create a session for apayment service definition
+* [session](docs/sdks/paymentservices/README.md#session) - Create a session for a payment service definition
 
 ### [payouts](docs/sdks/payouts/README.md)
 
@@ -976,12 +976,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentOptionsList`](docs/sdks/paymentoptions/README.md#list) - List payment options
 - [`paymentServiceDefinitionsGet`](docs/sdks/paymentservicedefinitions/README.md#get) - Get a payment service definition
 - [`paymentServiceDefinitionsList`](docs/sdks/paymentservicedefinitions/README.md#list) - List payment service definitions
-- [`paymentServiceDefinitionsSession`](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for apayment service definition
+- [`paymentServiceDefinitionsSession`](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for a payment service definition
 - [`paymentServicesCreate`](docs/sdks/paymentservices/README.md#create) - Update a configured payment service
 - [`paymentServicesDelete`](docs/sdks/paymentservices/README.md#delete) - Delete a configured payment service
 - [`paymentServicesGet`](docs/sdks/paymentservices/README.md#get) - Get payment service
 - [`paymentServicesList`](docs/sdks/paymentservices/README.md#list) - List payment services
-- [`paymentServicesSession`](docs/sdks/paymentservices/README.md#session) - Create a session for apayment service definition
+- [`paymentServicesSession`](docs/sdks/paymentservices/README.md#session) - Create a session for a payment service definition
 - [`paymentServicesUpdate`](docs/sdks/paymentservices/README.md#update) - Configure a payment service
 - [`paymentServicesVerify`](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
 - [`payoutsCreate`](docs/sdks/payouts/README.md#create) - Create a payout

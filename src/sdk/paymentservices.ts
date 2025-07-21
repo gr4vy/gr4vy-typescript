@@ -133,7 +133,7 @@ export class PaymentServices extends ClientSDK {
   }
 
   /**
-   * Create a session for apayment service definition
+   * Create a session for a payment service definition
    *
    * @remarks
    * Creates a session for a payment service that supports sessions.
