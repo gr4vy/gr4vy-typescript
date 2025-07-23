@@ -123,15 +123,17 @@ export class Transactions extends ClientSDK {
    * Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
    */
   async capture(
-    transactionCapture: components.TransactionCapture,
+    transactionCaptureCreate: components.TransactionCaptureCreate,
     transactionId: string,
+    prefer?: string | null | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.Transaction> {
+  ): Promise<operations.CaptureTransactionResponseCaptureTransaction> {
     return unwrapAsync(transactionsCapture(
       this,
-      transactionCapture,
+      transactionCaptureCreate,
       transactionId,
+      prefer,
       merchantAccountId,
       options,
     ));

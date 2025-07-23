@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 22b7c9c14750b9baf7a4c71889582952
+  docChecksum: 446044ed7b7dc9651f8c243555766e5e
   docVersion: 1.0.0
-  speakeasyVersion: 1.583.1
-  generationVersion: 2.658.3
-  releaseVersion: 1.1.13
-  configChecksum: cd58182a3ea06f7eede056208672186b
+  speakeasyVersion: 1.586.0
+  generationVersion: 2.661.4
+  releaseVersion: 1.1.14
+  configChecksum: 4e999fa7ea34b61f541e5255f4d2e18c
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -78,6 +78,7 @@ generatedFiles:
   - docs/models/components/buyercreate.md
   - docs/models/components/buyers.md
   - docs/models/components/buyerupdate.md
+  - docs/models/components/capturestatus.md
   - docs/models/components/cardpaymentmethodcreate.md
   - docs/models/components/cardscheme.md
   - docs/models/components/cardschemedefinition.md
@@ -277,6 +278,7 @@ generatedFiles:
   - docs/models/components/transaction.md
   - docs/models/components/transactionbuyer.md
   - docs/models/components/transactioncapture.md
+  - docs/models/components/transactioncapturecreate.md
   - docs/models/components/transactionconnectionoptions.md
   - docs/models/components/transactioncreate.md
   - docs/models/components/transactioncreategiftcards.md
@@ -335,6 +337,7 @@ generatedFiles:
   - docs/models/operations/addreportrequest.md
   - docs/models/operations/capturetransactionglobals.md
   - docs/models/operations/capturetransactionrequest.md
+  - docs/models/operations/capturetransactionresponsecapturetransaction.md
   - docs/models/operations/configuredigitalwalletglobals.md
   - docs/models/operations/configuredigitalwalletrequest.md
   - docs/models/operations/createaccountupdaterjobglobals.md
@@ -702,6 +705,7 @@ generatedFiles:
   - src/models/components/buyercreate.ts
   - src/models/components/buyers.ts
   - src/models/components/buyerupdate.ts
+  - src/models/components/capturestatus.ts
   - src/models/components/cardpaymentmethodcreate.ts
   - src/models/components/cardscheme.ts
   - src/models/components/cardschemedefinition.ts
@@ -885,6 +889,7 @@ generatedFiles:
   - src/models/components/transaction.ts
   - src/models/components/transactionbuyer.ts
   - src/models/components/transactioncapture.ts
+  - src/models/components/transactioncapturecreate.ts
   - src/models/components/transactionconnectionoptions.ts
   - src/models/components/transactioncreate.ts
   - src/models/components/transactionevent.ts
@@ -2742,7 +2747,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "EUR", "amount": 1299, "status": "authorization_voided", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_amount": 1100, "settled": true, "intent": "capture", "pending_review": false, "gift_card_redemptions": [], "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "payment_source": "ecommerce", "merchant_initiated": true, "is_subsequent_payment": false, "intent_outcome": "succeeded", "multi_tender": true, "account_funding_transaction": true}
+          application/json: {"type": "transaction-capture", "status": "pending", "code": "service_error", "raw_response_code": "E104", "raw_response_description": "Internal error", "transaction": {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "EUR", "amount": 1299, "status": "authorization_void_pending", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_amount": 1100, "settled": true, "intent": "capture", "pending_review": false, "gift_card_redemptions": [], "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "payment_source": "moto", "merchant_initiated": true, "is_subsequent_payment": false, "intent_outcome": "succeeded", "multi_tender": true, "account_funding_transaction": true}}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":

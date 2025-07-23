@@ -3,28 +3,44 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Airline,
-  Airline$inboundSchema,
-  Airline$Outbound,
-  Airline$outboundSchema,
-} from "./airline.js";
+  CaptureStatus,
+  CaptureStatus$inboundSchema,
+  CaptureStatus$outboundSchema,
+} from "./capturestatus.js";
+import {
+  Transaction,
+  Transaction$inboundSchema,
+  Transaction$Outbound,
+  Transaction$outboundSchema,
+} from "./transaction.js";
 
-/**
- * Request body for capturing an authorized transaction.
- */
 export type TransactionCapture = {
   /**
-   * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
+   * Always `transaction-capture`.
    */
-  amount?: number | null | undefined;
+  type?: "transaction-capture" | undefined;
+  status: CaptureStatus;
   /**
-   * The airline data to submit to the payment service during the capture call.
+   * The standardized error code set by Gr4vy.
    */
-  airline?: Airline | null | undefined;
+  code: string | null;
+  /**
+   * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+   */
+  rawResponseCode: string | null;
+  /**
+   * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+   */
+  rawResponseDescription: string | null;
+  /**
+   * A full transaction resource.
+   */
+  transaction: Transaction;
 };
 
 /** @internal */
@@ -33,14 +49,27 @@ export const TransactionCapture$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  amount: z.nullable(z.number().int()).optional(),
-  airline: z.nullable(Airline$inboundSchema).optional(),
+  type: z.literal("transaction-capture").default("transaction-capture"),
+  status: CaptureStatus$inboundSchema,
+  code: z.nullable(z.string()),
+  raw_response_code: z.nullable(z.string()),
+  raw_response_description: z.nullable(z.string()),
+  transaction: Transaction$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "raw_response_code": "rawResponseCode",
+    "raw_response_description": "rawResponseDescription",
+  });
 });
 
 /** @internal */
 export type TransactionCapture$Outbound = {
-  amount?: number | null | undefined;
-  airline?: Airline$Outbound | null | undefined;
+  type: "transaction-capture";
+  status: string;
+  code: string | null;
+  raw_response_code: string | null;
+  raw_response_description: string | null;
+  transaction: Transaction$Outbound;
 };
 
 /** @internal */
@@ -49,8 +78,19 @@ export const TransactionCapture$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TransactionCapture
 > = z.object({
-  amount: z.nullable(z.number().int()).optional(),
-  airline: z.nullable(Airline$outboundSchema).optional(),
+  type: z.literal("transaction-capture").default(
+    "transaction-capture" as const,
+  ),
+  status: CaptureStatus$outboundSchema,
+  code: z.nullable(z.string()),
+  rawResponseCode: z.nullable(z.string()),
+  rawResponseDescription: z.nullable(z.string()),
+  transaction: Transaction$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    rawResponseCode: "raw_response_code",
+    rawResponseDescription: "raw_response_description",
+  });
 });
 
 /**

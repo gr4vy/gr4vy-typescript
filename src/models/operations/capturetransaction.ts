@@ -19,11 +19,22 @@ export type CaptureTransactionRequest = {
    */
   transactionId: string;
   /**
+   * The preferred resource type in the response.
+   */
+  prefer?: string | null | undefined;
+  /**
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
-  transactionCapture: components.TransactionCapture;
+  transactionCaptureCreate: components.TransactionCaptureCreate;
 };
+
+/**
+ * Successful Response
+ */
+export type CaptureTransactionResponseCaptureTransaction =
+  | components.Transaction
+  | components.TransactionCapture;
 
 /** @internal */
 export const CaptureTransactionGlobals$inboundSchema: z.ZodType<
@@ -86,20 +97,22 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
+  prefer: z.nullable(z.string()).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
-  TransactionCapture: components.TransactionCapture$inboundSchema,
+  TransactionCaptureCreate: components.TransactionCaptureCreate$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
-    "TransactionCapture": "transactionCapture",
+    "TransactionCaptureCreate": "transactionCaptureCreate",
   });
 });
 
 /** @internal */
 export type CaptureTransactionRequest$Outbound = {
   transaction_id: string;
+  prefer?: string | null | undefined;
   merchantAccountId?: string | null | undefined;
-  TransactionCapture: components.TransactionCapture$Outbound;
+  TransactionCaptureCreate: components.TransactionCaptureCreate$Outbound;
 };
 
 /** @internal */
@@ -109,12 +122,13 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
   CaptureTransactionRequest
 > = z.object({
   transactionId: z.string(),
+  prefer: z.nullable(z.string()).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
-  transactionCapture: components.TransactionCapture$outboundSchema,
+  transactionCaptureCreate: components.TransactionCaptureCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
-    transactionCapture: "TransactionCapture",
+    transactionCaptureCreate: "TransactionCaptureCreate",
   });
 });
 
@@ -146,5 +160,74 @@ export function captureTransactionRequestFromJSON(
     jsonString,
     (x) => CaptureTransactionRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'CaptureTransactionRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const CaptureTransactionResponseCaptureTransaction$inboundSchema:
+  z.ZodType<
+    CaptureTransactionResponseCaptureTransaction,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    components.Transaction$inboundSchema,
+    components.TransactionCapture$inboundSchema,
+  ]);
+
+/** @internal */
+export type CaptureTransactionResponseCaptureTransaction$Outbound =
+  | components.Transaction$Outbound
+  | components.TransactionCapture$Outbound;
+
+/** @internal */
+export const CaptureTransactionResponseCaptureTransaction$outboundSchema:
+  z.ZodType<
+    CaptureTransactionResponseCaptureTransaction$Outbound,
+    z.ZodTypeDef,
+    CaptureTransactionResponseCaptureTransaction
+  > = z.union([
+    components.Transaction$outboundSchema,
+    components.TransactionCapture$outboundSchema,
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CaptureTransactionResponseCaptureTransaction$ {
+  /** @deprecated use `CaptureTransactionResponseCaptureTransaction$inboundSchema` instead. */
+  export const inboundSchema =
+    CaptureTransactionResponseCaptureTransaction$inboundSchema;
+  /** @deprecated use `CaptureTransactionResponseCaptureTransaction$outboundSchema` instead. */
+  export const outboundSchema =
+    CaptureTransactionResponseCaptureTransaction$outboundSchema;
+  /** @deprecated use `CaptureTransactionResponseCaptureTransaction$Outbound` instead. */
+  export type Outbound = CaptureTransactionResponseCaptureTransaction$Outbound;
+}
+
+export function captureTransactionResponseCaptureTransactionToJSON(
+  captureTransactionResponseCaptureTransaction:
+    CaptureTransactionResponseCaptureTransaction,
+): string {
+  return JSON.stringify(
+    CaptureTransactionResponseCaptureTransaction$outboundSchema.parse(
+      captureTransactionResponseCaptureTransaction,
+    ),
+  );
+}
+
+export function captureTransactionResponseCaptureTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CaptureTransactionResponseCaptureTransaction,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CaptureTransactionResponseCaptureTransaction$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CaptureTransactionResponseCaptureTransaction' from JSON`,
   );
 }

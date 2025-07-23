@@ -1,0 +1,18 @@
+# TransactionCaptureCreate
+
+Request body for capturing an authorized transaction.
+
+## Example Usage
+
+```typescript
+import { TransactionCaptureCreate } from "@gr4vy/sdk/models/components";
+
+let value: TransactionCaptureCreate = {};
+```
+
+## Fields
+
+| Field                                                                                                                                                           | Type                                                                                                                                                            | Required                                                                                                                                                        | Description                                                                                                                                                     | Example                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `amount`                                                                                                                                                        | *number*                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                              | The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available. | 1299                                                                                                                                                            |
+| `airline`                                                                                                                                                       | [components.Airline](../../models/components/airline.md)                                                                                                        | :heavy_minus_sign:                                                                                                                                              | The airline data to submit to the payment service during the capture call.                                                                                      |                                                                                                                                                                 |

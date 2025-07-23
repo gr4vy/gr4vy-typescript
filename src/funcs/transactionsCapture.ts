@@ -34,13 +34,14 @@ import { Result } from "../types/fp.js";
  */
 export function transactionsCapture(
   client: Gr4vyCore,
-  transactionCapture: components.TransactionCapture,
+  transactionCaptureCreate: components.TransactionCaptureCreate,
   transactionId: string,
+  prefer?: string | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.Transaction,
+    operations.CaptureTransactionResponseCaptureTransaction,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -65,8 +66,9 @@ export function transactionsCapture(
 > {
   return new APIPromise($do(
     client,
-    transactionCapture,
+    transactionCaptureCreate,
     transactionId,
+    prefer,
     merchantAccountId,
     options,
   ));
@@ -74,14 +76,15 @@ export function transactionsCapture(
 
 async function $do(
   client: Gr4vyCore,
-  transactionCapture: components.TransactionCapture,
+  transactionCaptureCreate: components.TransactionCaptureCreate,
   transactionId: string,
+  prefer?: string | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.Transaction,
+      operations.CaptureTransactionResponseCaptureTransaction,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -107,8 +110,9 @@ async function $do(
   ]
 > {
   const input: operations.CaptureTransactionRequest = {
-    transactionCapture: transactionCapture,
+    transactionCaptureCreate: transactionCaptureCreate,
     transactionId: transactionId,
+    prefer: prefer,
     merchantAccountId: merchantAccountId,
   };
 
@@ -121,7 +125,7 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.TransactionCapture, {
+  const body = encodeJSON("body", payload.TransactionCaptureCreate, {
     explode: true,
   });
 
@@ -142,6 +146,10 @@ async function $do(
       payload.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
+    "prefer": encodeSimple("prefer", payload.prefer, {
+      explode: false,
+      charEncoding: "none",
+    }),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
@@ -209,7 +217,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.Transaction,
+    operations.CaptureTransactionResponseCaptureTransaction,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -231,7 +239,10 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, components.Transaction$inboundSchema),
+    M.json(
+      200,
+      operations.CaptureTransactionResponseCaptureTransaction$inboundSchema,
+    ),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),
