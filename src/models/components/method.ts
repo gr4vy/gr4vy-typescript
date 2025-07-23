@@ -98,6 +98,7 @@ export const Method = {
   Spei: "spei",
   Stitch: "stitch",
   Stripedd: "stripedd",
+  Stripetoken: "stripetoken",
   Tapi: "tapi",
   Tapifintechs: "tapifintechs",
   Thaiqr: "thaiqr",
