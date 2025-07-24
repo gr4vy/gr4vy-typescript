@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VoidTransactionGlobals = {
@@ -18,10 +19,21 @@ export type VoidTransactionRequest = {
    */
   transactionId: string;
   /**
+   * The preferred resource type in the response.
+   */
+  prefer?: Array<string> | null | undefined;
+  /**
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
 };
+
+/**
+ * Successful Response
+ */
+export type VoidTransactionResponseVoidTransaction =
+  | components.Transaction
+  | components.TransactionVoid;
 
 /** @internal */
 export const VoidTransactionGlobals$inboundSchema: z.ZodType<
@@ -84,6 +96,7 @@ export const VoidTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
+  prefer: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -94,6 +107,7 @@ export const VoidTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type VoidTransactionRequest$Outbound = {
   transaction_id: string;
+  prefer?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -104,6 +118,7 @@ export const VoidTransactionRequest$outboundSchema: z.ZodType<
   VoidTransactionRequest
 > = z.object({
   transactionId: z.string(),
+  prefer: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -139,5 +154,67 @@ export function voidTransactionRequestFromJSON(
     jsonString,
     (x) => VoidTransactionRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'VoidTransactionRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const VoidTransactionResponseVoidTransaction$inboundSchema: z.ZodType<
+  VoidTransactionResponseVoidTransaction,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  components.Transaction$inboundSchema,
+  components.TransactionVoid$inboundSchema,
+]);
+
+/** @internal */
+export type VoidTransactionResponseVoidTransaction$Outbound =
+  | components.Transaction$Outbound
+  | components.TransactionVoid$Outbound;
+
+/** @internal */
+export const VoidTransactionResponseVoidTransaction$outboundSchema: z.ZodType<
+  VoidTransactionResponseVoidTransaction$Outbound,
+  z.ZodTypeDef,
+  VoidTransactionResponseVoidTransaction
+> = z.union([
+  components.Transaction$outboundSchema,
+  components.TransactionVoid$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace VoidTransactionResponseVoidTransaction$ {
+  /** @deprecated use `VoidTransactionResponseVoidTransaction$inboundSchema` instead. */
+  export const inboundSchema =
+    VoidTransactionResponseVoidTransaction$inboundSchema;
+  /** @deprecated use `VoidTransactionResponseVoidTransaction$outboundSchema` instead. */
+  export const outboundSchema =
+    VoidTransactionResponseVoidTransaction$outboundSchema;
+  /** @deprecated use `VoidTransactionResponseVoidTransaction$Outbound` instead. */
+  export type Outbound = VoidTransactionResponseVoidTransaction$Outbound;
+}
+
+export function voidTransactionResponseVoidTransactionToJSON(
+  voidTransactionResponseVoidTransaction:
+    VoidTransactionResponseVoidTransaction,
+): string {
+  return JSON.stringify(
+    VoidTransactionResponseVoidTransaction$outboundSchema.parse(
+      voidTransactionResponseVoidTransaction,
+    ),
+  );
+}
+
+export function voidTransactionResponseVoidTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<VoidTransactionResponseVoidTransaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VoidTransactionResponseVoidTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VoidTransactionResponseVoidTransaction' from JSON`,
   );
 }

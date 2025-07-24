@@ -36,7 +36,7 @@ export function transactionsCapture(
   client: Gr4vyCore,
   transactionCaptureCreate: components.TransactionCaptureCreate,
   transactionId: string,
-  prefer?: string | null | undefined,
+  prefer?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -78,7 +78,7 @@ async function $do(
   client: Gr4vyCore,
   transactionCaptureCreate: components.TransactionCaptureCreate,
   transactionId: string,
-  prefer?: string | null | undefined,
+  prefer?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<

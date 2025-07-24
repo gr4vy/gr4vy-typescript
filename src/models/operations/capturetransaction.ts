@@ -21,7 +21,7 @@ export type CaptureTransactionRequest = {
   /**
    * The preferred resource type in the response.
    */
-  prefer?: string | null | undefined;
+  prefer?: Array<string> | null | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -97,7 +97,7 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transaction_id: z.string(),
-  prefer: z.nullable(z.string()).optional(),
+  prefer: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
   TransactionCaptureCreate: components.TransactionCaptureCreate$inboundSchema,
 }).transform((v) => {
@@ -110,7 +110,7 @@ export const CaptureTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CaptureTransactionRequest$Outbound = {
   transaction_id: string;
-  prefer?: string | null | undefined;
+  prefer?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
   TransactionCaptureCreate: components.TransactionCaptureCreate$Outbound;
 };
@@ -122,7 +122,7 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
   CaptureTransactionRequest
 > = z.object({
   transactionId: z.string(),
-  prefer: z.nullable(z.string()).optional(),
+  prefer: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
   transactionCaptureCreate: components.TransactionCaptureCreate$outboundSchema,
 }).transform((v) => {

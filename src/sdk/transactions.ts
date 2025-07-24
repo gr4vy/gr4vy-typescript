@@ -125,7 +125,7 @@ export class Transactions extends ClientSDK {
   async capture(
     transactionCaptureCreate: components.TransactionCaptureCreate,
     transactionId: string,
-    prefer?: string | null | undefined,
+    prefer?: Array<string> | null | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<operations.CaptureTransactionResponseCaptureTransaction> {
@@ -147,12 +147,14 @@ export class Transactions extends ClientSDK {
    */
   async void(
     transactionId: string,
+    prefer?: Array<string> | null | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.Transaction> {
+  ): Promise<operations.VoidTransactionResponseVoidTransaction> {
     return unwrapAsync(transactionsVoid(
       this,
       transactionId,
+      prefer,
       merchantAccountId,
       options,
     ));

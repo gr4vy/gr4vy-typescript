@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: fbd0edaf388faf1db169aa5aecaf11d7
+  docChecksum: ccb9592b90314ce7cfca0304758a883f
   docVersion: 1.0.0
-  speakeasyVersion: 1.587.2
-  generationVersion: 2.662.0
-  releaseVersion: 1.1.16
-  configChecksum: 26053f7e3f52b39098210bf5d3b39974
+  speakeasyVersion: 1.588.0
+  generationVersion: 2.663.0
+  releaseVersion: 1.1.17
+  configChecksum: b0ce35c1ec3c850f63fe86246c8bfc0c
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -300,6 +300,7 @@ generatedFiles:
   - docs/models/components/transactionsummary.md
   - docs/models/components/transactionthreedsecuresummary.md
   - docs/models/components/transactionupdate.md
+  - docs/models/components/transactionvoid.md
   - docs/models/components/travelhubcustomdata.md
   - docs/models/components/travelhuboptions.md
   - docs/models/components/trustlyoptions.md
@@ -310,6 +311,7 @@ generatedFiles:
   - docs/models/components/validationerror.md
   - docs/models/components/verifycredentials.md
   - docs/models/components/voidablefield.md
+  - docs/models/components/voidstatus.md
   - docs/models/components/walletpaymentoptioncontext.md
   - docs/models/components/wpayeverdaypayoptions.md
   - docs/models/components/wpaypaytooptions.md
@@ -517,6 +519,7 @@ generatedFiles:
   - docs/models/operations/verifypaymentservicecredentialsrequest.md
   - docs/models/operations/voidtransactionglobals.md
   - docs/models/operations/voidtransactionrequest.md
+  - docs/models/operations/voidtransactionresponsevoidtransaction.md
   - docs/sdks/accountupdater/README.md
   - docs/sdks/all/README.md
   - docs/sdks/auditlogs/README.md
@@ -909,6 +912,7 @@ generatedFiles:
   - src/models/components/transactionsummary.ts
   - src/models/components/transactionthreedsecuresummary.ts
   - src/models/components/transactionupdate.ts
+  - src/models/components/transactionvoid.ts
   - src/models/components/travelhubcustomdata.ts
   - src/models/components/travelhuboptions.ts
   - src/models/components/trustlyoptions.ts
@@ -916,6 +920,7 @@ generatedFiles:
   - src/models/components/validationerror.ts
   - src/models/components/verifycredentials.ts
   - src/models/components/voidablefield.ts
+  - src/models/components/voidstatus.ts
   - src/models/components/walletpaymentoptioncontext.ts
   - src/models/components/wpayeverdaypayoptions.ts
   - src/models/components/wpaypaytooptions.ts

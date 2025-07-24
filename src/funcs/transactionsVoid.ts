@@ -10,7 +10,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import { Gr4vyError } from "../models/errors/gr4vyerror.js";
 import {
   ConnectionError,
@@ -35,11 +34,12 @@ import { Result } from "../types/fp.js";
 export function transactionsVoid(
   client: Gr4vyCore,
   transactionId: string,
+  prefer?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.Transaction,
+    operations.VoidTransactionResponseVoidTransaction,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -65,6 +65,7 @@ export function transactionsVoid(
   return new APIPromise($do(
     client,
     transactionId,
+    prefer,
     merchantAccountId,
     options,
   ));
@@ -73,12 +74,13 @@ export function transactionsVoid(
 async function $do(
   client: Gr4vyCore,
   transactionId: string,
+  prefer?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.Transaction,
+      operations.VoidTransactionResponseVoidTransaction,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -105,6 +107,7 @@ async function $do(
 > {
   const input: operations.VoidTransactionRequest = {
     transactionId: transactionId,
+    prefer: prefer,
     merchantAccountId: merchantAccountId,
   };
 
@@ -135,6 +138,10 @@ async function $do(
       payload.merchantAccountId ?? client._options.merchantAccountId,
       { explode: false, charEncoding: "none" },
     ),
+    "prefer": encodeSimple("prefer", payload.prefer, {
+      explode: false,
+      charEncoding: "none",
+    }),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
@@ -202,7 +209,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.Transaction,
+    operations.VoidTransactionResponseVoidTransaction,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -224,7 +231,10 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, components.Transaction$inboundSchema),
+    M.json(
+      200,
+      operations.VoidTransactionResponseVoidTransaction$inboundSchema,
+    ),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),
