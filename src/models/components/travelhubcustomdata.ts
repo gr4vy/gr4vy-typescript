@@ -19,7 +19,7 @@ export type TravelHubCustomData = {
   /**
    * The type of the custom data field.
    */
-  type: string;
+  type?: string | null | undefined;
 };
 
 /** @internal */
@@ -30,14 +30,14 @@ export const TravelHubCustomData$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
   value: z.string(),
-  type: z.string(),
+  type: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
 export type TravelHubCustomData$Outbound = {
   name: string;
   value: string;
-  type: string;
+  type?: string | null | undefined;
 };
 
 /** @internal */
@@ -48,7 +48,7 @@ export const TravelHubCustomData$outboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
   value: z.string(),
-  type: z.string(),
+  type: z.nullable(z.string()).optional(),
 });
 
 /**
