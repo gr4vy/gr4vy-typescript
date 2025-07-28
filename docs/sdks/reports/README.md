@@ -16,6 +16,7 @@ List all configured reports that can be generated.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_reports" method="get" path="/reports" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -111,6 +112,7 @@ Create a new report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_report" method="post" path="/reports" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -235,6 +237,7 @@ Fetches a report by its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_report" method="get" path="/reports/{report_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -327,6 +330,7 @@ Updates the configuration of a report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_report" method="put" path="/reports/{report_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

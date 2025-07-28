@@ -13,6 +13,7 @@ Fetch the balances for one or more gift cards.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_gift_card_balances" method="post" path="/gift-cards/balances" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

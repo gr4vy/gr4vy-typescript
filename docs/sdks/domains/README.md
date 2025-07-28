@@ -14,6 +14,7 @@ Register a digital wallet domain (Apple Pay only).
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="register_digital_wallet_domain" method="post" path="/digital-wallets/{digital_wallet_id}/domains" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -111,6 +112,7 @@ Remove a digital wallet domain (Apple Pay only).
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="unregister_digital_wallet_domain" method="delete" path="/digital-wallets/{digital_wallet_id}/domains" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

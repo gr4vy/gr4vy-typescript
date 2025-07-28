@@ -17,6 +17,7 @@ List all network tokens stored for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_payment_method_network_tokens" method="get" path="/payment-methods/{payment_method_id}/network-tokens" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -109,6 +110,7 @@ Provision a network token for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_payment_method_network_token" method="post" path="/payment-methods/{payment_method_id}/network-tokens" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -208,6 +210,7 @@ Suspend a network token for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="suspend_payment_method_network_token" method="post" path="/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/suspend" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -301,6 +304,7 @@ Resume a suspended network token for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="resume_payment_method_network_token" method="post" path="/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/resume" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -394,6 +398,7 @@ Delete a network token for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_payment_method_network_token" method="delete" path="/payment-methods/{payment_method_id}/network-tokens/{network_token_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

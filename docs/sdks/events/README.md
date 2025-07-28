@@ -13,6 +13,7 @@ Retrieve a paginated list of events related to processing a transaction, includi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_transaction_events" method="get" path="/transactions/{transaction_id}/events" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

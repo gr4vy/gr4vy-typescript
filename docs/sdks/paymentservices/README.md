@@ -19,6 +19,7 @@ List the configured payment services.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_payment_services" method="get" path="/payment-services" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -114,6 +115,7 @@ Updates the configuration of a payment service.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_payment_service" method="post" path="/payment-services" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -256,6 +258,7 @@ Get the details of a configured payment service.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_payment_service" method="get" path="/payment-services/{payment_service_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -348,6 +351,7 @@ Configures a new payment service for use by merchants.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_payment_service" method="put" path="/payment-services/{payment_service_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -445,6 +449,7 @@ Deletes all the configuration of a payment service.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_payment_service" method="delete" path="/payment-services/{payment_service_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -537,6 +542,7 @@ Verify the credentials of a configured payment service
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="verify_payment_service_credentials" method="post" path="/payment-services/verify" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -635,6 +641,7 @@ Creates a session for a payment service that supports sessions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_payment_service_session" method="post" path="/payment-services/{payment_service_id}/sessions" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

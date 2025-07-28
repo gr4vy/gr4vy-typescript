@@ -16,6 +16,7 @@ Create a new payment link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_payment_link" method="post" path="/payment-links" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -116,6 +117,7 @@ List all created payment links.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_payment_links" method="get" path="/payment-links" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -213,6 +215,7 @@ Expire an existing payment link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="expire_payment_link" method="post" path="/payment-links/{payment_link_id}/expire" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -305,6 +308,7 @@ Fetch the details for a payment link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_payment_link" method="get" path="/payment-links/{payment_link_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

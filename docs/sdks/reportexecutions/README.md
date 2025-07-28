@@ -13,6 +13,7 @@ List all executed reports that have been generated.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_all_report_executions" method="get" path="/report-executions" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

@@ -16,6 +16,7 @@ List all merchant accounts in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_merchant_accounts" method="get" path="/merchant-accounts" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -111,6 +112,7 @@ Create a new merchant account in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_merchant_account" method="post" path="/merchant-accounts" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -208,6 +210,7 @@ Get info about a merchant account in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_merchant_account" method="get" path="/merchant-accounts/{merchant_account_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -297,6 +300,7 @@ Update info for a merchant account in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_merchant_account" method="put" path="/merchant-accounts/{merchant_account_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

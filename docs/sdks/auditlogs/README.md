@@ -13,6 +13,7 @@ Returns a list of activity by dashboard users.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_audit_logs" method="get" path="/audit-logs" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

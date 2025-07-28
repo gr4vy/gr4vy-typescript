@@ -13,6 +13,7 @@ Fetch a refund.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_refund" method="get" path="/refunds/{refund_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

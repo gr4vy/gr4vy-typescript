@@ -13,6 +13,7 @@ Fetch a list of the definitions of each card scheme.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_card_scheme_definitions" method="get" path="/card-scheme-definitions" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

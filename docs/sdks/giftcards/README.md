@@ -16,6 +16,7 @@ Fetch details about a gift card.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_gift_card" method="get" path="/gift-cards/{gift_card_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -108,6 +109,7 @@ Removes a gift card from our system.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_gift_card" method="delete" path="/gift-cards/{gift_card_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -200,6 +202,7 @@ Store a new gift card in the vault.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_gift_card" method="post" path="/gift-cards" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -298,6 +301,7 @@ Browser all gift cards.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_gift_cards" method="get" path="/gift-cards" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

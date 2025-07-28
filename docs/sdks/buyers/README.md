@@ -17,6 +17,7 @@ List all buyers or search for a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_buyers" method="get" path="/buyers" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -112,6 +113,7 @@ Create a new buyer record.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_buyer" method="post" path="/buyers" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -204,6 +206,7 @@ Fetches a buyer by its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_buyer" method="get" path="/buyers/{buyer_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -296,6 +299,7 @@ Updates a buyer record.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_buyer" method="put" path="/buyers/{buyer_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -389,6 +393,7 @@ Permanently removes a buyer record.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_buyer" method="delete" path="/buyers/{buyer_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

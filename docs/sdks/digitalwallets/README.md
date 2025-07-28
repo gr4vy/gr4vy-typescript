@@ -17,6 +17,7 @@ Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="configure_digital_wallet" method="post" path="/digital-wallets" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -117,6 +118,7 @@ List configured digital wallets.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_digital_wallets" method="get" path="/digital-wallets" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -208,6 +210,7 @@ Fetch the details a digital wallet.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_digital_wallet" method="get" path="/digital-wallets/{digital_wallet_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -300,6 +303,7 @@ Delete a configured digital wallet.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_digital_wallet" method="delete" path="/digital-wallets/{digital_wallet_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -392,6 +396,7 @@ Update a digital wallet.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_digital_wallet" method="put" path="/digital-wallets/{digital_wallet_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

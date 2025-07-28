@@ -15,6 +15,7 @@ List refunds for a transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_transaction_refunds" method="get" path="/transactions/{transaction_id}/refunds" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -107,6 +108,7 @@ Create a refund for a transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_transaction_refund" method="post" path="/transactions/{transaction_id}/refunds" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -200,6 +202,7 @@ Fetch refund for a transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_transaction_refund" method="get" path="/transactions/{transaction_id}/refunds/{refund_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

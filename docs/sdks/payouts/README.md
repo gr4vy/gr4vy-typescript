@@ -15,6 +15,7 @@ Returns a list of payouts made.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_payouts" method="get" path="/payouts" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -112,6 +113,7 @@ Creates a new payout.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_payout" method="post" path="/payouts" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -220,6 +222,7 @@ Retrieves a payout.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_payout" method="get" path="/payouts/{payout_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

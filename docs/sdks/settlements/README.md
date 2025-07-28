@@ -14,6 +14,7 @@ Retrieve a specific settlement for a transaction by its unique identifier.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_transaction_settlement" method="get" path="/transactions/{transaction_id}/settlements/{settlement_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -107,6 +108,7 @@ List all settlements for a specific transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_transaction_settlements" method="get" path="/transactions/{transaction_id}/settlements" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

@@ -13,6 +13,7 @@ Schedule one or more stored cards for an account update.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_account_updater_job" method="post" path="/account-updater/jobs" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

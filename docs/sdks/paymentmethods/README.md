@@ -16,6 +16,7 @@ List all stored payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_payment_methods" method="get" path="/payment-methods" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -111,6 +112,7 @@ Store a new payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_payment_method" method="post" path="/payment-methods" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -209,6 +211,7 @@ Retrieve a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_payment_method" method="get" path="/payment-methods/{payment_method_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -301,6 +304,7 @@ Delete a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_payment_method" method="delete" path="/payment-methods/{payment_method_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

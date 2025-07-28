@@ -15,6 +15,7 @@ List the definitions of each payment service that can be configured.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_payment_service_definitions" method="get" path="/payment-service-definitions" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -109,6 +110,7 @@ Get the definition of a payment service that can be configured.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_payment_service_definition" method="get" path="/payment-service-definitions/{payment_service_definition_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -198,6 +200,7 @@ Creates a session for a payment service that supports sessions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_payment_service_definition_session" method="post" path="/payment-service-definitions/{payment_service_definition_id}/sessions" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

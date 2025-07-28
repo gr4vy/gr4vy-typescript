@@ -16,6 +16,7 @@ Create a new checkout session.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_checkout_session" method="post" path="/checkout/sessions" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -108,6 +109,7 @@ Update the information stored on a checkout session.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_checkout_session" method="put" path="/checkout/sessions/{session_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -201,6 +203,7 @@ Retrieve the information stored on a checkout session.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_checkout_session" method="get" path="/checkout/sessions/{session_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -292,6 +295,7 @@ Delete a checkout session and all of its (PCI) data.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_checkout_session" method="delete" path="/checkout/sessions/{session_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

@@ -15,6 +15,7 @@ List all gateway tokens stored for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_payment_method_payment_service_tokens" method="get" path="/payment-methods/{payment_method_id}/payment-service-tokens" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -108,6 +109,7 @@ Create a gateway tokens for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_payment_method_payment_service_token" method="post" path="/payment-methods/{payment_method_id}/payment-service-tokens" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -207,6 +209,7 @@ Delete a gateway tokens for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_payment_method_payment_service_token" method="delete" path="/payment-methods/{payment_method_id}/payment-service-tokens/{payment_service_token_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

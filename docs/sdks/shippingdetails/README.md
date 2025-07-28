@@ -17,6 +17,7 @@ Associate shipping details to a buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_buyer_shipping_details" method="post" path="/buyers/{buyer_id}/shipping-details" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -110,6 +111,7 @@ List all the shipping details associated to a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_buyer_shipping_details" method="get" path="/buyers/{buyer_id}/shipping-details" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -202,6 +204,7 @@ Get a buyer's shipping details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_buyer_shipping_details" method="get" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -295,6 +298,7 @@ Update the shipping details associated to a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_buyer_shipping_details" method="put" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -389,6 +393,7 @@ Delete the shipping details associated to a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_buyer_shipping_details" method="delete" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

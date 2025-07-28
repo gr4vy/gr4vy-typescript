@@ -15,6 +15,7 @@ Create a session for use with Google Pay.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_google_pay_digital_wallet_session" method="post" path="/digital-wallets/google/session" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -111,6 +112,7 @@ Create a session for use with Apple Pay.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_apple_pay_digital_wallet_session" method="post" path="/digital-wallets/apple/session" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -209,6 +211,7 @@ Create a session for use with Click to Pay.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_click_to_pay_digital_wallet_session" method="post" path="/digital-wallets/click-to-pay/session" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 

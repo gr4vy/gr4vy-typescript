@@ -15,6 +15,7 @@ List all executions of a specific report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="list_report_executions" method="get" path="/reports/{report_id}/executions" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -113,6 +114,7 @@ Creates a download URL for a specific execution of a report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_report_execution_url" method="post" path="/reports/{report_id}/executions/{report_execution_id}/url" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
@@ -206,6 +208,7 @@ Fetch a specific executed report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_report_execution" method="get" path="/report-executions/{report_execution_id}" -->
 ```typescript
 import { Gr4vy } from "@gr4vy/sdk";
 
