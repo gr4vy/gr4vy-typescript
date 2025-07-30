@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 630735a40015f98be39a80a4cfe5404c
+  docChecksum: ea10f25e78f7bf1fe0c68a8693b703cf
   docVersion: 1.0.0
   speakeasyVersion: 1.592.1
   generationVersion: 2.667.0
-  releaseVersion: 1.1.20
-  configChecksum: 884a07dfcdef8dd828bdc5f6f4483066
+  releaseVersion: 1.1.21
+  configChecksum: 4223233883e4980369e975ec9880ee33
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true

@@ -87,6 +87,18 @@ export type Refund = {
    * The user that created this resource
    */
   creator?: Creator | null | undefined;
+  /**
+   * The standardized error code set by Gr4vy.
+   */
+  errorCode?: string | null | undefined;
+  /**
+   * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+   */
+  rawResponseCode?: string | null | undefined;
+  /**
+   *  This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+   */
+  rawResponseDescription?: string | null | undefined;
 };
 
 /** @internal */
@@ -113,6 +125,9 @@ export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
       new Date(v)
     ),
     creator: z.nullable(Creator$inboundSchema).optional(),
+    error_code: z.nullable(z.string()).optional(),
+    raw_response_code: z.nullable(z.string()).optional(),
+    raw_response_description: z.nullable(z.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "transaction_id": "transactionId",
@@ -125,6 +140,9 @@ export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
       "transaction_external_identifier": "transactionExternalIdentifier",
       "created_at": "createdAt",
       "updated_at": "updatedAt",
+      "error_code": "errorCode",
+      "raw_response_code": "rawResponseCode",
+      "raw_response_description": "rawResponseDescription",
     });
   });
 
@@ -147,6 +165,9 @@ export type Refund$Outbound = {
   created_at: string;
   updated_at: string;
   creator?: Creator$Outbound | null | undefined;
+  error_code?: string | null | undefined;
+  raw_response_code?: string | null | undefined;
+  raw_response_description?: string | null | undefined;
 };
 
 /** @internal */
@@ -172,6 +193,9 @@ export const Refund$outboundSchema: z.ZodType<
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
   creator: z.nullable(Creator$outboundSchema).optional(),
+  errorCode: z.nullable(z.string()).optional(),
+  rawResponseCode: z.nullable(z.string()).optional(),
+  rawResponseDescription: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
@@ -184,6 +208,9 @@ export const Refund$outboundSchema: z.ZodType<
     transactionExternalIdentifier: "transaction_external_identifier",
     createdAt: "created_at",
     updatedAt: "updated_at",
+    errorCode: "error_code",
+    rawResponseCode: "raw_response_code",
+    rawResponseDescription: "raw_response_description",
   });
 });
 
