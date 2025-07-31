@@ -42,6 +42,7 @@ export function paymentLinksList(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
+  buyerSearch?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -76,6 +77,7 @@ export function paymentLinksList(
     client,
     cursor,
     limit,
+    buyerSearch,
     merchantAccountId,
     options,
   ));
@@ -85,6 +87,7 @@ async function $do(
   client: Gr4vyCore,
   cursor?: string | null | undefined,
   limit?: number | undefined,
+  buyerSearch?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -121,6 +124,7 @@ async function $do(
   const input: operations.ListPaymentLinksRequest | undefined = {
     cursor: cursor,
     limit: limit,
+    buyerSearch: buyerSearch,
     merchantAccountId: merchantAccountId,
   };
 
@@ -139,6 +143,7 @@ async function $do(
   const path = pathToFunc("/payment-links")();
 
   const query = encodeFormQuery({
+    "buyer_search": payload?.buyer_search,
     "cursor": payload?.cursor,
     "limit": payload?.limit,
   });
@@ -316,6 +321,7 @@ async function $do(
         client,
         nextCursor,
         limit,
+        buyerSearch,
         merchantAccountId,
         options,
       );

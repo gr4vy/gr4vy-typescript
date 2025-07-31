@@ -42,10 +42,6 @@ export type ListTransactionsRequest = {
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
   buyerEmailAddress?: string | null | undefined;
-  /**
-   * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-   */
-  buyerSearch?: Array<string> | null | undefined;
   ipAddress?: string | null | undefined;
   /**
    * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
@@ -154,6 +150,10 @@ export type ListTransactionsRequest = {
    */
   used3ds?: boolean | null | undefined;
   /**
+   * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+   */
+  buyerSearch?: Array<string> | null | undefined;
+  /**
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
@@ -241,7 +241,6 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   buyer_external_identifier: z.nullable(z.string()).optional(),
   buyer_id: z.nullable(z.string()).optional(),
   buyer_email_address: z.nullable(z.string()).optional(),
-  buyer_search: z.nullable(z.array(z.string())).optional(),
   ip_address: z.nullable(z.string()).optional(),
   status: z.nullable(z.array(components.TransactionStatus$inboundSchema))
     .optional(),
@@ -277,6 +276,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   is_subsequent_payment: z.nullable(z.boolean()).optional(),
   merchant_initiated: z.nullable(z.boolean()).optional(),
   used_3ds: z.nullable(z.boolean()).optional(),
+  buyer_search: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -287,7 +287,6 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     "buyer_external_identifier": "buyerExternalIdentifier",
     "buyer_id": "buyerId",
     "buyer_email_address": "buyerEmailAddress",
-    "buyer_search": "buyerSearch",
     "ip_address": "ipAddress",
     "payment_service_transaction_id": "paymentServiceTransactionId",
     "external_identifier": "externalIdentifier",
@@ -314,6 +313,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     "is_subsequent_payment": "isSubsequentPayment",
     "merchant_initiated": "merchantInitiated",
     "used_3ds": "used3ds",
+    "buyer_search": "buyerSearch",
   });
 });
 
@@ -329,7 +329,6 @@ export type ListTransactionsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
   buyer_email_address?: string | null | undefined;
-  buyer_search?: Array<string> | null | undefined;
   ip_address?: string | null | undefined;
   status?: Array<string> | null | undefined;
   id?: string | null | undefined;
@@ -362,6 +361,7 @@ export type ListTransactionsRequest$Outbound = {
   is_subsequent_payment?: boolean | null | undefined;
   merchant_initiated?: boolean | null | undefined;
   used_3ds?: boolean | null | undefined;
+  buyer_search?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -381,7 +381,6 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   buyerEmailAddress: z.nullable(z.string()).optional(),
-  buyerSearch: z.nullable(z.array(z.string())).optional(),
   ipAddress: z.nullable(z.string()).optional(),
   status: z.nullable(z.array(components.TransactionStatus$outboundSchema))
     .optional(),
@@ -417,6 +416,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   isSubsequentPayment: z.nullable(z.boolean()).optional(),
   merchantInitiated: z.nullable(z.boolean()).optional(),
   used3ds: z.nullable(z.boolean()).optional(),
+  buyerSearch: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -427,7 +427,6 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     buyerExternalIdentifier: "buyer_external_identifier",
     buyerId: "buyer_id",
     buyerEmailAddress: "buyer_email_address",
-    buyerSearch: "buyer_search",
     ipAddress: "ip_address",
     paymentServiceTransactionId: "payment_service_transaction_id",
     externalIdentifier: "external_identifier",
@@ -454,6 +453,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     isSubsequentPayment: "is_subsequent_payment",
     merchantInitiated: "merchant_initiated",
     used3ds: "used_3ds",
+    buyerSearch: "buyer_search",
   });
 });
 

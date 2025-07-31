@@ -41,6 +41,7 @@ export class PaymentLinks extends ClientSDK {
   async list(
     cursor?: string | null | undefined,
     limit?: number | undefined,
+    buyerSearch?: Array<string> | null | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<
@@ -50,6 +51,7 @@ export class PaymentLinks extends ClientSDK {
       this,
       cursor,
       limit,
+      buyerSearch,
       merchantAccountId,
       options,
     ));

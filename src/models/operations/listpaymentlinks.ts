@@ -23,6 +23,10 @@ export type ListPaymentLinksRequest = {
    */
   limit?: number | undefined;
   /**
+   * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+   */
+  buyerSearch?: Array<string> | null | undefined;
+  /**
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
@@ -94,13 +98,19 @@ export const ListPaymentLinksRequest$inboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  buyer_search: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "buyer_search": "buyerSearch",
+  });
 });
 
 /** @internal */
 export type ListPaymentLinksRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
+  buyer_search?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -112,7 +122,12 @@ export const ListPaymentLinksRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  buyerSearch: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    buyerSearch: "buyer_search",
+  });
 });
 
 /**

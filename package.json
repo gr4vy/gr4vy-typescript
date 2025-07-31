@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "author": "Gr4vy",
   "main": "./index.js",
   "sideEffects": false,
@@ -14,7 +14,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "zod": "^3"
+    
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -26,14 +26,14 @@
     "timekeeper": "^2.3.1",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.22.0",
-    "vitest": "^3.1.2",
-    "zod": "^3.25.17"
+    "vitest": "^3.1.2"
   },
   "dependencies": {
     "@trust/keyto": "^1.0.1",
     "jsonwebtoken": "^9.0.2",
     "jwk-thumbprint": "^0.1.4",
     "snakecase-keys": "^6.0.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zod": "^3.20.0"
   }
 }
