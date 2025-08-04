@@ -13,6 +13,7 @@ export const ReportSpecModel = {
   Transactions: "transactions",
   TransactionRetries: "transaction_retries",
   DetailedSettlement: "detailed_settlement",
+  AccountsReceivables: "accounts_receivables",
 } as const;
 export type ReportSpecModel = OpenEnum<typeof ReportSpecModel>;
 

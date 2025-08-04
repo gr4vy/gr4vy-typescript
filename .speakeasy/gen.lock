@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 61370a1b36f6649ded86d5f0ba40490b
+  docChecksum: a62515f4e82c030760c914def691a678
   docVersion: 1.0.0
-  speakeasyVersion: 1.592.2
-  generationVersion: 2.668.4
-  releaseVersion: 1.1.22
-  configChecksum: 326ccdedf2fb8b8a79c38677917cd51e
+  speakeasyVersion: 1.596.0
+  generationVersion: 2.672.0
+  releaseVersion: 1.1.23
+  configChecksum: 4eac524059bd647b3b8025e9fcdb21b1
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.17
+    core: 3.21.19
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2

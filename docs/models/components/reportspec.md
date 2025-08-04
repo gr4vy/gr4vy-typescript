@@ -6,7 +6,7 @@
 import { ReportSpec } from "@gr4vy/sdk/models/components";
 
 let value: ReportSpec = {
-  model: "transaction_retries",
+  model: "detailed_settlement",
   params: {
     "fields": [
       "id",
