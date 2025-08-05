@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: a62515f4e82c030760c914def691a678
+  docChecksum: 0bfffdd06e8f9e6296540bc207f1b091
   docVersion: 1.0.0
-  speakeasyVersion: 1.596.0
+  speakeasyVersion: 1.596.1
   generationVersion: 2.672.0
-  releaseVersion: 1.1.23
-  configChecksum: 4eac524059bd647b3b8025e9fcdb21b1
+  releaseVersion: 1.1.24
+  configChecksum: ee76fea1a79ef8953c54a63c11a19fbe
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -43,6 +43,7 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
+  - docs/models/components/accountsreceivablesreportspec.md
   - docs/models/components/accountupdaterinquirysummary.md
   - docs/models/components/accountupdaterjob.md
   - docs/models/components/accountupdaterjobcreate.md
@@ -674,6 +675,7 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/models/components/accountsreceivablesreportspec.ts
   - src/models/components/accountupdaterinquirysummary.ts
   - src/models/components/accountupdaterjob.ts
   - src/models/components/accountupdaterjobcreate.ts

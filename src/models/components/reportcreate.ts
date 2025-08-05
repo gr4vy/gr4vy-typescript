@@ -8,6 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  AccountsReceivablesReportSpec,
+  AccountsReceivablesReportSpec$inboundSchema,
+  AccountsReceivablesReportSpec$Outbound,
+  AccountsReceivablesReportSpec$outboundSchema,
+} from "./accountsreceivablesreportspec.js";
+import {
   DetailedSettlementReportSpec,
   DetailedSettlementReportSpec$inboundSchema,
   DetailedSettlementReportSpec$Outbound,
@@ -35,6 +41,7 @@ import {
  * The report specification.
  */
 export type Spec =
+  | (AccountsReceivablesReportSpec & { model: "accounts_receivables" })
   | (DetailedSettlementReportSpec & { model: "detailed_settlement" })
   | (TransactionRetriesReportSpec & { model: "transaction_retries" })
   | (TransactionsReportSpec & { model: "transactions" });
@@ -61,6 +68,7 @@ export type ReportCreate = {
    * The report specification.
    */
   spec:
+    | (AccountsReceivablesReportSpec & { model: "accounts_receivables" })
     | (DetailedSettlementReportSpec & { model: "detailed_settlement" })
     | (TransactionRetriesReportSpec & { model: "transaction_retries" })
     | (TransactionsReportSpec & { model: "transactions" });
@@ -69,6 +77,11 @@ export type ReportCreate = {
 /** @internal */
 export const Spec$inboundSchema: z.ZodType<Spec, z.ZodTypeDef, unknown> = z
   .union([
+    AccountsReceivablesReportSpec$inboundSchema.and(
+      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
+        model: v.model,
+      })),
+    ),
     DetailedSettlementReportSpec$inboundSchema.and(
       z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
         model: v.model,
@@ -88,6 +101,7 @@ export const Spec$inboundSchema: z.ZodType<Spec, z.ZodTypeDef, unknown> = z
 
 /** @internal */
 export type Spec$Outbound =
+  | (AccountsReceivablesReportSpec$Outbound & { model: "accounts_receivables" })
   | (DetailedSettlementReportSpec$Outbound & { model: "detailed_settlement" })
   | (TransactionRetriesReportSpec$Outbound & { model: "transaction_retries" })
   | (TransactionsReportSpec$Outbound & { model: "transactions" });
@@ -95,6 +109,11 @@ export type Spec$Outbound =
 /** @internal */
 export const Spec$outboundSchema: z.ZodType<Spec$Outbound, z.ZodTypeDef, Spec> =
   z.union([
+    AccountsReceivablesReportSpec$outboundSchema.and(
+      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
+        model: v.model,
+      })),
+    ),
     DetailedSettlementReportSpec$outboundSchema.and(
       z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
         model: v.model,
@@ -151,6 +170,11 @@ export const ReportCreate$inboundSchema: z.ZodType<
   schedule_enabled: z.boolean(),
   schedule_timezone: z.string().default("Etc/UTC"),
   spec: z.union([
+    AccountsReceivablesReportSpec$inboundSchema.and(
+      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
+        model: v.model,
+      })),
+    ),
     DetailedSettlementReportSpec$inboundSchema.and(
       z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
         model: v.model,
@@ -182,6 +206,9 @@ export type ReportCreate$Outbound = {
   schedule_enabled: boolean;
   schedule_timezone: string;
   spec:
+    | (AccountsReceivablesReportSpec$Outbound & {
+      model: "accounts_receivables";
+    })
     | (DetailedSettlementReportSpec$Outbound & { model: "detailed_settlement" })
     | (TransactionRetriesReportSpec$Outbound & { model: "transaction_retries" })
     | (TransactionsReportSpec$Outbound & { model: "transactions" });
@@ -199,6 +226,11 @@ export const ReportCreate$outboundSchema: z.ZodType<
   scheduleEnabled: z.boolean(),
   scheduleTimezone: z.string().default("Etc/UTC"),
   spec: z.union([
+    AccountsReceivablesReportSpec$outboundSchema.and(
+      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
+        model: v.model,
+      })),
+    ),
     DetailedSettlementReportSpec$outboundSchema.and(
       z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
         model: v.model,

@@ -13,9 +13,9 @@ let value: ReportCreate = {
   spec: {
     params: {
       "filters": {
-        "created_at": {
-          "end": "2024-05-31T23:59:59Z",
-          "start": "2024-05-01T00:00:00Z",
+        "ingested_at": {
+          "end": "day_end",
+          "start": "day_start",
         },
       },
     },
