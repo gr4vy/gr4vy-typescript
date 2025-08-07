@@ -21,7 +21,7 @@ specific category of applications.
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
 import { withToken } from "@gr4vy/sdk/lib/auth.js";
-import { accountUpdaterJobsCreate } from "@gr4vy/sdk/funcs/accountUpdaterJobsCreate.js";
+import { browsePaymentMethodDefinitionsGet } from "@gr4vy/sdk/funcs/browsePaymentMethodDefinitionsGet.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -35,17 +35,12 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await accountUpdaterJobsCreate(gr4vy, {
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const res = await browsePaymentMethodDefinitionsGet(gr4vy);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("accountUpdaterJobsCreate failed:", res.error);
+    console.log("browsePaymentMethodDefinitionsGet failed:", res.error);
   }
 }
 

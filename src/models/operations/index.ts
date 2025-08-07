@@ -6,6 +6,7 @@ export * from "./addbuyer.js";
 export * from "./addbuyershippingdetails.js";
 export * from "./addpaymentlink.js";
 export * from "./addreport.js";
+export * from "./browsepaymentmethoddefinitionsget.js";
 export * from "./capturetransaction.js";
 export * from "./configuredigitalwallet.js";
 export * from "./createaccountupdaterjob.js";

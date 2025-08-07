@@ -315,6 +315,9 @@ try {
 
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
 
+### [Gr4vy SDK](docs/sdks/gr4vy/README.md)
+
+* [browsePaymentMethodDefinitionsGet](docs/sdks/gr4vy/README.md#browsepaymentmethoddefinitionsget) - Browse
 
 ### [merchantAccounts](docs/sdks/merchantaccounts/README.md)
 
@@ -464,12 +467,7 @@ const gr4vy = new Gr4vy({
 
 async function run() {
   try {
-    const result = await gr4vy.accountUpdater.jobs.create({
-      paymentMethodIds: [
-        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-        "f29e886e-93cc-4714-b4a3-12b7a718e595",
-      ],
-    });
+    const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
     console.log(result);
   } catch (error) {
@@ -481,12 +479,8 @@ async function run() {
       console.log(error.headers);
 
       // Depending on the method different errors may be thrown
-      if (error instanceof errors.Error400) {
-        console.log(error.data$.type); // string
-        console.log(error.data$.code); // string
-        console.log(error.data$.status); // number
-        console.log(error.data$.message); // string
-        console.log(error.data$.details); // ErrorDetail[]
+      if (error instanceof errors.HTTPValidationError) {
+        console.log(error.data$.detail); // ValidationError[]
       }
     }
   }
@@ -499,18 +493,18 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`Gr4vyError`](./src/models/errors/gr4vyerror.ts): The base class for HTTP error responses.
-  * [`Error400`](./src/models/errors/error400.ts): The request was invalid. Status code `400`.
-  * [`Error401`](./src/models/errors/error401.ts): The request was unauthorized. Status code `401`.
-  * [`Error403`](./src/models/errors/error403.ts): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`.
-  * [`Error404`](./src/models/errors/error404.ts): The resource was not found. Status code `404`.
-  * [`Error405`](./src/models/errors/error405.ts): The request method was not allowed. Status code `405`.
-  * [`Error409`](./src/models/errors/error409.ts): A duplicate record was found. Status code `409`.
-  * [`Error425`](./src/models/errors/error425.ts): The request was too early. Status code `425`.
-  * [`Error429`](./src/models/errors/error429.ts): Too many requests were made. Status code `429`.
-  * [`Error500`](./src/models/errors/error500.ts): The server encountered an error. Status code `500`.
-  * [`Error502`](./src/models/errors/error502.ts): The server encountered an error. Status code `502`.
-  * [`Error504`](./src/models/errors/error504.ts): The server encountered an error. Status code `504`.
+  * [`Error400`](./src/models/errors/error400.ts): The request was invalid. Status code `400`. *
+  * [`Error401`](./src/models/errors/error401.ts): The request was unauthorized. Status code `401`. *
+  * [`Error403`](./src/models/errors/error403.ts): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`. *
+  * [`Error404`](./src/models/errors/error404.ts): The resource was not found. Status code `404`. *
+  * [`Error405`](./src/models/errors/error405.ts): The request method was not allowed. Status code `405`. *
+  * [`Error409`](./src/models/errors/error409.ts): A duplicate record was found. Status code `409`. *
   * [`HTTPValidationError`](./src/models/errors/httpvalidationerror.ts): Validation Error. Status code `422`. *
+  * [`Error425`](./src/models/errors/error425.ts): The request was too early. Status code `425`. *
+  * [`Error429`](./src/models/errors/error429.ts): Too many requests were made. Status code `429`. *
+  * [`Error500`](./src/models/errors/error500.ts): The server encountered an error. Status code `500`. *
+  * [`Error502`](./src/models/errors/error502.ts): The server encountered an error. Status code `502`. *
+  * [`Error504`](./src/models/errors/error504.ts): The server encountered an error. Status code `504`. *
 
 <details><summary>Less common errors (6)</summary>
 
@@ -567,12 +561,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
   console.log(result);
 }
@@ -598,12 +587,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
   console.log(result);
 }
@@ -687,12 +671,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
   console.log(result);
 }
@@ -753,12 +732,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
   console.log(result);
 }
@@ -824,12 +798,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  }, {
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -873,12 +842,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
   console.log(result);
 }
@@ -939,6 +903,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`accountUpdaterJobsCreate`](docs/sdks/jobs/README.md#create) - Create account updater job
 - [`auditLogsList`](docs/sdks/auditlogs/README.md#list) - List audit log entries
+- [`browsePaymentMethodDefinitionsGet`](docs/sdks/gr4vy/README.md#browsepaymentmethoddefinitionsget) - Browse
 - [`buyersCreate`](docs/sdks/buyers/README.md#create) - Add a buyer
 - [`buyersDelete`](docs/sdks/buyers/README.md#delete) - Delete a buyer
 - [`buyersGet`](docs/sdks/buyers/README.md#get) - Get a buyer

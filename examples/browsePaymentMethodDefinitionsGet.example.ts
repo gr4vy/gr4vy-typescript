@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the @gr4vy/sdk SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx accountUpdaterJobsCreate.ts
+ * npm run build && npx tsx browsePaymentMethodDefinitionsGet.ts
  */
 
 import { Gr4vy } from "@gr4vy/sdk";
@@ -19,12 +19,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function main() {
-  const result = await gr4vy.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
   console.log(result);
 }

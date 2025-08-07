@@ -12,12 +12,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.accountUpdater.jobs.create({
-    paymentMethodIds: [
-      "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-      "f29e886e-93cc-4714-b4a3-12b7a718e595",
-    ],
-  });
+  const result = await gr4vy.browsePaymentMethodDefinitionsGet();
 
   console.log(result);
 }
