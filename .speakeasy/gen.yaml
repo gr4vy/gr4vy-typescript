@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.28
+  version: 1.1.30
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -71,4 +71,12 @@ typescript:
   packageName: '@gr4vy/sdk'
   responseFormat: flat
   templateVersion: v2
+  usageSDKInit: |-
+    new Gr4vy({
+        server: "sandbox",
+        id: "example",
+        bearerAuth: withToken({
+          privateKey: fs.readFileSync("private_key.pem", "utf8"),
+        }),
+    });
   useIndexModules: true

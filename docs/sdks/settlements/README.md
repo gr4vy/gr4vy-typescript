@@ -19,13 +19,12 @@ Retrieve a specific settlement for a transaction by its unique identifier.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.transactions.settlements.get("7099948d-7286-47e4-aad8-b68f7eb44591", "b1e2c3d4-5678-1234-9abc-1234567890ab");
@@ -113,13 +112,12 @@ List all settlements for a specific transaction.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.transactions.settlements.list("7099948d-7286-47e4-aad8-b68f7eb44591");

@@ -24,13 +24,12 @@ List the configured payment services.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentServices.list();
@@ -120,13 +119,12 @@ Updates the configuration of a payment service.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentServices.create({
@@ -263,13 +261,12 @@ Get the details of a configured payment service.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentServices.get("fffd152a-9532-4087-9a4f-de58754210f0");
@@ -356,13 +353,12 @@ Configures a new payment service for use by merchants.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentServices.update({
@@ -454,13 +450,12 @@ Deletes all the configuration of a payment service.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentServices.delete("fffd152a-9532-4087-9a4f-de58754210f0");
@@ -547,13 +542,12 @@ Verify the credentials of a configured payment service
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentServices.verify({
@@ -646,13 +640,12 @@ Creates a session for a payment service that supports sessions.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentServices.session({

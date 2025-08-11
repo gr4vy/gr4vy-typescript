@@ -21,13 +21,12 @@ Create a new payment link.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentLinks.create({
@@ -122,13 +121,12 @@ List all created payment links.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentLinks.list();
@@ -221,13 +219,12 @@ Expire an existing payment link.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   await gr4vy.paymentLinks.expire("a1b2c3d4-5678-90ab-cdef-1234567890ab");
@@ -314,13 +311,12 @@ Fetch the details for a payment link.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.paymentLinks.get("a1b2c3d4-5678-90ab-cdef-1234567890ab");

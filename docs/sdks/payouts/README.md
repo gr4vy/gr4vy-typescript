@@ -20,13 +20,12 @@ Returns a list of payouts made.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.payouts.list();
@@ -118,13 +117,12 @@ Creates a new payout.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.payouts.create({
@@ -227,13 +225,12 @@ Retrieves a payout.
 import { Gr4vy } from "@gr4vy/sdk";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
-});
+    server: "sandbox",
+    id: "example",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});;
 
 async function run() {
   const result = await gr4vy.payouts.get("4344fef2-bc2f-49a6-924f-343e62f67224");
