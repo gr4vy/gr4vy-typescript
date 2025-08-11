@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.create({}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
@@ -120,7 +120,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.list("fe26475d-ec3e-4884-9553-f7356683f7f9");
@@ -212,7 +212,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.get("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
@@ -305,7 +305,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.update({}, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
@@ -399,7 +399,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.buyers.shippingDetails.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");

@@ -24,7 +24,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.digitalWallets.domains.create({
@@ -121,7 +121,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.digitalWallets.domains.delete({

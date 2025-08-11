@@ -26,7 +26,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.merchantAccounts.list();
@@ -122,7 +122,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.merchantAccounts.create({
@@ -220,7 +220,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.merchantAccounts.get("merchant-12345");
@@ -310,7 +310,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.merchantAccounts.update({

@@ -26,7 +26,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.giftCards.get("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
@@ -118,7 +118,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.giftCards.delete("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
@@ -210,7 +210,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.giftCards.create({
@@ -308,7 +308,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.giftCards.list();

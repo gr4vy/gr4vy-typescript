@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.transactions.refunds.list("7099948d-7286-47e4-aad8-b68f7eb44591");
@@ -117,7 +117,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.transactions.refunds.create({}, "7099948d-7286-47e4-aad8-b68f7eb44591");
@@ -210,7 +210,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.transactions.refunds.get("7099948d-7286-47e4-aad8-b68f7eb44591", "6a1d4e46-14ed-4fe1-a45f-eff4e025d211");

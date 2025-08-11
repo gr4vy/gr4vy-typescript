@@ -25,7 +25,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.reports.executions.list("4d4c7123-b794-4fad-b1b9-5ab2606e6bbe");
@@ -123,7 +123,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.reports.executions.url("4d4c7123-b794-4fad-b1b9-5ab2606e6bbe", "003bc416-f32a-420c-8eb2-062a386e1fb0");
@@ -216,7 +216,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.reports.executions.get("003bc416-f32a-420c-8eb2-062a386e1fb0");

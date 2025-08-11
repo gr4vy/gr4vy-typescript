@@ -26,7 +26,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.checkoutSessions.create();
@@ -118,7 +118,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.checkoutSessions.update({}, "4137b1cf-39ac-42a8-bad6-1c680d5dab6b");
@@ -211,7 +211,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.checkoutSessions.get("4137b1cf-39ac-42a8-bad6-1c680d5dab6b");
@@ -302,7 +302,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   await gr4vy.checkoutSessions.delete("4137b1cf-39ac-42a8-bad6-1c680d5dab6b");

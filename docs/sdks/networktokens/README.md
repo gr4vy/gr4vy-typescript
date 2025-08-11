@@ -27,7 +27,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.list("ef9496d8-53a5-4aad-8ca2-00eb68334389");
@@ -119,7 +119,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.create({
@@ -218,7 +218,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.suspend("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
@@ -311,7 +311,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   const result = await gr4vy.paymentMethods.networkTokens.resume("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
@@ -404,7 +404,7 @@ const gr4vy = new Gr4vy({
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
-});;
+});
 
 async function run() {
   await gr4vy.paymentMethods.networkTokens.delete("ef9496d8-53a5-4aad-8ca2-00eb68334389", "f8dd5cfc-7834-4847-95dc-f75a360e2298");
