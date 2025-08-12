@@ -44,10 +44,10 @@ export class DigitalWallets extends ClientSDK {
   }
 
   /**
-   * List digital wallets
+   * List all buyers
    *
    * @remarks
-   * List configured digital wallets.
+   * List all buyers or search for a specific buyer.
    */
   async list(
     merchantAccountId?: string | null | undefined,

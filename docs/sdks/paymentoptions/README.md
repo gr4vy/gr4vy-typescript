@@ -15,11 +15,13 @@ List the payment options available at checkout. filtering by country, currency, 
 
 <!-- UsageSnippet language="typescript" operationID="list_payment_options" method="post" path="/payment-options" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -40,18 +42,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentOptionsList } from "@gr4vy/sdk/funcs/paymentOptionsList.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {

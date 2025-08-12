@@ -17,11 +17,13 @@ List the definitions of each payment service that can be configured.
 
 <!-- UsageSnippet language="typescript" operationID="list_payment_service_definitions" method="get" path="/payment-service-definitions" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -44,17 +46,12 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentServiceDefinitionsList } from "@gr4vy/sdk/funcs/paymentServiceDefinitionsList.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -112,11 +109,13 @@ Get the definition of a payment service that can be configured.
 
 <!-- UsageSnippet language="typescript" operationID="get_payment_service_definition" method="get" path="/payment-service-definitions/{payment_service_definition_id}" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -137,17 +136,12 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentServiceDefinitionsGet } from "@gr4vy/sdk/funcs/paymentServiceDefinitionsGet.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -202,11 +196,13 @@ Creates a session for a payment service that supports sessions.
 
 <!-- UsageSnippet language="typescript" operationID="create_payment_service_definition_session" method="post" path="/payment-service-definitions/{payment_service_definition_id}/sessions" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -229,17 +225,12 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentServiceDefinitionsSession } from "@gr4vy/sdk/funcs/paymentServiceDefinitionsSession.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {

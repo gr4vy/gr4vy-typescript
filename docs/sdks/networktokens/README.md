@@ -19,11 +19,13 @@ List all network tokens stored for a payment method.
 
 <!-- UsageSnippet language="typescript" operationID="list_payment_method_network_tokens" method="get" path="/payment-methods/{payment_method_id}/network-tokens" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -44,18 +46,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentMethodsNetworkTokensList } from "@gr4vy/sdk/funcs/paymentMethodsNetworkTokensList.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -111,11 +108,13 @@ Provision a network token for a payment method.
 
 <!-- UsageSnippet language="typescript" operationID="create_payment_method_network_token" method="post" path="/payment-methods/{payment_method_id}/network-tokens" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -139,18 +138,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentMethodsNetworkTokensCreate } from "@gr4vy/sdk/funcs/paymentMethodsNetworkTokensCreate.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -210,11 +204,13 @@ Suspend a network token for a payment method.
 
 <!-- UsageSnippet language="typescript" operationID="suspend_payment_method_network_token" method="post" path="/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/suspend" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -235,18 +231,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentMethodsNetworkTokensSuspend } from "@gr4vy/sdk/funcs/paymentMethodsNetworkTokensSuspend.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -303,11 +294,13 @@ Resume a suspended network token for a payment method.
 
 <!-- UsageSnippet language="typescript" operationID="resume_payment_method_network_token" method="post" path="/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/resume" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -328,18 +321,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentMethodsNetworkTokensResume } from "@gr4vy/sdk/funcs/paymentMethodsNetworkTokensResume.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -396,11 +384,13 @@ Delete a network token for a payment method.
 
 <!-- UsageSnippet language="typescript" operationID="delete_payment_method_network_token" method="delete" path="/payment-methods/{payment_method_id}/network-tokens/{network_token_id}" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-    server: "sandbox",
     id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
     bearerAuth: withToken({
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
     }),
@@ -421,18 +411,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { paymentMethodsNetworkTokensDelete } from "@gr4vy/sdk/funcs/paymentMethodsNetworkTokensDelete.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
