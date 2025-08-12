@@ -450,13 +450,14 @@ try {
 
 ### Example
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
 import * as errors from "@gr4vy/sdk/models/errors";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
@@ -553,14 +554,13 @@ If the selected server has variables, you may override its default values throug
 #### Example
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  server: "production",
-  id: "<id>",
-  merchantAccountId: "<id>",
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
@@ -585,13 +585,13 @@ run();
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  serverURL: "https://api.sandbox.example.gr4vy.app",
-  merchantAccountId: "<id>",
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
@@ -675,15 +675,16 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
-  merchantAccountId: "<id>",
 });
 
 async function run() {
@@ -741,12 +742,13 @@ yarn add @gr4vy/sdk zod
 ### Example
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
@@ -781,12 +783,13 @@ syntax.
 Here's an example of one such pagination call:
 
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
@@ -812,12 +815,13 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),
@@ -851,22 +855,13 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  retryConfig: {
-    strategy: "backoff",
-    backoff: {
-      initialInterval: 1,
-      maxInterval: 50,
-      exponent: 1.1,
-      maxElapsedTime: 100,
-    },
-    retryConnectionErrors: false,
-  },
-  merchantAccountId: "<id>",
-  server: "sandbox",
   id: "example",
+  server: "sandbox",
+  merchantAccountId: "default",
   bearerAuth: withToken({
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
   }),

@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.29
+  version: 1.1.30
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -40,10 +40,6 @@ typescript:
   author: Gr4vy
   baseErrorName: Gr4vyError
   clientServerStatusCodesAsErrors: true
-  compileCommand:
-    - bash
-    - -c
-    - ./.speakeasy/compile.sh
   constFieldsAlwaysOptional: true
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
@@ -71,4 +67,20 @@ typescript:
   packageName: '@gr4vy/sdk'
   responseFormat: flat
   templateVersion: v2
+  usageSDKInit: |-
+    new Gr4vy({
+        id: "example",
+        server: "sandbox",
+        merchantAccountId: "default",
+        bearerAuth: withToken({
+          privateKey: fs.readFileSync("private_key.pem", "utf8"),
+        }),
+    })
+  usageSDKInitImports:
+    - import: withToken
+      package: '@gr4vy/sdk'
+      type: typeImport
+    - import: fs
+      package: fs
+      type: packageImport
   useIndexModules: true
