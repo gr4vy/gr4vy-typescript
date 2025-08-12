@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 15dd206b6e7f331a4283864071a0dc20
+  docChecksum: d304399a4ffea13840d998c0150d1e70
   docVersion: 1.0.0
-  speakeasyVersion: 1.598.3
-  generationVersion: 2.674.3
-  releaseVersion: 1.1.28
-  configChecksum: 73b023bede12ed27051fb97167c763ee
+  speakeasyVersion: 1.601.0
+  generationVersion: 2.680.0
+  releaseVersion: 1.1.29
+  configChecksum: 215fcbecd8bd255c641efe158c690a6c
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -338,8 +338,6 @@ generatedFiles:
   - docs/models/operations/addpaymentlinkrequest.md
   - docs/models/operations/addreportglobals.md
   - docs/models/operations/addreportrequest.md
-  - docs/models/operations/browsepaymentmethoddefinitionsgetglobals.md
-  - docs/models/operations/browsepaymentmethoddefinitionsgetrequest.md
   - docs/models/operations/capturetransactionglobals.md
   - docs/models/operations/capturetransactionrequest.md
   - docs/models/operations/capturetransactionresponsecapturetransaction.md
@@ -561,14 +559,13 @@ generatedFiles:
   - eslint.config.mjs
   - examples/.env.template
   - examples/README.md
-  - examples/browsePaymentMethodDefinitionsGet.example.ts
+  - examples/accountUpdaterJobsCreate.example.ts
   - examples/package.json
   - jsr.json
   - package.json
   - src/core.ts
   - src/funcs/accountUpdaterJobsCreate.ts
   - src/funcs/auditLogsList.ts
-  - src/funcs/browsePaymentMethodDefinitionsGet.ts
   - src/funcs/buyersCreate.ts
   - src/funcs/buyersDelete.ts
   - src/funcs/buyersGet.ts
@@ -953,7 +950,6 @@ generatedFiles:
   - src/models/operations/addbuyershippingdetails.ts
   - src/models/operations/addpaymentlink.ts
   - src/models/operations/addreport.ts
-  - src/models/operations/browsepaymentmethoddefinitionsget.ts
   - src/models/operations/capturetransaction.ts
   - src/models/operations/configuredigitalwallet.ts
   - src/models/operations/createaccountupdaterjob.ts
