@@ -18,6 +18,10 @@ export type TravelhubOptions = {
    * A list of `customData` to pass to the TravelHub API.
    */
   customData?: Array<TravelHubCustomData> | null | undefined;
+  /**
+   * Customer company name to pass to the TravelHub API.
+   */
+  companyName?: string | null | undefined;
 };
 
 /** @internal */
@@ -27,11 +31,13 @@ export const TravelhubOptions$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   customData: z.nullable(z.array(TravelHubCustomData$inboundSchema)).optional(),
+  companyName: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
 export type TravelhubOptions$Outbound = {
   customData?: Array<TravelHubCustomData$Outbound> | null | undefined;
+  companyName?: string | null | undefined;
 };
 
 /** @internal */
@@ -42,6 +48,7 @@ export const TravelhubOptions$outboundSchema: z.ZodType<
 > = z.object({
   customData: z.nullable(z.array(TravelHubCustomData$outboundSchema))
     .optional(),
+  companyName: z.nullable(z.string()).optional(),
 });
 
 /**
