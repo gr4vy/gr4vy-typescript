@@ -15,7 +15,7 @@ export type TrustlyOptions = {
   /**
    * URL scheme for an app.
    */
-  urlScheme: string | null;
+  urlScheme?: string | null | undefined;
 };
 
 /** @internal */
@@ -25,13 +25,13 @@ export const TrustlyOptions$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   refreshSplitToken: z.nullable(z.boolean()).optional(),
-  urlScheme: z.nullable(z.string()),
+  urlScheme: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
 export type TrustlyOptions$Outbound = {
   refreshSplitToken?: boolean | null | undefined;
-  urlScheme: string | null;
+  urlScheme?: string | null | undefined;
 };
 
 /** @internal */
@@ -41,7 +41,7 @@ export const TrustlyOptions$outboundSchema: z.ZodType<
   TrustlyOptions
 > = z.object({
   refreshSplitToken: z.nullable(z.boolean()).optional(),
-  urlScheme: z.nullable(z.string()),
+  urlScheme: z.nullable(z.string()).optional(),
 });
 
 /**
