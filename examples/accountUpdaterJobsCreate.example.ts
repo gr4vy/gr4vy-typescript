@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the @gr4vy/sdk SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx accountUpdaterJobsCreate.ts
+ * npm run build && npx tsx accountUpdaterJobsCreate.example.ts
  */
 
 import { Gr4vy } from "@gr4vy/sdk";
