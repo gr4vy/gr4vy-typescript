@@ -12,6 +12,12 @@ import {
   AdyenCardAutoRescueScenariosEnum$inboundSchema,
   AdyenCardAutoRescueScenariosEnum$outboundSchema,
 } from "./adyencardautorescuescenariosenum.js";
+import {
+  AdyenSplitsOptions,
+  AdyenSplitsOptions$inboundSchema,
+  AdyenSplitsOptions$Outbound,
+  AdyenSplitsOptions$outboundSchema,
+} from "./adyensplitsoptions.js";
 
 export type AdyenCardOptions = {
   /**
@@ -34,6 +40,10 @@ export type AdyenCardOptions = {
    * The origin of the window where the payment is initiated, used for 3D Secure authentication.
    */
   windowOrigin?: string | null | undefined;
+  /**
+   * Passes information of splitting payment amounts to the Adyen API.
+   */
+  splits?: AdyenSplitsOptions | null | undefined;
 };
 
 /** @internal */
@@ -48,6 +58,7 @@ export const AdyenCardOptions$inboundSchema: z.ZodType<
   autoRescueScenario: z.nullable(AdyenCardAutoRescueScenariosEnum$inboundSchema)
     .optional(),
   window_origin: z.nullable(z.string()).optional(),
+  splits: z.nullable(AdyenSplitsOptions$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "window_origin": "windowOrigin",
@@ -61,6 +72,7 @@ export type AdyenCardOptions$Outbound = {
   additionalData?: { [k: string]: string } | null | undefined;
   autoRescueScenario?: string | null | undefined;
   window_origin?: string | null | undefined;
+  splits?: AdyenSplitsOptions$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -76,6 +88,7 @@ export const AdyenCardOptions$outboundSchema: z.ZodType<
     AdyenCardAutoRescueScenariosEnum$outboundSchema,
   ).optional(),
   windowOrigin: z.nullable(z.string()).optional(),
+  splits: z.nullable(AdyenSplitsOptions$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     windowOrigin: "window_origin",

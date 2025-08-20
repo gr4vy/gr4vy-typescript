@@ -13,6 +13,7 @@ export * from "./adyencardautorescuescenariosenum.js";
 export * from "./adyencardoptions.js";
 export * from "./adyenoptions.js";
 export * from "./adyensepaoptions.js";
+export * from "./adyensplitsoptions.js";
 export * from "./affirmitineraryoptions.js";
 export * from "./affirmoptions.js";
 export * from "./airline.js";

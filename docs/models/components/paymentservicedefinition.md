@@ -8,7 +8,7 @@ import { PaymentServiceDefinition } from "@gr4vy/sdk/models/components";
 let value: PaymentServiceDefinition = {
   id: "adyen-ideal",
   displayName: "iDEAL",
-  method: "pse",
+  method: "pix",
   fields: [
     {
       key: "private_api_key",
