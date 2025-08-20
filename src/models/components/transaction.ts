@@ -314,6 +314,10 @@ export type Transaction = {
    */
   voidedAt?: Date | null | undefined;
   /**
+   * The date this transaction was canceled at.
+   */
+  canceledAt?: Date | null | undefined;
+  /**
    * The date this transaction's approval URL will expire at.
    */
   approvalExpiresAt?: Date | null | undefined;
@@ -408,6 +412,9 @@ export const Transaction$inboundSchema: z.ZodType<
   voided_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
+  canceled_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
   approval_expires_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
@@ -459,6 +466,7 @@ export const Transaction$inboundSchema: z.ZodType<
     "authorized_at": "authorizedAt",
     "captured_at": "capturedAt",
     "voided_at": "voidedAt",
+    "canceled_at": "canceledAt",
     "approval_expires_at": "approvalExpiresAt",
     "buyer_approval_timedout_at": "buyerApprovalTimedoutAt",
     "intent_outcome": "intentOutcome",
@@ -520,6 +528,7 @@ export type Transaction$Outbound = {
   authorized_at?: string | null | undefined;
   captured_at?: string | null | undefined;
   voided_at?: string | null | undefined;
+  canceled_at?: string | null | undefined;
   approval_expires_at?: string | null | undefined;
   buyer_approval_timedout_at?: string | null | undefined;
   intent_outcome: string;
@@ -588,6 +597,7 @@ export const Transaction$outboundSchema: z.ZodType<
   authorizedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   capturedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   voidedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  canceledAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   approvalExpiresAt: z.nullable(z.date().transform(v => v.toISOString()))
     .optional(),
   buyerApprovalTimedoutAt: z.nullable(z.date().transform(v => v.toISOString()))
@@ -637,6 +647,7 @@ export const Transaction$outboundSchema: z.ZodType<
     authorizedAt: "authorized_at",
     capturedAt: "captured_at",
     voidedAt: "voided_at",
+    canceledAt: "canceled_at",
     approvalExpiresAt: "approval_expires_at",
     buyerApprovalTimedoutAt: "buyer_approval_timedout_at",
     intentOutcome: "intent_outcome",

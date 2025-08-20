@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 4644379e7267e449ff9e3dbada848b64
+  docChecksum: 15c6de9d749dc14487082fc105a50338
   docVersion: 1.0.0
   speakeasyVersion: 1.606.0
   generationVersion: 2.686.7
-  releaseVersion: 1.1.35
-  configChecksum: 947b3d7c4ccf0da0ab6b99c126fb3693
+  releaseVersion: 1.1.36
+  configChecksum: 550455390b0a27ac9fdd13d246406ac7
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4411,3 +4411,11 @@ examples:
           application/json: {}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## SDK Changes Detected:
+  * `gr4vy.transactions.create()`:  `response.canceled_at` **Added**
+  * `gr4vy.transactions.get()`:  `response.canceled_at` **Added**
+  * `gr4vy.transactions.update()`:  `response.canceled_at` **Added**
+  * `gr4vy.transactions.capture()`:  `response.[transaction].canceledAt` **Added**
+  * `gr4vy.transactions.void()`:  `response.[transaction].canceledAt` **Added**
+  * `gr4vy.transactions.sync()`:  `response.canceled_at` **Added**

@@ -55,6 +55,10 @@ export const Name = {
     "payment-connector-response-transaction-capture-failed",
   PaymentConnectorResponseTransactionCaptureDeclined:
     "payment-connector-response-transaction-capture-declined",
+  PaymentConnectorResponseTransactionCancelSucceeded:
+    "payment-connector-response-transaction-cancel-succeeded",
+  PaymentConnectorResponseTransactionCancelFailed:
+    "payment-connector-response-transaction-cancel-failed",
   PaymentConnectorResponseTransactionVoidSucceeded:
     "payment-connector-response-transaction-void-succeeded",
   PaymentConnectorResponseTransactionVoidDeclined:
