@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.31
+  version: 1.1.32
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1

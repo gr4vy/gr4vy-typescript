@@ -25,6 +25,10 @@ export type StripeConnectOptions = {
    * The Stripe Connect account to target using the `transfer_data.destination` request parameter.
    */
   transferDataDestination?: string | null | undefined;
+  /**
+   * A string that identifies the payment as part of a group.
+   */
+  transferGroup?: string | null | undefined;
 };
 
 /** @internal */
@@ -37,12 +41,14 @@ export const StripeConnectOptions$inboundSchema: z.ZodType<
   application_fee_amount: z.nullable(z.number().int()).optional(),
   on_behalf_of: z.nullable(z.string()).optional(),
   transfer_data_destination: z.nullable(z.string()).optional(),
+  transfer_group: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "stripe_account": "stripeAccount",
     "application_fee_amount": "applicationFeeAmount",
     "on_behalf_of": "onBehalfOf",
     "transfer_data_destination": "transferDataDestination",
+    "transfer_group": "transferGroup",
   });
 });
 
@@ -52,6 +58,7 @@ export type StripeConnectOptions$Outbound = {
   application_fee_amount?: number | null | undefined;
   on_behalf_of?: string | null | undefined;
   transfer_data_destination?: string | null | undefined;
+  transfer_group?: string | null | undefined;
 };
 
 /** @internal */
@@ -64,12 +71,14 @@ export const StripeConnectOptions$outboundSchema: z.ZodType<
   applicationFeeAmount: z.nullable(z.number().int()).optional(),
   onBehalfOf: z.nullable(z.string()).optional(),
   transferDataDestination: z.nullable(z.string()).optional(),
+  transferGroup: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     stripeAccount: "stripe_account",
     applicationFeeAmount: "application_fee_amount",
     onBehalfOf: "on_behalf_of",
     transferDataDestination: "transfer_data_destination",
+    transferGroup: "transfer_group",
   });
 });
 

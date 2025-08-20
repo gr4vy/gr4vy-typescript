@@ -65,6 +65,10 @@ export const Name = {
     "payment-connector-external-transaction-request",
   PaymentConnectorReportTransactionSettled:
     "payment-connector-report-transaction-settled",
+  PaymentConnectorReportChargebackPosted:
+    "payment-connector-report-chargeback-posted",
+  PaymentConnectorReportChargebackReversalPosted:
+    "payment-connector-report-chargeback-reversal-posted",
   DigitalWalletApplePayTokenDecrypted:
     "digital-wallet-apple-pay-token-decrypted",
   DigitalWalletGooglePayTokenDecrypted:

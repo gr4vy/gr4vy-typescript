@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 2eac6b0f4541c04fb4bea694ad033582
+  docChecksum: 4644379e7267e449ff9e3dbada848b64
   docVersion: 1.0.0
-  speakeasyVersion: 1.604.0
-  generationVersion: 2.683.1
-  releaseVersion: 1.1.31
-  configChecksum: 4b4d45050455261273c65ce31eb712dc
+  speakeasyVersion: 1.606.0
+  generationVersion: 2.686.7
+  releaseVersion: 1.1.32
+  configChecksum: c28f49b2cd54a41347244551babf0fd6
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4411,3 +4411,4 @@ examples:
           application/json: {}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.stripe-card.stripeConnect.transferGroup` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.stripe-card.stripeConnect.transferGroup` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.stripe-card.stripeConnect.transferGroup` **Added**\n"
