@@ -5,8 +5,21 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export const VaultPaymentMethodCriteria = {
+  Always: "ALWAYS",
+  OnSuccessfulTransaction: "ON_SUCCESSFUL_TRANSACTION",
+} as const;
+export type VaultPaymentMethodCriteria = OpenEnum<
+  typeof VaultPaymentMethodCriteria
+>;
 
 export type BraintreeDynamicDataFieldsOptions = {
   /**
@@ -17,7 +30,43 @@ export type BraintreeDynamicDataFieldsOptions = {
    * Passes the `transaction.purchaseOrderNumber` field when creating a new transaction.
    */
   purchaseOrderNumber?: string | null | undefined;
+  /**
+   * Passes the `vaultPaymentMethodCriteria` field when creating a new transaction.
+   */
+  vaultPaymentMethodCriteria?: VaultPaymentMethodCriteria | null | undefined;
 };
+
+/** @internal */
+export const VaultPaymentMethodCriteria$inboundSchema: z.ZodType<
+  VaultPaymentMethodCriteria,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(VaultPaymentMethodCriteria),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const VaultPaymentMethodCriteria$outboundSchema: z.ZodType<
+  VaultPaymentMethodCriteria,
+  z.ZodTypeDef,
+  VaultPaymentMethodCriteria
+> = z.union([
+  z.nativeEnum(VaultPaymentMethodCriteria),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace VaultPaymentMethodCriteria$ {
+  /** @deprecated use `VaultPaymentMethodCriteria$inboundSchema` instead. */
+  export const inboundSchema = VaultPaymentMethodCriteria$inboundSchema;
+  /** @deprecated use `VaultPaymentMethodCriteria$outboundSchema` instead. */
+  export const outboundSchema = VaultPaymentMethodCriteria$outboundSchema;
+}
 
 /** @internal */
 export const BraintreeDynamicDataFieldsOptions$inboundSchema: z.ZodType<
@@ -27,10 +76,14 @@ export const BraintreeDynamicDataFieldsOptions$inboundSchema: z.ZodType<
 > = z.object({
   three_ds_auth_status: z.nullable(z.string()).optional(),
   purchase_order_number: z.nullable(z.string()).optional(),
+  vault_payment_method_criteria: z.nullable(
+    VaultPaymentMethodCriteria$inboundSchema,
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "three_ds_auth_status": "threeDsAuthStatus",
     "purchase_order_number": "purchaseOrderNumber",
+    "vault_payment_method_criteria": "vaultPaymentMethodCriteria",
   });
 });
 
@@ -38,6 +91,7 @@ export const BraintreeDynamicDataFieldsOptions$inboundSchema: z.ZodType<
 export type BraintreeDynamicDataFieldsOptions$Outbound = {
   three_ds_auth_status?: string | null | undefined;
   purchase_order_number?: string | null | undefined;
+  vault_payment_method_criteria?: string | null | undefined;
 };
 
 /** @internal */
@@ -48,10 +102,14 @@ export const BraintreeDynamicDataFieldsOptions$outboundSchema: z.ZodType<
 > = z.object({
   threeDsAuthStatus: z.nullable(z.string()).optional(),
   purchaseOrderNumber: z.nullable(z.string()).optional(),
+  vaultPaymentMethodCriteria: z.nullable(
+    VaultPaymentMethodCriteria$outboundSchema,
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     threeDsAuthStatus: "three_ds_auth_status",
     purchaseOrderNumber: "purchase_order_number",
+    vaultPaymentMethodCriteria: "vault_payment_method_criteria",
   });
 });
 
