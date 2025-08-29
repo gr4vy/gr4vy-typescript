@@ -410,6 +410,7 @@ try {
 * [update](docs/sdks/transactions/README.md#update) - Manually update a transaction
 * [capture](docs/sdks/transactions/README.md#capture) - Capture transaction
 * [void](docs/sdks/transactions/README.md#void) - Void transaction
+* [cancel](docs/sdks/transactions/README.md#cancel) - Cancel transaction
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
 
 #### [transactions.events](docs/sdks/events/README.md)
@@ -1015,6 +1016,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`reportsGet`](docs/sdks/reports/README.md#get) - Get a report
 - [`reportsList`](docs/sdks/reports/README.md#list) - List configured reports
 - [`reportsPut`](docs/sdks/reports/README.md#put) - Update a report
+- [`transactionsCancel`](docs/sdks/transactions/README.md#cancel) - Cancel transaction
 - [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
 - [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create transaction
 - [`transactionsEventsList`](docs/sdks/events/README.md#list) - List transaction events
