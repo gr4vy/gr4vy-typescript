@@ -13,43 +13,39 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type Settlement = {
   /**
-   * Always 'settlement'.
-   */
-  type?: "settlement" | undefined;
-  /**
-   * The unique identifier for the settlement.
+   * The unique identifier for the record.
    */
   id: string;
   /**
-   * The merchant account this settlement belongs to.
+   * The merchant account this record belongs to.
    */
   merchantAccountId: string;
   /**
-   * The date and time the settlement was created, in ISO 8601 format.
+   * The date and time the record was created, in ISO 8601 format.
    */
   createdAt: Date;
   /**
-   * The date and time the settlement was last updated, in ISO 8601 format.
+   * The date and time the record was last updated, in ISO 8601 format.
    */
   updatedAt: Date;
   /**
-   * The date and time the settlement was posted, in ISO 8601 format.
+   * The date and time the record was posted, in ISO 8601 format.
    */
   postedAt: Date;
   /**
-   * The date and time the settlement was ingested, in ISO 8601 format.
+   * The date and time the record was ingested, in ISO 8601 format.
    */
   ingestedAt: Date;
   /**
-   * ISO 4217 currency code for the settlement.
+   * ISO 4217 currency code.
    */
   currency: string;
   /**
-   * The total settled amount in the smallest currency unit (e.g. cents).
+   * The total amount in the smallest currency unit (e.g. cents).
    */
   amount: number;
   /**
-   * The exchange rate used for settlement, if applicable.
+   * The exchange rate, if applicable.
    */
   exchangeRate?: number | null | undefined;
   /**
@@ -77,9 +73,13 @@ export type Settlement = {
    */
   paymentServiceReportFileIds: Array<string>;
   /**
-   * The transaction this settlement is associated with.
+   * The transaction this record is associated with.
    */
   transactionId: string;
+  /**
+   * Always `settlement`.
+   */
+  type?: "settlement" | undefined;
 };
 
 /** @internal */
@@ -88,7 +88,6 @@ export const Settlement$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("settlement").default("settlement"),
   id: z.string(),
   merchant_account_id: z.string(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -107,6 +106,7 @@ export const Settlement$inboundSchema: z.ZodType<
   payment_service_report_id: z.string(),
   payment_service_report_file_ids: z.array(z.string()),
   transaction_id: z.string(),
+  type: z.literal("settlement").default("settlement"),
 }).transform((v) => {
   return remap$(v, {
     "merchant_account_id": "merchantAccountId",
@@ -124,7 +124,6 @@ export const Settlement$inboundSchema: z.ZodType<
 
 /** @internal */
 export type Settlement$Outbound = {
-  type: "settlement";
   id: string;
   merchant_account_id: string;
   created_at: string;
@@ -141,6 +140,7 @@ export type Settlement$Outbound = {
   payment_service_report_id: string;
   payment_service_report_file_ids: Array<string>;
   transaction_id: string;
+  type: "settlement";
 };
 
 /** @internal */
@@ -149,7 +149,6 @@ export const Settlement$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Settlement
 > = z.object({
-  type: z.literal("settlement").default("settlement" as const),
   id: z.string(),
   merchantAccountId: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
@@ -166,6 +165,7 @@ export const Settlement$outboundSchema: z.ZodType<
   paymentServiceReportId: z.string(),
   paymentServiceReportFileIds: z.array(z.string()),
   transactionId: z.string(),
+  type: z.literal("settlement").default("settlement" as const),
 }).transform((v) => {
   return remap$(v, {
     merchantAccountId: "merchant_account_id",
