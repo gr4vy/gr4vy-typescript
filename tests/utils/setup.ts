@@ -2,6 +2,7 @@ import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { Gr4vy, withToken } from "../../src";
+import { HTTPClient } from "../../src/lib/http";
 
 const loadPrivateKey = (): string => {
   let privateKey = process.env.PRIVATE_KEY;
@@ -14,11 +15,47 @@ const loadPrivateKey = (): string => {
   return privateKey;
 };
 
+const httpClient = new HTTPClient({
+  /**
+   * Adds a custom HTTP client that inserts random fields in the response,
+   * ensuring we test for forward compatibility. 
+   */
+  fetcher: async (request) => {
+    const originalResponse = await fetch(request);
+    const contentType = originalResponse.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+      return originalResponse;
+    }
+
+    try {
+      const data = await originalResponse.clone().json();
+      const randomKey = `unexpected_field_${Math.floor(Math.random() * 1000)}`;
+      data[randomKey] = "this is an injected test value";
+
+      const modifiedBody = new Blob([JSON.stringify(data, null, 2)], {
+        type: 'application/json',
+      });
+
+      const modifiedResponse = new Response(modifiedBody, {
+        status: originalResponse.status,
+        statusText: originalResponse.statusText,
+        headers: originalResponse.headers,
+      });
+
+      return modifiedResponse;
+    } catch (error) {
+      console.error("Failed to parse JSON, returning original response:", error);
+      return originalResponse;
+    }
+  },
+});
+
 const createGr4vyClient = (
   privateKey: string,
   merchantAccountId?: string
 ): Gr4vy => {
   return new Gr4vy({
+    httpClient: httpClient,
     server: "sandbox",
     id: "e2e",
     merchantAccountId,
