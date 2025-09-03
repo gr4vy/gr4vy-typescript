@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.40
+  version: 1.1.41
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -78,7 +78,7 @@ typescript:
     })
   usageSDKInitImports:
     - import: withToken
-      package: "@gr4vy/sdk"
+      package: '@gr4vy/sdk'
       type: typeImport
     - import: fs
       package: fs

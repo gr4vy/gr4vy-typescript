@@ -19,15 +19,16 @@ Associate shipping details to a buyer.
 
 <!-- UsageSnippet language="typescript" operationID="add_buyer_shipping_details" method="post" path="/buyers/{buyer_id}/shipping-details" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -45,18 +46,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { buyersShippingDetailsCreate } from "@gr4vy/sdk/funcs/buyersShippingDetailsCreate.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -113,15 +109,16 @@ List all the shipping details associated to a specific buyer.
 
 <!-- UsageSnippet language="typescript" operationID="list_buyer_shipping_details" method="get" path="/buyers/{buyer_id}/shipping-details" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -139,18 +136,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { buyersShippingDetailsList } from "@gr4vy/sdk/funcs/buyersShippingDetailsList.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -206,15 +198,16 @@ Get a buyer's shipping details.
 
 <!-- UsageSnippet language="typescript" operationID="get_buyer_shipping_details" method="get" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -232,18 +225,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { buyersShippingDetailsGet } from "@gr4vy/sdk/funcs/buyersShippingDetailsGet.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -300,15 +288,16 @@ Update the shipping details associated to a specific buyer.
 
 <!-- UsageSnippet language="typescript" operationID="update_buyer_shipping_details" method="put" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -326,18 +315,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { buyersShippingDetailsUpdate } from "@gr4vy/sdk/funcs/buyersShippingDetailsUpdate.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -395,15 +379,16 @@ Delete the shipping details associated to a specific buyer.
 
 <!-- UsageSnippet language="typescript" operationID="delete_buyer_shipping_details" method="delete" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -421,18 +406,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { buyersShippingDetailsDelete } from "@gr4vy/sdk/funcs/buyersShippingDetailsDelete.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {

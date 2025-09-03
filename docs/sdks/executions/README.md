@@ -17,15 +17,16 @@ List all executions of a specific report.
 
 <!-- UsageSnippet language="typescript" operationID="list_report_executions" method="get" path="/reports/{report_id}/executions" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -45,18 +46,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { reportsExecutionsList } from "@gr4vy/sdk/funcs/reportsExecutionsList.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -116,15 +112,16 @@ Creates a download URL for a specific execution of a report.
 
 <!-- UsageSnippet language="typescript" operationID="create_report_execution_url" method="post" path="/reports/{report_id}/executions/{report_execution_id}/url" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -142,18 +139,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { reportsExecutionsUrl } from "@gr4vy/sdk/funcs/reportsExecutionsUrl.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
@@ -210,15 +202,16 @@ Fetch a specific executed report.
 
 <!-- UsageSnippet language="typescript" operationID="get_report_execution" method="get" path="/report-executions/{report_execution_id}" -->
 ```typescript
-import { Gr4vy } from "@gr4vy/sdk";
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
 
 const gr4vy = new Gr4vy({
-  merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
 });
 
 async function run() {
@@ -236,18 +229,13 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { withToken } from "@gr4vy/sdk/lib/auth.js";
 import { reportsExecutionsGet } from "@gr4vy/sdk/funcs/reportsExecutionsGet.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const gr4vy = new Gr4vyCore({
   merchantAccountId: "<id>",
-  server: "sandbox",
-  id: "example",
-  bearerAuth: withToken({
-    privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
 });
 
 async function run() {
