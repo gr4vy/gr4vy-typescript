@@ -13,5 +13,5 @@ let value: AuditLogAction = "created";
 This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
-"created" | "updated" | "deleted" | "voided" | "captured" | Unrecognized<string>
+"created" | "updated" | "deleted" | "voided" | "canceled" | "captured" | Unrecognized<string>
 ```
