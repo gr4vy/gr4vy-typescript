@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 48778eb0609f34492f7b444e49fb99e5
+  docChecksum: a27931de97c8c441c312515d873ca761
   docVersion: 1.0.0
-  speakeasyVersion: 1.607.1
-  generationVersion: 2.690.1
-  releaseVersion: 1.1.41
-  configChecksum: befefacc21fee72fbc8410a7300900d1
+  speakeasyVersion: 1.609.0
+  generationVersion: 2.692.0
+  releaseVersion: 1.1.42
+  configChecksum: b5bcc64747c822fa0907ab8836d62b7b
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.21
+    core: 3.21.22
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -4454,3 +4454,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.auditLogs.list()`: \n  *  `request.action` **Changed**\n"

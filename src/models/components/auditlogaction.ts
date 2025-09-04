@@ -14,6 +14,7 @@ export const AuditLogAction = {
   Updated: "updated",
   Deleted: "deleted",
   Voided: "voided",
+  Canceled: "canceled",
   Captured: "captured",
 } as const;
 export type AuditLogAction = OpenEnum<typeof AuditLogAction>;
