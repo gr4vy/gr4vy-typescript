@@ -186,6 +186,10 @@ export type TransactionSummary = {
    * The date and time when the transaction was last updated, in ISO 8601 format.
    */
   updatedAt: Date;
+  /**
+   * Indicates whether this transaction has been disputed.
+   */
+  disputed: boolean;
 };
 
 /** @internal */
@@ -226,6 +230,7 @@ export const TransactionSummary$inboundSchema: z.ZodType<
   gift_card_service: z.nullable(GiftCardService$inboundSchema).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  disputed: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
     "reconciliation_id": "reconciliationId",
@@ -285,6 +290,7 @@ export type TransactionSummary$Outbound = {
   gift_card_service?: GiftCardService$Outbound | null | undefined;
   created_at: string;
   updated_at: string;
+  disputed: boolean;
 };
 
 /** @internal */
@@ -325,6 +331,7 @@ export const TransactionSummary$outboundSchema: z.ZodType<
   giftCardService: z.nullable(GiftCardService$outboundSchema).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
+  disputed: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
     reconciliationId: "reconciliation_id",

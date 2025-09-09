@@ -26,6 +26,7 @@ let value: TransactionVoid = {
     giftCardRedemptions: [],
     createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
     updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
+    disputed: true,
     paymentSource: "installment",
     merchantInitiated: true,
     isSubsequentPayment: false,
