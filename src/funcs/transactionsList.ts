@@ -140,6 +140,7 @@ async function $do(
     "created_at_lte": payload?.created_at_lte,
     "currency": payload?.currency,
     "cursor": payload?.cursor,
+    "disputed": payload?.disputed,
     "error_code": payload?.error_code,
     "external_identifier": payload?.external_identifier,
     "gift_card_id": payload?.gift_card_id,

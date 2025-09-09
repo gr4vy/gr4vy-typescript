@@ -242,6 +242,10 @@ export type Transaction = {
    */
   updatedAt: Date;
   /**
+   * Indicates whether this transaction has been disputed.
+   */
+  disputed: boolean;
+  /**
    * Contains information about an airline travel, if applicable.
    */
   airline?: Airline | null | undefined;
@@ -386,6 +390,7 @@ export const Transaction$inboundSchema: z.ZodType<
   gift_card_service: z.nullable(GiftCardService$inboundSchema).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  disputed: z.boolean(),
   airline: z.nullable(Airline$inboundSchema).optional(),
   auth_response_code: z.nullable(z.string()).optional(),
   avs_response_code: z.nullable(AVSResponseCode$inboundSchema).optional(),
@@ -510,6 +515,7 @@ export type Transaction$Outbound = {
   gift_card_service?: GiftCardService$Outbound | null | undefined;
   created_at: string;
   updated_at: string;
+  disputed: boolean;
   airline?: Airline$Outbound | null | undefined;
   auth_response_code?: string | null | undefined;
   avs_response_code?: string | null | undefined;
@@ -577,6 +583,7 @@ export const Transaction$outboundSchema: z.ZodType<
   giftCardService: z.nullable(GiftCardService$outboundSchema).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
+  disputed: z.boolean(),
   airline: z.nullable(Airline$outboundSchema).optional(),
   authResponseCode: z.nullable(z.string()).optional(),
   avsResponseCode: z.nullable(AVSResponseCode$outboundSchema).optional(),

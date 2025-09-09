@@ -150,6 +150,10 @@ export type ListTransactionsRequest = {
    */
   used3ds?: boolean | null | undefined;
   /**
+   * Filters for transactions that have been disputed.
+   */
+  disputed?: boolean | null | undefined;
+  /**
    * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
    */
   buyerSearch?: Array<string> | null | undefined;
@@ -276,6 +280,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
   is_subsequent_payment: z.nullable(z.boolean()).optional(),
   merchant_initiated: z.nullable(z.boolean()).optional(),
   used_3ds: z.nullable(z.boolean()).optional(),
+  disputed: z.nullable(z.boolean()).optional(),
   buyer_search: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -361,6 +366,7 @@ export type ListTransactionsRequest$Outbound = {
   is_subsequent_payment?: boolean | null | undefined;
   merchant_initiated?: boolean | null | undefined;
   used_3ds?: boolean | null | undefined;
+  disputed?: boolean | null | undefined;
   buyer_search?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
@@ -416,6 +422,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   isSubsequentPayment: z.nullable(z.boolean()).optional(),
   merchantInitiated: z.nullable(z.boolean()).optional(),
   used3ds: z.nullable(z.boolean()).optional(),
+  disputed: z.nullable(z.boolean()).optional(),
   buyerSearch: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
