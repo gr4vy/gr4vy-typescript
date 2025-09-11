@@ -325,6 +325,34 @@ export type TransactionCreate = {
    * The number of installments a buyer is required to make.
    */
   installmentCount?: number | null | undefined;
+  /**
+   * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+   */
+  taxAmount?: number | null | undefined;
+  /**
+   * Merchant tax ID (for example, EIN or VAT number).
+   */
+  merchantTaxId?: string | null | undefined;
+  /**
+   * Customer code or reference.
+   */
+  customerReferenceNumber?: string | null | undefined;
+  /**
+   * Whether the tax is included in the amount.
+   */
+  amountIncludesTax?: boolean | null | undefined;
+  /**
+   * The merchant's unique identifier for the sales order or invoice.
+   */
+  supplierOrderNumber?: string | null | undefined;
+  /**
+   * Total charges for import/export duties.
+   */
+  dutyAmount?: number | null | undefined;
+  /**
+   * Total shipping amount.
+   */
+  shippingAmount?: number | null | undefined;
 };
 
 /** @internal */
@@ -584,6 +612,13 @@ export const TransactionCreate$inboundSchema: z.ZodType<
   allow_partial_authorization: z.boolean().default(false),
   recipient: z.nullable(Recipient$inboundSchema).optional(),
   installment_count: z.nullable(z.number().int()).optional(),
+  tax_amount: z.nullable(z.number().int()).optional(),
+  merchant_tax_id: z.nullable(z.string()).optional(),
+  customer_reference_number: z.nullable(z.string()).optional(),
+  amount_includes_tax: z.nullable(z.boolean()).optional(),
+  supplier_order_number: z.nullable(z.string()).optional(),
+  duty_amount: z.nullable(z.number().int()).optional(),
+  shipping_amount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method": "paymentMethod",
@@ -607,6 +642,13 @@ export const TransactionCreate$inboundSchema: z.ZodType<
     "account_funding_transaction": "accountFundingTransaction",
     "allow_partial_authorization": "allowPartialAuthorization",
     "installment_count": "installmentCount",
+    "tax_amount": "taxAmount",
+    "merchant_tax_id": "merchantTaxId",
+    "customer_reference_number": "customerReferenceNumber",
+    "amount_includes_tax": "amountIncludesTax",
+    "supplier_order_number": "supplierOrderNumber",
+    "duty_amount": "dutyAmount",
+    "shipping_amount": "shippingAmount",
   });
 });
 
@@ -664,6 +706,13 @@ export type TransactionCreate$Outbound = {
   allow_partial_authorization: boolean;
   recipient?: Recipient$Outbound | null | undefined;
   installment_count?: number | null | undefined;
+  tax_amount?: number | null | undefined;
+  merchant_tax_id?: string | null | undefined;
+  customer_reference_number?: string | null | undefined;
+  amount_includes_tax?: boolean | null | undefined;
+  supplier_order_number?: string | null | undefined;
+  duty_amount?: number | null | undefined;
+  shipping_amount?: number | null | undefined;
 };
 
 /** @internal */
@@ -729,6 +778,13 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   allowPartialAuthorization: z.boolean().default(false),
   recipient: z.nullable(Recipient$outboundSchema).optional(),
   installmentCount: z.nullable(z.number().int()).optional(),
+  taxAmount: z.nullable(z.number().int()).optional(),
+  merchantTaxId: z.nullable(z.string()).optional(),
+  customerReferenceNumber: z.nullable(z.string()).optional(),
+  amountIncludesTax: z.nullable(z.boolean()).optional(),
+  supplierOrderNumber: z.nullable(z.string()).optional(),
+  dutyAmount: z.nullable(z.number().int()).optional(),
+  shippingAmount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethod: "payment_method",
@@ -752,6 +808,13 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     accountFundingTransaction: "account_funding_transaction",
     allowPartialAuthorization: "allow_partial_authorization",
     installmentCount: "installment_count",
+    taxAmount: "tax_amount",
+    merchantTaxId: "merchant_tax_id",
+    customerReferenceNumber: "customer_reference_number",
+    amountIncludesTax: "amount_includes_tax",
+    supplierOrderNumber: "supplier_order_number",
+    dutyAmount: "duty_amount",
+    shippingAmount: "shipping_amount",
   });
 });
 

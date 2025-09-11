@@ -36,6 +36,10 @@ export type StatementDescriptor = {
    * The merchant's URL to be displayed in a statement descriptor.
    */
   url?: string | null | undefined;
+  /**
+   * The merchant's postal code or zip code.
+   */
+  postalCode?: string | null | undefined;
 };
 
 /** @internal */
@@ -50,9 +54,11 @@ export const StatementDescriptor$inboundSchema: z.ZodType<
   country: z.nullable(z.string()).optional(),
   phone_number: z.nullable(z.string()).optional(),
   url: z.nullable(z.string()).optional(),
+  postal_code: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "phone_number": "phoneNumber",
+    "postal_code": "postalCode",
   });
 });
 
@@ -64,6 +70,7 @@ export type StatementDescriptor$Outbound = {
   country?: string | null | undefined;
   phone_number?: string | null | undefined;
   url?: string | null | undefined;
+  postal_code?: string | null | undefined;
 };
 
 /** @internal */
@@ -78,9 +85,11 @@ export const StatementDescriptor$outboundSchema: z.ZodType<
   country: z.nullable(z.string()).optional(),
   phoneNumber: z.nullable(z.string()).optional(),
   url: z.nullable(z.string()).optional(),
+  postalCode: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     phoneNumber: "phone_number",
+    postalCode: "postal_code",
   });
 });
 
