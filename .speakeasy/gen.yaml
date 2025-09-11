@@ -16,12 +16,13 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.43
+  version: 1.1.44
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -66,6 +67,7 @@ typescript:
   outputModelSuffix: output
   packageName: '@gr4vy/sdk'
   responseFormat: flat
+  sseFlatResponse: false
   templateVersion: v2
   usageSDKInit: |-
     new Gr4vy({
