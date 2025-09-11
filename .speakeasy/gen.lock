@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 8c4cc78719adc68e52451646396f503b
+  docChecksum: 0443389f7d0a39ff8900ac6cbb3447f9
   docVersion: 1.0.0
   speakeasyVersion: 1.615.2
   generationVersion: 2.698.4
-  releaseVersion: 1.1.44
-  configChecksum: c639b0d48eece9fed7d579c752cde855
+  releaseVersion: 1.1.45
+  configChecksum: 8cfba65bddd390e061ad67d359ef9f54
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4454,4 +4454,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate` **Changed**\n  *  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.transactions.get()`:  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.transactions.update()`:  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction].statementDescriptor.postalCode` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction].statementDescriptor.postalCode` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.statementDescriptor.postalCode` **Added**\n* `gr4vy.transactions.sync()`:  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.paymentLinks.list()`:  `response.items.[].statementDescriptor.postalCode` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.statementDescriptor.postalCode` **Added**\n  *  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.paymentLinks.get()`:  `response.statement_descriptor.postalCode` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.cartItems.[]` **Changed**\n  *  `response.cart_items.[]` **Changed**\n* `gr4vy.transactions.get()`:  `response.cart_items.[]` **Changed**\n* `gr4vy.transactions.update()`:  `response.cart_items.[]` **Changed**\n* `gr4vy.transactions.capture()`:  `response.[transaction].cartItems.[]` **Changed**\n* `gr4vy.transactions.void()`:  `response.[transaction].cartItems.[]` **Changed**\n* `gr4vy.transactions.cancel()`:  `response.transaction.cartItems.[]` **Changed**\n* `gr4vy.transactions.sync()`:  `response.cart_items.[]` **Changed**\n* `gr4vy.paymentOptions.list()`: \n  *  `request.paymentoptionrequest.cartItems.[]` **Changed**\n* `gr4vy.checkoutSessions.create()`: \n  *  `request.checkoutsessioncreate.cartItems.[]` **Changed**\n  *  `response.cart_items.[]` **Changed**\n* `gr4vy.checkoutSessions.get()`:  `response.cart_items.[]` **Changed**\n* `gr4vy.checkoutSessions.update()`: \n  *  `request.checkoutsessioncreate.cartItems.[]` **Changed**\n  *  `response.cart_items.[]` **Changed**\n* `gr4vy.paymentLinks.list()`:  `response.items.[].cartItems.[]` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.cartItems.[]` **Changed**\n  *  `response.cart_items.[]` **Changed**\n* `gr4vy.paymentLinks.get()`:  `response.cart_items.[]` **Changed**\n"
