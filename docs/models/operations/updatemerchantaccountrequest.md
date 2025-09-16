@@ -9,6 +9,7 @@ let value: UpdateMerchantAccountRequest = {
   merchantAccountId: "merchant-12345",
   merchantAccountUpdate: {
     accountUpdaterEnabled: true,
+    asyncNetworkTokensEnabled: true,
   },
 };
 ```

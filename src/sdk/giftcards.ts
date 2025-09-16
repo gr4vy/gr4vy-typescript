@@ -48,7 +48,7 @@ export class GiftCards extends ClientSDK {
     giftCardId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<any> {
+  ): Promise<void> {
     return unwrapAsync(giftCardsDelete(
       this,
       giftCardId,

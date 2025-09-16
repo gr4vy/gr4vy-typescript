@@ -126,6 +126,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.merchantAccounts.create({
     accountUpdaterEnabled: true,
+    asyncNetworkTokensEnabled: true,
     id: "merchant-12345",
     displayName: "Example",
   });
@@ -153,6 +154,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await merchantAccountsCreate(gr4vy, {
     accountUpdaterEnabled: true,
+    asyncNetworkTokensEnabled: true,
     id: "merchant-12345",
     displayName: "Example",
   });
@@ -308,6 +310,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.merchantAccounts.update({
     accountUpdaterEnabled: true,
+    asyncNetworkTokensEnabled: true,
   }, "merchant-12345");
 
   console.log(result);
@@ -333,6 +336,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await merchantAccountsUpdate(gr4vy, {
     accountUpdaterEnabled: true,
+    asyncNetworkTokensEnabled: true,
   }, "merchant-12345");
   if (res.ok) {
     const { value: result } = res;

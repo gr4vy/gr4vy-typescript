@@ -89,7 +89,7 @@ export class DigitalWallets extends ClientSDK {
     digitalWalletId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<any> {
+  ): Promise<void> {
     return unwrapAsync(digitalWalletsDelete(
       this,
       digitalWalletId,

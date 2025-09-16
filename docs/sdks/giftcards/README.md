@@ -120,9 +120,9 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.giftCards.delete("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
+  await gr4vy.giftCards.delete("356d56e5-fe16-42ae-97ee-8d55d846ae2e");
 
-  console.log(result);
+
 }
 
 run();
@@ -147,7 +147,7 @@ async function run() {
   const res = await giftCardsDelete(gr4vy, "356d56e5-fe16-42ae-97ee-8d55d846ae2e");
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("giftCardsDelete failed:", res.error);
   }
@@ -168,7 +168,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<void\>**
 
 ### Errors
 

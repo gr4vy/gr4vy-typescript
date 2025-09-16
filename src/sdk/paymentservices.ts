@@ -104,7 +104,7 @@ export class PaymentServices extends ClientSDK {
     paymentServiceId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<any> {
+  ): Promise<void> {
     return unwrapAsync(paymentServicesDelete(
       this,
       paymentServiceId,
