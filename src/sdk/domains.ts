@@ -41,7 +41,7 @@ export class Domains extends ClientSDK {
     digitalWalletId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<any> {
+  ): Promise<void> {
     return unwrapAsync(digitalWalletsDomainsDelete(
       this,
       digitalWalletDomain,

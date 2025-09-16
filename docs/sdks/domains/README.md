@@ -123,11 +123,11 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.digitalWallets.domains.delete({
+  await gr4vy.digitalWallets.domains.delete({
     domainName: "example.com",
   }, "");
 
-  console.log(result);
+
 }
 
 run();
@@ -154,7 +154,7 @@ async function run() {
   }, "");
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("digitalWalletsDomainsDelete failed:", res.error);
   }
@@ -176,7 +176,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
