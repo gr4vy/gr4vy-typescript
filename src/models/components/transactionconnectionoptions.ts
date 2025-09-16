@@ -104,6 +104,12 @@ import {
   NuveiOptions$outboundSchema,
 } from "./nuveioptions.js";
 import {
+  NuveiPSEOptions,
+  NuveiPSEOptions$inboundSchema,
+  NuveiPSEOptions$Outbound,
+  NuveiPSEOptions$outboundSchema,
+} from "./nuveipseoptions.js";
+import {
   OxxoOptions,
   OxxoOptions$inboundSchema,
   OxxoOptions$Outbound,
@@ -266,6 +272,10 @@ export type TransactionConnectionOptions = {
    */
   nuveiCard?: NuveiOptions | null | undefined;
   /**
+   * Custom options to be passed to the `nuvei-pse` connector.
+   */
+  nuveiPse?: NuveiPSEOptions | null | undefined;
+  /**
    * Custom options to be passed to the `oxxo-oxxo` connector.
    */
   oxxoOxxo?: OxxoOptions | null | undefined;
@@ -342,6 +352,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
     .optional(),
   "mock-card": z.nullable(MockCardOptions$inboundSchema).optional(),
   "nuvei-card": z.nullable(NuveiOptions$inboundSchema).optional(),
+  "nuvei-pse": z.nullable(NuveiPSEOptions$inboundSchema).optional(),
   "oxxo-oxxo": z.nullable(OxxoOptions$inboundSchema).optional(),
   "paypal-paypal": z.nullable(PaypalOptions$inboundSchema).optional(),
   "paypal-paypalpaylater": z.nullable(PaypalOptions$inboundSchema).optional(),
@@ -382,6 +393,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
     "mattilda-tapifintechs": "mattildaTapifintechs",
     "mock-card": "mockCard",
     "nuvei-card": "nuveiCard",
+    "nuvei-pse": "nuveiPse",
     "oxxo-oxxo": "oxxoOxxo",
     "paypal-paypal": "paypalPaypal",
     "paypal-paypalpaylater": "paypalPaypalpaylater",
@@ -427,6 +439,7 @@ export type TransactionConnectionOptions$Outbound = {
   "mattilda-tapifintechs"?: MattildaTapiOptions$Outbound | null | undefined;
   "mock-card"?: MockCardOptions$Outbound | null | undefined;
   "nuvei-card"?: NuveiOptions$Outbound | null | undefined;
+  "nuvei-pse"?: NuveiPSEOptions$Outbound | null | undefined;
   "oxxo-oxxo"?: OxxoOptions$Outbound | null | undefined;
   "paypal-paypal"?: PaypalOptions$Outbound | null | undefined;
   "paypal-paypalpaylater"?: PaypalOptions$Outbound | null | undefined;
@@ -475,6 +488,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     .optional(),
   mockCard: z.nullable(MockCardOptions$outboundSchema).optional(),
   nuveiCard: z.nullable(NuveiOptions$outboundSchema).optional(),
+  nuveiPse: z.nullable(NuveiPSEOptions$outboundSchema).optional(),
   oxxoOxxo: z.nullable(OxxoOptions$outboundSchema).optional(),
   paypalPaypal: z.nullable(PaypalOptions$outboundSchema).optional(),
   paypalPaypalpaylater: z.nullable(PaypalOptions$outboundSchema).optional(),
@@ -514,6 +528,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     mattildaTapifintechs: "mattilda-tapifintechs",
     mockCard: "mock-card",
     nuveiCard: "nuvei-card",
+    nuveiPse: "nuvei-pse",
     oxxoOxxo: "oxxo-oxxo",
     paypalPaypal: "paypal-paypal",
     paypalPaypalpaylater: "paypal-paypalpaylater",
