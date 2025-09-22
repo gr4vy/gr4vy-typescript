@@ -659,7 +659,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Gr4vy({ httpClient });
+const sdk = new Gr4vy({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

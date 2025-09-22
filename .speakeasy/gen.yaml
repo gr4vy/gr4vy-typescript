@@ -22,7 +22,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.47
+  version: 1.1.48
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -63,6 +63,7 @@ typescript:
   jsonpath: legacy
   maxMethodParams: 4
   methodArguments: infer-optional-args
+  modelPropertyCasing: camel
   moduleFormat: commonjs
   outputModelSuffix: output
   packageName: '@gr4vy/sdk'

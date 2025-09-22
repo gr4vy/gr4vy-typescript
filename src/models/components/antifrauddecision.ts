@@ -16,6 +16,7 @@ export const AntiFraudDecision = {
   Reject: "reject",
   Review: "review",
   Skipped: "skipped",
+  Pending: "pending",
 } as const;
 export type AntiFraudDecision = OpenEnum<typeof AntiFraudDecision>;
 
