@@ -13,6 +13,7 @@ export * from "./error429.js";
 export * from "./error500.js";
 export * from "./error502.js";
 export * from "./error504.js";
+export * from "./gr4vyerror.js";
 export * from "./httpclienterrors.js";
 export * from "./httpvalidationerror.js";
 export * from "./responsevalidationerror.js";
