@@ -75,10 +75,7 @@ bun add @gr4vy/sdk
 ### Yarn
 
 ```bash
-yarn add @gr4vy/sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @gr4vy/sdk
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -730,10 +727,7 @@ bun add @gr4vy/sdk
 ### Yarn
 
 ```bash
-yarn add @gr4vy/sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @gr4vy/sdk
 ```
 <!-- End SDK Installation [installation] -->
 
