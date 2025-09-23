@@ -14,22 +14,22 @@ export type MerchantProfileScheme = {
    */
   merchantAcquirerBin: string;
   /**
-   * URL to send when calling 3DS through this scheme.
-   */
-  merchantUrl: string;
-  /**
    * Merchant ID to use when calling 3DS through this scheme.
    */
   merchantAcquirerId: string;
   merchantName: string;
   /**
-   * Merchant country code to use when calling 3DS through this scheme.
+   * The merchant's ISO 3166-1 numeric country code.
    */
   merchantCountryCode: string;
   /**
    * Merchant category code to use when calling 3DS through this scheme.
    */
   merchantCategoryCode: string;
+  /**
+   * URL to send when calling 3DS through this scheme.
+   */
+  merchantUrl: string;
 };
 
 /** @internal */
@@ -39,30 +39,30 @@ export const MerchantProfileScheme$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   merchant_acquirer_bin: z.string(),
-  merchant_url: z.string(),
   merchant_acquirer_id: z.string(),
   merchant_name: z.string(),
   merchant_country_code: z.string(),
   merchant_category_code: z.string(),
+  merchant_url: z.string(),
 }).transform((v) => {
   return remap$(v, {
     "merchant_acquirer_bin": "merchantAcquirerBin",
-    "merchant_url": "merchantUrl",
     "merchant_acquirer_id": "merchantAcquirerId",
     "merchant_name": "merchantName",
     "merchant_country_code": "merchantCountryCode",
     "merchant_category_code": "merchantCategoryCode",
+    "merchant_url": "merchantUrl",
   });
 });
 
 /** @internal */
 export type MerchantProfileScheme$Outbound = {
   merchant_acquirer_bin: string;
-  merchant_url: string;
   merchant_acquirer_id: string;
   merchant_name: string;
   merchant_country_code: string;
   merchant_category_code: string;
+  merchant_url: string;
 };
 
 /** @internal */
@@ -72,19 +72,19 @@ export const MerchantProfileScheme$outboundSchema: z.ZodType<
   MerchantProfileScheme
 > = z.object({
   merchantAcquirerBin: z.string(),
-  merchantUrl: z.string(),
   merchantAcquirerId: z.string(),
   merchantName: z.string(),
   merchantCountryCode: z.string(),
   merchantCategoryCode: z.string(),
+  merchantUrl: z.string(),
 }).transform((v) => {
   return remap$(v, {
     merchantAcquirerBin: "merchant_acquirer_bin",
-    merchantUrl: "merchant_url",
     merchantAcquirerId: "merchant_acquirer_id",
     merchantName: "merchant_name",
     merchantCountryCode: "merchant_country_code",
     merchantCategoryCode: "merchant_category_code",
+    merchantUrl: "merchant_url",
   });
 });
 
