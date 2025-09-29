@@ -150,6 +150,10 @@ export type PaymentLink = {
    * The shipping details for the payment link.
    */
   shippingDetails?: ShippingDetails | null | undefined;
+  /**
+   * The connection options for the payment link.
+   */
+  connectionOptions?: { [k: string]: { [k: string]: any } } | null | undefined;
 };
 
 /** @internal */
@@ -188,6 +192,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
   status: PaymentLinkStatus$inboundSchema,
   buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
   shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
+  connection_options: z.nullable(z.record(z.record(z.any()))).optional(),
 }).transform((v) => {
   return remap$(v, {
     "expires_at": "expiresAt",
@@ -206,6 +211,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
     "created_at": "createdAt",
     "updated_at": "updatedAt",
     "shipping_details": "shippingDetails",
+    "connection_options": "connectionOptions",
   });
 });
 
@@ -238,6 +244,7 @@ export type PaymentLink$Outbound = {
   status: string;
   buyer?: TransactionBuyer$Outbound | null | undefined;
   shipping_details?: ShippingDetails$Outbound | null | undefined;
+  connection_options?: { [k: string]: { [k: string]: any } } | null | undefined;
 };
 
 /** @internal */
@@ -274,6 +281,7 @@ export const PaymentLink$outboundSchema: z.ZodType<
   status: PaymentLinkStatus$outboundSchema,
   buyer: z.nullable(TransactionBuyer$outboundSchema).optional(),
   shippingDetails: z.nullable(ShippingDetails$outboundSchema).optional(),
+  connectionOptions: z.nullable(z.record(z.record(z.any()))).optional(),
 }).transform((v) => {
   return remap$(v, {
     expiresAt: "expires_at",
@@ -292,6 +300,7 @@ export const PaymentLink$outboundSchema: z.ZodType<
     createdAt: "created_at",
     updatedAt: "updated_at",
     shippingDetails: "shipping_details",
+    connectionOptions: "connection_options",
   });
 });
 
