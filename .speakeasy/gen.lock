@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 16a364c34eb165497939d99d402a8676
+  docChecksum: f6248c8cb00ec30cf456b525932a5d17
   docVersion: 1.0.0
-  speakeasyVersion: 1.631.4
+  speakeasyVersion: 1.631.5
   generationVersion: 2.716.16
-  releaseVersion: 1.1.52
-  configChecksum: 5de7d5441e515f6a2c116fa030c68eb6
+  releaseVersion: 1.1.53
+  configChecksum: f791ca04d91cdb01e569d457f3d7a65e
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4456,8 +4456,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes Detected:
-  * `gr4vy.paymentLinks.list()`:  `response.items.[].connectionOptions` **Added**
-  * `gr4vy.paymentLinks.create()`:  `response.connection_options` **Added**
-  * `gr4vy.paymentLinks.get()`:  `response.connection_options` **Added**
