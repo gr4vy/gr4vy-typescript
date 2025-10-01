@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: f6248c8cb00ec30cf456b525932a5d17
+  docChecksum: a556ed89936733d11e9049e3b1d762de
   docVersion: 1.0.0
   speakeasyVersion: 1.631.5
   generationVersion: 2.716.16
-  releaseVersion: 1.1.53
-  configChecksum: f791ca04d91cdb01e569d457f3d7a65e
+  releaseVersion: 1.1.54
+  configChecksum: 1ddb0285f0005de294817ba5ffacf266
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -121,6 +121,9 @@ generatedFiles:
   - docs/models/components/digitalwallets.md
   - docs/models/components/digitalwalletupdate.md
   - docs/models/components/dlocaloptions.md
+  - docs/models/components/dlocalupioptions.md
+  - docs/models/components/dlocalupirecurringinfooptions.md
+  - docs/models/components/dlocalupiwalletoptions.md
   - docs/models/components/dlocalwalletoptions.md
   - docs/models/components/errordetail.md
   - docs/models/components/errorlocation.md
@@ -267,6 +270,7 @@ generatedFiles:
   - docs/models/components/statementdescriptor.md
   - docs/models/components/stripeconnectoptions.md
   - docs/models/components/stripeoptions.md
+  - docs/models/components/subscriptionfrequencyunit.md
   - docs/models/components/taxid.md
   - docs/models/components/taxidkind.md
   - docs/models/components/threedsecuredata.md
@@ -757,6 +761,9 @@ generatedFiles:
   - src/models/components/digitalwallets.ts
   - src/models/components/digitalwalletupdate.ts
   - src/models/components/dlocaloptions.ts
+  - src/models/components/dlocalupioptions.ts
+  - src/models/components/dlocalupirecurringinfooptions.ts
+  - src/models/components/dlocalupiwalletoptions.ts
   - src/models/components/dlocalwalletoptions.ts
   - src/models/components/errordetail.ts
   - src/models/components/errorlocation.ts
@@ -4456,3 +4463,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.dlocal-upi` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.dlocal-upi` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.dlocal-upi` **Added**\n"

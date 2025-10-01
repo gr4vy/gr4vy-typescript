@@ -62,6 +62,12 @@ import {
   DlocalOptions$outboundSchema,
 } from "./dlocaloptions.js";
 import {
+  DlocalUPIOptions,
+  DlocalUPIOptions$inboundSchema,
+  DlocalUPIOptions$Outbound,
+  DlocalUPIOptions$outboundSchema,
+} from "./dlocalupioptions.js";
+import {
   FiservOptions,
   FiservOptions$inboundSchema,
   FiservOptions$Outbound,
@@ -228,6 +234,10 @@ export type TransactionConnectionOptions = {
    */
   dlocalNequi?: DlocalOptions | null | undefined;
   /**
+   * Custom options to be passed to the `dlocal-upi` connector.
+   */
+  dlocalUpi?: DlocalUPIOptions | null | undefined;
+  /**
    * Custom options to be passed to the `fiserv-card` connector.
    */
   fiservCard?: FiservOptions | null | undefined;
@@ -338,6 +348,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
   "cybersource-ideal": z.nullable(CybersourceOptions$inboundSchema).optional(),
   "cybersource-kcp": z.nullable(CybersourceOptions$inboundSchema).optional(),
   "dlocal-nequi": z.nullable(DlocalOptions$inboundSchema).optional(),
+  "dlocal-upi": z.nullable(DlocalUPIOptions$inboundSchema).optional(),
   "fiserv-card": z.nullable(FiservOptions$inboundSchema).optional(),
   "forter-anti-fraud": z.nullable(ForterAntiFraudOptions$inboundSchema)
     .optional(),
@@ -382,6 +393,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
     "cybersource-ideal": "cybersourceIdeal",
     "cybersource-kcp": "cybersourceKcp",
     "dlocal-nequi": "dlocalNequi",
+    "dlocal-upi": "dlocalUpi",
     "fiserv-card": "fiservCard",
     "forter-anti-fraud": "forterAntiFraud",
     "gem-gem": "gemGem",
@@ -428,6 +440,7 @@ export type TransactionConnectionOptions$Outbound = {
   "cybersource-ideal"?: CybersourceOptions$Outbound | null | undefined;
   "cybersource-kcp"?: CybersourceOptions$Outbound | null | undefined;
   "dlocal-nequi"?: DlocalOptions$Outbound | null | undefined;
+  "dlocal-upi"?: DlocalUPIOptions$Outbound | null | undefined;
   "fiserv-card"?: FiservOptions$Outbound | null | undefined;
   "forter-anti-fraud"?: ForterAntiFraudOptions$Outbound | null | undefined;
   "gem-gem"?: LatitudeOptions$Outbound | null | undefined;
@@ -475,6 +488,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   cybersourceIdeal: z.nullable(CybersourceOptions$outboundSchema).optional(),
   cybersourceKcp: z.nullable(CybersourceOptions$outboundSchema).optional(),
   dlocalNequi: z.nullable(DlocalOptions$outboundSchema).optional(),
+  dlocalUpi: z.nullable(DlocalUPIOptions$outboundSchema).optional(),
   fiservCard: z.nullable(FiservOptions$outboundSchema).optional(),
   forterAntiFraud: z.nullable(ForterAntiFraudOptions$outboundSchema).optional(),
   gemGem: z.nullable(LatitudeOptions$outboundSchema).optional(),
@@ -517,6 +531,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     cybersourceIdeal: "cybersource-ideal",
     cybersourceKcp: "cybersource-kcp",
     dlocalNequi: "dlocal-nequi",
+    dlocalUpi: "dlocal-upi",
     fiservCard: "fiserv-card",
     forterAntiFraud: "forter-anti-fraud",
     gemGem: "gem-gem",
