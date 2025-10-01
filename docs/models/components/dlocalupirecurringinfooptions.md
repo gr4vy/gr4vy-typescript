@@ -1,0 +1,23 @@
+# DlocalUPIRecurringInfoOptions
+
+## Example Usage
+
+```typescript
+import { DlocalUPIRecurringInfoOptions } from "@gr4vy/sdk/models/components";
+
+let value: DlocalUPIRecurringInfoOptions = {
+  subscriptionFrequencyUnit: "MONTHLY",
+  subscriptionFrequency: 1,
+  subscriptionStartAt: "20231201",
+  subscriptionEndAt: "20241201",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                          | Type                                                                                                                                           | Required                                                                                                                                       | Description                                                                                                                                    | Example                                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `subscriptionFrequencyUnit`                                                                                                                    | [components.SubscriptionFrequencyUnit](../../models/components/subscriptionfrequencyunit.md)                                                   | :heavy_check_mark:                                                                                                                             | Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`. | MONTHLY                                                                                                                                        |
+| `subscriptionFrequency`                                                                                                                        | *number*                                                                                                                                       | :heavy_check_mark:                                                                                                                             | Indicates the frequency for the subscription.                                                                                                  | 1                                                                                                                                              |
+| `subscriptionStartAt`                                                                                                                          | *string*                                                                                                                                       | :heavy_check_mark:                                                                                                                             | Indicates the start date for the subscription in format `YYYYMMDD`.                                                                            | 20231201                                                                                                                                       |
+| `subscriptionEndAt`                                                                                                                            | *string*                                                                                                                                       | :heavy_check_mark:                                                                                                                             | Indicates the end date for the subscription in format `YYYYMMDD`.                                                                              | 20241201                                                                                                                                       |
