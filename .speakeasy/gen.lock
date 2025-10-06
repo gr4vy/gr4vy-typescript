@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 2dacfc69a12acbae0e090a474b4df668
+  docChecksum: a72679a00d0a7dc5aa267df6733f5110
   docVersion: 1.0.0
-  speakeasyVersion: 1.633.1
-  generationVersion: 2.720.1
-  releaseVersion: 1.1.55
-  configChecksum: b67413c066342dbb31df496625f9796f
+  speakeasyVersion: 1.634.2
+  generationVersion: 2.721.3
+  releaseVersion: 1.2.0
+  configChecksum: f8cca52d04b485eacff3d92259d44884
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -35,7 +35,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.12
+    unions: 2.86.0
 generatedFiles:
   - .gitattributes
   - .npmignore
@@ -249,6 +249,7 @@ generatedFiles:
   - docs/models/components/reportexecutionstatus.md
   - docs/models/components/reportexecutionsummary.md
   - docs/models/components/reportexecutionurl.md
+  - docs/models/components/reportexecutionurlgenerate.md
   - docs/models/components/reports.md
   - docs/models/components/reportschedule.md
   - docs/models/components/reportspec.md
@@ -883,6 +884,7 @@ generatedFiles:
   - src/models/components/reportexecutionstatus.ts
   - src/models/components/reportexecutionsummary.ts
   - src/models/components/reportexecutionurl.ts
+  - src/models/components/reportexecutionurlgenerate.ts
   - src/models/components/reports.ts
   - src/models/components/reportschedule.ts
   - src/models/components/reportspec.ts
@@ -4463,3 +4465,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Typescript SDK Changes Detected:
+  * `gr4vy.reports.executions.url()`:  `request.reportexecutionurlgenerate` **Added**

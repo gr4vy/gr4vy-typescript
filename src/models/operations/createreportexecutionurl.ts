@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateReportExecutionUrlGlobals = {
@@ -25,6 +26,9 @@ export type CreateReportExecutionUrlRequest = {
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
+  reportExecutionUrlGenerate?:
+    | components.ReportExecutionUrlGenerate
+    | undefined;
 };
 
 /** @internal */
@@ -92,10 +96,13 @@ export const CreateReportExecutionUrlRequest$inboundSchema: z.ZodType<
   report_id: z.string(),
   report_execution_id: z.string(),
   merchantAccountId: z.nullable(z.string()).optional(),
+  ReportExecutionUrlGenerate: components
+    .ReportExecutionUrlGenerate$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "report_id": "reportId",
     "report_execution_id": "reportExecutionId",
+    "ReportExecutionUrlGenerate": "reportExecutionUrlGenerate",
   });
 });
 
@@ -104,6 +111,9 @@ export type CreateReportExecutionUrlRequest$Outbound = {
   report_id: string;
   report_execution_id: string;
   merchantAccountId?: string | null | undefined;
+  ReportExecutionUrlGenerate?:
+    | components.ReportExecutionUrlGenerate$Outbound
+    | undefined;
 };
 
 /** @internal */
@@ -115,10 +125,13 @@ export const CreateReportExecutionUrlRequest$outboundSchema: z.ZodType<
   reportId: z.string(),
   reportExecutionId: z.string(),
   merchantAccountId: z.nullable(z.string()).optional(),
+  reportExecutionUrlGenerate: components
+    .ReportExecutionUrlGenerate$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     reportId: "report_id",
     reportExecutionId: "report_execution_id",
+    reportExecutionUrlGenerate: "ReportExecutionUrlGenerate",
   });
 });
 
