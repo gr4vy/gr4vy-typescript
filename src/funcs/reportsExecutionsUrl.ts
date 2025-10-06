@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -36,6 +36,9 @@ export function reportsExecutionsUrl(
   client: Gr4vyCore,
   reportId: string,
   reportExecutionId: string,
+  reportExecutionUrlGenerate?:
+    | components.ReportExecutionUrlGenerate
+    | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -67,6 +70,7 @@ export function reportsExecutionsUrl(
     client,
     reportId,
     reportExecutionId,
+    reportExecutionUrlGenerate,
     merchantAccountId,
     options,
   ));
@@ -76,6 +80,9 @@ async function $do(
   client: Gr4vyCore,
   reportId: string,
   reportExecutionId: string,
+  reportExecutionUrlGenerate?:
+    | components.ReportExecutionUrlGenerate
+    | undefined,
   merchantAccountId?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -109,6 +116,7 @@ async function $do(
   const input: operations.CreateReportExecutionUrlRequest = {
     reportId: reportId,
     reportExecutionId: reportExecutionId,
+    reportExecutionUrlGenerate: reportExecutionUrlGenerate,
     merchantAccountId: merchantAccountId,
   };
 
@@ -122,7 +130,9 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.ReportExecutionUrlGenerate, {
+    explode: true,
+  });
 
   const pathParams = {
     report_execution_id: encodeSimple(
@@ -141,6 +151,7 @@ async function $do(
   )(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",

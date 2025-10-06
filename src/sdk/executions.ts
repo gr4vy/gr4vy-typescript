@@ -46,6 +46,9 @@ export class Executions extends ClientSDK {
   async url(
     reportId: string,
     reportExecutionId: string,
+    reportExecutionUrlGenerate?:
+      | components.ReportExecutionUrlGenerate
+      | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.ReportExecutionUrl> {
@@ -53,6 +56,7 @@ export class Executions extends ClientSDK {
       this,
       reportId,
       reportExecutionId,
+      reportExecutionUrlGenerate,
       merchantAccountId,
       options,
     ));

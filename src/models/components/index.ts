@@ -197,6 +197,7 @@ export * from "./reportexecutions.js";
 export * from "./reportexecutionstatus.js";
 export * from "./reportexecutionsummary.js";
 export * from "./reportexecutionurl.js";
+export * from "./reportexecutionurlgenerate.js";
 export * from "./reports.js";
 export * from "./reportschedule.js";
 export * from "./reportspec.js";
