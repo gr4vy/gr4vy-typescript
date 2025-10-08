@@ -14,18 +14,20 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+ * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`, `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
  */
 export const SubscriptionFrequencyUnit = {
-  Daily: "DAILY",
-  Weekly: "WEEKLY",
-  Monthly: "MONTHLY",
-  Quarterly: "QUARTERLY",
-  SemiAnnual: "SEMI_ANNUAL",
-  Annual: "ANNUAL",
+  Month: "MONTH",
+  Week: "WEEK",
+  BiMonthly: "BI_MONTHLY",
+  Ondemand: "ONDEMAND",
+  Quarter: "QUARTER",
+  Year: "YEAR",
+  SemiAnnually: "SEMI_ANNUALLY",
+  Day: "DAY",
 } as const;
 /**
- * Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+ * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`, `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
  */
 export type SubscriptionFrequencyUnit = OpenEnum<
   typeof SubscriptionFrequencyUnit
@@ -33,7 +35,7 @@ export type SubscriptionFrequencyUnit = OpenEnum<
 
 export type DlocalUPIRecurringInfoOptions = {
   /**
-   * Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+   * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`, `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
    */
   subscriptionFrequencyUnit: SubscriptionFrequencyUnit;
   /**
