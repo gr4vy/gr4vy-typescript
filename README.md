@@ -236,9 +236,6 @@ try {
 <details open>
 <summary>Available methods</summary>
 
-### [accountUpdater](docs/sdks/accountupdater/README.md)
-
-
 #### [accountUpdater.jobs](docs/sdks/jobs/README.md)
 
 * [create](docs/sdks/jobs/README.md#create) - Create account updater job
@@ -311,7 +308,6 @@ try {
 #### [giftCards.balances](docs/sdks/balances/README.md)
 
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
-
 
 ### [merchantAccounts](docs/sdks/merchantaccounts/README.md)
 
