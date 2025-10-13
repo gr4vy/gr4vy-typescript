@@ -5,11 +5,6 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,15 +42,6 @@ import {
   TransactionPaymentSource$outboundSchema,
 } from "./transactionpaymentsource.js";
 
-export const Locale = {
-  En: "en",
-  EnGB: "en-GB",
-  Pt: "pt",
-  PtBR: "pt-BR",
-  Es: "es",
-} as const;
-export type Locale = OpenEnum<typeof Locale>;
-
 export type PaymentLinkCreate = {
   /**
    * The guest buyer for the payment link.
@@ -80,7 +66,7 @@ export type PaymentLinkCreate = {
   /**
    * The locale for the payment link.
    */
-  locale?: Locale | null | undefined;
+  locale?: string | null | undefined;
   /**
    * The merchant's display name.
    */
@@ -141,31 +127,6 @@ export type PaymentLinkCreate = {
 };
 
 /** @internal */
-export const Locale$inboundSchema: z.ZodType<Locale, z.ZodTypeDef, unknown> = z
-  .union([
-    z.nativeEnum(Locale),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const Locale$outboundSchema: z.ZodType<Locale, z.ZodTypeDef, Locale> = z
-  .union([
-    z.nativeEnum(Locale),
-    z.string().and(z.custom<Unrecognized<string>>()),
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Locale$ {
-  /** @deprecated use `Locale$inboundSchema` instead. */
-  export const inboundSchema = Locale$inboundSchema;
-  /** @deprecated use `Locale$outboundSchema` instead. */
-  export const outboundSchema = Locale$outboundSchema;
-}
-
-/** @internal */
 export const PaymentLinkCreate$inboundSchema: z.ZodType<
   PaymentLinkCreate,
   z.ZodTypeDef,
@@ -180,7 +141,7 @@ export const PaymentLinkCreate$inboundSchema: z.ZodType<
   external_identifier: z.nullable(z.string()).optional(),
   statement_descriptor: z.nullable(StatementDescriptor$inboundSchema)
     .optional(),
-  locale: z.nullable(Locale$inboundSchema).optional(),
+  locale: z.nullable(z.string()).optional(),
   merchant_name: z.nullable(z.string()).optional(),
   merchant_url: z.nullable(z.string()).optional(),
   merchant_banner_url: z.nullable(z.string()).optional(),
@@ -253,7 +214,7 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
   externalIdentifier: z.nullable(z.string()).optional(),
   statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
     .optional(),
-  locale: z.nullable(Locale$outboundSchema).optional(),
+  locale: z.nullable(z.string()).optional(),
   merchantName: z.nullable(z.string()).optional(),
   merchantUrl: z.nullable(z.string()).optional(),
   merchantBannerUrl: z.nullable(z.string()).optional(),
