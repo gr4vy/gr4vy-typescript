@@ -13,5 +13,5 @@ let value: Mode = "card";
 This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
-"card" | "redirect" | "applepay" | "googlepay" | "checkout-session" | "click-to-pay" | "gift-card" | Unrecognized<string>
+"card" | "redirect" | "applepay" | "googlepay" | "checkout-session" | "click-to-pay" | "gift-card" | "bank" | Unrecognized<string>
 ```
