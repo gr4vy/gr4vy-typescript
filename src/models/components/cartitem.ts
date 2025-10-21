@@ -39,7 +39,7 @@ export type CartItem = {
    */
   externalIdentifier?: string | null | undefined;
   /**
-   * The SKU for the item.
+   * The SKU or product code for the item.
    */
   sku?: string | null | undefined;
   /**
@@ -62,6 +62,30 @@ export type CartItem = {
    * The seller country of the cart item.
    */
   sellerCountry?: string | null | undefined;
+  /**
+   * Whether the item is exempt of tax.
+   */
+  taxExempt?: boolean | null | undefined;
+  /**
+   * The unit of measure or the unit of measure code.
+   */
+  unitOfMeasure?: string | null | undefined;
+  /**
+   * Item commodity code. Generally a UNSPSC code.
+   */
+  commodityCode?: string | null | undefined;
+  /**
+   * Brief item description.
+   */
+  description?: string | null | undefined;
+  /**
+   * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+   */
+  dutyAmount?: number | null | undefined;
+  /**
+   * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+   */
+  shippingAmount?: number | null | undefined;
 };
 
 /** @internal */
@@ -82,6 +106,12 @@ export const CartItem$inboundSchema: z.ZodType<
   categories: z.nullable(z.array(z.string())).optional(),
   product_type: z.nullable(ProductType$inboundSchema).optional(),
   seller_country: z.nullable(z.string()).optional(),
+  tax_exempt: z.nullable(z.boolean()).optional(),
+  unit_of_measure: z.nullable(z.string()).optional(),
+  commodity_code: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  duty_amount: z.nullable(z.number().int()).optional(),
+  shipping_amount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "unit_amount": "unitAmount",
@@ -92,6 +122,11 @@ export const CartItem$inboundSchema: z.ZodType<
     "image_url": "imageUrl",
     "product_type": "productType",
     "seller_country": "sellerCountry",
+    "tax_exempt": "taxExempt",
+    "unit_of_measure": "unitOfMeasure",
+    "commodity_code": "commodityCode",
+    "duty_amount": "dutyAmount",
+    "shipping_amount": "shippingAmount",
   });
 });
 
@@ -109,6 +144,12 @@ export type CartItem$Outbound = {
   categories?: Array<string> | null | undefined;
   product_type?: string | null | undefined;
   seller_country?: string | null | undefined;
+  tax_exempt?: boolean | null | undefined;
+  unit_of_measure?: string | null | undefined;
+  commodity_code?: string | null | undefined;
+  description?: string | null | undefined;
+  duty_amount?: number | null | undefined;
+  shipping_amount?: number | null | undefined;
 };
 
 /** @internal */
@@ -129,6 +170,12 @@ export const CartItem$outboundSchema: z.ZodType<
   categories: z.nullable(z.array(z.string())).optional(),
   productType: z.nullable(ProductType$outboundSchema).optional(),
   sellerCountry: z.nullable(z.string()).optional(),
+  taxExempt: z.nullable(z.boolean()).optional(),
+  unitOfMeasure: z.nullable(z.string()).optional(),
+  commodityCode: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  dutyAmount: z.nullable(z.number().int()).optional(),
+  shippingAmount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     unitAmount: "unit_amount",
@@ -139,6 +186,11 @@ export const CartItem$outboundSchema: z.ZodType<
     imageUrl: "image_url",
     productType: "product_type",
     sellerCountry: "seller_country",
+    taxExempt: "tax_exempt",
+    unitOfMeasure: "unit_of_measure",
+    commodityCode: "commodity_code",
+    dutyAmount: "duty_amount",
+    shippingAmount: "shipping_amount",
   });
 });
 

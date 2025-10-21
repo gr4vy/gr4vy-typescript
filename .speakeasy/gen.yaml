@@ -16,12 +16,16 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.43
+  version: 1.3.0
+  acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
       '@trust/keyto': ^1.0.1
@@ -62,10 +66,12 @@ typescript:
   jsonpath: legacy
   maxMethodParams: 4
   methodArguments: infer-optional-args
+  modelPropertyCasing: camel
   moduleFormat: commonjs
   outputModelSuffix: output
   packageName: '@gr4vy/sdk'
   responseFormat: flat
+  sseFlatResponse: false
   templateVersion: v2
   usageSDKInit: |-
     new Gr4vy({

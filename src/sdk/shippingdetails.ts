@@ -107,7 +107,7 @@ export class ShippingDetails extends ClientSDK {
     shippingDetailsId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<any> {
+  ): Promise<void> {
     return unwrapAsync(buyersShippingDetailsDelete(
       this,
       buyerId,

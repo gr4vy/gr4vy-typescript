@@ -79,6 +79,10 @@ export type MerchantAccountUpdate = {
    */
   mastercardNetworkTokensAppId?: string | null | undefined;
   /**
+   * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+   */
+  asyncNetworkTokensEnabled?: boolean | undefined;
+  /**
    * The display name for the merchant account.
    */
   displayName?: string | null | undefined;
@@ -107,6 +111,7 @@ export const MerchantAccountUpdate$inboundSchema: z.ZodType<
   amex_network_tokens_app_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
+  async_network_tokens_enabled: z.boolean().default(false),
   display_name: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -131,6 +136,7 @@ export const MerchantAccountUpdate$inboundSchema: z.ZodType<
     "mastercard_network_tokens_requestor_id":
       "mastercardNetworkTokensRequestorId",
     "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
+    "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
     "display_name": "displayName",
   });
 });
@@ -153,6 +159,7 @@ export type MerchantAccountUpdate$Outbound = {
   amex_network_tokens_app_id?: string | null | undefined;
   mastercard_network_tokens_requestor_id?: string | null | undefined;
   mastercard_network_tokens_app_id?: string | null | undefined;
+  async_network_tokens_enabled: boolean;
   display_name?: string | null | undefined;
 };
 
@@ -179,6 +186,7 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
   amexNetworkTokensAppId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
+  asyncNetworkTokensEnabled: z.boolean().default(false),
   displayName: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -203,6 +211,7 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
     mastercardNetworkTokensRequestorId:
       "mastercard_network_tokens_requestor_id",
     mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
+    asyncNetworkTokensEnabled: "async_network_tokens_enabled",
     displayName: "display_name",
   });
 });

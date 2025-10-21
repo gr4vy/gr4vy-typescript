@@ -91,6 +91,10 @@ export type MerchantAccount = {
    */
   mastercardNetworkTokensAppId?: string | null | undefined;
   /**
+   * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+   */
+  asyncNetworkTokensEnabled?: boolean | undefined;
+  /**
    * The date this merchant account was created at.
    */
   createdAt: Date;
@@ -126,6 +130,7 @@ export const MerchantAccount$inboundSchema: z.ZodType<
   amex_network_tokens_app_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
+  async_network_tokens_enabled: z.boolean().default(false),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
@@ -152,6 +157,7 @@ export const MerchantAccount$inboundSchema: z.ZodType<
     "mastercard_network_tokens_requestor_id":
       "mastercardNetworkTokensRequestorId",
     "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
+    "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
   });
@@ -178,6 +184,7 @@ export type MerchantAccount$Outbound = {
   amex_network_tokens_app_id?: string | null | undefined;
   mastercard_network_tokens_requestor_id?: string | null | undefined;
   mastercard_network_tokens_app_id?: string | null | undefined;
+  async_network_tokens_enabled: boolean;
   created_at: string;
   updated_at: string;
 };
@@ -208,6 +215,7 @@ export const MerchantAccount$outboundSchema: z.ZodType<
   amexNetworkTokensAppId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
+  asyncNetworkTokensEnabled: z.boolean().default(false),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
@@ -234,6 +242,7 @@ export const MerchantAccount$outboundSchema: z.ZodType<
     mastercardNetworkTokensRequestorId:
       "mastercard_network_tokens_requestor_id",
     mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
+    asyncNetworkTokensEnabled: "async_network_tokens_enabled",
     createdAt: "created_at",
     updatedAt: "updated_at",
   });

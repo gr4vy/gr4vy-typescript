@@ -865,3 +865,203 @@ Based on:
 - [typescript v1.1.43] .
 ### Releases
 - [NPM v1.1.43] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.43 - .
+
+## 2025-09-11 16:12:26
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.615.2 (2.698.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.44] .
+### Releases
+- [NPM v1.1.44] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.44 - .
+
+## 2025-09-11 16:23:17
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.615.2 (2.698.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.45] .
+### Releases
+- [NPM v1.1.45] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.45 - .
+
+## 2025-09-16 07:40:26
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.615.2 (2.698.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.46] .
+### Releases
+- [NPM v1.1.46] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.46 - .
+
+## 2025-09-16 14:45:45
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.617.1 (2.701.8) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.47] .
+### Releases
+- [NPM v1.1.47] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.47 - .
+
+## 2025-09-22 13:18:12
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.622.1 (2.709.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.48] .
+### Releases
+- [NPM v1.1.48] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.48 - .
+
+## 2025-09-23 16:42:40
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.622.1 (2.709.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.49] .
+### Releases
+- [NPM v1.1.49] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.49 - .
+
+## 2025-09-23 19:38:06
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.622.2 (2.711.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.50] .
+### Releases
+- [NPM v1.1.50] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.50 - .
+
+## 2025-09-25 16:16:34
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.628.6 (2.716.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.51] .
+### Releases
+- [NPM v1.1.51] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.51 - .
+
+## 2025-09-29 18:46:07
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.631.4 (2.716.16) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.52] .
+### Releases
+- [NPM v1.1.52] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.52 - .
+
+## 2025-10-01 12:18:14
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.631.5 (2.716.16) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.53] .
+### Releases
+- [NPM v1.1.53] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.53 - .
+
+## 2025-10-01 17:56:15
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.631.5 (2.716.16) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.54] .
+### Releases
+- [NPM v1.1.54] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.54 - .
+
+## 2025-10-02 07:42:07
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.633.1 (2.720.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.1.55] .
+### Releases
+- [NPM v1.1.55] https://www.npmjs.com/package/@gr4vy/sdk/v/1.1.55 - .
+
+## 2025-10-06 07:12:50
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.634.2 (2.721.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.2.0] .
+### Releases
+- [NPM v1.2.0] https://www.npmjs.com/package/@gr4vy/sdk/v/1.2.0 - .
+
+## 2025-10-06 07:21:33
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.634.2 (2.721.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.2.1] .
+### Releases
+- [NPM v1.2.1] https://www.npmjs.com/package/@gr4vy/sdk/v/1.2.1 - .
+
+## 2025-10-06 16:42:30
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.634.2 (2.721.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.2.2] .
+### Releases
+- [NPM v1.2.2] https://www.npmjs.com/package/@gr4vy/sdk/v/1.2.2 - .
+
+## 2025-10-08 13:29:09
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.636.1 (2.723.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.2.3] .
+### Releases
+- [NPM v1.2.3] https://www.npmjs.com/package/@gr4vy/sdk/v/1.2.3 - .
+
+## 2025-10-08 15:55:36
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.636.1 (2.723.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.2.4] .
+### Releases
+- [NPM v1.2.4] https://www.npmjs.com/package/@gr4vy/sdk/v/1.2.4 - .
+
+## 2025-10-13 18:06:24
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.636.3 (2.723.11) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.2.5] .
+### Releases
+- [NPM v1.2.5] https://www.npmjs.com/package/@gr4vy/sdk/v/1.2.5 - .
+
+## 2025-10-14 15:55:49
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.636.3 (2.723.11) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.2.6] .
+### Releases
+- [NPM v1.2.6] https://www.npmjs.com/package/@gr4vy/sdk/v/1.2.6 - .
+
+## 2025-10-20 18:57:51
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.637.2 (2.727.9) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.3.0] .
+### Releases
+- [NPM v1.3.0] https://www.npmjs.com/package/@gr4vy/sdk/v/1.3.0 - .

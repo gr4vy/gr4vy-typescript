@@ -62,6 +62,12 @@ import {
   DlocalOptions$outboundSchema,
 } from "./dlocaloptions.js";
 import {
+  DlocalUPIOptions,
+  DlocalUPIOptions$inboundSchema,
+  DlocalUPIOptions$Outbound,
+  DlocalUPIOptions$outboundSchema,
+} from "./dlocalupioptions.js";
+import {
   FiservOptions,
   FiservOptions$inboundSchema,
   FiservOptions$Outbound,
@@ -103,6 +109,12 @@ import {
   NuveiOptions$Outbound,
   NuveiOptions$outboundSchema,
 } from "./nuveioptions.js";
+import {
+  NuveiPSEOptions,
+  NuveiPSEOptions$inboundSchema,
+  NuveiPSEOptions$Outbound,
+  NuveiPSEOptions$outboundSchema,
+} from "./nuveipseoptions.js";
 import {
   OxxoOptions,
   OxxoOptions$inboundSchema,
@@ -222,6 +234,10 @@ export type TransactionConnectionOptions = {
    */
   dlocalNequi?: DlocalOptions | null | undefined;
   /**
+   * Custom options to be passed to the `dlocal-upi` connector.
+   */
+  dlocalUpi?: DlocalUPIOptions | null | undefined;
+  /**
    * Custom options to be passed to the `fiserv-card` connector.
    */
   fiservCard?: FiservOptions | null | undefined;
@@ -265,6 +281,10 @@ export type TransactionConnectionOptions = {
    * Custom options to be passed to the `nuvei-card` connector.
    */
   nuveiCard?: NuveiOptions | null | undefined;
+  /**
+   * Custom options to be passed to the `nuvei-pse` connector.
+   */
+  nuveiPse?: NuveiPSEOptions | null | undefined;
   /**
    * Custom options to be passed to the `oxxo-oxxo` connector.
    */
@@ -328,6 +348,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
   "cybersource-ideal": z.nullable(CybersourceOptions$inboundSchema).optional(),
   "cybersource-kcp": z.nullable(CybersourceOptions$inboundSchema).optional(),
   "dlocal-nequi": z.nullable(DlocalOptions$inboundSchema).optional(),
+  "dlocal-upi": z.nullable(DlocalUPIOptions$inboundSchema).optional(),
   "fiserv-card": z.nullable(FiservOptions$inboundSchema).optional(),
   "forter-anti-fraud": z.nullable(ForterAntiFraudOptions$inboundSchema)
     .optional(),
@@ -342,6 +363,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
     .optional(),
   "mock-card": z.nullable(MockCardOptions$inboundSchema).optional(),
   "nuvei-card": z.nullable(NuveiOptions$inboundSchema).optional(),
+  "nuvei-pse": z.nullable(NuveiPSEOptions$inboundSchema).optional(),
   "oxxo-oxxo": z.nullable(OxxoOptions$inboundSchema).optional(),
   "paypal-paypal": z.nullable(PaypalOptions$inboundSchema).optional(),
   "paypal-paypalpaylater": z.nullable(PaypalOptions$inboundSchema).optional(),
@@ -371,6 +393,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
     "cybersource-ideal": "cybersourceIdeal",
     "cybersource-kcp": "cybersourceKcp",
     "dlocal-nequi": "dlocalNequi",
+    "dlocal-upi": "dlocalUpi",
     "fiserv-card": "fiservCard",
     "forter-anti-fraud": "forterAntiFraud",
     "gem-gem": "gemGem",
@@ -382,6 +405,7 @@ export const TransactionConnectionOptions$inboundSchema: z.ZodType<
     "mattilda-tapifintechs": "mattildaTapifintechs",
     "mock-card": "mockCard",
     "nuvei-card": "nuveiCard",
+    "nuvei-pse": "nuveiPse",
     "oxxo-oxxo": "oxxoOxxo",
     "paypal-paypal": "paypalPaypal",
     "paypal-paypalpaylater": "paypalPaypalpaylater",
@@ -416,6 +440,7 @@ export type TransactionConnectionOptions$Outbound = {
   "cybersource-ideal"?: CybersourceOptions$Outbound | null | undefined;
   "cybersource-kcp"?: CybersourceOptions$Outbound | null | undefined;
   "dlocal-nequi"?: DlocalOptions$Outbound | null | undefined;
+  "dlocal-upi"?: DlocalUPIOptions$Outbound | null | undefined;
   "fiserv-card"?: FiservOptions$Outbound | null | undefined;
   "forter-anti-fraud"?: ForterAntiFraudOptions$Outbound | null | undefined;
   "gem-gem"?: LatitudeOptions$Outbound | null | undefined;
@@ -427,6 +452,7 @@ export type TransactionConnectionOptions$Outbound = {
   "mattilda-tapifintechs"?: MattildaTapiOptions$Outbound | null | undefined;
   "mock-card"?: MockCardOptions$Outbound | null | undefined;
   "nuvei-card"?: NuveiOptions$Outbound | null | undefined;
+  "nuvei-pse"?: NuveiPSEOptions$Outbound | null | undefined;
   "oxxo-oxxo"?: OxxoOptions$Outbound | null | undefined;
   "paypal-paypal"?: PaypalOptions$Outbound | null | undefined;
   "paypal-paypalpaylater"?: PaypalOptions$Outbound | null | undefined;
@@ -462,6 +488,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   cybersourceIdeal: z.nullable(CybersourceOptions$outboundSchema).optional(),
   cybersourceKcp: z.nullable(CybersourceOptions$outboundSchema).optional(),
   dlocalNequi: z.nullable(DlocalOptions$outboundSchema).optional(),
+  dlocalUpi: z.nullable(DlocalUPIOptions$outboundSchema).optional(),
   fiservCard: z.nullable(FiservOptions$outboundSchema).optional(),
   forterAntiFraud: z.nullable(ForterAntiFraudOptions$outboundSchema).optional(),
   gemGem: z.nullable(LatitudeOptions$outboundSchema).optional(),
@@ -475,6 +502,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     .optional(),
   mockCard: z.nullable(MockCardOptions$outboundSchema).optional(),
   nuveiCard: z.nullable(NuveiOptions$outboundSchema).optional(),
+  nuveiPse: z.nullable(NuveiPSEOptions$outboundSchema).optional(),
   oxxoOxxo: z.nullable(OxxoOptions$outboundSchema).optional(),
   paypalPaypal: z.nullable(PaypalOptions$outboundSchema).optional(),
   paypalPaypalpaylater: z.nullable(PaypalOptions$outboundSchema).optional(),
@@ -503,6 +531,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     cybersourceIdeal: "cybersource-ideal",
     cybersourceKcp: "cybersource-kcp",
     dlocalNequi: "dlocal-nequi",
+    dlocalUpi: "dlocal-upi",
     fiservCard: "fiserv-card",
     forterAntiFraud: "forter-anti-fraud",
     gemGem: "gem-gem",
@@ -514,6 +543,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     mattildaTapifintechs: "mattilda-tapifintechs",
     mockCard: "mock-card",
     nuveiCard: "nuvei-card",
+    nuveiPse: "nuvei-pse",
     oxxoOxxo: "oxxo-oxxo",
     paypalPaypal: "paypal-paypal",
     paypalPaypalpaylater: "paypal-paypalpaylater",

@@ -392,9 +392,9 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.shippingDetails.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
+  await gr4vy.buyers.shippingDetails.delete("fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
 
-  console.log(result);
+
 }
 
 run();
@@ -419,7 +419,7 @@ async function run() {
   const res = await buyersShippingDetailsDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9", "bf8c36ad-02d9-4904-b0f9-a230b149e341");
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("buyersShippingDetailsDelete failed:", res.error);
   }
@@ -441,7 +441,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<void\>**
 
 ### Errors
 

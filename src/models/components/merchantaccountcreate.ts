@@ -79,6 +79,10 @@ export type MerchantAccountCreate = {
    */
   mastercardNetworkTokensAppId?: string | null | undefined;
   /**
+   * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+   */
+  asyncNetworkTokensEnabled?: boolean | undefined;
+  /**
    * The ID for the merchant account.
    */
   id: string;
@@ -111,6 +115,7 @@ export const MerchantAccountCreate$inboundSchema: z.ZodType<
   amex_network_tokens_app_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
+  async_network_tokens_enabled: z.boolean().default(false),
   id: z.string(),
   display_name: z.string(),
 }).transform((v) => {
@@ -136,6 +141,7 @@ export const MerchantAccountCreate$inboundSchema: z.ZodType<
     "mastercard_network_tokens_requestor_id":
       "mastercardNetworkTokensRequestorId",
     "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
+    "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
     "display_name": "displayName",
   });
 });
@@ -158,6 +164,7 @@ export type MerchantAccountCreate$Outbound = {
   amex_network_tokens_app_id?: string | null | undefined;
   mastercard_network_tokens_requestor_id?: string | null | undefined;
   mastercard_network_tokens_app_id?: string | null | undefined;
+  async_network_tokens_enabled: boolean;
   id: string;
   display_name: string;
 };
@@ -185,6 +192,7 @@ export const MerchantAccountCreate$outboundSchema: z.ZodType<
   amexNetworkTokensAppId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
+  asyncNetworkTokensEnabled: z.boolean().default(false),
   id: z.string(),
   displayName: z.string(),
 }).transform((v) => {
@@ -210,6 +218,7 @@ export const MerchantAccountCreate$outboundSchema: z.ZodType<
     mastercardNetworkTokensRequestorId:
       "mastercard_network_tokens_requestor_id",
     mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
+    asyncNetworkTokensEnabled: "async_network_tokens_enabled",
     displayName: "display_name",
   });
 });

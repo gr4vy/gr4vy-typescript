@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: ae160cf87bc10d976e520f9c24ee9b07
+  docChecksum: e8ccd7bae8ae01ab382503dbcc31d30b
   docVersion: 1.0.0
-  speakeasyVersion: 1.613.0
-  generationVersion: 2.696.0
-  releaseVersion: 1.1.43
-  configChecksum: bf2c59e2ab5b76e1469bb846f72e6810
+  speakeasyVersion: 1.637.2
+  generationVersion: 2.727.9
+  releaseVersion: 1.3.0
+  configChecksum: f0981612e9acc29bb610d1ed7e99b48d
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -14,17 +14,17 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.22
+    core: 3.22.0
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     flattening: 2.82.1
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
     globals: 2.82.2
-    groups: 2.81.2
+    groups: 2.81.3
     ignores: 2.81.1
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
@@ -35,7 +35,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.11
+    unions: 2.86.0
 generatedFiles:
   - .gitattributes
   - .npmignore
@@ -121,6 +121,9 @@ generatedFiles:
   - docs/models/components/digitalwallets.md
   - docs/models/components/digitalwalletupdate.md
   - docs/models/components/dlocaloptions.md
+  - docs/models/components/dlocalupioptions.md
+  - docs/models/components/dlocalupirecurringinfooptions.md
+  - docs/models/components/dlocalupiwalletoptions.md
   - docs/models/components/dlocalwalletoptions.md
   - docs/models/components/errordetail.md
   - docs/models/components/errorlocation.md
@@ -167,7 +170,6 @@ generatedFiles:
   - docs/models/components/items.md
   - docs/models/components/latitudeoptions.md
   - docs/models/components/loc.md
-  - docs/models/components/locale.md
   - docs/models/components/mattildatapioptions.md
   - docs/models/components/merchantaccount.md
   - docs/models/components/merchantaccountcreate.md
@@ -187,6 +189,7 @@ generatedFiles:
   - docs/models/components/networktokenstatus.md
   - docs/models/components/nuveiairlinedataoptions.md
   - docs/models/components/nuveioptions.md
+  - docs/models/components/nuveipseoptions.md
   - docs/models/components/oxxooptions.md
   - docs/models/components/paymentlink.md
   - docs/models/components/paymentlinkcreate.md
@@ -245,6 +248,7 @@ generatedFiles:
   - docs/models/components/reportexecutionstatus.md
   - docs/models/components/reportexecutionsummary.md
   - docs/models/components/reportexecutionurl.md
+  - docs/models/components/reportexecutionurlgenerate.md
   - docs/models/components/reports.md
   - docs/models/components/reportschedule.md
   - docs/models/components/reportspec.md
@@ -266,6 +270,7 @@ generatedFiles:
   - docs/models/components/statementdescriptor.md
   - docs/models/components/stripeconnectoptions.md
   - docs/models/components/stripeoptions.md
+  - docs/models/components/subscriptionfrequencyunit.md
   - docs/models/components/taxid.md
   - docs/models/components/taxidkind.md
   - docs/models/components/threedsecuredata.md
@@ -527,7 +532,6 @@ generatedFiles:
   - docs/models/operations/voidtransactionglobals.md
   - docs/models/operations/voidtransactionrequest.md
   - docs/models/operations/voidtransactionresponsevoidtransaction.md
-  - docs/sdks/accountupdater/README.md
   - docs/sdks/all/README.md
   - docs/sdks/auditlogs/README.md
   - docs/sdks/balances/README.md
@@ -540,7 +544,6 @@ generatedFiles:
   - docs/sdks/events/README.md
   - docs/sdks/executions/README.md
   - docs/sdks/giftcards/README.md
-  - docs/sdks/gr4vy/README.md
   - docs/sdks/gr4vygiftcards/README.md
   - docs/sdks/gr4vypaymentmethods/README.md
   - docs/sdks/gr4vyrefunds/README.md
@@ -756,6 +759,9 @@ generatedFiles:
   - src/models/components/digitalwallets.ts
   - src/models/components/digitalwalletupdate.ts
   - src/models/components/dlocaloptions.ts
+  - src/models/components/dlocalupioptions.ts
+  - src/models/components/dlocalupirecurringinfooptions.ts
+  - src/models/components/dlocalupiwalletoptions.ts
   - src/models/components/dlocalwalletoptions.ts
   - src/models/components/errordetail.ts
   - src/models/components/errorlocation.ts
@@ -818,6 +824,7 @@ generatedFiles:
   - src/models/components/networktokenstatus.ts
   - src/models/components/nuveiairlinedataoptions.ts
   - src/models/components/nuveioptions.ts
+  - src/models/components/nuveipseoptions.ts
   - src/models/components/oxxooptions.ts
   - src/models/components/paymentlink.ts
   - src/models/components/paymentlinkcreate.ts
@@ -874,6 +881,7 @@ generatedFiles:
   - src/models/components/reportexecutionstatus.ts
   - src/models/components/reportexecutionsummary.ts
   - src/models/components/reportexecutionurl.ts
+  - src/models/components/reportexecutionurlgenerate.ts
   - src/models/components/reports.ts
   - src/models/components/reportschedule.ts
   - src/models/components/reportspec.ts
@@ -3688,10 +3696,10 @@ examples:
           timeout_in_seconds: 1
           application_name: "core-api"
       requestBody:
-        application/json: {"account_updater_enabled": true, "id": "merchant-12345", "display_name": "Example"}
+        application/json: {"account_updater_enabled": true, "async_network_tokens_enabled": true, "id": "merchant-12345", "display_name": "Example"}
       responses:
         "201":
-          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "account_updater_enabled": true, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "account_updater_enabled": true, "async_network_tokens_enabled": true, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -3725,7 +3733,7 @@ examples:
           application_name: "core-api"
       responses:
         "200":
-          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "account_updater_enabled": true, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "account_updater_enabled": true, "async_network_tokens_enabled": true, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -3759,10 +3767,10 @@ examples:
           timeout_in_seconds: 1
           application_name: "core-api"
       requestBody:
-        application/json: {"account_updater_enabled": true}
+        application/json: {"account_updater_enabled": true, "async_network_tokens_enabled": true}
       responses:
         "200":
-          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "account_updater_enabled": true, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "account_updater_enabled": true, "async_network_tokens_enabled": true, "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -4454,4 +4462,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.list()`: \n  *  `request.disputed` **Added**\n  *  `response.items.[].disputed` **Added**\n* `gr4vy.transactions.create()`:  `response.disputed` **Added**\n* `gr4vy.transactions.get()`:  `response.disputed` **Added**\n* `gr4vy.transactions.update()`:  `response.disputed` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction].disputed` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction].disputed` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.disputed` **Added**\n* `gr4vy.transactions.sync()`:  `response.disputed` **Added**\n"

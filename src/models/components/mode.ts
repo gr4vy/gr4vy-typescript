@@ -17,6 +17,7 @@ export const Mode = {
   CheckoutSession: "checkout-session",
   ClickToPay: "click-to-pay",
   GiftCard: "gift-card",
+  Bank: "bank",
 } as const;
 export type Mode = OpenEnum<typeof Mode>;
 

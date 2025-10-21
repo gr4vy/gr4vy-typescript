@@ -34,6 +34,7 @@ export const TaxIdKind = {
   IdNik: "id.nik",
   IdNpwp: "id.npwp",
   InGst: "in.gst",
+  InPan: "in.pan",
   JpCn: "jp.cn",
   JpRn: "jp.rn",
   KrBrn: "kr.brn",

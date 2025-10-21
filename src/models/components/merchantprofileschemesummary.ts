@@ -14,22 +14,22 @@ export type MerchantProfileSchemeSummary = {
    */
   merchantAcquirerBin: string;
   /**
-   * URL to send when calling 3DS through this scheme.
-   */
-  merchantUrl: string;
-  /**
    * Merchant ID to use when calling 3DS through this scheme.
    */
   merchantAcquirerId: string;
   merchantName: string;
   /**
-   * Merchant country code to use when calling 3DS through this scheme.
+   * The merchant's ISO 3166-1 numeric country code.
    */
   merchantCountryCode: string;
   /**
    * Merchant category code to use when calling 3DS through this scheme.
    */
   merchantCategoryCode: string;
+  /**
+   * URL to send when calling 3DS through this scheme.
+   */
+  merchantUrl: string;
   /**
    * The date and time when this profile was first created in our system.
    */
@@ -43,20 +43,20 @@ export const MerchantProfileSchemeSummary$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   merchant_acquirer_bin: z.string(),
-  merchant_url: z.string(),
   merchant_acquirer_id: z.string(),
   merchant_name: z.string(),
   merchant_country_code: z.string(),
   merchant_category_code: z.string(),
+  merchant_url: z.string(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
   return remap$(v, {
     "merchant_acquirer_bin": "merchantAcquirerBin",
-    "merchant_url": "merchantUrl",
     "merchant_acquirer_id": "merchantAcquirerId",
     "merchant_name": "merchantName",
     "merchant_country_code": "merchantCountryCode",
     "merchant_category_code": "merchantCategoryCode",
+    "merchant_url": "merchantUrl",
     "created_at": "createdAt",
   });
 });
@@ -64,11 +64,11 @@ export const MerchantProfileSchemeSummary$inboundSchema: z.ZodType<
 /** @internal */
 export type MerchantProfileSchemeSummary$Outbound = {
   merchant_acquirer_bin: string;
-  merchant_url: string;
   merchant_acquirer_id: string;
   merchant_name: string;
   merchant_country_code: string;
   merchant_category_code: string;
+  merchant_url: string;
   created_at: string;
 };
 
@@ -79,20 +79,20 @@ export const MerchantProfileSchemeSummary$outboundSchema: z.ZodType<
   MerchantProfileSchemeSummary
 > = z.object({
   merchantAcquirerBin: z.string(),
-  merchantUrl: z.string(),
   merchantAcquirerId: z.string(),
   merchantName: z.string(),
   merchantCountryCode: z.string(),
   merchantCategoryCode: z.string(),
+  merchantUrl: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
   return remap$(v, {
     merchantAcquirerBin: "merchant_acquirer_bin",
-    merchantUrl: "merchant_url",
     merchantAcquirerId: "merchant_acquirer_id",
     merchantName: "merchant_name",
     merchantCountryCode: "merchant_country_code",
     merchantCategoryCode: "merchant_category_code",
+    merchantUrl: "merchant_url",
     createdAt: "created_at",
   });
 });

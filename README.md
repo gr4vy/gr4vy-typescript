@@ -75,10 +75,7 @@ bun add @gr4vy/sdk
 ### Yarn
 
 ```bash
-yarn add @gr4vy/sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @gr4vy/sdk
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -239,9 +236,6 @@ try {
 <details open>
 <summary>Available methods</summary>
 
-### [accountUpdater](docs/sdks/accountupdater/README.md)
-
-
 #### [accountUpdater.jobs](docs/sdks/jobs/README.md)
 
 * [create](docs/sdks/jobs/README.md#create) - Create account updater job
@@ -314,7 +308,6 @@ try {
 #### [giftCards.balances](docs/sdks/balances/README.md)
 
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
-
 
 ### [merchantAccounts](docs/sdks/merchantaccounts/README.md)
 
@@ -659,7 +652,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Gr4vy({ httpClient });
+const sdk = new Gr4vy({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -730,10 +723,7 @@ bun add @gr4vy/sdk
 ### Yarn
 
 ```bash
-yarn add @gr4vy/sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @gr4vy/sdk
 ```
 <!-- End SDK Installation [installation] -->
 

@@ -448,9 +448,9 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.paymentServices.delete("fffd152a-9532-4087-9a4f-de58754210f0");
+  await gr4vy.paymentServices.delete("fffd152a-9532-4087-9a4f-de58754210f0");
 
-  console.log(result);
+
 }
 
 run();
@@ -475,7 +475,7 @@ async function run() {
   const res = await paymentServicesDelete(gr4vy, "fffd152a-9532-4087-9a4f-de58754210f0");
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("paymentServicesDelete failed:", res.error);
   }
@@ -496,7 +496,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
