@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": "Gr4vy",
   "main": "./index.js",
   "sideEffects": false,
@@ -34,6 +34,6 @@
     "jwk-thumbprint": "^0.1.4",
     "snakecase-keys": "^6.0.0",
     "uuid": "^11.1.0",
-    "zod": "^3.20.0"
+    "zod": "^3.25.0 || ^4.0.0"
   }
 }
