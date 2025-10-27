@@ -24,7 +24,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.4.0
+  version: 1.5.1
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -36,9 +36,9 @@ typescript:
     devDependencies:
       '@types/jsonwebtoken': ^9.0.10
       '@types/trust__keyto': ^1.0.4
-      '@types/uuid': ^10.0.0
+      '@types/uuid': ^11.0.0
       timekeeper: ^2.3.1
-      vitest: ^3.2.4
+      vitest: ^4.0.3
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Gr4vy
@@ -90,3 +90,4 @@ typescript:
       package: fs
       type: packageImport
   useIndexModules: true
+  zodVersion: v3

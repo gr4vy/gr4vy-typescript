@@ -10,19 +10,19 @@ export type Error401Data = {
   /**
    * Always `error`.
    */
-  type?: "error";
+  type?: "error" | undefined;
   /**
    * Always `unauthorized`
    */
-  code?: string;
+  code?: string | undefined;
   /**
    * Always `401`.
    */
-  status?: number;
+  status?: number | undefined;
   /**
    * A human readable message that provides more context to the error.
    */
-  message?: string;
+  message?: string | undefined;
   /**
    * A list of details that further ellaborate on the error.
    */
@@ -33,15 +33,15 @@ export class Error401 extends Gr4vyError {
   /**
    * Always `error`.
    */
-  type?: "error";
+  type?: "error" | undefined;
   /**
    * Always `unauthorized`
    */
-  code?: string;
+  code?: string | undefined;
   /**
    * Always `401`.
    */
-  status?: number;
+  status?: number | undefined;
   /**
    * A list of details that further ellaborate on the error.
    */

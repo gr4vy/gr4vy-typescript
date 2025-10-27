@@ -1,4 +1,4 @@
-speakeasyVersion: 1.638.0
+speakeasyVersion: 1.639.3
 sources:
     openapi:
         sourceNamespace: openapi
@@ -6,7 +6,6 @@ sources:
         sourceBlobDigest: sha256:221724c8b1df54238f59b7b83bf6ee9a1103bdc5170988f63f581f23f408cc80
         tags:
             - latest
-            - speakeasy-sdk-regen-1761142095
             - 1.0.0
 targets:
     first-target:
@@ -20,7 +19,7 @@ targets:
         sourceRevisionDigest: sha256:48b4403146a4d3c968d95adfc481fede0b798d0c15e95f890492e185afa94c57
         sourceBlobDigest: sha256:221724c8b1df54238f59b7b83bf6ee9a1103bdc5170988f63f581f23f408cc80
         codeSamplesNamespace: openapi-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:347269d3279a7fb3458a4d8ca8098db419a59a5a0a4296140f420bcbfc64551c
+        codeSamplesRevisionDigest: sha256:a9d263e12e5fdaed4cf90b1b5660a507ce6994ee39ad62cd14997c509e0965cf
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
