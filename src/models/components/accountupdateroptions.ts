@@ -67,7 +67,7 @@ export const AccountUpdaterOptions$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountUpdaterOptions
 > = z.object({
-  responseCode: z.nullable(z.literal("updated").default("updated" as const)),
+  responseCode: z.nullable(z.literal("updated")),
   accountNumber: z.nullable(z.string()).optional(),
   expirationMonth: z.nullable(z.string()).optional(),
   expirationYear: z.nullable(z.string()).optional(),

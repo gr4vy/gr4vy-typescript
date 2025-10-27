@@ -10,16 +10,16 @@ export type Error504Data = {
   /**
    * Always `error`.
    */
-  type?: "error";
+  type?: "error" | undefined;
   /**
    * Always `gateway_timeout`
    */
-  code?: string;
-  status?: number;
+  code?: string | undefined;
+  status?: number | undefined;
   /**
    * A human readable message that provides more context to the error.
    */
-  message?: string;
+  message?: string | undefined;
   /**
    * A list of details that further ellaborate on the error.
    */
@@ -30,12 +30,12 @@ export class Error504 extends Gr4vyError {
   /**
    * Always `error`.
    */
-  type?: "error";
+  type?: "error" | undefined;
   /**
    * Always `gateway_timeout`
    */
-  code?: string;
-  status?: number;
+  code?: string | undefined;
+  status?: number | undefined;
   /**
    * A list of details that further ellaborate on the error.
    */

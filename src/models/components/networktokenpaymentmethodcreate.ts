@@ -146,7 +146,7 @@ export const NetworkTokenPaymentMethodCreate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   NetworkTokenPaymentMethodCreate
 > = z.object({
-  method: z.literal("network-token").default("network-token" as const),
+  method: z.literal("network-token"),
   token: z.string(),
   expirationDate: z.string(),
   cryptogram: z.nullable(z.string()).optional(),

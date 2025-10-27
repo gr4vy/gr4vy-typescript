@@ -10,19 +10,19 @@ export type Error500Data = {
   /**
    * Always `error`.
    */
-  type?: "error";
+  type?: "error" | undefined;
   /**
    * Always `server_error`
    */
-  code?: string;
+  code?: string | undefined;
   /**
    * Always `500`.
    */
-  status?: number;
+  status?: number | undefined;
   /**
    * A human readable message that provides more context to the error.
    */
-  message?: string;
+  message?: string | undefined;
   /**
    * A list of details that further ellaborate on the error.
    */
@@ -33,15 +33,15 @@ export class Error500 extends Gr4vyError {
   /**
    * Always `error`.
    */
-  type?: "error";
+  type?: "error" | undefined;
   /**
    * Always `server_error`
    */
-  code?: string;
+  code?: string | undefined;
   /**
    * Always `500`.
    */
-  status?: number;
+  status?: number | undefined;
   /**
    * A list of details that further ellaborate on the error.
    */
