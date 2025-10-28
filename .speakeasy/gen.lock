@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: cd2232f2608e2542ca750dde80fb6420
+  docChecksum: 2e41213aacbe582009dcdb390c56939b
   docVersion: 1.0.0
-  speakeasyVersion: 1.640.0
-  generationVersion: 2.730.5
-  releaseVersion: 1.5.2
-  configChecksum: 5a0efae0acc1c45b07a55b61c3114b92
+  speakeasyVersion: 1.642.0
+  generationVersion: 2.731.4
+  releaseVersion: 1.5.3
+  configChecksum: ff49c6aad009d69fb50df0329f7e1b6f
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -231,6 +231,10 @@ generatedFiles:
   - docs/models/components/payoutsummaries.md
   - docs/models/components/payoutsummary.md
   - docs/models/components/paypaloptions.md
+  - docs/models/components/paypalshippingoptions.md
+  - docs/models/components/paypalshippingoptionsitem.md
+  - docs/models/components/paypalshippingoptionsitemamount.md
+  - docs/models/components/paypalshippingoptionsitemtype.md
   - docs/models/components/powertranzoptions.md
   - docs/models/components/producttype.md
   - docs/models/components/recipient.md
@@ -866,6 +870,9 @@ generatedFiles:
   - src/models/components/payoutsummaries.ts
   - src/models/components/payoutsummary.ts
   - src/models/components/paypaloptions.ts
+  - src/models/components/paypalshippingoptions.ts
+  - src/models/components/paypalshippingoptionsitem.ts
+  - src/models/components/paypalshippingoptionsitemamount.ts
   - src/models/components/powertranzoptions.ts
   - src/models/components/producttype.ts
   - src/models/components/recipient.ts
@@ -4464,4 +4471,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.integrationClient` **Added**\n  *  `response.session_token` **Added**\n* `gr4vy.transactions.get()`:  `response.session_token` **Added**\n* `gr4vy.transactions.update()`:  `response.session_token` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction].sessionToken` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction].sessionToken` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.sessionToken` **Added**\n* `gr4vy.transactions.sync()`:  `response.session_token` **Added**\n* `gr4vy.paymentServiceDefinitions.list()`:  `response.items.[].supportedIntegrationClients` **Added**\n* `gr4vy.paymentServiceDefinitions.get()`:  `response.supported_integration_clients` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.paypal-paypal.shipping` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.paypal-paypal.shipping` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.paypal-paypal.shipping` **Added**\n"
