@@ -351,6 +351,10 @@ export type Transaction = {
    */
   installmentCount?: number | null | undefined;
   /**
+   * A session token that can be used to fetch session data for direct client integrations.
+   */
+  sessionToken?: string | null | undefined;
+  /**
    * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
    */
   taxAmount?: number | null | undefined;
@@ -460,6 +464,7 @@ export const Transaction$inboundSchema: z.ZodType<
   recipient: z.nullable(Recipient$inboundSchema).optional(),
   merchant_advice_code: z.nullable(z.string()).optional(),
   installment_count: z.nullable(z.number().int()).optional(),
+  session_token: z.nullable(z.string()).optional(),
   tax_amount: z.nullable(z.number().int()).optional(),
   merchant_tax_id: z.nullable(z.string()).optional(),
   customer_reference_number: z.nullable(z.string()).optional(),
@@ -514,6 +519,7 @@ export const Transaction$inboundSchema: z.ZodType<
     "account_funding_transaction": "accountFundingTransaction",
     "merchant_advice_code": "merchantAdviceCode",
     "installment_count": "installmentCount",
+    "session_token": "sessionToken",
     "tax_amount": "taxAmount",
     "merchant_tax_id": "merchantTaxId",
     "customer_reference_number": "customerReferenceNumber",
@@ -585,6 +591,7 @@ export type Transaction$Outbound = {
   recipient?: Recipient$Outbound | null | undefined;
   merchant_advice_code?: string | null | undefined;
   installment_count?: number | null | undefined;
+  session_token?: string | null | undefined;
   tax_amount?: number | null | undefined;
   merchant_tax_id?: string | null | undefined;
   customer_reference_number?: string | null | undefined;
@@ -664,6 +671,7 @@ export const Transaction$outboundSchema: z.ZodType<
   recipient: z.nullable(Recipient$outboundSchema).optional(),
   merchantAdviceCode: z.nullable(z.string()).optional(),
   installmentCount: z.nullable(z.number().int()).optional(),
+  sessionToken: z.nullable(z.string()).optional(),
   taxAmount: z.nullable(z.number().int()).optional(),
   merchantTaxId: z.nullable(z.string()).optional(),
   customerReferenceNumber: z.nullable(z.string()).optional(),
@@ -718,6 +726,7 @@ export const Transaction$outboundSchema: z.ZodType<
     accountFundingTransaction: "account_funding_transaction",
     merchantAdviceCode: "merchant_advice_code",
     installmentCount: "installment_count",
+    sessionToken: "session_token",
     taxAmount: "tax_amount",
     merchantTaxId: "merchant_tax_id",
     customerReferenceNumber: "customer_reference_number",

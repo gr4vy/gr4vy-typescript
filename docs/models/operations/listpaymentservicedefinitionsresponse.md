@@ -63,6 +63,9 @@ let value: ListPaymentServiceDefinitionsResponse = {
           cartItemsRequired: true,
           cartItemsShouldMatchAmount: true,
         },
+        supportedIntegrationClients: [
+          "redirect",
+        ],
       },
     ],
   },

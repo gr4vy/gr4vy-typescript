@@ -86,6 +86,11 @@ import {
   GuestBuyerInput$outboundSchema,
 } from "./guestbuyerinput.js";
 import {
+  IntegrationClient,
+  IntegrationClient$inboundSchema,
+  IntegrationClient$outboundSchema,
+} from "./integrationclient.js";
+import {
   NetworkTokenPaymentMethodCreate,
   NetworkTokenPaymentMethodCreate$inboundSchema,
   NetworkTokenPaymentMethodCreate$Outbound,
@@ -353,6 +358,10 @@ export type TransactionCreate = {
    * Total shipping amount.
    */
   shippingAmount?: number | null | undefined;
+  /**
+   * Defines the client where the session for this transaction is going to be used. Please refer to the connections documentation for more guidance.
+   */
+  integrationClient?: IntegrationClient | null | undefined;
 };
 
 /** @internal */
@@ -619,6 +628,7 @@ export const TransactionCreate$inboundSchema: z.ZodType<
   supplier_order_number: z.nullable(z.string()).optional(),
   duty_amount: z.nullable(z.number().int()).optional(),
   shipping_amount: z.nullable(z.number().int()).optional(),
+  integration_client: z.nullable(IntegrationClient$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "payment_method": "paymentMethod",
@@ -649,6 +659,7 @@ export const TransactionCreate$inboundSchema: z.ZodType<
     "supplier_order_number": "supplierOrderNumber",
     "duty_amount": "dutyAmount",
     "shipping_amount": "shippingAmount",
+    "integration_client": "integrationClient",
   });
 });
 
@@ -713,6 +724,7 @@ export type TransactionCreate$Outbound = {
   supplier_order_number?: string | null | undefined;
   duty_amount?: number | null | undefined;
   shipping_amount?: number | null | undefined;
+  integration_client?: string | null | undefined;
 };
 
 /** @internal */
@@ -785,6 +797,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   supplierOrderNumber: z.nullable(z.string()).optional(),
   dutyAmount: z.nullable(z.number().int()).optional(),
   shippingAmount: z.nullable(z.number().int()).optional(),
+  integrationClient: z.nullable(IntegrationClient$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethod: "payment_method",
@@ -815,6 +828,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     supplierOrderNumber: "supplier_order_number",
     dutyAmount: "duty_amount",
     shippingAmount: "shipping_amount",
+    integrationClient: "integration_client",
   });
 });
 

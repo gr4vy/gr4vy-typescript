@@ -121,6 +121,7 @@ export * from "./googlepaysessionrequest.js";
 export * from "./guestbuyerinput.js";
 export * from "./guestbuyeroutput.js";
 export * from "./instrumenttype.js";
+export * from "./integrationclient.js";
 export * from "./latitudeoptions.js";
 export * from "./mattildatapioptions.js";
 export * from "./merchantaccount.js";
