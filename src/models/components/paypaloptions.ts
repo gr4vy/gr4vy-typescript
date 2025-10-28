@@ -7,12 +7,22 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  PaypalShippingOptions,
+  PaypalShippingOptions$inboundSchema,
+  PaypalShippingOptions$Outbound,
+  PaypalShippingOptions$outboundSchema,
+} from "./paypalshippingoptions.js";
 
 export type PaypalOptions = {
   /**
    * Additional Set Transaction Context Values (STC) to be sent to PayPal as part of the transaction.
    */
   additionalData?: Array<{ [k: string]: string }> | null | undefined;
+  /**
+   * Shipping information to be passed to the PayPal API.
+   */
+  shipping?: PaypalShippingOptions | null | undefined;
 };
 
 /** @internal */
@@ -22,6 +32,7 @@ export const PaypalOptions$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   additional_data: z.nullable(z.array(z.record(z.string()))).optional(),
+  shipping: z.nullable(PaypalShippingOptions$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "additional_data": "additionalData",
@@ -31,6 +42,7 @@ export const PaypalOptions$inboundSchema: z.ZodType<
 /** @internal */
 export type PaypalOptions$Outbound = {
   additional_data?: Array<{ [k: string]: string }> | null | undefined;
+  shipping?: PaypalShippingOptions$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -40,6 +52,7 @@ export const PaypalOptions$outboundSchema: z.ZodType<
   PaypalOptions
 > = z.object({
   additionalData: z.nullable(z.array(z.record(z.string()))).optional(),
+  shipping: z.nullable(PaypalShippingOptions$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     additionalData: "additional_data",
