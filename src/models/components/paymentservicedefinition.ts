@@ -14,6 +14,11 @@ import {
   DefinitionField$outboundSchema,
 } from "./definitionfield.js";
 import {
+  IntegrationClient,
+  IntegrationClient$inboundSchema,
+  IntegrationClient$outboundSchema,
+} from "./integrationclient.js";
+import {
   Method,
   Method$inboundSchema,
   Method$outboundSchema,
@@ -76,6 +81,10 @@ export type PaymentServiceDefinition = {
    */
   requiredCheckoutFields: Array<RequiredCheckoutFields>;
   configuration: PaymentServiceConfiguration;
+  /**
+   * List of supported integration clients. Defaults to redirect for most redirect connectors.
+   */
+  supportedIntegrationClients: Array<IntegrationClient> | null;
 };
 
 /** @internal */
@@ -99,6 +108,9 @@ export const PaymentServiceDefinition$inboundSchema: z.ZodType<
   supported_features: z.record(z.boolean()),
   required_checkout_fields: z.array(RequiredCheckoutFields$inboundSchema),
   configuration: PaymentServiceConfiguration$inboundSchema,
+  supported_integration_clients: z.nullable(
+    z.array(IntegrationClient$inboundSchema),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",
@@ -108,6 +120,7 @@ export const PaymentServiceDefinition$inboundSchema: z.ZodType<
     "icon_url": "iconUrl",
     "supported_features": "supportedFeatures",
     "required_checkout_fields": "requiredCheckoutFields",
+    "supported_integration_clients": "supportedIntegrationClients",
   });
 });
 
@@ -126,6 +139,7 @@ export type PaymentServiceDefinition$Outbound = {
   supported_features: { [k: string]: boolean };
   required_checkout_fields: Array<RequiredCheckoutFields$Outbound>;
   configuration: PaymentServiceConfiguration$Outbound;
+  supported_integration_clients: Array<string> | null;
 };
 
 /** @internal */
@@ -149,6 +163,9 @@ export const PaymentServiceDefinition$outboundSchema: z.ZodType<
   supportedFeatures: z.record(z.boolean()),
   requiredCheckoutFields: z.array(RequiredCheckoutFields$outboundSchema),
   configuration: PaymentServiceConfiguration$outboundSchema,
+  supportedIntegrationClients: z.nullable(
+    z.array(IntegrationClient$outboundSchema),
+  ),
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",
@@ -158,6 +175,7 @@ export const PaymentServiceDefinition$outboundSchema: z.ZodType<
     iconUrl: "icon_url",
     supportedFeatures: "supported_features",
     requiredCheckoutFields: "required_checkout_fields",
+    supportedIntegrationClients: "supported_integration_clients",
   });
 });
 
