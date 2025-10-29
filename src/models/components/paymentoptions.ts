@@ -7,17 +7,17 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  PaymentOption,
-  PaymentOption$inboundSchema,
-  PaymentOption$Outbound,
-  PaymentOption$outboundSchema,
-} from "./paymentoption.js";
+  PaymentOptionOutput,
+  PaymentOptionOutput$inboundSchema,
+  PaymentOptionOutput$Outbound,
+  PaymentOptionOutput$outboundSchema,
+} from "./paymentoptionoutput.js";
 
 export type PaymentOptions = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<PaymentOption>;
+  items: Array<PaymentOptionOutput>;
 };
 
 /** @internal */
@@ -26,12 +26,12 @@ export const PaymentOptions$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(PaymentOption$inboundSchema),
+  items: z.array(PaymentOptionOutput$inboundSchema),
 });
 
 /** @internal */
 export type PaymentOptions$Outbound = {
-  items: Array<PaymentOption$Outbound>;
+  items: Array<PaymentOptionOutput$Outbound>;
 };
 
 /** @internal */
@@ -40,7 +40,7 @@ export const PaymentOptions$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentOptions
 > = z.object({
-  items: z.array(PaymentOption$outboundSchema),
+  items: z.array(PaymentOptionOutput$outboundSchema),
 });
 
 /**

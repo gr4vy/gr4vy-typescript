@@ -32,8 +32,8 @@ export type VoidTransactionRequest = {
  * Successful Response
  */
 export type VoidTransactionResponseVoidTransaction =
-  | components.Transaction
-  | components.TransactionVoid;
+  | components.TransactionOutput
+  | components.TransactionVoidOutput;
 
 /** @internal */
 export const VoidTransactionGlobals$inboundSchema: z.ZodType<
@@ -163,14 +163,14 @@ export const VoidTransactionResponseVoidTransaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  components.Transaction$inboundSchema,
-  components.TransactionVoid$inboundSchema,
+  components.TransactionOutput$inboundSchema,
+  components.TransactionVoidOutput$inboundSchema,
 ]);
 
 /** @internal */
 export type VoidTransactionResponseVoidTransaction$Outbound =
-  | components.Transaction$Outbound
-  | components.TransactionVoid$Outbound;
+  | components.TransactionOutput$Outbound
+  | components.TransactionVoidOutput$Outbound;
 
 /** @internal */
 export const VoidTransactionResponseVoidTransaction$outboundSchema: z.ZodType<
@@ -178,8 +178,8 @@ export const VoidTransactionResponseVoidTransaction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VoidTransactionResponseVoidTransaction
 > = z.union([
-  components.Transaction$outboundSchema,
-  components.TransactionVoid$outboundSchema,
+  components.TransactionOutput$outboundSchema,
+  components.TransactionVoidOutput$outboundSchema,
 ]);
 
 /**

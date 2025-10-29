@@ -20,11 +20,11 @@ import {
   CartItem$outboundSchema,
 } from "./cartitem.js";
 import {
-  CheckoutSessionPaymentMethod,
-  CheckoutSessionPaymentMethod$inboundSchema,
-  CheckoutSessionPaymentMethod$Outbound,
-  CheckoutSessionPaymentMethod$outboundSchema,
-} from "./checkoutsessionpaymentmethod.js";
+  CheckoutSessionPaymentMethodOutput,
+  CheckoutSessionPaymentMethodOutput$inboundSchema,
+  CheckoutSessionPaymentMethodOutput$Outbound,
+  CheckoutSessionPaymentMethodOutput$outboundSchema,
+} from "./checkoutsessionpaymentmethodoutput.js";
 import {
   GuestBuyerOutput,
   GuestBuyerOutput$inboundSchema,
@@ -64,7 +64,7 @@ export type CheckoutSession = {
   /**
    * Information about the payment method stored on the checkout session.
    */
-  paymentMethod?: CheckoutSessionPaymentMethod | null | undefined;
+  paymentMethod?: CheckoutSessionPaymentMethodOutput | null | undefined;
 };
 
 /** @internal */
@@ -80,7 +80,7 @@ export const CheckoutSession$inboundSchema: z.ZodType<
   type: z.literal("checkout-session").default("checkout-session"),
   id: z.string(),
   expires_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  payment_method: z.nullable(CheckoutSessionPaymentMethod$inboundSchema)
+  payment_method: z.nullable(CheckoutSessionPaymentMethodOutput$inboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -99,7 +99,10 @@ export type CheckoutSession$Outbound = {
   type: "checkout-session";
   id: string;
   expires_at: string;
-  payment_method?: CheckoutSessionPaymentMethod$Outbound | null | undefined;
+  payment_method?:
+    | CheckoutSessionPaymentMethodOutput$Outbound
+    | null
+    | undefined;
 };
 
 /** @internal */
@@ -115,7 +118,7 @@ export const CheckoutSession$outboundSchema: z.ZodType<
   type: z.literal("checkout-session").default("checkout-session" as const),
   id: z.string(),
   expiresAt: z.date().transform(v => v.toISOString()),
-  paymentMethod: z.nullable(CheckoutSessionPaymentMethod$outboundSchema)
+  paymentMethod: z.nullable(CheckoutSessionPaymentMethodOutput$outboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {

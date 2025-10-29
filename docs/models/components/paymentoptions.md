@@ -19,6 +19,6 @@ let value: PaymentOptions = {
 
 ## Fields
 
-| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `items`                                                                | [components.PaymentOption](../../models/components/paymentoption.md)[] | :heavy_check_mark:                                                     | A list of items returned for this request.                             |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `items`                                                                            | [components.PaymentOptionOutput](../../models/components/paymentoptionoutput.md)[] | :heavy_check_mark:                                                                 | A list of items returned for this request.                                         |

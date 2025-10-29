@@ -1,12 +1,12 @@
-# TransactionPaymentMethod
+# TransactionPaymentMethodOutput
 
 ## Example Usage
 
 ```typescript
-import { TransactionPaymentMethod } from "@gr4vy/sdk/models/components";
+import { TransactionPaymentMethodOutput } from "@gr4vy/sdk/models/components";
 
-let value: TransactionPaymentMethod = {
-  method: "giropay",
+let value: TransactionPaymentMethodOutput = {
+  method: "card",
 };
 ```
 

@@ -1,15 +1,15 @@
-# PaymentOption
+# PaymentOptionOutput
 
 ## Example Usage
 
 ```typescript
-import { PaymentOption } from "@gr4vy/sdk/models/components";
+import { PaymentOptionOutput } from "@gr4vy/sdk/models/components";
 
-let value: PaymentOption = {
+let value: PaymentOptionOutput = {
   method: "<value>",
   mode: "card",
   canStorePaymentMethod: false,
-  canDelayCapture: true,
+  canDelayCapture: false,
 };
 ```
 

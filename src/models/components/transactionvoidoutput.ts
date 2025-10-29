@@ -8,18 +8,18 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Transaction,
-  Transaction$inboundSchema,
-  Transaction$Outbound,
-  Transaction$outboundSchema,
-} from "./transaction.js";
+  TransactionOutput,
+  TransactionOutput$inboundSchema,
+  TransactionOutput$Outbound,
+  TransactionOutput$outboundSchema,
+} from "./transactionoutput.js";
 import {
   VoidStatus,
   VoidStatus$inboundSchema,
   VoidStatus$outboundSchema,
 } from "./voidstatus.js";
 
-export type TransactionVoid = {
+export type TransactionVoidOutput = {
   /**
    * Always `transaction-void`.
    */
@@ -40,12 +40,12 @@ export type TransactionVoid = {
   /**
    * A full transaction resource.
    */
-  transaction: Transaction;
+  transaction: TransactionOutput;
 };
 
 /** @internal */
-export const TransactionVoid$inboundSchema: z.ZodType<
-  TransactionVoid,
+export const TransactionVoidOutput$inboundSchema: z.ZodType<
+  TransactionVoidOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -54,7 +54,7 @@ export const TransactionVoid$inboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   raw_response_code: z.nullable(z.string()),
   raw_response_description: z.nullable(z.string()),
-  transaction: Transaction$inboundSchema,
+  transaction: TransactionOutput$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",
@@ -63,27 +63,27 @@ export const TransactionVoid$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TransactionVoid$Outbound = {
+export type TransactionVoidOutput$Outbound = {
   type: "transaction-void";
   status: string;
   code: string | null;
   raw_response_code: string | null;
   raw_response_description: string | null;
-  transaction: Transaction$Outbound;
+  transaction: TransactionOutput$Outbound;
 };
 
 /** @internal */
-export const TransactionVoid$outboundSchema: z.ZodType<
-  TransactionVoid$Outbound,
+export const TransactionVoidOutput$outboundSchema: z.ZodType<
+  TransactionVoidOutput$Outbound,
   z.ZodTypeDef,
-  TransactionVoid
+  TransactionVoidOutput
 > = z.object({
   type: z.literal("transaction-void").default("transaction-void" as const),
   status: VoidStatus$outboundSchema,
   code: z.nullable(z.string()),
   rawResponseCode: z.nullable(z.string()),
   rawResponseDescription: z.nullable(z.string()),
-  transaction: Transaction$outboundSchema,
+  transaction: TransactionOutput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     rawResponseCode: "raw_response_code",
@@ -95,27 +95,29 @@ export const TransactionVoid$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionVoid$ {
-  /** @deprecated use `TransactionVoid$inboundSchema` instead. */
-  export const inboundSchema = TransactionVoid$inboundSchema;
-  /** @deprecated use `TransactionVoid$outboundSchema` instead. */
-  export const outboundSchema = TransactionVoid$outboundSchema;
-  /** @deprecated use `TransactionVoid$Outbound` instead. */
-  export type Outbound = TransactionVoid$Outbound;
+export namespace TransactionVoidOutput$ {
+  /** @deprecated use `TransactionVoidOutput$inboundSchema` instead. */
+  export const inboundSchema = TransactionVoidOutput$inboundSchema;
+  /** @deprecated use `TransactionVoidOutput$outboundSchema` instead. */
+  export const outboundSchema = TransactionVoidOutput$outboundSchema;
+  /** @deprecated use `TransactionVoidOutput$Outbound` instead. */
+  export type Outbound = TransactionVoidOutput$Outbound;
 }
 
-export function transactionVoidToJSON(
-  transactionVoid: TransactionVoid,
+export function transactionVoidOutputToJSON(
+  transactionVoidOutput: TransactionVoidOutput,
 ): string {
-  return JSON.stringify(TransactionVoid$outboundSchema.parse(transactionVoid));
+  return JSON.stringify(
+    TransactionVoidOutput$outboundSchema.parse(transactionVoidOutput),
+  );
 }
 
-export function transactionVoidFromJSON(
+export function transactionVoidOutputFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionVoid, SDKValidationError> {
+): SafeParseResult<TransactionVoidOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionVoid$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionVoid' from JSON`,
+    (x) => TransactionVoidOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionVoidOutput' from JSON`,
   );
 }

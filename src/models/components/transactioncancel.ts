@@ -13,11 +13,11 @@ import {
   CancelStatus$outboundSchema,
 } from "./cancelstatus.js";
 import {
-  Transaction,
-  Transaction$inboundSchema,
-  Transaction$Outbound,
-  Transaction$outboundSchema,
-} from "./transaction.js";
+  TransactionOutput,
+  TransactionOutput$inboundSchema,
+  TransactionOutput$Outbound,
+  TransactionOutput$outboundSchema,
+} from "./transactionoutput.js";
 
 export type TransactionCancel = {
   /**
@@ -40,7 +40,7 @@ export type TransactionCancel = {
   /**
    * A full transaction resource.
    */
-  transaction: Transaction;
+  transaction: TransactionOutput;
 };
 
 /** @internal */
@@ -54,7 +54,7 @@ export const TransactionCancel$inboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   raw_response_code: z.nullable(z.string()),
   raw_response_description: z.nullable(z.string()),
-  transaction: Transaction$inboundSchema,
+  transaction: TransactionOutput$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",
@@ -69,7 +69,7 @@ export type TransactionCancel$Outbound = {
   code: string | null;
   raw_response_code: string | null;
   raw_response_description: string | null;
-  transaction: Transaction$Outbound;
+  transaction: TransactionOutput$Outbound;
 };
 
 /** @internal */
@@ -83,7 +83,7 @@ export const TransactionCancel$outboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   rawResponseCode: z.nullable(z.string()),
   rawResponseDescription: z.nullable(z.string()),
-  transaction: Transaction$outboundSchema,
+  transaction: TransactionOutput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     rawResponseCode: "raw_response_code",

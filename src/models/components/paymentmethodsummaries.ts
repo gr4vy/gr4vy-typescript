@@ -7,17 +7,17 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  PaymentMethodSummary,
-  PaymentMethodSummary$inboundSchema,
-  PaymentMethodSummary$Outbound,
-  PaymentMethodSummary$outboundSchema,
-} from "./paymentmethodsummary.js";
+  PaymentMethodSummaryOutput,
+  PaymentMethodSummaryOutput$inboundSchema,
+  PaymentMethodSummaryOutput$Outbound,
+  PaymentMethodSummaryOutput$outboundSchema,
+} from "./paymentmethodsummaryoutput.js";
 
 export type PaymentMethodSummaries = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<PaymentMethodSummary>;
+  items: Array<PaymentMethodSummaryOutput>;
 };
 
 /** @internal */
@@ -26,12 +26,12 @@ export const PaymentMethodSummaries$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(PaymentMethodSummary$inboundSchema),
+  items: z.array(PaymentMethodSummaryOutput$inboundSchema),
 });
 
 /** @internal */
 export type PaymentMethodSummaries$Outbound = {
-  items: Array<PaymentMethodSummary$Outbound>;
+  items: Array<PaymentMethodSummaryOutput$Outbound>;
 };
 
 /** @internal */
@@ -40,7 +40,7 @@ export const PaymentMethodSummaries$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentMethodSummaries
 > = z.object({
-  items: z.array(PaymentMethodSummary$outboundSchema),
+  items: z.array(PaymentMethodSummaryOutput$outboundSchema),
 });
 
 /**

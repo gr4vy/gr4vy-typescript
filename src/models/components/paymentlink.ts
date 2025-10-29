@@ -31,11 +31,11 @@ import {
   StatementDescriptor$outboundSchema,
 } from "./statementdescriptor.js";
 import {
-  TransactionBuyer,
-  TransactionBuyer$inboundSchema,
-  TransactionBuyer$Outbound,
-  TransactionBuyer$outboundSchema,
-} from "./transactionbuyer.js";
+  TransactionBuyerOutput,
+  TransactionBuyerOutput$inboundSchema,
+  TransactionBuyerOutput$Outbound,
+  TransactionBuyerOutput$outboundSchema,
+} from "./transactionbuyeroutput.js";
 import {
   TransactionIntent,
   TransactionIntent$inboundSchema,
@@ -145,7 +145,7 @@ export type PaymentLink = {
   /**
    * The buyer associated with the payment link.
    */
-  buyer?: TransactionBuyer | null | undefined;
+  buyer?: TransactionBuyerOutput | null | undefined;
   /**
    * The shipping details for the payment link.
    */
@@ -190,7 +190,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   status: PaymentLinkStatus$inboundSchema,
-  buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
+  buyer: z.nullable(TransactionBuyerOutput$inboundSchema).optional(),
   shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
   connection_options: z.nullable(z.record(z.record(z.any()))).optional(),
 }).transform((v) => {
@@ -242,7 +242,7 @@ export type PaymentLink$Outbound = {
   created_at: string;
   updated_at: string;
   status: string;
-  buyer?: TransactionBuyer$Outbound | null | undefined;
+  buyer?: TransactionBuyerOutput$Outbound | null | undefined;
   shipping_details?: ShippingDetails$Outbound | null | undefined;
   connection_options?: { [k: string]: { [k: string]: any } } | null | undefined;
 };
@@ -279,7 +279,7 @@ export const PaymentLink$outboundSchema: z.ZodType<
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
   status: PaymentLinkStatus$outboundSchema,
-  buyer: z.nullable(TransactionBuyer$outboundSchema).optional(),
+  buyer: z.nullable(TransactionBuyerOutput$outboundSchema).optional(),
   shippingDetails: z.nullable(ShippingDetails$outboundSchema).optional(),
   connectionOptions: z.nullable(z.record(z.record(z.any()))).optional(),
 }).transform((v) => {

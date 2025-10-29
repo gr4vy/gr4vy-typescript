@@ -75,11 +75,11 @@ import {
   StatementDescriptor$outboundSchema,
 } from "./statementdescriptor.js";
 import {
-  TransactionBuyer,
-  TransactionBuyer$inboundSchema,
-  TransactionBuyer$Outbound,
-  TransactionBuyer$outboundSchema,
-} from "./transactionbuyer.js";
+  TransactionBuyerOutput,
+  TransactionBuyerOutput$inboundSchema,
+  TransactionBuyerOutput$Outbound,
+  TransactionBuyerOutput$outboundSchema,
+} from "./transactionbuyeroutput.js";
 import {
   TransactionIntent,
   TransactionIntent$inboundSchema,
@@ -91,11 +91,11 @@ import {
   TransactionIntentOutcome$outboundSchema,
 } from "./transactionintentoutcome.js";
 import {
-  TransactionPaymentMethod,
-  TransactionPaymentMethod$inboundSchema,
-  TransactionPaymentMethod$Outbound,
-  TransactionPaymentMethod$outboundSchema,
-} from "./transactionpaymentmethod.js";
+  TransactionPaymentMethodOutput,
+  TransactionPaymentMethodOutput$inboundSchema,
+  TransactionPaymentMethodOutput$Outbound,
+  TransactionPaymentMethodOutput$outboundSchema,
+} from "./transactionpaymentmethodoutput.js";
 import {
   TransactionPaymentService,
   TransactionPaymentService$inboundSchema,
@@ -113,16 +113,16 @@ import {
   TransactionStatus$outboundSchema,
 } from "./transactionstatus.js";
 import {
-  TransactionThreeDSecureSummary,
-  TransactionThreeDSecureSummary$inboundSchema,
-  TransactionThreeDSecureSummary$Outbound,
-  TransactionThreeDSecureSummary$outboundSchema,
-} from "./transactionthreedsecuresummary.js";
+  TransactionThreeDSecureSummaryOutput,
+  TransactionThreeDSecureSummaryOutput$inboundSchema,
+  TransactionThreeDSecureSummaryOutput$Outbound,
+  TransactionThreeDSecureSummaryOutput$outboundSchema,
+} from "./transactionthreedsecuresummaryoutput.js";
 
 /**
  * A full transaction resource.
  */
-export type Transaction = {
+export type TransactionOutput = {
   /**
    * Always `transaction`.
    */
@@ -184,7 +184,7 @@ export type Transaction = {
   /**
    * The payment method used for this transaction.
    */
-  paymentMethod?: TransactionPaymentMethod | null | undefined;
+  paymentMethod?: TransactionPaymentMethodOutput | null | undefined;
   /**
    * The method used for the transaction.
    */
@@ -208,7 +208,7 @@ export type Transaction = {
   /**
    * The buyer used for this transaction.
    */
-  buyer?: TransactionBuyer | null | undefined;
+  buyer?: TransactionBuyerOutput | null | undefined;
   /**
    * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
    */
@@ -292,7 +292,7 @@ export type Transaction = {
   /**
    * The 3-D Secure data that was sent to the payment service for the transaction.
    */
-  threeDSecure?: TransactionThreeDSecureSummary | null | undefined;
+  threeDSecure?: TransactionThreeDSecureSummaryOutput | null | undefined;
   /**
    * The payment service's unique ID for the transaction.
    */
@@ -385,8 +385,8 @@ export type Transaction = {
 };
 
 /** @internal */
-export const Transaction$inboundSchema: z.ZodType<
-  Transaction,
+export const TransactionOutput$inboundSchema: z.ZodType<
+  TransactionOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -406,14 +406,15 @@ export const Transaction$inboundSchema: z.ZodType<
   country: z.nullable(z.string()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
   intent: TransactionIntent$inboundSchema,
-  payment_method: z.nullable(TransactionPaymentMethod$inboundSchema).optional(),
+  payment_method: z.nullable(TransactionPaymentMethodOutput$inboundSchema)
+    .optional(),
   method: z.nullable(Method$inboundSchema).optional(),
   instrument_type: z.nullable(InstrumentType$inboundSchema).optional(),
   error_code: z.nullable(z.string()).optional(),
   payment_service: z.nullable(TransactionPaymentService$inboundSchema)
     .optional(),
   pending_review: z.boolean().default(false),
-  buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
+  buyer: z.nullable(TransactionBuyerOutput$inboundSchema).optional(),
   raw_response_code: z.nullable(z.string()).optional(),
   raw_response_description: z.nullable(z.string()).optional(),
   shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
@@ -435,7 +436,7 @@ export const Transaction$inboundSchema: z.ZodType<
   statement_descriptor: z.nullable(StatementDescriptor$inboundSchema)
     .optional(),
   scheme_transaction_id: z.nullable(z.string()).optional(),
-  three_d_secure: z.nullable(TransactionThreeDSecureSummary$inboundSchema)
+  three_d_secure: z.nullable(TransactionThreeDSecureSummaryOutput$inboundSchema)
     .optional(),
   payment_service_transaction_id: z.nullable(z.string()).optional(),
   additional_identifiers: z.record(z.nullable(z.string())).optional(),
@@ -531,7 +532,7 @@ export const Transaction$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Transaction$Outbound = {
+export type TransactionOutput$Outbound = {
   type: "transaction";
   id: string;
   reconciliation_id: string;
@@ -548,13 +549,13 @@ export type Transaction$Outbound = {
   country?: string | null | undefined;
   external_identifier?: string | null | undefined;
   intent: string;
-  payment_method?: TransactionPaymentMethod$Outbound | null | undefined;
+  payment_method?: TransactionPaymentMethodOutput$Outbound | null | undefined;
   method?: string | null | undefined;
   instrument_type?: string | null | undefined;
   error_code?: string | null | undefined;
   payment_service?: TransactionPaymentService$Outbound | null | undefined;
   pending_review: boolean;
-  buyer?: TransactionBuyer$Outbound | null | undefined;
+  buyer?: TransactionBuyerOutput$Outbound | null | undefined;
   raw_response_code?: string | null | undefined;
   raw_response_description?: string | null | undefined;
   shipping_details?: ShippingDetails$Outbound | null | undefined;
@@ -575,7 +576,10 @@ export type Transaction$Outbound = {
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   statement_descriptor?: StatementDescriptor$Outbound | null | undefined;
   scheme_transaction_id?: string | null | undefined;
-  three_d_secure?: TransactionThreeDSecureSummary$Outbound | null | undefined;
+  three_d_secure?:
+    | TransactionThreeDSecureSummaryOutput$Outbound
+    | null
+    | undefined;
   payment_service_transaction_id?: string | null | undefined;
   additional_identifiers?: { [k: string]: string | null } | undefined;
   metadata?: { [k: string]: string } | null | undefined;
@@ -602,10 +606,10 @@ export type Transaction$Outbound = {
 };
 
 /** @internal */
-export const Transaction$outboundSchema: z.ZodType<
-  Transaction$Outbound,
+export const TransactionOutput$outboundSchema: z.ZodType<
+  TransactionOutput$Outbound,
   z.ZodTypeDef,
-  Transaction
+  TransactionOutput
 > = z.object({
   type: z.literal("transaction").default("transaction" as const),
   id: z.string(),
@@ -623,14 +627,15 @@ export const Transaction$outboundSchema: z.ZodType<
   country: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
   intent: TransactionIntent$outboundSchema,
-  paymentMethod: z.nullable(TransactionPaymentMethod$outboundSchema).optional(),
+  paymentMethod: z.nullable(TransactionPaymentMethodOutput$outboundSchema)
+    .optional(),
   method: z.nullable(Method$outboundSchema).optional(),
   instrumentType: z.nullable(InstrumentType$outboundSchema).optional(),
   errorCode: z.nullable(z.string()).optional(),
   paymentService: z.nullable(TransactionPaymentService$outboundSchema)
     .optional(),
   pendingReview: z.boolean().default(false),
-  buyer: z.nullable(TransactionBuyer$outboundSchema).optional(),
+  buyer: z.nullable(TransactionBuyerOutput$outboundSchema).optional(),
   rawResponseCode: z.nullable(z.string()).optional(),
   rawResponseDescription: z.nullable(z.string()).optional(),
   shippingDetails: z.nullable(ShippingDetails$outboundSchema).optional(),
@@ -652,7 +657,7 @@ export const Transaction$outboundSchema: z.ZodType<
   statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
     .optional(),
   schemeTransactionId: z.nullable(z.string()).optional(),
-  threeDSecure: z.nullable(TransactionThreeDSecureSummary$outboundSchema)
+  threeDSecure: z.nullable(TransactionThreeDSecureSummaryOutput$outboundSchema)
     .optional(),
   paymentServiceTransactionId: z.nullable(z.string()).optional(),
   additionalIdentifiers: z.record(z.nullable(z.string())).optional(),
@@ -741,25 +746,29 @@ export const Transaction$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Transaction$ {
-  /** @deprecated use `Transaction$inboundSchema` instead. */
-  export const inboundSchema = Transaction$inboundSchema;
-  /** @deprecated use `Transaction$outboundSchema` instead. */
-  export const outboundSchema = Transaction$outboundSchema;
-  /** @deprecated use `Transaction$Outbound` instead. */
-  export type Outbound = Transaction$Outbound;
+export namespace TransactionOutput$ {
+  /** @deprecated use `TransactionOutput$inboundSchema` instead. */
+  export const inboundSchema = TransactionOutput$inboundSchema;
+  /** @deprecated use `TransactionOutput$outboundSchema` instead. */
+  export const outboundSchema = TransactionOutput$outboundSchema;
+  /** @deprecated use `TransactionOutput$Outbound` instead. */
+  export type Outbound = TransactionOutput$Outbound;
 }
 
-export function transactionToJSON(transaction: Transaction): string {
-  return JSON.stringify(Transaction$outboundSchema.parse(transaction));
+export function transactionOutputToJSON(
+  transactionOutput: TransactionOutput,
+): string {
+  return JSON.stringify(
+    TransactionOutput$outboundSchema.parse(transactionOutput),
+  );
 }
 
-export function transactionFromJSON(
+export function transactionOutputFromJSON(
   jsonString: string,
-): SafeParseResult<Transaction, SDKValidationError> {
+): SafeParseResult<TransactionOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Transaction$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Transaction' from JSON`,
+    (x) => TransactionOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionOutput' from JSON`,
   );
 }

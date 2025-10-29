@@ -13,13 +13,13 @@ import {
   CaptureStatus$outboundSchema,
 } from "./capturestatus.js";
 import {
-  Transaction,
-  Transaction$inboundSchema,
-  Transaction$Outbound,
-  Transaction$outboundSchema,
-} from "./transaction.js";
+  TransactionOutput,
+  TransactionOutput$inboundSchema,
+  TransactionOutput$Outbound,
+  TransactionOutput$outboundSchema,
+} from "./transactionoutput.js";
 
-export type TransactionCapture = {
+export type TransactionCaptureOutput = {
   /**
    * Always `transaction-capture`.
    */
@@ -40,12 +40,12 @@ export type TransactionCapture = {
   /**
    * A full transaction resource.
    */
-  transaction: Transaction;
+  transaction: TransactionOutput;
 };
 
 /** @internal */
-export const TransactionCapture$inboundSchema: z.ZodType<
-  TransactionCapture,
+export const TransactionCaptureOutput$inboundSchema: z.ZodType<
+  TransactionCaptureOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -54,7 +54,7 @@ export const TransactionCapture$inboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   raw_response_code: z.nullable(z.string()),
   raw_response_description: z.nullable(z.string()),
-  transaction: Transaction$inboundSchema,
+  transaction: TransactionOutput$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",
@@ -63,20 +63,20 @@ export const TransactionCapture$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TransactionCapture$Outbound = {
+export type TransactionCaptureOutput$Outbound = {
   type: "transaction-capture";
   status: string;
   code: string | null;
   raw_response_code: string | null;
   raw_response_description: string | null;
-  transaction: Transaction$Outbound;
+  transaction: TransactionOutput$Outbound;
 };
 
 /** @internal */
-export const TransactionCapture$outboundSchema: z.ZodType<
-  TransactionCapture$Outbound,
+export const TransactionCaptureOutput$outboundSchema: z.ZodType<
+  TransactionCaptureOutput$Outbound,
   z.ZodTypeDef,
-  TransactionCapture
+  TransactionCaptureOutput
 > = z.object({
   type: z.literal("transaction-capture").default(
     "transaction-capture" as const,
@@ -85,7 +85,7 @@ export const TransactionCapture$outboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   rawResponseCode: z.nullable(z.string()),
   rawResponseDescription: z.nullable(z.string()),
-  transaction: Transaction$outboundSchema,
+  transaction: TransactionOutput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     rawResponseCode: "raw_response_code",
@@ -97,29 +97,29 @@ export const TransactionCapture$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionCapture$ {
-  /** @deprecated use `TransactionCapture$inboundSchema` instead. */
-  export const inboundSchema = TransactionCapture$inboundSchema;
-  /** @deprecated use `TransactionCapture$outboundSchema` instead. */
-  export const outboundSchema = TransactionCapture$outboundSchema;
-  /** @deprecated use `TransactionCapture$Outbound` instead. */
-  export type Outbound = TransactionCapture$Outbound;
+export namespace TransactionCaptureOutput$ {
+  /** @deprecated use `TransactionCaptureOutput$inboundSchema` instead. */
+  export const inboundSchema = TransactionCaptureOutput$inboundSchema;
+  /** @deprecated use `TransactionCaptureOutput$outboundSchema` instead. */
+  export const outboundSchema = TransactionCaptureOutput$outboundSchema;
+  /** @deprecated use `TransactionCaptureOutput$Outbound` instead. */
+  export type Outbound = TransactionCaptureOutput$Outbound;
 }
 
-export function transactionCaptureToJSON(
-  transactionCapture: TransactionCapture,
+export function transactionCaptureOutputToJSON(
+  transactionCaptureOutput: TransactionCaptureOutput,
 ): string {
   return JSON.stringify(
-    TransactionCapture$outboundSchema.parse(transactionCapture),
+    TransactionCaptureOutput$outboundSchema.parse(transactionCaptureOutput),
   );
 }
 
-export function transactionCaptureFromJSON(
+export function transactionCaptureOutputFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionCapture, SDKValidationError> {
+): SafeParseResult<TransactionCaptureOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionCapture$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionCapture' from JSON`,
+    (x) => TransactionCaptureOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionCaptureOutput' from JSON`,
   );
 }

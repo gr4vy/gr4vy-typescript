@@ -1,11 +1,11 @@
-# TransactionBuyer
+# TransactionBuyerOutput
 
 ## Example Usage
 
 ```typescript
-import { TransactionBuyer } from "@gr4vy/sdk/models/components";
+import { TransactionBuyerOutput } from "@gr4vy/sdk/models/components";
 
-let value: TransactionBuyer = {};
+let value: TransactionBuyerOutput = {};
 ```
 
 ## Fields

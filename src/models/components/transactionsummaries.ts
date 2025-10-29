@@ -8,17 +8,17 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  TransactionSummary,
-  TransactionSummary$inboundSchema,
-  TransactionSummary$Outbound,
-  TransactionSummary$outboundSchema,
-} from "./transactionsummary.js";
+  TransactionSummaryOutput,
+  TransactionSummaryOutput$inboundSchema,
+  TransactionSummaryOutput$Outbound,
+  TransactionSummaryOutput$outboundSchema,
+} from "./transactionsummaryoutput.js";
 
 export type TransactionSummaries = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<TransactionSummary>;
+  items: Array<TransactionSummaryOutput>;
   /**
    * The number of items for this page.
    */
@@ -39,7 +39,7 @@ export const TransactionSummaries$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(TransactionSummary$inboundSchema),
+  items: z.array(TransactionSummaryOutput$inboundSchema),
   limit: z.number().int().default(20),
   next_cursor: z.nullable(z.string()).optional(),
   previous_cursor: z.nullable(z.string()).optional(),
@@ -52,7 +52,7 @@ export const TransactionSummaries$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TransactionSummaries$Outbound = {
-  items: Array<TransactionSummary$Outbound>;
+  items: Array<TransactionSummaryOutput$Outbound>;
   limit: number;
   next_cursor?: string | null | undefined;
   previous_cursor?: string | null | undefined;
@@ -64,7 +64,7 @@ export const TransactionSummaries$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TransactionSummaries
 > = z.object({
-  items: z.array(TransactionSummary$outboundSchema),
+  items: z.array(TransactionSummaryOutput$outboundSchema),
   limit: z.number().int().default(20),
   nextCursor: z.nullable(z.string()).optional(),
   previousCursor: z.nullable(z.string()).optional(),

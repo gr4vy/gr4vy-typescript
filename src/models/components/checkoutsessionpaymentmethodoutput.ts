@@ -18,7 +18,7 @@ import {
   CheckoutSessionPaymentMethodDetails$outboundSchema,
 } from "./checkoutsessionpaymentmethoddetails.js";
 
-export type CheckoutSessionPaymentMethod = {
+export type CheckoutSessionPaymentMethodOutput = {
   /**
    * Always `payment-method`
    */
@@ -50,8 +50,8 @@ export type CheckoutSessionPaymentMethod = {
 };
 
 /** @internal */
-export const CheckoutSessionPaymentMethod$inboundSchema: z.ZodType<
-  CheckoutSessionPaymentMethod,
+export const CheckoutSessionPaymentMethodOutput$inboundSchema: z.ZodType<
+  CheckoutSessionPaymentMethodOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -66,7 +66,7 @@ export const CheckoutSessionPaymentMethod$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CheckoutSessionPaymentMethod$Outbound = {
+export type CheckoutSessionPaymentMethodOutput$Outbound = {
   type: "payment-method";
   id?: string | null | undefined;
   details?: CheckoutSessionPaymentMethodDetails$Outbound | null | undefined;
@@ -77,10 +77,10 @@ export type CheckoutSessionPaymentMethod$Outbound = {
 };
 
 /** @internal */
-export const CheckoutSessionPaymentMethod$outboundSchema: z.ZodType<
-  CheckoutSessionPaymentMethod$Outbound,
+export const CheckoutSessionPaymentMethodOutput$outboundSchema: z.ZodType<
+  CheckoutSessionPaymentMethodOutput$Outbound,
   z.ZodTypeDef,
-  CheckoutSessionPaymentMethod
+  CheckoutSessionPaymentMethodOutput
 > = z.object({
   type: z.literal("payment-method").default("payment-method" as const),
   id: z.nullable(z.string()).optional(),
@@ -96,31 +96,33 @@ export const CheckoutSessionPaymentMethod$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CheckoutSessionPaymentMethod$ {
-  /** @deprecated use `CheckoutSessionPaymentMethod$inboundSchema` instead. */
-  export const inboundSchema = CheckoutSessionPaymentMethod$inboundSchema;
-  /** @deprecated use `CheckoutSessionPaymentMethod$outboundSchema` instead. */
-  export const outboundSchema = CheckoutSessionPaymentMethod$outboundSchema;
-  /** @deprecated use `CheckoutSessionPaymentMethod$Outbound` instead. */
-  export type Outbound = CheckoutSessionPaymentMethod$Outbound;
+export namespace CheckoutSessionPaymentMethodOutput$ {
+  /** @deprecated use `CheckoutSessionPaymentMethodOutput$inboundSchema` instead. */
+  export const inboundSchema = CheckoutSessionPaymentMethodOutput$inboundSchema;
+  /** @deprecated use `CheckoutSessionPaymentMethodOutput$outboundSchema` instead. */
+  export const outboundSchema =
+    CheckoutSessionPaymentMethodOutput$outboundSchema;
+  /** @deprecated use `CheckoutSessionPaymentMethodOutput$Outbound` instead. */
+  export type Outbound = CheckoutSessionPaymentMethodOutput$Outbound;
 }
 
-export function checkoutSessionPaymentMethodToJSON(
-  checkoutSessionPaymentMethod: CheckoutSessionPaymentMethod,
+export function checkoutSessionPaymentMethodOutputToJSON(
+  checkoutSessionPaymentMethodOutput: CheckoutSessionPaymentMethodOutput,
 ): string {
   return JSON.stringify(
-    CheckoutSessionPaymentMethod$outboundSchema.parse(
-      checkoutSessionPaymentMethod,
+    CheckoutSessionPaymentMethodOutput$outboundSchema.parse(
+      checkoutSessionPaymentMethodOutput,
     ),
   );
 }
 
-export function checkoutSessionPaymentMethodFromJSON(
+export function checkoutSessionPaymentMethodOutputFromJSON(
   jsonString: string,
-): SafeParseResult<CheckoutSessionPaymentMethod, SDKValidationError> {
+): SafeParseResult<CheckoutSessionPaymentMethodOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CheckoutSessionPaymentMethod$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutSessionPaymentMethod' from JSON`,
+    (x) =>
+      CheckoutSessionPaymentMethodOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckoutSessionPaymentMethodOutput' from JSON`,
   );
 }

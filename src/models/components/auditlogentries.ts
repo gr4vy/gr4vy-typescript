@@ -8,17 +8,17 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  AuditLogEntry,
-  AuditLogEntry$inboundSchema,
-  AuditLogEntry$Outbound,
-  AuditLogEntry$outboundSchema,
-} from "./auditlogentry.js";
+  AuditLogEntryOutput,
+  AuditLogEntryOutput$inboundSchema,
+  AuditLogEntryOutput$Outbound,
+  AuditLogEntryOutput$outboundSchema,
+} from "./auditlogentryoutput.js";
 
 export type AuditLogEntries = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<AuditLogEntry>;
+  items: Array<AuditLogEntryOutput>;
   /**
    * The number of items for this page.
    */
@@ -39,7 +39,7 @@ export const AuditLogEntries$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(AuditLogEntry$inboundSchema),
+  items: z.array(AuditLogEntryOutput$inboundSchema),
   limit: z.number().int().default(20),
   next_cursor: z.nullable(z.string()).optional(),
   previous_cursor: z.nullable(z.string()).optional(),
@@ -52,7 +52,7 @@ export const AuditLogEntries$inboundSchema: z.ZodType<
 
 /** @internal */
 export type AuditLogEntries$Outbound = {
-  items: Array<AuditLogEntry$Outbound>;
+  items: Array<AuditLogEntryOutput$Outbound>;
   limit: number;
   next_cursor?: string | null | undefined;
   previous_cursor?: string | null | undefined;
@@ -64,7 +64,7 @@ export const AuditLogEntries$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AuditLogEntries
 > = z.object({
-  items: z.array(AuditLogEntry$outboundSchema),
+  items: z.array(AuditLogEntryOutput$outboundSchema),
   limit: z.number().int().default(20),
   nextCursor: z.nullable(z.string()).optional(),
   previousCursor: z.nullable(z.string()).optional(),

@@ -30,17 +30,17 @@ import {
   PayoutStatus$outboundSchema,
 } from "./payoutstatus.js";
 import {
-  TransactionBuyer,
-  TransactionBuyer$inboundSchema,
-  TransactionBuyer$Outbound,
-  TransactionBuyer$outboundSchema,
-} from "./transactionbuyer.js";
+  TransactionBuyerOutput,
+  TransactionBuyerOutput$inboundSchema,
+  TransactionBuyerOutput$Outbound,
+  TransactionBuyerOutput$outboundSchema,
+} from "./transactionbuyeroutput.js";
 import {
-  TransactionPaymentMethod,
-  TransactionPaymentMethod$inboundSchema,
-  TransactionPaymentMethod$Outbound,
-  TransactionPaymentMethod$outboundSchema,
-} from "./transactionpaymentmethod.js";
+  TransactionPaymentMethodOutput,
+  TransactionPaymentMethodOutput$inboundSchema,
+  TransactionPaymentMethodOutput$Outbound,
+  TransactionPaymentMethodOutput$outboundSchema,
+} from "./transactionpaymentmethodoutput.js";
 
 /**
  * PayoutSummary
@@ -65,7 +65,7 @@ export type PayoutSummary = {
   /**
    * The buyer used for this payout.
    */
-  buyer?: TransactionBuyer | null | undefined;
+  buyer?: TransactionBuyerOutput | null | undefined;
   /**
    * The type of payout to process.
    */
@@ -90,7 +90,7 @@ export type PayoutSummary = {
    * The ID of the merchant account this payout was created for.
    */
   merchantAccountId?: string | null | undefined;
-  paymentMethod: TransactionPaymentMethod;
+  paymentMethod: TransactionPaymentMethodOutput;
   paymentService: PayoutPaymentService;
   /**
    * The ID of the payout in the underlying payment service.
@@ -112,14 +112,14 @@ export const PayoutSummary$inboundSchema: z.ZodType<
   type: z.literal("payout").default("payout"),
   id: z.nullable(z.string()).optional(),
   amount: z.number().int(),
-  buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
+  buyer: z.nullable(TransactionBuyerOutput$inboundSchema).optional(),
   category: z.nullable(PayoutCategory$inboundSchema).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   currency: z.string(),
   external_identifier: z.nullable(z.string()).optional(),
   merchant: z.nullable(PayoutMerchantSummary$inboundSchema).optional(),
   merchant_account_id: z.nullable(z.string()).optional(),
-  payment_method: TransactionPaymentMethod$inboundSchema,
+  payment_method: TransactionPaymentMethodOutput$inboundSchema,
   payment_service: PayoutPaymentService$inboundSchema,
   payment_service_payout_id: z.nullable(z.string()).optional(),
   status: PayoutStatus$inboundSchema,
@@ -141,14 +141,14 @@ export type PayoutSummary$Outbound = {
   type: "payout";
   id?: string | null | undefined;
   amount: number;
-  buyer?: TransactionBuyer$Outbound | null | undefined;
+  buyer?: TransactionBuyerOutput$Outbound | null | undefined;
   category?: string | null | undefined;
   created_at: string;
   currency: string;
   external_identifier?: string | null | undefined;
   merchant?: PayoutMerchantSummary$Outbound | null | undefined;
   merchant_account_id?: string | null | undefined;
-  payment_method: TransactionPaymentMethod$Outbound;
+  payment_method: TransactionPaymentMethodOutput$Outbound;
   payment_service: PayoutPaymentService$Outbound;
   payment_service_payout_id?: string | null | undefined;
   status: string;
@@ -164,14 +164,14 @@ export const PayoutSummary$outboundSchema: z.ZodType<
   type: z.literal("payout").default("payout" as const),
   id: z.nullable(z.string()).optional(),
   amount: z.number().int(),
-  buyer: z.nullable(TransactionBuyer$outboundSchema).optional(),
+  buyer: z.nullable(TransactionBuyerOutput$outboundSchema).optional(),
   category: z.nullable(PayoutCategory$outboundSchema).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   currency: z.string(),
   externalIdentifier: z.nullable(z.string()).optional(),
   merchant: z.nullable(PayoutMerchantSummary$outboundSchema).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
-  paymentMethod: TransactionPaymentMethod$outboundSchema,
+  paymentMethod: TransactionPaymentMethodOutput$outboundSchema,
   paymentService: PayoutPaymentService$outboundSchema,
   paymentServicePayoutId: z.nullable(z.string()).optional(),
   status: PayoutStatus$outboundSchema,

@@ -33,8 +33,8 @@ export type CaptureTransactionRequest = {
  * Successful Response
  */
 export type CaptureTransactionResponseCaptureTransaction =
-  | components.Transaction
-  | components.TransactionCapture;
+  | components.TransactionOutput
+  | components.TransactionCaptureOutput;
 
 /** @internal */
 export const CaptureTransactionGlobals$inboundSchema: z.ZodType<
@@ -170,14 +170,14 @@ export const CaptureTransactionResponseCaptureTransaction$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.union([
-    components.Transaction$inboundSchema,
-    components.TransactionCapture$inboundSchema,
+    components.TransactionOutput$inboundSchema,
+    components.TransactionCaptureOutput$inboundSchema,
   ]);
 
 /** @internal */
 export type CaptureTransactionResponseCaptureTransaction$Outbound =
-  | components.Transaction$Outbound
-  | components.TransactionCapture$Outbound;
+  | components.TransactionOutput$Outbound
+  | components.TransactionCaptureOutput$Outbound;
 
 /** @internal */
 export const CaptureTransactionResponseCaptureTransaction$outboundSchema:
@@ -186,8 +186,8 @@ export const CaptureTransactionResponseCaptureTransaction$outboundSchema:
     z.ZodTypeDef,
     CaptureTransactionResponseCaptureTransaction
   > = z.union([
-    components.Transaction$outboundSchema,
-    components.TransactionCapture$outboundSchema,
+    components.TransactionOutput$outboundSchema,
+    components.TransactionCaptureOutput$outboundSchema,
   ]);
 
 /**

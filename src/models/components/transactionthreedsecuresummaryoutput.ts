@@ -41,7 +41,7 @@ import {
  */
 export type ResponseData = ThreeDSecureDataV1 | ThreeDSecureV2;
 
-export type TransactionThreeDSecureSummary = {
+export type TransactionThreeDSecureSummaryOutput = {
   /**
    * The version of 3DS used for this transaction.
    */
@@ -111,8 +111,8 @@ export function responseDataFromJSON(
 }
 
 /** @internal */
-export const TransactionThreeDSecureSummary$inboundSchema: z.ZodType<
-  TransactionThreeDSecureSummary,
+export const TransactionThreeDSecureSummaryOutput$inboundSchema: z.ZodType<
+  TransactionThreeDSecureSummaryOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -131,7 +131,7 @@ export const TransactionThreeDSecureSummary$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TransactionThreeDSecureSummary$Outbound = {
+export type TransactionThreeDSecureSummaryOutput$Outbound = {
   version?: string | null | undefined;
   status?: string | null | undefined;
   method?: string | null | undefined;
@@ -144,10 +144,10 @@ export type TransactionThreeDSecureSummary$Outbound = {
 };
 
 /** @internal */
-export const TransactionThreeDSecureSummary$outboundSchema: z.ZodType<
-  TransactionThreeDSecureSummary$Outbound,
+export const TransactionThreeDSecureSummaryOutput$outboundSchema: z.ZodType<
+  TransactionThreeDSecureSummaryOutput$Outbound,
   z.ZodTypeDef,
-  TransactionThreeDSecureSummary
+  TransactionThreeDSecureSummaryOutput
 > = z.object({
   version: z.nullable(z.string()).optional(),
   status: z.nullable(ThreeDSecureStatus$outboundSchema).optional(),
@@ -167,31 +167,34 @@ export const TransactionThreeDSecureSummary$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionThreeDSecureSummary$ {
-  /** @deprecated use `TransactionThreeDSecureSummary$inboundSchema` instead. */
-  export const inboundSchema = TransactionThreeDSecureSummary$inboundSchema;
-  /** @deprecated use `TransactionThreeDSecureSummary$outboundSchema` instead. */
-  export const outboundSchema = TransactionThreeDSecureSummary$outboundSchema;
-  /** @deprecated use `TransactionThreeDSecureSummary$Outbound` instead. */
-  export type Outbound = TransactionThreeDSecureSummary$Outbound;
+export namespace TransactionThreeDSecureSummaryOutput$ {
+  /** @deprecated use `TransactionThreeDSecureSummaryOutput$inboundSchema` instead. */
+  export const inboundSchema =
+    TransactionThreeDSecureSummaryOutput$inboundSchema;
+  /** @deprecated use `TransactionThreeDSecureSummaryOutput$outboundSchema` instead. */
+  export const outboundSchema =
+    TransactionThreeDSecureSummaryOutput$outboundSchema;
+  /** @deprecated use `TransactionThreeDSecureSummaryOutput$Outbound` instead. */
+  export type Outbound = TransactionThreeDSecureSummaryOutput$Outbound;
 }
 
-export function transactionThreeDSecureSummaryToJSON(
-  transactionThreeDSecureSummary: TransactionThreeDSecureSummary,
+export function transactionThreeDSecureSummaryOutputToJSON(
+  transactionThreeDSecureSummaryOutput: TransactionThreeDSecureSummaryOutput,
 ): string {
   return JSON.stringify(
-    TransactionThreeDSecureSummary$outboundSchema.parse(
-      transactionThreeDSecureSummary,
+    TransactionThreeDSecureSummaryOutput$outboundSchema.parse(
+      transactionThreeDSecureSummaryOutput,
     ),
   );
 }
 
-export function transactionThreeDSecureSummaryFromJSON(
+export function transactionThreeDSecureSummaryOutputFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionThreeDSecureSummary, SDKValidationError> {
+): SafeParseResult<TransactionThreeDSecureSummaryOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionThreeDSecureSummary$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionThreeDSecureSummary' from JSON`,
+    (x) =>
+      TransactionThreeDSecureSummaryOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionThreeDSecureSummaryOutput' from JSON`,
   );
 }

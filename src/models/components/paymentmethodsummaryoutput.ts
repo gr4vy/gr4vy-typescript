@@ -8,11 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  ApprovalTarget,
-  ApprovalTarget$inboundSchema,
-  ApprovalTarget$outboundSchema,
-} from "./approvaltarget.js";
-import {
   CardScheme,
   CardScheme$inboundSchema,
   CardScheme$outboundSchema,
@@ -30,7 +25,14 @@ import {
   PaymentMethodDetailsCard$outboundSchema,
 } from "./paymentmethoddetailscard.js";
 
-export type TransactionPaymentMethod = {
+/**
+ * Payment Method
+ *
+ * @remarks
+ *
+ * A summary of a payment method.
+ */
+export type PaymentMethodSummaryOutput = {
   /**
    * Always `payment-method`.
    */
@@ -77,26 +79,42 @@ export type TransactionPaymentMethod = {
    */
   scheme?: CardScheme | null | undefined;
   /**
-   * The ID of the payment method.
+   * The ID for the payment method.
    */
-  id?: string | null | undefined;
+  id: string;
   /**
-   * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
+   * The ID of the merchant account this buyer belongs to.
    */
-  approvalTarget?: ApprovalTarget | null | undefined;
+  merchantAccountId: string;
   /**
-   * An external identifier that can be used to match the payment method against your own records.
+   * Additional schemes of the card besides the primary scheme. Only applies to card payment methods.
    */
-  externalIdentifier?: string | null | undefined;
+  additionalSchemes?: Array<CardScheme> | null | undefined;
   /**
-   * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
+   * The timestamp when this payment method was last used in a transaction for client initiated transactions.
    */
-  paymentAccountReference?: string | null | undefined;
+  citLastUsedAt?: Date | null | undefined;
+  /**
+   * The number of times this payment method has been used in transactions for client initiated transactions.
+   */
+  citUsageCount: number;
+  /**
+   * Whether this card has a pending replacement that hasn't been applied yet.
+   */
+  hasReplacement: boolean;
+  /**
+   * The timestamp when this payment method was last used in a transaction.
+   */
+  lastUsedAt?: Date | null | undefined;
+  /**
+   * The number of times this payment method has been used in transactions.
+   */
+  usageCount: number;
 };
 
 /** @internal */
-export const TransactionPaymentMethod$inboundSchema: z.ZodType<
-  TransactionPaymentMethod,
+export const PaymentMethodSummaryOutput$inboundSchema: z.ZodType<
+  PaymentMethodSummaryOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -114,23 +132,35 @@ export const TransactionPaymentMethod$inboundSchema: z.ZodType<
   method: Method$inboundSchema,
   mode: z.nullable(Mode$inboundSchema).optional(),
   scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  id: z.nullable(z.string()).optional(),
-  approval_target: z.nullable(ApprovalTarget$inboundSchema).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  payment_account_reference: z.nullable(z.string()).optional(),
+  id: z.string(),
+  merchant_account_id: z.string(),
+  additional_schemes: z.nullable(z.array(CardScheme$inboundSchema)).optional(),
+  cit_last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  cit_usage_count: z.number().int(),
+  has_replacement: z.boolean(),
+  last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  usage_count: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "approval_url": "approvalUrl",
     "expiration_date": "expirationDate",
     "last_replaced_at": "lastReplacedAt",
-    "approval_target": "approvalTarget",
-    "external_identifier": "externalIdentifier",
-    "payment_account_reference": "paymentAccountReference",
+    "merchant_account_id": "merchantAccountId",
+    "additional_schemes": "additionalSchemes",
+    "cit_last_used_at": "citLastUsedAt",
+    "cit_usage_count": "citUsageCount",
+    "has_replacement": "hasReplacement",
+    "last_used_at": "lastUsedAt",
+    "usage_count": "usageCount",
   });
 });
 
 /** @internal */
-export type TransactionPaymentMethod$Outbound = {
+export type PaymentMethodSummaryOutput$Outbound = {
   type: "payment-method";
   approval_url?: string | null | undefined;
   country?: string | null | undefined;
@@ -143,17 +173,21 @@ export type TransactionPaymentMethod$Outbound = {
   method: string;
   mode?: string | null | undefined;
   scheme?: string | null | undefined;
-  id?: string | null | undefined;
-  approval_target?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  payment_account_reference?: string | null | undefined;
+  id: string;
+  merchant_account_id: string;
+  additional_schemes?: Array<string> | null | undefined;
+  cit_last_used_at?: string | null | undefined;
+  cit_usage_count: number;
+  has_replacement: boolean;
+  last_used_at?: string | null | undefined;
+  usage_count: number;
 };
 
 /** @internal */
-export const TransactionPaymentMethod$outboundSchema: z.ZodType<
-  TransactionPaymentMethod$Outbound,
+export const PaymentMethodSummaryOutput$outboundSchema: z.ZodType<
+  PaymentMethodSummaryOutput$Outbound,
   z.ZodTypeDef,
-  TransactionPaymentMethod
+  PaymentMethodSummaryOutput
 > = z.object({
   type: z.literal("payment-method").default("payment-method" as const),
   approvalUrl: z.nullable(z.string()).optional(),
@@ -168,18 +202,27 @@ export const TransactionPaymentMethod$outboundSchema: z.ZodType<
   method: Method$outboundSchema,
   mode: z.nullable(Mode$outboundSchema).optional(),
   scheme: z.nullable(CardScheme$outboundSchema).optional(),
-  id: z.nullable(z.string()).optional(),
-  approvalTarget: z.nullable(ApprovalTarget$outboundSchema).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  paymentAccountReference: z.nullable(z.string()).optional(),
+  id: z.string(),
+  merchantAccountId: z.string(),
+  additionalSchemes: z.nullable(z.array(CardScheme$outboundSchema)).optional(),
+  citLastUsedAt: z.nullable(z.date().transform(v => v.toISOString()))
+    .optional(),
+  citUsageCount: z.number().int(),
+  hasReplacement: z.boolean(),
+  lastUsedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  usageCount: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     approvalUrl: "approval_url",
     expirationDate: "expiration_date",
     lastReplacedAt: "last_replaced_at",
-    approvalTarget: "approval_target",
-    externalIdentifier: "external_identifier",
-    paymentAccountReference: "payment_account_reference",
+    merchantAccountId: "merchant_account_id",
+    additionalSchemes: "additional_schemes",
+    citLastUsedAt: "cit_last_used_at",
+    citUsageCount: "cit_usage_count",
+    hasReplacement: "has_replacement",
+    lastUsedAt: "last_used_at",
+    usageCount: "usage_count",
   });
 });
 
@@ -187,29 +230,29 @@ export const TransactionPaymentMethod$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionPaymentMethod$ {
-  /** @deprecated use `TransactionPaymentMethod$inboundSchema` instead. */
-  export const inboundSchema = TransactionPaymentMethod$inboundSchema;
-  /** @deprecated use `TransactionPaymentMethod$outboundSchema` instead. */
-  export const outboundSchema = TransactionPaymentMethod$outboundSchema;
-  /** @deprecated use `TransactionPaymentMethod$Outbound` instead. */
-  export type Outbound = TransactionPaymentMethod$Outbound;
+export namespace PaymentMethodSummaryOutput$ {
+  /** @deprecated use `PaymentMethodSummaryOutput$inboundSchema` instead. */
+  export const inboundSchema = PaymentMethodSummaryOutput$inboundSchema;
+  /** @deprecated use `PaymentMethodSummaryOutput$outboundSchema` instead. */
+  export const outboundSchema = PaymentMethodSummaryOutput$outboundSchema;
+  /** @deprecated use `PaymentMethodSummaryOutput$Outbound` instead. */
+  export type Outbound = PaymentMethodSummaryOutput$Outbound;
 }
 
-export function transactionPaymentMethodToJSON(
-  transactionPaymentMethod: TransactionPaymentMethod,
+export function paymentMethodSummaryOutputToJSON(
+  paymentMethodSummaryOutput: PaymentMethodSummaryOutput,
 ): string {
   return JSON.stringify(
-    TransactionPaymentMethod$outboundSchema.parse(transactionPaymentMethod),
+    PaymentMethodSummaryOutput$outboundSchema.parse(paymentMethodSummaryOutput),
   );
 }
 
-export function transactionPaymentMethodFromJSON(
+export function paymentMethodSummaryOutputFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionPaymentMethod, SDKValidationError> {
+): SafeParseResult<PaymentMethodSummaryOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionPaymentMethod$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionPaymentMethod' from JSON`,
+    (x) => PaymentMethodSummaryOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentMethodSummaryOutput' from JSON`,
   );
 }
