@@ -184,6 +184,7 @@ export * from "./paypaloptions.js";
 export * from "./paypalshippingoptions.js";
 export * from "./paypalshippingoptionsitem.js";
 export * from "./paypalshippingoptionsitemamount.js";
+export * from "./plaidpaymentmethodcreate.js";
 export * from "./powertranzoptions.js";
 export * from "./producttype.js";
 export * from "./recipient.js";

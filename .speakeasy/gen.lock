@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 0b0d95132d6d5acce2061b5b41b259c8
+  docChecksum: e4dcfca4fca219c32a1113dbde666a3d
   docVersion: 1.0.0
   speakeasyVersion: 1.642.2
   generationVersion: 2.731.6
-  releaseVersion: 1.5.4
-  configChecksum: f7e442dcc8a604455ce0017fcb40cd56
+  releaseVersion: 1.5.5
+  configChecksum: 917e720d9c447698397bbccc4681fe10
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -235,6 +235,7 @@ generatedFiles:
   - docs/models/components/paypalshippingoptionsitem.md
   - docs/models/components/paypalshippingoptionsitemamount.md
   - docs/models/components/paypalshippingoptionsitemtype.md
+  - docs/models/components/plaidpaymentmethodcreate.md
   - docs/models/components/powertranzoptions.md
   - docs/models/components/producttype.md
   - docs/models/components/recipient.md
@@ -873,6 +874,7 @@ generatedFiles:
   - src/models/components/paypalshippingoptions.ts
   - src/models/components/paypalshippingoptionsitem.ts
   - src/models/components/paypalshippingoptionsitemamount.ts
+  - src/models/components/plaidpaymentmethodcreate.ts
   - src/models/components/powertranzoptions.ts
   - src/models/components/producttype.ts
   - src/models/components/recipient.ts
@@ -4471,7 +4473,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes Detected:
-  * `gr4vy.transactions.capture()`:  `response` **Changed**
-  * `gr4vy.transactions.void()`:  `response` **Changed**
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.paymentMethods.create()`: \n  *  `requestbody.[plaidPaymentMethodCreate]` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.paymentMethod.[plaidPaymentMethodCreate]` **Added**\n"
