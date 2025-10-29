@@ -97,6 +97,12 @@ import {
   NetworkTokenPaymentMethodCreate$outboundSchema,
 } from "./networktokenpaymentmethodcreate.js";
 import {
+  PlaidPaymentMethodCreate,
+  PlaidPaymentMethodCreate$inboundSchema,
+  PlaidPaymentMethodCreate$Outbound,
+  PlaidPaymentMethodCreate$outboundSchema,
+} from "./plaidpaymentmethodcreate.js";
+import {
   Recipient,
   Recipient$inboundSchema,
   Recipient$Outbound,
@@ -162,6 +168,7 @@ export type TransactionCreatePaymentMethod =
   | ApplePayPaymentMethodCreate
   | GooglePayPaymentMethodCreate
   | TokenPaymentMethodCreate
+  | PlaidPaymentMethodCreate
   | CheckoutSessionWithUrlPaymentMethodCreate;
 
 export type TransactionCreateGiftCards =
@@ -199,6 +206,7 @@ export type TransactionCreate = {
     | ApplePayPaymentMethodCreate
     | GooglePayPaymentMethodCreate
     | TokenPaymentMethodCreate
+    | PlaidPaymentMethodCreate
     | CheckoutSessionWithUrlPaymentMethodCreate
     | null
     | undefined;
@@ -379,6 +387,7 @@ export const TransactionCreatePaymentMethod$inboundSchema: z.ZodType<
   ApplePayPaymentMethodCreate$inboundSchema,
   GooglePayPaymentMethodCreate$inboundSchema,
   TokenPaymentMethodCreate$inboundSchema,
+  PlaidPaymentMethodCreate$inboundSchema,
   CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
 ]);
 
@@ -393,6 +402,7 @@ export type TransactionCreatePaymentMethod$Outbound =
   | ApplePayPaymentMethodCreate$Outbound
   | GooglePayPaymentMethodCreate$Outbound
   | TokenPaymentMethodCreate$Outbound
+  | PlaidPaymentMethodCreate$Outbound
   | CheckoutSessionWithUrlPaymentMethodCreate$Outbound;
 
 /** @internal */
@@ -410,6 +420,7 @@ export const TransactionCreatePaymentMethod$outboundSchema: z.ZodType<
   ApplePayPaymentMethodCreate$outboundSchema,
   GooglePayPaymentMethodCreate$outboundSchema,
   TokenPaymentMethodCreate$outboundSchema,
+  PlaidPaymentMethodCreate$outboundSchema,
   CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
 ]);
 
@@ -578,6 +589,7 @@ export const TransactionCreate$inboundSchema: z.ZodType<
       ApplePayPaymentMethodCreate$inboundSchema,
       GooglePayPaymentMethodCreate$inboundSchema,
       TokenPaymentMethodCreate$inboundSchema,
+      PlaidPaymentMethodCreate$inboundSchema,
       CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
     ]),
   ).optional(),
@@ -678,6 +690,7 @@ export type TransactionCreate$Outbound = {
     | ApplePayPaymentMethodCreate$Outbound
     | GooglePayPaymentMethodCreate$Outbound
     | TokenPaymentMethodCreate$Outbound
+    | PlaidPaymentMethodCreate$Outbound
     | CheckoutSessionWithUrlPaymentMethodCreate$Outbound
     | null
     | undefined;
@@ -747,6 +760,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
       ApplePayPaymentMethodCreate$outboundSchema,
       GooglePayPaymentMethodCreate$outboundSchema,
       TokenPaymentMethodCreate$outboundSchema,
+      PlaidPaymentMethodCreate$outboundSchema,
       CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
     ]),
   ).optional(),

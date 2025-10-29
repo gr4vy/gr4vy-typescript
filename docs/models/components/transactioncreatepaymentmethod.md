@@ -108,6 +108,14 @@ const value: components.NetworkTokenPaymentMethodCreate = {
 };
 ```
 
+### `components.PlaidPaymentMethodCreate`
+
+```typescript
+const value: components.PlaidPaymentMethodCreate = {
+  token: "public-sandbox-7147ceee-816c-4272-a7f4-544f5c3d4d16",
+};
+```
+
 ### `components.CheckoutSessionWithUrlPaymentMethodCreate`
 
 ```typescript

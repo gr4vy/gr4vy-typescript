@@ -16,7 +16,8 @@ export type CreatePaymentMethodGlobals = {
 export type CreatePaymentMethodBody =
   | components.RedirectPaymentMethodCreate
   | components.CardPaymentMethodCreate
-  | components.CheckoutSessionPaymentMethodCreate;
+  | components.CheckoutSessionPaymentMethodCreate
+  | components.PlaidPaymentMethodCreate;
 
 export type CreatePaymentMethodRequest = {
   /**
@@ -26,7 +27,8 @@ export type CreatePaymentMethodRequest = {
   requestBody:
     | components.RedirectPaymentMethodCreate
     | components.CardPaymentMethodCreate
-    | components.CheckoutSessionPaymentMethodCreate;
+    | components.CheckoutSessionPaymentMethodCreate
+    | components.PlaidPaymentMethodCreate;
 };
 
 /** @internal */
@@ -92,13 +94,15 @@ export const CreatePaymentMethodBody$inboundSchema: z.ZodType<
   components.RedirectPaymentMethodCreate$inboundSchema,
   components.CardPaymentMethodCreate$inboundSchema,
   components.CheckoutSessionPaymentMethodCreate$inboundSchema,
+  components.PlaidPaymentMethodCreate$inboundSchema,
 ]);
 
 /** @internal */
 export type CreatePaymentMethodBody$Outbound =
   | components.RedirectPaymentMethodCreate$Outbound
   | components.CardPaymentMethodCreate$Outbound
-  | components.CheckoutSessionPaymentMethodCreate$Outbound;
+  | components.CheckoutSessionPaymentMethodCreate$Outbound
+  | components.PlaidPaymentMethodCreate$Outbound;
 
 /** @internal */
 export const CreatePaymentMethodBody$outboundSchema: z.ZodType<
@@ -109,6 +113,7 @@ export const CreatePaymentMethodBody$outboundSchema: z.ZodType<
   components.RedirectPaymentMethodCreate$outboundSchema,
   components.CardPaymentMethodCreate$outboundSchema,
   components.CheckoutSessionPaymentMethodCreate$outboundSchema,
+  components.PlaidPaymentMethodCreate$outboundSchema,
 ]);
 
 /**
@@ -153,6 +158,7 @@ export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
     components.RedirectPaymentMethodCreate$inboundSchema,
     components.CardPaymentMethodCreate$inboundSchema,
     components.CheckoutSessionPaymentMethodCreate$inboundSchema,
+    components.PlaidPaymentMethodCreate$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -166,7 +172,8 @@ export type CreatePaymentMethodRequest$Outbound = {
   RequestBody:
     | components.RedirectPaymentMethodCreate$Outbound
     | components.CardPaymentMethodCreate$Outbound
-    | components.CheckoutSessionPaymentMethodCreate$Outbound;
+    | components.CheckoutSessionPaymentMethodCreate$Outbound
+    | components.PlaidPaymentMethodCreate$Outbound;
 };
 
 /** @internal */
@@ -180,6 +187,7 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
     components.RedirectPaymentMethodCreate$outboundSchema,
     components.CardPaymentMethodCreate$outboundSchema,
     components.CheckoutSessionPaymentMethodCreate$outboundSchema,
+    components.PlaidPaymentMethodCreate$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
