@@ -1,11 +1,11 @@
-# TransactionThreeDSecureSummary
+# TransactionThreeDSecureSummaryOutput
 
 ## Example Usage
 
 ```typescript
-import { TransactionThreeDSecureSummary } from "@gr4vy/sdk/models/components";
+import { TransactionThreeDSecureSummaryOutput } from "@gr4vy/sdk/models/components";
 
-let value: TransactionThreeDSecureSummary = {};
+let value: TransactionThreeDSecureSummaryOutput = {};
 ```
 
 ## Fields

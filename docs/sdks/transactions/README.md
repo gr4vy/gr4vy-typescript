@@ -193,7 +193,7 @@ run();
 
 ### Response
 
-**Promise\<[components.Transaction](../../models/components/transaction.md)\>**
+**Promise\<[components.TransactionOutput](../../models/components/transactionoutput.md)\>**
 
 ### Errors
 
@@ -282,7 +282,7 @@ run();
 
 ### Response
 
-**Promise\<[components.Transaction](../../models/components/transaction.md)\>**
+**Promise\<[components.TransactionOutput](../../models/components/transactionoutput.md)\>**
 
 ### Errors
 
@@ -372,7 +372,7 @@ run();
 
 ### Response
 
-**Promise\<[components.Transaction](../../models/components/transaction.md)\>**
+**Promise\<[components.TransactionOutput](../../models/components/transactionoutput.md)\>**
 
 ### Errors
 
@@ -731,7 +731,7 @@ run();
 
 ### Response
 
-**Promise\<[components.Transaction](../../models/components/transaction.md)\>**
+**Promise\<[components.TransactionOutput](../../models/components/transactionoutput.md)\>**
 
 ### Errors
 

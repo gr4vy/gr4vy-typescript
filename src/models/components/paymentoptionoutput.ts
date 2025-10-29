@@ -32,7 +32,7 @@ export type Context =
   | WalletPaymentOptionContext
   | PaymentOptionContext;
 
-export type PaymentOption = {
+export type PaymentOptionOutput = {
   type?: "payment-option" | undefined;
   method: string;
   iconUrl?: string | null | undefined;
@@ -101,8 +101,8 @@ export function contextFromJSON(
 }
 
 /** @internal */
-export const PaymentOption$inboundSchema: z.ZodType<
-  PaymentOption,
+export const PaymentOptionOutput$inboundSchema: z.ZodType<
+  PaymentOptionOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -129,7 +129,7 @@ export const PaymentOption$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type PaymentOption$Outbound = {
+export type PaymentOptionOutput$Outbound = {
   type: "payment-option";
   method: string;
   icon_url?: string | null | undefined;
@@ -146,10 +146,10 @@ export type PaymentOption$Outbound = {
 };
 
 /** @internal */
-export const PaymentOption$outboundSchema: z.ZodType<
-  PaymentOption$Outbound,
+export const PaymentOptionOutput$outboundSchema: z.ZodType<
+  PaymentOptionOutput$Outbound,
   z.ZodTypeDef,
-  PaymentOption
+  PaymentOptionOutput
 > = z.object({
   type: z.literal("payment-option").default("payment-option" as const),
   method: z.string(),
@@ -177,25 +177,29 @@ export const PaymentOption$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PaymentOption$ {
-  /** @deprecated use `PaymentOption$inboundSchema` instead. */
-  export const inboundSchema = PaymentOption$inboundSchema;
-  /** @deprecated use `PaymentOption$outboundSchema` instead. */
-  export const outboundSchema = PaymentOption$outboundSchema;
-  /** @deprecated use `PaymentOption$Outbound` instead. */
-  export type Outbound = PaymentOption$Outbound;
+export namespace PaymentOptionOutput$ {
+  /** @deprecated use `PaymentOptionOutput$inboundSchema` instead. */
+  export const inboundSchema = PaymentOptionOutput$inboundSchema;
+  /** @deprecated use `PaymentOptionOutput$outboundSchema` instead. */
+  export const outboundSchema = PaymentOptionOutput$outboundSchema;
+  /** @deprecated use `PaymentOptionOutput$Outbound` instead. */
+  export type Outbound = PaymentOptionOutput$Outbound;
 }
 
-export function paymentOptionToJSON(paymentOption: PaymentOption): string {
-  return JSON.stringify(PaymentOption$outboundSchema.parse(paymentOption));
+export function paymentOptionOutputToJSON(
+  paymentOptionOutput: PaymentOptionOutput,
+): string {
+  return JSON.stringify(
+    PaymentOptionOutput$outboundSchema.parse(paymentOptionOutput),
+  );
 }
 
-export function paymentOptionFromJSON(
+export function paymentOptionOutputFromJSON(
   jsonString: string,
-): SafeParseResult<PaymentOption, SDKValidationError> {
+): SafeParseResult<PaymentOptionOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => PaymentOption$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentOption' from JSON`,
+    (x) => PaymentOptionOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentOptionOutput' from JSON`,
   );
 }

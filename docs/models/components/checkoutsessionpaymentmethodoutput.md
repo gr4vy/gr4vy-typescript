@@ -1,11 +1,11 @@
-# CheckoutSessionPaymentMethod
+# CheckoutSessionPaymentMethodOutput
 
 ## Example Usage
 
 ```typescript
-import { CheckoutSessionPaymentMethod } from "@gr4vy/sdk/models/components";
+import { CheckoutSessionPaymentMethodOutput } from "@gr4vy/sdk/models/components";
 
-let value: CheckoutSessionPaymentMethod = {};
+let value: CheckoutSessionPaymentMethodOutput = {};
 ```
 
 ## Fields

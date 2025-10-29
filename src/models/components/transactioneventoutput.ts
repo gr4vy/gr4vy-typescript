@@ -96,7 +96,7 @@ export const Name = {
  */
 export type Name = OpenEnum<typeof Name>;
 
-export type TransactionEvent = {
+export type TransactionEventOutput = {
   /**
    * Always `transaction-event`.
    */
@@ -143,8 +143,8 @@ export namespace Name$ {
 }
 
 /** @internal */
-export const TransactionEvent$inboundSchema: z.ZodType<
-  TransactionEvent,
+export const TransactionEventOutput$inboundSchema: z.ZodType<
+  TransactionEventOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -160,7 +160,7 @@ export const TransactionEvent$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TransactionEvent$Outbound = {
+export type TransactionEventOutput$Outbound = {
   type: "transaction-event";
   id: string;
   name: string;
@@ -169,10 +169,10 @@ export type TransactionEvent$Outbound = {
 };
 
 /** @internal */
-export const TransactionEvent$outboundSchema: z.ZodType<
-  TransactionEvent$Outbound,
+export const TransactionEventOutput$outboundSchema: z.ZodType<
+  TransactionEventOutput$Outbound,
   z.ZodTypeDef,
-  TransactionEvent
+  TransactionEventOutput
 > = z.object({
   type: z.literal("transaction-event").default("transaction-event" as const),
   id: z.string(),
@@ -189,29 +189,29 @@ export const TransactionEvent$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionEvent$ {
-  /** @deprecated use `TransactionEvent$inboundSchema` instead. */
-  export const inboundSchema = TransactionEvent$inboundSchema;
-  /** @deprecated use `TransactionEvent$outboundSchema` instead. */
-  export const outboundSchema = TransactionEvent$outboundSchema;
-  /** @deprecated use `TransactionEvent$Outbound` instead. */
-  export type Outbound = TransactionEvent$Outbound;
+export namespace TransactionEventOutput$ {
+  /** @deprecated use `TransactionEventOutput$inboundSchema` instead. */
+  export const inboundSchema = TransactionEventOutput$inboundSchema;
+  /** @deprecated use `TransactionEventOutput$outboundSchema` instead. */
+  export const outboundSchema = TransactionEventOutput$outboundSchema;
+  /** @deprecated use `TransactionEventOutput$Outbound` instead. */
+  export type Outbound = TransactionEventOutput$Outbound;
 }
 
-export function transactionEventToJSON(
-  transactionEvent: TransactionEvent,
+export function transactionEventOutputToJSON(
+  transactionEventOutput: TransactionEventOutput,
 ): string {
   return JSON.stringify(
-    TransactionEvent$outboundSchema.parse(transactionEvent),
+    TransactionEventOutput$outboundSchema.parse(transactionEventOutput),
   );
 }
 
-export function transactionEventFromJSON(
+export function transactionEventOutputFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionEvent, SDKValidationError> {
+): SafeParseResult<TransactionEventOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionEvent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionEvent' from JSON`,
+    (x) => TransactionEventOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionEventOutput' from JSON`,
   );
 }

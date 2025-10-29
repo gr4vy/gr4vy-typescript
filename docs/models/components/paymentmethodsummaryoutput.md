@@ -1,4 +1,4 @@
-# PaymentMethodSummary
+# PaymentMethodSummaryOutput
 
 Payment Method
 
@@ -7,10 +7,10 @@ A summary of a payment method.
 ## Example Usage
 
 ```typescript
-import { PaymentMethodSummary } from "@gr4vy/sdk/models/components";
+import { PaymentMethodSummaryOutput } from "@gr4vy/sdk/models/components";
 
-let value: PaymentMethodSummary = {
-  method: "dana",
+let value: PaymentMethodSummaryOutput = {
+  method: "upi",
   id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
   merchantAccountId: "default",
   citUsageCount: 50,

@@ -14,7 +14,7 @@ import {
   BillingDetailsOutput$outboundSchema,
 } from "./billingdetailsoutput.js";
 
-export type TransactionBuyer = {
+export type TransactionBuyerOutput = {
   /**
    * Always `buyer`.
    */
@@ -42,8 +42,8 @@ export type TransactionBuyer = {
 };
 
 /** @internal */
-export const TransactionBuyer$inboundSchema: z.ZodType<
-  TransactionBuyer,
+export const TransactionBuyerOutput$inboundSchema: z.ZodType<
+  TransactionBuyerOutput,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -63,7 +63,7 @@ export const TransactionBuyer$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TransactionBuyer$Outbound = {
+export type TransactionBuyerOutput$Outbound = {
   type: "buyer";
   id?: string | null | undefined;
   display_name?: string | null | undefined;
@@ -73,10 +73,10 @@ export type TransactionBuyer$Outbound = {
 };
 
 /** @internal */
-export const TransactionBuyer$outboundSchema: z.ZodType<
-  TransactionBuyer$Outbound,
+export const TransactionBuyerOutput$outboundSchema: z.ZodType<
+  TransactionBuyerOutput$Outbound,
   z.ZodTypeDef,
-  TransactionBuyer
+  TransactionBuyerOutput
 > = z.object({
   type: z.literal("buyer").default("buyer" as const),
   id: z.nullable(z.string()).optional(),
@@ -97,29 +97,29 @@ export const TransactionBuyer$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionBuyer$ {
-  /** @deprecated use `TransactionBuyer$inboundSchema` instead. */
-  export const inboundSchema = TransactionBuyer$inboundSchema;
-  /** @deprecated use `TransactionBuyer$outboundSchema` instead. */
-  export const outboundSchema = TransactionBuyer$outboundSchema;
-  /** @deprecated use `TransactionBuyer$Outbound` instead. */
-  export type Outbound = TransactionBuyer$Outbound;
+export namespace TransactionBuyerOutput$ {
+  /** @deprecated use `TransactionBuyerOutput$inboundSchema` instead. */
+  export const inboundSchema = TransactionBuyerOutput$inboundSchema;
+  /** @deprecated use `TransactionBuyerOutput$outboundSchema` instead. */
+  export const outboundSchema = TransactionBuyerOutput$outboundSchema;
+  /** @deprecated use `TransactionBuyerOutput$Outbound` instead. */
+  export type Outbound = TransactionBuyerOutput$Outbound;
 }
 
-export function transactionBuyerToJSON(
-  transactionBuyer: TransactionBuyer,
+export function transactionBuyerOutputToJSON(
+  transactionBuyerOutput: TransactionBuyerOutput,
 ): string {
   return JSON.stringify(
-    TransactionBuyer$outboundSchema.parse(transactionBuyer),
+    TransactionBuyerOutput$outboundSchema.parse(transactionBuyerOutput),
   );
 }
 
-export function transactionBuyerFromJSON(
+export function transactionBuyerOutputFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionBuyer, SDKValidationError> {
+): SafeParseResult<TransactionBuyerOutput, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionBuyer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionBuyer' from JSON`,
+    (x) => TransactionBuyerOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionBuyerOutput' from JSON`,
   );
 }
