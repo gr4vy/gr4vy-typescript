@@ -13,5 +13,5 @@ let value: InstrumentType = "pan";
 This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
-"pan" | "card_token" | "redirect" | "redirect_token" | "googlepay" | "applepay" | "network_token" | Unrecognized<string>
+"pan" | "card_token" | "redirect" | "redirect_token" | "googlepay" | "applepay" | "network_token" | "plaid" | Unrecognized<string>
 ```

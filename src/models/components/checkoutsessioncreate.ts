@@ -43,6 +43,9 @@ export type CheckoutSessionCreate = {
    * The airline addendum data which describes the airline booking associated with this transaction.
    */
   airline?: Airline | null | undefined;
+  /**
+   * The time in seconds when this checkout session expires.
+   */
   expiresIn?: number | undefined;
 };
 
