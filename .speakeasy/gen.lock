@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 367dcee6c4d4447a1762b6de527eff6a
+  docChecksum: 05fa7637510796d94369defee6f5a923
   docVersion: 1.0.0
-  speakeasyVersion: 1.643.0
+  speakeasyVersion: 1.643.2
   generationVersion: 2.731.6
-  releaseVersion: 1.5.7
-  configChecksum: 37348410ff65759e51f095578ac16556
+  releaseVersion: 1.5.8
+  configChecksum: fc2534399471ce5e9756fe900b272cec
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -182,6 +182,7 @@ generatedFiles:
   - docs/models/components/mockcardmerchantadvicecodeoptions.md
   - docs/models/components/mockcardoptions.md
   - docs/models/components/mode.md
+  - docs/models/components/monatospeioptions.md
   - docs/models/components/name.md
   - docs/models/components/networktoken.md
   - docs/models/components/networktokencreate.md
@@ -824,6 +825,7 @@ generatedFiles:
   - src/models/components/mockcardmerchantadvicecodeoptions.ts
   - src/models/components/mockcardoptions.ts
   - src/models/components/mode.ts
+  - src/models/components/monatospeioptions.ts
   - src/models/components/networktoken.ts
   - src/models/components/networktokencreate.ts
   - src/models/components/networktokenpaymentmethodcreate.ts
@@ -4473,3 +4475,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.monato-spei` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.monato-spei` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.monato-spei` **Added**\n"
