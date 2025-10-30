@@ -134,6 +134,7 @@ export * from "./method.js";
 export * from "./mockcardmerchantadvicecodeoptions.js";
 export * from "./mockcardoptions.js";
 export * from "./mode.js";
+export * from "./monatospeioptions.js";
 export * from "./networktoken.js";
 export * from "./networktokencreate.js";
 export * from "./networktokenpaymentmethodcreate.js";
