@@ -24,7 +24,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.5.8
+  version: 1.6.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -41,6 +41,7 @@ typescript:
       vitest: ^4.0.3
     peerDependencies: {}
   additionalPackageJSON: {}
+  additionalScripts: {}
   author: Gr4vy
   baseErrorName: Gr4vyError
   clientServerStatusCodesAsErrors: true

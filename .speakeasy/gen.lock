@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 05fa7637510796d94369defee6f5a923
+  docChecksum: b61a20960b701bdc5165714e07a3a3a1
   docVersion: 1.0.0
-  speakeasyVersion: 1.643.2
-  generationVersion: 2.731.6
-  releaseVersion: 1.5.8
-  configChecksum: fc2534399471ce5e9756fe900b272cec
+  speakeasyVersion: 1.648.0
+  generationVersion: 2.737.0
+  releaseVersion: 1.6.0
+  configChecksum: d99047510477f199b3c7067d66b314f9
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.24.1
+    core: 3.26.0
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -22,7 +22,7 @@ features:
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     globals: 2.82.2
     groups: 2.81.3
     ignores: 2.81.1
@@ -4475,4 +4475,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.monato-spei` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.monato-spei` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.monato-spei` **Added**\n"
