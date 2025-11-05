@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: b61a20960b701bdc5165714e07a3a3a1
+  docChecksum: 53931f38d92dcd805d170871befcb7c7
   docVersion: 1.0.0
-  speakeasyVersion: 1.648.0
-  generationVersion: 2.737.0
-  releaseVersion: 1.6.0
-  configChecksum: d99047510477f199b3c7067d66b314f9
+  speakeasyVersion: 1.649.0
+  generationVersion: 2.739.1
+  releaseVersion: 1.6.1
+  configChecksum: ffb4f9bdbbf7df8ea4356ce096f7e107
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4475,3 +4475,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.checkoutSessions.create()`: \n  *  `request.checkoutsessioncreate` **Changed**\n  *  `response` **Changed**\n* `gr4vy.checkoutSessions.get()`:  `response` **Changed**\n* `gr4vy.checkoutSessions.update()`: \n  *  `request.checkoutsessioncreate` **Changed**\n  *  `response` **Changed**\n"

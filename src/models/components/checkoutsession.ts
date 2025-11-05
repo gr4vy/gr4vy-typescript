@@ -50,6 +50,18 @@ export type CheckoutSession = {
    */
   airline?: Airline | null | undefined;
   /**
+   * The total amount for this transaction.
+   */
+  amount?: number | null | undefined;
+  /**
+   * The currency code for this transaction.
+   */
+  currency?: string | null | undefined;
+  /**
+   * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+   */
+  paymentServiceId?: string | null | undefined;
+  /**
    * Always `checkout-session`
    */
   type?: "checkout-session" | undefined;
@@ -77,6 +89,9 @@ export const CheckoutSession$inboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.string())).optional(),
   buyer: z.nullable(GuestBuyerOutput$inboundSchema).optional(),
   airline: z.nullable(Airline$inboundSchema).optional(),
+  amount: z.nullable(z.number().int()).optional(),
+  currency: z.nullable(z.string()).optional(),
+  payment_service_id: z.nullable(z.string()).optional(),
   type: z.literal("checkout-session").default("checkout-session"),
   id: z.string(),
   expires_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -85,6 +100,7 @@ export const CheckoutSession$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "cart_items": "cartItems",
+    "payment_service_id": "paymentServiceId",
     "expires_at": "expiresAt",
     "payment_method": "paymentMethod",
   });
@@ -96,6 +112,9 @@ export type CheckoutSession$Outbound = {
   metadata?: { [k: string]: string } | null | undefined;
   buyer?: GuestBuyerOutput$Outbound | null | undefined;
   airline?: Airline$Outbound | null | undefined;
+  amount?: number | null | undefined;
+  currency?: string | null | undefined;
+  payment_service_id?: string | null | undefined;
   type: "checkout-session";
   id: string;
   expires_at: string;
@@ -115,6 +134,9 @@ export const CheckoutSession$outboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.string())).optional(),
   buyer: z.nullable(GuestBuyerOutput$outboundSchema).optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
+  amount: z.nullable(z.number().int()).optional(),
+  currency: z.nullable(z.string()).optional(),
+  paymentServiceId: z.nullable(z.string()).optional(),
   type: z.literal("checkout-session").default("checkout-session" as const),
   id: z.string(),
   expiresAt: z.date().transform(v => v.toISOString()),
@@ -123,6 +145,7 @@ export const CheckoutSession$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     cartItems: "cart_items",
+    paymentServiceId: "payment_service_id",
     expiresAt: "expires_at",
     paymentMethod: "payment_method",
   });
