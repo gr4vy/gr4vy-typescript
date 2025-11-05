@@ -44,6 +44,18 @@ export type CheckoutSessionCreate = {
    */
   airline?: Airline | null | undefined;
   /**
+   * The total amount for this transaction.
+   */
+  amount?: number | null | undefined;
+  /**
+   * The currency code for this transaction.
+   */
+  currency?: string | null | undefined;
+  /**
+   * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+   */
+  paymentServiceId?: string | null | undefined;
+  /**
    * The time in seconds when this checkout session expires.
    */
   expiresIn?: number | undefined;
@@ -59,10 +71,14 @@ export const CheckoutSessionCreate$inboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.string())).optional(),
   buyer: z.nullable(GuestBuyerInput$inboundSchema).optional(),
   airline: z.nullable(Airline$inboundSchema).optional(),
+  amount: z.nullable(z.number().int()).optional(),
+  currency: z.nullable(z.string()).optional(),
+  payment_service_id: z.nullable(z.string()).optional(),
   expires_in: z.number().default(3600),
 }).transform((v) => {
   return remap$(v, {
     "cart_items": "cartItems",
+    "payment_service_id": "paymentServiceId",
     "expires_in": "expiresIn",
   });
 });
@@ -73,6 +89,9 @@ export type CheckoutSessionCreate$Outbound = {
   metadata?: { [k: string]: string } | null | undefined;
   buyer?: GuestBuyerInput$Outbound | null | undefined;
   airline?: Airline$Outbound | null | undefined;
+  amount?: number | null | undefined;
+  currency?: string | null | undefined;
+  payment_service_id?: string | null | undefined;
   expires_in: number;
 };
 
@@ -86,10 +105,14 @@ export const CheckoutSessionCreate$outboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.string())).optional(),
   buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
+  amount: z.nullable(z.number().int()).optional(),
+  currency: z.nullable(z.string()).optional(),
+  paymentServiceId: z.nullable(z.string()).optional(),
   expiresIn: z.number().default(3600),
 }).transform((v) => {
   return remap$(v, {
     cartItems: "cart_items",
+    paymentServiceId: "payment_service_id",
     expiresIn: "expires_in",
   });
 });
