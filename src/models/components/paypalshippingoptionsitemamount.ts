@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PaypalShippingOptionsItemAmount = {
   /**
@@ -18,20 +15,6 @@ export type PaypalShippingOptionsItemAmount = {
    */
   value: string;
 };
-
-/** @internal */
-export const PaypalShippingOptionsItemAmount$inboundSchema: z.ZodType<
-  PaypalShippingOptionsItemAmount,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  currency_code: z.string(),
-  value: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "currency_code": "currencyCode",
-  });
-});
 
 /** @internal */
 export type PaypalShippingOptionsItemAmount$Outbound = {
@@ -53,19 +36,6 @@ export const PaypalShippingOptionsItemAmount$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaypalShippingOptionsItemAmount$ {
-  /** @deprecated use `PaypalShippingOptionsItemAmount$inboundSchema` instead. */
-  export const inboundSchema = PaypalShippingOptionsItemAmount$inboundSchema;
-  /** @deprecated use `PaypalShippingOptionsItemAmount$outboundSchema` instead. */
-  export const outboundSchema = PaypalShippingOptionsItemAmount$outboundSchema;
-  /** @deprecated use `PaypalShippingOptionsItemAmount$Outbound` instead. */
-  export type Outbound = PaypalShippingOptionsItemAmount$Outbound;
-}
-
 export function paypalShippingOptionsItemAmountToJSON(
   paypalShippingOptionsItemAmount: PaypalShippingOptionsItemAmount,
 ): string {
@@ -73,15 +43,5 @@ export function paypalShippingOptionsItemAmountToJSON(
     PaypalShippingOptionsItemAmount$outboundSchema.parse(
       paypalShippingOptionsItemAmount,
     ),
-  );
-}
-
-export function paypalShippingOptionsItemAmountFromJSON(
-  jsonString: string,
-): SafeParseResult<PaypalShippingOptionsItemAmount, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaypalShippingOptionsItemAmount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaypalShippingOptionsItemAmount' from JSON`,
   );
 }

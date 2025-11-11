@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NetworkTokenCreate = {
   /**
@@ -22,23 +19,6 @@ export type NetworkTokenCreate = {
    */
   isSubsequentPayment: boolean;
 };
-
-/** @internal */
-export const NetworkTokenCreate$inboundSchema: z.ZodType<
-  NetworkTokenCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  security_code: z.nullable(z.string()).optional(),
-  merchant_initiated: z.boolean(),
-  is_subsequent_payment: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    "security_code": "securityCode",
-    "merchant_initiated": "merchantInitiated",
-    "is_subsequent_payment": "isSubsequentPayment",
-  });
-});
 
 /** @internal */
 export type NetworkTokenCreate$Outbound = {
@@ -64,33 +44,10 @@ export const NetworkTokenCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkTokenCreate$ {
-  /** @deprecated use `NetworkTokenCreate$inboundSchema` instead. */
-  export const inboundSchema = NetworkTokenCreate$inboundSchema;
-  /** @deprecated use `NetworkTokenCreate$outboundSchema` instead. */
-  export const outboundSchema = NetworkTokenCreate$outboundSchema;
-  /** @deprecated use `NetworkTokenCreate$Outbound` instead. */
-  export type Outbound = NetworkTokenCreate$Outbound;
-}
-
 export function networkTokenCreateToJSON(
   networkTokenCreate: NetworkTokenCreate,
 ): string {
   return JSON.stringify(
     NetworkTokenCreate$outboundSchema.parse(networkTokenCreate),
-  );
-}
-
-export function networkTokenCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<NetworkTokenCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => NetworkTokenCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NetworkTokenCreate' from JSON`,
   );
 }

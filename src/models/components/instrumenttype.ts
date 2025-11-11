@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const InstrumentType = {
   Pan: "pan",
@@ -31,24 +27,3 @@ export const InstrumentType$inboundSchema: z.ZodType<
     z.nativeEnum(InstrumentType),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const InstrumentType$outboundSchema: z.ZodType<
-  InstrumentType,
-  z.ZodTypeDef,
-  InstrumentType
-> = z.union([
-  z.nativeEnum(InstrumentType),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InstrumentType$ {
-  /** @deprecated use `InstrumentType$inboundSchema` instead. */
-  export const inboundSchema = InstrumentType$inboundSchema;
-  /** @deprecated use `InstrumentType$outboundSchema` instead. */
-  export const outboundSchema = InstrumentType$outboundSchema;
-}

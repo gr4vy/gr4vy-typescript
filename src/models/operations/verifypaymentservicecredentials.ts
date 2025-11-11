@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VerifyPaymentServiceCredentialsGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,80 +17,6 @@ export type VerifyPaymentServiceCredentialsRequest = {
   merchantAccountId?: string | null | undefined;
   verifyCredentials: components.VerifyCredentials;
 };
-
-/** @internal */
-export const VerifyPaymentServiceCredentialsGlobals$inboundSchema: z.ZodType<
-  VerifyPaymentServiceCredentialsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type VerifyPaymentServiceCredentialsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const VerifyPaymentServiceCredentialsGlobals$outboundSchema: z.ZodType<
-  VerifyPaymentServiceCredentialsGlobals$Outbound,
-  z.ZodTypeDef,
-  VerifyPaymentServiceCredentialsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyPaymentServiceCredentialsGlobals$ {
-  /** @deprecated use `VerifyPaymentServiceCredentialsGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    VerifyPaymentServiceCredentialsGlobals$inboundSchema;
-  /** @deprecated use `VerifyPaymentServiceCredentialsGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifyPaymentServiceCredentialsGlobals$outboundSchema;
-  /** @deprecated use `VerifyPaymentServiceCredentialsGlobals$Outbound` instead. */
-  export type Outbound = VerifyPaymentServiceCredentialsGlobals$Outbound;
-}
-
-export function verifyPaymentServiceCredentialsGlobalsToJSON(
-  verifyPaymentServiceCredentialsGlobals:
-    VerifyPaymentServiceCredentialsGlobals,
-): string {
-  return JSON.stringify(
-    VerifyPaymentServiceCredentialsGlobals$outboundSchema.parse(
-      verifyPaymentServiceCredentialsGlobals,
-    ),
-  );
-}
-
-export function verifyPaymentServiceCredentialsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyPaymentServiceCredentialsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      VerifyPaymentServiceCredentialsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyPaymentServiceCredentialsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VerifyPaymentServiceCredentialsRequest$inboundSchema: z.ZodType<
-  VerifyPaymentServiceCredentialsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  VerifyCredentials: components.VerifyCredentials$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "VerifyCredentials": "verifyCredentials",
-  });
-});
 
 /** @internal */
 export type VerifyPaymentServiceCredentialsRequest$Outbound = {
@@ -115,21 +38,6 @@ export const VerifyPaymentServiceCredentialsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyPaymentServiceCredentialsRequest$ {
-  /** @deprecated use `VerifyPaymentServiceCredentialsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    VerifyPaymentServiceCredentialsRequest$inboundSchema;
-  /** @deprecated use `VerifyPaymentServiceCredentialsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifyPaymentServiceCredentialsRequest$outboundSchema;
-  /** @deprecated use `VerifyPaymentServiceCredentialsRequest$Outbound` instead. */
-  export type Outbound = VerifyPaymentServiceCredentialsRequest$Outbound;
-}
-
 export function verifyPaymentServiceCredentialsRequestToJSON(
   verifyPaymentServiceCredentialsRequest:
     VerifyPaymentServiceCredentialsRequest,
@@ -138,16 +46,5 @@ export function verifyPaymentServiceCredentialsRequestToJSON(
     VerifyPaymentServiceCredentialsRequest$outboundSchema.parse(
       verifyPaymentServiceCredentialsRequest,
     ),
-  );
-}
-
-export function verifyPaymentServiceCredentialsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyPaymentServiceCredentialsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      VerifyPaymentServiceCredentialsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyPaymentServiceCredentialsRequest' from JSON`,
   );
 }

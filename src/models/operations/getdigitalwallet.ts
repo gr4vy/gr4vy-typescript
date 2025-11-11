@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetDigitalWalletGlobals = {
   merchantAccountId?: string | undefined;
@@ -22,74 +19,6 @@ export type GetDigitalWalletRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const GetDigitalWalletGlobals$inboundSchema: z.ZodType<
-  GetDigitalWalletGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type GetDigitalWalletGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const GetDigitalWalletGlobals$outboundSchema: z.ZodType<
-  GetDigitalWalletGlobals$Outbound,
-  z.ZodTypeDef,
-  GetDigitalWalletGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetDigitalWalletGlobals$ {
-  /** @deprecated use `GetDigitalWalletGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetDigitalWalletGlobals$inboundSchema;
-  /** @deprecated use `GetDigitalWalletGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetDigitalWalletGlobals$outboundSchema;
-  /** @deprecated use `GetDigitalWalletGlobals$Outbound` instead. */
-  export type Outbound = GetDigitalWalletGlobals$Outbound;
-}
-
-export function getDigitalWalletGlobalsToJSON(
-  getDigitalWalletGlobals: GetDigitalWalletGlobals,
-): string {
-  return JSON.stringify(
-    GetDigitalWalletGlobals$outboundSchema.parse(getDigitalWalletGlobals),
-  );
-}
-
-export function getDigitalWalletGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDigitalWalletGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetDigitalWalletGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDigitalWalletGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetDigitalWalletRequest$inboundSchema: z.ZodType<
-  GetDigitalWalletRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  digital_wallet_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "digital_wallet_id": "digitalWalletId",
-  });
-});
 
 /** @internal */
 export type GetDigitalWalletRequest$Outbound = {
@@ -111,33 +40,10 @@ export const GetDigitalWalletRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetDigitalWalletRequest$ {
-  /** @deprecated use `GetDigitalWalletRequest$inboundSchema` instead. */
-  export const inboundSchema = GetDigitalWalletRequest$inboundSchema;
-  /** @deprecated use `GetDigitalWalletRequest$outboundSchema` instead. */
-  export const outboundSchema = GetDigitalWalletRequest$outboundSchema;
-  /** @deprecated use `GetDigitalWalletRequest$Outbound` instead. */
-  export type Outbound = GetDigitalWalletRequest$Outbound;
-}
-
 export function getDigitalWalletRequestToJSON(
   getDigitalWalletRequest: GetDigitalWalletRequest,
 ): string {
   return JSON.stringify(
     GetDigitalWalletRequest$outboundSchema.parse(getDigitalWalletRequest),
-  );
-}
-
-export function getDigitalWalletRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDigitalWalletRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetDigitalWalletRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDigitalWalletRequest' from JSON`,
   );
 }

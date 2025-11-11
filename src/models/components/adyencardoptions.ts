@@ -4,17 +4,12 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AdyenCardAutoRescueScenariosEnum,
-  AdyenCardAutoRescueScenariosEnum$inboundSchema,
   AdyenCardAutoRescueScenariosEnum$outboundSchema,
 } from "./adyencardautorescuescenariosenum.js";
 import {
   AdyenSplitsOptions,
-  AdyenSplitsOptions$inboundSchema,
   AdyenSplitsOptions$Outbound,
   AdyenSplitsOptions$outboundSchema,
 } from "./adyensplitsoptions.js";
@@ -47,25 +42,6 @@ export type AdyenCardOptions = {
 };
 
 /** @internal */
-export const AdyenCardOptions$inboundSchema: z.ZodType<
-  AdyenCardOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  autoRescue: z.nullable(z.boolean()).optional(),
-  maxDaysToRescue: z.nullable(z.number().int()).optional(),
-  additionalData: z.nullable(z.record(z.string())).optional(),
-  autoRescueScenario: z.nullable(AdyenCardAutoRescueScenariosEnum$inboundSchema)
-    .optional(),
-  window_origin: z.nullable(z.string()).optional(),
-  splits: z.nullable(AdyenSplitsOptions$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "window_origin": "windowOrigin",
-  });
-});
-
-/** @internal */
 export type AdyenCardOptions$Outbound = {
   autoRescue?: boolean | null | undefined;
   maxDaysToRescue?: number | null | undefined;
@@ -95,33 +71,10 @@ export const AdyenCardOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AdyenCardOptions$ {
-  /** @deprecated use `AdyenCardOptions$inboundSchema` instead. */
-  export const inboundSchema = AdyenCardOptions$inboundSchema;
-  /** @deprecated use `AdyenCardOptions$outboundSchema` instead. */
-  export const outboundSchema = AdyenCardOptions$outboundSchema;
-  /** @deprecated use `AdyenCardOptions$Outbound` instead. */
-  export type Outbound = AdyenCardOptions$Outbound;
-}
-
 export function adyenCardOptionsToJSON(
   adyenCardOptions: AdyenCardOptions,
 ): string {
   return JSON.stringify(
     AdyenCardOptions$outboundSchema.parse(adyenCardOptions),
-  );
-}
-
-export function adyenCardOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<AdyenCardOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AdyenCardOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AdyenCardOptions' from JSON`,
   );
 }

@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const ErrorLocation = {
   Query: "query",
@@ -28,24 +24,3 @@ export const ErrorLocation$inboundSchema: z.ZodType<
     z.nativeEnum(ErrorLocation),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const ErrorLocation$outboundSchema: z.ZodType<
-  ErrorLocation,
-  z.ZodTypeDef,
-  ErrorLocation
-> = z.union([
-  z.nativeEnum(ErrorLocation),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorLocation$ {
-  /** @deprecated use `ErrorLocation$inboundSchema` instead. */
-  export const inboundSchema = ErrorLocation$inboundSchema;
-  /** @deprecated use `ErrorLocation$outboundSchema` instead. */
-  export const outboundSchema = ErrorLocation$outboundSchema;
-}

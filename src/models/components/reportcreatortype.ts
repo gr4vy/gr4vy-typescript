@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const ReportCreatorType = {
   User: "user",
@@ -25,24 +21,3 @@ export const ReportCreatorType$inboundSchema: z.ZodType<
     z.nativeEnum(ReportCreatorType),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const ReportCreatorType$outboundSchema: z.ZodType<
-  ReportCreatorType,
-  z.ZodTypeDef,
-  ReportCreatorType
-> = z.union([
-  z.nativeEnum(ReportCreatorType),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportCreatorType$ {
-  /** @deprecated use `ReportCreatorType$inboundSchema` instead. */
-  export const inboundSchema = ReportCreatorType$inboundSchema;
-  /** @deprecated use `ReportCreatorType$outboundSchema` instead. */
-  export const outboundSchema = ReportCreatorType$outboundSchema;
-}

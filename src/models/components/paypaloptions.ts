@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaypalShippingOptions,
-  PaypalShippingOptions$inboundSchema,
   PaypalShippingOptions$Outbound,
   PaypalShippingOptions$outboundSchema,
 } from "./paypalshippingoptions.js";
@@ -24,20 +20,6 @@ export type PaypalOptions = {
    */
   shipping?: PaypalShippingOptions | null | undefined;
 };
-
-/** @internal */
-export const PaypalOptions$inboundSchema: z.ZodType<
-  PaypalOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  additional_data: z.nullable(z.array(z.record(z.string()))).optional(),
-  shipping: z.nullable(PaypalShippingOptions$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "additional_data": "additionalData",
-  });
-});
 
 /** @internal */
 export type PaypalOptions$Outbound = {
@@ -59,29 +41,6 @@ export const PaypalOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaypalOptions$ {
-  /** @deprecated use `PaypalOptions$inboundSchema` instead. */
-  export const inboundSchema = PaypalOptions$inboundSchema;
-  /** @deprecated use `PaypalOptions$outboundSchema` instead. */
-  export const outboundSchema = PaypalOptions$outboundSchema;
-  /** @deprecated use `PaypalOptions$Outbound` instead. */
-  export type Outbound = PaypalOptions$Outbound;
-}
-
 export function paypalOptionsToJSON(paypalOptions: PaypalOptions): string {
   return JSON.stringify(PaypalOptions$outboundSchema.parse(paypalOptions));
-}
-
-export function paypalOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<PaypalOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaypalOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaypalOptions' from JSON`,
-  );
 }

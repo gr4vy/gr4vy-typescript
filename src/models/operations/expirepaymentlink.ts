@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ExpirePaymentLinkGlobals = {
   merchantAccountId?: string | undefined;
@@ -22,74 +19,6 @@ export type ExpirePaymentLinkRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const ExpirePaymentLinkGlobals$inboundSchema: z.ZodType<
-  ExpirePaymentLinkGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ExpirePaymentLinkGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ExpirePaymentLinkGlobals$outboundSchema: z.ZodType<
-  ExpirePaymentLinkGlobals$Outbound,
-  z.ZodTypeDef,
-  ExpirePaymentLinkGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpirePaymentLinkGlobals$ {
-  /** @deprecated use `ExpirePaymentLinkGlobals$inboundSchema` instead. */
-  export const inboundSchema = ExpirePaymentLinkGlobals$inboundSchema;
-  /** @deprecated use `ExpirePaymentLinkGlobals$outboundSchema` instead. */
-  export const outboundSchema = ExpirePaymentLinkGlobals$outboundSchema;
-  /** @deprecated use `ExpirePaymentLinkGlobals$Outbound` instead. */
-  export type Outbound = ExpirePaymentLinkGlobals$Outbound;
-}
-
-export function expirePaymentLinkGlobalsToJSON(
-  expirePaymentLinkGlobals: ExpirePaymentLinkGlobals,
-): string {
-  return JSON.stringify(
-    ExpirePaymentLinkGlobals$outboundSchema.parse(expirePaymentLinkGlobals),
-  );
-}
-
-export function expirePaymentLinkGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ExpirePaymentLinkGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExpirePaymentLinkGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExpirePaymentLinkGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ExpirePaymentLinkRequest$inboundSchema: z.ZodType<
-  ExpirePaymentLinkRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_link_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_link_id": "paymentLinkId",
-  });
-});
 
 /** @internal */
 export type ExpirePaymentLinkRequest$Outbound = {
@@ -111,33 +40,10 @@ export const ExpirePaymentLinkRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpirePaymentLinkRequest$ {
-  /** @deprecated use `ExpirePaymentLinkRequest$inboundSchema` instead. */
-  export const inboundSchema = ExpirePaymentLinkRequest$inboundSchema;
-  /** @deprecated use `ExpirePaymentLinkRequest$outboundSchema` instead. */
-  export const outboundSchema = ExpirePaymentLinkRequest$outboundSchema;
-  /** @deprecated use `ExpirePaymentLinkRequest$Outbound` instead. */
-  export type Outbound = ExpirePaymentLinkRequest$Outbound;
-}
-
 export function expirePaymentLinkRequestToJSON(
   expirePaymentLinkRequest: ExpirePaymentLinkRequest,
 ): string {
   return JSON.stringify(
     ExpirePaymentLinkRequest$outboundSchema.parse(expirePaymentLinkRequest),
-  );
-}
-
-export function expirePaymentLinkRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ExpirePaymentLinkRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExpirePaymentLinkRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExpirePaymentLinkRequest' from JSON`,
   );
 }

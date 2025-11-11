@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CryptogramCreate = {
   /**
@@ -14,19 +11,6 @@ export type CryptogramCreate = {
    */
   merchantInitiated: boolean;
 };
-
-/** @internal */
-export const CryptogramCreate$inboundSchema: z.ZodType<
-  CryptogramCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchant_initiated: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_initiated": "merchantInitiated",
-  });
-});
 
 /** @internal */
 export type CryptogramCreate$Outbound = {
@@ -46,33 +30,10 @@ export const CryptogramCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CryptogramCreate$ {
-  /** @deprecated use `CryptogramCreate$inboundSchema` instead. */
-  export const inboundSchema = CryptogramCreate$inboundSchema;
-  /** @deprecated use `CryptogramCreate$outboundSchema` instead. */
-  export const outboundSchema = CryptogramCreate$outboundSchema;
-  /** @deprecated use `CryptogramCreate$Outbound` instead. */
-  export type Outbound = CryptogramCreate$Outbound;
-}
-
 export function cryptogramCreateToJSON(
   cryptogramCreate: CryptogramCreate,
 ): string {
   return JSON.stringify(
     CryptogramCreate$outboundSchema.parse(cryptogramCreate),
-  );
-}
-
-export function cryptogramCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<CryptogramCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CryptogramCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CryptogramCreate' from JSON`,
   );
 }

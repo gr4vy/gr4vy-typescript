@@ -19,12 +19,13 @@ generation:
     hoistGlobalSecurity: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.6.2
+  version: 1.6.3
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -42,6 +43,7 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON: {}
   additionalScripts: {}
+  alwaysIncludeInboundAndOutbound: false
   author: Gr4vy
   baseErrorName: Gr4vyError
   clientServerStatusCodesAsErrors: true
@@ -52,6 +54,7 @@ typescript:
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: GR4VY
+  exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: body-first
   generateExamples: true

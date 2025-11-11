@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ForterAntiFraudOptionsDiscountCouponDiscountAmount,
-  ForterAntiFraudOptionsDiscountCouponDiscountAmount$inboundSchema,
   ForterAntiFraudOptionsDiscountCouponDiscountAmount$Outbound,
   ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema,
 } from "./forterantifraudoptionsdiscountcoupondiscountamount.js";
@@ -35,27 +31,6 @@ export type ForterAntiFraudOptionsDiscount = {
    */
   couponDiscountPercent?: string | null | undefined;
 };
-
-/** @internal */
-export const ForterAntiFraudOptionsDiscount$inboundSchema: z.ZodType<
-  ForterAntiFraudOptionsDiscount,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  coupon_code_used: z.string(),
-  discount_type: z.string(),
-  coupon_discount_amount: z.nullable(
-    ForterAntiFraudOptionsDiscountCouponDiscountAmount$inboundSchema,
-  ).optional(),
-  coupon_discount_percent: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "coupon_code_used": "couponCodeUsed",
-    "discount_type": "discountType",
-    "coupon_discount_amount": "couponDiscountAmount",
-    "coupon_discount_percent": "couponDiscountPercent",
-  });
-});
 
 /** @internal */
 export type ForterAntiFraudOptionsDiscount$Outbound = {
@@ -89,19 +64,6 @@ export const ForterAntiFraudOptionsDiscount$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsDiscount$ {
-  /** @deprecated use `ForterAntiFraudOptionsDiscount$inboundSchema` instead. */
-  export const inboundSchema = ForterAntiFraudOptionsDiscount$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsDiscount$outboundSchema` instead. */
-  export const outboundSchema = ForterAntiFraudOptionsDiscount$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsDiscount$Outbound` instead. */
-  export type Outbound = ForterAntiFraudOptionsDiscount$Outbound;
-}
-
 export function forterAntiFraudOptionsDiscountToJSON(
   forterAntiFraudOptionsDiscount: ForterAntiFraudOptionsDiscount,
 ): string {
@@ -109,15 +71,5 @@ export function forterAntiFraudOptionsDiscountToJSON(
     ForterAntiFraudOptionsDiscount$outboundSchema.parse(
       forterAntiFraudOptionsDiscount,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsDiscountFromJSON(
-  jsonString: string,
-): SafeParseResult<ForterAntiFraudOptionsDiscount, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ForterAntiFraudOptionsDiscount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ForterAntiFraudOptionsDiscount' from JSON`,
   );
 }

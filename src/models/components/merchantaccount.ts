@@ -7,11 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
+import { CardScheme, CardScheme$inboundSchema } from "./cardscheme.js";
 
 export type MerchantAccount = {
   /**
@@ -162,110 +158,6 @@ export const MerchantAccount$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type MerchantAccount$Outbound = {
-  type: "merchant-account";
-  id: string;
-  display_name: string;
-  loon_client_key?: string | null | undefined;
-  loon_secret_key?: string | null | undefined;
-  loon_accepted_schemes?: Array<string> | null | undefined;
-  account_updater_request_encryption_key?: string | null | undefined;
-  account_updater_request_encryption_key_id?: string | null | undefined;
-  account_updater_response_decryption_key?: string | null | undefined;
-  account_updater_response_decryption_key_id?: string | null | undefined;
-  account_updater_enabled: boolean;
-  over_capture_amount?: number | null | undefined;
-  over_capture_percentage?: number | null | undefined;
-  visa_network_tokens_requestor_id?: string | null | undefined;
-  visa_network_tokens_app_id?: string | null | undefined;
-  amex_network_tokens_requestor_id?: string | null | undefined;
-  amex_network_tokens_app_id?: string | null | undefined;
-  mastercard_network_tokens_requestor_id?: string | null | undefined;
-  mastercard_network_tokens_app_id?: string | null | undefined;
-  async_network_tokens_enabled: boolean;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const MerchantAccount$outboundSchema: z.ZodType<
-  MerchantAccount$Outbound,
-  z.ZodTypeDef,
-  MerchantAccount
-> = z.object({
-  type: z.literal("merchant-account").default("merchant-account" as const),
-  id: z.string(),
-  displayName: z.string(),
-  loonClientKey: z.nullable(z.string()).optional(),
-  loonSecretKey: z.nullable(z.string()).optional(),
-  loonAcceptedSchemes: z.nullable(z.array(CardScheme$outboundSchema))
-    .optional(),
-  accountUpdaterRequestEncryptionKey: z.nullable(z.string()).optional(),
-  accountUpdaterRequestEncryptionKeyId: z.nullable(z.string()).optional(),
-  accountUpdaterResponseDecryptionKey: z.nullable(z.string()).optional(),
-  accountUpdaterResponseDecryptionKeyId: z.nullable(z.string()).optional(),
-  accountUpdaterEnabled: z.boolean(),
-  overCaptureAmount: z.nullable(z.number().int()).optional(),
-  overCapturePercentage: z.nullable(z.number().int()).optional(),
-  visaNetworkTokensRequestorId: z.nullable(z.string()).optional(),
-  visaNetworkTokensAppId: z.nullable(z.string()).optional(),
-  amexNetworkTokensRequestorId: z.nullable(z.string()).optional(),
-  amexNetworkTokensAppId: z.nullable(z.string()).optional(),
-  mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
-  mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
-  asyncNetworkTokensEnabled: z.boolean().default(false),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    loonClientKey: "loon_client_key",
-    loonSecretKey: "loon_secret_key",
-    loonAcceptedSchemes: "loon_accepted_schemes",
-    accountUpdaterRequestEncryptionKey:
-      "account_updater_request_encryption_key",
-    accountUpdaterRequestEncryptionKeyId:
-      "account_updater_request_encryption_key_id",
-    accountUpdaterResponseDecryptionKey:
-      "account_updater_response_decryption_key",
-    accountUpdaterResponseDecryptionKeyId:
-      "account_updater_response_decryption_key_id",
-    accountUpdaterEnabled: "account_updater_enabled",
-    overCaptureAmount: "over_capture_amount",
-    overCapturePercentage: "over_capture_percentage",
-    visaNetworkTokensRequestorId: "visa_network_tokens_requestor_id",
-    visaNetworkTokensAppId: "visa_network_tokens_app_id",
-    amexNetworkTokensRequestorId: "amex_network_tokens_requestor_id",
-    amexNetworkTokensAppId: "amex_network_tokens_app_id",
-    mastercardNetworkTokensRequestorId:
-      "mastercard_network_tokens_requestor_id",
-    mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
-    asyncNetworkTokensEnabled: "async_network_tokens_enabled",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MerchantAccount$ {
-  /** @deprecated use `MerchantAccount$inboundSchema` instead. */
-  export const inboundSchema = MerchantAccount$inboundSchema;
-  /** @deprecated use `MerchantAccount$outboundSchema` instead. */
-  export const outboundSchema = MerchantAccount$outboundSchema;
-  /** @deprecated use `MerchantAccount$Outbound` instead. */
-  export type Outbound = MerchantAccount$Outbound;
-}
-
-export function merchantAccountToJSON(
-  merchantAccount: MerchantAccount,
-): string {
-  return JSON.stringify(MerchantAccount$outboundSchema.parse(merchantAccount));
-}
 
 export function merchantAccountFromJSON(
   jsonString: string,

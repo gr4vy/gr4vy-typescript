@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetReportExecutionGlobals = {
   merchantAccountId?: string | undefined;
@@ -22,74 +19,6 @@ export type GetReportExecutionRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const GetReportExecutionGlobals$inboundSchema: z.ZodType<
-  GetReportExecutionGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type GetReportExecutionGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const GetReportExecutionGlobals$outboundSchema: z.ZodType<
-  GetReportExecutionGlobals$Outbound,
-  z.ZodTypeDef,
-  GetReportExecutionGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetReportExecutionGlobals$ {
-  /** @deprecated use `GetReportExecutionGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetReportExecutionGlobals$inboundSchema;
-  /** @deprecated use `GetReportExecutionGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetReportExecutionGlobals$outboundSchema;
-  /** @deprecated use `GetReportExecutionGlobals$Outbound` instead. */
-  export type Outbound = GetReportExecutionGlobals$Outbound;
-}
-
-export function getReportExecutionGlobalsToJSON(
-  getReportExecutionGlobals: GetReportExecutionGlobals,
-): string {
-  return JSON.stringify(
-    GetReportExecutionGlobals$outboundSchema.parse(getReportExecutionGlobals),
-  );
-}
-
-export function getReportExecutionGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetReportExecutionGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetReportExecutionGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetReportExecutionGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetReportExecutionRequest$inboundSchema: z.ZodType<
-  GetReportExecutionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  report_execution_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "report_execution_id": "reportExecutionId",
-  });
-});
 
 /** @internal */
 export type GetReportExecutionRequest$Outbound = {
@@ -111,33 +40,10 @@ export const GetReportExecutionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetReportExecutionRequest$ {
-  /** @deprecated use `GetReportExecutionRequest$inboundSchema` instead. */
-  export const inboundSchema = GetReportExecutionRequest$inboundSchema;
-  /** @deprecated use `GetReportExecutionRequest$outboundSchema` instead. */
-  export const outboundSchema = GetReportExecutionRequest$outboundSchema;
-  /** @deprecated use `GetReportExecutionRequest$Outbound` instead. */
-  export type Outbound = GetReportExecutionRequest$Outbound;
-}
-
 export function getReportExecutionRequestToJSON(
   getReportExecutionRequest: GetReportExecutionRequest,
 ): string {
   return JSON.stringify(
     GetReportExecutionRequest$outboundSchema.parse(getReportExecutionRequest),
-  );
-}
-
-export function getReportExecutionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetReportExecutionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetReportExecutionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetReportExecutionRequest' from JSON`,
   );
 }

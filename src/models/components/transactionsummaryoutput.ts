@@ -10,58 +10,39 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   GiftCardRedemption,
   GiftCardRedemption$inboundSchema,
-  GiftCardRedemption$Outbound,
-  GiftCardRedemption$outboundSchema,
 } from "./giftcardredemption.js";
 import {
   GiftCardService,
   GiftCardService$inboundSchema,
-  GiftCardService$Outbound,
-  GiftCardService$outboundSchema,
 } from "./giftcardservice.js";
 import {
   InstrumentType,
   InstrumentType$inboundSchema,
-  InstrumentType$outboundSchema,
 } from "./instrumenttype.js";
-import {
-  Method,
-  Method$inboundSchema,
-  Method$outboundSchema,
-} from "./method.js";
+import { Method, Method$inboundSchema } from "./method.js";
 import {
   ShippingDetails,
   ShippingDetails$inboundSchema,
-  ShippingDetails$Outbound,
-  ShippingDetails$outboundSchema,
 } from "./shippingdetails.js";
 import {
   TransactionBuyerOutput,
   TransactionBuyerOutput$inboundSchema,
-  TransactionBuyerOutput$Outbound,
-  TransactionBuyerOutput$outboundSchema,
 } from "./transactionbuyeroutput.js";
 import {
   TransactionIntent,
   TransactionIntent$inboundSchema,
-  TransactionIntent$outboundSchema,
 } from "./transactionintent.js";
 import {
   TransactionPaymentMethodOutput,
   TransactionPaymentMethodOutput$inboundSchema,
-  TransactionPaymentMethodOutput$Outbound,
-  TransactionPaymentMethodOutput$outboundSchema,
 } from "./transactionpaymentmethodoutput.js";
 import {
   TransactionPaymentService,
   TransactionPaymentService$inboundSchema,
-  TransactionPaymentService$Outbound,
-  TransactionPaymentService$outboundSchema,
 } from "./transactionpaymentservice.js";
 import {
   TransactionStatus,
   TransactionStatus$inboundSchema,
-  TransactionStatus$outboundSchema,
 } from "./transactionstatus.js";
 
 /**
@@ -257,129 +238,6 @@ export const TransactionSummaryOutput$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type TransactionSummaryOutput$Outbound = {
-  type: "transaction";
-  id: string;
-  reconciliation_id: string;
-  merchant_account_id: string;
-  currency: string;
-  amount: number;
-  status: string;
-  authorized_amount: number;
-  captured_amount: number;
-  refunded_amount: number;
-  settled_currency?: string | null | undefined;
-  settled_amount: number;
-  settled: boolean;
-  country?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  intent: string;
-  payment_method?: TransactionPaymentMethodOutput$Outbound | null | undefined;
-  method?: string | null | undefined;
-  instrument_type?: string | null | undefined;
-  error_code?: string | null | undefined;
-  payment_service?: TransactionPaymentService$Outbound | null | undefined;
-  pending_review: boolean;
-  buyer?: TransactionBuyerOutput$Outbound | null | undefined;
-  raw_response_code?: string | null | undefined;
-  raw_response_description?: string | null | undefined;
-  shipping_details?: ShippingDetails$Outbound | null | undefined;
-  checkout_session_id?: string | null | undefined;
-  gift_card_redemptions: Array<GiftCardRedemption$Outbound>;
-  gift_card_service?: GiftCardService$Outbound | null | undefined;
-  created_at: string;
-  updated_at: string;
-  disputed: boolean;
-};
-
-/** @internal */
-export const TransactionSummaryOutput$outboundSchema: z.ZodType<
-  TransactionSummaryOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionSummaryOutput
-> = z.object({
-  type: z.literal("transaction").default("transaction" as const),
-  id: z.string(),
-  reconciliationId: z.string(),
-  merchantAccountId: z.string(),
-  currency: z.string(),
-  amount: z.number().int(),
-  status: TransactionStatus$outboundSchema,
-  authorizedAmount: z.number().int(),
-  capturedAmount: z.number().int(),
-  refundedAmount: z.number().int(),
-  settledCurrency: z.nullable(z.string()).optional(),
-  settledAmount: z.number().int(),
-  settled: z.boolean(),
-  country: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  intent: TransactionIntent$outboundSchema,
-  paymentMethod: z.nullable(TransactionPaymentMethodOutput$outboundSchema)
-    .optional(),
-  method: z.nullable(Method$outboundSchema).optional(),
-  instrumentType: z.nullable(InstrumentType$outboundSchema).optional(),
-  errorCode: z.nullable(z.string()).optional(),
-  paymentService: z.nullable(TransactionPaymentService$outboundSchema)
-    .optional(),
-  pendingReview: z.boolean().default(false),
-  buyer: z.nullable(TransactionBuyerOutput$outboundSchema).optional(),
-  rawResponseCode: z.nullable(z.string()).optional(),
-  rawResponseDescription: z.nullable(z.string()).optional(),
-  shippingDetails: z.nullable(ShippingDetails$outboundSchema).optional(),
-  checkoutSessionId: z.nullable(z.string()).optional(),
-  giftCardRedemptions: z.array(GiftCardRedemption$outboundSchema),
-  giftCardService: z.nullable(GiftCardService$outboundSchema).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-  disputed: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    reconciliationId: "reconciliation_id",
-    merchantAccountId: "merchant_account_id",
-    authorizedAmount: "authorized_amount",
-    capturedAmount: "captured_amount",
-    refundedAmount: "refunded_amount",
-    settledCurrency: "settled_currency",
-    settledAmount: "settled_amount",
-    externalIdentifier: "external_identifier",
-    paymentMethod: "payment_method",
-    instrumentType: "instrument_type",
-    errorCode: "error_code",
-    paymentService: "payment_service",
-    pendingReview: "pending_review",
-    rawResponseCode: "raw_response_code",
-    rawResponseDescription: "raw_response_description",
-    shippingDetails: "shipping_details",
-    checkoutSessionId: "checkout_session_id",
-    giftCardRedemptions: "gift_card_redemptions",
-    giftCardService: "gift_card_service",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionSummaryOutput$ {
-  /** @deprecated use `TransactionSummaryOutput$inboundSchema` instead. */
-  export const inboundSchema = TransactionSummaryOutput$inboundSchema;
-  /** @deprecated use `TransactionSummaryOutput$outboundSchema` instead. */
-  export const outboundSchema = TransactionSummaryOutput$outboundSchema;
-  /** @deprecated use `TransactionSummaryOutput$Outbound` instead. */
-  export type Outbound = TransactionSummaryOutput$Outbound;
-}
-
-export function transactionSummaryOutputToJSON(
-  transactionSummaryOutput: TransactionSummaryOutput,
-): string {
-  return JSON.stringify(
-    TransactionSummaryOutput$outboundSchema.parse(transactionSummaryOutput),
-  );
-}
 
 export function transactionSummaryOutputFromJSON(
   jsonString: string,

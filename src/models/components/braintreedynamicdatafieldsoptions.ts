@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 
 export const VaultPaymentMethodCriteria = {
   Always: "ALWAYS",
@@ -37,17 +30,6 @@ export type BraintreeDynamicDataFieldsOptions = {
 };
 
 /** @internal */
-export const VaultPaymentMethodCriteria$inboundSchema: z.ZodType<
-  VaultPaymentMethodCriteria,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(VaultPaymentMethodCriteria),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const VaultPaymentMethodCriteria$outboundSchema: z.ZodType<
   VaultPaymentMethodCriteria,
   z.ZodTypeDef,
@@ -56,36 +38,6 @@ export const VaultPaymentMethodCriteria$outboundSchema: z.ZodType<
   z.nativeEnum(VaultPaymentMethodCriteria),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultPaymentMethodCriteria$ {
-  /** @deprecated use `VaultPaymentMethodCriteria$inboundSchema` instead. */
-  export const inboundSchema = VaultPaymentMethodCriteria$inboundSchema;
-  /** @deprecated use `VaultPaymentMethodCriteria$outboundSchema` instead. */
-  export const outboundSchema = VaultPaymentMethodCriteria$outboundSchema;
-}
-
-/** @internal */
-export const BraintreeDynamicDataFieldsOptions$inboundSchema: z.ZodType<
-  BraintreeDynamicDataFieldsOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  three_ds_auth_status: z.nullable(z.string()).optional(),
-  purchase_order_number: z.nullable(z.string()).optional(),
-  vault_payment_method_criteria: z.nullable(
-    VaultPaymentMethodCriteria$inboundSchema,
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "three_ds_auth_status": "threeDsAuthStatus",
-    "purchase_order_number": "purchaseOrderNumber",
-    "vault_payment_method_criteria": "vaultPaymentMethodCriteria",
-  });
-});
 
 /** @internal */
 export type BraintreeDynamicDataFieldsOptions$Outbound = {
@@ -113,20 +65,6 @@ export const BraintreeDynamicDataFieldsOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BraintreeDynamicDataFieldsOptions$ {
-  /** @deprecated use `BraintreeDynamicDataFieldsOptions$inboundSchema` instead. */
-  export const inboundSchema = BraintreeDynamicDataFieldsOptions$inboundSchema;
-  /** @deprecated use `BraintreeDynamicDataFieldsOptions$outboundSchema` instead. */
-  export const outboundSchema =
-    BraintreeDynamicDataFieldsOptions$outboundSchema;
-  /** @deprecated use `BraintreeDynamicDataFieldsOptions$Outbound` instead. */
-  export type Outbound = BraintreeDynamicDataFieldsOptions$Outbound;
-}
-
 export function braintreeDynamicDataFieldsOptionsToJSON(
   braintreeDynamicDataFieldsOptions: BraintreeDynamicDataFieldsOptions,
 ): string {
@@ -134,15 +72,5 @@ export function braintreeDynamicDataFieldsOptionsToJSON(
     BraintreeDynamicDataFieldsOptions$outboundSchema.parse(
       braintreeDynamicDataFieldsOptions,
     ),
-  );
-}
-
-export function braintreeDynamicDataFieldsOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<BraintreeDynamicDataFieldsOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BraintreeDynamicDataFieldsOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BraintreeDynamicDataFieldsOptions' from JSON`,
   );
 }

@@ -27,7 +27,6 @@ export const Field$inboundSchema: z.ZodType<Field, z.ZodTypeDef, unknown> = z
     key: z.string(),
     value: z.string(),
   });
-
 /** @internal */
 export type Field$Outbound = {
   key: string;
@@ -44,23 +43,9 @@ export const Field$outboundSchema: z.ZodType<
   value: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Field$ {
-  /** @deprecated use `Field$inboundSchema` instead. */
-  export const inboundSchema = Field$inboundSchema;
-  /** @deprecated use `Field$outboundSchema` instead. */
-  export const outboundSchema = Field$outboundSchema;
-  /** @deprecated use `Field$Outbound` instead. */
-  export type Outbound = Field$Outbound;
-}
-
 export function fieldToJSON(field: Field): string {
   return JSON.stringify(Field$outboundSchema.parse(field));
 }
-
 export function fieldFromJSON(
   jsonString: string,
 ): SafeParseResult<Field, SDKValidationError> {

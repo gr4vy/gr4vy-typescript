@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   GiftCardErrorCode,
   GiftCardErrorCode$inboundSchema,
-  GiftCardErrorCode$outboundSchema,
 } from "./giftcarderrorcode.js";
 
 export type GiftCardSummary = {
@@ -94,71 +93,6 @@ export const GiftCardSummary$inboundSchema: z.ZodType<
     "balance_raw_error_message": "balanceRawErrorMessage",
   });
 });
-
-/** @internal */
-export type GiftCardSummary$Outbound = {
-  type: "gift-card";
-  id?: string | null | undefined;
-  merchant_account_id: string;
-  bin: string;
-  sub_bin: string;
-  last4: string;
-  currency?: string | null | undefined;
-  expiration_date?: string | null | undefined;
-  balance?: number | null | undefined;
-  balance_error_code?: string | null | undefined;
-  balance_raw_error_code?: string | null | undefined;
-  balance_raw_error_message?: string | null | undefined;
-};
-
-/** @internal */
-export const GiftCardSummary$outboundSchema: z.ZodType<
-  GiftCardSummary$Outbound,
-  z.ZodTypeDef,
-  GiftCardSummary
-> = z.object({
-  type: z.literal("gift-card").default("gift-card" as const),
-  id: z.nullable(z.string()).optional(),
-  merchantAccountId: z.string(),
-  bin: z.string(),
-  subBin: z.string(),
-  last4: z.string(),
-  currency: z.nullable(z.string()).optional(),
-  expirationDate: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  balance: z.nullable(z.number().int()).optional(),
-  balanceErrorCode: z.nullable(GiftCardErrorCode$outboundSchema).optional(),
-  balanceRawErrorCode: z.nullable(z.string()).optional(),
-  balanceRawErrorMessage: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    subBin: "sub_bin",
-    expirationDate: "expiration_date",
-    balanceErrorCode: "balance_error_code",
-    balanceRawErrorCode: "balance_raw_error_code",
-    balanceRawErrorMessage: "balance_raw_error_message",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardSummary$ {
-  /** @deprecated use `GiftCardSummary$inboundSchema` instead. */
-  export const inboundSchema = GiftCardSummary$inboundSchema;
-  /** @deprecated use `GiftCardSummary$outboundSchema` instead. */
-  export const outboundSchema = GiftCardSummary$outboundSchema;
-  /** @deprecated use `GiftCardSummary$Outbound` instead. */
-  export type Outbound = GiftCardSummary$Outbound;
-}
-
-export function giftCardSummaryToJSON(
-  giftCardSummary: GiftCardSummary,
-): string {
-  return JSON.stringify(GiftCardSummary$outboundSchema.parse(giftCardSummary));
-}
 
 export function giftCardSummaryFromJSON(
   jsonString: string,

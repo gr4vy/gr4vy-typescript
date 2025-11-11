@@ -123,7 +123,6 @@ export const TicketDeliveryMethod$inboundSchema: z.ZodType<
     z.nativeEnum(TicketDeliveryMethod),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const TicketDeliveryMethod$outboundSchema: z.ZodType<
   TicketDeliveryMethod,
@@ -133,17 +132,6 @@ export const TicketDeliveryMethod$outboundSchema: z.ZodType<
   z.nativeEnum(TicketDeliveryMethod),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TicketDeliveryMethod$ {
-  /** @deprecated use `TicketDeliveryMethod$inboundSchema` instead. */
-  export const inboundSchema = TicketDeliveryMethod$inboundSchema;
-  /** @deprecated use `TicketDeliveryMethod$outboundSchema` instead. */
-  export const outboundSchema = TicketDeliveryMethod$outboundSchema;
-}
 
 /** @internal */
 export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
@@ -191,7 +179,6 @@ export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
       "travel_agency_plan_name": "travelAgencyPlanName",
     });
   });
-
 /** @internal */
 export type Airline$Outbound = {
   booking_code?: string | null | undefined;
@@ -263,23 +250,9 @@ export const Airline$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Airline$ {
-  /** @deprecated use `Airline$inboundSchema` instead. */
-  export const inboundSchema = Airline$inboundSchema;
-  /** @deprecated use `Airline$outboundSchema` instead. */
-  export const outboundSchema = Airline$outboundSchema;
-  /** @deprecated use `Airline$Outbound` instead. */
-  export type Outbound = Airline$Outbound;
-}
-
 export function airlineToJSON(airline: Airline): string {
   return JSON.stringify(Airline$outboundSchema.parse(airline));
 }
-
 export function airlineFromJSON(
   jsonString: string,
 ): SafeParseResult<Airline, SDKValidationError> {

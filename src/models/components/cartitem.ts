@@ -43,6 +43,10 @@ export type CartItem = {
    */
   sku?: string | null | undefined;
   /**
+   * The UPC for the item.
+   */
+  upc?: string | null | undefined;
+  /**
    * The product URL for the item.
    */
   productUrl?: string | null | undefined;
@@ -101,6 +105,7 @@ export const CartItem$inboundSchema: z.ZodType<
   tax_amount: z.nullable(z.number().int()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
   sku: z.nullable(z.string()).optional(),
+  upc: z.nullable(z.string()).optional(),
   product_url: z.nullable(z.string()).optional(),
   image_url: z.nullable(z.string()).optional(),
   categories: z.nullable(z.array(z.string())).optional(),
@@ -129,7 +134,6 @@ export const CartItem$inboundSchema: z.ZodType<
     "shipping_amount": "shippingAmount",
   });
 });
-
 /** @internal */
 export type CartItem$Outbound = {
   name: string;
@@ -139,6 +143,7 @@ export type CartItem$Outbound = {
   tax_amount?: number | null | undefined;
   external_identifier?: string | null | undefined;
   sku?: string | null | undefined;
+  upc?: string | null | undefined;
   product_url?: string | null | undefined;
   image_url?: string | null | undefined;
   categories?: Array<string> | null | undefined;
@@ -165,6 +170,7 @@ export const CartItem$outboundSchema: z.ZodType<
   taxAmount: z.nullable(z.number().int()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
   sku: z.nullable(z.string()).optional(),
+  upc: z.nullable(z.string()).optional(),
   productUrl: z.nullable(z.string()).optional(),
   imageUrl: z.nullable(z.string()).optional(),
   categories: z.nullable(z.array(z.string())).optional(),
@@ -194,23 +200,9 @@ export const CartItem$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CartItem$ {
-  /** @deprecated use `CartItem$inboundSchema` instead. */
-  export const inboundSchema = CartItem$inboundSchema;
-  /** @deprecated use `CartItem$outboundSchema` instead. */
-  export const outboundSchema = CartItem$outboundSchema;
-  /** @deprecated use `CartItem$Outbound` instead. */
-  export type Outbound = CartItem$Outbound;
-}
-
 export function cartItemToJSON(cartItem: CartItem): string {
   return JSON.stringify(CartItem$outboundSchema.parse(cartItem));
 }
-
 export function cartItemFromJSON(
   jsonString: string,
 ): SafeParseResult<CartItem, SDKValidationError> {

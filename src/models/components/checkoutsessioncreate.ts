@@ -4,24 +4,18 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Airline,
-  Airline$inboundSchema,
   Airline$Outbound,
   Airline$outboundSchema,
 } from "./airline.js";
 import {
   CartItem,
-  CartItem$inboundSchema,
   CartItem$Outbound,
   CartItem$outboundSchema,
 } from "./cartitem.js";
 import {
   GuestBuyerInput,
-  GuestBuyerInput$inboundSchema,
   GuestBuyerInput$Outbound,
   GuestBuyerInput$outboundSchema,
 } from "./guestbuyerinput.js";
@@ -62,28 +56,6 @@ export type CheckoutSessionCreate = {
 };
 
 /** @internal */
-export const CheckoutSessionCreate$inboundSchema: z.ZodType<
-  CheckoutSessionCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  buyer: z.nullable(GuestBuyerInput$inboundSchema).optional(),
-  airline: z.nullable(Airline$inboundSchema).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  payment_service_id: z.nullable(z.string()).optional(),
-  expires_in: z.number().default(3600),
-}).transform((v) => {
-  return remap$(v, {
-    "cart_items": "cartItems",
-    "payment_service_id": "paymentServiceId",
-    "expires_in": "expiresIn",
-  });
-});
-
-/** @internal */
 export type CheckoutSessionCreate$Outbound = {
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   metadata?: { [k: string]: string } | null | undefined;
@@ -117,33 +89,10 @@ export const CheckoutSessionCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSessionCreate$ {
-  /** @deprecated use `CheckoutSessionCreate$inboundSchema` instead. */
-  export const inboundSchema = CheckoutSessionCreate$inboundSchema;
-  /** @deprecated use `CheckoutSessionCreate$outboundSchema` instead. */
-  export const outboundSchema = CheckoutSessionCreate$outboundSchema;
-  /** @deprecated use `CheckoutSessionCreate$Outbound` instead. */
-  export type Outbound = CheckoutSessionCreate$Outbound;
-}
-
 export function checkoutSessionCreateToJSON(
   checkoutSessionCreate: CheckoutSessionCreate,
 ): string {
   return JSON.stringify(
     CheckoutSessionCreate$outboundSchema.parse(checkoutSessionCreate),
-  );
-}
-
-export function checkoutSessionCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<CheckoutSessionCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CheckoutSessionCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutSessionCreate' from JSON`,
   );
 }

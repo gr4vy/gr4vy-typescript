@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentService,
   PaymentService$inboundSchema,
-  PaymentService$Outbound,
-  PaymentService$outboundSchema,
 } from "./paymentservice.js";
 
 export type PaymentServices = {
@@ -49,50 +47,6 @@ export const PaymentServices$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type PaymentServices$Outbound = {
-  items: Array<PaymentService$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const PaymentServices$outboundSchema: z.ZodType<
-  PaymentServices$Outbound,
-  z.ZodTypeDef,
-  PaymentServices
-> = z.object({
-  items: z.array(PaymentService$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServices$ {
-  /** @deprecated use `PaymentServices$inboundSchema` instead. */
-  export const inboundSchema = PaymentServices$inboundSchema;
-  /** @deprecated use `PaymentServices$outboundSchema` instead. */
-  export const outboundSchema = PaymentServices$outboundSchema;
-  /** @deprecated use `PaymentServices$Outbound` instead. */
-  export type Outbound = PaymentServices$Outbound;
-}
-
-export function paymentServicesToJSON(
-  paymentServices: PaymentServices,
-): string {
-  return JSON.stringify(PaymentServices$outboundSchema.parse(paymentServices));
-}
 
 export function paymentServicesFromJSON(
   jsonString: string,

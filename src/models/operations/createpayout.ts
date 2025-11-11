@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreatePayoutGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,74 +17,6 @@ export type CreatePayoutRequest = {
   merchantAccountId?: string | null | undefined;
   payoutCreate: components.PayoutCreate;
 };
-
-/** @internal */
-export const CreatePayoutGlobals$inboundSchema: z.ZodType<
-  CreatePayoutGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type CreatePayoutGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const CreatePayoutGlobals$outboundSchema: z.ZodType<
-  CreatePayoutGlobals$Outbound,
-  z.ZodTypeDef,
-  CreatePayoutGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePayoutGlobals$ {
-  /** @deprecated use `CreatePayoutGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreatePayoutGlobals$inboundSchema;
-  /** @deprecated use `CreatePayoutGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreatePayoutGlobals$outboundSchema;
-  /** @deprecated use `CreatePayoutGlobals$Outbound` instead. */
-  export type Outbound = CreatePayoutGlobals$Outbound;
-}
-
-export function createPayoutGlobalsToJSON(
-  createPayoutGlobals: CreatePayoutGlobals,
-): string {
-  return JSON.stringify(
-    CreatePayoutGlobals$outboundSchema.parse(createPayoutGlobals),
-  );
-}
-
-export function createPayoutGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePayoutGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePayoutGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePayoutGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePayoutRequest$inboundSchema: z.ZodType<
-  CreatePayoutRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  PayoutCreate: components.PayoutCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "PayoutCreate": "payoutCreate",
-  });
-});
 
 /** @internal */
 export type CreatePayoutRequest$Outbound = {
@@ -109,33 +38,10 @@ export const CreatePayoutRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePayoutRequest$ {
-  /** @deprecated use `CreatePayoutRequest$inboundSchema` instead. */
-  export const inboundSchema = CreatePayoutRequest$inboundSchema;
-  /** @deprecated use `CreatePayoutRequest$outboundSchema` instead. */
-  export const outboundSchema = CreatePayoutRequest$outboundSchema;
-  /** @deprecated use `CreatePayoutRequest$Outbound` instead. */
-  export type Outbound = CreatePayoutRequest$Outbound;
-}
-
 export function createPayoutRequestToJSON(
   createPayoutRequest: CreatePayoutRequest,
 ): string {
   return JSON.stringify(
     CreatePayoutRequest$outboundSchema.parse(createPayoutRequest),
-  );
-}
-
-export function createPayoutRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePayoutRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePayoutRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePayoutRequest' from JSON`,
   );
 }

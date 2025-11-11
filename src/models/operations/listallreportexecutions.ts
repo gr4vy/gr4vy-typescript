@@ -53,90 +53,6 @@ export type ListAllReportExecutionsResponse = {
 };
 
 /** @internal */
-export const ListAllReportExecutionsGlobals$inboundSchema: z.ZodType<
-  ListAllReportExecutionsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListAllReportExecutionsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListAllReportExecutionsGlobals$outboundSchema: z.ZodType<
-  ListAllReportExecutionsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListAllReportExecutionsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAllReportExecutionsGlobals$ {
-  /** @deprecated use `ListAllReportExecutionsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListAllReportExecutionsGlobals$inboundSchema;
-  /** @deprecated use `ListAllReportExecutionsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListAllReportExecutionsGlobals$outboundSchema;
-  /** @deprecated use `ListAllReportExecutionsGlobals$Outbound` instead. */
-  export type Outbound = ListAllReportExecutionsGlobals$Outbound;
-}
-
-export function listAllReportExecutionsGlobalsToJSON(
-  listAllReportExecutionsGlobals: ListAllReportExecutionsGlobals,
-): string {
-  return JSON.stringify(
-    ListAllReportExecutionsGlobals$outboundSchema.parse(
-      listAllReportExecutionsGlobals,
-    ),
-  );
-}
-
-export function listAllReportExecutionsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListAllReportExecutionsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListAllReportExecutionsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListAllReportExecutionsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListAllReportExecutionsRequest$inboundSchema: z.ZodType<
-  ListAllReportExecutionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  report_name: z.nullable(z.string()).optional(),
-  created_at_lte: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at_gte: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  status: z.nullable(z.array(components.ReportExecutionStatus$inboundSchema))
-    .optional(),
-  creator_id: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "report_name": "reportName",
-    "created_at_lte": "createdAtLte",
-    "created_at_gte": "createdAtGte",
-    "creator_id": "creatorId",
-  });
-});
-
-/** @internal */
 export type ListAllReportExecutionsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -172,19 +88,6 @@ export const ListAllReportExecutionsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAllReportExecutionsRequest$ {
-  /** @deprecated use `ListAllReportExecutionsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListAllReportExecutionsRequest$inboundSchema;
-  /** @deprecated use `ListAllReportExecutionsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListAllReportExecutionsRequest$outboundSchema;
-  /** @deprecated use `ListAllReportExecutionsRequest$Outbound` instead. */
-  export type Outbound = ListAllReportExecutionsRequest$Outbound;
-}
-
 export function listAllReportExecutionsRequestToJSON(
   listAllReportExecutionsRequest: ListAllReportExecutionsRequest,
 ): string {
@@ -192,16 +95,6 @@ export function listAllReportExecutionsRequestToJSON(
     ListAllReportExecutionsRequest$outboundSchema.parse(
       listAllReportExecutionsRequest,
     ),
-  );
-}
-
-export function listAllReportExecutionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListAllReportExecutionsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListAllReportExecutionsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListAllReportExecutionsRequest' from JSON`,
   );
 }
 
@@ -217,47 +110,6 @@ export const ListAllReportExecutionsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListAllReportExecutionsResponse$Outbound = {
-  Result: components.ReportExecutions$Outbound;
-};
-
-/** @internal */
-export const ListAllReportExecutionsResponse$outboundSchema: z.ZodType<
-  ListAllReportExecutionsResponse$Outbound,
-  z.ZodTypeDef,
-  ListAllReportExecutionsResponse
-> = z.object({
-  result: components.ReportExecutions$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAllReportExecutionsResponse$ {
-  /** @deprecated use `ListAllReportExecutionsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListAllReportExecutionsResponse$inboundSchema;
-  /** @deprecated use `ListAllReportExecutionsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListAllReportExecutionsResponse$outboundSchema;
-  /** @deprecated use `ListAllReportExecutionsResponse$Outbound` instead. */
-  export type Outbound = ListAllReportExecutionsResponse$Outbound;
-}
-
-export function listAllReportExecutionsResponseToJSON(
-  listAllReportExecutionsResponse: ListAllReportExecutionsResponse,
-): string {
-  return JSON.stringify(
-    ListAllReportExecutionsResponse$outboundSchema.parse(
-      listAllReportExecutionsResponse,
-    ),
-  );
-}
 
 export function listAllReportExecutionsResponseFromJSON(
   jsonString: string,

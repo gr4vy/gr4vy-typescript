@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RegisterDigitalWalletDomainGlobals = {
   merchantAccountId?: string | undefined;
@@ -24,80 +21,6 @@ export type RegisterDigitalWalletDomainRequest = {
   merchantAccountId?: string | null | undefined;
   digitalWalletDomain: components.DigitalWalletDomain;
 };
-
-/** @internal */
-export const RegisterDigitalWalletDomainGlobals$inboundSchema: z.ZodType<
-  RegisterDigitalWalletDomainGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type RegisterDigitalWalletDomainGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const RegisterDigitalWalletDomainGlobals$outboundSchema: z.ZodType<
-  RegisterDigitalWalletDomainGlobals$Outbound,
-  z.ZodTypeDef,
-  RegisterDigitalWalletDomainGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RegisterDigitalWalletDomainGlobals$ {
-  /** @deprecated use `RegisterDigitalWalletDomainGlobals$inboundSchema` instead. */
-  export const inboundSchema = RegisterDigitalWalletDomainGlobals$inboundSchema;
-  /** @deprecated use `RegisterDigitalWalletDomainGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    RegisterDigitalWalletDomainGlobals$outboundSchema;
-  /** @deprecated use `RegisterDigitalWalletDomainGlobals$Outbound` instead. */
-  export type Outbound = RegisterDigitalWalletDomainGlobals$Outbound;
-}
-
-export function registerDigitalWalletDomainGlobalsToJSON(
-  registerDigitalWalletDomainGlobals: RegisterDigitalWalletDomainGlobals,
-): string {
-  return JSON.stringify(
-    RegisterDigitalWalletDomainGlobals$outboundSchema.parse(
-      registerDigitalWalletDomainGlobals,
-    ),
-  );
-}
-
-export function registerDigitalWalletDomainGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<RegisterDigitalWalletDomainGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      RegisterDigitalWalletDomainGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RegisterDigitalWalletDomainGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const RegisterDigitalWalletDomainRequest$inboundSchema: z.ZodType<
-  RegisterDigitalWalletDomainRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  digital_wallet_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  DigitalWalletDomain: components.DigitalWalletDomain$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "digital_wallet_id": "digitalWalletId",
-    "DigitalWalletDomain": "digitalWalletDomain",
-  });
-});
 
 /** @internal */
 export type RegisterDigitalWalletDomainRequest$Outbound = {
@@ -122,20 +45,6 @@ export const RegisterDigitalWalletDomainRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RegisterDigitalWalletDomainRequest$ {
-  /** @deprecated use `RegisterDigitalWalletDomainRequest$inboundSchema` instead. */
-  export const inboundSchema = RegisterDigitalWalletDomainRequest$inboundSchema;
-  /** @deprecated use `RegisterDigitalWalletDomainRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    RegisterDigitalWalletDomainRequest$outboundSchema;
-  /** @deprecated use `RegisterDigitalWalletDomainRequest$Outbound` instead. */
-  export type Outbound = RegisterDigitalWalletDomainRequest$Outbound;
-}
-
 export function registerDigitalWalletDomainRequestToJSON(
   registerDigitalWalletDomainRequest: RegisterDigitalWalletDomainRequest,
 ): string {
@@ -143,16 +52,5 @@ export function registerDigitalWalletDomainRequestToJSON(
     RegisterDigitalWalletDomainRequest$outboundSchema.parse(
       registerDigitalWalletDomainRequest,
     ),
-  );
-}
-
-export function registerDigitalWalletDomainRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RegisterDigitalWalletDomainRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      RegisterDigitalWalletDomainRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RegisterDigitalWalletDomainRequest' from JSON`,
   );
 }

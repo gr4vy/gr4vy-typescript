@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeletePaymentMethodGlobals = {
   merchantAccountId?: string | undefined;
@@ -22,74 +19,6 @@ export type DeletePaymentMethodRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const DeletePaymentMethodGlobals$inboundSchema: z.ZodType<
-  DeletePaymentMethodGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type DeletePaymentMethodGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const DeletePaymentMethodGlobals$outboundSchema: z.ZodType<
-  DeletePaymentMethodGlobals$Outbound,
-  z.ZodTypeDef,
-  DeletePaymentMethodGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeletePaymentMethodGlobals$ {
-  /** @deprecated use `DeletePaymentMethodGlobals$inboundSchema` instead. */
-  export const inboundSchema = DeletePaymentMethodGlobals$inboundSchema;
-  /** @deprecated use `DeletePaymentMethodGlobals$outboundSchema` instead. */
-  export const outboundSchema = DeletePaymentMethodGlobals$outboundSchema;
-  /** @deprecated use `DeletePaymentMethodGlobals$Outbound` instead. */
-  export type Outbound = DeletePaymentMethodGlobals$Outbound;
-}
-
-export function deletePaymentMethodGlobalsToJSON(
-  deletePaymentMethodGlobals: DeletePaymentMethodGlobals,
-): string {
-  return JSON.stringify(
-    DeletePaymentMethodGlobals$outboundSchema.parse(deletePaymentMethodGlobals),
-  );
-}
-
-export function deletePaymentMethodGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<DeletePaymentMethodGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeletePaymentMethodGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeletePaymentMethodGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const DeletePaymentMethodRequest$inboundSchema: z.ZodType<
-  DeletePaymentMethodRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_method_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method_id": "paymentMethodId",
-  });
-});
 
 /** @internal */
 export type DeletePaymentMethodRequest$Outbound = {
@@ -111,33 +40,10 @@ export const DeletePaymentMethodRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeletePaymentMethodRequest$ {
-  /** @deprecated use `DeletePaymentMethodRequest$inboundSchema` instead. */
-  export const inboundSchema = DeletePaymentMethodRequest$inboundSchema;
-  /** @deprecated use `DeletePaymentMethodRequest$outboundSchema` instead. */
-  export const outboundSchema = DeletePaymentMethodRequest$outboundSchema;
-  /** @deprecated use `DeletePaymentMethodRequest$Outbound` instead. */
-  export type Outbound = DeletePaymentMethodRequest$Outbound;
-}
-
 export function deletePaymentMethodRequestToJSON(
   deletePaymentMethodRequest: DeletePaymentMethodRequest,
 ): string {
   return JSON.stringify(
     DeletePaymentMethodRequest$outboundSchema.parse(deletePaymentMethodRequest),
-  );
-}
-
-export function deletePaymentMethodRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeletePaymentMethodRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeletePaymentMethodRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeletePaymentMethodRequest' from JSON`,
   );
 }

@@ -10,18 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   GiftCardErrorCode,
   GiftCardErrorCode$inboundSchema,
-  GiftCardErrorCode$outboundSchema,
 } from "./giftcarderrorcode.js";
 import {
   GiftCardRedemptionStatus,
   GiftCardRedemptionStatus$inboundSchema,
-  GiftCardRedemptionStatus$outboundSchema,
 } from "./giftcardredemptionstatus.js";
 import {
   TransactionGiftCard,
   TransactionGiftCard$inboundSchema,
-  TransactionGiftCard$Outbound,
-  TransactionGiftCard$outboundSchema,
 } from "./transactiongiftcard.js";
 
 export type GiftCardRedemption = {
@@ -87,70 +83,6 @@ export const GiftCardRedemption$inboundSchema: z.ZodType<
     "gift_card": "giftCard",
   });
 });
-
-/** @internal */
-export type GiftCardRedemption$Outbound = {
-  type: "gift-card-redemption";
-  id: string;
-  status: string;
-  amount: number;
-  refunded_amount: number;
-  gift_card_service_redemption_id?: string | null | undefined;
-  error_code?: string | null | undefined;
-  raw_error_code?: string | null | undefined;
-  raw_error_message?: string | null | undefined;
-  gift_card: TransactionGiftCard$Outbound;
-};
-
-/** @internal */
-export const GiftCardRedemption$outboundSchema: z.ZodType<
-  GiftCardRedemption$Outbound,
-  z.ZodTypeDef,
-  GiftCardRedemption
-> = z.object({
-  type: z.literal("gift-card-redemption").default(
-    "gift-card-redemption" as const,
-  ),
-  id: z.string(),
-  status: GiftCardRedemptionStatus$outboundSchema,
-  amount: z.number().int(),
-  refundedAmount: z.number().int(),
-  giftCardServiceRedemptionId: z.nullable(z.string()).optional(),
-  errorCode: z.nullable(GiftCardErrorCode$outboundSchema).optional(),
-  rawErrorCode: z.nullable(z.string()).optional(),
-  rawErrorMessage: z.nullable(z.string()).optional(),
-  giftCard: TransactionGiftCard$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    refundedAmount: "refunded_amount",
-    giftCardServiceRedemptionId: "gift_card_service_redemption_id",
-    errorCode: "error_code",
-    rawErrorCode: "raw_error_code",
-    rawErrorMessage: "raw_error_message",
-    giftCard: "gift_card",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardRedemption$ {
-  /** @deprecated use `GiftCardRedemption$inboundSchema` instead. */
-  export const inboundSchema = GiftCardRedemption$inboundSchema;
-  /** @deprecated use `GiftCardRedemption$outboundSchema` instead. */
-  export const outboundSchema = GiftCardRedemption$outboundSchema;
-  /** @deprecated use `GiftCardRedemption$Outbound` instead. */
-  export type Outbound = GiftCardRedemption$Outbound;
-}
-
-export function giftCardRedemptionToJSON(
-  giftCardRedemption: GiftCardRedemption,
-): string {
-  return JSON.stringify(
-    GiftCardRedemption$outboundSchema.parse(giftCardRedemption),
-  );
-}
 
 export function giftCardRedemptionFromJSON(
   jsonString: string,

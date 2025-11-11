@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StripeConnectOptions = {
   /**
@@ -30,27 +27,6 @@ export type StripeConnectOptions = {
    */
   transferGroup?: string | null | undefined;
 };
-
-/** @internal */
-export const StripeConnectOptions$inboundSchema: z.ZodType<
-  StripeConnectOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  stripe_account: z.nullable(z.string()).optional(),
-  application_fee_amount: z.nullable(z.number().int()).optional(),
-  on_behalf_of: z.nullable(z.string()).optional(),
-  transfer_data_destination: z.nullable(z.string()).optional(),
-  transfer_group: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "stripe_account": "stripeAccount",
-    "application_fee_amount": "applicationFeeAmount",
-    "on_behalf_of": "onBehalfOf",
-    "transfer_data_destination": "transferDataDestination",
-    "transfer_group": "transferGroup",
-  });
-});
 
 /** @internal */
 export type StripeConnectOptions$Outbound = {
@@ -82,33 +58,10 @@ export const StripeConnectOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StripeConnectOptions$ {
-  /** @deprecated use `StripeConnectOptions$inboundSchema` instead. */
-  export const inboundSchema = StripeConnectOptions$inboundSchema;
-  /** @deprecated use `StripeConnectOptions$outboundSchema` instead. */
-  export const outboundSchema = StripeConnectOptions$outboundSchema;
-  /** @deprecated use `StripeConnectOptions$Outbound` instead. */
-  export type Outbound = StripeConnectOptions$Outbound;
-}
-
 export function stripeConnectOptionsToJSON(
   stripeConnectOptions: StripeConnectOptions,
 ): string {
   return JSON.stringify(
     StripeConnectOptions$outboundSchema.parse(stripeConnectOptions),
-  );
-}
-
-export function stripeConnectOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<StripeConnectOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => StripeConnectOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'StripeConnectOptions' from JSON`,
   );
 }

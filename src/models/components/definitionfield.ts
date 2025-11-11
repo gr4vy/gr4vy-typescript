@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DefinitionFieldFormat,
   DefinitionFieldFormat$inboundSchema,
-  DefinitionFieldFormat$outboundSchema,
 } from "./definitionfieldformat.js";
 
 /**
@@ -52,51 +51,6 @@ export const DefinitionField$inboundSchema: z.ZodType<
     "display_name": "displayName",
   });
 });
-
-/** @internal */
-export type DefinitionField$Outbound = {
-  key: string;
-  display_name: string;
-  required: boolean;
-  format: string;
-  secret: boolean;
-};
-
-/** @internal */
-export const DefinitionField$outboundSchema: z.ZodType<
-  DefinitionField$Outbound,
-  z.ZodTypeDef,
-  DefinitionField
-> = z.object({
-  key: z.string(),
-  displayName: z.string(),
-  required: z.boolean(),
-  format: DefinitionFieldFormat$outboundSchema,
-  secret: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DefinitionField$ {
-  /** @deprecated use `DefinitionField$inboundSchema` instead. */
-  export const inboundSchema = DefinitionField$inboundSchema;
-  /** @deprecated use `DefinitionField$outboundSchema` instead. */
-  export const outboundSchema = DefinitionField$outboundSchema;
-  /** @deprecated use `DefinitionField$Outbound` instead. */
-  export type Outbound = DefinitionField$Outbound;
-}
-
-export function definitionFieldToJSON(
-  definitionField: DefinitionField,
-): string {
-  return JSON.stringify(DefinitionField$outboundSchema.parse(definitionField));
-}
 
 export function definitionFieldFromJSON(
   jsonString: string,

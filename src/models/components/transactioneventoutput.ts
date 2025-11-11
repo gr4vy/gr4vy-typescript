@@ -5,11 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -124,25 +120,6 @@ export const Name$inboundSchema: z.ZodType<Name, z.ZodTypeDef, unknown> = z
   ]);
 
 /** @internal */
-export const Name$outboundSchema: z.ZodType<Name, z.ZodTypeDef, Name> = z.union(
-  [
-    z.nativeEnum(Name),
-    z.string().and(z.custom<Unrecognized<string>>()),
-  ],
-);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Name$ {
-  /** @deprecated use `Name$inboundSchema` instead. */
-  export const inboundSchema = Name$inboundSchema;
-  /** @deprecated use `Name$outboundSchema` instead. */
-  export const outboundSchema = Name$outboundSchema;
-}
-
-/** @internal */
 export const TransactionEventOutput$inboundSchema: z.ZodType<
   TransactionEventOutput,
   z.ZodTypeDef,
@@ -158,53 +135,6 @@ export const TransactionEventOutput$inboundSchema: z.ZodType<
     "created_at": "createdAt",
   });
 });
-
-/** @internal */
-export type TransactionEventOutput$Outbound = {
-  type: "transaction-event";
-  id: string;
-  name: string;
-  created_at: string;
-  context: { [k: string]: any };
-};
-
-/** @internal */
-export const TransactionEventOutput$outboundSchema: z.ZodType<
-  TransactionEventOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionEventOutput
-> = z.object({
-  type: z.literal("transaction-event").default("transaction-event" as const),
-  id: z.string(),
-  name: Name$outboundSchema,
-  createdAt: z.date().transform(v => v.toISOString()),
-  context: z.record(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionEventOutput$ {
-  /** @deprecated use `TransactionEventOutput$inboundSchema` instead. */
-  export const inboundSchema = TransactionEventOutput$inboundSchema;
-  /** @deprecated use `TransactionEventOutput$outboundSchema` instead. */
-  export const outboundSchema = TransactionEventOutput$outboundSchema;
-  /** @deprecated use `TransactionEventOutput$Outbound` instead. */
-  export type Outbound = TransactionEventOutput$Outbound;
-}
-
-export function transactionEventOutputToJSON(
-  transactionEventOutput: TransactionEventOutput,
-): string {
-  return JSON.stringify(
-    TransactionEventOutput$outboundSchema.parse(transactionEventOutput),
-  );
-}
 
 export function transactionEventOutputFromJSON(
   jsonString: string,

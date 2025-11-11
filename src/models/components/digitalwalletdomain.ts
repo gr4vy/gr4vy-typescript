@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DigitalWalletDomain = {
   /**
@@ -14,19 +11,6 @@ export type DigitalWalletDomain = {
    */
   domainName: string;
 };
-
-/** @internal */
-export const DigitalWalletDomain$inboundSchema: z.ZodType<
-  DigitalWalletDomain,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  domain_name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "domain_name": "domainName",
-  });
-});
 
 /** @internal */
 export type DigitalWalletDomain$Outbound = {
@@ -46,33 +30,10 @@ export const DigitalWalletDomain$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigitalWalletDomain$ {
-  /** @deprecated use `DigitalWalletDomain$inboundSchema` instead. */
-  export const inboundSchema = DigitalWalletDomain$inboundSchema;
-  /** @deprecated use `DigitalWalletDomain$outboundSchema` instead. */
-  export const outboundSchema = DigitalWalletDomain$outboundSchema;
-  /** @deprecated use `DigitalWalletDomain$Outbound` instead. */
-  export type Outbound = DigitalWalletDomain$Outbound;
-}
-
 export function digitalWalletDomainToJSON(
   digitalWalletDomain: DigitalWalletDomain,
 ): string {
   return JSON.stringify(
     DigitalWalletDomain$outboundSchema.parse(digitalWalletDomain),
-  );
-}
-
-export function digitalWalletDomainFromJSON(
-  jsonString: string,
-): SafeParseResult<DigitalWalletDomain, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DigitalWalletDomain$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DigitalWalletDomain' from JSON`,
   );
 }

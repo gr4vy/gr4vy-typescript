@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PowertranzOptions = {
   /**
@@ -13,15 +10,6 @@ export type PowertranzOptions = {
    */
   skipThreeDSecure?: boolean | null | undefined;
 };
-
-/** @internal */
-export const PowertranzOptions$inboundSchema: z.ZodType<
-  PowertranzOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  skipThreeDSecure: z.nullable(z.boolean()).optional(),
-});
 
 /** @internal */
 export type PowertranzOptions$Outbound = {
@@ -37,33 +25,10 @@ export const PowertranzOptions$outboundSchema: z.ZodType<
   skipThreeDSecure: z.nullable(z.boolean()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PowertranzOptions$ {
-  /** @deprecated use `PowertranzOptions$inboundSchema` instead. */
-  export const inboundSchema = PowertranzOptions$inboundSchema;
-  /** @deprecated use `PowertranzOptions$outboundSchema` instead. */
-  export const outboundSchema = PowertranzOptions$outboundSchema;
-  /** @deprecated use `PowertranzOptions$Outbound` instead. */
-  export type Outbound = PowertranzOptions$Outbound;
-}
-
 export function powertranzOptionsToJSON(
   powertranzOptions: PowertranzOptions,
 ): string {
   return JSON.stringify(
     PowertranzOptions$outboundSchema.parse(powertranzOptions),
-  );
-}
-
-export function powertranzOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<PowertranzOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PowertranzOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PowertranzOptions' from JSON`,
   );
 }

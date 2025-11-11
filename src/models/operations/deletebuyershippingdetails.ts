@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteBuyerShippingDetailsGlobals = {
   merchantAccountId?: string | undefined;
@@ -26,79 +23,6 @@ export type DeleteBuyerShippingDetailsRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const DeleteBuyerShippingDetailsGlobals$inboundSchema: z.ZodType<
-  DeleteBuyerShippingDetailsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type DeleteBuyerShippingDetailsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const DeleteBuyerShippingDetailsGlobals$outboundSchema: z.ZodType<
-  DeleteBuyerShippingDetailsGlobals$Outbound,
-  z.ZodTypeDef,
-  DeleteBuyerShippingDetailsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteBuyerShippingDetailsGlobals$ {
-  /** @deprecated use `DeleteBuyerShippingDetailsGlobals$inboundSchema` instead. */
-  export const inboundSchema = DeleteBuyerShippingDetailsGlobals$inboundSchema;
-  /** @deprecated use `DeleteBuyerShippingDetailsGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    DeleteBuyerShippingDetailsGlobals$outboundSchema;
-  /** @deprecated use `DeleteBuyerShippingDetailsGlobals$Outbound` instead. */
-  export type Outbound = DeleteBuyerShippingDetailsGlobals$Outbound;
-}
-
-export function deleteBuyerShippingDetailsGlobalsToJSON(
-  deleteBuyerShippingDetailsGlobals: DeleteBuyerShippingDetailsGlobals,
-): string {
-  return JSON.stringify(
-    DeleteBuyerShippingDetailsGlobals$outboundSchema.parse(
-      deleteBuyerShippingDetailsGlobals,
-    ),
-  );
-}
-
-export function deleteBuyerShippingDetailsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<DeleteBuyerShippingDetailsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeleteBuyerShippingDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteBuyerShippingDetailsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const DeleteBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
-  DeleteBuyerShippingDetailsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  buyer_id: z.string(),
-  shipping_details_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_id": "buyerId",
-    "shipping_details_id": "shippingDetailsId",
-  });
-});
 
 /** @internal */
 export type DeleteBuyerShippingDetailsRequest$Outbound = {
@@ -123,20 +47,6 @@ export const DeleteBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteBuyerShippingDetailsRequest$ {
-  /** @deprecated use `DeleteBuyerShippingDetailsRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteBuyerShippingDetailsRequest$inboundSchema;
-  /** @deprecated use `DeleteBuyerShippingDetailsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    DeleteBuyerShippingDetailsRequest$outboundSchema;
-  /** @deprecated use `DeleteBuyerShippingDetailsRequest$Outbound` instead. */
-  export type Outbound = DeleteBuyerShippingDetailsRequest$Outbound;
-}
-
 export function deleteBuyerShippingDetailsRequestToJSON(
   deleteBuyerShippingDetailsRequest: DeleteBuyerShippingDetailsRequest,
 ): string {
@@ -144,15 +54,5 @@ export function deleteBuyerShippingDetailsRequestToJSON(
     DeleteBuyerShippingDetailsRequest$outboundSchema.parse(
       deleteBuyerShippingDetailsRequest,
     ),
-  );
-}
-
-export function deleteBuyerShippingDetailsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeleteBuyerShippingDetailsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeleteBuyerShippingDetailsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteBuyerShippingDetailsRequest' from JSON`,
   );
 }

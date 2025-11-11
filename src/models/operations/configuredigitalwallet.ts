@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConfigureDigitalWalletGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,76 +17,6 @@ export type ConfigureDigitalWalletRequest = {
   merchantAccountId?: string | null | undefined;
   digitalWalletCreate: components.DigitalWalletCreate;
 };
-
-/** @internal */
-export const ConfigureDigitalWalletGlobals$inboundSchema: z.ZodType<
-  ConfigureDigitalWalletGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ConfigureDigitalWalletGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ConfigureDigitalWalletGlobals$outboundSchema: z.ZodType<
-  ConfigureDigitalWalletGlobals$Outbound,
-  z.ZodTypeDef,
-  ConfigureDigitalWalletGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConfigureDigitalWalletGlobals$ {
-  /** @deprecated use `ConfigureDigitalWalletGlobals$inboundSchema` instead. */
-  export const inboundSchema = ConfigureDigitalWalletGlobals$inboundSchema;
-  /** @deprecated use `ConfigureDigitalWalletGlobals$outboundSchema` instead. */
-  export const outboundSchema = ConfigureDigitalWalletGlobals$outboundSchema;
-  /** @deprecated use `ConfigureDigitalWalletGlobals$Outbound` instead. */
-  export type Outbound = ConfigureDigitalWalletGlobals$Outbound;
-}
-
-export function configureDigitalWalletGlobalsToJSON(
-  configureDigitalWalletGlobals: ConfigureDigitalWalletGlobals,
-): string {
-  return JSON.stringify(
-    ConfigureDigitalWalletGlobals$outboundSchema.parse(
-      configureDigitalWalletGlobals,
-    ),
-  );
-}
-
-export function configureDigitalWalletGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConfigureDigitalWalletGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConfigureDigitalWalletGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConfigureDigitalWalletGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConfigureDigitalWalletRequest$inboundSchema: z.ZodType<
-  ConfigureDigitalWalletRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  DigitalWalletCreate: components.DigitalWalletCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "DigitalWalletCreate": "digitalWalletCreate",
-  });
-});
 
 /** @internal */
 export type ConfigureDigitalWalletRequest$Outbound = {
@@ -111,19 +38,6 @@ export const ConfigureDigitalWalletRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConfigureDigitalWalletRequest$ {
-  /** @deprecated use `ConfigureDigitalWalletRequest$inboundSchema` instead. */
-  export const inboundSchema = ConfigureDigitalWalletRequest$inboundSchema;
-  /** @deprecated use `ConfigureDigitalWalletRequest$outboundSchema` instead. */
-  export const outboundSchema = ConfigureDigitalWalletRequest$outboundSchema;
-  /** @deprecated use `ConfigureDigitalWalletRequest$Outbound` instead. */
-  export type Outbound = ConfigureDigitalWalletRequest$Outbound;
-}
-
 export function configureDigitalWalletRequestToJSON(
   configureDigitalWalletRequest: ConfigureDigitalWalletRequest,
 ): string {
@@ -131,15 +45,5 @@ export function configureDigitalWalletRequestToJSON(
     ConfigureDigitalWalletRequest$outboundSchema.parse(
       configureDigitalWalletRequest,
     ),
-  );
-}
-
-export function configureDigitalWalletRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ConfigureDigitalWalletRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConfigureDigitalWalletRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConfigureDigitalWalletRequest' from JSON`,
   );
 }

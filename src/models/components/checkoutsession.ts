@@ -7,29 +7,15 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Airline,
-  Airline$inboundSchema,
-  Airline$Outbound,
-  Airline$outboundSchema,
-} from "./airline.js";
-import {
-  CartItem,
-  CartItem$inboundSchema,
-  CartItem$Outbound,
-  CartItem$outboundSchema,
-} from "./cartitem.js";
+import { Airline, Airline$inboundSchema } from "./airline.js";
+import { CartItem, CartItem$inboundSchema } from "./cartitem.js";
 import {
   CheckoutSessionPaymentMethodOutput,
   CheckoutSessionPaymentMethodOutput$inboundSchema,
-  CheckoutSessionPaymentMethodOutput$Outbound,
-  CheckoutSessionPaymentMethodOutput$outboundSchema,
 } from "./checkoutsessionpaymentmethodoutput.js";
 import {
   GuestBuyerOutput,
   GuestBuyerOutput$inboundSchema,
-  GuestBuyerOutput$Outbound,
-  GuestBuyerOutput$outboundSchema,
 } from "./guestbuyeroutput.js";
 
 export type CheckoutSession = {
@@ -105,70 +91,6 @@ export const CheckoutSession$inboundSchema: z.ZodType<
     "payment_method": "paymentMethod",
   });
 });
-
-/** @internal */
-export type CheckoutSession$Outbound = {
-  cart_items?: Array<CartItem$Outbound> | null | undefined;
-  metadata?: { [k: string]: string } | null | undefined;
-  buyer?: GuestBuyerOutput$Outbound | null | undefined;
-  airline?: Airline$Outbound | null | undefined;
-  amount?: number | null | undefined;
-  currency?: string | null | undefined;
-  payment_service_id?: string | null | undefined;
-  type: "checkout-session";
-  id: string;
-  expires_at: string;
-  payment_method?:
-    | CheckoutSessionPaymentMethodOutput$Outbound
-    | null
-    | undefined;
-};
-
-/** @internal */
-export const CheckoutSession$outboundSchema: z.ZodType<
-  CheckoutSession$Outbound,
-  z.ZodTypeDef,
-  CheckoutSession
-> = z.object({
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  buyer: z.nullable(GuestBuyerOutput$outboundSchema).optional(),
-  airline: z.nullable(Airline$outboundSchema).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  paymentServiceId: z.nullable(z.string()).optional(),
-  type: z.literal("checkout-session").default("checkout-session" as const),
-  id: z.string(),
-  expiresAt: z.date().transform(v => v.toISOString()),
-  paymentMethod: z.nullable(CheckoutSessionPaymentMethodOutput$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cartItems: "cart_items",
-    paymentServiceId: "payment_service_id",
-    expiresAt: "expires_at",
-    paymentMethod: "payment_method",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSession$ {
-  /** @deprecated use `CheckoutSession$inboundSchema` instead. */
-  export const inboundSchema = CheckoutSession$inboundSchema;
-  /** @deprecated use `CheckoutSession$outboundSchema` instead. */
-  export const outboundSchema = CheckoutSession$outboundSchema;
-  /** @deprecated use `CheckoutSession$Outbound` instead. */
-  export type Outbound = CheckoutSession$Outbound;
-}
-
-export function checkoutSessionToJSON(
-  checkoutSession: CheckoutSession,
-): string {
-  return JSON.stringify(CheckoutSession$outboundSchema.parse(checkoutSession));
-}
 
 export function checkoutSessionFromJSON(
   jsonString: string,

@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 
 /**
  * The platform that is being used to access the website.
@@ -51,17 +44,6 @@ export type BrowserInfo = {
 };
 
 /** @internal */
-export const UserDevice$inboundSchema: z.ZodType<
-  UserDevice,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(UserDevice),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const UserDevice$outboundSchema: z.ZodType<
   UserDevice,
   z.ZodTypeDef,
@@ -70,47 +52,6 @@ export const UserDevice$outboundSchema: z.ZodType<
   z.nativeEnum(UserDevice),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UserDevice$ {
-  /** @deprecated use `UserDevice$inboundSchema` instead. */
-  export const inboundSchema = UserDevice$inboundSchema;
-  /** @deprecated use `UserDevice$outboundSchema` instead. */
-  export const outboundSchema = UserDevice$outboundSchema;
-}
-
-/** @internal */
-export const BrowserInfo$inboundSchema: z.ZodType<
-  BrowserInfo,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  javascript_enabled: z.boolean(),
-  java_enabled: z.boolean(),
-  language: z.string(),
-  color_depth: z.number().int(),
-  screen_height: z.number().int(),
-  screen_width: z.number().int(),
-  time_zone_offset: z.number().int(),
-  user_agent: z.string(),
-  user_device: UserDevice$inboundSchema,
-  accept_header: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "javascript_enabled": "javascriptEnabled",
-    "java_enabled": "javaEnabled",
-    "color_depth": "colorDepth",
-    "screen_height": "screenHeight",
-    "screen_width": "screenWidth",
-    "time_zone_offset": "timeZoneOffset",
-    "user_agent": "userAgent",
-    "user_device": "userDevice",
-    "accept_header": "acceptHeader",
-  });
-});
 
 /** @internal */
 export type BrowserInfo$Outbound = {
@@ -156,29 +97,6 @@ export const BrowserInfo$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BrowserInfo$ {
-  /** @deprecated use `BrowserInfo$inboundSchema` instead. */
-  export const inboundSchema = BrowserInfo$inboundSchema;
-  /** @deprecated use `BrowserInfo$outboundSchema` instead. */
-  export const outboundSchema = BrowserInfo$outboundSchema;
-  /** @deprecated use `BrowserInfo$Outbound` instead. */
-  export type Outbound = BrowserInfo$Outbound;
-}
-
 export function browserInfoToJSON(browserInfo: BrowserInfo): string {
   return JSON.stringify(BrowserInfo$outboundSchema.parse(browserInfo));
-}
-
-export function browserInfoFromJSON(
-  jsonString: string,
-): SafeParseResult<BrowserInfo, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BrowserInfo$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BrowserInfo' from JSON`,
-  );
 }

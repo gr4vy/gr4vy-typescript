@@ -10,13 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ReportExecutionContext,
   ReportExecutionContext$inboundSchema,
-  ReportExecutionContext$Outbound,
-  ReportExecutionContext$outboundSchema,
 } from "./reportexecutioncontext.js";
 import {
   ReportExecutionStatus,
   ReportExecutionStatus$inboundSchema,
-  ReportExecutionStatus$outboundSchema,
 } from "./reportexecutionstatus.js";
 
 export type ReportExecutionSummary = {
@@ -58,56 +55,6 @@ export const ReportExecutionSummary$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type ReportExecutionSummary$Outbound = {
-  type: "report-execution";
-  id: string;
-  created_at: string;
-  updated_at: string;
-  status: string;
-  context: ReportExecutionContext$Outbound;
-};
-
-/** @internal */
-export const ReportExecutionSummary$outboundSchema: z.ZodType<
-  ReportExecutionSummary$Outbound,
-  z.ZodTypeDef,
-  ReportExecutionSummary
-> = z.object({
-  type: z.literal("report-execution").default("report-execution" as const),
-  id: z.string(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-  status: ReportExecutionStatus$outboundSchema,
-  context: ReportExecutionContext$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportExecutionSummary$ {
-  /** @deprecated use `ReportExecutionSummary$inboundSchema` instead. */
-  export const inboundSchema = ReportExecutionSummary$inboundSchema;
-  /** @deprecated use `ReportExecutionSummary$outboundSchema` instead. */
-  export const outboundSchema = ReportExecutionSummary$outboundSchema;
-  /** @deprecated use `ReportExecutionSummary$Outbound` instead. */
-  export type Outbound = ReportExecutionSummary$Outbound;
-}
-
-export function reportExecutionSummaryToJSON(
-  reportExecutionSummary: ReportExecutionSummary,
-): string {
-  return JSON.stringify(
-    ReportExecutionSummary$outboundSchema.parse(reportExecutionSummary),
-  );
-}
 
 export function reportExecutionSummaryFromJSON(
   jsonString: string,

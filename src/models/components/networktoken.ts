@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   NetworkTokenStatus,
   NetworkTokenStatus$inboundSchema,
-  NetworkTokenStatus$outboundSchema,
 } from "./networktokenstatus.js";
 
 export type NetworkToken = {
@@ -67,58 +66,6 @@ export const NetworkToken$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type NetworkToken$Outbound = {
-  type: "network-token";
-  id: string;
-  expiration_date: string;
-  payment_method_id: string;
-  status: string;
-  token: string;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const NetworkToken$outboundSchema: z.ZodType<
-  NetworkToken$Outbound,
-  z.ZodTypeDef,
-  NetworkToken
-> = z.object({
-  type: z.literal("network-token").default("network-token" as const),
-  id: z.string(),
-  expirationDate: z.string(),
-  paymentMethodId: z.string(),
-  status: NetworkTokenStatus$outboundSchema,
-  token: z.string(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    paymentMethodId: "payment_method_id",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkToken$ {
-  /** @deprecated use `NetworkToken$inboundSchema` instead. */
-  export const inboundSchema = NetworkToken$inboundSchema;
-  /** @deprecated use `NetworkToken$outboundSchema` instead. */
-  export const outboundSchema = NetworkToken$outboundSchema;
-  /** @deprecated use `NetworkToken$Outbound` instead. */
-  export type Outbound = NetworkToken$Outbound;
-}
-
-export function networkTokenToJSON(networkToken: NetworkToken): string {
-  return JSON.stringify(NetworkToken$outboundSchema.parse(networkToken));
-}
 
 export function networkTokenFromJSON(
   jsonString: string,

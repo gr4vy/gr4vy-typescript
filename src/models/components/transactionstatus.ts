@@ -32,7 +32,6 @@ export const TransactionStatus$inboundSchema: z.ZodType<
     z.nativeEnum(TransactionStatus),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const TransactionStatus$outboundSchema: z.ZodType<
   TransactionStatus,
@@ -42,14 +41,3 @@ export const TransactionStatus$outboundSchema: z.ZodType<
   z.nativeEnum(TransactionStatus),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionStatus$ {
-  /** @deprecated use `TransactionStatus$inboundSchema` instead. */
-  export const inboundSchema = TransactionStatus$inboundSchema;
-  /** @deprecated use `TransactionStatus$outboundSchema` instead. */
-  export const outboundSchema = TransactionStatus$outboundSchema;
-}

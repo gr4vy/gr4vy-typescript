@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DlocalUPIWalletOptions,
-  DlocalUPIWalletOptions$inboundSchema,
   DlocalUPIWalletOptions$Outbound,
   DlocalUPIWalletOptions$outboundSchema,
 } from "./dlocalupiwalletoptions.js";
@@ -19,15 +15,6 @@ export type DlocalUPIOptions = {
    */
   wallet?: DlocalUPIWalletOptions | null | undefined;
 };
-
-/** @internal */
-export const DlocalUPIOptions$inboundSchema: z.ZodType<
-  DlocalUPIOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  wallet: z.nullable(DlocalUPIWalletOptions$inboundSchema).optional(),
-});
 
 /** @internal */
 export type DlocalUPIOptions$Outbound = {
@@ -43,33 +30,10 @@ export const DlocalUPIOptions$outboundSchema: z.ZodType<
   wallet: z.nullable(DlocalUPIWalletOptions$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DlocalUPIOptions$ {
-  /** @deprecated use `DlocalUPIOptions$inboundSchema` instead. */
-  export const inboundSchema = DlocalUPIOptions$inboundSchema;
-  /** @deprecated use `DlocalUPIOptions$outboundSchema` instead. */
-  export const outboundSchema = DlocalUPIOptions$outboundSchema;
-  /** @deprecated use `DlocalUPIOptions$Outbound` instead. */
-  export type Outbound = DlocalUPIOptions$Outbound;
-}
-
 export function dlocalUPIOptionsToJSON(
   dlocalUPIOptions: DlocalUPIOptions,
 ): string {
   return JSON.stringify(
     DlocalUPIOptions$outboundSchema.parse(dlocalUPIOptions),
-  );
-}
-
-export function dlocalUPIOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<DlocalUPIOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DlocalUPIOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DlocalUPIOptions' from JSON`,
   );
 }

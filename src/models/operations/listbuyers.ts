@@ -41,77 +41,6 @@ export type ListBuyersResponse = {
 };
 
 /** @internal */
-export const ListBuyersGlobals$inboundSchema: z.ZodType<
-  ListBuyersGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListBuyersGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListBuyersGlobals$outboundSchema: z.ZodType<
-  ListBuyersGlobals$Outbound,
-  z.ZodTypeDef,
-  ListBuyersGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListBuyersGlobals$ {
-  /** @deprecated use `ListBuyersGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListBuyersGlobals$inboundSchema;
-  /** @deprecated use `ListBuyersGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListBuyersGlobals$outboundSchema;
-  /** @deprecated use `ListBuyersGlobals$Outbound` instead. */
-  export type Outbound = ListBuyersGlobals$Outbound;
-}
-
-export function listBuyersGlobalsToJSON(
-  listBuyersGlobals: ListBuyersGlobals,
-): string {
-  return JSON.stringify(
-    ListBuyersGlobals$outboundSchema.parse(listBuyersGlobals),
-  );
-}
-
-export function listBuyersGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListBuyersGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListBuyersGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListBuyersGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListBuyersRequest$inboundSchema: z.ZodType<
-  ListBuyersRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  search: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "external_identifier": "externalIdentifier",
-  });
-});
-
-/** @internal */
 export type ListBuyersRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -137,34 +66,11 @@ export const ListBuyersRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListBuyersRequest$ {
-  /** @deprecated use `ListBuyersRequest$inboundSchema` instead. */
-  export const inboundSchema = ListBuyersRequest$inboundSchema;
-  /** @deprecated use `ListBuyersRequest$outboundSchema` instead. */
-  export const outboundSchema = ListBuyersRequest$outboundSchema;
-  /** @deprecated use `ListBuyersRequest$Outbound` instead. */
-  export type Outbound = ListBuyersRequest$Outbound;
-}
-
 export function listBuyersRequestToJSON(
   listBuyersRequest: ListBuyersRequest,
 ): string {
   return JSON.stringify(
     ListBuyersRequest$outboundSchema.parse(listBuyersRequest),
-  );
-}
-
-export function listBuyersRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListBuyersRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListBuyersRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListBuyersRequest' from JSON`,
   );
 }
 
@@ -180,45 +86,6 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListBuyersResponse$Outbound = {
-  Result: components.Buyers$Outbound;
-};
-
-/** @internal */
-export const ListBuyersResponse$outboundSchema: z.ZodType<
-  ListBuyersResponse$Outbound,
-  z.ZodTypeDef,
-  ListBuyersResponse
-> = z.object({
-  result: components.Buyers$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListBuyersResponse$ {
-  /** @deprecated use `ListBuyersResponse$inboundSchema` instead. */
-  export const inboundSchema = ListBuyersResponse$inboundSchema;
-  /** @deprecated use `ListBuyersResponse$outboundSchema` instead. */
-  export const outboundSchema = ListBuyersResponse$outboundSchema;
-  /** @deprecated use `ListBuyersResponse$Outbound` instead. */
-  export type Outbound = ListBuyersResponse$Outbound;
-}
-
-export function listBuyersResponseToJSON(
-  listBuyersResponse: ListBuyersResponse,
-): string {
-  return JSON.stringify(
-    ListBuyersResponse$outboundSchema.parse(listBuyersResponse),
-  );
-}
 
 export function listBuyersResponseFromJSON(
   jsonString: string,

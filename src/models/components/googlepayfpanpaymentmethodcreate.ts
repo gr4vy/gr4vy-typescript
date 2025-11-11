@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create a Google Pay payment with an FPAN.
@@ -51,34 +48,6 @@ export type GooglePayFPANPaymentMethodCreate = {
 };
 
 /** @internal */
-export const GooglePayFPANPaymentMethodCreate$inboundSchema: z.ZodType<
-  GooglePayFPANPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  expiration_date: z.string(),
-  number: z.string(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  card_type: z.nullable(z.string()).optional(),
-  method: z.literal("googlepay_pan_only").default("googlepay_pan_only")
-    .optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-  security_code: z.nullable(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "buyer_id": "buyerId",
-    "external_identifier": "externalIdentifier",
-    "card_type": "cardType",
-    "redirect_url": "redirectUrl",
-    "security_code": "securityCode",
-  });
-});
-
-/** @internal */
 export type GooglePayFPANPaymentMethodCreate$Outbound = {
   expiration_date: string;
   number: string;
@@ -118,19 +87,6 @@ export const GooglePayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GooglePayFPANPaymentMethodCreate$ {
-  /** @deprecated use `GooglePayFPANPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = GooglePayFPANPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `GooglePayFPANPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = GooglePayFPANPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `GooglePayFPANPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = GooglePayFPANPaymentMethodCreate$Outbound;
-}
-
 export function googlePayFPANPaymentMethodCreateToJSON(
   googlePayFPANPaymentMethodCreate: GooglePayFPANPaymentMethodCreate,
 ): string {
@@ -138,15 +94,5 @@ export function googlePayFPANPaymentMethodCreateToJSON(
     GooglePayFPANPaymentMethodCreate$outboundSchema.parse(
       googlePayFPANPaymentMethodCreate,
     ),
-  );
-}
-
-export function googlePayFPANPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<GooglePayFPANPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GooglePayFPANPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GooglePayFPANPaymentMethodCreate' from JSON`,
   );
 }

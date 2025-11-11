@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TravelHubCustomData,
-  TravelHubCustomData$inboundSchema,
   TravelHubCustomData$Outbound,
   TravelHubCustomData$outboundSchema,
 } from "./travelhubcustomdata.js";
@@ -23,16 +19,6 @@ export type TravelhubOptions = {
    */
   companyName?: string | null | undefined;
 };
-
-/** @internal */
-export const TravelhubOptions$inboundSchema: z.ZodType<
-  TravelhubOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  customData: z.nullable(z.array(TravelHubCustomData$inboundSchema)).optional(),
-  companyName: z.nullable(z.string()).optional(),
-});
 
 /** @internal */
 export type TravelhubOptions$Outbound = {
@@ -51,33 +37,10 @@ export const TravelhubOptions$outboundSchema: z.ZodType<
   companyName: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TravelhubOptions$ {
-  /** @deprecated use `TravelhubOptions$inboundSchema` instead. */
-  export const inboundSchema = TravelhubOptions$inboundSchema;
-  /** @deprecated use `TravelhubOptions$outboundSchema` instead. */
-  export const outboundSchema = TravelhubOptions$outboundSchema;
-  /** @deprecated use `TravelhubOptions$Outbound` instead. */
-  export type Outbound = TravelhubOptions$Outbound;
-}
-
 export function travelhubOptionsToJSON(
   travelhubOptions: TravelhubOptions,
 ): string {
   return JSON.stringify(
     TravelhubOptions$outboundSchema.parse(travelhubOptions),
-  );
-}
-
-export function travelhubOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<TravelhubOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TravelhubOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TravelhubOptions' from JSON`,
   );
 }

@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateGooglePayDigitalWalletSessionGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,82 +17,6 @@ export type CreateGooglePayDigitalWalletSessionRequest = {
   merchantAccountId?: string | null | undefined;
   googlePaySessionRequest: components.GooglePaySessionRequest;
 };
-
-/** @internal */
-export const CreateGooglePayDigitalWalletSessionGlobals$inboundSchema:
-  z.ZodType<CreateGooglePayDigitalWalletSessionGlobals, z.ZodTypeDef, unknown> =
-    z.object({
-      merchantAccountId: z.string().optional(),
-    });
-
-/** @internal */
-export type CreateGooglePayDigitalWalletSessionGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const CreateGooglePayDigitalWalletSessionGlobals$outboundSchema:
-  z.ZodType<
-    CreateGooglePayDigitalWalletSessionGlobals$Outbound,
-    z.ZodTypeDef,
-    CreateGooglePayDigitalWalletSessionGlobals
-  > = z.object({
-    merchantAccountId: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateGooglePayDigitalWalletSessionGlobals$ {
-  /** @deprecated use `CreateGooglePayDigitalWalletSessionGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateGooglePayDigitalWalletSessionGlobals$inboundSchema;
-  /** @deprecated use `CreateGooglePayDigitalWalletSessionGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateGooglePayDigitalWalletSessionGlobals$outboundSchema;
-  /** @deprecated use `CreateGooglePayDigitalWalletSessionGlobals$Outbound` instead. */
-  export type Outbound = CreateGooglePayDigitalWalletSessionGlobals$Outbound;
-}
-
-export function createGooglePayDigitalWalletSessionGlobalsToJSON(
-  createGooglePayDigitalWalletSessionGlobals:
-    CreateGooglePayDigitalWalletSessionGlobals,
-): string {
-  return JSON.stringify(
-    CreateGooglePayDigitalWalletSessionGlobals$outboundSchema.parse(
-      createGooglePayDigitalWalletSessionGlobals,
-    ),
-  );
-}
-
-export function createGooglePayDigitalWalletSessionGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateGooglePayDigitalWalletSessionGlobals,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateGooglePayDigitalWalletSessionGlobals$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateGooglePayDigitalWalletSessionGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateGooglePayDigitalWalletSessionRequest$inboundSchema:
-  z.ZodType<CreateGooglePayDigitalWalletSessionRequest, z.ZodTypeDef, unknown> =
-    z.object({
-      merchantAccountId: z.nullable(z.string()).optional(),
-      GooglePaySessionRequest: components.GooglePaySessionRequest$inboundSchema,
-    }).transform((v) => {
-      return remap$(v, {
-        "GooglePaySessionRequest": "googlePaySessionRequest",
-      });
-    });
 
 /** @internal */
 export type CreateGooglePayDigitalWalletSessionRequest$Outbound = {
@@ -118,21 +39,6 @@ export const CreateGooglePayDigitalWalletSessionRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateGooglePayDigitalWalletSessionRequest$ {
-  /** @deprecated use `CreateGooglePayDigitalWalletSessionRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateGooglePayDigitalWalletSessionRequest$inboundSchema;
-  /** @deprecated use `CreateGooglePayDigitalWalletSessionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateGooglePayDigitalWalletSessionRequest$outboundSchema;
-  /** @deprecated use `CreateGooglePayDigitalWalletSessionRequest$Outbound` instead. */
-  export type Outbound = CreateGooglePayDigitalWalletSessionRequest$Outbound;
-}
-
 export function createGooglePayDigitalWalletSessionRequestToJSON(
   createGooglePayDigitalWalletSessionRequest:
     CreateGooglePayDigitalWalletSessionRequest,
@@ -141,21 +47,5 @@ export function createGooglePayDigitalWalletSessionRequestToJSON(
     CreateGooglePayDigitalWalletSessionRequest$outboundSchema.parse(
       createGooglePayDigitalWalletSessionRequest,
     ),
-  );
-}
-
-export function createGooglePayDigitalWalletSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateGooglePayDigitalWalletSessionRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateGooglePayDigitalWalletSessionRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateGooglePayDigitalWalletSessionRequest' from JSON`,
   );
 }

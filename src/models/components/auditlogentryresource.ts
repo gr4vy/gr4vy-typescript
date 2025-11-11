@@ -33,45 +33,6 @@ export const AuditLogEntryResource$inboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/** @internal */
-export type AuditLogEntryResource$Outbound = {
-  type: string;
-  id: string;
-  name: string;
-};
-
-/** @internal */
-export const AuditLogEntryResource$outboundSchema: z.ZodType<
-  AuditLogEntryResource$Outbound,
-  z.ZodTypeDef,
-  AuditLogEntryResource
-> = z.object({
-  type: z.string(),
-  id: z.string(),
-  name: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogEntryResource$ {
-  /** @deprecated use `AuditLogEntryResource$inboundSchema` instead. */
-  export const inboundSchema = AuditLogEntryResource$inboundSchema;
-  /** @deprecated use `AuditLogEntryResource$outboundSchema` instead. */
-  export const outboundSchema = AuditLogEntryResource$outboundSchema;
-  /** @deprecated use `AuditLogEntryResource$Outbound` instead. */
-  export type Outbound = AuditLogEntryResource$Outbound;
-}
-
-export function auditLogEntryResourceToJSON(
-  auditLogEntryResource: AuditLogEntryResource,
-): string {
-  return JSON.stringify(
-    AuditLogEntryResource$outboundSchema.parse(auditLogEntryResource),
-  );
-}
-
 export function auditLogEntryResourceFromJSON(
   jsonString: string,
 ): SafeParseResult<AuditLogEntryResource, SDKValidationError> {

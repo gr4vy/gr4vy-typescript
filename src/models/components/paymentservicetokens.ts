@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentServiceToken,
   PaymentServiceToken$inboundSchema,
-  PaymentServiceToken$Outbound,
-  PaymentServiceToken$outboundSchema,
 } from "./paymentservicetoken.js";
 
 export type PaymentServiceTokens = {
@@ -28,41 +26,6 @@ export const PaymentServiceTokens$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(PaymentServiceToken$inboundSchema),
 });
-
-/** @internal */
-export type PaymentServiceTokens$Outbound = {
-  items: Array<PaymentServiceToken$Outbound>;
-};
-
-/** @internal */
-export const PaymentServiceTokens$outboundSchema: z.ZodType<
-  PaymentServiceTokens$Outbound,
-  z.ZodTypeDef,
-  PaymentServiceTokens
-> = z.object({
-  items: z.array(PaymentServiceToken$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceTokens$ {
-  /** @deprecated use `PaymentServiceTokens$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceTokens$inboundSchema;
-  /** @deprecated use `PaymentServiceTokens$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceTokens$outboundSchema;
-  /** @deprecated use `PaymentServiceTokens$Outbound` instead. */
-  export type Outbound = PaymentServiceTokens$Outbound;
-}
-
-export function paymentServiceTokensToJSON(
-  paymentServiceTokens: PaymentServiceTokens,
-): string {
-  return JSON.stringify(
-    PaymentServiceTokens$outboundSchema.parse(paymentServiceTokens),
-  );
-}
 
 export function paymentServiceTokensFromJSON(
   jsonString: string,

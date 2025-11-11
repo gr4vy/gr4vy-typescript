@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ClickToPaySessionRequest = {
   /**
@@ -14,19 +11,6 @@ export type ClickToPaySessionRequest = {
    */
   checkoutSessionId: string;
 };
-
-/** @internal */
-export const ClickToPaySessionRequest$inboundSchema: z.ZodType<
-  ClickToPaySessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  checkout_session_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "checkout_session_id": "checkoutSessionId",
-  });
-});
 
 /** @internal */
 export type ClickToPaySessionRequest$Outbound = {
@@ -46,33 +30,10 @@ export const ClickToPaySessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClickToPaySessionRequest$ {
-  /** @deprecated use `ClickToPaySessionRequest$inboundSchema` instead. */
-  export const inboundSchema = ClickToPaySessionRequest$inboundSchema;
-  /** @deprecated use `ClickToPaySessionRequest$outboundSchema` instead. */
-  export const outboundSchema = ClickToPaySessionRequest$outboundSchema;
-  /** @deprecated use `ClickToPaySessionRequest$Outbound` instead. */
-  export type Outbound = ClickToPaySessionRequest$Outbound;
-}
-
 export function clickToPaySessionRequestToJSON(
   clickToPaySessionRequest: ClickToPaySessionRequest,
 ): string {
   return JSON.stringify(
     ClickToPaySessionRequest$outboundSchema.parse(clickToPaySessionRequest),
-  );
-}
-
-export function clickToPaySessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ClickToPaySessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ClickToPaySessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ClickToPaySessionRequest' from JSON`,
   );
 }

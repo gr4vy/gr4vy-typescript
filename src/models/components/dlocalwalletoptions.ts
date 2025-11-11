@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DlocalWalletOptions = {
   /**
@@ -31,19 +28,6 @@ export type DlocalWalletOptions = {
 };
 
 /** @internal */
-export const DlocalWalletOptions$inboundSchema: z.ZodType<
-  DlocalWalletOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  token: z.nullable(z.string()).optional(),
-  username: z.nullable(z.string()).optional(),
-  verify: z.nullable(z.boolean()).optional(),
-});
-
-/** @internal */
 export type DlocalWalletOptions$Outbound = {
   name?: string | null | undefined;
   email?: string | null | undefined;
@@ -65,33 +49,10 @@ export const DlocalWalletOptions$outboundSchema: z.ZodType<
   verify: z.nullable(z.boolean()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DlocalWalletOptions$ {
-  /** @deprecated use `DlocalWalletOptions$inboundSchema` instead. */
-  export const inboundSchema = DlocalWalletOptions$inboundSchema;
-  /** @deprecated use `DlocalWalletOptions$outboundSchema` instead. */
-  export const outboundSchema = DlocalWalletOptions$outboundSchema;
-  /** @deprecated use `DlocalWalletOptions$Outbound` instead. */
-  export type Outbound = DlocalWalletOptions$Outbound;
-}
-
 export function dlocalWalletOptionsToJSON(
   dlocalWalletOptions: DlocalWalletOptions,
 ): string {
   return JSON.stringify(
     DlocalWalletOptions$outboundSchema.parse(dlocalWalletOptions),
-  );
-}
-
-export function dlocalWalletOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<DlocalWalletOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DlocalWalletOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DlocalWalletOptions' from JSON`,
   );
 }

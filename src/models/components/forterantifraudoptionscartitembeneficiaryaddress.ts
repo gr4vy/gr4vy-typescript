@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryAddress = {
   /**
@@ -39,22 +36,6 @@ export type ForterAntiFraudOptionsCartItemBeneficiaryAddress = {
 };
 
 /** @internal */
-export const ForterAntiFraudOptionsCartItemBeneficiaryAddress$inboundSchema:
-  z.ZodType<
-    ForterAntiFraudOptionsCartItemBeneficiaryAddress,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    country: z.string(),
-    address1: z.nullable(z.string()).optional(),
-    address2: z.nullable(z.string()).optional(),
-    zip: z.nullable(z.string()).optional(),
-    region: z.nullable(z.string()).optional(),
-    company: z.nullable(z.string()).optional(),
-    city: z.nullable(z.string()).optional(),
-  });
-
-/** @internal */
 export type ForterAntiFraudOptionsCartItemBeneficiaryAddress$Outbound = {
   country: string;
   address1?: string | null | undefined;
@@ -81,22 +62,6 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryAddress$outboundSchema:
     city: z.nullable(z.string()).optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItemBeneficiaryAddress$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryAddress$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryAddress$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryAddress$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryAddress$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryAddress$Outbound` instead. */
-  export type Outbound =
-    ForterAntiFraudOptionsCartItemBeneficiaryAddress$Outbound;
-}
-
 export function forterAntiFraudOptionsCartItemBeneficiaryAddressToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryAddress:
     ForterAntiFraudOptionsCartItemBeneficiaryAddress,
@@ -105,21 +70,5 @@ export function forterAntiFraudOptionsCartItemBeneficiaryAddressToJSON(
     ForterAntiFraudOptionsCartItemBeneficiaryAddress$outboundSchema.parse(
       forterAntiFraudOptionsCartItemBeneficiaryAddress,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsCartItemBeneficiaryAddressFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ForterAntiFraudOptionsCartItemBeneficiaryAddress,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ForterAntiFraudOptionsCartItemBeneficiaryAddress$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ForterAntiFraudOptionsCartItemBeneficiaryAddress' from JSON`,
   );
 }

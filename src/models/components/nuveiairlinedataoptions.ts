@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NuveiAirlineDataOptions = {
   /**
@@ -17,16 +14,6 @@ export type NuveiAirlineDataOptions = {
    */
   isCardholderTraveling?: boolean | null | undefined;
 };
-
-/** @internal */
-export const NuveiAirlineDataOptions$inboundSchema: z.ZodType<
-  NuveiAirlineDataOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  seatClass: z.nullable(z.string()).optional(),
-  isCardholderTraveling: z.nullable(z.boolean()).optional(),
-});
 
 /** @internal */
 export type NuveiAirlineDataOptions$Outbound = {
@@ -44,33 +31,10 @@ export const NuveiAirlineDataOptions$outboundSchema: z.ZodType<
   isCardholderTraveling: z.nullable(z.boolean()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NuveiAirlineDataOptions$ {
-  /** @deprecated use `NuveiAirlineDataOptions$inboundSchema` instead. */
-  export const inboundSchema = NuveiAirlineDataOptions$inboundSchema;
-  /** @deprecated use `NuveiAirlineDataOptions$outboundSchema` instead. */
-  export const outboundSchema = NuveiAirlineDataOptions$outboundSchema;
-  /** @deprecated use `NuveiAirlineDataOptions$Outbound` instead. */
-  export type Outbound = NuveiAirlineDataOptions$Outbound;
-}
-
 export function nuveiAirlineDataOptionsToJSON(
   nuveiAirlineDataOptions: NuveiAirlineDataOptions,
 ): string {
   return JSON.stringify(
     NuveiAirlineDataOptions$outboundSchema.parse(nuveiAirlineDataOptions),
-  );
-}
-
-export function nuveiAirlineDataOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<NuveiAirlineDataOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => NuveiAirlineDataOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NuveiAirlineDataOptions' from JSON`,
   );
 }

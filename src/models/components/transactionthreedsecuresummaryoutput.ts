@@ -10,30 +10,22 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ThreeDSecureDataV1,
   ThreeDSecureDataV1$inboundSchema,
-  ThreeDSecureDataV1$Outbound,
-  ThreeDSecureDataV1$outboundSchema,
 } from "./threedsecuredatav1.js";
 import {
   ThreeDSecureError,
   ThreeDSecureError$inboundSchema,
-  ThreeDSecureError$Outbound,
-  ThreeDSecureError$outboundSchema,
 } from "./threedsecureerror.js";
 import {
   ThreeDSecureMethod,
   ThreeDSecureMethod$inboundSchema,
-  ThreeDSecureMethod$outboundSchema,
 } from "./threedsecuremethod.js";
 import {
   ThreeDSecureStatus,
   ThreeDSecureStatus$inboundSchema,
-  ThreeDSecureStatus$outboundSchema,
 } from "./threedsecurestatus.js";
 import {
   ThreeDSecureV2,
   ThreeDSecureV2$inboundSchema,
-  ThreeDSecureV2$Outbound,
-  ThreeDSecureV2$outboundSchema,
 } from "./threedsecurev2.js";
 
 /**
@@ -71,35 +63,6 @@ export const ResponseData$inboundSchema: z.ZodType<
   unknown
 > = z.union([ThreeDSecureDataV1$inboundSchema, ThreeDSecureV2$inboundSchema]);
 
-/** @internal */
-export type ResponseData$Outbound =
-  | ThreeDSecureDataV1$Outbound
-  | ThreeDSecureV2$Outbound;
-
-/** @internal */
-export const ResponseData$outboundSchema: z.ZodType<
-  ResponseData$Outbound,
-  z.ZodTypeDef,
-  ResponseData
-> = z.union([ThreeDSecureDataV1$outboundSchema, ThreeDSecureV2$outboundSchema]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseData$ {
-  /** @deprecated use `ResponseData$inboundSchema` instead. */
-  export const inboundSchema = ResponseData$inboundSchema;
-  /** @deprecated use `ResponseData$outboundSchema` instead. */
-  export const outboundSchema = ResponseData$outboundSchema;
-  /** @deprecated use `ResponseData$Outbound` instead. */
-  export type Outbound = ResponseData$Outbound;
-}
-
-export function responseDataToJSON(responseData: ResponseData): string {
-  return JSON.stringify(ResponseData$outboundSchema.parse(responseData));
-}
-
 export function responseDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseData, SDKValidationError> {
@@ -129,64 +92,6 @@ export const TransactionThreeDSecureSummaryOutput$inboundSchema: z.ZodType<
     "error_data": "errorData",
   });
 });
-
-/** @internal */
-export type TransactionThreeDSecureSummaryOutput$Outbound = {
-  version?: string | null | undefined;
-  status?: string | null | undefined;
-  method?: string | null | undefined;
-  response_data?:
-    | ThreeDSecureDataV1$Outbound
-    | ThreeDSecureV2$Outbound
-    | null
-    | undefined;
-  error_data?: ThreeDSecureError$Outbound | null | undefined;
-};
-
-/** @internal */
-export const TransactionThreeDSecureSummaryOutput$outboundSchema: z.ZodType<
-  TransactionThreeDSecureSummaryOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionThreeDSecureSummaryOutput
-> = z.object({
-  version: z.nullable(z.string()).optional(),
-  status: z.nullable(ThreeDSecureStatus$outboundSchema).optional(),
-  method: z.nullable(ThreeDSecureMethod$outboundSchema).optional(),
-  responseData: z.nullable(
-    z.union([ThreeDSecureDataV1$outboundSchema, ThreeDSecureV2$outboundSchema]),
-  ).optional(),
-  errorData: z.nullable(ThreeDSecureError$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    responseData: "response_data",
-    errorData: "error_data",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionThreeDSecureSummaryOutput$ {
-  /** @deprecated use `TransactionThreeDSecureSummaryOutput$inboundSchema` instead. */
-  export const inboundSchema =
-    TransactionThreeDSecureSummaryOutput$inboundSchema;
-  /** @deprecated use `TransactionThreeDSecureSummaryOutput$outboundSchema` instead. */
-  export const outboundSchema =
-    TransactionThreeDSecureSummaryOutput$outboundSchema;
-  /** @deprecated use `TransactionThreeDSecureSummaryOutput$Outbound` instead. */
-  export type Outbound = TransactionThreeDSecureSummaryOutput$Outbound;
-}
-
-export function transactionThreeDSecureSummaryOutputToJSON(
-  transactionThreeDSecureSummaryOutput: TransactionThreeDSecureSummaryOutput,
-): string {
-  return JSON.stringify(
-    TransactionThreeDSecureSummaryOutput$outboundSchema.parse(
-      transactionThreeDSecureSummaryOutput,
-    ),
-  );
-}
 
 export function transactionThreeDSecureSummaryOutputFromJSON(
   jsonString: string,

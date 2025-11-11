@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 
 /**
  * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`, `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
@@ -53,17 +46,6 @@ export type DlocalUPIRecurringInfoOptions = {
 };
 
 /** @internal */
-export const SubscriptionFrequencyUnit$inboundSchema: z.ZodType<
-  SubscriptionFrequencyUnit,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(SubscriptionFrequencyUnit),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const SubscriptionFrequencyUnit$outboundSchema: z.ZodType<
   SubscriptionFrequencyUnit,
   z.ZodTypeDef,
@@ -72,36 +54,6 @@ export const SubscriptionFrequencyUnit$outboundSchema: z.ZodType<
   z.nativeEnum(SubscriptionFrequencyUnit),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriptionFrequencyUnit$ {
-  /** @deprecated use `SubscriptionFrequencyUnit$inboundSchema` instead. */
-  export const inboundSchema = SubscriptionFrequencyUnit$inboundSchema;
-  /** @deprecated use `SubscriptionFrequencyUnit$outboundSchema` instead. */
-  export const outboundSchema = SubscriptionFrequencyUnit$outboundSchema;
-}
-
-/** @internal */
-export const DlocalUPIRecurringInfoOptions$inboundSchema: z.ZodType<
-  DlocalUPIRecurringInfoOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  subscription_frequency_unit: SubscriptionFrequencyUnit$inboundSchema,
-  subscription_frequency: z.number().int(),
-  subscription_start_at: z.string(),
-  subscription_end_at: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "subscription_frequency_unit": "subscriptionFrequencyUnit",
-    "subscription_frequency": "subscriptionFrequency",
-    "subscription_start_at": "subscriptionStartAt",
-    "subscription_end_at": "subscriptionEndAt",
-  });
-});
 
 /** @internal */
 export type DlocalUPIRecurringInfoOptions$Outbound = {
@@ -130,19 +82,6 @@ export const DlocalUPIRecurringInfoOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DlocalUPIRecurringInfoOptions$ {
-  /** @deprecated use `DlocalUPIRecurringInfoOptions$inboundSchema` instead. */
-  export const inboundSchema = DlocalUPIRecurringInfoOptions$inboundSchema;
-  /** @deprecated use `DlocalUPIRecurringInfoOptions$outboundSchema` instead. */
-  export const outboundSchema = DlocalUPIRecurringInfoOptions$outboundSchema;
-  /** @deprecated use `DlocalUPIRecurringInfoOptions$Outbound` instead. */
-  export type Outbound = DlocalUPIRecurringInfoOptions$Outbound;
-}
-
 export function dlocalUPIRecurringInfoOptionsToJSON(
   dlocalUPIRecurringInfoOptions: DlocalUPIRecurringInfoOptions,
 ): string {
@@ -150,15 +89,5 @@ export function dlocalUPIRecurringInfoOptionsToJSON(
     DlocalUPIRecurringInfoOptions$outboundSchema.parse(
       dlocalUPIRecurringInfoOptions,
     ),
-  );
-}
-
-export function dlocalUPIRecurringInfoOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<DlocalUPIRecurringInfoOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DlocalUPIRecurringInfoOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DlocalUPIRecurringInfoOptions' from JSON`,
   );
 }

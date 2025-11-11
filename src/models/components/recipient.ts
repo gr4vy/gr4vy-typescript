@@ -61,7 +61,6 @@ export const Recipient$inboundSchema: z.ZodType<
     "date_of_birth": "dateOfBirth",
   });
 });
-
 /** @internal */
 export type Recipient$Outbound = {
   first_name: string;
@@ -92,23 +91,9 @@ export const Recipient$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Recipient$ {
-  /** @deprecated use `Recipient$inboundSchema` instead. */
-  export const inboundSchema = Recipient$inboundSchema;
-  /** @deprecated use `Recipient$outboundSchema` instead. */
-  export const outboundSchema = Recipient$outboundSchema;
-  /** @deprecated use `Recipient$Outbound` instead. */
-  export type Outbound = Recipient$Outbound;
-}
-
 export function recipientToJSON(recipient: Recipient): string {
   return JSON.stringify(Recipient$outboundSchema.parse(recipient));
 }
-
 export function recipientFromJSON(
   jsonString: string,
 ): SafeParseResult<Recipient, SDKValidationError> {

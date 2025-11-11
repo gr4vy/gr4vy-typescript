@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransactionConnectionOptions,
-  TransactionConnectionOptions$inboundSchema,
   TransactionConnectionOptions$Outbound,
   TransactionConnectionOptions$outboundSchema,
 } from "./transactionconnectionoptions.js";
@@ -28,23 +24,6 @@ export type TransactionUpdate = {
    */
   connectionOptions?: TransactionConnectionOptions | null | undefined;
 };
-
-/** @internal */
-export const TransactionUpdate$inboundSchema: z.ZodType<
-  TransactionUpdate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  external_identifier: z.nullable(z.string()).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  connection_options: z.nullable(TransactionConnectionOptions$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "external_identifier": "externalIdentifier",
-    "connection_options": "connectionOptions",
-  });
-});
 
 /** @internal */
 export type TransactionUpdate$Outbound = {
@@ -70,33 +49,10 @@ export const TransactionUpdate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionUpdate$ {
-  /** @deprecated use `TransactionUpdate$inboundSchema` instead. */
-  export const inboundSchema = TransactionUpdate$inboundSchema;
-  /** @deprecated use `TransactionUpdate$outboundSchema` instead. */
-  export const outboundSchema = TransactionUpdate$outboundSchema;
-  /** @deprecated use `TransactionUpdate$Outbound` instead. */
-  export type Outbound = TransactionUpdate$Outbound;
-}
-
 export function transactionUpdateToJSON(
   transactionUpdate: TransactionUpdate,
 ): string {
   return JSON.stringify(
     TransactionUpdate$outboundSchema.parse(transactionUpdate),
-  );
-}
-
-export function transactionUpdateFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionUpdate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionUpdate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionUpdate' from JSON`,
   );
 }

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentServiceDefinition,
   PaymentServiceDefinition$inboundSchema,
-  PaymentServiceDefinition$Outbound,
-  PaymentServiceDefinition$outboundSchema,
 } from "./paymentservicedefinition.js";
 
 export type PaymentServiceDefinitions = {
@@ -49,52 +47,6 @@ export const PaymentServiceDefinitions$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type PaymentServiceDefinitions$Outbound = {
-  items: Array<PaymentServiceDefinition$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const PaymentServiceDefinitions$outboundSchema: z.ZodType<
-  PaymentServiceDefinitions$Outbound,
-  z.ZodTypeDef,
-  PaymentServiceDefinitions
-> = z.object({
-  items: z.array(PaymentServiceDefinition$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceDefinitions$ {
-  /** @deprecated use `PaymentServiceDefinitions$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceDefinitions$inboundSchema;
-  /** @deprecated use `PaymentServiceDefinitions$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceDefinitions$outboundSchema;
-  /** @deprecated use `PaymentServiceDefinitions$Outbound` instead. */
-  export type Outbound = PaymentServiceDefinitions$Outbound;
-}
-
-export function paymentServiceDefinitionsToJSON(
-  paymentServiceDefinitions: PaymentServiceDefinitions,
-): string {
-  return JSON.stringify(
-    PaymentServiceDefinitions$outboundSchema.parse(paymentServiceDefinitions),
-  );
-}
 
 export function paymentServiceDefinitionsFromJSON(
   jsonString: string,

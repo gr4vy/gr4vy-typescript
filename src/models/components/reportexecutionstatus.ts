@@ -28,7 +28,6 @@ export const ReportExecutionStatus$inboundSchema: z.ZodType<
     z.nativeEnum(ReportExecutionStatus),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const ReportExecutionStatus$outboundSchema: z.ZodType<
   ReportExecutionStatus,
@@ -38,14 +37,3 @@ export const ReportExecutionStatus$outboundSchema: z.ZodType<
   z.nativeEnum(ReportExecutionStatus),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportExecutionStatus$ {
-  /** @deprecated use `ReportExecutionStatus$inboundSchema` instead. */
-  export const inboundSchema = ReportExecutionStatus$inboundSchema;
-  /** @deprecated use `ReportExecutionStatus$outboundSchema` instead. */
-  export const outboundSchema = ReportExecutionStatus$outboundSchema;
-}

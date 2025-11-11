@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Refund,
-  Refund$inboundSchema,
-  Refund$Outbound,
-  Refund$outboundSchema,
-} from "./refund.js";
+import { Refund, Refund$inboundSchema } from "./refund.js";
 
 export type Refunds = {
   /**
@@ -46,48 +41,6 @@ export const Refunds$inboundSchema: z.ZodType<Refunds, z.ZodTypeDef, unknown> =
       "previous_cursor": "previousCursor",
     });
   });
-
-/** @internal */
-export type Refunds$Outbound = {
-  items: Array<Refund$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const Refunds$outboundSchema: z.ZodType<
-  Refunds$Outbound,
-  z.ZodTypeDef,
-  Refunds
-> = z.object({
-  items: z.array(Refund$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Refunds$ {
-  /** @deprecated use `Refunds$inboundSchema` instead. */
-  export const inboundSchema = Refunds$inboundSchema;
-  /** @deprecated use `Refunds$outboundSchema` instead. */
-  export const outboundSchema = Refunds$outboundSchema;
-  /** @deprecated use `Refunds$Outbound` instead. */
-  export type Outbound = Refunds$Outbound;
-}
-
-export function refundsToJSON(refunds: Refunds): string {
-  return JSON.stringify(Refunds$outboundSchema.parse(refunds));
-}
 
 export function refundsFromJSON(
   jsonString: string,

@@ -10,24 +10,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ApprovalTarget,
   ApprovalTarget$inboundSchema,
-  ApprovalTarget$outboundSchema,
 } from "./approvaltarget.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
-import {
-  Method,
-  Method$inboundSchema,
-  Method$outboundSchema,
-} from "./method.js";
-import { Mode, Mode$inboundSchema, Mode$outboundSchema } from "./mode.js";
+import { CardScheme, CardScheme$inboundSchema } from "./cardscheme.js";
+import { Method, Method$inboundSchema } from "./method.js";
+import { Mode, Mode$inboundSchema } from "./mode.js";
 import {
   PaymentMethodDetailsCard,
   PaymentMethodDetailsCard$inboundSchema,
-  PaymentMethodDetailsCard$Outbound,
-  PaymentMethodDetailsCard$outboundSchema,
 } from "./paymentmethoddetailscard.js";
 
 export type TransactionPaymentMethodOutput = {
@@ -128,83 +117,6 @@ export const TransactionPaymentMethodOutput$inboundSchema: z.ZodType<
     "payment_account_reference": "paymentAccountReference",
   });
 });
-
-/** @internal */
-export type TransactionPaymentMethodOutput$Outbound = {
-  type: "payment-method";
-  approval_url?: string | null | undefined;
-  country?: string | null | undefined;
-  currency?: string | null | undefined;
-  details?: PaymentMethodDetailsCard$Outbound | null | undefined;
-  expiration_date?: string | null | undefined;
-  fingerprint?: string | null | undefined;
-  label?: string | null | undefined;
-  last_replaced_at?: string | null | undefined;
-  method: string;
-  mode?: string | null | undefined;
-  scheme?: string | null | undefined;
-  id?: string | null | undefined;
-  approval_target?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  payment_account_reference?: string | null | undefined;
-};
-
-/** @internal */
-export const TransactionPaymentMethodOutput$outboundSchema: z.ZodType<
-  TransactionPaymentMethodOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionPaymentMethodOutput
-> = z.object({
-  type: z.literal("payment-method").default("payment-method" as const),
-  approvalUrl: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  details: z.nullable(PaymentMethodDetailsCard$outboundSchema).optional(),
-  expirationDate: z.nullable(z.string()).optional(),
-  fingerprint: z.nullable(z.string()).optional(),
-  label: z.nullable(z.string()).optional(),
-  lastReplacedAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  method: Method$outboundSchema,
-  mode: z.nullable(Mode$outboundSchema).optional(),
-  scheme: z.nullable(CardScheme$outboundSchema).optional(),
-  id: z.nullable(z.string()).optional(),
-  approvalTarget: z.nullable(ApprovalTarget$outboundSchema).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  paymentAccountReference: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    approvalUrl: "approval_url",
-    expirationDate: "expiration_date",
-    lastReplacedAt: "last_replaced_at",
-    approvalTarget: "approval_target",
-    externalIdentifier: "external_identifier",
-    paymentAccountReference: "payment_account_reference",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionPaymentMethodOutput$ {
-  /** @deprecated use `TransactionPaymentMethodOutput$inboundSchema` instead. */
-  export const inboundSchema = TransactionPaymentMethodOutput$inboundSchema;
-  /** @deprecated use `TransactionPaymentMethodOutput$outboundSchema` instead. */
-  export const outboundSchema = TransactionPaymentMethodOutput$outboundSchema;
-  /** @deprecated use `TransactionPaymentMethodOutput$Outbound` instead. */
-  export type Outbound = TransactionPaymentMethodOutput$Outbound;
-}
-
-export function transactionPaymentMethodOutputToJSON(
-  transactionPaymentMethodOutput: TransactionPaymentMethodOutput,
-): string {
-  return JSON.stringify(
-    TransactionPaymentMethodOutput$outboundSchema.parse(
-      transactionPaymentMethodOutput,
-    ),
-  );
-}
 
 export function transactionPaymentMethodOutputFromJSON(
   jsonString: string,

@@ -48,53 +48,6 @@ export const TransactionGiftCard$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TransactionGiftCard$Outbound = {
-  type: "gift-card";
-  id?: string | null | undefined;
-  bin: string;
-  sub_bin: string;
-  last4: string;
-};
-
-/** @internal */
-export const TransactionGiftCard$outboundSchema: z.ZodType<
-  TransactionGiftCard$Outbound,
-  z.ZodTypeDef,
-  TransactionGiftCard
-> = z.object({
-  type: z.literal("gift-card").default("gift-card" as const),
-  id: z.nullable(z.string()).optional(),
-  bin: z.string(),
-  subBin: z.string(),
-  last4: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    subBin: "sub_bin",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionGiftCard$ {
-  /** @deprecated use `TransactionGiftCard$inboundSchema` instead. */
-  export const inboundSchema = TransactionGiftCard$inboundSchema;
-  /** @deprecated use `TransactionGiftCard$outboundSchema` instead. */
-  export const outboundSchema = TransactionGiftCard$outboundSchema;
-  /** @deprecated use `TransactionGiftCard$Outbound` instead. */
-  export type Outbound = TransactionGiftCard$Outbound;
-}
-
-export function transactionGiftCardToJSON(
-  transactionGiftCard: TransactionGiftCard,
-): string {
-  return JSON.stringify(
-    TransactionGiftCard$outboundSchema.parse(transactionGiftCard),
-  );
-}
-
 export function transactionGiftCardFromJSON(
   jsonString: string,
 ): SafeParseResult<TransactionGiftCard, SDKValidationError> {

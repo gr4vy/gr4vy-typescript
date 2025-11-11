@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CardPaymentMethodCreate = {
   /**
@@ -42,31 +39,6 @@ export type CardPaymentMethodCreate = {
    */
   securityCode?: string | null | undefined;
 };
-
-/** @internal */
-export const CardPaymentMethodCreate$inboundSchema: z.ZodType<
-  CardPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  expiration_date: z.string(),
-  number: z.string(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  card_type: z.nullable(z.string()).optional(),
-  method: z.literal("card").default("card"),
-  security_code: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "buyer_id": "buyerId",
-    "external_identifier": "externalIdentifier",
-    "card_type": "cardType",
-    "security_code": "securityCode",
-  });
-});
 
 /** @internal */
 export type CardPaymentMethodCreate$Outbound = {
@@ -105,33 +77,10 @@ export const CardPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CardPaymentMethodCreate$ {
-  /** @deprecated use `CardPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = CardPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `CardPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = CardPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `CardPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = CardPaymentMethodCreate$Outbound;
-}
-
 export function cardPaymentMethodCreateToJSON(
   cardPaymentMethodCreate: CardPaymentMethodCreate,
 ): string {
   return JSON.stringify(
     CardPaymentMethodCreate$outboundSchema.parse(cardPaymentMethodCreate),
-  );
-}
-
-export function cardPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<CardPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CardPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CardPaymentMethodCreate' from JSON`,
   );
 }

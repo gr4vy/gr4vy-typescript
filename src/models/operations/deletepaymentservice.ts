@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeletePaymentServiceGlobals = {
   merchantAccountId?: string | undefined;
@@ -22,76 +19,6 @@ export type DeletePaymentServiceRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const DeletePaymentServiceGlobals$inboundSchema: z.ZodType<
-  DeletePaymentServiceGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type DeletePaymentServiceGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const DeletePaymentServiceGlobals$outboundSchema: z.ZodType<
-  DeletePaymentServiceGlobals$Outbound,
-  z.ZodTypeDef,
-  DeletePaymentServiceGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeletePaymentServiceGlobals$ {
-  /** @deprecated use `DeletePaymentServiceGlobals$inboundSchema` instead. */
-  export const inboundSchema = DeletePaymentServiceGlobals$inboundSchema;
-  /** @deprecated use `DeletePaymentServiceGlobals$outboundSchema` instead. */
-  export const outboundSchema = DeletePaymentServiceGlobals$outboundSchema;
-  /** @deprecated use `DeletePaymentServiceGlobals$Outbound` instead. */
-  export type Outbound = DeletePaymentServiceGlobals$Outbound;
-}
-
-export function deletePaymentServiceGlobalsToJSON(
-  deletePaymentServiceGlobals: DeletePaymentServiceGlobals,
-): string {
-  return JSON.stringify(
-    DeletePaymentServiceGlobals$outboundSchema.parse(
-      deletePaymentServiceGlobals,
-    ),
-  );
-}
-
-export function deletePaymentServiceGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<DeletePaymentServiceGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeletePaymentServiceGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeletePaymentServiceGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const DeletePaymentServiceRequest$inboundSchema: z.ZodType<
-  DeletePaymentServiceRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_service_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_service_id": "paymentServiceId",
-  });
-});
 
 /** @internal */
 export type DeletePaymentServiceRequest$Outbound = {
@@ -113,19 +40,6 @@ export const DeletePaymentServiceRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeletePaymentServiceRequest$ {
-  /** @deprecated use `DeletePaymentServiceRequest$inboundSchema` instead. */
-  export const inboundSchema = DeletePaymentServiceRequest$inboundSchema;
-  /** @deprecated use `DeletePaymentServiceRequest$outboundSchema` instead. */
-  export const outboundSchema = DeletePaymentServiceRequest$outboundSchema;
-  /** @deprecated use `DeletePaymentServiceRequest$Outbound` instead. */
-  export type Outbound = DeletePaymentServiceRequest$Outbound;
-}
-
 export function deletePaymentServiceRequestToJSON(
   deletePaymentServiceRequest: DeletePaymentServiceRequest,
 ): string {
@@ -133,15 +47,5 @@ export function deletePaymentServiceRequestToJSON(
     DeletePaymentServiceRequest$outboundSchema.parse(
       deletePaymentServiceRequest,
     ),
-  );
-}
-
-export function deletePaymentServiceRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeletePaymentServiceRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeletePaymentServiceRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeletePaymentServiceRequest' from JSON`,
   );
 }

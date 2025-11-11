@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const TransactionIntentOutcome = {
   Pending: "pending",
@@ -28,24 +24,3 @@ export const TransactionIntentOutcome$inboundSchema: z.ZodType<
     z.nativeEnum(TransactionIntentOutcome),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const TransactionIntentOutcome$outboundSchema: z.ZodType<
-  TransactionIntentOutcome,
-  z.ZodTypeDef,
-  TransactionIntentOutcome
-> = z.union([
-  z.nativeEnum(TransactionIntentOutcome),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionIntentOutcome$ {
-  /** @deprecated use `TransactionIntentOutcome$inboundSchema` instead. */
-  export const inboundSchema = TransactionIntentOutcome$inboundSchema;
-  /** @deprecated use `TransactionIntentOutcome$outboundSchema` instead. */
-  export const outboundSchema = TransactionIntentOutcome$outboundSchema;
-}

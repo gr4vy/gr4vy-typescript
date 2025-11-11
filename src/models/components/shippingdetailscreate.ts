@@ -56,7 +56,6 @@ export const ShippingDetailsCreate$inboundSchema: z.ZodType<
     "phone_number": "phoneNumber",
   });
 });
-
 /** @internal */
 export type ShippingDetailsCreate$Outbound = {
   first_name?: string | null | undefined;
@@ -86,19 +85,6 @@ export const ShippingDetailsCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ShippingDetailsCreate$ {
-  /** @deprecated use `ShippingDetailsCreate$inboundSchema` instead. */
-  export const inboundSchema = ShippingDetailsCreate$inboundSchema;
-  /** @deprecated use `ShippingDetailsCreate$outboundSchema` instead. */
-  export const outboundSchema = ShippingDetailsCreate$outboundSchema;
-  /** @deprecated use `ShippingDetailsCreate$Outbound` instead. */
-  export type Outbound = ShippingDetailsCreate$Outbound;
-}
-
 export function shippingDetailsCreateToJSON(
   shippingDetailsCreate: ShippingDetailsCreate,
 ): string {
@@ -106,7 +92,6 @@ export function shippingDetailsCreateToJSON(
     ShippingDetailsCreate$outboundSchema.parse(shippingDetailsCreate),
   );
 }
-
 export function shippingDetailsCreateFromJSON(
   jsonString: string,
 ): SafeParseResult<ShippingDetailsCreate, SDKValidationError> {

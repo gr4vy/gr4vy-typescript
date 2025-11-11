@@ -29,17 +29,6 @@ export type ListMerchantAccountsResponse = {
 };
 
 /** @internal */
-export const ListMerchantAccountsRequest$inboundSchema: z.ZodType<
-  ListMerchantAccountsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  search: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type ListMerchantAccountsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -57,19 +46,6 @@ export const ListMerchantAccountsRequest$outboundSchema: z.ZodType<
   search: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListMerchantAccountsRequest$ {
-  /** @deprecated use `ListMerchantAccountsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListMerchantAccountsRequest$inboundSchema;
-  /** @deprecated use `ListMerchantAccountsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListMerchantAccountsRequest$outboundSchema;
-  /** @deprecated use `ListMerchantAccountsRequest$Outbound` instead. */
-  export type Outbound = ListMerchantAccountsRequest$Outbound;
-}
-
 export function listMerchantAccountsRequestToJSON(
   listMerchantAccountsRequest: ListMerchantAccountsRequest,
 ): string {
@@ -77,16 +53,6 @@ export function listMerchantAccountsRequestToJSON(
     ListMerchantAccountsRequest$outboundSchema.parse(
       listMerchantAccountsRequest,
     ),
-  );
-}
-
-export function listMerchantAccountsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListMerchantAccountsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListMerchantAccountsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListMerchantAccountsRequest' from JSON`,
   );
 }
 
@@ -102,47 +68,6 @@ export const ListMerchantAccountsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListMerchantAccountsResponse$Outbound = {
-  Result: components.MerchantAccounts$Outbound;
-};
-
-/** @internal */
-export const ListMerchantAccountsResponse$outboundSchema: z.ZodType<
-  ListMerchantAccountsResponse$Outbound,
-  z.ZodTypeDef,
-  ListMerchantAccountsResponse
-> = z.object({
-  result: components.MerchantAccounts$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListMerchantAccountsResponse$ {
-  /** @deprecated use `ListMerchantAccountsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListMerchantAccountsResponse$inboundSchema;
-  /** @deprecated use `ListMerchantAccountsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListMerchantAccountsResponse$outboundSchema;
-  /** @deprecated use `ListMerchantAccountsResponse$Outbound` instead. */
-  export type Outbound = ListMerchantAccountsResponse$Outbound;
-}
-
-export function listMerchantAccountsResponseToJSON(
-  listMerchantAccountsResponse: ListMerchantAccountsResponse,
-): string {
-  return JSON.stringify(
-    ListMerchantAccountsResponse$outboundSchema.parse(
-      listMerchantAccountsResponse,
-    ),
-  );
-}
 
 export function listMerchantAccountsResponseFromJSON(
   jsonString: string,

@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListGiftCardBalancesGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,76 +17,6 @@ export type ListGiftCardBalancesRequest = {
   merchantAccountId?: string | null | undefined;
   giftCardBalanceRequest: components.GiftCardBalanceRequest;
 };
-
-/** @internal */
-export const ListGiftCardBalancesGlobals$inboundSchema: z.ZodType<
-  ListGiftCardBalancesGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListGiftCardBalancesGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListGiftCardBalancesGlobals$outboundSchema: z.ZodType<
-  ListGiftCardBalancesGlobals$Outbound,
-  z.ZodTypeDef,
-  ListGiftCardBalancesGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListGiftCardBalancesGlobals$ {
-  /** @deprecated use `ListGiftCardBalancesGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListGiftCardBalancesGlobals$inboundSchema;
-  /** @deprecated use `ListGiftCardBalancesGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListGiftCardBalancesGlobals$outboundSchema;
-  /** @deprecated use `ListGiftCardBalancesGlobals$Outbound` instead. */
-  export type Outbound = ListGiftCardBalancesGlobals$Outbound;
-}
-
-export function listGiftCardBalancesGlobalsToJSON(
-  listGiftCardBalancesGlobals: ListGiftCardBalancesGlobals,
-): string {
-  return JSON.stringify(
-    ListGiftCardBalancesGlobals$outboundSchema.parse(
-      listGiftCardBalancesGlobals,
-    ),
-  );
-}
-
-export function listGiftCardBalancesGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListGiftCardBalancesGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListGiftCardBalancesGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListGiftCardBalancesGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListGiftCardBalancesRequest$inboundSchema: z.ZodType<
-  ListGiftCardBalancesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  GiftCardBalanceRequest: components.GiftCardBalanceRequest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "GiftCardBalanceRequest": "giftCardBalanceRequest",
-  });
-});
 
 /** @internal */
 export type ListGiftCardBalancesRequest$Outbound = {
@@ -111,19 +38,6 @@ export const ListGiftCardBalancesRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListGiftCardBalancesRequest$ {
-  /** @deprecated use `ListGiftCardBalancesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListGiftCardBalancesRequest$inboundSchema;
-  /** @deprecated use `ListGiftCardBalancesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListGiftCardBalancesRequest$outboundSchema;
-  /** @deprecated use `ListGiftCardBalancesRequest$Outbound` instead. */
-  export type Outbound = ListGiftCardBalancesRequest$Outbound;
-}
-
 export function listGiftCardBalancesRequestToJSON(
   listGiftCardBalancesRequest: ListGiftCardBalancesRequest,
 ): string {
@@ -131,15 +45,5 @@ export function listGiftCardBalancesRequestToJSON(
     ListGiftCardBalancesRequest$outboundSchema.parse(
       listGiftCardBalancesRequest,
     ),
-  );
-}
-
-export function listGiftCardBalancesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListGiftCardBalancesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListGiftCardBalancesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListGiftCardBalancesRequest' from JSON`,
   );
 }

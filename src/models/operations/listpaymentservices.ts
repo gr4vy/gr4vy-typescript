@@ -41,73 +41,6 @@ export type ListPaymentServicesResponse = {
 };
 
 /** @internal */
-export const ListPaymentServicesGlobals$inboundSchema: z.ZodType<
-  ListPaymentServicesGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListPaymentServicesGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListPaymentServicesGlobals$outboundSchema: z.ZodType<
-  ListPaymentServicesGlobals$Outbound,
-  z.ZodTypeDef,
-  ListPaymentServicesGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPaymentServicesGlobals$ {
-  /** @deprecated use `ListPaymentServicesGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListPaymentServicesGlobals$inboundSchema;
-  /** @deprecated use `ListPaymentServicesGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListPaymentServicesGlobals$outboundSchema;
-  /** @deprecated use `ListPaymentServicesGlobals$Outbound` instead. */
-  export type Outbound = ListPaymentServicesGlobals$Outbound;
-}
-
-export function listPaymentServicesGlobalsToJSON(
-  listPaymentServicesGlobals: ListPaymentServicesGlobals,
-): string {
-  return JSON.stringify(
-    ListPaymentServicesGlobals$outboundSchema.parse(listPaymentServicesGlobals),
-  );
-}
-
-export function listPaymentServicesGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListPaymentServicesGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListPaymentServicesGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListPaymentServicesGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListPaymentServicesRequest$inboundSchema: z.ZodType<
-  ListPaymentServicesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  method: z.nullable(components.Method$inboundSchema).optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  deleted: z.nullable(z.boolean()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type ListPaymentServicesRequest$Outbound = {
   method?: string | null | undefined;
   cursor?: string | null | undefined;
@@ -129,34 +62,11 @@ export const ListPaymentServicesRequest$outboundSchema: z.ZodType<
   merchantAccountId: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPaymentServicesRequest$ {
-  /** @deprecated use `ListPaymentServicesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListPaymentServicesRequest$inboundSchema;
-  /** @deprecated use `ListPaymentServicesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListPaymentServicesRequest$outboundSchema;
-  /** @deprecated use `ListPaymentServicesRequest$Outbound` instead. */
-  export type Outbound = ListPaymentServicesRequest$Outbound;
-}
-
 export function listPaymentServicesRequestToJSON(
   listPaymentServicesRequest: ListPaymentServicesRequest,
 ): string {
   return JSON.stringify(
     ListPaymentServicesRequest$outboundSchema.parse(listPaymentServicesRequest),
-  );
-}
-
-export function listPaymentServicesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListPaymentServicesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListPaymentServicesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListPaymentServicesRequest' from JSON`,
   );
 }
 
@@ -172,47 +82,6 @@ export const ListPaymentServicesResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListPaymentServicesResponse$Outbound = {
-  Result: components.PaymentServices$Outbound;
-};
-
-/** @internal */
-export const ListPaymentServicesResponse$outboundSchema: z.ZodType<
-  ListPaymentServicesResponse$Outbound,
-  z.ZodTypeDef,
-  ListPaymentServicesResponse
-> = z.object({
-  result: components.PaymentServices$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPaymentServicesResponse$ {
-  /** @deprecated use `ListPaymentServicesResponse$inboundSchema` instead. */
-  export const inboundSchema = ListPaymentServicesResponse$inboundSchema;
-  /** @deprecated use `ListPaymentServicesResponse$outboundSchema` instead. */
-  export const outboundSchema = ListPaymentServicesResponse$outboundSchema;
-  /** @deprecated use `ListPaymentServicesResponse$Outbound` instead. */
-  export type Outbound = ListPaymentServicesResponse$Outbound;
-}
-
-export function listPaymentServicesResponseToJSON(
-  listPaymentServicesResponse: ListPaymentServicesResponse,
-): string {
-  return JSON.stringify(
-    ListPaymentServicesResponse$outboundSchema.parse(
-      listPaymentServicesResponse,
-    ),
-  );
-}
 
 export function listPaymentServicesResponseFromJSON(
   jsonString: string,

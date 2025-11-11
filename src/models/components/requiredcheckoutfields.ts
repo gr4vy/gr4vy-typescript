@@ -36,47 +36,6 @@ export const RequiredCheckoutFields$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RequiredCheckoutFields$Outbound = {
-  required_fields: Array<string>;
-  conditions?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const RequiredCheckoutFields$outboundSchema: z.ZodType<
-  RequiredCheckoutFields$Outbound,
-  z.ZodTypeDef,
-  RequiredCheckoutFields
-> = z.object({
-  requiredFields: z.array(z.string()),
-  conditions: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    requiredFields: "required_fields",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequiredCheckoutFields$ {
-  /** @deprecated use `RequiredCheckoutFields$inboundSchema` instead. */
-  export const inboundSchema = RequiredCheckoutFields$inboundSchema;
-  /** @deprecated use `RequiredCheckoutFields$outboundSchema` instead. */
-  export const outboundSchema = RequiredCheckoutFields$outboundSchema;
-  /** @deprecated use `RequiredCheckoutFields$Outbound` instead. */
-  export type Outbound = RequiredCheckoutFields$Outbound;
-}
-
-export function requiredCheckoutFieldsToJSON(
-  requiredCheckoutFields: RequiredCheckoutFields,
-): string {
-  return JSON.stringify(
-    RequiredCheckoutFields$outboundSchema.parse(requiredCheckoutFields),
-  );
-}
-
 export function requiredCheckoutFieldsFromJSON(
   jsonString: string,
 ): SafeParseResult<RequiredCheckoutFields, SDKValidationError> {

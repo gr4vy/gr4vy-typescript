@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MattildaTapiOptions = {
   /**
@@ -14,19 +11,6 @@ export type MattildaTapiOptions = {
    */
   paymentMethodExpiresAt?: string | null | undefined;
 };
-
-/** @internal */
-export const MattildaTapiOptions$inboundSchema: z.ZodType<
-  MattildaTapiOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_method_expires_at: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method_expires_at": "paymentMethodExpiresAt",
-  });
-});
 
 /** @internal */
 export type MattildaTapiOptions$Outbound = {
@@ -46,33 +30,10 @@ export const MattildaTapiOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MattildaTapiOptions$ {
-  /** @deprecated use `MattildaTapiOptions$inboundSchema` instead. */
-  export const inboundSchema = MattildaTapiOptions$inboundSchema;
-  /** @deprecated use `MattildaTapiOptions$outboundSchema` instead. */
-  export const outboundSchema = MattildaTapiOptions$outboundSchema;
-  /** @deprecated use `MattildaTapiOptions$Outbound` instead. */
-  export type Outbound = MattildaTapiOptions$Outbound;
-}
-
 export function mattildaTapiOptionsToJSON(
   mattildaTapiOptions: MattildaTapiOptions,
 ): string {
   return JSON.stringify(
     MattildaTapiOptions$outboundSchema.parse(mattildaTapiOptions),
-  );
-}
-
-export function mattildaTapiOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<MattildaTapiOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MattildaTapiOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MattildaTapiOptions' from JSON`,
   );
 }

@@ -22,45 +22,6 @@ export const PaymentOptionContextApprovalUI$inboundSchema: z.ZodType<
   width: z.nullable(z.string()).optional(),
 });
 
-/** @internal */
-export type PaymentOptionContextApprovalUI$Outbound = {
-  height?: string | null | undefined;
-  width?: string | null | undefined;
-};
-
-/** @internal */
-export const PaymentOptionContextApprovalUI$outboundSchema: z.ZodType<
-  PaymentOptionContextApprovalUI$Outbound,
-  z.ZodTypeDef,
-  PaymentOptionContextApprovalUI
-> = z.object({
-  height: z.nullable(z.string()).optional(),
-  width: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentOptionContextApprovalUI$ {
-  /** @deprecated use `PaymentOptionContextApprovalUI$inboundSchema` instead. */
-  export const inboundSchema = PaymentOptionContextApprovalUI$inboundSchema;
-  /** @deprecated use `PaymentOptionContextApprovalUI$outboundSchema` instead. */
-  export const outboundSchema = PaymentOptionContextApprovalUI$outboundSchema;
-  /** @deprecated use `PaymentOptionContextApprovalUI$Outbound` instead. */
-  export type Outbound = PaymentOptionContextApprovalUI$Outbound;
-}
-
-export function paymentOptionContextApprovalUIToJSON(
-  paymentOptionContextApprovalUI: PaymentOptionContextApprovalUI,
-): string {
-  return JSON.stringify(
-    PaymentOptionContextApprovalUI$outboundSchema.parse(
-      paymentOptionContextApprovalUI,
-    ),
-  );
-}
-
 export function paymentOptionContextApprovalUIFromJSON(
   jsonString: string,
 ): SafeParseResult<PaymentOptionContextApprovalUI, SDKValidationError> {

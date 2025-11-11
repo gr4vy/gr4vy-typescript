@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type OxxoOptions = {
   /**
@@ -18,21 +15,6 @@ export type OxxoOptions = {
    */
   approvalUrl?: string | null | undefined;
 };
-
-/** @internal */
-export const OxxoOptions$inboundSchema: z.ZodType<
-  OxxoOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_method_expires_at: z.nullable(z.number().int()).optional(),
-  approval_url: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method_expires_at": "paymentMethodExpiresAt",
-    "approval_url": "approvalUrl",
-  });
-});
 
 /** @internal */
 export type OxxoOptions$Outbound = {
@@ -55,29 +37,6 @@ export const OxxoOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OxxoOptions$ {
-  /** @deprecated use `OxxoOptions$inboundSchema` instead. */
-  export const inboundSchema = OxxoOptions$inboundSchema;
-  /** @deprecated use `OxxoOptions$outboundSchema` instead. */
-  export const outboundSchema = OxxoOptions$outboundSchema;
-  /** @deprecated use `OxxoOptions$Outbound` instead. */
-  export type Outbound = OxxoOptions$Outbound;
-}
-
 export function oxxoOptionsToJSON(oxxoOptions: OxxoOptions): string {
   return JSON.stringify(OxxoOptions$outboundSchema.parse(oxxoOptions));
-}
-
-export function oxxoOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<OxxoOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => OxxoOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OxxoOptions' from JSON`,
-  );
 }

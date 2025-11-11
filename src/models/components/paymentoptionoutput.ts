@@ -10,21 +10,15 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   GooglePayPaymentOptionContext,
   GooglePayPaymentOptionContext$inboundSchema,
-  GooglePayPaymentOptionContext$Outbound,
-  GooglePayPaymentOptionContext$outboundSchema,
 } from "./googlepaypaymentoptioncontext.js";
-import { Mode, Mode$inboundSchema, Mode$outboundSchema } from "./mode.js";
+import { Mode, Mode$inboundSchema } from "./mode.js";
 import {
   PaymentOptionContext,
   PaymentOptionContext$inboundSchema,
-  PaymentOptionContext$Outbound,
-  PaymentOptionContext$outboundSchema,
 } from "./paymentoptioncontext.js";
 import {
   WalletPaymentOptionContext,
   WalletPaymentOptionContext$inboundSchema,
-  WalletPaymentOptionContext$Outbound,
-  WalletPaymentOptionContext$outboundSchema,
 } from "./walletpaymentoptioncontext.js";
 
 export type Context =
@@ -55,40 +49,6 @@ export const Context$inboundSchema: z.ZodType<Context, z.ZodTypeDef, unknown> =
     WalletPaymentOptionContext$inboundSchema,
     PaymentOptionContext$inboundSchema,
   ]);
-
-/** @internal */
-export type Context$Outbound =
-  | GooglePayPaymentOptionContext$Outbound
-  | WalletPaymentOptionContext$Outbound
-  | PaymentOptionContext$Outbound;
-
-/** @internal */
-export const Context$outboundSchema: z.ZodType<
-  Context$Outbound,
-  z.ZodTypeDef,
-  Context
-> = z.union([
-  GooglePayPaymentOptionContext$outboundSchema,
-  WalletPaymentOptionContext$outboundSchema,
-  PaymentOptionContext$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Context$ {
-  /** @deprecated use `Context$inboundSchema` instead. */
-  export const inboundSchema = Context$inboundSchema;
-  /** @deprecated use `Context$outboundSchema` instead. */
-  export const outboundSchema = Context$outboundSchema;
-  /** @deprecated use `Context$Outbound` instead. */
-  export type Outbound = Context$Outbound;
-}
-
-export function contextToJSON(context: Context): string {
-  return JSON.stringify(Context$outboundSchema.parse(context));
-}
 
 export function contextFromJSON(
   jsonString: string,
@@ -127,72 +87,6 @@ export const PaymentOptionOutput$inboundSchema: z.ZodType<
     "can_delay_capture": "canDelayCapture",
   });
 });
-
-/** @internal */
-export type PaymentOptionOutput$Outbound = {
-  type: "payment-option";
-  method: string;
-  icon_url?: string | null | undefined;
-  mode: string;
-  label?: string | null | undefined;
-  can_store_payment_method: boolean;
-  can_delay_capture: boolean;
-  context?:
-    | GooglePayPaymentOptionContext$Outbound
-    | WalletPaymentOptionContext$Outbound
-    | PaymentOptionContext$Outbound
-    | null
-    | undefined;
-};
-
-/** @internal */
-export const PaymentOptionOutput$outboundSchema: z.ZodType<
-  PaymentOptionOutput$Outbound,
-  z.ZodTypeDef,
-  PaymentOptionOutput
-> = z.object({
-  type: z.literal("payment-option").default("payment-option" as const),
-  method: z.string(),
-  iconUrl: z.nullable(z.string()).optional(),
-  mode: Mode$outboundSchema,
-  label: z.nullable(z.string()).optional(),
-  canStorePaymentMethod: z.boolean(),
-  canDelayCapture: z.boolean(),
-  context: z.nullable(
-    z.union([
-      GooglePayPaymentOptionContext$outboundSchema,
-      WalletPaymentOptionContext$outboundSchema,
-      PaymentOptionContext$outboundSchema,
-    ]),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    iconUrl: "icon_url",
-    canStorePaymentMethod: "can_store_payment_method",
-    canDelayCapture: "can_delay_capture",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentOptionOutput$ {
-  /** @deprecated use `PaymentOptionOutput$inboundSchema` instead. */
-  export const inboundSchema = PaymentOptionOutput$inboundSchema;
-  /** @deprecated use `PaymentOptionOutput$outboundSchema` instead. */
-  export const outboundSchema = PaymentOptionOutput$outboundSchema;
-  /** @deprecated use `PaymentOptionOutput$Outbound` instead. */
-  export type Outbound = PaymentOptionOutput$Outbound;
-}
-
-export function paymentOptionOutputToJSON(
-  paymentOptionOutput: PaymentOptionOutput,
-): string {
-  return JSON.stringify(
-    PaymentOptionOutput$outboundSchema.parse(paymentOptionOutput),
-  );
-}
 
 export function paymentOptionOutputFromJSON(
   jsonString: string,

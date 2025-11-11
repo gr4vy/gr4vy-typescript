@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
-  Address$inboundSchema,
   Address$Outbound,
   Address$outboundSchema,
 } from "./address.js";
@@ -36,26 +32,6 @@ export type ShippingDetailsUpdate = {
    */
   address?: Address | null | undefined;
 };
-
-/** @internal */
-export const ShippingDetailsUpdate$inboundSchema: z.ZodType<
-  ShippingDetailsUpdate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  email_address: z.nullable(z.string()).optional(),
-  phone_number: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "phone_number": "phoneNumber",
-  });
-});
 
 /** @internal */
 export type ShippingDetailsUpdate$Outbound = {
@@ -86,33 +62,10 @@ export const ShippingDetailsUpdate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ShippingDetailsUpdate$ {
-  /** @deprecated use `ShippingDetailsUpdate$inboundSchema` instead. */
-  export const inboundSchema = ShippingDetailsUpdate$inboundSchema;
-  /** @deprecated use `ShippingDetailsUpdate$outboundSchema` instead. */
-  export const outboundSchema = ShippingDetailsUpdate$outboundSchema;
-  /** @deprecated use `ShippingDetailsUpdate$Outbound` instead. */
-  export type Outbound = ShippingDetailsUpdate$Outbound;
-}
-
 export function shippingDetailsUpdateToJSON(
   shippingDetailsUpdate: ShippingDetailsUpdate,
 ): string {
   return JSON.stringify(
     ShippingDetailsUpdate$outboundSchema.parse(shippingDetailsUpdate),
-  );
-}
-
-export function shippingDetailsUpdateFromJSON(
-  jsonString: string,
-): SafeParseResult<ShippingDetailsUpdate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ShippingDetailsUpdate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ShippingDetailsUpdate' from JSON`,
   );
 }

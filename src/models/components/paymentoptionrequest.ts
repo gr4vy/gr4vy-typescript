@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CartItem,
-  CartItem$inboundSchema,
   CartItem$Outbound,
   CartItem$outboundSchema,
 } from "./cartitem.js";
@@ -42,24 +38,6 @@ export type PaymentOptionRequest = {
 };
 
 /** @internal */
-export const PaymentOptionRequest$inboundSchema: z.ZodType<
-  PaymentOptionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
-  country: z.nullable(z.string()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  locale: z.string().default("en"),
-  cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "cart_items": "cartItems",
-  });
-});
-
-/** @internal */
 export type PaymentOptionRequest$Outbound = {
   metadata?: { [k: string]: string } | null | undefined;
   country?: string | null | undefined;
@@ -87,33 +65,10 @@ export const PaymentOptionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentOptionRequest$ {
-  /** @deprecated use `PaymentOptionRequest$inboundSchema` instead. */
-  export const inboundSchema = PaymentOptionRequest$inboundSchema;
-  /** @deprecated use `PaymentOptionRequest$outboundSchema` instead. */
-  export const outboundSchema = PaymentOptionRequest$outboundSchema;
-  /** @deprecated use `PaymentOptionRequest$Outbound` instead. */
-  export type Outbound = PaymentOptionRequest$Outbound;
-}
-
 export function paymentOptionRequestToJSON(
   paymentOptionRequest: PaymentOptionRequest,
 ): string {
   return JSON.stringify(
     PaymentOptionRequest$outboundSchema.parse(paymentOptionRequest),
-  );
-}
-
-export function paymentOptionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentOptionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentOptionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentOptionRequest' from JSON`,
   );
 }

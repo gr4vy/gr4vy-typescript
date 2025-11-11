@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CheckoutPayoutOptions,
-  CheckoutPayoutOptions$inboundSchema,
   CheckoutPayoutOptions$Outbound,
   CheckoutPayoutOptions$outboundSchema,
 } from "./checkoutpayoutoptions.js";
@@ -20,19 +16,6 @@ export type PayoutConnectionOptions = {
    */
   checkoutCard?: CheckoutPayoutOptions | null | undefined;
 };
-
-/** @internal */
-export const PayoutConnectionOptions$inboundSchema: z.ZodType<
-  PayoutConnectionOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "checkout-card": z.nullable(CheckoutPayoutOptions$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "checkout-card": "checkoutCard",
-  });
-});
 
 /** @internal */
 export type PayoutConnectionOptions$Outbound = {
@@ -52,33 +35,10 @@ export const PayoutConnectionOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutConnectionOptions$ {
-  /** @deprecated use `PayoutConnectionOptions$inboundSchema` instead. */
-  export const inboundSchema = PayoutConnectionOptions$inboundSchema;
-  /** @deprecated use `PayoutConnectionOptions$outboundSchema` instead. */
-  export const outboundSchema = PayoutConnectionOptions$outboundSchema;
-  /** @deprecated use `PayoutConnectionOptions$Outbound` instead. */
-  export type Outbound = PayoutConnectionOptions$Outbound;
-}
-
 export function payoutConnectionOptionsToJSON(
   payoutConnectionOptions: PayoutConnectionOptions,
 ): string {
   return JSON.stringify(
     PayoutConnectionOptions$outboundSchema.parse(payoutConnectionOptions),
-  );
-}
-
-export function payoutConnectionOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<PayoutConnectionOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PayoutConnectionOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PayoutConnectionOptions' from JSON`,
   );
 }

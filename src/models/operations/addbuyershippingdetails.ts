@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddBuyerShippingDetailsGlobals = {
   merchantAccountId?: string | undefined;
@@ -24,78 +21,6 @@ export type AddBuyerShippingDetailsRequest = {
   merchantAccountId?: string | null | undefined;
   shippingDetailsCreate: components.ShippingDetailsCreate;
 };
-
-/** @internal */
-export const AddBuyerShippingDetailsGlobals$inboundSchema: z.ZodType<
-  AddBuyerShippingDetailsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type AddBuyerShippingDetailsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const AddBuyerShippingDetailsGlobals$outboundSchema: z.ZodType<
-  AddBuyerShippingDetailsGlobals$Outbound,
-  z.ZodTypeDef,
-  AddBuyerShippingDetailsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AddBuyerShippingDetailsGlobals$ {
-  /** @deprecated use `AddBuyerShippingDetailsGlobals$inboundSchema` instead. */
-  export const inboundSchema = AddBuyerShippingDetailsGlobals$inboundSchema;
-  /** @deprecated use `AddBuyerShippingDetailsGlobals$outboundSchema` instead. */
-  export const outboundSchema = AddBuyerShippingDetailsGlobals$outboundSchema;
-  /** @deprecated use `AddBuyerShippingDetailsGlobals$Outbound` instead. */
-  export type Outbound = AddBuyerShippingDetailsGlobals$Outbound;
-}
-
-export function addBuyerShippingDetailsGlobalsToJSON(
-  addBuyerShippingDetailsGlobals: AddBuyerShippingDetailsGlobals,
-): string {
-  return JSON.stringify(
-    AddBuyerShippingDetailsGlobals$outboundSchema.parse(
-      addBuyerShippingDetailsGlobals,
-    ),
-  );
-}
-
-export function addBuyerShippingDetailsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AddBuyerShippingDetailsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddBuyerShippingDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddBuyerShippingDetailsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AddBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
-  AddBuyerShippingDetailsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  buyer_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  ShippingDetailsCreate: components.ShippingDetailsCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_id": "buyerId",
-    "ShippingDetailsCreate": "shippingDetailsCreate",
-  });
-});
 
 /** @internal */
 export type AddBuyerShippingDetailsRequest$Outbound = {
@@ -120,19 +45,6 @@ export const AddBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AddBuyerShippingDetailsRequest$ {
-  /** @deprecated use `AddBuyerShippingDetailsRequest$inboundSchema` instead. */
-  export const inboundSchema = AddBuyerShippingDetailsRequest$inboundSchema;
-  /** @deprecated use `AddBuyerShippingDetailsRequest$outboundSchema` instead. */
-  export const outboundSchema = AddBuyerShippingDetailsRequest$outboundSchema;
-  /** @deprecated use `AddBuyerShippingDetailsRequest$Outbound` instead. */
-  export type Outbound = AddBuyerShippingDetailsRequest$Outbound;
-}
-
 export function addBuyerShippingDetailsRequestToJSON(
   addBuyerShippingDetailsRequest: AddBuyerShippingDetailsRequest,
 ): string {
@@ -140,15 +52,5 @@ export function addBuyerShippingDetailsRequestToJSON(
     AddBuyerShippingDetailsRequest$outboundSchema.parse(
       addBuyerShippingDetailsRequest,
     ),
-  );
-}
-
-export function addBuyerShippingDetailsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AddBuyerShippingDetailsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddBuyerShippingDetailsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddBuyerShippingDetailsRequest' from JSON`,
   );
 }

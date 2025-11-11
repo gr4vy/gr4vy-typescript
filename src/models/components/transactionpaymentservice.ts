@@ -7,11 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Method,
-  Method$inboundSchema,
-  Method$outboundSchema,
-} from "./method.js";
+import { Method, Method$inboundSchema } from "./method.js";
 
 export type TransactionPaymentService = {
   /**
@@ -50,54 +46,6 @@ export const TransactionPaymentService$inboundSchema: z.ZodType<
     "display_name": "displayName",
   });
 });
-
-/** @internal */
-export type TransactionPaymentService$Outbound = {
-  type: "payment-service";
-  id: string;
-  payment_service_definition_id: string;
-  method: string;
-  display_name: string;
-};
-
-/** @internal */
-export const TransactionPaymentService$outboundSchema: z.ZodType<
-  TransactionPaymentService$Outbound,
-  z.ZodTypeDef,
-  TransactionPaymentService
-> = z.object({
-  type: z.literal("payment-service").default("payment-service" as const),
-  id: z.string(),
-  paymentServiceDefinitionId: z.string(),
-  method: Method$outboundSchema,
-  displayName: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentServiceDefinitionId: "payment_service_definition_id",
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionPaymentService$ {
-  /** @deprecated use `TransactionPaymentService$inboundSchema` instead. */
-  export const inboundSchema = TransactionPaymentService$inboundSchema;
-  /** @deprecated use `TransactionPaymentService$outboundSchema` instead. */
-  export const outboundSchema = TransactionPaymentService$outboundSchema;
-  /** @deprecated use `TransactionPaymentService$Outbound` instead. */
-  export type Outbound = TransactionPaymentService$Outbound;
-}
-
-export function transactionPaymentServiceToJSON(
-  transactionPaymentService: TransactionPaymentService,
-): string {
-  return JSON.stringify(
-    TransactionPaymentService$outboundSchema.parse(transactionPaymentService),
-  );
-}
 
 export function transactionPaymentServiceFromJSON(
   jsonString: string,

@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BillingDetailsInput,
-  BillingDetailsInput$inboundSchema,
   BillingDetailsInput$Outbound,
   BillingDetailsInput$outboundSchema,
 } from "./billingdetailsinput.js";
@@ -35,25 +31,6 @@ export type BuyerUpdate = {
    */
   billingDetails?: BillingDetailsInput | null | undefined;
 };
-
-/** @internal */
-export const BuyerUpdate$inboundSchema: z.ZodType<
-  BuyerUpdate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_name: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  billing_details: z.nullable(BillingDetailsInput$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "external_identifier": "externalIdentifier",
-    "account_number": "accountNumber",
-    "billing_details": "billingDetails",
-  });
-});
 
 /** @internal */
 export type BuyerUpdate$Outbound = {
@@ -82,29 +59,6 @@ export const BuyerUpdate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BuyerUpdate$ {
-  /** @deprecated use `BuyerUpdate$inboundSchema` instead. */
-  export const inboundSchema = BuyerUpdate$inboundSchema;
-  /** @deprecated use `BuyerUpdate$outboundSchema` instead. */
-  export const outboundSchema = BuyerUpdate$outboundSchema;
-  /** @deprecated use `BuyerUpdate$Outbound` instead. */
-  export type Outbound = BuyerUpdate$Outbound;
-}
-
 export function buyerUpdateToJSON(buyerUpdate: BuyerUpdate): string {
   return JSON.stringify(BuyerUpdate$outboundSchema.parse(buyerUpdate));
-}
-
-export function buyerUpdateFromJSON(
-  jsonString: string,
-): SafeParseResult<BuyerUpdate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BuyerUpdate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BuyerUpdate' from JSON`,
-  );
 }

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails = {
   /**
@@ -22,23 +19,6 @@ export type ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails = {
    */
   email?: string | null | undefined;
 };
-
-/** @internal */
-export const ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$inboundSchema:
-  z.ZodType<
-    ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    first_name: z.nullable(z.string()).optional(),
-    last_name: z.nullable(z.string()).optional(),
-    email: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "first_name": "firstName",
-      "last_name": "lastName",
-    });
-  });
 
 /** @internal */
 export type ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$Outbound =
@@ -65,22 +45,6 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$outboundSc
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$Outbound` instead. */
-  export type Outbound =
-    ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$Outbound;
-}
-
 export function forterAntiFraudOptionsCartItemBeneficiaryPersonalDetailsToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryPersonalDetails:
     ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails,
@@ -88,20 +52,5 @@ export function forterAntiFraudOptionsCartItemBeneficiaryPersonalDetailsToJSON(
   return JSON.stringify(
     ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$outboundSchema
       .parse(forterAntiFraudOptionsCartItemBeneficiaryPersonalDetails),
-  );
-}
-
-export function forterAntiFraudOptionsCartItemBeneficiaryPersonalDetailsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails' from JSON`,
   );
 }

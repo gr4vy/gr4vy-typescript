@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  GiftCard,
-  GiftCard$inboundSchema,
-  GiftCard$Outbound,
-  GiftCard$outboundSchema,
-} from "./giftcard.js";
+import { GiftCard, GiftCard$inboundSchema } from "./giftcard.js";
 
 export type GiftCards = {
   /**
@@ -49,48 +44,6 @@ export const GiftCards$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type GiftCards$Outbound = {
-  items: Array<GiftCard$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const GiftCards$outboundSchema: z.ZodType<
-  GiftCards$Outbound,
-  z.ZodTypeDef,
-  GiftCards
-> = z.object({
-  items: z.array(GiftCard$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCards$ {
-  /** @deprecated use `GiftCards$inboundSchema` instead. */
-  export const inboundSchema = GiftCards$inboundSchema;
-  /** @deprecated use `GiftCards$outboundSchema` instead. */
-  export const outboundSchema = GiftCards$outboundSchema;
-  /** @deprecated use `GiftCards$Outbound` instead. */
-  export type Outbound = GiftCards$Outbound;
-}
-
-export function giftCardsToJSON(giftCards: GiftCards): string {
-  return JSON.stringify(GiftCards$outboundSchema.parse(giftCards));
-}
 
 export function giftCardsFromJSON(
   jsonString: string,

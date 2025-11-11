@@ -7,17 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Buyer,
-  Buyer$inboundSchema,
-  Buyer$Outbound,
-  Buyer$outboundSchema,
-} from "./buyer.js";
+import { Buyer, Buyer$inboundSchema } from "./buyer.js";
 import {
   GiftCardService,
   GiftCardService$inboundSchema,
-  GiftCardService$Outbound,
-  GiftCardService$outboundSchema,
 } from "./giftcardservice.js";
 
 export type GiftCard = {
@@ -93,67 +86,6 @@ export const GiftCard$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type GiftCard$Outbound = {
-  type: "gift-card";
-  id: string;
-  merchant_account_id: string;
-  gift_card_service: GiftCardService$Outbound;
-  bin: string;
-  sub_bin: string;
-  last4: string;
-  expiration_date?: string | null | undefined;
-  buyer?: Buyer$Outbound | null | undefined;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const GiftCard$outboundSchema: z.ZodType<
-  GiftCard$Outbound,
-  z.ZodTypeDef,
-  GiftCard
-> = z.object({
-  type: z.literal("gift-card").default("gift-card" as const),
-  id: z.string(),
-  merchantAccountId: z.string(),
-  giftCardService: GiftCardService$outboundSchema,
-  bin: z.string(),
-  subBin: z.string(),
-  last4: z.string(),
-  expirationDate: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  buyer: z.nullable(Buyer$outboundSchema).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    giftCardService: "gift_card_service",
-    subBin: "sub_bin",
-    expirationDate: "expiration_date",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCard$ {
-  /** @deprecated use `GiftCard$inboundSchema` instead. */
-  export const inboundSchema = GiftCard$inboundSchema;
-  /** @deprecated use `GiftCard$outboundSchema` instead. */
-  export const outboundSchema = GiftCard$outboundSchema;
-  /** @deprecated use `GiftCard$Outbound` instead. */
-  export type Outbound = GiftCard$Outbound;
-}
-
-export function giftCardToJSON(giftCard: GiftCard): string {
-  return JSON.stringify(GiftCard$outboundSchema.parse(giftCard));
-}
 
 export function giftCardFromJSON(
   jsonString: string,

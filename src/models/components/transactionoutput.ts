@@ -7,116 +7,73 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Airline,
-  Airline$inboundSchema,
-  Airline$Outbound,
-  Airline$outboundSchema,
-} from "./airline.js";
+import { Airline, Airline$inboundSchema } from "./airline.js";
 import {
   AntiFraudDecision,
   AntiFraudDecision$inboundSchema,
-  AntiFraudDecision$outboundSchema,
 } from "./antifrauddecision.js";
 import {
   AVSResponseCode,
   AVSResponseCode$inboundSchema,
-  AVSResponseCode$outboundSchema,
 } from "./avsresponsecode.js";
-import {
-  CartItem,
-  CartItem$inboundSchema,
-  CartItem$Outbound,
-  CartItem$outboundSchema,
-} from "./cartitem.js";
+import { CartItem, CartItem$inboundSchema } from "./cartitem.js";
 import {
   CVVResponseCode,
   CVVResponseCode$inboundSchema,
-  CVVResponseCode$outboundSchema,
 } from "./cvvresponsecode.js";
 import {
   GiftCardRedemption,
   GiftCardRedemption$inboundSchema,
-  GiftCardRedemption$Outbound,
-  GiftCardRedemption$outboundSchema,
 } from "./giftcardredemption.js";
 import {
   GiftCardService,
   GiftCardService$inboundSchema,
-  GiftCardService$Outbound,
-  GiftCardService$outboundSchema,
 } from "./giftcardservice.js";
 import {
   InstrumentType,
   InstrumentType$inboundSchema,
-  InstrumentType$outboundSchema,
 } from "./instrumenttype.js";
-import {
-  Method,
-  Method$inboundSchema,
-  Method$outboundSchema,
-} from "./method.js";
-import {
-  Recipient,
-  Recipient$inboundSchema,
-  Recipient$Outbound,
-  Recipient$outboundSchema,
-} from "./recipient.js";
+import { Method, Method$inboundSchema } from "./method.js";
+import { Recipient, Recipient$inboundSchema } from "./recipient.js";
 import {
   ShippingDetails,
   ShippingDetails$inboundSchema,
-  ShippingDetails$Outbound,
-  ShippingDetails$outboundSchema,
 } from "./shippingdetails.js";
 import {
   StatementDescriptor,
   StatementDescriptor$inboundSchema,
-  StatementDescriptor$Outbound,
-  StatementDescriptor$outboundSchema,
 } from "./statementdescriptor.js";
 import {
   TransactionBuyerOutput,
   TransactionBuyerOutput$inboundSchema,
-  TransactionBuyerOutput$Outbound,
-  TransactionBuyerOutput$outboundSchema,
 } from "./transactionbuyeroutput.js";
 import {
   TransactionIntent,
   TransactionIntent$inboundSchema,
-  TransactionIntent$outboundSchema,
 } from "./transactionintent.js";
 import {
   TransactionIntentOutcome,
   TransactionIntentOutcome$inboundSchema,
-  TransactionIntentOutcome$outboundSchema,
 } from "./transactionintentoutcome.js";
 import {
   TransactionPaymentMethodOutput,
   TransactionPaymentMethodOutput$inboundSchema,
-  TransactionPaymentMethodOutput$Outbound,
-  TransactionPaymentMethodOutput$outboundSchema,
 } from "./transactionpaymentmethodoutput.js";
 import {
   TransactionPaymentService,
   TransactionPaymentService$inboundSchema,
-  TransactionPaymentService$Outbound,
-  TransactionPaymentService$outboundSchema,
 } from "./transactionpaymentservice.js";
 import {
   TransactionPaymentSource,
   TransactionPaymentSource$inboundSchema,
-  TransactionPaymentSource$outboundSchema,
 } from "./transactionpaymentsource.js";
 import {
   TransactionStatus,
   TransactionStatus$inboundSchema,
-  TransactionStatus$outboundSchema,
 } from "./transactionstatus.js";
 import {
   TransactionThreeDSecureSummaryOutput,
   TransactionThreeDSecureSummaryOutput$inboundSchema,
-  TransactionThreeDSecureSummaryOutput$Outbound,
-  TransactionThreeDSecureSummaryOutput$outboundSchema,
 } from "./transactionthreedsecuresummaryoutput.js";
 
 /**
@@ -530,238 +487,6 @@ export const TransactionOutput$inboundSchema: z.ZodType<
     "shipping_amount": "shippingAmount",
   });
 });
-
-/** @internal */
-export type TransactionOutput$Outbound = {
-  type: "transaction";
-  id: string;
-  reconciliation_id: string;
-  merchant_account_id: string;
-  currency: string;
-  amount: number;
-  status: string;
-  authorized_amount: number;
-  captured_amount: number;
-  refunded_amount: number;
-  settled_currency?: string | null | undefined;
-  settled_amount: number;
-  settled: boolean;
-  country?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  intent: string;
-  payment_method?: TransactionPaymentMethodOutput$Outbound | null | undefined;
-  method?: string | null | undefined;
-  instrument_type?: string | null | undefined;
-  error_code?: string | null | undefined;
-  payment_service?: TransactionPaymentService$Outbound | null | undefined;
-  pending_review: boolean;
-  buyer?: TransactionBuyerOutput$Outbound | null | undefined;
-  raw_response_code?: string | null | undefined;
-  raw_response_description?: string | null | undefined;
-  shipping_details?: ShippingDetails$Outbound | null | undefined;
-  checkout_session_id?: string | null | undefined;
-  gift_card_redemptions: Array<GiftCardRedemption$Outbound>;
-  gift_card_service?: GiftCardService$Outbound | null | undefined;
-  created_at: string;
-  updated_at: string;
-  disputed: boolean;
-  airline?: Airline$Outbound | null | undefined;
-  auth_response_code?: string | null | undefined;
-  avs_response_code?: string | null | undefined;
-  cvv_response_code?: string | null | undefined;
-  anti_fraud_decision?: string | null | undefined;
-  payment_source: string;
-  merchant_initiated: boolean;
-  is_subsequent_payment: boolean;
-  cart_items?: Array<CartItem$Outbound> | null | undefined;
-  statement_descriptor?: StatementDescriptor$Outbound | null | undefined;
-  scheme_transaction_id?: string | null | undefined;
-  three_d_secure?:
-    | TransactionThreeDSecureSummaryOutput$Outbound
-    | null
-    | undefined;
-  payment_service_transaction_id?: string | null | undefined;
-  additional_identifiers?: { [k: string]: string | null } | undefined;
-  metadata?: { [k: string]: string } | null | undefined;
-  authorized_at?: string | null | undefined;
-  captured_at?: string | null | undefined;
-  voided_at?: string | null | undefined;
-  canceled_at?: string | null | undefined;
-  approval_expires_at?: string | null | undefined;
-  buyer_approval_timedout_at?: string | null | undefined;
-  intent_outcome: string;
-  multi_tender: boolean;
-  account_funding_transaction: boolean;
-  recipient?: Recipient$Outbound | null | undefined;
-  merchant_advice_code?: string | null | undefined;
-  installment_count?: number | null | undefined;
-  session_token?: string | null | undefined;
-  tax_amount?: number | null | undefined;
-  merchant_tax_id?: string | null | undefined;
-  customer_reference_number?: string | null | undefined;
-  amount_includes_tax?: boolean | null | undefined;
-  supplier_order_number?: string | null | undefined;
-  duty_amount?: number | null | undefined;
-  shipping_amount?: number | null | undefined;
-};
-
-/** @internal */
-export const TransactionOutput$outboundSchema: z.ZodType<
-  TransactionOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionOutput
-> = z.object({
-  type: z.literal("transaction").default("transaction" as const),
-  id: z.string(),
-  reconciliationId: z.string(),
-  merchantAccountId: z.string(),
-  currency: z.string(),
-  amount: z.number().int(),
-  status: TransactionStatus$outboundSchema,
-  authorizedAmount: z.number().int(),
-  capturedAmount: z.number().int(),
-  refundedAmount: z.number().int(),
-  settledCurrency: z.nullable(z.string()).optional(),
-  settledAmount: z.number().int(),
-  settled: z.boolean(),
-  country: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  intent: TransactionIntent$outboundSchema,
-  paymentMethod: z.nullable(TransactionPaymentMethodOutput$outboundSchema)
-    .optional(),
-  method: z.nullable(Method$outboundSchema).optional(),
-  instrumentType: z.nullable(InstrumentType$outboundSchema).optional(),
-  errorCode: z.nullable(z.string()).optional(),
-  paymentService: z.nullable(TransactionPaymentService$outboundSchema)
-    .optional(),
-  pendingReview: z.boolean().default(false),
-  buyer: z.nullable(TransactionBuyerOutput$outboundSchema).optional(),
-  rawResponseCode: z.nullable(z.string()).optional(),
-  rawResponseDescription: z.nullable(z.string()).optional(),
-  shippingDetails: z.nullable(ShippingDetails$outboundSchema).optional(),
-  checkoutSessionId: z.nullable(z.string()).optional(),
-  giftCardRedemptions: z.array(GiftCardRedemption$outboundSchema),
-  giftCardService: z.nullable(GiftCardService$outboundSchema).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-  disputed: z.boolean(),
-  airline: z.nullable(Airline$outboundSchema).optional(),
-  authResponseCode: z.nullable(z.string()).optional(),
-  avsResponseCode: z.nullable(AVSResponseCode$outboundSchema).optional(),
-  cvvResponseCode: z.nullable(CVVResponseCode$outboundSchema).optional(),
-  antiFraudDecision: z.nullable(AntiFraudDecision$outboundSchema).optional(),
-  paymentSource: TransactionPaymentSource$outboundSchema,
-  merchantInitiated: z.boolean(),
-  isSubsequentPayment: z.boolean(),
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
-  statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
-    .optional(),
-  schemeTransactionId: z.nullable(z.string()).optional(),
-  threeDSecure: z.nullable(TransactionThreeDSecureSummaryOutput$outboundSchema)
-    .optional(),
-  paymentServiceTransactionId: z.nullable(z.string()).optional(),
-  additionalIdentifiers: z.record(z.nullable(z.string())).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  authorizedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  capturedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  voidedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  canceledAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  approvalExpiresAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  buyerApprovalTimedoutAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  intentOutcome: TransactionIntentOutcome$outboundSchema,
-  multiTender: z.boolean(),
-  accountFundingTransaction: z.boolean(),
-  recipient: z.nullable(Recipient$outboundSchema).optional(),
-  merchantAdviceCode: z.nullable(z.string()).optional(),
-  installmentCount: z.nullable(z.number().int()).optional(),
-  sessionToken: z.nullable(z.string()).optional(),
-  taxAmount: z.nullable(z.number().int()).optional(),
-  merchantTaxId: z.nullable(z.string()).optional(),
-  customerReferenceNumber: z.nullable(z.string()).optional(),
-  amountIncludesTax: z.nullable(z.boolean()).optional(),
-  supplierOrderNumber: z.nullable(z.string()).optional(),
-  dutyAmount: z.nullable(z.number().int()).optional(),
-  shippingAmount: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reconciliationId: "reconciliation_id",
-    merchantAccountId: "merchant_account_id",
-    authorizedAmount: "authorized_amount",
-    capturedAmount: "captured_amount",
-    refundedAmount: "refunded_amount",
-    settledCurrency: "settled_currency",
-    settledAmount: "settled_amount",
-    externalIdentifier: "external_identifier",
-    paymentMethod: "payment_method",
-    instrumentType: "instrument_type",
-    errorCode: "error_code",
-    paymentService: "payment_service",
-    pendingReview: "pending_review",
-    rawResponseCode: "raw_response_code",
-    rawResponseDescription: "raw_response_description",
-    shippingDetails: "shipping_details",
-    checkoutSessionId: "checkout_session_id",
-    giftCardRedemptions: "gift_card_redemptions",
-    giftCardService: "gift_card_service",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    authResponseCode: "auth_response_code",
-    avsResponseCode: "avs_response_code",
-    cvvResponseCode: "cvv_response_code",
-    antiFraudDecision: "anti_fraud_decision",
-    paymentSource: "payment_source",
-    merchantInitiated: "merchant_initiated",
-    isSubsequentPayment: "is_subsequent_payment",
-    cartItems: "cart_items",
-    statementDescriptor: "statement_descriptor",
-    schemeTransactionId: "scheme_transaction_id",
-    threeDSecure: "three_d_secure",
-    paymentServiceTransactionId: "payment_service_transaction_id",
-    additionalIdentifiers: "additional_identifiers",
-    authorizedAt: "authorized_at",
-    capturedAt: "captured_at",
-    voidedAt: "voided_at",
-    canceledAt: "canceled_at",
-    approvalExpiresAt: "approval_expires_at",
-    buyerApprovalTimedoutAt: "buyer_approval_timedout_at",
-    intentOutcome: "intent_outcome",
-    multiTender: "multi_tender",
-    accountFundingTransaction: "account_funding_transaction",
-    merchantAdviceCode: "merchant_advice_code",
-    installmentCount: "installment_count",
-    sessionToken: "session_token",
-    taxAmount: "tax_amount",
-    merchantTaxId: "merchant_tax_id",
-    customerReferenceNumber: "customer_reference_number",
-    amountIncludesTax: "amount_includes_tax",
-    supplierOrderNumber: "supplier_order_number",
-    dutyAmount: "duty_amount",
-    shippingAmount: "shipping_amount",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionOutput$ {
-  /** @deprecated use `TransactionOutput$inboundSchema` instead. */
-  export const inboundSchema = TransactionOutput$inboundSchema;
-  /** @deprecated use `TransactionOutput$outboundSchema` instead. */
-  export const outboundSchema = TransactionOutput$outboundSchema;
-  /** @deprecated use `TransactionOutput$Outbound` instead. */
-  export type Outbound = TransactionOutput$Outbound;
-}
-
-export function transactionOutputToJSON(
-  transactionOutput: TransactionOutput,
-): string {
-  return JSON.stringify(
-    TransactionOutput$outboundSchema.parse(transactionOutput),
-  );
-}
 
 export function transactionOutputFromJSON(
   jsonString: string,

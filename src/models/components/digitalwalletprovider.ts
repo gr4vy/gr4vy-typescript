@@ -26,7 +26,6 @@ export const DigitalWalletProvider$inboundSchema: z.ZodType<
     z.nativeEnum(DigitalWalletProvider),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const DigitalWalletProvider$outboundSchema: z.ZodType<
   DigitalWalletProvider,
@@ -36,14 +35,3 @@ export const DigitalWalletProvider$outboundSchema: z.ZodType<
   z.nativeEnum(DigitalWalletProvider),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigitalWalletProvider$ {
-  /** @deprecated use `DigitalWalletProvider$inboundSchema` instead. */
-  export const inboundSchema = DigitalWalletProvider$inboundSchema;
-  /** @deprecated use `DigitalWalletProvider$outboundSchema` instead. */
-  export const outboundSchema = DigitalWalletProvider$outboundSchema;
-}

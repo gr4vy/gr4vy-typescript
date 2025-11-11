@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  DigitalWallet,
-  DigitalWallet$inboundSchema,
-  DigitalWallet$Outbound,
-  DigitalWallet$outboundSchema,
-} from "./digitalwallet.js";
+import { DigitalWallet, DigitalWallet$inboundSchema } from "./digitalwallet.js";
 
 export type DigitalWallets = {
   /**
@@ -28,37 +23,6 @@ export const DigitalWallets$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(DigitalWallet$inboundSchema),
 });
-
-/** @internal */
-export type DigitalWallets$Outbound = {
-  items: Array<DigitalWallet$Outbound>;
-};
-
-/** @internal */
-export const DigitalWallets$outboundSchema: z.ZodType<
-  DigitalWallets$Outbound,
-  z.ZodTypeDef,
-  DigitalWallets
-> = z.object({
-  items: z.array(DigitalWallet$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigitalWallets$ {
-  /** @deprecated use `DigitalWallets$inboundSchema` instead. */
-  export const inboundSchema = DigitalWallets$inboundSchema;
-  /** @deprecated use `DigitalWallets$outboundSchema` instead. */
-  export const outboundSchema = DigitalWallets$outboundSchema;
-  /** @deprecated use `DigitalWallets$Outbound` instead. */
-  export type Outbound = DigitalWallets$Outbound;
-}
-
-export function digitalWalletsToJSON(digitalWallets: DigitalWallets): string {
-  return JSON.stringify(DigitalWallets$outboundSchema.parse(digitalWallets));
-}
 
 export function digitalWalletsFromJSON(
   jsonString: string,

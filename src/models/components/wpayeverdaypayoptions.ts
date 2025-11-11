@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WpayEverdaypayOptions = {
   /**
@@ -30,23 +27,6 @@ export type WpayEverdaypayOptions = {
    */
   postPaymentRedirect?: boolean | null | undefined;
 };
-
-/** @internal */
-export const WpayEverdaypayOptions$inboundSchema: z.ZodType<
-  WpayEverdaypayOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchant_defined_data: z.nullable(z.record(z.string())).optional(),
-  customerId: z.nullable(z.string()).optional(),
-  rewardsAccessToken: z.nullable(z.string()).optional(),
-  deviceId: z.nullable(z.string()).optional(),
-  postPaymentRedirect: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_defined_data": "merchantDefinedData",
-  });
-});
 
 /** @internal */
 export type WpayEverdaypayOptions$Outbound = {
@@ -74,33 +54,10 @@ export const WpayEverdaypayOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WpayEverdaypayOptions$ {
-  /** @deprecated use `WpayEverdaypayOptions$inboundSchema` instead. */
-  export const inboundSchema = WpayEverdaypayOptions$inboundSchema;
-  /** @deprecated use `WpayEverdaypayOptions$outboundSchema` instead. */
-  export const outboundSchema = WpayEverdaypayOptions$outboundSchema;
-  /** @deprecated use `WpayEverdaypayOptions$Outbound` instead. */
-  export type Outbound = WpayEverdaypayOptions$Outbound;
-}
-
 export function wpayEverdaypayOptionsToJSON(
   wpayEverdaypayOptions: WpayEverdaypayOptions,
 ): string {
   return JSON.stringify(
     WpayEverdaypayOptions$outboundSchema.parse(wpayEverdaypayOptions),
-  );
-}
-
-export function wpayEverdaypayOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<WpayEverdaypayOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WpayEverdaypayOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WpayEverdaypayOptions' from JSON`,
   );
 }

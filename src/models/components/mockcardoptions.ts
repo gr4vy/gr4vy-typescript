@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MockCardMerchantAdviceCodeOptions,
-  MockCardMerchantAdviceCodeOptions$inboundSchema,
   MockCardMerchantAdviceCodeOptions$Outbound,
   MockCardMerchantAdviceCodeOptions$outboundSchema,
 } from "./mockcardmerchantadvicecodeoptions.js";
@@ -20,21 +16,6 @@ export type MockCardOptions = {
    */
   merchantAdviceCode?: MockCardMerchantAdviceCodeOptions | null | undefined;
 };
-
-/** @internal */
-export const MockCardOptions$inboundSchema: z.ZodType<
-  MockCardOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchant_advice_code: z.nullable(
-    MockCardMerchantAdviceCodeOptions$inboundSchema,
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_advice_code": "merchantAdviceCode",
-  });
-});
 
 /** @internal */
 export type MockCardOptions$Outbound = {
@@ -59,31 +40,8 @@ export const MockCardOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MockCardOptions$ {
-  /** @deprecated use `MockCardOptions$inboundSchema` instead. */
-  export const inboundSchema = MockCardOptions$inboundSchema;
-  /** @deprecated use `MockCardOptions$outboundSchema` instead. */
-  export const outboundSchema = MockCardOptions$outboundSchema;
-  /** @deprecated use `MockCardOptions$Outbound` instead. */
-  export type Outbound = MockCardOptions$Outbound;
-}
-
 export function mockCardOptionsToJSON(
   mockCardOptions: MockCardOptions,
 ): string {
   return JSON.stringify(MockCardOptions$outboundSchema.parse(mockCardOptions));
-}
-
-export function mockCardOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<MockCardOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MockCardOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MockCardOptions' from JSON`,
-  );
 }

@@ -69,7 +69,6 @@ export const ThreeDSecureDataV1$inboundSchema: z.ZodType<
     "cavv_algorithm": "cavvAlgorithm",
   });
 });
-
 /** @internal */
 export type ThreeDSecureDataV1$Outbound = {
   cavv: string;
@@ -104,19 +103,6 @@ export const ThreeDSecureDataV1$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThreeDSecureDataV1$ {
-  /** @deprecated use `ThreeDSecureDataV1$inboundSchema` instead. */
-  export const inboundSchema = ThreeDSecureDataV1$inboundSchema;
-  /** @deprecated use `ThreeDSecureDataV1$outboundSchema` instead. */
-  export const outboundSchema = ThreeDSecureDataV1$outboundSchema;
-  /** @deprecated use `ThreeDSecureDataV1$Outbound` instead. */
-  export type Outbound = ThreeDSecureDataV1$Outbound;
-}
-
 export function threeDSecureDataV1ToJSON(
   threeDSecureDataV1: ThreeDSecureDataV1,
 ): string {
@@ -124,7 +110,6 @@ export function threeDSecureDataV1ToJSON(
     ThreeDSecureDataV1$outboundSchema.parse(threeDSecureDataV1),
   );
 }
-
 export function threeDSecureDataV1FromJSON(
   jsonString: string,
 ): SafeParseResult<ThreeDSecureDataV1, SDKValidationError> {

@@ -3,17 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 import {
   PaypalShippingOptionsItemAmount,
-  PaypalShippingOptionsItemAmount$inboundSchema,
   PaypalShippingOptionsItemAmount$Outbound,
   PaypalShippingOptionsItemAmount$outboundSchema,
 } from "./paypalshippingoptionsitemamount.js";
@@ -52,17 +44,6 @@ export type PaypalShippingOptionsItem = {
 };
 
 /** @internal */
-export const PaypalShippingOptionsItemType$inboundSchema: z.ZodType<
-  PaypalShippingOptionsItemType,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(PaypalShippingOptionsItemType),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const PaypalShippingOptionsItemType$outboundSchema: z.ZodType<
   PaypalShippingOptionsItemType,
   z.ZodTypeDef,
@@ -71,30 +52,6 @@ export const PaypalShippingOptionsItemType$outboundSchema: z.ZodType<
   z.nativeEnum(PaypalShippingOptionsItemType),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaypalShippingOptionsItemType$ {
-  /** @deprecated use `PaypalShippingOptionsItemType$inboundSchema` instead. */
-  export const inboundSchema = PaypalShippingOptionsItemType$inboundSchema;
-  /** @deprecated use `PaypalShippingOptionsItemType$outboundSchema` instead. */
-  export const outboundSchema = PaypalShippingOptionsItemType$outboundSchema;
-}
-
-/** @internal */
-export const PaypalShippingOptionsItem$inboundSchema: z.ZodType<
-  PaypalShippingOptionsItem,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  label: z.string(),
-  selected: z.boolean(),
-  type: z.nullable(PaypalShippingOptionsItemType$inboundSchema).optional(),
-  amount: z.nullable(PaypalShippingOptionsItemAmount$inboundSchema).optional(),
-});
 
 /** @internal */
 export type PaypalShippingOptionsItem$Outbound = {
@@ -118,33 +75,10 @@ export const PaypalShippingOptionsItem$outboundSchema: z.ZodType<
   amount: z.nullable(PaypalShippingOptionsItemAmount$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaypalShippingOptionsItem$ {
-  /** @deprecated use `PaypalShippingOptionsItem$inboundSchema` instead. */
-  export const inboundSchema = PaypalShippingOptionsItem$inboundSchema;
-  /** @deprecated use `PaypalShippingOptionsItem$outboundSchema` instead. */
-  export const outboundSchema = PaypalShippingOptionsItem$outboundSchema;
-  /** @deprecated use `PaypalShippingOptionsItem$Outbound` instead. */
-  export type Outbound = PaypalShippingOptionsItem$Outbound;
-}
-
 export function paypalShippingOptionsItemToJSON(
   paypalShippingOptionsItem: PaypalShippingOptionsItem,
 ): string {
   return JSON.stringify(
     PaypalShippingOptionsItem$outboundSchema.parse(paypalShippingOptionsItem),
-  );
-}
-
-export function paypalShippingOptionsItemFromJSON(
-  jsonString: string,
-): SafeParseResult<PaypalShippingOptionsItem, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaypalShippingOptionsItem$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaypalShippingOptionsItem' from JSON`,
   );
 }

@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateMerchantAccountRequest = {
   /**
@@ -16,21 +13,6 @@ export type UpdateMerchantAccountRequest = {
   merchantAccountId: string;
   merchantAccountUpdate: components.MerchantAccountUpdate;
 };
-
-/** @internal */
-export const UpdateMerchantAccountRequest$inboundSchema: z.ZodType<
-  UpdateMerchantAccountRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchant_account_id: z.string(),
-  MerchantAccountUpdate: components.MerchantAccountUpdate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "MerchantAccountUpdate": "merchantAccountUpdate",
-  });
-});
 
 /** @internal */
 export type UpdateMerchantAccountRequest$Outbound = {
@@ -53,19 +35,6 @@ export const UpdateMerchantAccountRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateMerchantAccountRequest$ {
-  /** @deprecated use `UpdateMerchantAccountRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateMerchantAccountRequest$inboundSchema;
-  /** @deprecated use `UpdateMerchantAccountRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateMerchantAccountRequest$outboundSchema;
-  /** @deprecated use `UpdateMerchantAccountRequest$Outbound` instead. */
-  export type Outbound = UpdateMerchantAccountRequest$Outbound;
-}
-
 export function updateMerchantAccountRequestToJSON(
   updateMerchantAccountRequest: UpdateMerchantAccountRequest,
 ): string {
@@ -73,15 +42,5 @@ export function updateMerchantAccountRequestToJSON(
     UpdateMerchantAccountRequest$outboundSchema.parse(
       updateMerchantAccountRequest,
     ),
-  );
-}
-
-export function updateMerchantAccountRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateMerchantAccountRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateMerchantAccountRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateMerchantAccountRequest' from JSON`,
   );
 }

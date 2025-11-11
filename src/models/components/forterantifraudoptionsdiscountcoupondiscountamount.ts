@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ForterAntiFraudOptionsDiscountCouponDiscountAmount = {
   /**
@@ -22,23 +19,6 @@ export type ForterAntiFraudOptionsDiscountCouponDiscountAmount = {
    */
   currency?: string | null | undefined;
 };
-
-/** @internal */
-export const ForterAntiFraudOptionsDiscountCouponDiscountAmount$inboundSchema:
-  z.ZodType<
-    ForterAntiFraudOptionsDiscountCouponDiscountAmount,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    amount_usd: z.nullable(z.string()).optional(),
-    amount_local_currency: z.nullable(z.string()).optional(),
-    currency: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "amount_usd": "amountUsd",
-      "amount_local_currency": "amountLocalCurrency",
-    });
-  });
 
 /** @internal */
 export type ForterAntiFraudOptionsDiscountCouponDiscountAmount$Outbound = {
@@ -64,22 +44,6 @@ export const ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsDiscountCouponDiscountAmount$ {
-  /** @deprecated use `ForterAntiFraudOptionsDiscountCouponDiscountAmount$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsDiscountCouponDiscountAmount$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsDiscountCouponDiscountAmount$Outbound` instead. */
-  export type Outbound =
-    ForterAntiFraudOptionsDiscountCouponDiscountAmount$Outbound;
-}
-
 export function forterAntiFraudOptionsDiscountCouponDiscountAmountToJSON(
   forterAntiFraudOptionsDiscountCouponDiscountAmount:
     ForterAntiFraudOptionsDiscountCouponDiscountAmount,
@@ -88,21 +52,5 @@ export function forterAntiFraudOptionsDiscountCouponDiscountAmountToJSON(
     ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema.parse(
       forterAntiFraudOptionsDiscountCouponDiscountAmount,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsDiscountCouponDiscountAmountFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ForterAntiFraudOptionsDiscountCouponDiscountAmount,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ForterAntiFraudOptionsDiscountCouponDiscountAmount$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ForterAntiFraudOptionsDiscountCouponDiscountAmount' from JSON`,
   );
 }

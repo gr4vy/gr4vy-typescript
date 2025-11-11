@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BillingDetailsOutput,
   BillingDetailsOutput$inboundSchema,
-  BillingDetailsOutput$Outbound,
-  BillingDetailsOutput$outboundSchema,
 } from "./billingdetailsoutput.js";
 
 export type Buyer = {
@@ -80,63 +78,6 @@ export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
       "updated_at": "updatedAt",
     });
   });
-
-/** @internal */
-export type Buyer$Outbound = {
-  type: "buyer";
-  id?: string | null | undefined;
-  merchant_account_id: string;
-  display_name?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  billing_details?: BillingDetailsOutput$Outbound | null | undefined;
-  account_number?: string | null | undefined;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const Buyer$outboundSchema: z.ZodType<
-  Buyer$Outbound,
-  z.ZodTypeDef,
-  Buyer
-> = z.object({
-  type: z.literal("buyer").default("buyer" as const),
-  id: z.nullable(z.string()).optional(),
-  merchantAccountId: z.string(),
-  displayName: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  billingDetails: z.nullable(BillingDetailsOutput$outboundSchema).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    displayName: "display_name",
-    externalIdentifier: "external_identifier",
-    billingDetails: "billing_details",
-    accountNumber: "account_number",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Buyer$ {
-  /** @deprecated use `Buyer$inboundSchema` instead. */
-  export const inboundSchema = Buyer$inboundSchema;
-  /** @deprecated use `Buyer$outboundSchema` instead. */
-  export const outboundSchema = Buyer$outboundSchema;
-  /** @deprecated use `Buyer$Outbound` instead. */
-  export type Outbound = Buyer$Outbound;
-}
-
-export function buyerToJSON(buyer: Buyer): string {
-  return JSON.stringify(Buyer$outboundSchema.parse(buyer));
-}
 
 export function buyerFromJSON(
   jsonString: string,

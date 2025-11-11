@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 
 export const ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType = {
   Digital: "DIGITAL",
@@ -36,18 +29,6 @@ export type ForterAntiFraudOptionsCartItemDeliveryDetails = {
 };
 
 /** @internal */
-export const ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$inboundSchema:
-  z.ZodType<
-    ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType,
-    z.ZodTypeDef,
-    unknown
-  > = z
-    .union([
-      z.nativeEnum(ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType),
-      z.string().transform(catchUnrecognizedEnum),
-    ]);
-
-/** @internal */
 export const ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$outboundSchema:
   z.ZodType<
     ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType,
@@ -57,37 +38,6 @@ export const ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$outboundS
     z.nativeEnum(ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType),
     z.string().and(z.custom<Unrecognized<string>>()),
   ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$outboundSchema;
-}
-
-/** @internal */
-export const ForterAntiFraudOptionsCartItemDeliveryDetails$inboundSchema:
-  z.ZodType<
-    ForterAntiFraudOptionsCartItemDeliveryDetails,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    delivery_type: z.nullable(
-      ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$inboundSchema,
-    ).optional(),
-    delivery_method: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "delivery_type": "deliveryType",
-      "delivery_method": "deliveryMethod",
-    });
-  });
 
 /** @internal */
 export type ForterAntiFraudOptionsCartItemDeliveryDetails$Outbound = {
@@ -113,21 +63,6 @@ export const ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItemDeliveryDetails$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItemDeliveryDetails$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsCartItemDeliveryDetails$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemDeliveryDetails$Outbound` instead. */
-  export type Outbound = ForterAntiFraudOptionsCartItemDeliveryDetails$Outbound;
-}
-
 export function forterAntiFraudOptionsCartItemDeliveryDetailsToJSON(
   forterAntiFraudOptionsCartItemDeliveryDetails:
     ForterAntiFraudOptionsCartItemDeliveryDetails,
@@ -136,21 +71,5 @@ export function forterAntiFraudOptionsCartItemDeliveryDetailsToJSON(
     ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema.parse(
       forterAntiFraudOptionsCartItemDeliveryDetails,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsCartItemDeliveryDetailsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ForterAntiFraudOptionsCartItemDeliveryDetails,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ForterAntiFraudOptionsCartItemDeliveryDetails$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ForterAntiFraudOptionsCartItemDeliveryDetails' from JSON`,
   );
 }

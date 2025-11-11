@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ShippingDetails,
   ShippingDetails$inboundSchema,
-  ShippingDetails$Outbound,
-  ShippingDetails$outboundSchema,
 } from "./shippingdetails.js";
 
 export type ShippingDetailsList = {
@@ -28,41 +26,6 @@ export const ShippingDetailsList$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(ShippingDetails$inboundSchema),
 });
-
-/** @internal */
-export type ShippingDetailsList$Outbound = {
-  items: Array<ShippingDetails$Outbound>;
-};
-
-/** @internal */
-export const ShippingDetailsList$outboundSchema: z.ZodType<
-  ShippingDetailsList$Outbound,
-  z.ZodTypeDef,
-  ShippingDetailsList
-> = z.object({
-  items: z.array(ShippingDetails$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ShippingDetailsList$ {
-  /** @deprecated use `ShippingDetailsList$inboundSchema` instead. */
-  export const inboundSchema = ShippingDetailsList$inboundSchema;
-  /** @deprecated use `ShippingDetailsList$outboundSchema` instead. */
-  export const outboundSchema = ShippingDetailsList$outboundSchema;
-  /** @deprecated use `ShippingDetailsList$Outbound` instead. */
-  export type Outbound = ShippingDetailsList$Outbound;
-}
-
-export function shippingDetailsListToJSON(
-  shippingDetailsList: ShippingDetailsList,
-): string {
-  return JSON.stringify(
-    ShippingDetailsList$outboundSchema.parse(shippingDetailsList),
-  );
-}
 
 export function shippingDetailsListFromJSON(
   jsonString: string,

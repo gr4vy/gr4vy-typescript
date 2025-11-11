@@ -25,7 +25,6 @@ export const RefundTargetType$inboundSchema: z.ZodType<
     z.nativeEnum(RefundTargetType),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const RefundTargetType$outboundSchema: z.ZodType<
   RefundTargetType,
@@ -35,14 +34,3 @@ export const RefundTargetType$outboundSchema: z.ZodType<
   z.nativeEnum(RefundTargetType),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RefundTargetType$ {
-  /** @deprecated use `RefundTargetType$inboundSchema` instead. */
-  export const inboundSchema = RefundTargetType$inboundSchema;
-  /** @deprecated use `RefundTargetType$outboundSchema` instead. */
-  export const outboundSchema = RefundTargetType$outboundSchema;
-}

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  PaymentMethod,
-  PaymentMethod$inboundSchema,
-  PaymentMethod$Outbound,
-  PaymentMethod$outboundSchema,
-} from "./paymentmethod.js";
+import { PaymentMethod, PaymentMethod$inboundSchema } from "./paymentmethod.js";
 
 export type PaymentMethods = {
   /**
@@ -49,48 +44,6 @@ export const PaymentMethods$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type PaymentMethods$Outbound = {
-  items: Array<PaymentMethod$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const PaymentMethods$outboundSchema: z.ZodType<
-  PaymentMethods$Outbound,
-  z.ZodTypeDef,
-  PaymentMethods
-> = z.object({
-  items: z.array(PaymentMethod$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethods$ {
-  /** @deprecated use `PaymentMethods$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethods$inboundSchema;
-  /** @deprecated use `PaymentMethods$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethods$outboundSchema;
-  /** @deprecated use `PaymentMethods$Outbound` instead. */
-  export type Outbound = PaymentMethods$Outbound;
-}
-
-export function paymentMethodsToJSON(paymentMethods: PaymentMethods): string {
-  return JSON.stringify(PaymentMethods$outboundSchema.parse(paymentMethods));
-}
 
 export function paymentMethodsFromJSON(
   jsonString: string,

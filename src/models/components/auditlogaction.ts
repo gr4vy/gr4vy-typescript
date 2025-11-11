@@ -29,7 +29,6 @@ export const AuditLogAction$inboundSchema: z.ZodType<
     z.nativeEnum(AuditLogAction),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const AuditLogAction$outboundSchema: z.ZodType<
   AuditLogAction,
@@ -39,14 +38,3 @@ export const AuditLogAction$outboundSchema: z.ZodType<
   z.nativeEnum(AuditLogAction),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogAction$ {
-  /** @deprecated use `AuditLogAction$inboundSchema` instead. */
-  export const inboundSchema = AuditLogAction$inboundSchema;
-  /** @deprecated use `AuditLogAction$outboundSchema` instead. */
-  export const outboundSchema = AuditLogAction$outboundSchema;
-}

@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const AntiFraudDecision = {
   Accept: "accept",
@@ -30,24 +26,3 @@ export const AntiFraudDecision$inboundSchema: z.ZodType<
     z.nativeEnum(AntiFraudDecision),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const AntiFraudDecision$outboundSchema: z.ZodType<
-  AntiFraudDecision,
-  z.ZodTypeDef,
-  AntiFraudDecision
-> = z.union([
-  z.nativeEnum(AntiFraudDecision),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AntiFraudDecision$ {
-  /** @deprecated use `AntiFraudDecision$inboundSchema` instead. */
-  export const inboundSchema = AntiFraudDecision$inboundSchema;
-  /** @deprecated use `AntiFraudDecision$outboundSchema` instead. */
-  export const outboundSchema = AntiFraudDecision$outboundSchema;
-}

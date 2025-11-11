@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  NetworkToken,
-  NetworkToken$inboundSchema,
-  NetworkToken$Outbound,
-  NetworkToken$outboundSchema,
-} from "./networktoken.js";
+import { NetworkToken, NetworkToken$inboundSchema } from "./networktoken.js";
 
 export type NetworkTokens = {
   /**
@@ -28,37 +23,6 @@ export const NetworkTokens$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(NetworkToken$inboundSchema),
 });
-
-/** @internal */
-export type NetworkTokens$Outbound = {
-  items: Array<NetworkToken$Outbound>;
-};
-
-/** @internal */
-export const NetworkTokens$outboundSchema: z.ZodType<
-  NetworkTokens$Outbound,
-  z.ZodTypeDef,
-  NetworkTokens
-> = z.object({
-  items: z.array(NetworkToken$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkTokens$ {
-  /** @deprecated use `NetworkTokens$inboundSchema` instead. */
-  export const inboundSchema = NetworkTokens$inboundSchema;
-  /** @deprecated use `NetworkTokens$outboundSchema` instead. */
-  export const outboundSchema = NetworkTokens$outboundSchema;
-  /** @deprecated use `NetworkTokens$Outbound` instead. */
-  export type Outbound = NetworkTokens$Outbound;
-}
-
-export function networkTokensToJSON(networkTokens: NetworkTokens): string {
-  return JSON.stringify(NetworkTokens$outboundSchema.parse(networkTokens));
-}
 
 export function networkTokensFromJSON(
   jsonString: string,

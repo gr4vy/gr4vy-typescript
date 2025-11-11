@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AffirmItineraryOptions,
-  AffirmItineraryOptions$inboundSchema,
   AffirmItineraryOptions$Outbound,
   AffirmItineraryOptions$outboundSchema,
 } from "./affirmitineraryoptions.js";
@@ -23,16 +19,6 @@ export type AffirmOptions = {
    */
   itinerary?: AffirmItineraryOptions | null | undefined;
 };
-
-/** @internal */
-export const AffirmOptions$inboundSchema: z.ZodType<
-  AffirmOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  discounts: z.nullable(z.record(z.record(z.any()))).optional(),
-  itinerary: z.nullable(AffirmItineraryOptions$inboundSchema).optional(),
-});
 
 /** @internal */
 export type AffirmOptions$Outbound = {
@@ -50,29 +36,6 @@ export const AffirmOptions$outboundSchema: z.ZodType<
   itinerary: z.nullable(AffirmItineraryOptions$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AffirmOptions$ {
-  /** @deprecated use `AffirmOptions$inboundSchema` instead. */
-  export const inboundSchema = AffirmOptions$inboundSchema;
-  /** @deprecated use `AffirmOptions$outboundSchema` instead. */
-  export const outboundSchema = AffirmOptions$outboundSchema;
-  /** @deprecated use `AffirmOptions$Outbound` instead. */
-  export type Outbound = AffirmOptions$Outbound;
-}
-
 export function affirmOptionsToJSON(affirmOptions: AffirmOptions): string {
   return JSON.stringify(AffirmOptions$outboundSchema.parse(affirmOptions));
-}
-
-export function affirmOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<AffirmOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AffirmOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AffirmOptions' from JSON`,
-  );
 }

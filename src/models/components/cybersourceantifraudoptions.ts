@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CybersourceAntiFraudOptions = {
   /**
@@ -22,23 +19,6 @@ export type CybersourceAntiFraudOptions = {
    */
   shippingMethod?: string | null | undefined;
 };
-
-/** @internal */
-export const CybersourceAntiFraudOptions$inboundSchema: z.ZodType<
-  CybersourceAntiFraudOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchant_defined_data: z.nullable(z.record(z.string())).optional(),
-  meta_key_merchant_id: z.nullable(z.string()).optional(),
-  shipping_method: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_defined_data": "merchantDefinedData",
-    "meta_key_merchant_id": "metaKeyMerchantId",
-    "shipping_method": "shippingMethod",
-  });
-});
 
 /** @internal */
 export type CybersourceAntiFraudOptions$Outbound = {
@@ -64,19 +44,6 @@ export const CybersourceAntiFraudOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CybersourceAntiFraudOptions$ {
-  /** @deprecated use `CybersourceAntiFraudOptions$inboundSchema` instead. */
-  export const inboundSchema = CybersourceAntiFraudOptions$inboundSchema;
-  /** @deprecated use `CybersourceAntiFraudOptions$outboundSchema` instead. */
-  export const outboundSchema = CybersourceAntiFraudOptions$outboundSchema;
-  /** @deprecated use `CybersourceAntiFraudOptions$Outbound` instead. */
-  export type Outbound = CybersourceAntiFraudOptions$Outbound;
-}
-
 export function cybersourceAntiFraudOptionsToJSON(
   cybersourceAntiFraudOptions: CybersourceAntiFraudOptions,
 ): string {
@@ -84,15 +51,5 @@ export function cybersourceAntiFraudOptionsToJSON(
     CybersourceAntiFraudOptions$outboundSchema.parse(
       cybersourceAntiFraudOptions,
     ),
-  );
-}
-
-export function cybersourceAntiFraudOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<CybersourceAntiFraudOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CybersourceAntiFraudOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CybersourceAntiFraudOptions' from JSON`,
   );
 }

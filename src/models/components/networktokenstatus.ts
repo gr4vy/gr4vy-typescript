@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const NetworkTokenStatus = {
   Active: "active",
@@ -27,24 +23,3 @@ export const NetworkTokenStatus$inboundSchema: z.ZodType<
     z.nativeEnum(NetworkTokenStatus),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const NetworkTokenStatus$outboundSchema: z.ZodType<
-  NetworkTokenStatus,
-  z.ZodTypeDef,
-  NetworkTokenStatus
-> = z.union([
-  z.nativeEnum(NetworkTokenStatus),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkTokenStatus$ {
-  /** @deprecated use `NetworkTokenStatus$inboundSchema` instead. */
-  export const inboundSchema = NetworkTokenStatus$inboundSchema;
-  /** @deprecated use `NetworkTokenStatus$outboundSchema` instead. */
-  export const outboundSchema = NetworkTokenStatus$outboundSchema;
-}

@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WpayPaytoSimulationOptions,
-  WpayPaytoSimulationOptions$inboundSchema,
   WpayPaytoSimulationOptions$Outbound,
   WpayPaytoSimulationOptions$outboundSchema,
 } from "./wpaypaytosimulationoptions.js";
@@ -19,15 +15,6 @@ export type WpayPaytoResourceOptions = {
    */
   simulation?: WpayPaytoSimulationOptions | null | undefined;
 };
-
-/** @internal */
-export const WpayPaytoResourceOptions$inboundSchema: z.ZodType<
-  WpayPaytoResourceOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  simulation: z.nullable(WpayPaytoSimulationOptions$inboundSchema).optional(),
-});
 
 /** @internal */
 export type WpayPaytoResourceOptions$Outbound = {
@@ -43,33 +30,10 @@ export const WpayPaytoResourceOptions$outboundSchema: z.ZodType<
   simulation: z.nullable(WpayPaytoSimulationOptions$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WpayPaytoResourceOptions$ {
-  /** @deprecated use `WpayPaytoResourceOptions$inboundSchema` instead. */
-  export const inboundSchema = WpayPaytoResourceOptions$inboundSchema;
-  /** @deprecated use `WpayPaytoResourceOptions$outboundSchema` instead. */
-  export const outboundSchema = WpayPaytoResourceOptions$outboundSchema;
-  /** @deprecated use `WpayPaytoResourceOptions$Outbound` instead. */
-  export type Outbound = WpayPaytoResourceOptions$Outbound;
-}
-
 export function wpayPaytoResourceOptionsToJSON(
   wpayPaytoResourceOptions: WpayPaytoResourceOptions,
 ): string {
   return JSON.stringify(
     WpayPaytoResourceOptions$outboundSchema.parse(wpayPaytoResourceOptions),
-  );
-}
-
-export function wpayPaytoResourceOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<WpayPaytoResourceOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WpayPaytoResourceOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WpayPaytoResourceOptions' from JSON`,
   );
 }

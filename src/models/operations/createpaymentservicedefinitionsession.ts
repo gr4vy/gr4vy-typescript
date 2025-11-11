@@ -4,30 +4,11 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreatePaymentServiceDefinitionSessionRequest = {
   paymentServiceDefinitionId: string;
   requestBody: { [k: string]: any };
 };
-
-/** @internal */
-export const CreatePaymentServiceDefinitionSessionRequest$inboundSchema:
-  z.ZodType<
-    CreatePaymentServiceDefinitionSessionRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    payment_service_definition_id: z.string(),
-    RequestBody: z.record(z.any()),
-  }).transform((v) => {
-    return remap$(v, {
-      "payment_service_definition_id": "paymentServiceDefinitionId",
-      "RequestBody": "requestBody",
-    });
-  });
 
 /** @internal */
 export type CreatePaymentServiceDefinitionSessionRequest$Outbound = {
@@ -51,21 +32,6 @@ export const CreatePaymentServiceDefinitionSessionRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePaymentServiceDefinitionSessionRequest$ {
-  /** @deprecated use `CreatePaymentServiceDefinitionSessionRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreatePaymentServiceDefinitionSessionRequest$inboundSchema;
-  /** @deprecated use `CreatePaymentServiceDefinitionSessionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreatePaymentServiceDefinitionSessionRequest$outboundSchema;
-  /** @deprecated use `CreatePaymentServiceDefinitionSessionRequest$Outbound` instead. */
-  export type Outbound = CreatePaymentServiceDefinitionSessionRequest$Outbound;
-}
-
 export function createPaymentServiceDefinitionSessionRequestToJSON(
   createPaymentServiceDefinitionSessionRequest:
     CreatePaymentServiceDefinitionSessionRequest,
@@ -74,21 +40,5 @@ export function createPaymentServiceDefinitionSessionRequestToJSON(
     CreatePaymentServiceDefinitionSessionRequest$outboundSchema.parse(
       createPaymentServiceDefinitionSessionRequest,
     ),
-  );
-}
-
-export function createPaymentServiceDefinitionSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreatePaymentServiceDefinitionSessionRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreatePaymentServiceDefinitionSessionRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreatePaymentServiceDefinitionSessionRequest' from JSON`,
   );
 }

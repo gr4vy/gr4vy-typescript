@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TransactionsReportSpec = {
   /**
@@ -17,16 +14,6 @@ export type TransactionsReportSpec = {
    */
   params: { [k: string]: any };
 };
-
-/** @internal */
-export const TransactionsReportSpec$inboundSchema: z.ZodType<
-  TransactionsReportSpec,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  model: z.literal("transactions").default("transactions"),
-  params: z.record(z.any()),
-});
 
 /** @internal */
 export type TransactionsReportSpec$Outbound = {
@@ -44,33 +31,10 @@ export const TransactionsReportSpec$outboundSchema: z.ZodType<
   params: z.record(z.any()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionsReportSpec$ {
-  /** @deprecated use `TransactionsReportSpec$inboundSchema` instead. */
-  export const inboundSchema = TransactionsReportSpec$inboundSchema;
-  /** @deprecated use `TransactionsReportSpec$outboundSchema` instead. */
-  export const outboundSchema = TransactionsReportSpec$outboundSchema;
-  /** @deprecated use `TransactionsReportSpec$Outbound` instead. */
-  export type Outbound = TransactionsReportSpec$Outbound;
-}
-
 export function transactionsReportSpecToJSON(
   transactionsReportSpec: TransactionsReportSpec,
 ): string {
   return JSON.stringify(
     TransactionsReportSpec$outboundSchema.parse(transactionsReportSpec),
-  );
-}
-
-export function transactionsReportSpecFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionsReportSpec, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionsReportSpec$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionsReportSpec' from JSON`,
   );
 }

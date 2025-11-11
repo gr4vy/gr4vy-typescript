@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMerchantAccountRequest = {
   /**
@@ -14,19 +11,6 @@ export type GetMerchantAccountRequest = {
    */
   merchantAccountId: string;
 };
-
-/** @internal */
-export const GetMerchantAccountRequest$inboundSchema: z.ZodType<
-  GetMerchantAccountRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchant_account_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-  });
-});
 
 /** @internal */
 export type GetMerchantAccountRequest$Outbound = {
@@ -46,33 +30,10 @@ export const GetMerchantAccountRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMerchantAccountRequest$ {
-  /** @deprecated use `GetMerchantAccountRequest$inboundSchema` instead. */
-  export const inboundSchema = GetMerchantAccountRequest$inboundSchema;
-  /** @deprecated use `GetMerchantAccountRequest$outboundSchema` instead. */
-  export const outboundSchema = GetMerchantAccountRequest$outboundSchema;
-  /** @deprecated use `GetMerchantAccountRequest$Outbound` instead. */
-  export type Outbound = GetMerchantAccountRequest$Outbound;
-}
-
 export function getMerchantAccountRequestToJSON(
   getMerchantAccountRequest: GetMerchantAccountRequest,
 ): string {
   return JSON.stringify(
     GetMerchantAccountRequest$outboundSchema.parse(getMerchantAccountRequest),
-  );
-}
-
-export function getMerchantAccountRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMerchantAccountRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMerchantAccountRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMerchantAccountRequest' from JSON`,
   );
 }

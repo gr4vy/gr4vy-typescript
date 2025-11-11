@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Buyer,
-  Buyer$inboundSchema,
-  Buyer$Outbound,
-  Buyer$outboundSchema,
-} from "./buyer.js";
+import { Buyer, Buyer$inboundSchema } from "./buyer.js";
 
 export type Buyers = {
   /**
@@ -46,48 +41,6 @@ export const Buyers$inboundSchema: z.ZodType<Buyers, z.ZodTypeDef, unknown> = z
       "previous_cursor": "previousCursor",
     });
   });
-
-/** @internal */
-export type Buyers$Outbound = {
-  items: Array<Buyer$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const Buyers$outboundSchema: z.ZodType<
-  Buyers$Outbound,
-  z.ZodTypeDef,
-  Buyers
-> = z.object({
-  items: z.array(Buyer$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Buyers$ {
-  /** @deprecated use `Buyers$inboundSchema` instead. */
-  export const inboundSchema = Buyers$inboundSchema;
-  /** @deprecated use `Buyers$outboundSchema` instead. */
-  export const outboundSchema = Buyers$outboundSchema;
-  /** @deprecated use `Buyers$Outbound` instead. */
-  export type Outbound = Buyers$Outbound;
-}
-
-export function buyersToJSON(buyers: Buyers): string {
-  return JSON.stringify(Buyers$outboundSchema.parse(buyers));
-}
 
 export function buyersFromJSON(
   jsonString: string,

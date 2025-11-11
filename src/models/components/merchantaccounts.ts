@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MerchantAccount,
   MerchantAccount$inboundSchema,
-  MerchantAccount$Outbound,
-  MerchantAccount$outboundSchema,
 } from "./merchantaccount.js";
 
 export type MerchantAccounts = {
@@ -49,52 +47,6 @@ export const MerchantAccounts$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type MerchantAccounts$Outbound = {
-  items: Array<MerchantAccount$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const MerchantAccounts$outboundSchema: z.ZodType<
-  MerchantAccounts$Outbound,
-  z.ZodTypeDef,
-  MerchantAccounts
-> = z.object({
-  items: z.array(MerchantAccount$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MerchantAccounts$ {
-  /** @deprecated use `MerchantAccounts$inboundSchema` instead. */
-  export const inboundSchema = MerchantAccounts$inboundSchema;
-  /** @deprecated use `MerchantAccounts$outboundSchema` instead. */
-  export const outboundSchema = MerchantAccounts$outboundSchema;
-  /** @deprecated use `MerchantAccounts$Outbound` instead. */
-  export type Outbound = MerchantAccounts$Outbound;
-}
-
-export function merchantAccountsToJSON(
-  merchantAccounts: MerchantAccounts,
-): string {
-  return JSON.stringify(
-    MerchantAccounts$outboundSchema.parse(merchantAccounts),
-  );
-}
 
 export function merchantAccountsFromJSON(
   jsonString: string,

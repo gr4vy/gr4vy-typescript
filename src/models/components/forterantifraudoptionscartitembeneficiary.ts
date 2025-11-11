@@ -4,30 +4,23 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ForterAntiFraudOptionsCartItemBeneficiaryAddress,
-  ForterAntiFraudOptionsCartItemBeneficiaryAddress$inboundSchema,
   ForterAntiFraudOptionsCartItemBeneficiaryAddress$Outbound,
   ForterAntiFraudOptionsCartItemBeneficiaryAddress$outboundSchema,
 } from "./forterantifraudoptionscartitembeneficiaryaddress.js";
 import {
   ForterAntiFraudOptionsCartItemBeneficiaryComments,
-  ForterAntiFraudOptionsCartItemBeneficiaryComments$inboundSchema,
   ForterAntiFraudOptionsCartItemBeneficiaryComments$Outbound,
   ForterAntiFraudOptionsCartItemBeneficiaryComments$outboundSchema,
 } from "./forterantifraudoptionscartitembeneficiarycomments.js";
 import {
   ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails,
-  ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$inboundSchema,
   ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$Outbound,
   ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$outboundSchema,
 } from "./forterantifraudoptionscartitembeneficiarypersonaldetails.js";
 import {
   ForterAntiFraudOptionsCartItemBeneficiaryPhone,
-  ForterAntiFraudOptionsCartItemBeneficiaryPhone$inboundSchema,
   ForterAntiFraudOptionsCartItemBeneficiaryPhone$Outbound,
   ForterAntiFraudOptionsCartItemBeneficiaryPhone$outboundSchema,
 } from "./forterantifraudoptionscartitembeneficiaryphone.js";
@@ -53,29 +46,6 @@ export type ForterAntiFraudOptionsCartItemBeneficiary = {
     | null
     | undefined;
 };
-
-/** @internal */
-export const ForterAntiFraudOptionsCartItemBeneficiary$inboundSchema: z.ZodType<
-  ForterAntiFraudOptionsCartItemBeneficiary,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  personal_details:
-    ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$inboundSchema,
-  address: z.nullable(
-    ForterAntiFraudOptionsCartItemBeneficiaryAddress$inboundSchema,
-  ).optional(),
-  phone: z.nullable(
-    z.array(ForterAntiFraudOptionsCartItemBeneficiaryPhone$inboundSchema),
-  ).optional(),
-  comments: z.nullable(
-    ForterAntiFraudOptionsCartItemBeneficiaryComments$inboundSchema,
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "personal_details": "personalDetails",
-  });
-});
 
 /** @internal */
 export type ForterAntiFraudOptionsCartItemBeneficiary$Outbound = {
@@ -119,21 +89,6 @@ export const ForterAntiFraudOptionsCartItemBeneficiary$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItemBeneficiary$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiary$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiary$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiary$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiary$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiary$Outbound` instead. */
-  export type Outbound = ForterAntiFraudOptionsCartItemBeneficiary$Outbound;
-}
-
 export function forterAntiFraudOptionsCartItemBeneficiaryToJSON(
   forterAntiFraudOptionsCartItemBeneficiary:
     ForterAntiFraudOptionsCartItemBeneficiary,
@@ -142,21 +97,5 @@ export function forterAntiFraudOptionsCartItemBeneficiaryToJSON(
     ForterAntiFraudOptionsCartItemBeneficiary$outboundSchema.parse(
       forterAntiFraudOptionsCartItemBeneficiary,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsCartItemBeneficiaryFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ForterAntiFraudOptionsCartItemBeneficiary,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ForterAntiFraudOptionsCartItemBeneficiary$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ForterAntiFraudOptionsCartItemBeneficiary' from JSON`,
   );
 }

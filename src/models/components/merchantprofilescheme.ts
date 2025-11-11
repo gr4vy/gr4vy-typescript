@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MerchantProfileScheme = {
   /**
@@ -31,29 +28,6 @@ export type MerchantProfileScheme = {
    */
   merchantUrl: string;
 };
-
-/** @internal */
-export const MerchantProfileScheme$inboundSchema: z.ZodType<
-  MerchantProfileScheme,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchant_acquirer_bin: z.string(),
-  merchant_acquirer_id: z.string(),
-  merchant_name: z.string(),
-  merchant_country_code: z.string(),
-  merchant_category_code: z.string(),
-  merchant_url: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_acquirer_bin": "merchantAcquirerBin",
-    "merchant_acquirer_id": "merchantAcquirerId",
-    "merchant_name": "merchantName",
-    "merchant_country_code": "merchantCountryCode",
-    "merchant_category_code": "merchantCategoryCode",
-    "merchant_url": "merchantUrl",
-  });
-});
 
 /** @internal */
 export type MerchantProfileScheme$Outbound = {
@@ -88,33 +62,10 @@ export const MerchantProfileScheme$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MerchantProfileScheme$ {
-  /** @deprecated use `MerchantProfileScheme$inboundSchema` instead. */
-  export const inboundSchema = MerchantProfileScheme$inboundSchema;
-  /** @deprecated use `MerchantProfileScheme$outboundSchema` instead. */
-  export const outboundSchema = MerchantProfileScheme$outboundSchema;
-  /** @deprecated use `MerchantProfileScheme$Outbound` instead. */
-  export type Outbound = MerchantProfileScheme$Outbound;
-}
-
 export function merchantProfileSchemeToJSON(
   merchantProfileScheme: MerchantProfileScheme,
 ): string {
   return JSON.stringify(
     MerchantProfileScheme$outboundSchema.parse(merchantProfileScheme),
-  );
-}
-
-export function merchantProfileSchemeFromJSON(
-  jsonString: string,
-): SafeParseResult<MerchantProfileScheme, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MerchantProfileScheme$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MerchantProfileScheme' from JSON`,
   );
 }

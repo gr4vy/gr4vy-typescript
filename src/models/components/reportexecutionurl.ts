@@ -33,47 +33,6 @@ export const ReportExecutionUrl$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ReportExecutionUrl$Outbound = {
-  url: string;
-  expires_at: string;
-};
-
-/** @internal */
-export const ReportExecutionUrl$outboundSchema: z.ZodType<
-  ReportExecutionUrl$Outbound,
-  z.ZodTypeDef,
-  ReportExecutionUrl
-> = z.object({
-  url: z.string(),
-  expiresAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    expiresAt: "expires_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportExecutionUrl$ {
-  /** @deprecated use `ReportExecutionUrl$inboundSchema` instead. */
-  export const inboundSchema = ReportExecutionUrl$inboundSchema;
-  /** @deprecated use `ReportExecutionUrl$outboundSchema` instead. */
-  export const outboundSchema = ReportExecutionUrl$outboundSchema;
-  /** @deprecated use `ReportExecutionUrl$Outbound` instead. */
-  export type Outbound = ReportExecutionUrl$Outbound;
-}
-
-export function reportExecutionUrlToJSON(
-  reportExecutionUrl: ReportExecutionUrl,
-): string {
-  return JSON.stringify(
-    ReportExecutionUrl$outboundSchema.parse(reportExecutionUrl),
-  );
-}
-
 export function reportExecutionUrlFromJSON(
   jsonString: string,
 ): SafeParseResult<ReportExecutionUrl, SDKValidationError> {

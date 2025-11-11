@@ -10,19 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AuditLogAction,
   AuditLogAction$inboundSchema,
-  AuditLogAction$outboundSchema,
 } from "./auditlogaction.js";
 import {
   AuditLogEntryResource,
   AuditLogEntryResource$inboundSchema,
-  AuditLogEntryResource$Outbound,
-  AuditLogEntryResource$outboundSchema,
 } from "./auditlogentryresource.js";
 import {
   AuditLogEntryUser,
   AuditLogEntryUser$inboundSchema,
-  AuditLogEntryUser$Outbound,
-  AuditLogEntryUser$outboundSchema,
 } from "./auditlogentryuser.js";
 
 export type AuditLogEntryOutput = {
@@ -65,57 +60,6 @@ export const AuditLogEntryOutput$inboundSchema: z.ZodType<
     "merchant_account_id": "merchantAccountId",
   });
 });
-
-/** @internal */
-export type AuditLogEntryOutput$Outbound = {
-  type: "audit-log";
-  id?: string | null | undefined;
-  merchant_account_id?: string | null | undefined;
-  resource: AuditLogEntryResource$Outbound;
-  action: string;
-  user: AuditLogEntryUser$Outbound;
-  timestamp: string;
-};
-
-/** @internal */
-export const AuditLogEntryOutput$outboundSchema: z.ZodType<
-  AuditLogEntryOutput$Outbound,
-  z.ZodTypeDef,
-  AuditLogEntryOutput
-> = z.object({
-  type: z.literal("audit-log").default("audit-log" as const),
-  id: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  resource: AuditLogEntryResource$outboundSchema,
-  action: AuditLogAction$outboundSchema,
-  user: AuditLogEntryUser$outboundSchema,
-  timestamp: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogEntryOutput$ {
-  /** @deprecated use `AuditLogEntryOutput$inboundSchema` instead. */
-  export const inboundSchema = AuditLogEntryOutput$inboundSchema;
-  /** @deprecated use `AuditLogEntryOutput$outboundSchema` instead. */
-  export const outboundSchema = AuditLogEntryOutput$outboundSchema;
-  /** @deprecated use `AuditLogEntryOutput$Outbound` instead. */
-  export type Outbound = AuditLogEntryOutput$Outbound;
-}
-
-export function auditLogEntryOutputToJSON(
-  auditLogEntryOutput: AuditLogEntryOutput,
-): string {
-  return JSON.stringify(
-    AuditLogEntryOutput$outboundSchema.parse(auditLogEntryOutput),
-  );
-}
 
 export function auditLogEntryOutputFromJSON(
   jsonString: string,

@@ -4,35 +4,27 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountsReceivablesReportSpec,
-  AccountsReceivablesReportSpec$inboundSchema,
   AccountsReceivablesReportSpec$Outbound,
   AccountsReceivablesReportSpec$outboundSchema,
 } from "./accountsreceivablesreportspec.js";
 import {
   DetailedSettlementReportSpec,
-  DetailedSettlementReportSpec$inboundSchema,
   DetailedSettlementReportSpec$Outbound,
   DetailedSettlementReportSpec$outboundSchema,
 } from "./detailedsettlementreportspec.js";
 import {
   ReportSchedule,
-  ReportSchedule$inboundSchema,
   ReportSchedule$outboundSchema,
 } from "./reportschedule.js";
 import {
   TransactionRetriesReportSpec,
-  TransactionRetriesReportSpec$inboundSchema,
   TransactionRetriesReportSpec$Outbound,
   TransactionRetriesReportSpec$outboundSchema,
 } from "./transactionretriesreportspec.js";
 import {
   TransactionsReportSpec,
-  TransactionsReportSpec$inboundSchema,
   TransactionsReportSpec$Outbound,
   TransactionsReportSpec$outboundSchema,
 } from "./transactionsreportspec.js";
@@ -75,31 +67,6 @@ export type ReportCreate = {
 };
 
 /** @internal */
-export const Spec$inboundSchema: z.ZodType<Spec, z.ZodTypeDef, unknown> = z
-  .union([
-    AccountsReceivablesReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-    DetailedSettlementReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-    TransactionRetriesReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("transaction_retries") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-    TransactionsReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("transactions") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-  ]);
-
-/** @internal */
 export type Spec$Outbound =
   | (AccountsReceivablesReportSpec$Outbound & { model: "accounts_receivables" })
   | (DetailedSettlementReportSpec$Outbound & { model: "detailed_settlement" })
@@ -131,72 +98,9 @@ export const Spec$outboundSchema: z.ZodType<Spec$Outbound, z.ZodTypeDef, Spec> =
     ),
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Spec$ {
-  /** @deprecated use `Spec$inboundSchema` instead. */
-  export const inboundSchema = Spec$inboundSchema;
-  /** @deprecated use `Spec$outboundSchema` instead. */
-  export const outboundSchema = Spec$outboundSchema;
-  /** @deprecated use `Spec$Outbound` instead. */
-  export type Outbound = Spec$Outbound;
-}
-
 export function specToJSON(spec: Spec): string {
   return JSON.stringify(Spec$outboundSchema.parse(spec));
 }
-
-export function specFromJSON(
-  jsonString: string,
-): SafeParseResult<Spec, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Spec$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Spec' from JSON`,
-  );
-}
-
-/** @internal */
-export const ReportCreate$inboundSchema: z.ZodType<
-  ReportCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  description: z.nullable(z.string()).optional(),
-  schedule: ReportSchedule$inboundSchema,
-  schedule_enabled: z.boolean(),
-  schedule_timezone: z.string().default("Etc/UTC"),
-  spec: z.union([
-    AccountsReceivablesReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-    DetailedSettlementReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-    TransactionRetriesReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("transaction_retries") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-    TransactionsReportSpec$inboundSchema.and(
-      z.object({ model: z.literal("transactions") }).transform((v) => ({
-        model: v.model,
-      })),
-    ),
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "schedule_enabled": "scheduleEnabled",
-    "schedule_timezone": "scheduleTimezone",
-  });
-});
 
 /** @internal */
 export type ReportCreate$Outbound = {
@@ -254,29 +158,6 @@ export const ReportCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportCreate$ {
-  /** @deprecated use `ReportCreate$inboundSchema` instead. */
-  export const inboundSchema = ReportCreate$inboundSchema;
-  /** @deprecated use `ReportCreate$outboundSchema` instead. */
-  export const outboundSchema = ReportCreate$outboundSchema;
-  /** @deprecated use `ReportCreate$Outbound` instead. */
-  export type Outbound = ReportCreate$Outbound;
-}
-
 export function reportCreateToJSON(reportCreate: ReportCreate): string {
   return JSON.stringify(ReportCreate$outboundSchema.parse(reportCreate));
-}
-
-export function reportCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<ReportCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ReportCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ReportCreate' from JSON`,
-  );
 }

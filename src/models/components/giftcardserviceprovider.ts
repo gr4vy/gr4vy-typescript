@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const GiftCardServiceProvider = {
   MockGiftCard: "mock-gift-card",
@@ -25,24 +21,3 @@ export const GiftCardServiceProvider$inboundSchema: z.ZodType<
     z.nativeEnum(GiftCardServiceProvider),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const GiftCardServiceProvider$outboundSchema: z.ZodType<
-  GiftCardServiceProvider,
-  z.ZodTypeDef,
-  GiftCardServiceProvider
-> = z.union([
-  z.nativeEnum(GiftCardServiceProvider),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardServiceProvider$ {
-  /** @deprecated use `GiftCardServiceProvider$inboundSchema` instead. */
-  export const inboundSchema = GiftCardServiceProvider$inboundSchema;
-  /** @deprecated use `GiftCardServiceProvider$outboundSchema` instead. */
-  export const outboundSchema = GiftCardServiceProvider$outboundSchema;
-}

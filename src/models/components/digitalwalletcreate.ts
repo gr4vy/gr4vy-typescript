@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DigitalWalletProvider,
-  DigitalWalletProvider$inboundSchema,
   DigitalWalletProvider$outboundSchema,
 } from "./digitalwalletprovider.js";
 
@@ -25,30 +21,6 @@ export type DigitalWalletCreate = {
   domainNames?: Array<string> | undefined;
   acceptTermsAndConditions: boolean;
 };
-
-/** @internal */
-export const DigitalWalletCreate$inboundSchema: z.ZodType<
-  DigitalWalletCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  provider: DigitalWalletProvider$inboundSchema,
-  merchant_name: z.string(),
-  merchant_display_name: z.nullable(z.string()).optional(),
-  merchant_url: z.nullable(z.string()).optional(),
-  merchant_country_code: z.nullable(z.string()).optional(),
-  domain_names: z.array(z.string()).optional(),
-  accept_terms_and_conditions: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_name": "merchantName",
-    "merchant_display_name": "merchantDisplayName",
-    "merchant_url": "merchantUrl",
-    "merchant_country_code": "merchantCountryCode",
-    "domain_names": "domainNames",
-    "accept_terms_and_conditions": "acceptTermsAndConditions",
-  });
-});
 
 /** @internal */
 export type DigitalWalletCreate$Outbound = {
@@ -85,33 +57,10 @@ export const DigitalWalletCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigitalWalletCreate$ {
-  /** @deprecated use `DigitalWalletCreate$inboundSchema` instead. */
-  export const inboundSchema = DigitalWalletCreate$inboundSchema;
-  /** @deprecated use `DigitalWalletCreate$outboundSchema` instead. */
-  export const outboundSchema = DigitalWalletCreate$outboundSchema;
-  /** @deprecated use `DigitalWalletCreate$Outbound` instead. */
-  export type Outbound = DigitalWalletCreate$Outbound;
-}
-
 export function digitalWalletCreateToJSON(
   digitalWalletCreate: DigitalWalletCreate,
 ): string {
   return JSON.stringify(
     DigitalWalletCreate$outboundSchema.parse(digitalWalletCreate),
-  );
-}
-
-export function digitalWalletCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<DigitalWalletCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DigitalWalletCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DigitalWalletCreate' from JSON`,
   );
 }

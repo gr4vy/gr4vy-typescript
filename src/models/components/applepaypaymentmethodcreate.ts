@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create an Apple Pay transaction with a device or merchant token.
@@ -51,33 +48,6 @@ export type ApplePayPaymentMethodCreate = {
 };
 
 /** @internal */
-export const ApplePayPaymentMethodCreate$inboundSchema: z.ZodType<
-  ApplePayPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  cardholder_name: z.nullable(z.string()).optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-  card_suffix: z.nullable(z.string()).optional(),
-  card_scheme: z.nullable(z.string()).optional(),
-  card_type: z.nullable(z.string()).optional(),
-  method: z.literal("applepay").default("applepay").optional(),
-  token: z.record(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "buyer_id": "buyerId",
-    "cardholder_name": "cardholderName",
-    "redirect_url": "redirectUrl",
-    "card_suffix": "cardSuffix",
-    "card_scheme": "cardScheme",
-    "card_type": "cardType",
-  });
-});
-
-/** @internal */
 export type ApplePayPaymentMethodCreate$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
@@ -117,19 +87,6 @@ export const ApplePayPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplePayPaymentMethodCreate$ {
-  /** @deprecated use `ApplePayPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = ApplePayPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `ApplePayPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = ApplePayPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `ApplePayPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = ApplePayPaymentMethodCreate$Outbound;
-}
-
 export function applePayPaymentMethodCreateToJSON(
   applePayPaymentMethodCreate: ApplePayPaymentMethodCreate,
 ): string {
@@ -137,15 +94,5 @@ export function applePayPaymentMethodCreateToJSON(
     ApplePayPaymentMethodCreate$outboundSchema.parse(
       applePayPaymentMethodCreate,
     ),
-  );
-}
-
-export function applePayPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<ApplePayPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApplePayPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApplePayPaymentMethodCreate' from JSON`,
   );
 }

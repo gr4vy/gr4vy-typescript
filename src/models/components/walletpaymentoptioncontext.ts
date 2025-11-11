@@ -28,48 +28,6 @@ export const WalletPaymentOptionContext$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WalletPaymentOptionContext$Outbound = {
-  merchant_name: string;
-  supported_schemes: Array<string>;
-};
-
-/** @internal */
-export const WalletPaymentOptionContext$outboundSchema: z.ZodType<
-  WalletPaymentOptionContext$Outbound,
-  z.ZodTypeDef,
-  WalletPaymentOptionContext
-> = z.object({
-  merchantName: z.string(),
-  supportedSchemes: z.array(z.string()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantName: "merchant_name",
-    supportedSchemes: "supported_schemes",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WalletPaymentOptionContext$ {
-  /** @deprecated use `WalletPaymentOptionContext$inboundSchema` instead. */
-  export const inboundSchema = WalletPaymentOptionContext$inboundSchema;
-  /** @deprecated use `WalletPaymentOptionContext$outboundSchema` instead. */
-  export const outboundSchema = WalletPaymentOptionContext$outboundSchema;
-  /** @deprecated use `WalletPaymentOptionContext$Outbound` instead. */
-  export type Outbound = WalletPaymentOptionContext$Outbound;
-}
-
-export function walletPaymentOptionContextToJSON(
-  walletPaymentOptionContext: WalletPaymentOptionContext,
-): string {
-  return JSON.stringify(
-    WalletPaymentOptionContext$outboundSchema.parse(walletPaymentOptionContext),
-  );
-}
-
 export function walletPaymentOptionContextFromJSON(
   jsonString: string,
 ): SafeParseResult<WalletPaymentOptionContext, SDKValidationError> {

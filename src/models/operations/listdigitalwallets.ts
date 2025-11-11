@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListDigitalWalletsGlobals = {
   merchantAccountId?: string | undefined;
@@ -17,69 +14,6 @@ export type ListDigitalWalletsRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const ListDigitalWalletsGlobals$inboundSchema: z.ZodType<
-  ListDigitalWalletsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListDigitalWalletsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListDigitalWalletsGlobals$outboundSchema: z.ZodType<
-  ListDigitalWalletsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListDigitalWalletsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListDigitalWalletsGlobals$ {
-  /** @deprecated use `ListDigitalWalletsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListDigitalWalletsGlobals$inboundSchema;
-  /** @deprecated use `ListDigitalWalletsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListDigitalWalletsGlobals$outboundSchema;
-  /** @deprecated use `ListDigitalWalletsGlobals$Outbound` instead. */
-  export type Outbound = ListDigitalWalletsGlobals$Outbound;
-}
-
-export function listDigitalWalletsGlobalsToJSON(
-  listDigitalWalletsGlobals: ListDigitalWalletsGlobals,
-): string {
-  return JSON.stringify(
-    ListDigitalWalletsGlobals$outboundSchema.parse(listDigitalWalletsGlobals),
-  );
-}
-
-export function listDigitalWalletsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListDigitalWalletsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListDigitalWalletsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListDigitalWalletsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListDigitalWalletsRequest$inboundSchema: z.ZodType<
-  ListDigitalWalletsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-});
 
 /** @internal */
 export type ListDigitalWalletsRequest$Outbound = {
@@ -95,33 +29,10 @@ export const ListDigitalWalletsRequest$outboundSchema: z.ZodType<
   merchantAccountId: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListDigitalWalletsRequest$ {
-  /** @deprecated use `ListDigitalWalletsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListDigitalWalletsRequest$inboundSchema;
-  /** @deprecated use `ListDigitalWalletsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListDigitalWalletsRequest$outboundSchema;
-  /** @deprecated use `ListDigitalWalletsRequest$Outbound` instead. */
-  export type Outbound = ListDigitalWalletsRequest$Outbound;
-}
-
 export function listDigitalWalletsRequestToJSON(
   listDigitalWalletsRequest: ListDigitalWalletsRequest,
 ): string {
   return JSON.stringify(
     ListDigitalWalletsRequest$outboundSchema.parse(listDigitalWalletsRequest),
-  );
-}
-
-export function listDigitalWalletsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListDigitalWalletsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListDigitalWalletsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListDigitalWalletsRequest' from JSON`,
   );
 }

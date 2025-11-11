@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCardSchemeDefinitionsGlobals = {
   merchantAccountId?: string | undefined;
@@ -17,71 +14,6 @@ export type ListCardSchemeDefinitionsRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const ListCardSchemeDefinitionsGlobals$inboundSchema: z.ZodType<
-  ListCardSchemeDefinitionsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListCardSchemeDefinitionsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListCardSchemeDefinitionsGlobals$outboundSchema: z.ZodType<
-  ListCardSchemeDefinitionsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListCardSchemeDefinitionsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCardSchemeDefinitionsGlobals$ {
-  /** @deprecated use `ListCardSchemeDefinitionsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListCardSchemeDefinitionsGlobals$inboundSchema;
-  /** @deprecated use `ListCardSchemeDefinitionsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListCardSchemeDefinitionsGlobals$outboundSchema;
-  /** @deprecated use `ListCardSchemeDefinitionsGlobals$Outbound` instead. */
-  export type Outbound = ListCardSchemeDefinitionsGlobals$Outbound;
-}
-
-export function listCardSchemeDefinitionsGlobalsToJSON(
-  listCardSchemeDefinitionsGlobals: ListCardSchemeDefinitionsGlobals,
-): string {
-  return JSON.stringify(
-    ListCardSchemeDefinitionsGlobals$outboundSchema.parse(
-      listCardSchemeDefinitionsGlobals,
-    ),
-  );
-}
-
-export function listCardSchemeDefinitionsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCardSchemeDefinitionsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCardSchemeDefinitionsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCardSchemeDefinitionsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListCardSchemeDefinitionsRequest$inboundSchema: z.ZodType<
-  ListCardSchemeDefinitionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-});
 
 /** @internal */
 export type ListCardSchemeDefinitionsRequest$Outbound = {
@@ -97,19 +29,6 @@ export const ListCardSchemeDefinitionsRequest$outboundSchema: z.ZodType<
   merchantAccountId: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCardSchemeDefinitionsRequest$ {
-  /** @deprecated use `ListCardSchemeDefinitionsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListCardSchemeDefinitionsRequest$inboundSchema;
-  /** @deprecated use `ListCardSchemeDefinitionsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListCardSchemeDefinitionsRequest$outboundSchema;
-  /** @deprecated use `ListCardSchemeDefinitionsRequest$Outbound` instead. */
-  export type Outbound = ListCardSchemeDefinitionsRequest$Outbound;
-}
-
 export function listCardSchemeDefinitionsRequestToJSON(
   listCardSchemeDefinitionsRequest: ListCardSchemeDefinitionsRequest,
 ): string {
@@ -117,15 +36,5 @@ export function listCardSchemeDefinitionsRequestToJSON(
     ListCardSchemeDefinitionsRequest$outboundSchema.parse(
       listCardSchemeDefinitionsRequest,
     ),
-  );
-}
-
-export function listCardSchemeDefinitionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCardSchemeDefinitionsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCardSchemeDefinitionsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCardSchemeDefinitionsRequest' from JSON`,
   );
 }

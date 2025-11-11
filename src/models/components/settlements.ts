@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Settlement,
-  Settlement$inboundSchema,
-  Settlement$Outbound,
-  Settlement$outboundSchema,
-} from "./settlement.js";
+import { Settlement, Settlement$inboundSchema } from "./settlement.js";
 
 /**
  * A list of settlement records for a transaction.
@@ -31,37 +26,6 @@ export const Settlements$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(Settlement$inboundSchema),
 });
-
-/** @internal */
-export type Settlements$Outbound = {
-  items: Array<Settlement$Outbound>;
-};
-
-/** @internal */
-export const Settlements$outboundSchema: z.ZodType<
-  Settlements$Outbound,
-  z.ZodTypeDef,
-  Settlements
-> = z.object({
-  items: z.array(Settlement$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Settlements$ {
-  /** @deprecated use `Settlements$inboundSchema` instead. */
-  export const inboundSchema = Settlements$inboundSchema;
-  /** @deprecated use `Settlements$outboundSchema` instead. */
-  export const outboundSchema = Settlements$outboundSchema;
-  /** @deprecated use `Settlements$Outbound` instead. */
-  export type Outbound = Settlements$Outbound;
-}
-
-export function settlementsToJSON(settlements: Settlements): string {
-  return JSON.stringify(Settlements$outboundSchema.parse(settlements));
-}
 
 export function settlementsFromJSON(
   jsonString: string,

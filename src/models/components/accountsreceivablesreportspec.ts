@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountsReceivablesReportSpec = {
   /**
@@ -17,16 +14,6 @@ export type AccountsReceivablesReportSpec = {
    */
   params: { [k: string]: any };
 };
-
-/** @internal */
-export const AccountsReceivablesReportSpec$inboundSchema: z.ZodType<
-  AccountsReceivablesReportSpec,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  model: z.literal("accounts_receivables").default("accounts_receivables"),
-  params: z.record(z.any()),
-});
 
 /** @internal */
 export type AccountsReceivablesReportSpec$Outbound = {
@@ -46,19 +33,6 @@ export const AccountsReceivablesReportSpec$outboundSchema: z.ZodType<
   params: z.record(z.any()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountsReceivablesReportSpec$ {
-  /** @deprecated use `AccountsReceivablesReportSpec$inboundSchema` instead. */
-  export const inboundSchema = AccountsReceivablesReportSpec$inboundSchema;
-  /** @deprecated use `AccountsReceivablesReportSpec$outboundSchema` instead. */
-  export const outboundSchema = AccountsReceivablesReportSpec$outboundSchema;
-  /** @deprecated use `AccountsReceivablesReportSpec$Outbound` instead. */
-  export type Outbound = AccountsReceivablesReportSpec$Outbound;
-}
-
 export function accountsReceivablesReportSpecToJSON(
   accountsReceivablesReportSpec: AccountsReceivablesReportSpec,
 ): string {
@@ -66,15 +40,5 @@ export function accountsReceivablesReportSpecToJSON(
     AccountsReceivablesReportSpec$outboundSchema.parse(
       accountsReceivablesReportSpec,
     ),
-  );
-}
-
-export function accountsReceivablesReportSpecFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountsReceivablesReportSpec, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountsReceivablesReportSpec$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountsReceivablesReportSpec' from JSON`,
   );
 }

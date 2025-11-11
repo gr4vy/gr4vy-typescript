@@ -77,7 +77,6 @@ export const AgeGroup$inboundSchema: z.ZodType<
     z.nativeEnum(AgeGroup),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const AgeGroup$outboundSchema: z.ZodType<
   AgeGroup,
@@ -87,17 +86,6 @@ export const AgeGroup$outboundSchema: z.ZodType<
   z.nativeEnum(AgeGroup),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AgeGroup$ {
-  /** @deprecated use `AgeGroup$inboundSchema` instead. */
-  export const inboundSchema = AgeGroup$inboundSchema;
-  /** @deprecated use `AgeGroup$outboundSchema` instead. */
-  export const outboundSchema = AgeGroup$outboundSchema;
-}
 
 /** @internal */
 export const AirlinePassenger$inboundSchema: z.ZodType<
@@ -131,7 +119,6 @@ export const AirlinePassenger$inboundSchema: z.ZodType<
     "country_code": "countryCode",
   });
 });
-
 /** @internal */
 export type AirlinePassenger$Outbound = {
   age_group?: string | null | undefined;
@@ -180,19 +167,6 @@ export const AirlinePassenger$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AirlinePassenger$ {
-  /** @deprecated use `AirlinePassenger$inboundSchema` instead. */
-  export const inboundSchema = AirlinePassenger$inboundSchema;
-  /** @deprecated use `AirlinePassenger$outboundSchema` instead. */
-  export const outboundSchema = AirlinePassenger$outboundSchema;
-  /** @deprecated use `AirlinePassenger$Outbound` instead. */
-  export type Outbound = AirlinePassenger$Outbound;
-}
-
 export function airlinePassengerToJSON(
   airlinePassenger: AirlinePassenger,
 ): string {
@@ -200,7 +174,6 @@ export function airlinePassengerToJSON(
     AirlinePassenger$outboundSchema.parse(airlinePassenger),
   );
 }
-
 export function airlinePassengerFromJSON(
   jsonString: string,
 ): SafeParseResult<AirlinePassenger, SDKValidationError> {

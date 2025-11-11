@@ -10,31 +10,20 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DefinitionField,
   DefinitionField$inboundSchema,
-  DefinitionField$Outbound,
-  DefinitionField$outboundSchema,
 } from "./definitionfield.js";
 import {
   IntegrationClient,
   IntegrationClient$inboundSchema,
-  IntegrationClient$outboundSchema,
 } from "./integrationclient.js";
-import {
-  Method,
-  Method$inboundSchema,
-  Method$outboundSchema,
-} from "./method.js";
-import { Mode, Mode$inboundSchema, Mode$outboundSchema } from "./mode.js";
+import { Method, Method$inboundSchema } from "./method.js";
+import { Mode, Mode$inboundSchema } from "./mode.js";
 import {
   PaymentServiceConfiguration,
   PaymentServiceConfiguration$inboundSchema,
-  PaymentServiceConfiguration$Outbound,
-  PaymentServiceConfiguration$outboundSchema,
 } from "./paymentserviceconfiguration.js";
 import {
   RequiredCheckoutFields,
   RequiredCheckoutFields$inboundSchema,
-  RequiredCheckoutFields$Outbound,
-  RequiredCheckoutFields$outboundSchema,
 } from "./requiredcheckoutfields.js";
 
 export type PaymentServiceDefinition = {
@@ -123,82 +112,6 @@ export const PaymentServiceDefinition$inboundSchema: z.ZodType<
     "supported_integration_clients": "supportedIntegrationClients",
   });
 });
-
-/** @internal */
-export type PaymentServiceDefinition$Outbound = {
-  id: string;
-  type: "payment-service-definition";
-  display_name: string;
-  method: string;
-  fields: Array<DefinitionField$Outbound>;
-  reporting_fields: Array<DefinitionField$Outbound>;
-  supported_currencies: Array<string>;
-  supported_countries: Array<string>;
-  mode: string;
-  icon_url?: string | null | undefined;
-  supported_features: { [k: string]: boolean };
-  required_checkout_fields: Array<RequiredCheckoutFields$Outbound>;
-  configuration: PaymentServiceConfiguration$Outbound;
-  supported_integration_clients: Array<string> | null;
-};
-
-/** @internal */
-export const PaymentServiceDefinition$outboundSchema: z.ZodType<
-  PaymentServiceDefinition$Outbound,
-  z.ZodTypeDef,
-  PaymentServiceDefinition
-> = z.object({
-  id: z.string(),
-  type: z.literal("payment-service-definition").default(
-    "payment-service-definition" as const,
-  ),
-  displayName: z.string(),
-  method: Method$outboundSchema,
-  fields: z.array(DefinitionField$outboundSchema),
-  reportingFields: z.array(DefinitionField$outboundSchema),
-  supportedCurrencies: z.array(z.string()),
-  supportedCountries: z.array(z.string()),
-  mode: Mode$outboundSchema,
-  iconUrl: z.nullable(z.string()).optional(),
-  supportedFeatures: z.record(z.boolean()),
-  requiredCheckoutFields: z.array(RequiredCheckoutFields$outboundSchema),
-  configuration: PaymentServiceConfiguration$outboundSchema,
-  supportedIntegrationClients: z.nullable(
-    z.array(IntegrationClient$outboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    reportingFields: "reporting_fields",
-    supportedCurrencies: "supported_currencies",
-    supportedCountries: "supported_countries",
-    iconUrl: "icon_url",
-    supportedFeatures: "supported_features",
-    requiredCheckoutFields: "required_checkout_fields",
-    supportedIntegrationClients: "supported_integration_clients",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceDefinition$ {
-  /** @deprecated use `PaymentServiceDefinition$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceDefinition$inboundSchema;
-  /** @deprecated use `PaymentServiceDefinition$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceDefinition$outboundSchema;
-  /** @deprecated use `PaymentServiceDefinition$Outbound` instead. */
-  export type Outbound = PaymentServiceDefinition$Outbound;
-}
-
-export function paymentServiceDefinitionToJSON(
-  paymentServiceDefinition: PaymentServiceDefinition,
-): string {
-  return JSON.stringify(
-    PaymentServiceDefinition$outboundSchema.parse(paymentServiceDefinition),
-  );
-}
 
 export function paymentServiceDefinitionFromJSON(
   jsonString: string,

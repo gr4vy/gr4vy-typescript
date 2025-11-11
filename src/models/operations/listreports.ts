@@ -45,79 +45,6 @@ export type ListReportsResponse = {
 };
 
 /** @internal */
-export const ListReportsGlobals$inboundSchema: z.ZodType<
-  ListReportsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListReportsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListReportsGlobals$outboundSchema: z.ZodType<
-  ListReportsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListReportsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListReportsGlobals$ {
-  /** @deprecated use `ListReportsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListReportsGlobals$inboundSchema;
-  /** @deprecated use `ListReportsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListReportsGlobals$outboundSchema;
-  /** @deprecated use `ListReportsGlobals$Outbound` instead. */
-  export type Outbound = ListReportsGlobals$Outbound;
-}
-
-export function listReportsGlobalsToJSON(
-  listReportsGlobals: ListReportsGlobals,
-): string {
-  return JSON.stringify(
-    ListReportsGlobals$outboundSchema.parse(listReportsGlobals),
-  );
-}
-
-export function listReportsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListReportsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListReportsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListReportsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListReportsRequest$inboundSchema: z.ZodType<
-  ListReportsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  schedule: z.nullable(z.array(components.ReportSchedule$inboundSchema))
-    .optional(),
-  schedule_enabled: z.nullable(z.boolean()).optional(),
-  name: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "schedule_enabled": "scheduleEnabled",
-  });
-});
-
-/** @internal */
 export type ListReportsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -146,34 +73,11 @@ export const ListReportsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListReportsRequest$ {
-  /** @deprecated use `ListReportsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListReportsRequest$inboundSchema;
-  /** @deprecated use `ListReportsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListReportsRequest$outboundSchema;
-  /** @deprecated use `ListReportsRequest$Outbound` instead. */
-  export type Outbound = ListReportsRequest$Outbound;
-}
-
 export function listReportsRequestToJSON(
   listReportsRequest: ListReportsRequest,
 ): string {
   return JSON.stringify(
     ListReportsRequest$outboundSchema.parse(listReportsRequest),
-  );
-}
-
-export function listReportsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListReportsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListReportsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListReportsRequest' from JSON`,
   );
 }
 
@@ -189,45 +93,6 @@ export const ListReportsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListReportsResponse$Outbound = {
-  Result: components.Reports$Outbound;
-};
-
-/** @internal */
-export const ListReportsResponse$outboundSchema: z.ZodType<
-  ListReportsResponse$Outbound,
-  z.ZodTypeDef,
-  ListReportsResponse
-> = z.object({
-  result: components.Reports$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListReportsResponse$ {
-  /** @deprecated use `ListReportsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListReportsResponse$inboundSchema;
-  /** @deprecated use `ListReportsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListReportsResponse$outboundSchema;
-  /** @deprecated use `ListReportsResponse$Outbound` instead. */
-  export type Outbound = ListReportsResponse$Outbound;
-}
-
-export function listReportsResponseToJSON(
-  listReportsResponse: ListReportsResponse,
-): string {
-  return JSON.stringify(
-    ListReportsResponse$outboundSchema.parse(listReportsResponse),
-  );
-}
 
 export function listReportsResponseFromJSON(
   jsonString: string,

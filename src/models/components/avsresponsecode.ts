@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const AVSResponseCode = {
   Match: "match",
@@ -29,24 +25,3 @@ export const AVSResponseCode$inboundSchema: z.ZodType<
     z.nativeEnum(AVSResponseCode),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const AVSResponseCode$outboundSchema: z.ZodType<
-  AVSResponseCode,
-  z.ZodTypeDef,
-  AVSResponseCode
-> = z.union([
-  z.nativeEnum(AVSResponseCode),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AVSResponseCode$ {
-  /** @deprecated use `AVSResponseCode$inboundSchema` instead. */
-  export const inboundSchema = AVSResponseCode$inboundSchema;
-  /** @deprecated use `AVSResponseCode$outboundSchema` instead. */
-  export const outboundSchema = AVSResponseCode$outboundSchema;
-}

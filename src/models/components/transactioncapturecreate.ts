@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Airline,
-  Airline$inboundSchema,
   Airline$Outbound,
   Airline$outboundSchema,
 } from "./airline.js";
@@ -28,16 +24,6 @@ export type TransactionCaptureCreate = {
 };
 
 /** @internal */
-export const TransactionCaptureCreate$inboundSchema: z.ZodType<
-  TransactionCaptureCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  amount: z.nullable(z.number().int()).optional(),
-  airline: z.nullable(Airline$inboundSchema).optional(),
-});
-
-/** @internal */
 export type TransactionCaptureCreate$Outbound = {
   amount?: number | null | undefined;
   airline?: Airline$Outbound | null | undefined;
@@ -53,33 +39,10 @@ export const TransactionCaptureCreate$outboundSchema: z.ZodType<
   airline: z.nullable(Airline$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionCaptureCreate$ {
-  /** @deprecated use `TransactionCaptureCreate$inboundSchema` instead. */
-  export const inboundSchema = TransactionCaptureCreate$inboundSchema;
-  /** @deprecated use `TransactionCaptureCreate$outboundSchema` instead. */
-  export const outboundSchema = TransactionCaptureCreate$outboundSchema;
-  /** @deprecated use `TransactionCaptureCreate$Outbound` instead. */
-  export type Outbound = TransactionCaptureCreate$Outbound;
-}
-
 export function transactionCaptureCreateToJSON(
   transactionCaptureCreate: TransactionCaptureCreate,
 ): string {
   return JSON.stringify(
     TransactionCaptureCreate$outboundSchema.parse(transactionCaptureCreate),
-  );
-}
-
-export function transactionCaptureCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionCaptureCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionCaptureCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionCaptureCreate' from JSON`,
   );
 }

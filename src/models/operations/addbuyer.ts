@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddBuyerGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,72 +17,6 @@ export type AddBuyerRequest = {
   merchantAccountId?: string | null | undefined;
   buyerCreate: components.BuyerCreate;
 };
-
-/** @internal */
-export const AddBuyerGlobals$inboundSchema: z.ZodType<
-  AddBuyerGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type AddBuyerGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const AddBuyerGlobals$outboundSchema: z.ZodType<
-  AddBuyerGlobals$Outbound,
-  z.ZodTypeDef,
-  AddBuyerGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AddBuyerGlobals$ {
-  /** @deprecated use `AddBuyerGlobals$inboundSchema` instead. */
-  export const inboundSchema = AddBuyerGlobals$inboundSchema;
-  /** @deprecated use `AddBuyerGlobals$outboundSchema` instead. */
-  export const outboundSchema = AddBuyerGlobals$outboundSchema;
-  /** @deprecated use `AddBuyerGlobals$Outbound` instead. */
-  export type Outbound = AddBuyerGlobals$Outbound;
-}
-
-export function addBuyerGlobalsToJSON(
-  addBuyerGlobals: AddBuyerGlobals,
-): string {
-  return JSON.stringify(AddBuyerGlobals$outboundSchema.parse(addBuyerGlobals));
-}
-
-export function addBuyerGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AddBuyerGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddBuyerGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddBuyerGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AddBuyerRequest$inboundSchema: z.ZodType<
-  AddBuyerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  BuyerCreate: components.BuyerCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "BuyerCreate": "buyerCreate",
-  });
-});
 
 /** @internal */
 export type AddBuyerRequest$Outbound = {
@@ -107,31 +38,8 @@ export const AddBuyerRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AddBuyerRequest$ {
-  /** @deprecated use `AddBuyerRequest$inboundSchema` instead. */
-  export const inboundSchema = AddBuyerRequest$inboundSchema;
-  /** @deprecated use `AddBuyerRequest$outboundSchema` instead. */
-  export const outboundSchema = AddBuyerRequest$outboundSchema;
-  /** @deprecated use `AddBuyerRequest$Outbound` instead. */
-  export type Outbound = AddBuyerRequest$Outbound;
-}
-
 export function addBuyerRequestToJSON(
   addBuyerRequest: AddBuyerRequest,
 ): string {
   return JSON.stringify(AddBuyerRequest$outboundSchema.parse(addBuyerRequest));
-}
-
-export function addBuyerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AddBuyerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddBuyerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddBuyerRequest' from JSON`,
-  );
 }

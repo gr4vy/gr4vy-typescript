@@ -61,65 +61,6 @@ export const MerchantProfileSchemeSummary$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MerchantProfileSchemeSummary$Outbound = {
-  merchant_acquirer_bin: string;
-  merchant_acquirer_id: string;
-  merchant_name: string;
-  merchant_country_code: string;
-  merchant_category_code: string;
-  merchant_url: string;
-  created_at: string;
-};
-
-/** @internal */
-export const MerchantProfileSchemeSummary$outboundSchema: z.ZodType<
-  MerchantProfileSchemeSummary$Outbound,
-  z.ZodTypeDef,
-  MerchantProfileSchemeSummary
-> = z.object({
-  merchantAcquirerBin: z.string(),
-  merchantAcquirerId: z.string(),
-  merchantName: z.string(),
-  merchantCountryCode: z.string(),
-  merchantCategoryCode: z.string(),
-  merchantUrl: z.string(),
-  createdAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAcquirerBin: "merchant_acquirer_bin",
-    merchantAcquirerId: "merchant_acquirer_id",
-    merchantName: "merchant_name",
-    merchantCountryCode: "merchant_country_code",
-    merchantCategoryCode: "merchant_category_code",
-    merchantUrl: "merchant_url",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MerchantProfileSchemeSummary$ {
-  /** @deprecated use `MerchantProfileSchemeSummary$inboundSchema` instead. */
-  export const inboundSchema = MerchantProfileSchemeSummary$inboundSchema;
-  /** @deprecated use `MerchantProfileSchemeSummary$outboundSchema` instead. */
-  export const outboundSchema = MerchantProfileSchemeSummary$outboundSchema;
-  /** @deprecated use `MerchantProfileSchemeSummary$Outbound` instead. */
-  export type Outbound = MerchantProfileSchemeSummary$Outbound;
-}
-
-export function merchantProfileSchemeSummaryToJSON(
-  merchantProfileSchemeSummary: MerchantProfileSchemeSummary,
-): string {
-  return JSON.stringify(
-    MerchantProfileSchemeSummary$outboundSchema.parse(
-      merchantProfileSchemeSummary,
-    ),
-  );
-}
-
 export function merchantProfileSchemeSummaryFromJSON(
   jsonString: string,
 ): SafeParseResult<MerchantProfileSchemeSummary, SDKValidationError> {

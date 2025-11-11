@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   StripeConnectOptions,
-  StripeConnectOptions$inboundSchema,
   StripeConnectOptions$Outbound,
   StripeConnectOptions$outboundSchema,
 } from "./stripeconnectoptions.js";
@@ -24,21 +20,6 @@ export type StripeOptions = {
    */
   stripeConnect?: StripeConnectOptions | null | undefined;
 };
-
-/** @internal */
-export const StripeOptions$inboundSchema: z.ZodType<
-  StripeOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  error_on_requires_action: z.nullable(z.boolean()).optional(),
-  stripe_connect: z.nullable(StripeConnectOptions$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "error_on_requires_action": "errorOnRequiresAction",
-    "stripe_connect": "stripeConnect",
-  });
-});
 
 /** @internal */
 export type StripeOptions$Outbound = {
@@ -61,29 +42,6 @@ export const StripeOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StripeOptions$ {
-  /** @deprecated use `StripeOptions$inboundSchema` instead. */
-  export const inboundSchema = StripeOptions$inboundSchema;
-  /** @deprecated use `StripeOptions$outboundSchema` instead. */
-  export const outboundSchema = StripeOptions$outboundSchema;
-  /** @deprecated use `StripeOptions$Outbound` instead. */
-  export type Outbound = StripeOptions$Outbound;
-}
-
 export function stripeOptionsToJSON(stripeOptions: StripeOptions): string {
   return JSON.stringify(StripeOptions$outboundSchema.parse(stripeOptions));
-}
-
-export function stripeOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<StripeOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => StripeOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'StripeOptions' from JSON`,
-  );
 }

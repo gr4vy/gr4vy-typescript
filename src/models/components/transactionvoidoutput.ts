@@ -10,14 +10,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransactionOutput,
   TransactionOutput$inboundSchema,
-  TransactionOutput$Outbound,
-  TransactionOutput$outboundSchema,
 } from "./transactionoutput.js";
-import {
-  VoidStatus,
-  VoidStatus$inboundSchema,
-  VoidStatus$outboundSchema,
-} from "./voidstatus.js";
+import { VoidStatus, VoidStatus$inboundSchema } from "./voidstatus.js";
 
 export type TransactionVoidOutput = {
   /**
@@ -61,56 +55,6 @@ export const TransactionVoidOutput$inboundSchema: z.ZodType<
     "raw_response_description": "rawResponseDescription",
   });
 });
-
-/** @internal */
-export type TransactionVoidOutput$Outbound = {
-  type: "transaction-void";
-  status: string;
-  code: string | null;
-  raw_response_code: string | null;
-  raw_response_description: string | null;
-  transaction: TransactionOutput$Outbound;
-};
-
-/** @internal */
-export const TransactionVoidOutput$outboundSchema: z.ZodType<
-  TransactionVoidOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionVoidOutput
-> = z.object({
-  type: z.literal("transaction-void").default("transaction-void" as const),
-  status: VoidStatus$outboundSchema,
-  code: z.nullable(z.string()),
-  rawResponseCode: z.nullable(z.string()),
-  rawResponseDescription: z.nullable(z.string()),
-  transaction: TransactionOutput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    rawResponseCode: "raw_response_code",
-    rawResponseDescription: "raw_response_description",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionVoidOutput$ {
-  /** @deprecated use `TransactionVoidOutput$inboundSchema` instead. */
-  export const inboundSchema = TransactionVoidOutput$inboundSchema;
-  /** @deprecated use `TransactionVoidOutput$outboundSchema` instead. */
-  export const outboundSchema = TransactionVoidOutput$outboundSchema;
-  /** @deprecated use `TransactionVoidOutput$Outbound` instead. */
-  export type Outbound = TransactionVoidOutput$Outbound;
-}
-
-export function transactionVoidOutputToJSON(
-  transactionVoidOutput: TransactionVoidOutput,
-): string {
-  return JSON.stringify(
-    TransactionVoidOutput$outboundSchema.parse(transactionVoidOutput),
-  );
-}
 
 export function transactionVoidOutputFromJSON(
   jsonString: string,

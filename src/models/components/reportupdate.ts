@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ReportUpdate = {
   /**
@@ -22,21 +19,6 @@ export type ReportUpdate = {
    */
   scheduleEnabled?: boolean | null | undefined;
 };
-
-/** @internal */
-export const ReportUpdate$inboundSchema: z.ZodType<
-  ReportUpdate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  schedule_enabled: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "schedule_enabled": "scheduleEnabled",
-  });
-});
 
 /** @internal */
 export type ReportUpdate$Outbound = {
@@ -60,29 +42,6 @@ export const ReportUpdate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportUpdate$ {
-  /** @deprecated use `ReportUpdate$inboundSchema` instead. */
-  export const inboundSchema = ReportUpdate$inboundSchema;
-  /** @deprecated use `ReportUpdate$outboundSchema` instead. */
-  export const outboundSchema = ReportUpdate$outboundSchema;
-  /** @deprecated use `ReportUpdate$Outbound` instead. */
-  export type Outbound = ReportUpdate$Outbound;
-}
-
 export function reportUpdateToJSON(reportUpdate: ReportUpdate): string {
   return JSON.stringify(ReportUpdate$outboundSchema.parse(reportUpdate));
-}
-
-export function reportUpdateFromJSON(
-  jsonString: string,
-): SafeParseResult<ReportUpdate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ReportUpdate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ReportUpdate' from JSON`,
-  );
 }

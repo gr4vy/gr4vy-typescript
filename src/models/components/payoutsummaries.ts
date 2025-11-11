@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  PayoutSummary,
-  PayoutSummary$inboundSchema,
-  PayoutSummary$Outbound,
-  PayoutSummary$outboundSchema,
-} from "./payoutsummary.js";
+import { PayoutSummary, PayoutSummary$inboundSchema } from "./payoutsummary.js";
 
 export type PayoutSummaries = {
   /**
@@ -49,50 +44,6 @@ export const PayoutSummaries$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type PayoutSummaries$Outbound = {
-  items: Array<PayoutSummary$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const PayoutSummaries$outboundSchema: z.ZodType<
-  PayoutSummaries$Outbound,
-  z.ZodTypeDef,
-  PayoutSummaries
-> = z.object({
-  items: z.array(PayoutSummary$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutSummaries$ {
-  /** @deprecated use `PayoutSummaries$inboundSchema` instead. */
-  export const inboundSchema = PayoutSummaries$inboundSchema;
-  /** @deprecated use `PayoutSummaries$outboundSchema` instead. */
-  export const outboundSchema = PayoutSummaries$outboundSchema;
-  /** @deprecated use `PayoutSummaries$Outbound` instead. */
-  export type Outbound = PayoutSummaries$Outbound;
-}
-
-export function payoutSummariesToJSON(
-  payoutSummaries: PayoutSummaries,
-): string {
-  return JSON.stringify(PayoutSummaries$outboundSchema.parse(payoutSummaries));
-}
 
 export function payoutSummariesFromJSON(
   jsonString: string,

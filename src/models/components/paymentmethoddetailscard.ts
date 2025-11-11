@@ -7,11 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardType,
-  CardType$inboundSchema,
-  CardType$outboundSchema,
-} from "./cardtype.js";
+import { CardType, CardType$inboundSchema } from "./cardtype.js";
 
 export type PaymentMethodDetailsCard = {
   bin?: string | null | undefined;
@@ -34,50 +30,6 @@ export const PaymentMethodDetailsCard$inboundSchema: z.ZodType<
     "card_issuer_name": "cardIssuerName",
   });
 });
-
-/** @internal */
-export type PaymentMethodDetailsCard$Outbound = {
-  bin?: string | null | undefined;
-  card_type?: string | null | undefined;
-  card_issuer_name?: string | null | undefined;
-};
-
-/** @internal */
-export const PaymentMethodDetailsCard$outboundSchema: z.ZodType<
-  PaymentMethodDetailsCard$Outbound,
-  z.ZodTypeDef,
-  PaymentMethodDetailsCard
-> = z.object({
-  bin: z.nullable(z.string()).optional(),
-  cardType: z.nullable(CardType$outboundSchema).optional(),
-  cardIssuerName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cardType: "card_type",
-    cardIssuerName: "card_issuer_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethodDetailsCard$ {
-  /** @deprecated use `PaymentMethodDetailsCard$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethodDetailsCard$inboundSchema;
-  /** @deprecated use `PaymentMethodDetailsCard$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethodDetailsCard$outboundSchema;
-  /** @deprecated use `PaymentMethodDetailsCard$Outbound` instead. */
-  export type Outbound = PaymentMethodDetailsCard$Outbound;
-}
-
-export function paymentMethodDetailsCardToJSON(
-  paymentMethodDetailsCard: PaymentMethodDetailsCard,
-): string {
-  return JSON.stringify(
-    PaymentMethodDetailsCard$outboundSchema.parse(paymentMethodDetailsCard),
-  );
-}
 
 export function paymentMethodDetailsCardFromJSON(
   jsonString: string,

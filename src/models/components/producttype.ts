@@ -31,7 +31,6 @@ export const ProductType$inboundSchema: z.ZodType<
     z.nativeEnum(ProductType),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const ProductType$outboundSchema: z.ZodType<
   ProductType,
@@ -41,14 +40,3 @@ export const ProductType$outboundSchema: z.ZodType<
   z.nativeEnum(ProductType),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProductType$ {
-  /** @deprecated use `ProductType$inboundSchema` instead. */
-  export const inboundSchema = ProductType$inboundSchema;
-  /** @deprecated use `ProductType$outboundSchema` instead. */
-  export const outboundSchema = ProductType$outboundSchema;
-}

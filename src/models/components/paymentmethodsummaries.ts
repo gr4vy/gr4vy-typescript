@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentMethodSummaryOutput,
   PaymentMethodSummaryOutput$inboundSchema,
-  PaymentMethodSummaryOutput$Outbound,
-  PaymentMethodSummaryOutput$outboundSchema,
 } from "./paymentmethodsummaryoutput.js";
 
 export type PaymentMethodSummaries = {
@@ -28,41 +26,6 @@ export const PaymentMethodSummaries$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(PaymentMethodSummaryOutput$inboundSchema),
 });
-
-/** @internal */
-export type PaymentMethodSummaries$Outbound = {
-  items: Array<PaymentMethodSummaryOutput$Outbound>;
-};
-
-/** @internal */
-export const PaymentMethodSummaries$outboundSchema: z.ZodType<
-  PaymentMethodSummaries$Outbound,
-  z.ZodTypeDef,
-  PaymentMethodSummaries
-> = z.object({
-  items: z.array(PaymentMethodSummaryOutput$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethodSummaries$ {
-  /** @deprecated use `PaymentMethodSummaries$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethodSummaries$inboundSchema;
-  /** @deprecated use `PaymentMethodSummaries$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethodSummaries$outboundSchema;
-  /** @deprecated use `PaymentMethodSummaries$Outbound` instead. */
-  export type Outbound = PaymentMethodSummaries$Outbound;
-}
-
-export function paymentMethodSummariesToJSON(
-  paymentMethodSummaries: PaymentMethodSummaries,
-): string {
-  return JSON.stringify(
-    PaymentMethodSummaries$outboundSchema.parse(paymentMethodSummaries),
-  );
-}
 
 export function paymentMethodSummariesFromJSON(
   jsonString: string,

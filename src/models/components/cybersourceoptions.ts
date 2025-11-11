@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CybersourceOptions = {
   /**
@@ -22,23 +19,6 @@ export type CybersourceOptions = {
    */
   shipToMethod?: string | null | undefined;
 };
-
-/** @internal */
-export const CybersourceOptions$inboundSchema: z.ZodType<
-  CybersourceOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  meta_key_merchant_id: z.nullable(z.string()).optional(),
-  merchant_defined_information: z.nullable(z.record(z.string())).optional(),
-  ship_to_method: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "meta_key_merchant_id": "metaKeyMerchantId",
-    "merchant_defined_information": "merchantDefinedInformation",
-    "ship_to_method": "shipToMethod",
-  });
-});
 
 /** @internal */
 export type CybersourceOptions$Outbound = {
@@ -64,33 +44,10 @@ export const CybersourceOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CybersourceOptions$ {
-  /** @deprecated use `CybersourceOptions$inboundSchema` instead. */
-  export const inboundSchema = CybersourceOptions$inboundSchema;
-  /** @deprecated use `CybersourceOptions$outboundSchema` instead. */
-  export const outboundSchema = CybersourceOptions$outboundSchema;
-  /** @deprecated use `CybersourceOptions$Outbound` instead. */
-  export type Outbound = CybersourceOptions$Outbound;
-}
-
 export function cybersourceOptionsToJSON(
   cybersourceOptions: CybersourceOptions,
 ): string {
   return JSON.stringify(
     CybersourceOptions$outboundSchema.parse(cybersourceOptions),
-  );
-}
-
-export function cybersourceOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<CybersourceOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CybersourceOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CybersourceOptions' from JSON`,
   );
 }

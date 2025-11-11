@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DlocalUPIRecurringInfoOptions,
-  DlocalUPIRecurringInfoOptions$inboundSchema,
   DlocalUPIRecurringInfoOptions$Outbound,
   DlocalUPIRecurringInfoOptions$outboundSchema,
 } from "./dlocalupirecurringinfooptions.js";
@@ -42,25 +38,6 @@ export type DlocalUPIWalletOptions = {
 };
 
 /** @internal */
-export const DlocalUPIWalletOptions$inboundSchema: z.ZodType<
-  DlocalUPIWalletOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  token: z.nullable(z.string()).optional(),
-  username: z.nullable(z.string()).optional(),
-  verify: z.nullable(z.boolean()).optional(),
-  recurring_info: z.nullable(DlocalUPIRecurringInfoOptions$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "recurring_info": "recurringInfo",
-  });
-});
-
-/** @internal */
 export type DlocalUPIWalletOptions$Outbound = {
   name?: string | null | undefined;
   email?: string | null | undefined;
@@ -89,33 +66,10 @@ export const DlocalUPIWalletOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DlocalUPIWalletOptions$ {
-  /** @deprecated use `DlocalUPIWalletOptions$inboundSchema` instead. */
-  export const inboundSchema = DlocalUPIWalletOptions$inboundSchema;
-  /** @deprecated use `DlocalUPIWalletOptions$outboundSchema` instead. */
-  export const outboundSchema = DlocalUPIWalletOptions$outboundSchema;
-  /** @deprecated use `DlocalUPIWalletOptions$Outbound` instead. */
-  export type Outbound = DlocalUPIWalletOptions$Outbound;
-}
-
 export function dlocalUPIWalletOptionsToJSON(
   dlocalUPIWalletOptions: DlocalUPIWalletOptions,
 ): string {
   return JSON.stringify(
     DlocalUPIWalletOptions$outboundSchema.parse(dlocalUPIWalletOptions),
-  );
-}
-
-export function dlocalUPIWalletOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<DlocalUPIWalletOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DlocalUPIWalletOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DlocalUPIWalletOptions' from JSON`,
   );
 }

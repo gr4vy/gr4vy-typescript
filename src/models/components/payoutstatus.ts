@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const PayoutStatus = {
   Declined: "declined",
@@ -27,24 +23,3 @@ export const PayoutStatus$inboundSchema: z.ZodType<
     z.nativeEnum(PayoutStatus),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const PayoutStatus$outboundSchema: z.ZodType<
-  PayoutStatus,
-  z.ZodTypeDef,
-  PayoutStatus
-> = z.union([
-  z.nativeEnum(PayoutStatus),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutStatus$ {
-  /** @deprecated use `PayoutStatus$inboundSchema` instead. */
-  export const inboundSchema = PayoutStatus$inboundSchema;
-  /** @deprecated use `PayoutStatus$outboundSchema` instead. */
-  export const outboundSchema = PayoutStatus$outboundSchema;
-}

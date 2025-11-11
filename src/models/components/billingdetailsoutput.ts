@@ -7,18 +7,8 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
-import {
-  TaxId,
-  TaxId$inboundSchema,
-  TaxId$Outbound,
-  TaxId$outboundSchema,
-} from "./taxid.js";
+import { Address, Address$inboundSchema } from "./address.js";
+import { TaxId, TaxId$inboundSchema } from "./taxid.js";
 
 export type BillingDetailsOutput = {
   /**
@@ -68,59 +58,6 @@ export const BillingDetailsOutput$inboundSchema: z.ZodType<
     "tax_id": "taxId",
   });
 });
-
-/** @internal */
-export type BillingDetailsOutput$Outbound = {
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  email_address?: string | null | undefined;
-  phone_number?: string | null | undefined;
-  address?: Address$Outbound | null | undefined;
-  tax_id?: TaxId$Outbound | null | undefined;
-};
-
-/** @internal */
-export const BillingDetailsOutput$outboundSchema: z.ZodType<
-  BillingDetailsOutput$Outbound,
-  z.ZodTypeDef,
-  BillingDetailsOutput
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$outboundSchema).optional(),
-  taxId: z.nullable(TaxId$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    phoneNumber: "phone_number",
-    taxId: "tax_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillingDetailsOutput$ {
-  /** @deprecated use `BillingDetailsOutput$inboundSchema` instead. */
-  export const inboundSchema = BillingDetailsOutput$inboundSchema;
-  /** @deprecated use `BillingDetailsOutput$outboundSchema` instead. */
-  export const outboundSchema = BillingDetailsOutput$outboundSchema;
-  /** @deprecated use `BillingDetailsOutput$Outbound` instead. */
-  export type Outbound = BillingDetailsOutput$Outbound;
-}
-
-export function billingDetailsOutputToJSON(
-  billingDetailsOutput: BillingDetailsOutput,
-): string {
-  return JSON.stringify(
-    BillingDetailsOutput$outboundSchema.parse(billingDetailsOutput),
-  );
-}
 
 export function billingDetailsOutputFromJSON(
   jsonString: string,

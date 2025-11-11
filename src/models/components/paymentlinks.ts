@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  PaymentLink,
-  PaymentLink$inboundSchema,
-  PaymentLink$Outbound,
-  PaymentLink$outboundSchema,
-} from "./paymentlink.js";
+import { PaymentLink, PaymentLink$inboundSchema } from "./paymentlink.js";
 
 export type PaymentLinks = {
   /**
@@ -49,48 +44,6 @@ export const PaymentLinks$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type PaymentLinks$Outbound = {
-  items: Array<PaymentLink$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const PaymentLinks$outboundSchema: z.ZodType<
-  PaymentLinks$Outbound,
-  z.ZodTypeDef,
-  PaymentLinks
-> = z.object({
-  items: z.array(PaymentLink$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentLinks$ {
-  /** @deprecated use `PaymentLinks$inboundSchema` instead. */
-  export const inboundSchema = PaymentLinks$inboundSchema;
-  /** @deprecated use `PaymentLinks$outboundSchema` instead. */
-  export const outboundSchema = PaymentLinks$outboundSchema;
-  /** @deprecated use `PaymentLinks$Outbound` instead. */
-  export type Outbound = PaymentLinks$Outbound;
-}
-
-export function paymentLinksToJSON(paymentLinks: PaymentLinks): string {
-  return JSON.stringify(PaymentLinks$outboundSchema.parse(paymentLinks));
-}
 
 export function paymentLinksFromJSON(
   jsonString: string,

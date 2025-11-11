@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const VoidStatus = {
   Succeeded: "succeeded",
@@ -27,24 +23,3 @@ export const VoidStatus$inboundSchema: z.ZodType<
     z.nativeEnum(VoidStatus),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const VoidStatus$outboundSchema: z.ZodType<
-  VoidStatus,
-  z.ZodTypeDef,
-  VoidStatus
-> = z.union([
-  z.nativeEnum(VoidStatus),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VoidStatus$ {
-  /** @deprecated use `VoidStatus$inboundSchema` instead. */
-  export const inboundSchema = VoidStatus$inboundSchema;
-  /** @deprecated use `VoidStatus$outboundSchema` instead. */
-  export const outboundSchema = VoidStatus$outboundSchema;
-}

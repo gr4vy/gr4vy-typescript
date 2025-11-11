@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountUpdaterJobCreate = {
   /**
@@ -14,19 +11,6 @@ export type AccountUpdaterJobCreate = {
    */
   paymentMethodIds: Array<string>;
 };
-
-/** @internal */
-export const AccountUpdaterJobCreate$inboundSchema: z.ZodType<
-  AccountUpdaterJobCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_method_ids: z.array(z.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method_ids": "paymentMethodIds",
-  });
-});
 
 /** @internal */
 export type AccountUpdaterJobCreate$Outbound = {
@@ -46,33 +30,10 @@ export const AccountUpdaterJobCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountUpdaterJobCreate$ {
-  /** @deprecated use `AccountUpdaterJobCreate$inboundSchema` instead. */
-  export const inboundSchema = AccountUpdaterJobCreate$inboundSchema;
-  /** @deprecated use `AccountUpdaterJobCreate$outboundSchema` instead. */
-  export const outboundSchema = AccountUpdaterJobCreate$outboundSchema;
-  /** @deprecated use `AccountUpdaterJobCreate$Outbound` instead. */
-  export type Outbound = AccountUpdaterJobCreate$Outbound;
-}
-
 export function accountUpdaterJobCreateToJSON(
   accountUpdaterJobCreate: AccountUpdaterJobCreate,
 ): string {
   return JSON.stringify(
     AccountUpdaterJobCreate$outboundSchema.parse(accountUpdaterJobCreate),
-  );
-}
-
-export function accountUpdaterJobCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountUpdaterJobCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountUpdaterJobCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountUpdaterJobCreate' from JSON`,
   );
 }

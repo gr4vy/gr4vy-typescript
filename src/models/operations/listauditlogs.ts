@@ -45,79 +45,6 @@ export type ListAuditLogsResponse = {
 };
 
 /** @internal */
-export const ListAuditLogsGlobals$inboundSchema: z.ZodType<
-  ListAuditLogsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListAuditLogsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListAuditLogsGlobals$outboundSchema: z.ZodType<
-  ListAuditLogsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListAuditLogsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAuditLogsGlobals$ {
-  /** @deprecated use `ListAuditLogsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListAuditLogsGlobals$inboundSchema;
-  /** @deprecated use `ListAuditLogsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListAuditLogsGlobals$outboundSchema;
-  /** @deprecated use `ListAuditLogsGlobals$Outbound` instead. */
-  export type Outbound = ListAuditLogsGlobals$Outbound;
-}
-
-export function listAuditLogsGlobalsToJSON(
-  listAuditLogsGlobals: ListAuditLogsGlobals,
-): string {
-  return JSON.stringify(
-    ListAuditLogsGlobals$outboundSchema.parse(listAuditLogsGlobals),
-  );
-}
-
-export function listAuditLogsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListAuditLogsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListAuditLogsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListAuditLogsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListAuditLogsRequest$inboundSchema: z.ZodType<
-  ListAuditLogsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  action: z.nullable(components.AuditLogAction$inboundSchema).optional(),
-  user_id: z.nullable(z.string()).optional(),
-  resource_type: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "user_id": "userId",
-    "resource_type": "resourceType",
-  });
-});
-
-/** @internal */
 export type ListAuditLogsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -146,34 +73,11 @@ export const ListAuditLogsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAuditLogsRequest$ {
-  /** @deprecated use `ListAuditLogsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListAuditLogsRequest$inboundSchema;
-  /** @deprecated use `ListAuditLogsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListAuditLogsRequest$outboundSchema;
-  /** @deprecated use `ListAuditLogsRequest$Outbound` instead. */
-  export type Outbound = ListAuditLogsRequest$Outbound;
-}
-
 export function listAuditLogsRequestToJSON(
   listAuditLogsRequest: ListAuditLogsRequest,
 ): string {
   return JSON.stringify(
     ListAuditLogsRequest$outboundSchema.parse(listAuditLogsRequest),
-  );
-}
-
-export function listAuditLogsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListAuditLogsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListAuditLogsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListAuditLogsRequest' from JSON`,
   );
 }
 
@@ -189,45 +93,6 @@ export const ListAuditLogsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListAuditLogsResponse$Outbound = {
-  Result: components.AuditLogEntries$Outbound;
-};
-
-/** @internal */
-export const ListAuditLogsResponse$outboundSchema: z.ZodType<
-  ListAuditLogsResponse$Outbound,
-  z.ZodTypeDef,
-  ListAuditLogsResponse
-> = z.object({
-  result: components.AuditLogEntries$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAuditLogsResponse$ {
-  /** @deprecated use `ListAuditLogsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListAuditLogsResponse$inboundSchema;
-  /** @deprecated use `ListAuditLogsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListAuditLogsResponse$outboundSchema;
-  /** @deprecated use `ListAuditLogsResponse$Outbound` instead. */
-  export type Outbound = ListAuditLogsResponse$Outbound;
-}
-
-export function listAuditLogsResponseToJSON(
-  listAuditLogsResponse: ListAuditLogsResponse,
-): string {
-  return JSON.stringify(
-    ListAuditLogsResponse$outboundSchema.parse(listAuditLogsResponse),
-  );
-}
 
 export function listAuditLogsResponseFromJSON(
   jsonString: string,

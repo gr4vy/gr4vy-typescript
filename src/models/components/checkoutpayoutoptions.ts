@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CheckoutPayoutOptions = {
   /**
@@ -18,21 +15,6 @@ export type CheckoutPayoutOptions = {
    */
   sourceId: string;
 };
-
-/** @internal */
-export const CheckoutPayoutOptions$inboundSchema: z.ZodType<
-  CheckoutPayoutOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  processing_channel_id: z.string(),
-  source_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "processing_channel_id": "processingChannelId",
-    "source_id": "sourceId",
-  });
-});
 
 /** @internal */
 export type CheckoutPayoutOptions$Outbound = {
@@ -55,33 +37,10 @@ export const CheckoutPayoutOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutPayoutOptions$ {
-  /** @deprecated use `CheckoutPayoutOptions$inboundSchema` instead. */
-  export const inboundSchema = CheckoutPayoutOptions$inboundSchema;
-  /** @deprecated use `CheckoutPayoutOptions$outboundSchema` instead. */
-  export const outboundSchema = CheckoutPayoutOptions$outboundSchema;
-  /** @deprecated use `CheckoutPayoutOptions$Outbound` instead. */
-  export type Outbound = CheckoutPayoutOptions$Outbound;
-}
-
 export function checkoutPayoutOptionsToJSON(
   checkoutPayoutOptions: CheckoutPayoutOptions,
 ): string {
   return JSON.stringify(
     CheckoutPayoutOptions$outboundSchema.parse(checkoutPayoutOptions),
-  );
-}
-
-export function checkoutPayoutOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<CheckoutPayoutOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CheckoutPayoutOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutPayoutOptions' from JSON`,
   );
 }

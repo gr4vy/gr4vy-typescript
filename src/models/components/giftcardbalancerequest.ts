@@ -3,18 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   GiftCardRequest,
-  GiftCardRequest$inboundSchema,
   GiftCardRequest$Outbound,
   GiftCardRequest$outboundSchema,
 } from "./giftcardrequest.js";
 import {
   GiftCardStoredRequest,
-  GiftCardStoredRequest$inboundSchema,
   GiftCardStoredRequest$Outbound,
   GiftCardStoredRequest$outboundSchema,
 } from "./giftcardstoredrequest.js";
@@ -27,10 +22,6 @@ export type GiftCardBalanceRequest = {
    */
   items: Array<GiftCardRequest | GiftCardStoredRequest>;
 };
-
-/** @internal */
-export const Items$inboundSchema: z.ZodType<Items, z.ZodTypeDef, unknown> = z
-  .union([GiftCardRequest$inboundSchema, GiftCardStoredRequest$inboundSchema]);
 
 /** @internal */
 export type Items$Outbound =
@@ -47,46 +38,9 @@ export const Items$outboundSchema: z.ZodType<
   GiftCardStoredRequest$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Items$ {
-  /** @deprecated use `Items$inboundSchema` instead. */
-  export const inboundSchema = Items$inboundSchema;
-  /** @deprecated use `Items$outboundSchema` instead. */
-  export const outboundSchema = Items$outboundSchema;
-  /** @deprecated use `Items$Outbound` instead. */
-  export type Outbound = Items$Outbound;
-}
-
 export function itemsToJSON(items: Items): string {
   return JSON.stringify(Items$outboundSchema.parse(items));
 }
-
-export function itemsFromJSON(
-  jsonString: string,
-): SafeParseResult<Items, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Items$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Items' from JSON`,
-  );
-}
-
-/** @internal */
-export const GiftCardBalanceRequest$inboundSchema: z.ZodType<
-  GiftCardBalanceRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  items: z.array(
-    z.union([
-      GiftCardRequest$inboundSchema,
-      GiftCardStoredRequest$inboundSchema,
-    ]),
-  ),
-});
 
 /** @internal */
 export type GiftCardBalanceRequest$Outbound = {
@@ -107,33 +61,10 @@ export const GiftCardBalanceRequest$outboundSchema: z.ZodType<
   ),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardBalanceRequest$ {
-  /** @deprecated use `GiftCardBalanceRequest$inboundSchema` instead. */
-  export const inboundSchema = GiftCardBalanceRequest$inboundSchema;
-  /** @deprecated use `GiftCardBalanceRequest$outboundSchema` instead. */
-  export const outboundSchema = GiftCardBalanceRequest$outboundSchema;
-  /** @deprecated use `GiftCardBalanceRequest$Outbound` instead. */
-  export type Outbound = GiftCardBalanceRequest$Outbound;
-}
-
 export function giftCardBalanceRequestToJSON(
   giftCardBalanceRequest: GiftCardBalanceRequest,
 ): string {
   return JSON.stringify(
     GiftCardBalanceRequest$outboundSchema.parse(giftCardBalanceRequest),
-  );
-}
-
-export function giftCardBalanceRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GiftCardBalanceRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GiftCardBalanceRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GiftCardBalanceRequest' from JSON`,
   );
 }

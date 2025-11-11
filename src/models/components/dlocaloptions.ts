@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DlocalWalletOptions,
-  DlocalWalletOptions$inboundSchema,
   DlocalWalletOptions$Outbound,
   DlocalWalletOptions$outboundSchema,
 } from "./dlocalwalletoptions.js";
@@ -19,15 +15,6 @@ export type DlocalOptions = {
    */
   wallet?: DlocalWalletOptions | null | undefined;
 };
-
-/** @internal */
-export const DlocalOptions$inboundSchema: z.ZodType<
-  DlocalOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  wallet: z.nullable(DlocalWalletOptions$inboundSchema).optional(),
-});
 
 /** @internal */
 export type DlocalOptions$Outbound = {
@@ -43,29 +30,6 @@ export const DlocalOptions$outboundSchema: z.ZodType<
   wallet: z.nullable(DlocalWalletOptions$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DlocalOptions$ {
-  /** @deprecated use `DlocalOptions$inboundSchema` instead. */
-  export const inboundSchema = DlocalOptions$inboundSchema;
-  /** @deprecated use `DlocalOptions$outboundSchema` instead. */
-  export const outboundSchema = DlocalOptions$outboundSchema;
-  /** @deprecated use `DlocalOptions$Outbound` instead. */
-  export type Outbound = DlocalOptions$Outbound;
-}
-
 export function dlocalOptionsToJSON(dlocalOptions: DlocalOptions): string {
   return JSON.stringify(DlocalOptions$outboundSchema.parse(dlocalOptions));
-}
-
-export function dlocalOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<DlocalOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DlocalOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DlocalOptions' from JSON`,
-  );
 }

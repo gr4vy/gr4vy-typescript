@@ -7,11 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UserStatus,
-  UserStatus$inboundSchema,
-  UserStatus$outboundSchema,
-} from "./userstatus.js";
+import { UserStatus, UserStatus$inboundSchema } from "./userstatus.js";
 
 export type AuditLogEntryUser = {
   /**
@@ -55,56 +51,6 @@ export const AuditLogEntryUser$inboundSchema: z.ZodType<
     "is_staff": "isStaff",
   });
 });
-
-/** @internal */
-export type AuditLogEntryUser$Outbound = {
-  type: "user";
-  id?: string | null | undefined;
-  name: string;
-  email_address?: string | null | undefined;
-  is_staff: boolean;
-  status: string;
-};
-
-/** @internal */
-export const AuditLogEntryUser$outboundSchema: z.ZodType<
-  AuditLogEntryUser$Outbound,
-  z.ZodTypeDef,
-  AuditLogEntryUser
-> = z.object({
-  type: z.literal("user").default("user" as const),
-  id: z.nullable(z.string()).optional(),
-  name: z.string(),
-  emailAddress: z.nullable(z.string()).optional(),
-  isStaff: z.boolean(),
-  status: UserStatus$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    emailAddress: "email_address",
-    isStaff: "is_staff",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogEntryUser$ {
-  /** @deprecated use `AuditLogEntryUser$inboundSchema` instead. */
-  export const inboundSchema = AuditLogEntryUser$inboundSchema;
-  /** @deprecated use `AuditLogEntryUser$outboundSchema` instead. */
-  export const outboundSchema = AuditLogEntryUser$outboundSchema;
-  /** @deprecated use `AuditLogEntryUser$Outbound` instead. */
-  export type Outbound = AuditLogEntryUser$Outbound;
-}
-
-export function auditLogEntryUserToJSON(
-  auditLogEntryUser: AuditLogEntryUser,
-): string {
-  return JSON.stringify(
-    AuditLogEntryUser$outboundSchema.parse(auditLogEntryUser),
-  );
-}
 
 export function auditLogEntryUserFromJSON(
   jsonString: string,

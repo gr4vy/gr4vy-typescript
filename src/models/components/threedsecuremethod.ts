@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const ThreeDSecureMethod = {
   Challenge: "challenge",
@@ -25,24 +21,3 @@ export const ThreeDSecureMethod$inboundSchema: z.ZodType<
     z.nativeEnum(ThreeDSecureMethod),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const ThreeDSecureMethod$outboundSchema: z.ZodType<
-  ThreeDSecureMethod,
-  z.ZodTypeDef,
-  ThreeDSecureMethod
-> = z.union([
-  z.nativeEnum(ThreeDSecureMethod),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThreeDSecureMethod$ {
-  /** @deprecated use `ThreeDSecureMethod$inboundSchema` instead. */
-  export const inboundSchema = ThreeDSecureMethod$inboundSchema;
-  /** @deprecated use `ThreeDSecureMethod$outboundSchema` instead. */
-  export const outboundSchema = ThreeDSecureMethod$outboundSchema;
-}

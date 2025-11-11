@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
+import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type MerchantAccountUpdate = {
   /**
@@ -89,59 +82,6 @@ export type MerchantAccountUpdate = {
 };
 
 /** @internal */
-export const MerchantAccountUpdate$inboundSchema: z.ZodType<
-  MerchantAccountUpdate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  account_updater_enabled: z.boolean().default(false),
-  account_updater_request_encryption_key: z.nullable(z.string()).optional(),
-  account_updater_request_encryption_key_id: z.nullable(z.string()).optional(),
-  account_updater_response_decryption_key: z.nullable(z.string()).optional(),
-  account_updater_response_decryption_key_id: z.nullable(z.string()).optional(),
-  over_capture_amount: z.nullable(z.number().int()).optional(),
-  over_capture_percentage: z.nullable(z.number().int()).optional(),
-  loon_client_key: z.nullable(z.string()).optional(),
-  loon_secret_key: z.nullable(z.string()).optional(),
-  loon_accepted_schemes: z.nullable(z.array(CardScheme$inboundSchema))
-    .optional(),
-  visa_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  visa_network_tokens_app_id: z.nullable(z.string()).optional(),
-  amex_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  amex_network_tokens_app_id: z.nullable(z.string()).optional(),
-  mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
-  async_network_tokens_enabled: z.boolean().default(false),
-  display_name: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "account_updater_enabled": "accountUpdaterEnabled",
-    "account_updater_request_encryption_key":
-      "accountUpdaterRequestEncryptionKey",
-    "account_updater_request_encryption_key_id":
-      "accountUpdaterRequestEncryptionKeyId",
-    "account_updater_response_decryption_key":
-      "accountUpdaterResponseDecryptionKey",
-    "account_updater_response_decryption_key_id":
-      "accountUpdaterResponseDecryptionKeyId",
-    "over_capture_amount": "overCaptureAmount",
-    "over_capture_percentage": "overCapturePercentage",
-    "loon_client_key": "loonClientKey",
-    "loon_secret_key": "loonSecretKey",
-    "loon_accepted_schemes": "loonAcceptedSchemes",
-    "visa_network_tokens_requestor_id": "visaNetworkTokensRequestorId",
-    "visa_network_tokens_app_id": "visaNetworkTokensAppId",
-    "amex_network_tokens_requestor_id": "amexNetworkTokensRequestorId",
-    "amex_network_tokens_app_id": "amexNetworkTokensAppId",
-    "mastercard_network_tokens_requestor_id":
-      "mastercardNetworkTokensRequestorId",
-    "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
-    "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
-    "display_name": "displayName",
-  });
-});
-
-/** @internal */
 export type MerchantAccountUpdate$Outbound = {
   account_updater_enabled: boolean;
   account_updater_request_encryption_key?: string | null | undefined;
@@ -216,33 +156,10 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MerchantAccountUpdate$ {
-  /** @deprecated use `MerchantAccountUpdate$inboundSchema` instead. */
-  export const inboundSchema = MerchantAccountUpdate$inboundSchema;
-  /** @deprecated use `MerchantAccountUpdate$outboundSchema` instead. */
-  export const outboundSchema = MerchantAccountUpdate$outboundSchema;
-  /** @deprecated use `MerchantAccountUpdate$Outbound` instead. */
-  export type Outbound = MerchantAccountUpdate$Outbound;
-}
-
 export function merchantAccountUpdateToJSON(
   merchantAccountUpdate: MerchantAccountUpdate,
 ): string {
   return JSON.stringify(
     MerchantAccountUpdate$outboundSchema.parse(merchantAccountUpdate),
-  );
-}
-
-export function merchantAccountUpdateFromJSON(
-  jsonString: string,
-): SafeParseResult<MerchantAccountUpdate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MerchantAccountUpdate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MerchantAccountUpdate' from JSON`,
   );
 }

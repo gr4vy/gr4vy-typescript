@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BillingDetailsOutput,
   BillingDetailsOutput$inboundSchema,
-  BillingDetailsOutput$Outbound,
-  BillingDetailsOutput$outboundSchema,
 } from "./billingdetailsoutput.js";
 import {
   ShippingDetailsCreate,
   ShippingDetailsCreate$inboundSchema,
-  ShippingDetailsCreate$Outbound,
-  ShippingDetailsCreate$outboundSchema,
 } from "./shippingdetailscreate.js";
 
 export type GuestBuyerOutput = {
@@ -63,57 +59,6 @@ export const GuestBuyerOutput$inboundSchema: z.ZodType<
     "shipping_details": "shippingDetails",
   });
 });
-
-/** @internal */
-export type GuestBuyerOutput$Outbound = {
-  display_name?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  billing_details?: BillingDetailsOutput$Outbound | null | undefined;
-  account_number?: string | null | undefined;
-  shipping_details?: ShippingDetailsCreate$Outbound | null | undefined;
-};
-
-/** @internal */
-export const GuestBuyerOutput$outboundSchema: z.ZodType<
-  GuestBuyerOutput$Outbound,
-  z.ZodTypeDef,
-  GuestBuyerOutput
-> = z.object({
-  displayName: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  billingDetails: z.nullable(BillingDetailsOutput$outboundSchema).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  shippingDetails: z.nullable(ShippingDetailsCreate$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    externalIdentifier: "external_identifier",
-    billingDetails: "billing_details",
-    accountNumber: "account_number",
-    shippingDetails: "shipping_details",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GuestBuyerOutput$ {
-  /** @deprecated use `GuestBuyerOutput$inboundSchema` instead. */
-  export const inboundSchema = GuestBuyerOutput$inboundSchema;
-  /** @deprecated use `GuestBuyerOutput$outboundSchema` instead. */
-  export const outboundSchema = GuestBuyerOutput$outboundSchema;
-  /** @deprecated use `GuestBuyerOutput$Outbound` instead. */
-  export type Outbound = GuestBuyerOutput$Outbound;
-}
-
-export function guestBuyerOutputToJSON(
-  guestBuyerOutput: GuestBuyerOutput,
-): string {
-  return JSON.stringify(
-    GuestBuyerOutput$outboundSchema.parse(guestBuyerOutput),
-  );
-}
 
 export function guestBuyerOutputFromJSON(
   jsonString: string,

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransactionEventOutput,
   TransactionEventOutput$inboundSchema,
-  TransactionEventOutput$Outbound,
-  TransactionEventOutput$outboundSchema,
 } from "./transactioneventoutput.js";
 
 export type TransactionEvents = {
@@ -49,52 +47,6 @@ export const TransactionEvents$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type TransactionEvents$Outbound = {
-  items: Array<TransactionEventOutput$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const TransactionEvents$outboundSchema: z.ZodType<
-  TransactionEvents$Outbound,
-  z.ZodTypeDef,
-  TransactionEvents
-> = z.object({
-  items: z.array(TransactionEventOutput$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionEvents$ {
-  /** @deprecated use `TransactionEvents$inboundSchema` instead. */
-  export const inboundSchema = TransactionEvents$inboundSchema;
-  /** @deprecated use `TransactionEvents$outboundSchema` instead. */
-  export const outboundSchema = TransactionEvents$outboundSchema;
-  /** @deprecated use `TransactionEvents$Outbound` instead. */
-  export type Outbound = TransactionEvents$Outbound;
-}
-
-export function transactionEventsToJSON(
-  transactionEvents: TransactionEvents,
-): string {
-  return JSON.stringify(
-    TransactionEvents$outboundSchema.parse(transactionEvents),
-  );
-}
 
 export function transactionEventsFromJSON(
   jsonString: string,

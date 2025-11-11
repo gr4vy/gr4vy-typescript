@@ -38,53 +38,6 @@ export const AccountUpdaterInquirySummary$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AccountUpdaterInquirySummary$Outbound = {
-  type: "account-updater-inquiry";
-  id: string;
-  payment_method_id: string;
-};
-
-/** @internal */
-export const AccountUpdaterInquirySummary$outboundSchema: z.ZodType<
-  AccountUpdaterInquirySummary$Outbound,
-  z.ZodTypeDef,
-  AccountUpdaterInquirySummary
-> = z.object({
-  type: z.literal("account-updater-inquiry").default(
-    "account-updater-inquiry" as const,
-  ),
-  id: z.string(),
-  paymentMethodId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentMethodId: "payment_method_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountUpdaterInquirySummary$ {
-  /** @deprecated use `AccountUpdaterInquirySummary$inboundSchema` instead. */
-  export const inboundSchema = AccountUpdaterInquirySummary$inboundSchema;
-  /** @deprecated use `AccountUpdaterInquirySummary$outboundSchema` instead. */
-  export const outboundSchema = AccountUpdaterInquirySummary$outboundSchema;
-  /** @deprecated use `AccountUpdaterInquirySummary$Outbound` instead. */
-  export type Outbound = AccountUpdaterInquirySummary$Outbound;
-}
-
-export function accountUpdaterInquirySummaryToJSON(
-  accountUpdaterInquirySummary: AccountUpdaterInquirySummary,
-): string {
-  return JSON.stringify(
-    AccountUpdaterInquirySummary$outboundSchema.parse(
-      accountUpdaterInquirySummary,
-    ),
-  );
-}
-
 export function accountUpdaterInquirySummaryFromJSON(
   jsonString: string,
 ): SafeParseResult<AccountUpdaterInquirySummary, SDKValidationError> {

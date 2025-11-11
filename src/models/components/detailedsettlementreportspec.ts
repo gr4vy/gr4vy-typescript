@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DetailedSettlementReportSpec = {
   /**
@@ -17,16 +14,6 @@ export type DetailedSettlementReportSpec = {
    */
   params: { [k: string]: any };
 };
-
-/** @internal */
-export const DetailedSettlementReportSpec$inboundSchema: z.ZodType<
-  DetailedSettlementReportSpec,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  model: z.literal("detailed_settlement").default("detailed_settlement"),
-  params: z.record(z.any()),
-});
 
 /** @internal */
 export type DetailedSettlementReportSpec$Outbound = {
@@ -46,19 +33,6 @@ export const DetailedSettlementReportSpec$outboundSchema: z.ZodType<
   params: z.record(z.any()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DetailedSettlementReportSpec$ {
-  /** @deprecated use `DetailedSettlementReportSpec$inboundSchema` instead. */
-  export const inboundSchema = DetailedSettlementReportSpec$inboundSchema;
-  /** @deprecated use `DetailedSettlementReportSpec$outboundSchema` instead. */
-  export const outboundSchema = DetailedSettlementReportSpec$outboundSchema;
-  /** @deprecated use `DetailedSettlementReportSpec$Outbound` instead. */
-  export type Outbound = DetailedSettlementReportSpec$Outbound;
-}
-
 export function detailedSettlementReportSpecToJSON(
   detailedSettlementReportSpec: DetailedSettlementReportSpec,
 ): string {
@@ -66,15 +40,5 @@ export function detailedSettlementReportSpecToJSON(
     DetailedSettlementReportSpec$outboundSchema.parse(
       detailedSettlementReportSpec,
     ),
-  );
-}
-
-export function detailedSettlementReportSpecFromJSON(
-  jsonString: string,
-): SafeParseResult<DetailedSettlementReportSpec, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DetailedSettlementReportSpec$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DetailedSettlementReportSpec' from JSON`,
   );
 }

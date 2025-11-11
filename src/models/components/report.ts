@@ -10,25 +10,16 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ReportCreatorType,
   ReportCreatorType$inboundSchema,
-  ReportCreatorType$outboundSchema,
 } from "./reportcreatortype.js";
 import {
   ReportExecutionSummary,
   ReportExecutionSummary$inboundSchema,
-  ReportExecutionSummary$Outbound,
-  ReportExecutionSummary$outboundSchema,
 } from "./reportexecutionsummary.js";
 import {
   ReportSchedule,
   ReportSchedule$inboundSchema,
-  ReportSchedule$outboundSchema,
 } from "./reportschedule.js";
-import {
-  ReportSpec,
-  ReportSpec$inboundSchema,
-  ReportSpec$Outbound,
-  ReportSpec$outboundSchema,
-} from "./reportspec.js";
+import { ReportSpec, ReportSpec$inboundSchema } from "./reportspec.js";
 
 export type Report = {
   /**
@@ -131,81 +122,6 @@ export const Report$inboundSchema: z.ZodType<Report, z.ZodTypeDef, unknown> = z
       "latest_execution": "latestExecution",
     });
   });
-
-/** @internal */
-export type Report$Outbound = {
-  type: "report";
-  id: string;
-  merchant_account_id: string;
-  name: string;
-  creator_id?: string | null | undefined;
-  creator_display_name?: string | null | undefined;
-  creator_type?: string | null | undefined;
-  created_at: string;
-  updated_at: string;
-  next_execution_at?: string | null | undefined;
-  description?: string | null | undefined;
-  schedule: string;
-  schedule_enabled: boolean;
-  schedule_timezone: string;
-  spec: ReportSpec$Outbound;
-  latest_execution?: ReportExecutionSummary$Outbound | null | undefined;
-};
-
-/** @internal */
-export const Report$outboundSchema: z.ZodType<
-  Report$Outbound,
-  z.ZodTypeDef,
-  Report
-> = z.object({
-  type: z.literal("report").default("report" as const),
-  id: z.string(),
-  merchantAccountId: z.string(),
-  name: z.string(),
-  creatorId: z.nullable(z.string()).optional(),
-  creatorDisplayName: z.nullable(z.string()).optional(),
-  creatorType: z.nullable(ReportCreatorType$outboundSchema).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-  nextExecutionAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  description: z.nullable(z.string()).optional(),
-  schedule: ReportSchedule$outboundSchema,
-  scheduleEnabled: z.boolean(),
-  scheduleTimezone: z.string(),
-  spec: ReportSpec$outboundSchema,
-  latestExecution: z.nullable(ReportExecutionSummary$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    creatorId: "creator_id",
-    creatorDisplayName: "creator_display_name",
-    creatorType: "creator_type",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    nextExecutionAt: "next_execution_at",
-    scheduleEnabled: "schedule_enabled",
-    scheduleTimezone: "schedule_timezone",
-    latestExecution: "latest_execution",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Report$ {
-  /** @deprecated use `Report$inboundSchema` instead. */
-  export const inboundSchema = Report$inboundSchema;
-  /** @deprecated use `Report$outboundSchema` instead. */
-  export const outboundSchema = Report$outboundSchema;
-  /** @deprecated use `Report$Outbound` instead. */
-  export type Outbound = Report$Outbound;
-}
-
-export function reportToJSON(report: Report): string {
-  return JSON.stringify(Report$outboundSchema.parse(report));
-}
 
 export function reportFromJSON(
   jsonString: string,

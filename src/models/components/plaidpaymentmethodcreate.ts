@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Plaid Payment Method
@@ -43,27 +40,6 @@ export type PlaidPaymentMethodCreate = {
 };
 
 /** @internal */
-export const PlaidPaymentMethodCreate$inboundSchema: z.ZodType<
-  PlaidPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  method: z.literal("plaid").default("plaid"),
-  token: z.string(),
-  account_id: z.nullable(z.string()).optional(),
-  payment_service_id: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "account_id": "accountId",
-    "payment_service_id": "paymentServiceId",
-    "buyer_id": "buyerId",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-  });
-});
-
-/** @internal */
 export type PlaidPaymentMethodCreate$Outbound = {
   method: "plaid";
   token: string;
@@ -94,33 +70,10 @@ export const PlaidPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PlaidPaymentMethodCreate$ {
-  /** @deprecated use `PlaidPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = PlaidPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `PlaidPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = PlaidPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `PlaidPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = PlaidPaymentMethodCreate$Outbound;
-}
-
 export function plaidPaymentMethodCreateToJSON(
   plaidPaymentMethodCreate: PlaidPaymentMethodCreate,
 ): string {
   return JSON.stringify(
     PlaidPaymentMethodCreate$outboundSchema.parse(plaidPaymentMethodCreate),
-  );
-}
-
-export function plaidPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<PlaidPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PlaidPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PlaidPaymentMethodCreate' from JSON`,
   );
 }

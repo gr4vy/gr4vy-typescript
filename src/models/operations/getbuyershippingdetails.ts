@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetBuyerShippingDetailsGlobals = {
   merchantAccountId?: string | undefined;
@@ -26,78 +23,6 @@ export type GetBuyerShippingDetailsRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const GetBuyerShippingDetailsGlobals$inboundSchema: z.ZodType<
-  GetBuyerShippingDetailsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type GetBuyerShippingDetailsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const GetBuyerShippingDetailsGlobals$outboundSchema: z.ZodType<
-  GetBuyerShippingDetailsGlobals$Outbound,
-  z.ZodTypeDef,
-  GetBuyerShippingDetailsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBuyerShippingDetailsGlobals$ {
-  /** @deprecated use `GetBuyerShippingDetailsGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetBuyerShippingDetailsGlobals$inboundSchema;
-  /** @deprecated use `GetBuyerShippingDetailsGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetBuyerShippingDetailsGlobals$outboundSchema;
-  /** @deprecated use `GetBuyerShippingDetailsGlobals$Outbound` instead. */
-  export type Outbound = GetBuyerShippingDetailsGlobals$Outbound;
-}
-
-export function getBuyerShippingDetailsGlobalsToJSON(
-  getBuyerShippingDetailsGlobals: GetBuyerShippingDetailsGlobals,
-): string {
-  return JSON.stringify(
-    GetBuyerShippingDetailsGlobals$outboundSchema.parse(
-      getBuyerShippingDetailsGlobals,
-    ),
-  );
-}
-
-export function getBuyerShippingDetailsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetBuyerShippingDetailsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetBuyerShippingDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetBuyerShippingDetailsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetBuyerShippingDetailsRequest$inboundSchema: z.ZodType<
-  GetBuyerShippingDetailsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  buyer_id: z.string(),
-  shipping_details_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_id": "buyerId",
-    "shipping_details_id": "shippingDetailsId",
-  });
-});
 
 /** @internal */
 export type GetBuyerShippingDetailsRequest$Outbound = {
@@ -122,19 +47,6 @@ export const GetBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBuyerShippingDetailsRequest$ {
-  /** @deprecated use `GetBuyerShippingDetailsRequest$inboundSchema` instead. */
-  export const inboundSchema = GetBuyerShippingDetailsRequest$inboundSchema;
-  /** @deprecated use `GetBuyerShippingDetailsRequest$outboundSchema` instead. */
-  export const outboundSchema = GetBuyerShippingDetailsRequest$outboundSchema;
-  /** @deprecated use `GetBuyerShippingDetailsRequest$Outbound` instead. */
-  export type Outbound = GetBuyerShippingDetailsRequest$Outbound;
-}
-
 export function getBuyerShippingDetailsRequestToJSON(
   getBuyerShippingDetailsRequest: GetBuyerShippingDetailsRequest,
 ): string {
@@ -142,15 +54,5 @@ export function getBuyerShippingDetailsRequestToJSON(
     GetBuyerShippingDetailsRequest$outboundSchema.parse(
       getBuyerShippingDetailsRequest,
     ),
-  );
-}
-
-export function getBuyerShippingDetailsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetBuyerShippingDetailsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetBuyerShippingDetailsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetBuyerShippingDetailsRequest' from JSON`,
   );
 }

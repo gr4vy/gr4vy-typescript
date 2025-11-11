@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const ApprovalTarget = {
   NewWindow: "new_window",
@@ -25,24 +21,3 @@ export const ApprovalTarget$inboundSchema: z.ZodType<
     z.nativeEnum(ApprovalTarget),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const ApprovalTarget$outboundSchema: z.ZodType<
-  ApprovalTarget,
-  z.ZodTypeDef,
-  ApprovalTarget
-> = z.union([
-  z.nativeEnum(ApprovalTarget),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApprovalTarget$ {
-  /** @deprecated use `ApprovalTarget$inboundSchema` instead. */
-  export const inboundSchema = ApprovalTarget$inboundSchema;
-  /** @deprecated use `ApprovalTarget$outboundSchema` instead. */
-  export const outboundSchema = ApprovalTarget$outboundSchema;
-}

@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GivingBlockOptions = {
   /**
@@ -13,15 +10,6 @@ export type GivingBlockOptions = {
    */
   defaultCryptocurrency?: string | null | undefined;
 };
-
-/** @internal */
-export const GivingBlockOptions$inboundSchema: z.ZodType<
-  GivingBlockOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  defaultCryptocurrency: z.nullable(z.string()).optional(),
-});
 
 /** @internal */
 export type GivingBlockOptions$Outbound = {
@@ -37,33 +25,10 @@ export const GivingBlockOptions$outboundSchema: z.ZodType<
   defaultCryptocurrency: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GivingBlockOptions$ {
-  /** @deprecated use `GivingBlockOptions$inboundSchema` instead. */
-  export const inboundSchema = GivingBlockOptions$inboundSchema;
-  /** @deprecated use `GivingBlockOptions$outboundSchema` instead. */
-  export const outboundSchema = GivingBlockOptions$outboundSchema;
-  /** @deprecated use `GivingBlockOptions$Outbound` instead. */
-  export type Outbound = GivingBlockOptions$Outbound;
-}
-
 export function givingBlockOptionsToJSON(
   givingBlockOptions: GivingBlockOptions,
 ): string {
   return JSON.stringify(
     GivingBlockOptions$outboundSchema.parse(givingBlockOptions),
-  );
-}
-
-export function givingBlockOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<GivingBlockOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GivingBlockOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GivingBlockOptions' from JSON`,
   );
 }

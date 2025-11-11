@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The assurance details provided by Google Pay
@@ -21,21 +18,6 @@ export type GooglePayAssuranceDetails = {
    */
   cardHolderAuthenticated?: boolean | null | undefined;
 };
-
-/** @internal */
-export const GooglePayAssuranceDetails$inboundSchema: z.ZodType<
-  GooglePayAssuranceDetails,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  account_verified: z.nullable(z.boolean()).optional(),
-  card_holder_authenticated: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "account_verified": "accountVerified",
-    "card_holder_authenticated": "cardHolderAuthenticated",
-  });
-});
 
 /** @internal */
 export type GooglePayAssuranceDetails$Outbound = {
@@ -58,33 +40,10 @@ export const GooglePayAssuranceDetails$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GooglePayAssuranceDetails$ {
-  /** @deprecated use `GooglePayAssuranceDetails$inboundSchema` instead. */
-  export const inboundSchema = GooglePayAssuranceDetails$inboundSchema;
-  /** @deprecated use `GooglePayAssuranceDetails$outboundSchema` instead. */
-  export const outboundSchema = GooglePayAssuranceDetails$outboundSchema;
-  /** @deprecated use `GooglePayAssuranceDetails$Outbound` instead. */
-  export type Outbound = GooglePayAssuranceDetails$Outbound;
-}
-
 export function googlePayAssuranceDetailsToJSON(
   googlePayAssuranceDetails: GooglePayAssuranceDetails,
 ): string {
   return JSON.stringify(
     GooglePayAssuranceDetails$outboundSchema.parse(googlePayAssuranceDetails),
-  );
-}
-
-export function googlePayAssuranceDetailsFromJSON(
-  jsonString: string,
-): SafeParseResult<GooglePayAssuranceDetails, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GooglePayAssuranceDetails$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GooglePayAssuranceDetails' from JSON`,
   );
 }

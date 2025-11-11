@@ -47,7 +47,6 @@ export const CardScheme$inboundSchema: z.ZodType<
     z.nativeEnum(CardScheme),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const CardScheme$outboundSchema: z.ZodType<
   CardScheme,
@@ -57,14 +56,3 @@ export const CardScheme$outboundSchema: z.ZodType<
   z.nativeEnum(CardScheme),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CardScheme$ {
-  /** @deprecated use `CardScheme$inboundSchema` instead. */
-  export const inboundSchema = CardScheme$inboundSchema;
-  /** @deprecated use `CardScheme$outboundSchema` instead. */
-  export const outboundSchema = CardScheme$outboundSchema;
-}

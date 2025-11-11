@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentMethodStatus,
   PaymentMethodStatus$inboundSchema,
-  PaymentMethodStatus$outboundSchema,
 } from "./paymentmethodstatus.js";
 
 export type PaymentServiceToken = {
@@ -73,67 +72,6 @@ export const PaymentServiceToken$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type PaymentServiceToken$Outbound = {
-  type: "payment-service-token";
-  id: string;
-  approval_url?: string | null | undefined;
-  payment_method_id: string;
-  payment_service_id: string;
-  status: string;
-  token?: string | null | undefined;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const PaymentServiceToken$outboundSchema: z.ZodType<
-  PaymentServiceToken$Outbound,
-  z.ZodTypeDef,
-  PaymentServiceToken
-> = z.object({
-  type: z.literal("payment-service-token").default(
-    "payment-service-token" as const,
-  ),
-  id: z.string(),
-  approvalUrl: z.nullable(z.string()).optional(),
-  paymentMethodId: z.string(),
-  paymentServiceId: z.string(),
-  status: PaymentMethodStatus$outboundSchema,
-  token: z.nullable(z.string()).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    approvalUrl: "approval_url",
-    paymentMethodId: "payment_method_id",
-    paymentServiceId: "payment_service_id",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceToken$ {
-  /** @deprecated use `PaymentServiceToken$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceToken$inboundSchema;
-  /** @deprecated use `PaymentServiceToken$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceToken$outboundSchema;
-  /** @deprecated use `PaymentServiceToken$Outbound` instead. */
-  export type Outbound = PaymentServiceToken$Outbound;
-}
-
-export function paymentServiceTokenToJSON(
-  paymentServiceToken: PaymentServiceToken,
-): string {
-  return JSON.stringify(
-    PaymentServiceToken$outboundSchema.parse(paymentServiceToken),
-  );
-}
 
 export function paymentServiceTokenFromJSON(
   jsonString: string,

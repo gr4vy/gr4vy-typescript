@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetPayoutGlobals = {
   merchantAccountId?: string | undefined;
@@ -19,74 +16,6 @@ export type GetPayoutRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const GetPayoutGlobals$inboundSchema: z.ZodType<
-  GetPayoutGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type GetPayoutGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const GetPayoutGlobals$outboundSchema: z.ZodType<
-  GetPayoutGlobals$Outbound,
-  z.ZodTypeDef,
-  GetPayoutGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPayoutGlobals$ {
-  /** @deprecated use `GetPayoutGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetPayoutGlobals$inboundSchema;
-  /** @deprecated use `GetPayoutGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetPayoutGlobals$outboundSchema;
-  /** @deprecated use `GetPayoutGlobals$Outbound` instead. */
-  export type Outbound = GetPayoutGlobals$Outbound;
-}
-
-export function getPayoutGlobalsToJSON(
-  getPayoutGlobals: GetPayoutGlobals,
-): string {
-  return JSON.stringify(
-    GetPayoutGlobals$outboundSchema.parse(getPayoutGlobals),
-  );
-}
-
-export function getPayoutGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetPayoutGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetPayoutGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetPayoutGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetPayoutRequest$inboundSchema: z.ZodType<
-  GetPayoutRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payout_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payout_id": "payoutId",
-  });
-});
 
 /** @internal */
 export type GetPayoutRequest$Outbound = {
@@ -108,33 +37,10 @@ export const GetPayoutRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPayoutRequest$ {
-  /** @deprecated use `GetPayoutRequest$inboundSchema` instead. */
-  export const inboundSchema = GetPayoutRequest$inboundSchema;
-  /** @deprecated use `GetPayoutRequest$outboundSchema` instead. */
-  export const outboundSchema = GetPayoutRequest$outboundSchema;
-  /** @deprecated use `GetPayoutRequest$Outbound` instead. */
-  export type Outbound = GetPayoutRequest$Outbound;
-}
-
 export function getPayoutRequestToJSON(
   getPayoutRequest: GetPayoutRequest,
 ): string {
   return JSON.stringify(
     GetPayoutRequest$outboundSchema.parse(getPayoutRequest),
-  );
-}
-
-export function getPayoutRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetPayoutRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetPayoutRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetPayoutRequest' from JSON`,
   );
 }
