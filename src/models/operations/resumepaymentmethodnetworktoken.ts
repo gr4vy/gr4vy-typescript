@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ResumePaymentMethodNetworkTokenGlobals = {
   merchantAccountId?: string | undefined;
@@ -26,82 +23,6 @@ export type ResumePaymentMethodNetworkTokenRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const ResumePaymentMethodNetworkTokenGlobals$inboundSchema: z.ZodType<
-  ResumePaymentMethodNetworkTokenGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ResumePaymentMethodNetworkTokenGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ResumePaymentMethodNetworkTokenGlobals$outboundSchema: z.ZodType<
-  ResumePaymentMethodNetworkTokenGlobals$Outbound,
-  z.ZodTypeDef,
-  ResumePaymentMethodNetworkTokenGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResumePaymentMethodNetworkTokenGlobals$ {
-  /** @deprecated use `ResumePaymentMethodNetworkTokenGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    ResumePaymentMethodNetworkTokenGlobals$inboundSchema;
-  /** @deprecated use `ResumePaymentMethodNetworkTokenGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    ResumePaymentMethodNetworkTokenGlobals$outboundSchema;
-  /** @deprecated use `ResumePaymentMethodNetworkTokenGlobals$Outbound` instead. */
-  export type Outbound = ResumePaymentMethodNetworkTokenGlobals$Outbound;
-}
-
-export function resumePaymentMethodNetworkTokenGlobalsToJSON(
-  resumePaymentMethodNetworkTokenGlobals:
-    ResumePaymentMethodNetworkTokenGlobals,
-): string {
-  return JSON.stringify(
-    ResumePaymentMethodNetworkTokenGlobals$outboundSchema.parse(
-      resumePaymentMethodNetworkTokenGlobals,
-    ),
-  );
-}
-
-export function resumePaymentMethodNetworkTokenGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ResumePaymentMethodNetworkTokenGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ResumePaymentMethodNetworkTokenGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResumePaymentMethodNetworkTokenGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ResumePaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
-  ResumePaymentMethodNetworkTokenRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_method_id: z.string(),
-  network_token_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method_id": "paymentMethodId",
-    "network_token_id": "networkTokenId",
-  });
-});
 
 /** @internal */
 export type ResumePaymentMethodNetworkTokenRequest$Outbound = {
@@ -126,21 +47,6 @@ export const ResumePaymentMethodNetworkTokenRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResumePaymentMethodNetworkTokenRequest$ {
-  /** @deprecated use `ResumePaymentMethodNetworkTokenRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ResumePaymentMethodNetworkTokenRequest$inboundSchema;
-  /** @deprecated use `ResumePaymentMethodNetworkTokenRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ResumePaymentMethodNetworkTokenRequest$outboundSchema;
-  /** @deprecated use `ResumePaymentMethodNetworkTokenRequest$Outbound` instead. */
-  export type Outbound = ResumePaymentMethodNetworkTokenRequest$Outbound;
-}
-
 export function resumePaymentMethodNetworkTokenRequestToJSON(
   resumePaymentMethodNetworkTokenRequest:
     ResumePaymentMethodNetworkTokenRequest,
@@ -149,16 +55,5 @@ export function resumePaymentMethodNetworkTokenRequestToJSON(
     ResumePaymentMethodNetworkTokenRequest$outboundSchema.parse(
       resumePaymentMethodNetworkTokenRequest,
     ),
-  );
-}
-
-export function resumePaymentMethodNetworkTokenRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ResumePaymentMethodNetworkTokenRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ResumePaymentMethodNetworkTokenRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResumePaymentMethodNetworkTokenRequest' from JSON`,
   );
 }

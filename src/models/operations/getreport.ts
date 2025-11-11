@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetReportGlobals = {
   merchantAccountId?: string | undefined;
@@ -22,74 +19,6 @@ export type GetReportRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const GetReportGlobals$inboundSchema: z.ZodType<
-  GetReportGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type GetReportGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const GetReportGlobals$outboundSchema: z.ZodType<
-  GetReportGlobals$Outbound,
-  z.ZodTypeDef,
-  GetReportGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetReportGlobals$ {
-  /** @deprecated use `GetReportGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetReportGlobals$inboundSchema;
-  /** @deprecated use `GetReportGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetReportGlobals$outboundSchema;
-  /** @deprecated use `GetReportGlobals$Outbound` instead. */
-  export type Outbound = GetReportGlobals$Outbound;
-}
-
-export function getReportGlobalsToJSON(
-  getReportGlobals: GetReportGlobals,
-): string {
-  return JSON.stringify(
-    GetReportGlobals$outboundSchema.parse(getReportGlobals),
-  );
-}
-
-export function getReportGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetReportGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetReportGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetReportGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetReportRequest$inboundSchema: z.ZodType<
-  GetReportRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  report_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "report_id": "reportId",
-  });
-});
 
 /** @internal */
 export type GetReportRequest$Outbound = {
@@ -111,33 +40,10 @@ export const GetReportRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetReportRequest$ {
-  /** @deprecated use `GetReportRequest$inboundSchema` instead. */
-  export const inboundSchema = GetReportRequest$inboundSchema;
-  /** @deprecated use `GetReportRequest$outboundSchema` instead. */
-  export const outboundSchema = GetReportRequest$outboundSchema;
-  /** @deprecated use `GetReportRequest$Outbound` instead. */
-  export type Outbound = GetReportRequest$Outbound;
-}
-
 export function getReportRequestToJSON(
   getReportRequest: GetReportRequest,
 ): string {
   return JSON.stringify(
     GetReportRequest$outboundSchema.parse(getReportRequest),
-  );
-}
-
-export function getReportRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetReportRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetReportRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetReportRequest' from JSON`,
   );
 }

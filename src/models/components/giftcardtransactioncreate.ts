@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create a charge against a gift card
@@ -26,17 +23,6 @@ export type GiftCardTransactionCreate = {
 };
 
 /** @internal */
-export const GiftCardTransactionCreate$inboundSchema: z.ZodType<
-  GiftCardTransactionCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  number: z.string(),
-  pin: z.string(),
-  amount: z.number().int(),
-});
-
-/** @internal */
 export type GiftCardTransactionCreate$Outbound = {
   number: string;
   pin: string;
@@ -54,33 +40,10 @@ export const GiftCardTransactionCreate$outboundSchema: z.ZodType<
   amount: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardTransactionCreate$ {
-  /** @deprecated use `GiftCardTransactionCreate$inboundSchema` instead. */
-  export const inboundSchema = GiftCardTransactionCreate$inboundSchema;
-  /** @deprecated use `GiftCardTransactionCreate$outboundSchema` instead. */
-  export const outboundSchema = GiftCardTransactionCreate$outboundSchema;
-  /** @deprecated use `GiftCardTransactionCreate$Outbound` instead. */
-  export type Outbound = GiftCardTransactionCreate$Outbound;
-}
-
 export function giftCardTransactionCreateToJSON(
   giftCardTransactionCreate: GiftCardTransactionCreate,
 ): string {
   return JSON.stringify(
     GiftCardTransactionCreate$outboundSchema.parse(giftCardTransactionCreate),
-  );
-}
-
-export function giftCardTransactionCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<GiftCardTransactionCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GiftCardTransactionCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GiftCardTransactionCreate' from JSON`,
   );
 }

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetTransactionRefundGlobals = {
   merchantAccountId?: string | undefined;
@@ -26,78 +23,6 @@ export type GetTransactionRefundRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const GetTransactionRefundGlobals$inboundSchema: z.ZodType<
-  GetTransactionRefundGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type GetTransactionRefundGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const GetTransactionRefundGlobals$outboundSchema: z.ZodType<
-  GetTransactionRefundGlobals$Outbound,
-  z.ZodTypeDef,
-  GetTransactionRefundGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTransactionRefundGlobals$ {
-  /** @deprecated use `GetTransactionRefundGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetTransactionRefundGlobals$inboundSchema;
-  /** @deprecated use `GetTransactionRefundGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetTransactionRefundGlobals$outboundSchema;
-  /** @deprecated use `GetTransactionRefundGlobals$Outbound` instead. */
-  export type Outbound = GetTransactionRefundGlobals$Outbound;
-}
-
-export function getTransactionRefundGlobalsToJSON(
-  getTransactionRefundGlobals: GetTransactionRefundGlobals,
-): string {
-  return JSON.stringify(
-    GetTransactionRefundGlobals$outboundSchema.parse(
-      getTransactionRefundGlobals,
-    ),
-  );
-}
-
-export function getTransactionRefundGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTransactionRefundGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTransactionRefundGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTransactionRefundGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetTransactionRefundRequest$inboundSchema: z.ZodType<
-  GetTransactionRefundRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  transaction_id: z.string(),
-  refund_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_id": "transactionId",
-    "refund_id": "refundId",
-  });
-});
 
 /** @internal */
 export type GetTransactionRefundRequest$Outbound = {
@@ -122,19 +47,6 @@ export const GetTransactionRefundRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTransactionRefundRequest$ {
-  /** @deprecated use `GetTransactionRefundRequest$inboundSchema` instead. */
-  export const inboundSchema = GetTransactionRefundRequest$inboundSchema;
-  /** @deprecated use `GetTransactionRefundRequest$outboundSchema` instead. */
-  export const outboundSchema = GetTransactionRefundRequest$outboundSchema;
-  /** @deprecated use `GetTransactionRefundRequest$Outbound` instead. */
-  export type Outbound = GetTransactionRefundRequest$Outbound;
-}
-
 export function getTransactionRefundRequestToJSON(
   getTransactionRefundRequest: GetTransactionRefundRequest,
 ): string {
@@ -142,15 +54,5 @@ export function getTransactionRefundRequestToJSON(
     GetTransactionRefundRequest$outboundSchema.parse(
       getTransactionRefundRequest,
     ),
-  );
-}
-
-export function getTransactionRefundRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTransactionRefundRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTransactionRefundRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTransactionRefundRequest' from JSON`,
   );
 }

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteDigitalWalletGlobals = {
   merchantAccountId?: string | undefined;
@@ -22,74 +19,6 @@ export type DeleteDigitalWalletRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const DeleteDigitalWalletGlobals$inboundSchema: z.ZodType<
-  DeleteDigitalWalletGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type DeleteDigitalWalletGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const DeleteDigitalWalletGlobals$outboundSchema: z.ZodType<
-  DeleteDigitalWalletGlobals$Outbound,
-  z.ZodTypeDef,
-  DeleteDigitalWalletGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteDigitalWalletGlobals$ {
-  /** @deprecated use `DeleteDigitalWalletGlobals$inboundSchema` instead. */
-  export const inboundSchema = DeleteDigitalWalletGlobals$inboundSchema;
-  /** @deprecated use `DeleteDigitalWalletGlobals$outboundSchema` instead. */
-  export const outboundSchema = DeleteDigitalWalletGlobals$outboundSchema;
-  /** @deprecated use `DeleteDigitalWalletGlobals$Outbound` instead. */
-  export type Outbound = DeleteDigitalWalletGlobals$Outbound;
-}
-
-export function deleteDigitalWalletGlobalsToJSON(
-  deleteDigitalWalletGlobals: DeleteDigitalWalletGlobals,
-): string {
-  return JSON.stringify(
-    DeleteDigitalWalletGlobals$outboundSchema.parse(deleteDigitalWalletGlobals),
-  );
-}
-
-export function deleteDigitalWalletGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<DeleteDigitalWalletGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeleteDigitalWalletGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteDigitalWalletGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const DeleteDigitalWalletRequest$inboundSchema: z.ZodType<
-  DeleteDigitalWalletRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  digital_wallet_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "digital_wallet_id": "digitalWalletId",
-  });
-});
 
 /** @internal */
 export type DeleteDigitalWalletRequest$Outbound = {
@@ -111,33 +40,10 @@ export const DeleteDigitalWalletRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteDigitalWalletRequest$ {
-  /** @deprecated use `DeleteDigitalWalletRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteDigitalWalletRequest$inboundSchema;
-  /** @deprecated use `DeleteDigitalWalletRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteDigitalWalletRequest$outboundSchema;
-  /** @deprecated use `DeleteDigitalWalletRequest$Outbound` instead. */
-  export type Outbound = DeleteDigitalWalletRequest$Outbound;
-}
-
 export function deleteDigitalWalletRequestToJSON(
   deleteDigitalWalletRequest: DeleteDigitalWalletRequest,
 ): string {
   return JSON.stringify(
     DeleteDigitalWalletRequest$outboundSchema.parse(deleteDigitalWalletRequest),
-  );
-}
-
-export function deleteDigitalWalletRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeleteDigitalWalletRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeleteDigitalWalletRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteDigitalWalletRequest' from JSON`,
   );
 }

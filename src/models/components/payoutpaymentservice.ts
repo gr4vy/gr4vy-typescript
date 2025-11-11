@@ -49,54 +49,6 @@ export const PayoutPaymentService$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PayoutPaymentService$Outbound = {
-  type: "payment-service";
-  id?: string | null | undefined;
-  method: "card";
-  payment_service_definition_id: string;
-  display_name?: string | null | undefined;
-};
-
-/** @internal */
-export const PayoutPaymentService$outboundSchema: z.ZodType<
-  PayoutPaymentService$Outbound,
-  z.ZodTypeDef,
-  PayoutPaymentService
-> = z.object({
-  type: z.literal("payment-service").default("payment-service" as const),
-  id: z.nullable(z.string()).optional(),
-  method: z.literal("card").default("card" as const),
-  paymentServiceDefinitionId: z.string(),
-  displayName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentServiceDefinitionId: "payment_service_definition_id",
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutPaymentService$ {
-  /** @deprecated use `PayoutPaymentService$inboundSchema` instead. */
-  export const inboundSchema = PayoutPaymentService$inboundSchema;
-  /** @deprecated use `PayoutPaymentService$outboundSchema` instead. */
-  export const outboundSchema = PayoutPaymentService$outboundSchema;
-  /** @deprecated use `PayoutPaymentService$Outbound` instead. */
-  export type Outbound = PayoutPaymentService$Outbound;
-}
-
-export function payoutPaymentServiceToJSON(
-  payoutPaymentService: PayoutPaymentService,
-): string {
-  return JSON.stringify(
-    PayoutPaymentService$outboundSchema.parse(payoutPaymentService),
-  );
-}
-
 export function payoutPaymentServiceFromJSON(
   jsonString: string,
 ): SafeParseResult<PayoutPaymentService, SDKValidationError> {

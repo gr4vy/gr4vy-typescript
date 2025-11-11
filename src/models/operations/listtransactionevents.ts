@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListTransactionEventsGlobals = {
   merchantAccountId?: string | undefined;
@@ -32,78 +29,6 @@ export type ListTransactionEventsRequest = {
 };
 
 /** @internal */
-export const ListTransactionEventsGlobals$inboundSchema: z.ZodType<
-  ListTransactionEventsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListTransactionEventsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListTransactionEventsGlobals$outboundSchema: z.ZodType<
-  ListTransactionEventsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListTransactionEventsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransactionEventsGlobals$ {
-  /** @deprecated use `ListTransactionEventsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListTransactionEventsGlobals$inboundSchema;
-  /** @deprecated use `ListTransactionEventsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListTransactionEventsGlobals$outboundSchema;
-  /** @deprecated use `ListTransactionEventsGlobals$Outbound` instead. */
-  export type Outbound = ListTransactionEventsGlobals$Outbound;
-}
-
-export function listTransactionEventsGlobalsToJSON(
-  listTransactionEventsGlobals: ListTransactionEventsGlobals,
-): string {
-  return JSON.stringify(
-    ListTransactionEventsGlobals$outboundSchema.parse(
-      listTransactionEventsGlobals,
-    ),
-  );
-}
-
-export function listTransactionEventsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListTransactionEventsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListTransactionEventsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListTransactionEventsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListTransactionEventsRequest$inboundSchema: z.ZodType<
-  ListTransactionEventsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  transaction_id: z.string(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(100),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_id": "transactionId",
-  });
-});
-
-/** @internal */
 export type ListTransactionEventsRequest$Outbound = {
   transaction_id: string;
   cursor?: string | null | undefined;
@@ -127,19 +52,6 @@ export const ListTransactionEventsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransactionEventsRequest$ {
-  /** @deprecated use `ListTransactionEventsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListTransactionEventsRequest$inboundSchema;
-  /** @deprecated use `ListTransactionEventsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListTransactionEventsRequest$outboundSchema;
-  /** @deprecated use `ListTransactionEventsRequest$Outbound` instead. */
-  export type Outbound = ListTransactionEventsRequest$Outbound;
-}
-
 export function listTransactionEventsRequestToJSON(
   listTransactionEventsRequest: ListTransactionEventsRequest,
 ): string {
@@ -147,15 +59,5 @@ export function listTransactionEventsRequestToJSON(
     ListTransactionEventsRequest$outboundSchema.parse(
       listTransactionEventsRequest,
     ),
-  );
-}
-
-export function listTransactionEventsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListTransactionEventsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListTransactionEventsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListTransactionEventsRequest' from JSON`,
   );
 }

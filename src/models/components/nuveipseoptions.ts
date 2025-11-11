@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NuveiPSEOptions = {
   /**
@@ -27,18 +24,6 @@ export type NuveiPSEOptions = {
 };
 
 /** @internal */
-export const NuveiPSEOptions$inboundSchema: z.ZodType<
-  NuveiPSEOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  userType: z.nullable(z.string()).optional(),
-  userFisNumber: z.nullable(z.string()).optional(),
-  fiscalNumber: z.nullable(z.string()).optional(),
-  bankCode: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type NuveiPSEOptions$Outbound = {
   userType?: string | null | undefined;
   userFisNumber?: string | null | undefined;
@@ -58,31 +43,8 @@ export const NuveiPSEOptions$outboundSchema: z.ZodType<
   bankCode: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NuveiPSEOptions$ {
-  /** @deprecated use `NuveiPSEOptions$inboundSchema` instead. */
-  export const inboundSchema = NuveiPSEOptions$inboundSchema;
-  /** @deprecated use `NuveiPSEOptions$outboundSchema` instead. */
-  export const outboundSchema = NuveiPSEOptions$outboundSchema;
-  /** @deprecated use `NuveiPSEOptions$Outbound` instead. */
-  export type Outbound = NuveiPSEOptions$Outbound;
-}
-
 export function nuveiPSEOptionsToJSON(
   nuveiPSEOptions: NuveiPSEOptions,
 ): string {
   return JSON.stringify(NuveiPSEOptions$outboundSchema.parse(nuveiPSEOptions));
-}
-
-export function nuveiPSEOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<NuveiPSEOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => NuveiPSEOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NuveiPSEOptions' from JSON`,
-  );
 }

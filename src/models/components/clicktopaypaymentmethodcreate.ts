@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create a Click to Pay payment with a decrypted token and cryptogram. This
@@ -51,30 +48,6 @@ export type ClickToPayPaymentMethodCreate = {
 };
 
 /** @internal */
-export const ClickToPayPaymentMethodCreate$inboundSchema: z.ZodType<
-  ClickToPayPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  method: z.literal("click-to-pay").default("click-to-pay").optional(),
-  token: z.string(),
-  cryptogram: z.string(),
-  expiration_date: z.string(),
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "buyer_id": "buyerId",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "external_identifier": "externalIdentifier",
-    "redirect_url": "redirectUrl",
-  });
-});
-
-/** @internal */
 export type ClickToPayPaymentMethodCreate$Outbound = {
   method: "click-to-pay";
   token: string;
@@ -110,19 +83,6 @@ export const ClickToPayPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClickToPayPaymentMethodCreate$ {
-  /** @deprecated use `ClickToPayPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = ClickToPayPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `ClickToPayPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = ClickToPayPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `ClickToPayPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = ClickToPayPaymentMethodCreate$Outbound;
-}
-
 export function clickToPayPaymentMethodCreateToJSON(
   clickToPayPaymentMethodCreate: ClickToPayPaymentMethodCreate,
 ): string {
@@ -130,15 +90,5 @@ export function clickToPayPaymentMethodCreateToJSON(
     ClickToPayPaymentMethodCreate$outboundSchema.parse(
       clickToPayPaymentMethodCreate,
     ),
-  );
-}
-
-export function clickToPayPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<ClickToPayPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ClickToPayPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ClickToPayPaymentMethodCreate' from JSON`,
   );
 }

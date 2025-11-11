@@ -27,7 +27,6 @@ export const ReportSchedule$inboundSchema: z.ZodType<
     z.nativeEnum(ReportSchedule),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const ReportSchedule$outboundSchema: z.ZodType<
   ReportSchedule,
@@ -37,14 +36,3 @@ export const ReportSchedule$outboundSchema: z.ZodType<
   z.nativeEnum(ReportSchedule),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportSchedule$ {
-  /** @deprecated use `ReportSchedule$inboundSchema` instead. */
-  export const inboundSchema = ReportSchedule$inboundSchema;
-  /** @deprecated use `ReportSchedule$outboundSchema` instead. */
-  export const outboundSchema = ReportSchedule$outboundSchema;
-}

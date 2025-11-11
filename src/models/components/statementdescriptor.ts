@@ -61,7 +61,6 @@ export const StatementDescriptor$inboundSchema: z.ZodType<
     "postal_code": "postalCode",
   });
 });
-
 /** @internal */
 export type StatementDescriptor$Outbound = {
   name?: string | null | undefined;
@@ -93,19 +92,6 @@ export const StatementDescriptor$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatementDescriptor$ {
-  /** @deprecated use `StatementDescriptor$inboundSchema` instead. */
-  export const inboundSchema = StatementDescriptor$inboundSchema;
-  /** @deprecated use `StatementDescriptor$outboundSchema` instead. */
-  export const outboundSchema = StatementDescriptor$outboundSchema;
-  /** @deprecated use `StatementDescriptor$Outbound` instead. */
-  export type Outbound = StatementDescriptor$Outbound;
-}
-
 export function statementDescriptorToJSON(
   statementDescriptor: StatementDescriptor,
 ): string {
@@ -113,7 +99,6 @@ export function statementDescriptorToJSON(
     StatementDescriptor$outboundSchema.parse(statementDescriptor),
   );
 }
-
 export function statementDescriptorFromJSON(
   jsonString: string,
 ): SafeParseResult<StatementDescriptor, SDKValidationError> {

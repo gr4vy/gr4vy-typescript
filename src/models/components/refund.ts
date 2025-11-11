@@ -7,21 +7,11 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Creator,
-  Creator$inboundSchema,
-  Creator$Outbound,
-  Creator$outboundSchema,
-} from "./creator.js";
-import {
-  RefundStatus,
-  RefundStatus$inboundSchema,
-  RefundStatus$outboundSchema,
-} from "./refundstatus.js";
+import { Creator, Creator$inboundSchema } from "./creator.js";
+import { RefundStatus, RefundStatus$inboundSchema } from "./refundstatus.js";
 import {
   RefundTargetType,
   RefundTargetType$inboundSchema,
-  RefundTargetType$outboundSchema,
 } from "./refundtargettype.js";
 
 export type Refund = {
@@ -145,91 +135,6 @@ export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
       "raw_response_description": "rawResponseDescription",
     });
   });
-
-/** @internal */
-export type Refund$Outbound = {
-  type: "refund";
-  id: string;
-  transaction_id: string;
-  payment_service_refund_id?: string | null | undefined;
-  status: string;
-  currency: string;
-  amount: number;
-  reason?: string | null | undefined;
-  target_type: string;
-  target_id?: string | null | undefined;
-  reconciliation_id: string;
-  external_identifier?: string | null | undefined;
-  transaction_reconciliation_id: string;
-  transaction_external_identifier?: string | null | undefined;
-  created_at: string;
-  updated_at: string;
-  creator?: Creator$Outbound | null | undefined;
-  error_code?: string | null | undefined;
-  raw_response_code?: string | null | undefined;
-  raw_response_description?: string | null | undefined;
-};
-
-/** @internal */
-export const Refund$outboundSchema: z.ZodType<
-  Refund$Outbound,
-  z.ZodTypeDef,
-  Refund
-> = z.object({
-  type: z.literal("refund").default("refund" as const),
-  id: z.string(),
-  transactionId: z.string(),
-  paymentServiceRefundId: z.nullable(z.string()).optional(),
-  status: RefundStatus$outboundSchema,
-  currency: z.string(),
-  amount: z.number().int(),
-  reason: z.nullable(z.string()).optional(),
-  targetType: RefundTargetType$outboundSchema,
-  targetId: z.nullable(z.string()).optional(),
-  reconciliationId: z.string(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  transactionReconciliationId: z.string(),
-  transactionExternalIdentifier: z.nullable(z.string()).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-  creator: z.nullable(Creator$outboundSchema).optional(),
-  errorCode: z.nullable(z.string()).optional(),
-  rawResponseCode: z.nullable(z.string()).optional(),
-  rawResponseDescription: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionId: "transaction_id",
-    paymentServiceRefundId: "payment_service_refund_id",
-    targetType: "target_type",
-    targetId: "target_id",
-    reconciliationId: "reconciliation_id",
-    externalIdentifier: "external_identifier",
-    transactionReconciliationId: "transaction_reconciliation_id",
-    transactionExternalIdentifier: "transaction_external_identifier",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    errorCode: "error_code",
-    rawResponseCode: "raw_response_code",
-    rawResponseDescription: "raw_response_description",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Refund$ {
-  /** @deprecated use `Refund$inboundSchema` instead. */
-  export const inboundSchema = Refund$inboundSchema;
-  /** @deprecated use `Refund$outboundSchema` instead. */
-  export const outboundSchema = Refund$outboundSchema;
-  /** @deprecated use `Refund$Outbound` instead. */
-  export type Outbound = Refund$Outbound;
-}
-
-export function refundToJSON(refund: Refund): string {
-  return JSON.stringify(Refund$outboundSchema.parse(refund));
-}
 
 export function refundFromJSON(
   jsonString: string,

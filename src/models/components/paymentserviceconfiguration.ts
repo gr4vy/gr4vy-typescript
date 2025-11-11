@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ApprovalTarget,
   ApprovalTarget$inboundSchema,
-  ApprovalTarget$outboundSchema,
 } from "./approvaltarget.js";
 
 export type PaymentServiceConfiguration = {
@@ -59,62 +58,6 @@ export const PaymentServiceConfiguration$inboundSchema: z.ZodType<
     "cart_items_should_match_amount": "cartItemsShouldMatchAmount",
   });
 });
-
-/** @internal */
-export type PaymentServiceConfiguration$Outbound = {
-  approval_ui_target: string;
-  approval_ui_height: string;
-  approval_ui_width: string;
-  cart_items_limit: number;
-  cart_items_required: boolean;
-  cart_items_should_match_amount: boolean;
-};
-
-/** @internal */
-export const PaymentServiceConfiguration$outboundSchema: z.ZodType<
-  PaymentServiceConfiguration$Outbound,
-  z.ZodTypeDef,
-  PaymentServiceConfiguration
-> = z.object({
-  approvalUiTarget: ApprovalTarget$outboundSchema,
-  approvalUiHeight: z.string(),
-  approvalUiWidth: z.string(),
-  cartItemsLimit: z.number().int(),
-  cartItemsRequired: z.boolean(),
-  cartItemsShouldMatchAmount: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    approvalUiTarget: "approval_ui_target",
-    approvalUiHeight: "approval_ui_height",
-    approvalUiWidth: "approval_ui_width",
-    cartItemsLimit: "cart_items_limit",
-    cartItemsRequired: "cart_items_required",
-    cartItemsShouldMatchAmount: "cart_items_should_match_amount",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceConfiguration$ {
-  /** @deprecated use `PaymentServiceConfiguration$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceConfiguration$inboundSchema;
-  /** @deprecated use `PaymentServiceConfiguration$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceConfiguration$outboundSchema;
-  /** @deprecated use `PaymentServiceConfiguration$Outbound` instead. */
-  export type Outbound = PaymentServiceConfiguration$Outbound;
-}
-
-export function paymentServiceConfigurationToJSON(
-  paymentServiceConfiguration: PaymentServiceConfiguration,
-): string {
-  return JSON.stringify(
-    PaymentServiceConfiguration$outboundSchema.parse(
-      paymentServiceConfiguration,
-    ),
-  );
-}
 
 export function paymentServiceConfigurationFromJSON(
   jsonString: string,

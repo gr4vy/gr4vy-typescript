@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdatePaymentServiceGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,76 +17,6 @@ export type UpdatePaymentServiceRequest = {
   merchantAccountId?: string | null | undefined;
   paymentServiceCreate: components.PaymentServiceCreate;
 };
-
-/** @internal */
-export const UpdatePaymentServiceGlobals$inboundSchema: z.ZodType<
-  UpdatePaymentServiceGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type UpdatePaymentServiceGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const UpdatePaymentServiceGlobals$outboundSchema: z.ZodType<
-  UpdatePaymentServiceGlobals$Outbound,
-  z.ZodTypeDef,
-  UpdatePaymentServiceGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdatePaymentServiceGlobals$ {
-  /** @deprecated use `UpdatePaymentServiceGlobals$inboundSchema` instead. */
-  export const inboundSchema = UpdatePaymentServiceGlobals$inboundSchema;
-  /** @deprecated use `UpdatePaymentServiceGlobals$outboundSchema` instead. */
-  export const outboundSchema = UpdatePaymentServiceGlobals$outboundSchema;
-  /** @deprecated use `UpdatePaymentServiceGlobals$Outbound` instead. */
-  export type Outbound = UpdatePaymentServiceGlobals$Outbound;
-}
-
-export function updatePaymentServiceGlobalsToJSON(
-  updatePaymentServiceGlobals: UpdatePaymentServiceGlobals,
-): string {
-  return JSON.stringify(
-    UpdatePaymentServiceGlobals$outboundSchema.parse(
-      updatePaymentServiceGlobals,
-    ),
-  );
-}
-
-export function updatePaymentServiceGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdatePaymentServiceGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdatePaymentServiceGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdatePaymentServiceGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdatePaymentServiceRequest$inboundSchema: z.ZodType<
-  UpdatePaymentServiceRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  PaymentServiceCreate: components.PaymentServiceCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "PaymentServiceCreate": "paymentServiceCreate",
-  });
-});
 
 /** @internal */
 export type UpdatePaymentServiceRequest$Outbound = {
@@ -111,19 +38,6 @@ export const UpdatePaymentServiceRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdatePaymentServiceRequest$ {
-  /** @deprecated use `UpdatePaymentServiceRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdatePaymentServiceRequest$inboundSchema;
-  /** @deprecated use `UpdatePaymentServiceRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdatePaymentServiceRequest$outboundSchema;
-  /** @deprecated use `UpdatePaymentServiceRequest$Outbound` instead. */
-  export type Outbound = UpdatePaymentServiceRequest$Outbound;
-}
-
 export function updatePaymentServiceRequestToJSON(
   updatePaymentServiceRequest: UpdatePaymentServiceRequest,
 ): string {
@@ -131,15 +45,5 @@ export function updatePaymentServiceRequestToJSON(
     UpdatePaymentServiceRequest$outboundSchema.parse(
       updatePaymentServiceRequest,
     ),
-  );
-}
-
-export function updatePaymentServiceRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdatePaymentServiceRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdatePaymentServiceRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdatePaymentServiceRequest' from JSON`,
   );
 }

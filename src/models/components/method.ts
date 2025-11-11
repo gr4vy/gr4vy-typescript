@@ -126,21 +126,9 @@ export const Method$inboundSchema: z.ZodType<Method, z.ZodTypeDef, unknown> = z
     z.nativeEnum(Method),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const Method$outboundSchema: z.ZodType<Method, z.ZodTypeDef, Method> = z
   .union([
     z.nativeEnum(Method),
     z.string().and(z.custom<Unrecognized<string>>()),
   ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Method$ {
-  /** @deprecated use `Method$inboundSchema` instead. */
-  export const inboundSchema = Method$inboundSchema;
-  /** @deprecated use `Method$outboundSchema` instead. */
-  export const outboundSchema = Method$outboundSchema;
-}

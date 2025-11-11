@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   GiftCardSummary,
   GiftCardSummary$inboundSchema,
-  GiftCardSummary$Outbound,
-  GiftCardSummary$outboundSchema,
 } from "./giftcardsummary.js";
 
 export type GiftCardSummaries = {
@@ -28,41 +26,6 @@ export const GiftCardSummaries$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(GiftCardSummary$inboundSchema),
 });
-
-/** @internal */
-export type GiftCardSummaries$Outbound = {
-  items: Array<GiftCardSummary$Outbound>;
-};
-
-/** @internal */
-export const GiftCardSummaries$outboundSchema: z.ZodType<
-  GiftCardSummaries$Outbound,
-  z.ZodTypeDef,
-  GiftCardSummaries
-> = z.object({
-  items: z.array(GiftCardSummary$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardSummaries$ {
-  /** @deprecated use `GiftCardSummaries$inboundSchema` instead. */
-  export const inboundSchema = GiftCardSummaries$inboundSchema;
-  /** @deprecated use `GiftCardSummaries$outboundSchema` instead. */
-  export const outboundSchema = GiftCardSummaries$outboundSchema;
-  /** @deprecated use `GiftCardSummaries$Outbound` instead. */
-  export type Outbound = GiftCardSummaries$Outbound;
-}
-
-export function giftCardSummariesToJSON(
-  giftCardSummaries: GiftCardSummaries,
-): string {
-  return JSON.stringify(
-    GiftCardSummaries$outboundSchema.parse(giftCardSummaries),
-  );
-}
 
 export function giftCardSummariesFromJSON(
   jsonString: string,

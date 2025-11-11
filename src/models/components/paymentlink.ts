@@ -7,44 +7,30 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CartItem,
-  CartItem$inboundSchema,
-  CartItem$Outbound,
-  CartItem$outboundSchema,
-} from "./cartitem.js";
+import { CartItem, CartItem$inboundSchema } from "./cartitem.js";
 import {
   PaymentLinkStatus,
   PaymentLinkStatus$inboundSchema,
-  PaymentLinkStatus$outboundSchema,
 } from "./paymentlinkstatus.js";
 import {
   ShippingDetails,
   ShippingDetails$inboundSchema,
-  ShippingDetails$Outbound,
-  ShippingDetails$outboundSchema,
 } from "./shippingdetails.js";
 import {
   StatementDescriptor,
   StatementDescriptor$inboundSchema,
-  StatementDescriptor$Outbound,
-  StatementDescriptor$outboundSchema,
 } from "./statementdescriptor.js";
 import {
   TransactionBuyerOutput,
   TransactionBuyerOutput$inboundSchema,
-  TransactionBuyerOutput$Outbound,
-  TransactionBuyerOutput$outboundSchema,
 } from "./transactionbuyeroutput.js";
 import {
   TransactionIntent,
   TransactionIntent$inboundSchema,
-  TransactionIntent$outboundSchema,
 } from "./transactionintent.js";
 import {
   TransactionPaymentSource,
   TransactionPaymentSource$inboundSchema,
-  TransactionPaymentSource$outboundSchema,
 } from "./transactionpaymentsource.js";
 
 export type PaymentLink = {
@@ -214,112 +200,6 @@ export const PaymentLink$inboundSchema: z.ZodType<
     "connection_options": "connectionOptions",
   });
 });
-
-/** @internal */
-export type PaymentLink$Outbound = {
-  id: string;
-  type: "payment-link";
-  url: string;
-  expires_at?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  statement_descriptor?: StatementDescriptor$Outbound | null | undefined;
-  locale?: string | null | undefined;
-  merchant_name?: string | null | undefined;
-  merchant_url?: string | null | undefined;
-  merchant_banner_url?: string | null | undefined;
-  merchant_color?: string | null | undefined;
-  merchant_message?: string | null | undefined;
-  merchant_terms_and_conditions_url?: string | null | undefined;
-  merchant_favicon_url?: string | null | undefined;
-  amount: number;
-  country: string;
-  currency: string;
-  intent: string;
-  return_url?: string | null | undefined;
-  cart_items: Array<CartItem$Outbound> | null;
-  metadata?: { [k: string]: any } | null | undefined;
-  payment_source: string;
-  created_at: string;
-  updated_at: string;
-  status: string;
-  buyer?: TransactionBuyerOutput$Outbound | null | undefined;
-  shipping_details?: ShippingDetails$Outbound | null | undefined;
-  connection_options?: { [k: string]: { [k: string]: any } } | null | undefined;
-};
-
-/** @internal */
-export const PaymentLink$outboundSchema: z.ZodType<
-  PaymentLink$Outbound,
-  z.ZodTypeDef,
-  PaymentLink
-> = z.object({
-  id: z.string(),
-  type: z.literal("payment-link").default("payment-link" as const),
-  url: z.string(),
-  expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
-    .optional(),
-  locale: z.nullable(z.string()).optional(),
-  merchantName: z.nullable(z.string()).optional(),
-  merchantUrl: z.nullable(z.string()).optional(),
-  merchantBannerUrl: z.nullable(z.string()).optional(),
-  merchantColor: z.nullable(z.string()).optional(),
-  merchantMessage: z.nullable(z.string()).optional(),
-  merchantTermsAndConditionsUrl: z.nullable(z.string()).optional(),
-  merchantFaviconUrl: z.nullable(z.string()).optional(),
-  amount: z.number().int(),
-  country: z.string(),
-  currency: z.string(),
-  intent: TransactionIntent$outboundSchema,
-  returnUrl: z.nullable(z.string()).optional(),
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  paymentSource: TransactionPaymentSource$outboundSchema,
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-  status: PaymentLinkStatus$outboundSchema,
-  buyer: z.nullable(TransactionBuyerOutput$outboundSchema).optional(),
-  shippingDetails: z.nullable(ShippingDetails$outboundSchema).optional(),
-  connectionOptions: z.nullable(z.record(z.record(z.any()))).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expiresAt: "expires_at",
-    externalIdentifier: "external_identifier",
-    statementDescriptor: "statement_descriptor",
-    merchantName: "merchant_name",
-    merchantUrl: "merchant_url",
-    merchantBannerUrl: "merchant_banner_url",
-    merchantColor: "merchant_color",
-    merchantMessage: "merchant_message",
-    merchantTermsAndConditionsUrl: "merchant_terms_and_conditions_url",
-    merchantFaviconUrl: "merchant_favicon_url",
-    returnUrl: "return_url",
-    cartItems: "cart_items",
-    paymentSource: "payment_source",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    shippingDetails: "shipping_details",
-    connectionOptions: "connection_options",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentLink$ {
-  /** @deprecated use `PaymentLink$inboundSchema` instead. */
-  export const inboundSchema = PaymentLink$inboundSchema;
-  /** @deprecated use `PaymentLink$outboundSchema` instead. */
-  export const outboundSchema = PaymentLink$outboundSchema;
-  /** @deprecated use `PaymentLink$Outbound` instead. */
-  export type Outbound = PaymentLink$Outbound;
-}
-
-export function paymentLinkToJSON(paymentLink: PaymentLink): string {
-  return JSON.stringify(PaymentLink$outboundSchema.parse(paymentLink));
-}
 
 export function paymentLinkFromJSON(
   jsonString: string,

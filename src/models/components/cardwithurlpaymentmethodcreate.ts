@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create a transaction with raw card details
@@ -51,33 +48,6 @@ export type CardWithUrlPaymentMethodCreate = {
 };
 
 /** @internal */
-export const CardWithUrlPaymentMethodCreate$inboundSchema: z.ZodType<
-  CardWithUrlPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  expiration_date: z.string(),
-  number: z.string(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  card_type: z.nullable(z.string()).optional(),
-  method: z.literal("card").default("card"),
-  security_code: z.nullable(z.string()).optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "buyer_id": "buyerId",
-    "external_identifier": "externalIdentifier",
-    "card_type": "cardType",
-    "security_code": "securityCode",
-    "redirect_url": "redirectUrl",
-  });
-});
-
-/** @internal */
 export type CardWithUrlPaymentMethodCreate$Outbound = {
   expiration_date: string;
   number: string;
@@ -117,19 +87,6 @@ export const CardWithUrlPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CardWithUrlPaymentMethodCreate$ {
-  /** @deprecated use `CardWithUrlPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = CardWithUrlPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `CardWithUrlPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = CardWithUrlPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `CardWithUrlPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = CardWithUrlPaymentMethodCreate$Outbound;
-}
-
 export function cardWithUrlPaymentMethodCreateToJSON(
   cardWithUrlPaymentMethodCreate: CardWithUrlPaymentMethodCreate,
 ): string {
@@ -137,15 +94,5 @@ export function cardWithUrlPaymentMethodCreateToJSON(
     CardWithUrlPaymentMethodCreate$outboundSchema.parse(
       cardWithUrlPaymentMethodCreate,
     ),
-  );
-}
-
-export function cardWithUrlPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<CardWithUrlPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CardWithUrlPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CardWithUrlPaymentMethodCreate' from JSON`,
   );
 }

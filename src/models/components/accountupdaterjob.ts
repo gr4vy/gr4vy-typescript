@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountUpdaterInquirySummary,
   AccountUpdaterInquirySummary$inboundSchema,
-  AccountUpdaterInquirySummary$Outbound,
-  AccountUpdaterInquirySummary$outboundSchema,
 } from "./accountupdaterinquirysummary.js";
 
 export type AccountUpdaterJob = {
@@ -60,59 +58,6 @@ export const AccountUpdaterJob$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type AccountUpdaterJob$Outbound = {
-  type: "account-updater-job";
-  id: string;
-  merchant_account_id: string;
-  inquiries: Array<AccountUpdaterInquirySummary$Outbound>;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const AccountUpdaterJob$outboundSchema: z.ZodType<
-  AccountUpdaterJob$Outbound,
-  z.ZodTypeDef,
-  AccountUpdaterJob
-> = z.object({
-  type: z.literal("account-updater-job").default(
-    "account-updater-job" as const,
-  ),
-  id: z.string(),
-  merchantAccountId: z.string(),
-  inquiries: z.array(AccountUpdaterInquirySummary$outboundSchema),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountUpdaterJob$ {
-  /** @deprecated use `AccountUpdaterJob$inboundSchema` instead. */
-  export const inboundSchema = AccountUpdaterJob$inboundSchema;
-  /** @deprecated use `AccountUpdaterJob$outboundSchema` instead. */
-  export const outboundSchema = AccountUpdaterJob$outboundSchema;
-  /** @deprecated use `AccountUpdaterJob$Outbound` instead. */
-  export type Outbound = AccountUpdaterJob$Outbound;
-}
-
-export function accountUpdaterJobToJSON(
-  accountUpdaterJob: AccountUpdaterJob,
-): string {
-  return JSON.stringify(
-    AccountUpdaterJob$outboundSchema.parse(accountUpdaterJob),
-  );
-}
 
 export function accountUpdaterJobFromJSON(
   jsonString: string,

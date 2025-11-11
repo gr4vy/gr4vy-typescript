@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
-  Address$inboundSchema,
   Address$Outbound,
   Address$outboundSchema,
 } from "./address.js";
@@ -46,28 +42,6 @@ export type PayoutMerchant = {
 };
 
 /** @internal */
-export const PayoutMerchant$inboundSchema: z.ZodType<
-  PayoutMerchant,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  identification_number: z.string(),
-  phone_number: z.string(),
-  url: z.string(),
-  statement_descriptor: z.string(),
-  merchant_category_code: z.string(),
-  address: z.nullable(Address$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "identification_number": "identificationNumber",
-    "phone_number": "phoneNumber",
-    "statement_descriptor": "statementDescriptor",
-    "merchant_category_code": "merchantCategoryCode",
-  });
-});
-
-/** @internal */
 export type PayoutMerchant$Outbound = {
   name: string;
   identification_number: string;
@@ -100,29 +74,6 @@ export const PayoutMerchant$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutMerchant$ {
-  /** @deprecated use `PayoutMerchant$inboundSchema` instead. */
-  export const inboundSchema = PayoutMerchant$inboundSchema;
-  /** @deprecated use `PayoutMerchant$outboundSchema` instead. */
-  export const outboundSchema = PayoutMerchant$outboundSchema;
-  /** @deprecated use `PayoutMerchant$Outbound` instead. */
-  export type Outbound = PayoutMerchant$Outbound;
-}
-
 export function payoutMerchantToJSON(payoutMerchant: PayoutMerchant): string {
   return JSON.stringify(PayoutMerchant$outboundSchema.parse(payoutMerchant));
-}
-
-export function payoutMerchantFromJSON(
-  jsonString: string,
-): SafeParseResult<PayoutMerchant, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PayoutMerchant$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PayoutMerchant' from JSON`,
-  );
 }

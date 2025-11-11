@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateDigitalWalletGlobals = {
   merchantAccountId?: string | undefined;
@@ -24,76 +21,6 @@ export type UpdateDigitalWalletRequest = {
   merchantAccountId?: string | null | undefined;
   digitalWalletUpdate: components.DigitalWalletUpdate;
 };
-
-/** @internal */
-export const UpdateDigitalWalletGlobals$inboundSchema: z.ZodType<
-  UpdateDigitalWalletGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type UpdateDigitalWalletGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const UpdateDigitalWalletGlobals$outboundSchema: z.ZodType<
-  UpdateDigitalWalletGlobals$Outbound,
-  z.ZodTypeDef,
-  UpdateDigitalWalletGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDigitalWalletGlobals$ {
-  /** @deprecated use `UpdateDigitalWalletGlobals$inboundSchema` instead. */
-  export const inboundSchema = UpdateDigitalWalletGlobals$inboundSchema;
-  /** @deprecated use `UpdateDigitalWalletGlobals$outboundSchema` instead. */
-  export const outboundSchema = UpdateDigitalWalletGlobals$outboundSchema;
-  /** @deprecated use `UpdateDigitalWalletGlobals$Outbound` instead. */
-  export type Outbound = UpdateDigitalWalletGlobals$Outbound;
-}
-
-export function updateDigitalWalletGlobalsToJSON(
-  updateDigitalWalletGlobals: UpdateDigitalWalletGlobals,
-): string {
-  return JSON.stringify(
-    UpdateDigitalWalletGlobals$outboundSchema.parse(updateDigitalWalletGlobals),
-  );
-}
-
-export function updateDigitalWalletGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateDigitalWalletGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateDigitalWalletGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateDigitalWalletGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateDigitalWalletRequest$inboundSchema: z.ZodType<
-  UpdateDigitalWalletRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  digital_wallet_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  DigitalWalletUpdate: components.DigitalWalletUpdate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "digital_wallet_id": "digitalWalletId",
-    "DigitalWalletUpdate": "digitalWalletUpdate",
-  });
-});
 
 /** @internal */
 export type UpdateDigitalWalletRequest$Outbound = {
@@ -118,33 +45,10 @@ export const UpdateDigitalWalletRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateDigitalWalletRequest$ {
-  /** @deprecated use `UpdateDigitalWalletRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateDigitalWalletRequest$inboundSchema;
-  /** @deprecated use `UpdateDigitalWalletRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateDigitalWalletRequest$outboundSchema;
-  /** @deprecated use `UpdateDigitalWalletRequest$Outbound` instead. */
-  export type Outbound = UpdateDigitalWalletRequest$Outbound;
-}
-
 export function updateDigitalWalletRequestToJSON(
   updateDigitalWalletRequest: UpdateDigitalWalletRequest,
 ): string {
   return JSON.stringify(
     UpdateDigitalWalletRequest$outboundSchema.parse(updateDigitalWalletRequest),
-  );
-}
-
-export function updateDigitalWalletRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateDigitalWalletRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateDigitalWalletRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateDigitalWalletRequest' from JSON`,
   );
 }

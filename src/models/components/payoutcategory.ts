@@ -24,7 +24,6 @@ export const PayoutCategory$inboundSchema: z.ZodType<
     z.nativeEnum(PayoutCategory),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const PayoutCategory$outboundSchema: z.ZodType<
   PayoutCategory,
@@ -34,14 +33,3 @@ export const PayoutCategory$outboundSchema: z.ZodType<
   z.nativeEnum(PayoutCategory),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutCategory$ {
-  /** @deprecated use `PayoutCategory$inboundSchema` instead. */
-  export const inboundSchema = PayoutCategory$inboundSchema;
-  /** @deprecated use `PayoutCategory$outboundSchema` instead. */
-  export const outboundSchema = PayoutCategory$outboundSchema;
-}

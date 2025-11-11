@@ -33,55 +33,6 @@ export const GooglePayPaymentOptionContext$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type GooglePayPaymentOptionContext$Outbound = {
-  merchant_name: string;
-  supported_schemes: Array<string>;
-  gateway: string;
-  gateway_merchant_id: string;
-};
-
-/** @internal */
-export const GooglePayPaymentOptionContext$outboundSchema: z.ZodType<
-  GooglePayPaymentOptionContext$Outbound,
-  z.ZodTypeDef,
-  GooglePayPaymentOptionContext
-> = z.object({
-  merchantName: z.string(),
-  supportedSchemes: z.array(z.string()),
-  gateway: z.string(),
-  gatewayMerchantId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantName: "merchant_name",
-    supportedSchemes: "supported_schemes",
-    gatewayMerchantId: "gateway_merchant_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GooglePayPaymentOptionContext$ {
-  /** @deprecated use `GooglePayPaymentOptionContext$inboundSchema` instead. */
-  export const inboundSchema = GooglePayPaymentOptionContext$inboundSchema;
-  /** @deprecated use `GooglePayPaymentOptionContext$outboundSchema` instead. */
-  export const outboundSchema = GooglePayPaymentOptionContext$outboundSchema;
-  /** @deprecated use `GooglePayPaymentOptionContext$Outbound` instead. */
-  export type Outbound = GooglePayPaymentOptionContext$Outbound;
-}
-
-export function googlePayPaymentOptionContextToJSON(
-  googlePayPaymentOptionContext: GooglePayPaymentOptionContext,
-): string {
-  return JSON.stringify(
-    GooglePayPaymentOptionContext$outboundSchema.parse(
-      googlePayPaymentOptionContext,
-    ),
-  );
-}
-
 export function googlePayPaymentOptionContextFromJSON(
   jsonString: string,
 ): SafeParseResult<GooglePayPaymentOptionContext, SDKValidationError> {

@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FiservInstallmentOptions,
-  FiservInstallmentOptions$inboundSchema,
   FiservInstallmentOptions$Outbound,
   FiservInstallmentOptions$outboundSchema,
 } from "./fiservinstallmentoptions.js";
@@ -19,16 +15,6 @@ export type FiservOptions = {
    */
   installmentOptions?: FiservInstallmentOptions | null | undefined;
 };
-
-/** @internal */
-export const FiservOptions$inboundSchema: z.ZodType<
-  FiservOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  installmentOptions: z.nullable(FiservInstallmentOptions$inboundSchema)
-    .optional(),
-});
 
 /** @internal */
 export type FiservOptions$Outbound = {
@@ -45,29 +31,6 @@ export const FiservOptions$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FiservOptions$ {
-  /** @deprecated use `FiservOptions$inboundSchema` instead. */
-  export const inboundSchema = FiservOptions$inboundSchema;
-  /** @deprecated use `FiservOptions$outboundSchema` instead. */
-  export const outboundSchema = FiservOptions$outboundSchema;
-  /** @deprecated use `FiservOptions$Outbound` instead. */
-  export type Outbound = FiservOptions$Outbound;
-}
-
 export function fiservOptionsToJSON(fiservOptions: FiservOptions): string {
   return JSON.stringify(FiservOptions$outboundSchema.parse(fiservOptions));
-}
-
-export function fiservOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<FiservOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FiservOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FiservOptions' from JSON`,
-  );
 }

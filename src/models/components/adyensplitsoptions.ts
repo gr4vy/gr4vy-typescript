@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AdyenSplitsOptions = {
   /**
@@ -21,17 +18,6 @@ export type AdyenSplitsOptions = {
    */
   refund?: Array<{ [k: string]: any }> | null | undefined;
 };
-
-/** @internal */
-export const AdyenSplitsOptions$inboundSchema: z.ZodType<
-  AdyenSplitsOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  authorization: z.nullable(z.array(z.record(z.any()))).optional(),
-  capture: z.nullable(z.array(z.record(z.any()))).optional(),
-  refund: z.nullable(z.array(z.record(z.any()))).optional(),
-});
 
 /** @internal */
 export type AdyenSplitsOptions$Outbound = {
@@ -51,33 +37,10 @@ export const AdyenSplitsOptions$outboundSchema: z.ZodType<
   refund: z.nullable(z.array(z.record(z.any()))).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AdyenSplitsOptions$ {
-  /** @deprecated use `AdyenSplitsOptions$inboundSchema` instead. */
-  export const inboundSchema = AdyenSplitsOptions$inboundSchema;
-  /** @deprecated use `AdyenSplitsOptions$outboundSchema` instead. */
-  export const outboundSchema = AdyenSplitsOptions$outboundSchema;
-  /** @deprecated use `AdyenSplitsOptions$Outbound` instead. */
-  export type Outbound = AdyenSplitsOptions$Outbound;
-}
-
 export function adyenSplitsOptionsToJSON(
   adyenSplitsOptions: AdyenSplitsOptions,
 ): string {
   return JSON.stringify(
     AdyenSplitsOptions$outboundSchema.parse(adyenSplitsOptions),
-  );
-}
-
-export function adyenSplitsOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<AdyenSplitsOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AdyenSplitsOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AdyenSplitsOptions' from JSON`,
   );
 }

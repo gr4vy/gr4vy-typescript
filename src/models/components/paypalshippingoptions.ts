@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaypalShippingOptionsItem,
-  PaypalShippingOptionsItem$inboundSchema,
   PaypalShippingOptionsItem$Outbound,
   PaypalShippingOptionsItem$outboundSchema,
 } from "./paypalshippingoptionsitem.js";
@@ -19,16 +15,6 @@ export type PaypalShippingOptions = {
    */
   options?: Array<PaypalShippingOptionsItem> | null | undefined;
 };
-
-/** @internal */
-export const PaypalShippingOptions$inboundSchema: z.ZodType<
-  PaypalShippingOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  options: z.nullable(z.array(PaypalShippingOptionsItem$inboundSchema))
-    .optional(),
-});
 
 /** @internal */
 export type PaypalShippingOptions$Outbound = {
@@ -45,33 +31,10 @@ export const PaypalShippingOptions$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaypalShippingOptions$ {
-  /** @deprecated use `PaypalShippingOptions$inboundSchema` instead. */
-  export const inboundSchema = PaypalShippingOptions$inboundSchema;
-  /** @deprecated use `PaypalShippingOptions$outboundSchema` instead. */
-  export const outboundSchema = PaypalShippingOptions$outboundSchema;
-  /** @deprecated use `PaypalShippingOptions$Outbound` instead. */
-  export type Outbound = PaypalShippingOptions$Outbound;
-}
-
 export function paypalShippingOptionsToJSON(
   paypalShippingOptions: PaypalShippingOptions,
 ): string {
   return JSON.stringify(
     PaypalShippingOptions$outboundSchema.parse(paypalShippingOptions),
-  );
-}
-
-export function paypalShippingOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<PaypalShippingOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaypalShippingOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaypalShippingOptions' from JSON`,
   );
 }

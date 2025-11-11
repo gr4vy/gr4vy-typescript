@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The ID of a stored gift card to fetch a balance for.
@@ -16,15 +13,6 @@ export type GiftCardStoredRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GiftCardStoredRequest$inboundSchema: z.ZodType<
-  GiftCardStoredRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GiftCardStoredRequest$Outbound = {
@@ -40,33 +28,10 @@ export const GiftCardStoredRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardStoredRequest$ {
-  /** @deprecated use `GiftCardStoredRequest$inboundSchema` instead. */
-  export const inboundSchema = GiftCardStoredRequest$inboundSchema;
-  /** @deprecated use `GiftCardStoredRequest$outboundSchema` instead. */
-  export const outboundSchema = GiftCardStoredRequest$outboundSchema;
-  /** @deprecated use `GiftCardStoredRequest$Outbound` instead. */
-  export type Outbound = GiftCardStoredRequest$Outbound;
-}
-
 export function giftCardStoredRequestToJSON(
   giftCardStoredRequest: GiftCardStoredRequest,
 ): string {
   return JSON.stringify(
     GiftCardStoredRequest$outboundSchema.parse(giftCardStoredRequest),
-  );
-}
-
-export function giftCardStoredRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GiftCardStoredRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GiftCardStoredRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GiftCardStoredRequest' from JSON`,
   );
 }

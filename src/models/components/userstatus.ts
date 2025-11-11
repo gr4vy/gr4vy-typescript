@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const UserStatus = {
   Active: "active",
@@ -26,24 +22,3 @@ export const UserStatus$inboundSchema: z.ZodType<
     z.nativeEnum(UserStatus),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const UserStatus$outboundSchema: z.ZodType<
-  UserStatus,
-  z.ZodTypeDef,
-  UserStatus
-> = z.union([
-  z.nativeEnum(UserStatus),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UserStatus$ {
-  /** @deprecated use `UserStatus$inboundSchema` instead. */
-  export const inboundSchema = UserStatus$inboundSchema;
-  /** @deprecated use `UserStatus$outboundSchema` instead. */
-  export const outboundSchema = UserStatus$outboundSchema;
-}

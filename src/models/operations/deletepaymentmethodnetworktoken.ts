@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeletePaymentMethodNetworkTokenGlobals = {
   merchantAccountId?: string | undefined;
@@ -26,82 +23,6 @@ export type DeletePaymentMethodNetworkTokenRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const DeletePaymentMethodNetworkTokenGlobals$inboundSchema: z.ZodType<
-  DeletePaymentMethodNetworkTokenGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type DeletePaymentMethodNetworkTokenGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const DeletePaymentMethodNetworkTokenGlobals$outboundSchema: z.ZodType<
-  DeletePaymentMethodNetworkTokenGlobals$Outbound,
-  z.ZodTypeDef,
-  DeletePaymentMethodNetworkTokenGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeletePaymentMethodNetworkTokenGlobals$ {
-  /** @deprecated use `DeletePaymentMethodNetworkTokenGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    DeletePaymentMethodNetworkTokenGlobals$inboundSchema;
-  /** @deprecated use `DeletePaymentMethodNetworkTokenGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    DeletePaymentMethodNetworkTokenGlobals$outboundSchema;
-  /** @deprecated use `DeletePaymentMethodNetworkTokenGlobals$Outbound` instead. */
-  export type Outbound = DeletePaymentMethodNetworkTokenGlobals$Outbound;
-}
-
-export function deletePaymentMethodNetworkTokenGlobalsToJSON(
-  deletePaymentMethodNetworkTokenGlobals:
-    DeletePaymentMethodNetworkTokenGlobals,
-): string {
-  return JSON.stringify(
-    DeletePaymentMethodNetworkTokenGlobals$outboundSchema.parse(
-      deletePaymentMethodNetworkTokenGlobals,
-    ),
-  );
-}
-
-export function deletePaymentMethodNetworkTokenGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<DeletePaymentMethodNetworkTokenGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      DeletePaymentMethodNetworkTokenGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeletePaymentMethodNetworkTokenGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const DeletePaymentMethodNetworkTokenRequest$inboundSchema: z.ZodType<
-  DeletePaymentMethodNetworkTokenRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_method_id: z.string(),
-  network_token_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method_id": "paymentMethodId",
-    "network_token_id": "networkTokenId",
-  });
-});
 
 /** @internal */
 export type DeletePaymentMethodNetworkTokenRequest$Outbound = {
@@ -126,21 +47,6 @@ export const DeletePaymentMethodNetworkTokenRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeletePaymentMethodNetworkTokenRequest$ {
-  /** @deprecated use `DeletePaymentMethodNetworkTokenRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    DeletePaymentMethodNetworkTokenRequest$inboundSchema;
-  /** @deprecated use `DeletePaymentMethodNetworkTokenRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    DeletePaymentMethodNetworkTokenRequest$outboundSchema;
-  /** @deprecated use `DeletePaymentMethodNetworkTokenRequest$Outbound` instead. */
-  export type Outbound = DeletePaymentMethodNetworkTokenRequest$Outbound;
-}
-
 export function deletePaymentMethodNetworkTokenRequestToJSON(
   deletePaymentMethodNetworkTokenRequest:
     DeletePaymentMethodNetworkTokenRequest,
@@ -149,16 +55,5 @@ export function deletePaymentMethodNetworkTokenRequestToJSON(
     DeletePaymentMethodNetworkTokenRequest$outboundSchema.parse(
       deletePaymentMethodNetworkTokenRequest,
     ),
-  );
-}
-
-export function deletePaymentMethodNetworkTokenRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeletePaymentMethodNetworkTokenRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      DeletePaymentMethodNetworkTokenRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeletePaymentMethodNetworkTokenRequest' from JSON`,
   );
 }

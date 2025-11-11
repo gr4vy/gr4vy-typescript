@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 
 export const AdyenAutoRescueSepaScenariosEnum = {
   AutoRescueSuccessfulFirst: "AutoRescueSuccessfulFirst",
@@ -19,17 +15,6 @@ export type AdyenAutoRescueSepaScenariosEnum = OpenEnum<
 >;
 
 /** @internal */
-export const AdyenAutoRescueSepaScenariosEnum$inboundSchema: z.ZodType<
-  AdyenAutoRescueSepaScenariosEnum,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(AdyenAutoRescueSepaScenariosEnum),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const AdyenAutoRescueSepaScenariosEnum$outboundSchema: z.ZodType<
   AdyenAutoRescueSepaScenariosEnum,
   z.ZodTypeDef,
@@ -38,14 +23,3 @@ export const AdyenAutoRescueSepaScenariosEnum$outboundSchema: z.ZodType<
   z.nativeEnum(AdyenAutoRescueSepaScenariosEnum),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AdyenAutoRescueSepaScenariosEnum$ {
-  /** @deprecated use `AdyenAutoRescueSepaScenariosEnum$inboundSchema` instead. */
-  export const inboundSchema = AdyenAutoRescueSepaScenariosEnum$inboundSchema;
-  /** @deprecated use `AdyenAutoRescueSepaScenariosEnum$outboundSchema` instead. */
-  export const outboundSchema = AdyenAutoRescueSepaScenariosEnum$outboundSchema;
-}

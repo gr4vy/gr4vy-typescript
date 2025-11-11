@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GiftCardTokenTransactionCreate = {
   /**
@@ -17,16 +14,6 @@ export type GiftCardTokenTransactionCreate = {
    */
   amount: number;
 };
-
-/** @internal */
-export const GiftCardTokenTransactionCreate$inboundSchema: z.ZodType<
-  GiftCardTokenTransactionCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  amount: z.number().int(),
-});
 
 /** @internal */
 export type GiftCardTokenTransactionCreate$Outbound = {
@@ -44,19 +31,6 @@ export const GiftCardTokenTransactionCreate$outboundSchema: z.ZodType<
   amount: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardTokenTransactionCreate$ {
-  /** @deprecated use `GiftCardTokenTransactionCreate$inboundSchema` instead. */
-  export const inboundSchema = GiftCardTokenTransactionCreate$inboundSchema;
-  /** @deprecated use `GiftCardTokenTransactionCreate$outboundSchema` instead. */
-  export const outboundSchema = GiftCardTokenTransactionCreate$outboundSchema;
-  /** @deprecated use `GiftCardTokenTransactionCreate$Outbound` instead. */
-  export type Outbound = GiftCardTokenTransactionCreate$Outbound;
-}
-
 export function giftCardTokenTransactionCreateToJSON(
   giftCardTokenTransactionCreate: GiftCardTokenTransactionCreate,
 ): string {
@@ -64,15 +38,5 @@ export function giftCardTokenTransactionCreateToJSON(
     GiftCardTokenTransactionCreate$outboundSchema.parse(
       giftCardTokenTransactionCreate,
     ),
-  );
-}
-
-export function giftCardTokenTransactionCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<GiftCardTokenTransactionCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GiftCardTokenTransactionCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GiftCardTokenTransactionCreate' from JSON`,
   );
 }

@@ -4,24 +4,18 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ForterAntiFraudOptionsCartItemBasicItemData,
-  ForterAntiFraudOptionsCartItemBasicItemData$inboundSchema,
   ForterAntiFraudOptionsCartItemBasicItemData$Outbound,
   ForterAntiFraudOptionsCartItemBasicItemData$outboundSchema,
 } from "./forterantifraudoptionscartitembasicitemdata.js";
 import {
   ForterAntiFraudOptionsCartItemBeneficiary,
-  ForterAntiFraudOptionsCartItemBeneficiary$inboundSchema,
   ForterAntiFraudOptionsCartItemBeneficiary$Outbound,
   ForterAntiFraudOptionsCartItemBeneficiary$outboundSchema,
 } from "./forterantifraudoptionscartitembeneficiary.js";
 import {
   ForterAntiFraudOptionsCartItemDeliveryDetails,
-  ForterAntiFraudOptionsCartItemDeliveryDetails$inboundSchema,
   ForterAntiFraudOptionsCartItemDeliveryDetails$Outbound,
   ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema,
 } from "./forterantifraudoptionscartitemdeliverydetails.js";
@@ -49,28 +43,6 @@ export type ForterAntiFraudOptionsCartItem = {
     | null
     | undefined;
 };
-
-/** @internal */
-export const ForterAntiFraudOptionsCartItem$inboundSchema: z.ZodType<
-  ForterAntiFraudOptionsCartItem,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  basic_item_data: z.nullable(
-    ForterAntiFraudOptionsCartItemBasicItemData$inboundSchema,
-  ).optional(),
-  delivery_details: z.nullable(
-    ForterAntiFraudOptionsCartItemDeliveryDetails$inboundSchema,
-  ).optional(),
-  beneficiaries: z.nullable(
-    z.array(ForterAntiFraudOptionsCartItemBeneficiary$inboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "basic_item_data": "basicItemData",
-    "delivery_details": "deliveryDetails",
-  });
-});
 
 /** @internal */
 export type ForterAntiFraudOptionsCartItem$Outbound = {
@@ -110,19 +82,6 @@ export const ForterAntiFraudOptionsCartItem$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItem$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItem$inboundSchema` instead. */
-  export const inboundSchema = ForterAntiFraudOptionsCartItem$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItem$outboundSchema` instead. */
-  export const outboundSchema = ForterAntiFraudOptionsCartItem$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItem$Outbound` instead. */
-  export type Outbound = ForterAntiFraudOptionsCartItem$Outbound;
-}
-
 export function forterAntiFraudOptionsCartItemToJSON(
   forterAntiFraudOptionsCartItem: ForterAntiFraudOptionsCartItem,
 ): string {
@@ -130,15 +89,5 @@ export function forterAntiFraudOptionsCartItemToJSON(
     ForterAntiFraudOptionsCartItem$outboundSchema.parse(
       forterAntiFraudOptionsCartItem,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsCartItemFromJSON(
-  jsonString: string,
-): SafeParseResult<ForterAntiFraudOptionsCartItem, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ForterAntiFraudOptionsCartItem$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ForterAntiFraudOptionsCartItem' from JSON`,
   );
 }

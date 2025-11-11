@@ -36,48 +36,6 @@ export const ReportExecutionContext$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ReportExecutionContext$Outbound = {
-  reference_timestamp: string;
-  reference_timezone: string;
-};
-
-/** @internal */
-export const ReportExecutionContext$outboundSchema: z.ZodType<
-  ReportExecutionContext$Outbound,
-  z.ZodTypeDef,
-  ReportExecutionContext
-> = z.object({
-  referenceTimestamp: z.date().transform(v => v.toISOString()),
-  referenceTimezone: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    referenceTimestamp: "reference_timestamp",
-    referenceTimezone: "reference_timezone",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportExecutionContext$ {
-  /** @deprecated use `ReportExecutionContext$inboundSchema` instead. */
-  export const inboundSchema = ReportExecutionContext$inboundSchema;
-  /** @deprecated use `ReportExecutionContext$outboundSchema` instead. */
-  export const outboundSchema = ReportExecutionContext$outboundSchema;
-  /** @deprecated use `ReportExecutionContext$Outbound` instead. */
-  export type Outbound = ReportExecutionContext$Outbound;
-}
-
-export function reportExecutionContextToJSON(
-  reportExecutionContext: ReportExecutionContext,
-): string {
-  return JSON.stringify(
-    ReportExecutionContext$outboundSchema.parse(reportExecutionContext),
-  );
-}
-
 export function reportExecutionContextFromJSON(
   jsonString: string,
 ): SafeParseResult<ReportExecutionContext, SDKValidationError> {

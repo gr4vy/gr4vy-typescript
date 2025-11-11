@@ -30,41 +30,6 @@ export const Cryptogram$inboundSchema: z.ZodType<
   cryptogram: z.string(),
 });
 
-/** @internal */
-export type Cryptogram$Outbound = {
-  type: "network-token-cryptogram";
-  cryptogram: string;
-};
-
-/** @internal */
-export const Cryptogram$outboundSchema: z.ZodType<
-  Cryptogram$Outbound,
-  z.ZodTypeDef,
-  Cryptogram
-> = z.object({
-  type: z.literal("network-token-cryptogram").default(
-    "network-token-cryptogram" as const,
-  ),
-  cryptogram: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Cryptogram$ {
-  /** @deprecated use `Cryptogram$inboundSchema` instead. */
-  export const inboundSchema = Cryptogram$inboundSchema;
-  /** @deprecated use `Cryptogram$outboundSchema` instead. */
-  export const outboundSchema = Cryptogram$outboundSchema;
-  /** @deprecated use `Cryptogram$Outbound` instead. */
-  export type Outbound = Cryptogram$Outbound;
-}
-
-export function cryptogramToJSON(cryptogram: Cryptogram): string {
-  return JSON.stringify(Cryptogram$outboundSchema.parse(cryptogram));
-}
-
 export function cryptogramFromJSON(
   jsonString: string,
 ): SafeParseResult<Cryptogram, SDKValidationError> {

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GiftCardCreate = {
   /**
@@ -26,23 +23,6 @@ export type GiftCardCreate = {
    */
   buyerExternalIdentifier?: string | null | undefined;
 };
-
-/** @internal */
-export const GiftCardCreate$inboundSchema: z.ZodType<
-  GiftCardCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  number: z.string(),
-  pin: z.string(),
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_id": "buyerId",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-  });
-});
 
 /** @internal */
 export type GiftCardCreate$Outbound = {
@@ -69,29 +49,6 @@ export const GiftCardCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardCreate$ {
-  /** @deprecated use `GiftCardCreate$inboundSchema` instead. */
-  export const inboundSchema = GiftCardCreate$inboundSchema;
-  /** @deprecated use `GiftCardCreate$outboundSchema` instead. */
-  export const outboundSchema = GiftCardCreate$outboundSchema;
-  /** @deprecated use `GiftCardCreate$Outbound` instead. */
-  export type Outbound = GiftCardCreate$Outbound;
-}
-
 export function giftCardCreateToJSON(giftCardCreate: GiftCardCreate): string {
   return JSON.stringify(GiftCardCreate$outboundSchema.parse(giftCardCreate));
-}
-
-export function giftCardCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<GiftCardCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GiftCardCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GiftCardCreate' from JSON`,
-  );
 }

@@ -4,41 +4,32 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   GuestBuyerInput,
-  GuestBuyerInput$inboundSchema,
   GuestBuyerInput$Outbound,
   GuestBuyerInput$outboundSchema,
 } from "./guestbuyerinput.js";
 import {
   PaymentMethodCard,
-  PaymentMethodCard$inboundSchema,
   PaymentMethodCard$Outbound,
   PaymentMethodCard$outboundSchema,
 } from "./paymentmethodcard.js";
 import {
   PaymentMethodStoredCard,
-  PaymentMethodStoredCard$inboundSchema,
   PaymentMethodStoredCard$Outbound,
   PaymentMethodStoredCard$outboundSchema,
 } from "./paymentmethodstoredcard.js";
 import {
   PayoutCategory,
-  PayoutCategory$inboundSchema,
   PayoutCategory$outboundSchema,
 } from "./payoutcategory.js";
 import {
   PayoutConnectionOptions,
-  PayoutConnectionOptions$inboundSchema,
   PayoutConnectionOptions$Outbound,
   PayoutConnectionOptions$outboundSchema,
 } from "./payoutconnectionoptions.js";
 import {
   PayoutMerchant,
-  PayoutMerchant$inboundSchema,
   PayoutMerchant$Outbound,
   PayoutMerchant$outboundSchema,
 } from "./payoutmerchant.js";
@@ -105,16 +96,6 @@ export type PayoutCreate = {
 };
 
 /** @internal */
-export const PayoutCreatePaymentMethod$inboundSchema: z.ZodType<
-  PayoutCreatePaymentMethod,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  PaymentMethodCard$inboundSchema,
-  PaymentMethodStoredCard$inboundSchema,
-]);
-
-/** @internal */
 export type PayoutCreatePaymentMethod$Outbound =
   | PaymentMethodCard$Outbound
   | PaymentMethodStoredCard$Outbound;
@@ -129,19 +110,6 @@ export const PayoutCreatePaymentMethod$outboundSchema: z.ZodType<
   PaymentMethodStoredCard$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutCreatePaymentMethod$ {
-  /** @deprecated use `PayoutCreatePaymentMethod$inboundSchema` instead. */
-  export const inboundSchema = PayoutCreatePaymentMethod$inboundSchema;
-  /** @deprecated use `PayoutCreatePaymentMethod$outboundSchema` instead. */
-  export const outboundSchema = PayoutCreatePaymentMethod$outboundSchema;
-  /** @deprecated use `PayoutCreatePaymentMethod$Outbound` instead. */
-  export type Outbound = PayoutCreatePaymentMethod$Outbound;
-}
-
 export function payoutCreatePaymentMethodToJSON(
   payoutCreatePaymentMethod: PayoutCreatePaymentMethod,
 ): string {
@@ -149,48 +117,6 @@ export function payoutCreatePaymentMethodToJSON(
     PayoutCreatePaymentMethod$outboundSchema.parse(payoutCreatePaymentMethod),
   );
 }
-
-export function payoutCreatePaymentMethodFromJSON(
-  jsonString: string,
-): SafeParseResult<PayoutCreatePaymentMethod, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PayoutCreatePaymentMethod$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PayoutCreatePaymentMethod' from JSON`,
-  );
-}
-
-/** @internal */
-export const PayoutCreate$inboundSchema: z.ZodType<
-  PayoutCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  amount: z.number().int(),
-  currency: z.string(),
-  payment_service_id: z.string(),
-  payment_method: z.union([
-    PaymentMethodCard$inboundSchema,
-    PaymentMethodStoredCard$inboundSchema,
-  ]),
-  category: z.nullable(PayoutCategory$inboundSchema).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer: z.nullable(GuestBuyerInput$inboundSchema).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  merchant: z.nullable(PayoutMerchant$inboundSchema).optional(),
-  connection_options: z.nullable(PayoutConnectionOptions$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_service_id": "paymentServiceId",
-    "payment_method": "paymentMethod",
-    "external_identifier": "externalIdentifier",
-    "buyer_id": "buyerId",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "connection_options": "connectionOptions",
-  });
-});
 
 /** @internal */
 export type PayoutCreate$Outbound = {
@@ -239,29 +165,6 @@ export const PayoutCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutCreate$ {
-  /** @deprecated use `PayoutCreate$inboundSchema` instead. */
-  export const inboundSchema = PayoutCreate$inboundSchema;
-  /** @deprecated use `PayoutCreate$outboundSchema` instead. */
-  export const outboundSchema = PayoutCreate$outboundSchema;
-  /** @deprecated use `PayoutCreate$Outbound` instead. */
-  export type Outbound = PayoutCreate$Outbound;
-}
-
 export function payoutCreateToJSON(payoutCreate: PayoutCreate): string {
   return JSON.stringify(PayoutCreate$outboundSchema.parse(payoutCreate));
-}
-
-export function payoutCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<PayoutCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PayoutCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PayoutCreate' from JSON`,
-  );
 }

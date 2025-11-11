@@ -168,161 +168,6 @@ export type ListTransactionsResponse = {
 };
 
 /** @internal */
-export const ListTransactionsGlobals$inboundSchema: z.ZodType<
-  ListTransactionsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListTransactionsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListTransactionsGlobals$outboundSchema: z.ZodType<
-  ListTransactionsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListTransactionsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransactionsGlobals$ {
-  /** @deprecated use `ListTransactionsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListTransactionsGlobals$inboundSchema;
-  /** @deprecated use `ListTransactionsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListTransactionsGlobals$outboundSchema;
-  /** @deprecated use `ListTransactionsGlobals$Outbound` instead. */
-  export type Outbound = ListTransactionsGlobals$Outbound;
-}
-
-export function listTransactionsGlobalsToJSON(
-  listTransactionsGlobals: ListTransactionsGlobals,
-): string {
-  return JSON.stringify(
-    ListTransactionsGlobals$outboundSchema.parse(listTransactionsGlobals),
-  );
-}
-
-export function listTransactionsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListTransactionsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListTransactionsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListTransactionsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListTransactionsRequest$inboundSchema: z.ZodType<
-  ListTransactionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  created_at_lte: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at_gte: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at_lte: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at_gte: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  search: z.nullable(z.string()).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer_email_address: z.nullable(z.string()).optional(),
-  ip_address: z.nullable(z.string()).optional(),
-  status: z.nullable(z.array(components.TransactionStatus$inboundSchema))
-    .optional(),
-  id: z.nullable(z.string()).optional(),
-  payment_service_transaction_id: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  metadata: z.nullable(z.array(z.string())).optional(),
-  amount_eq: z.nullable(z.number().int()).optional(),
-  amount_lte: z.nullable(z.number().int()).optional(),
-  amount_gte: z.nullable(z.number().int()).optional(),
-  currency: z.nullable(z.array(z.string())).optional(),
-  country: z.nullable(z.array(z.string())).optional(),
-  payment_service_id: z.nullable(z.array(z.string())).optional(),
-  payment_method_id: z.nullable(z.string()).optional(),
-  payment_method_label: z.nullable(z.string()).optional(),
-  payment_method_scheme: z.nullable(z.array(z.string())).optional(),
-  payment_method_country: z.nullable(z.string()).optional(),
-  payment_method_fingerprint: z.nullable(z.string()).optional(),
-  method: z.nullable(z.array(components.Method$inboundSchema)).optional(),
-  error_code: z.nullable(z.array(z.string())).optional(),
-  has_refunds: z.nullable(z.boolean()).optional(),
-  pending_review: z.nullable(z.boolean()).optional(),
-  checkout_session_id: z.nullable(z.string()).optional(),
-  reconciliation_id: z.nullable(z.string()).optional(),
-  has_gift_card_redemptions: z.nullable(z.boolean()).optional(),
-  gift_card_id: z.nullable(z.string()).optional(),
-  gift_card_last4: z.nullable(z.string()).optional(),
-  has_settlements: z.nullable(z.boolean()).optional(),
-  payment_method_bin: z.nullable(z.string()).optional(),
-  payment_source: z.nullable(
-    z.array(components.TransactionPaymentSource$inboundSchema),
-  ).optional(),
-  is_subsequent_payment: z.nullable(z.boolean()).optional(),
-  merchant_initiated: z.nullable(z.boolean()).optional(),
-  used_3ds: z.nullable(z.boolean()).optional(),
-  disputed: z.nullable(z.boolean()).optional(),
-  buyer_search: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "created_at_lte": "createdAtLte",
-    "created_at_gte": "createdAtGte",
-    "updated_at_lte": "updatedAtLte",
-    "updated_at_gte": "updatedAtGte",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "buyer_id": "buyerId",
-    "buyer_email_address": "buyerEmailAddress",
-    "ip_address": "ipAddress",
-    "payment_service_transaction_id": "paymentServiceTransactionId",
-    "external_identifier": "externalIdentifier",
-    "amount_eq": "amountEq",
-    "amount_lte": "amountLte",
-    "amount_gte": "amountGte",
-    "payment_service_id": "paymentServiceId",
-    "payment_method_id": "paymentMethodId",
-    "payment_method_label": "paymentMethodLabel",
-    "payment_method_scheme": "paymentMethodScheme",
-    "payment_method_country": "paymentMethodCountry",
-    "payment_method_fingerprint": "paymentMethodFingerprint",
-    "error_code": "errorCode",
-    "has_refunds": "hasRefunds",
-    "pending_review": "pendingReview",
-    "checkout_session_id": "checkoutSessionId",
-    "reconciliation_id": "reconciliationId",
-    "has_gift_card_redemptions": "hasGiftCardRedemptions",
-    "gift_card_id": "giftCardId",
-    "gift_card_last4": "giftCardLast4",
-    "has_settlements": "hasSettlements",
-    "payment_method_bin": "paymentMethodBin",
-    "payment_source": "paymentSource",
-    "is_subsequent_payment": "isSubsequentPayment",
-    "merchant_initiated": "merchantInitiated",
-    "used_3ds": "used3ds",
-    "buyer_search": "buyerSearch",
-  });
-});
-
-/** @internal */
 export type ListTransactionsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -464,34 +309,11 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransactionsRequest$ {
-  /** @deprecated use `ListTransactionsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListTransactionsRequest$inboundSchema;
-  /** @deprecated use `ListTransactionsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListTransactionsRequest$outboundSchema;
-  /** @deprecated use `ListTransactionsRequest$Outbound` instead. */
-  export type Outbound = ListTransactionsRequest$Outbound;
-}
-
 export function listTransactionsRequestToJSON(
   listTransactionsRequest: ListTransactionsRequest,
 ): string {
   return JSON.stringify(
     ListTransactionsRequest$outboundSchema.parse(listTransactionsRequest),
-  );
-}
-
-export function listTransactionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListTransactionsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListTransactionsRequest' from JSON`,
   );
 }
 
@@ -507,45 +329,6 @@ export const ListTransactionsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListTransactionsResponse$Outbound = {
-  Result: components.TransactionSummaries$Outbound;
-};
-
-/** @internal */
-export const ListTransactionsResponse$outboundSchema: z.ZodType<
-  ListTransactionsResponse$Outbound,
-  z.ZodTypeDef,
-  ListTransactionsResponse
-> = z.object({
-  result: components.TransactionSummaries$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransactionsResponse$ {
-  /** @deprecated use `ListTransactionsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListTransactionsResponse$inboundSchema;
-  /** @deprecated use `ListTransactionsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListTransactionsResponse$outboundSchema;
-  /** @deprecated use `ListTransactionsResponse$Outbound` instead. */
-  export type Outbound = ListTransactionsResponse$Outbound;
-}
-
-export function listTransactionsResponseToJSON(
-  listTransactionsResponse: ListTransactionsResponse,
-): string {
-  return JSON.stringify(
-    ListTransactionsResponse$outboundSchema.parse(listTransactionsResponse),
-  );
-}
 
 export function listTransactionsResponseFromJSON(
   jsonString: string,

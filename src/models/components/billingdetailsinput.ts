@@ -4,21 +4,12 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
-  Address$inboundSchema,
   Address$Outbound,
   Address$outboundSchema,
 } from "./address.js";
-import {
-  TaxId,
-  TaxId$inboundSchema,
-  TaxId$Outbound,
-  TaxId$outboundSchema,
-} from "./taxid.js";
+import { TaxId, TaxId$Outbound, TaxId$outboundSchema } from "./taxid.js";
 
 export type BillingDetailsInput = {
   /**
@@ -46,28 +37,6 @@ export type BillingDetailsInput = {
    */
   taxId?: TaxId | null | undefined;
 };
-
-/** @internal */
-export const BillingDetailsInput$inboundSchema: z.ZodType<
-  BillingDetailsInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  email_address: z.nullable(z.string()).optional(),
-  phone_number: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$inboundSchema).optional(),
-  tax_id: z.nullable(TaxId$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "phone_number": "phoneNumber",
-    "tax_id": "taxId",
-  });
-});
 
 /** @internal */
 export type BillingDetailsInput$Outbound = {
@@ -101,33 +70,10 @@ export const BillingDetailsInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillingDetailsInput$ {
-  /** @deprecated use `BillingDetailsInput$inboundSchema` instead. */
-  export const inboundSchema = BillingDetailsInput$inboundSchema;
-  /** @deprecated use `BillingDetailsInput$outboundSchema` instead. */
-  export const outboundSchema = BillingDetailsInput$outboundSchema;
-  /** @deprecated use `BillingDetailsInput$Outbound` instead. */
-  export type Outbound = BillingDetailsInput$Outbound;
-}
-
 export function billingDetailsInputToJSON(
   billingDetailsInput: BillingDetailsInput,
 ): string {
   return JSON.stringify(
     BillingDetailsInput$outboundSchema.parse(billingDetailsInput),
-  );
-}
-
-export function billingDetailsInputFromJSON(
-  jsonString: string,
-): SafeParseResult<BillingDetailsInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BillingDetailsInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BillingDetailsInput' from JSON`,
   );
 }

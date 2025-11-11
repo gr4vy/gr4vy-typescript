@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
+import { Address, Address$inboundSchema } from "./address.js";
 
 /**
  * PayoutMerchantSummary
@@ -78,62 +73,6 @@ export const PayoutMerchantSummary$inboundSchema: z.ZodType<
     "merchant_category_code": "merchantCategoryCode",
   });
 });
-
-/** @internal */
-export type PayoutMerchantSummary$Outbound = {
-  type: "merchant";
-  name: string;
-  identification_number: string;
-  phone_number: string;
-  url: string;
-  statement_descriptor?: string | null | undefined;
-  merchant_category_code: string;
-  address?: Address$Outbound | null | undefined;
-};
-
-/** @internal */
-export const PayoutMerchantSummary$outboundSchema: z.ZodType<
-  PayoutMerchantSummary$Outbound,
-  z.ZodTypeDef,
-  PayoutMerchantSummary
-> = z.object({
-  type: z.literal("merchant").default("merchant" as const),
-  name: z.string(),
-  identificationNumber: z.string(),
-  phoneNumber: z.string(),
-  url: z.string(),
-  statementDescriptor: z.nullable(z.string()).optional(),
-  merchantCategoryCode: z.string(),
-  address: z.nullable(Address$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    identificationNumber: "identification_number",
-    phoneNumber: "phone_number",
-    statementDescriptor: "statement_descriptor",
-    merchantCategoryCode: "merchant_category_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutMerchantSummary$ {
-  /** @deprecated use `PayoutMerchantSummary$inboundSchema` instead. */
-  export const inboundSchema = PayoutMerchantSummary$inboundSchema;
-  /** @deprecated use `PayoutMerchantSummary$outboundSchema` instead. */
-  export const outboundSchema = PayoutMerchantSummary$outboundSchema;
-  /** @deprecated use `PayoutMerchantSummary$Outbound` instead. */
-  export type Outbound = PayoutMerchantSummary$Outbound;
-}
-
-export function payoutMerchantSummaryToJSON(
-  payoutMerchantSummary: PayoutMerchantSummary,
-): string {
-  return JSON.stringify(
-    PayoutMerchantSummary$outboundSchema.parse(payoutMerchantSummary),
-  );
-}
 
 export function payoutMerchantSummaryFromJSON(
   jsonString: string,

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransactionSummaryOutput,
   TransactionSummaryOutput$inboundSchema,
-  TransactionSummaryOutput$Outbound,
-  TransactionSummaryOutput$outboundSchema,
 } from "./transactionsummaryoutput.js";
 
 export type TransactionSummaries = {
@@ -49,52 +47,6 @@ export const TransactionSummaries$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type TransactionSummaries$Outbound = {
-  items: Array<TransactionSummaryOutput$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const TransactionSummaries$outboundSchema: z.ZodType<
-  TransactionSummaries$Outbound,
-  z.ZodTypeDef,
-  TransactionSummaries
-> = z.object({
-  items: z.array(TransactionSummaryOutput$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionSummaries$ {
-  /** @deprecated use `TransactionSummaries$inboundSchema` instead. */
-  export const inboundSchema = TransactionSummaries$inboundSchema;
-  /** @deprecated use `TransactionSummaries$outboundSchema` instead. */
-  export const outboundSchema = TransactionSummaries$outboundSchema;
-  /** @deprecated use `TransactionSummaries$Outbound` instead. */
-  export type Outbound = TransactionSummaries$Outbound;
-}
-
-export function transactionSummariesToJSON(
-  transactionSummaries: TransactionSummaries,
-): string {
-  return JSON.stringify(
-    TransactionSummaries$outboundSchema.parse(transactionSummaries),
-  );
-}
 
 export function transactionSummariesFromJSON(
   jsonString: string,

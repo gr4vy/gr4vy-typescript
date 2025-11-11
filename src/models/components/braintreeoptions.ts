@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BraintreeDynamicDataFieldsOptions,
-  BraintreeDynamicDataFieldsOptions$inboundSchema,
   BraintreeDynamicDataFieldsOptions$Outbound,
   BraintreeDynamicDataFieldsOptions$outboundSchema,
 } from "./braintreedynamicdatafieldsoptions.js";
@@ -28,25 +24,6 @@ export type BraintreeOptions = {
    */
   dynamicDataFields?: BraintreeDynamicDataFieldsOptions | null | undefined;
 };
-
-/** @internal */
-export const BraintreeOptions$inboundSchema: z.ZodType<
-  BraintreeOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  discount_amount: z.nullable(z.number().int()).optional(),
-  custom_fields: z.nullable(z.record(z.string())).optional(),
-  dynamic_data_fields: z.nullable(
-    BraintreeDynamicDataFieldsOptions$inboundSchema,
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "discount_amount": "discountAmount",
-    "custom_fields": "customFields",
-    "dynamic_data_fields": "dynamicDataFields",
-  });
-});
 
 /** @internal */
 export type BraintreeOptions$Outbound = {
@@ -77,33 +54,10 @@ export const BraintreeOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BraintreeOptions$ {
-  /** @deprecated use `BraintreeOptions$inboundSchema` instead. */
-  export const inboundSchema = BraintreeOptions$inboundSchema;
-  /** @deprecated use `BraintreeOptions$outboundSchema` instead. */
-  export const outboundSchema = BraintreeOptions$outboundSchema;
-  /** @deprecated use `BraintreeOptions$Outbound` instead. */
-  export type Outbound = BraintreeOptions$Outbound;
-}
-
 export function braintreeOptionsToJSON(
   braintreeOptions: BraintreeOptions,
 ): string {
   return JSON.stringify(
     BraintreeOptions$outboundSchema.parse(braintreeOptions),
-  );
-}
-
-export function braintreeOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<BraintreeOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BraintreeOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BraintreeOptions' from JSON`,
   );
 }

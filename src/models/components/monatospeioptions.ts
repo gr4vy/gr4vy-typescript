@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MonatoSpeiOptions = {
   /**
@@ -14,19 +11,6 @@ export type MonatoSpeiOptions = {
    */
   approvalUrl: string;
 };
-
-/** @internal */
-export const MonatoSpeiOptions$inboundSchema: z.ZodType<
-  MonatoSpeiOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  approval_url: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "approval_url": "approvalUrl",
-  });
-});
 
 /** @internal */
 export type MonatoSpeiOptions$Outbound = {
@@ -46,33 +30,10 @@ export const MonatoSpeiOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MonatoSpeiOptions$ {
-  /** @deprecated use `MonatoSpeiOptions$inboundSchema` instead. */
-  export const inboundSchema = MonatoSpeiOptions$inboundSchema;
-  /** @deprecated use `MonatoSpeiOptions$outboundSchema` instead. */
-  export const outboundSchema = MonatoSpeiOptions$outboundSchema;
-  /** @deprecated use `MonatoSpeiOptions$Outbound` instead. */
-  export type Outbound = MonatoSpeiOptions$Outbound;
-}
-
 export function monatoSpeiOptionsToJSON(
   monatoSpeiOptions: MonatoSpeiOptions,
 ): string {
   return JSON.stringify(
     MonatoSpeiOptions$outboundSchema.parse(monatoSpeiOptions),
-  );
-}
-
-export function monatoSpeiOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<MonatoSpeiOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MonatoSpeiOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MonatoSpeiOptions' from JSON`,
   );
 }

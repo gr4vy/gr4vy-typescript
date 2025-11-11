@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DigitalWalletProvider,
   DigitalWalletProvider$inboundSchema,
-  DigitalWalletProvider$outboundSchema,
 } from "./digitalwalletprovider.js";
 
 export type DigitalWallet = {
@@ -109,79 +108,6 @@ export const DigitalWallet$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type DigitalWallet$Outbound = {
-  type: "digital-wallet";
-  id: string;
-  merchant_account_id: string;
-  provider: string;
-  merchant_name: string;
-  merchant_display_name?: string | null | undefined;
-  merchant_url?: string | null | undefined;
-  merchant_country_code?: string | null | undefined;
-  domain_names: Array<string>;
-  active_certificate_count: number;
-  pending_certificate_count: number;
-  expired_certificate_count: number;
-  fields?: { [k: string]: any } | null | undefined;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const DigitalWallet$outboundSchema: z.ZodType<
-  DigitalWallet$Outbound,
-  z.ZodTypeDef,
-  DigitalWallet
-> = z.object({
-  type: z.literal("digital-wallet").default("digital-wallet" as const),
-  id: z.string(),
-  merchantAccountId: z.string(),
-  provider: DigitalWalletProvider$outboundSchema,
-  merchantName: z.string(),
-  merchantDisplayName: z.nullable(z.string()).optional(),
-  merchantUrl: z.nullable(z.string()).optional(),
-  merchantCountryCode: z.nullable(z.string()).optional(),
-  domainNames: z.array(z.string()),
-  activeCertificateCount: z.number().int().default(0),
-  pendingCertificateCount: z.number().int().default(0),
-  expiredCertificateCount: z.number().int().default(0),
-  fields: z.nullable(z.record(z.any())).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    merchantName: "merchant_name",
-    merchantDisplayName: "merchant_display_name",
-    merchantUrl: "merchant_url",
-    merchantCountryCode: "merchant_country_code",
-    domainNames: "domain_names",
-    activeCertificateCount: "active_certificate_count",
-    pendingCertificateCount: "pending_certificate_count",
-    expiredCertificateCount: "expired_certificate_count",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigitalWallet$ {
-  /** @deprecated use `DigitalWallet$inboundSchema` instead. */
-  export const inboundSchema = DigitalWallet$inboundSchema;
-  /** @deprecated use `DigitalWallet$outboundSchema` instead. */
-  export const outboundSchema = DigitalWallet$outboundSchema;
-  /** @deprecated use `DigitalWallet$Outbound` instead. */
-  export type Outbound = DigitalWallet$Outbound;
-}
-
-export function digitalWalletToJSON(digitalWallet: DigitalWallet): string {
-  return JSON.stringify(DigitalWallet$outboundSchema.parse(digitalWallet));
-}
 
 export function digitalWalletFromJSON(
   jsonString: string,

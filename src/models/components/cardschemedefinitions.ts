@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CardSchemeDefinition,
   CardSchemeDefinition$inboundSchema,
-  CardSchemeDefinition$Outbound,
-  CardSchemeDefinition$outboundSchema,
 } from "./cardschemedefinition.js";
 
 export type CardSchemeDefinitions = {
@@ -28,41 +26,6 @@ export const CardSchemeDefinitions$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(CardSchemeDefinition$inboundSchema),
 });
-
-/** @internal */
-export type CardSchemeDefinitions$Outbound = {
-  items: Array<CardSchemeDefinition$Outbound>;
-};
-
-/** @internal */
-export const CardSchemeDefinitions$outboundSchema: z.ZodType<
-  CardSchemeDefinitions$Outbound,
-  z.ZodTypeDef,
-  CardSchemeDefinitions
-> = z.object({
-  items: z.array(CardSchemeDefinition$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CardSchemeDefinitions$ {
-  /** @deprecated use `CardSchemeDefinitions$inboundSchema` instead. */
-  export const inboundSchema = CardSchemeDefinitions$inboundSchema;
-  /** @deprecated use `CardSchemeDefinitions$outboundSchema` instead. */
-  export const outboundSchema = CardSchemeDefinitions$outboundSchema;
-  /** @deprecated use `CardSchemeDefinitions$Outbound` instead. */
-  export type Outbound = CardSchemeDefinitions$Outbound;
-}
-
-export function cardSchemeDefinitionsToJSON(
-  cardSchemeDefinitions: CardSchemeDefinitions,
-): string {
-  return JSON.stringify(
-    CardSchemeDefinitions$outboundSchema.parse(cardSchemeDefinitions),
-  );
-}
 
 export function cardSchemeDefinitionsFromJSON(
   jsonString: string,

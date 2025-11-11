@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GooglePaySessionRequest = {
   /**
@@ -14,19 +11,6 @@ export type GooglePaySessionRequest = {
    */
   originDomain: string;
 };
-
-/** @internal */
-export const GooglePaySessionRequest$inboundSchema: z.ZodType<
-  GooglePaySessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  origin_domain: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "origin_domain": "originDomain",
-  });
-});
 
 /** @internal */
 export type GooglePaySessionRequest$Outbound = {
@@ -46,33 +30,10 @@ export const GooglePaySessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GooglePaySessionRequest$ {
-  /** @deprecated use `GooglePaySessionRequest$inboundSchema` instead. */
-  export const inboundSchema = GooglePaySessionRequest$inboundSchema;
-  /** @deprecated use `GooglePaySessionRequest$outboundSchema` instead. */
-  export const outboundSchema = GooglePaySessionRequest$outboundSchema;
-  /** @deprecated use `GooglePaySessionRequest$Outbound` instead. */
-  export type Outbound = GooglePaySessionRequest$Outbound;
-}
-
 export function googlePaySessionRequestToJSON(
   googlePaySessionRequest: GooglePaySessionRequest,
 ): string {
   return JSON.stringify(
     GooglePaySessionRequest$outboundSchema.parse(googlePaySessionRequest),
-  );
-}
-
-export function googlePaySessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GooglePaySessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GooglePaySessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GooglePaySessionRequest' from JSON`,
   );
 }

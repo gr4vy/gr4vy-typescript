@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddPaymentLinkGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,74 +17,6 @@ export type AddPaymentLinkRequest = {
   merchantAccountId?: string | null | undefined;
   paymentLinkCreate: components.PaymentLinkCreate;
 };
-
-/** @internal */
-export const AddPaymentLinkGlobals$inboundSchema: z.ZodType<
-  AddPaymentLinkGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type AddPaymentLinkGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const AddPaymentLinkGlobals$outboundSchema: z.ZodType<
-  AddPaymentLinkGlobals$Outbound,
-  z.ZodTypeDef,
-  AddPaymentLinkGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AddPaymentLinkGlobals$ {
-  /** @deprecated use `AddPaymentLinkGlobals$inboundSchema` instead. */
-  export const inboundSchema = AddPaymentLinkGlobals$inboundSchema;
-  /** @deprecated use `AddPaymentLinkGlobals$outboundSchema` instead. */
-  export const outboundSchema = AddPaymentLinkGlobals$outboundSchema;
-  /** @deprecated use `AddPaymentLinkGlobals$Outbound` instead. */
-  export type Outbound = AddPaymentLinkGlobals$Outbound;
-}
-
-export function addPaymentLinkGlobalsToJSON(
-  addPaymentLinkGlobals: AddPaymentLinkGlobals,
-): string {
-  return JSON.stringify(
-    AddPaymentLinkGlobals$outboundSchema.parse(addPaymentLinkGlobals),
-  );
-}
-
-export function addPaymentLinkGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AddPaymentLinkGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddPaymentLinkGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddPaymentLinkGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AddPaymentLinkRequest$inboundSchema: z.ZodType<
-  AddPaymentLinkRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  PaymentLinkCreate: components.PaymentLinkCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "PaymentLinkCreate": "paymentLinkCreate",
-  });
-});
 
 /** @internal */
 export type AddPaymentLinkRequest$Outbound = {
@@ -109,33 +38,10 @@ export const AddPaymentLinkRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AddPaymentLinkRequest$ {
-  /** @deprecated use `AddPaymentLinkRequest$inboundSchema` instead. */
-  export const inboundSchema = AddPaymentLinkRequest$inboundSchema;
-  /** @deprecated use `AddPaymentLinkRequest$outboundSchema` instead. */
-  export const outboundSchema = AddPaymentLinkRequest$outboundSchema;
-  /** @deprecated use `AddPaymentLinkRequest$Outbound` instead. */
-  export type Outbound = AddPaymentLinkRequest$Outbound;
-}
-
 export function addPaymentLinkRequestToJSON(
   addPaymentLinkRequest: AddPaymentLinkRequest,
 ): string {
   return JSON.stringify(
     AddPaymentLinkRequest$outboundSchema.parse(addPaymentLinkRequest),
-  );
-}
-
-export function addPaymentLinkRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AddPaymentLinkRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddPaymentLinkRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddPaymentLinkRequest' from JSON`,
   );
 }

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryComments = {
   /**
@@ -22,24 +19,6 @@ export type ForterAntiFraudOptionsCartItemBeneficiaryComments = {
    */
   merchantComments?: string | null | undefined;
 };
-
-/** @internal */
-export const ForterAntiFraudOptionsCartItemBeneficiaryComments$inboundSchema:
-  z.ZodType<
-    ForterAntiFraudOptionsCartItemBeneficiaryComments,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    user_comments_to_merchant: z.nullable(z.string()).optional(),
-    message_to_beneficiary: z.nullable(z.string()).optional(),
-    merchant_comments: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "user_comments_to_merchant": "userCommentsToMerchant",
-      "message_to_beneficiary": "messageToBeneficiary",
-      "merchant_comments": "merchantComments",
-    });
-  });
 
 /** @internal */
 export type ForterAntiFraudOptionsCartItemBeneficiaryComments$Outbound = {
@@ -66,22 +45,6 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryComments$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItemBeneficiaryComments$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryComments$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryComments$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryComments$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryComments$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryComments$Outbound` instead. */
-  export type Outbound =
-    ForterAntiFraudOptionsCartItemBeneficiaryComments$Outbound;
-}
-
 export function forterAntiFraudOptionsCartItemBeneficiaryCommentsToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryComments:
     ForterAntiFraudOptionsCartItemBeneficiaryComments,
@@ -90,21 +53,5 @@ export function forterAntiFraudOptionsCartItemBeneficiaryCommentsToJSON(
     ForterAntiFraudOptionsCartItemBeneficiaryComments$outboundSchema.parse(
       forterAntiFraudOptionsCartItemBeneficiaryComments,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsCartItemBeneficiaryCommentsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ForterAntiFraudOptionsCartItemBeneficiaryComments,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ForterAntiFraudOptionsCartItemBeneficiaryComments$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ForterAntiFraudOptionsCartItemBeneficiaryComments' from JSON`,
   );
 }

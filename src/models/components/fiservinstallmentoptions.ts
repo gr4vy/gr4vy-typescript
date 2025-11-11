@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FiservInstallmentOptions = {
   /**
@@ -27,18 +24,6 @@ export type FiservInstallmentOptions = {
 };
 
 /** @internal */
-export const FiservInstallmentOptions$inboundSchema: z.ZodType<
-  FiservInstallmentOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  numberOfInstallments: z.nullable(z.number().int()).optional(),
-  installmentsInterest: z.nullable(z.boolean()).optional(),
-  installmentDelayMonths: z.nullable(z.number().int()).optional(),
-  merchantAdviceCodeSupported: z.nullable(z.boolean()).optional(),
-});
-
-/** @internal */
 export type FiservInstallmentOptions$Outbound = {
   numberOfInstallments?: number | null | undefined;
   installmentsInterest?: boolean | null | undefined;
@@ -58,33 +43,10 @@ export const FiservInstallmentOptions$outboundSchema: z.ZodType<
   merchantAdviceCodeSupported: z.nullable(z.boolean()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FiservInstallmentOptions$ {
-  /** @deprecated use `FiservInstallmentOptions$inboundSchema` instead. */
-  export const inboundSchema = FiservInstallmentOptions$inboundSchema;
-  /** @deprecated use `FiservInstallmentOptions$outboundSchema` instead. */
-  export const outboundSchema = FiservInstallmentOptions$outboundSchema;
-  /** @deprecated use `FiservInstallmentOptions$Outbound` instead. */
-  export type Outbound = FiservInstallmentOptions$Outbound;
-}
-
 export function fiservInstallmentOptionsToJSON(
   fiservInstallmentOptions: FiservInstallmentOptions,
 ): string {
   return JSON.stringify(
     FiservInstallmentOptions$outboundSchema.parse(fiservInstallmentOptions),
-  );
-}
-
-export function fiservInstallmentOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<FiservInstallmentOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FiservInstallmentOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FiservInstallmentOptions' from JSON`,
   );
 }

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create a payment with a checkout session ID (and an optional URL for 3DS).
@@ -37,27 +34,6 @@ export type CheckoutSessionWithUrlPaymentMethodCreate = {
    */
   redirectUrl?: string | null | undefined;
 };
-
-/** @internal */
-export const CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema: z.ZodType<
-  CheckoutSessionWithUrlPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  method: z.literal("checkout-session").default("checkout-session"),
-  id: z.string(),
-  external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "external_identifier": "externalIdentifier",
-    "buyer_id": "buyerId",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "redirect_url": "redirectUrl",
-  });
-});
 
 /** @internal */
 export type CheckoutSessionWithUrlPaymentMethodCreate$Outbound = {
@@ -91,21 +67,6 @@ export const CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSessionWithUrlPaymentMethodCreate$ {
-  /** @deprecated use `CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema =
-    CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema =
-    CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `CheckoutSessionWithUrlPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = CheckoutSessionWithUrlPaymentMethodCreate$Outbound;
-}
-
 export function checkoutSessionWithUrlPaymentMethodCreateToJSON(
   checkoutSessionWithUrlPaymentMethodCreate:
     CheckoutSessionWithUrlPaymentMethodCreate,
@@ -114,21 +75,5 @@ export function checkoutSessionWithUrlPaymentMethodCreateToJSON(
     CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema.parse(
       checkoutSessionWithUrlPaymentMethodCreate,
     ),
-  );
-}
-
-export function checkoutSessionWithUrlPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CheckoutSessionWithUrlPaymentMethodCreate,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CheckoutSessionWithUrlPaymentMethodCreate' from JSON`,
   );
 }

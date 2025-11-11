@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PaymentServiceTokenCreate = {
   /**
@@ -22,23 +19,6 @@ export type PaymentServiceTokenCreate = {
    */
   redirectUrl: string;
 };
-
-/** @internal */
-export const PaymentServiceTokenCreate$inboundSchema: z.ZodType<
-  PaymentServiceTokenCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  security_code: z.nullable(z.string()).optional(),
-  payment_service_id: z.string(),
-  redirect_url: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "security_code": "securityCode",
-    "payment_service_id": "paymentServiceId",
-    "redirect_url": "redirectUrl",
-  });
-});
 
 /** @internal */
 export type PaymentServiceTokenCreate$Outbound = {
@@ -64,33 +44,10 @@ export const PaymentServiceTokenCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceTokenCreate$ {
-  /** @deprecated use `PaymentServiceTokenCreate$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceTokenCreate$inboundSchema;
-  /** @deprecated use `PaymentServiceTokenCreate$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceTokenCreate$outboundSchema;
-  /** @deprecated use `PaymentServiceTokenCreate$Outbound` instead. */
-  export type Outbound = PaymentServiceTokenCreate$Outbound;
-}
-
 export function paymentServiceTokenCreateToJSON(
   paymentServiceTokenCreate: PaymentServiceTokenCreate,
 ): string {
   return JSON.stringify(
     PaymentServiceTokenCreate$outboundSchema.parse(paymentServiceTokenCreate),
-  );
-}
-
-export function paymentServiceTokenCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentServiceTokenCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentServiceTokenCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentServiceTokenCreate' from JSON`,
   );
 }

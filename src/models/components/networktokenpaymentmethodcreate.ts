@@ -4,19 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export const CardSource = {
   ApplePay: "apple-pay",
@@ -68,17 +57,6 @@ export type NetworkTokenPaymentMethodCreate = {
 };
 
 /** @internal */
-export const CardSource$inboundSchema: z.ZodType<
-  CardSource,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(CardSource),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const CardSource$outboundSchema: z.ZodType<
   CardSource,
   z.ZodTypeDef,
@@ -87,44 +65,6 @@ export const CardSource$outboundSchema: z.ZodType<
   z.nativeEnum(CardSource),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CardSource$ {
-  /** @deprecated use `CardSource$inboundSchema` instead. */
-  export const inboundSchema = CardSource$inboundSchema;
-  /** @deprecated use `CardSource$outboundSchema` instead. */
-  export const outboundSchema = CardSource$outboundSchema;
-}
-
-/** @internal */
-export const NetworkTokenPaymentMethodCreate$inboundSchema: z.ZodType<
-  NetworkTokenPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  method: z.literal("network-token").default("network-token").optional(),
-  token: z.string(),
-  expiration_date: z.string(),
-  cryptogram: z.nullable(z.string()).optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-  card_source: z.nullable(CardSource$inboundSchema).optional(),
-  card_scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  card_suffix: z.nullable(z.string()).optional(),
-  cardholder_name: z.nullable(z.string()).optional(),
-  eci: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "redirect_url": "redirectUrl",
-    "card_source": "cardSource",
-    "card_scheme": "cardScheme",
-    "card_suffix": "cardSuffix",
-    "cardholder_name": "cardholderName",
-  });
-});
 
 /** @internal */
 export type NetworkTokenPaymentMethodCreate$Outbound = {
@@ -167,19 +107,6 @@ export const NetworkTokenPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkTokenPaymentMethodCreate$ {
-  /** @deprecated use `NetworkTokenPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = NetworkTokenPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `NetworkTokenPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = NetworkTokenPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `NetworkTokenPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = NetworkTokenPaymentMethodCreate$Outbound;
-}
-
 export function networkTokenPaymentMethodCreateToJSON(
   networkTokenPaymentMethodCreate: NetworkTokenPaymentMethodCreate,
 ): string {
@@ -187,15 +114,5 @@ export function networkTokenPaymentMethodCreateToJSON(
     NetworkTokenPaymentMethodCreate$outboundSchema.parse(
       networkTokenPaymentMethodCreate,
     ),
-  );
-}
-
-export function networkTokenPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<NetworkTokenPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => NetworkTokenPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NetworkTokenPaymentMethodCreate' from JSON`,
   );
 }

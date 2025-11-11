@@ -37,76 +37,6 @@ export type ListPaymentLinksResponse = {
 };
 
 /** @internal */
-export const ListPaymentLinksGlobals$inboundSchema: z.ZodType<
-  ListPaymentLinksGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListPaymentLinksGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListPaymentLinksGlobals$outboundSchema: z.ZodType<
-  ListPaymentLinksGlobals$Outbound,
-  z.ZodTypeDef,
-  ListPaymentLinksGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPaymentLinksGlobals$ {
-  /** @deprecated use `ListPaymentLinksGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListPaymentLinksGlobals$inboundSchema;
-  /** @deprecated use `ListPaymentLinksGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListPaymentLinksGlobals$outboundSchema;
-  /** @deprecated use `ListPaymentLinksGlobals$Outbound` instead. */
-  export type Outbound = ListPaymentLinksGlobals$Outbound;
-}
-
-export function listPaymentLinksGlobalsToJSON(
-  listPaymentLinksGlobals: ListPaymentLinksGlobals,
-): string {
-  return JSON.stringify(
-    ListPaymentLinksGlobals$outboundSchema.parse(listPaymentLinksGlobals),
-  );
-}
-
-export function listPaymentLinksGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListPaymentLinksGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListPaymentLinksGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListPaymentLinksGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListPaymentLinksRequest$inboundSchema: z.ZodType<
-  ListPaymentLinksRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  buyer_search: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_search": "buyerSearch",
-  });
-});
-
-/** @internal */
 export type ListPaymentLinksRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -130,34 +60,11 @@ export const ListPaymentLinksRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPaymentLinksRequest$ {
-  /** @deprecated use `ListPaymentLinksRequest$inboundSchema` instead. */
-  export const inboundSchema = ListPaymentLinksRequest$inboundSchema;
-  /** @deprecated use `ListPaymentLinksRequest$outboundSchema` instead. */
-  export const outboundSchema = ListPaymentLinksRequest$outboundSchema;
-  /** @deprecated use `ListPaymentLinksRequest$Outbound` instead. */
-  export type Outbound = ListPaymentLinksRequest$Outbound;
-}
-
 export function listPaymentLinksRequestToJSON(
   listPaymentLinksRequest: ListPaymentLinksRequest,
 ): string {
   return JSON.stringify(
     ListPaymentLinksRequest$outboundSchema.parse(listPaymentLinksRequest),
-  );
-}
-
-export function listPaymentLinksRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListPaymentLinksRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListPaymentLinksRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListPaymentLinksRequest' from JSON`,
   );
 }
 
@@ -173,45 +80,6 @@ export const ListPaymentLinksResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListPaymentLinksResponse$Outbound = {
-  Result: components.PaymentLinks$Outbound;
-};
-
-/** @internal */
-export const ListPaymentLinksResponse$outboundSchema: z.ZodType<
-  ListPaymentLinksResponse$Outbound,
-  z.ZodTypeDef,
-  ListPaymentLinksResponse
-> = z.object({
-  result: components.PaymentLinks$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPaymentLinksResponse$ {
-  /** @deprecated use `ListPaymentLinksResponse$inboundSchema` instead. */
-  export const inboundSchema = ListPaymentLinksResponse$inboundSchema;
-  /** @deprecated use `ListPaymentLinksResponse$outboundSchema` instead. */
-  export const outboundSchema = ListPaymentLinksResponse$outboundSchema;
-  /** @deprecated use `ListPaymentLinksResponse$Outbound` instead. */
-  export type Outbound = ListPaymentLinksResponse$Outbound;
-}
-
-export function listPaymentLinksResponseToJSON(
-  listPaymentLinksResponse: ListPaymentLinksResponse,
-): string {
-  return JSON.stringify(
-    ListPaymentLinksResponse$outboundSchema.parse(listPaymentLinksResponse),
-  );
-}
 
 export function listPaymentLinksResponseFromJSON(
   jsonString: string,

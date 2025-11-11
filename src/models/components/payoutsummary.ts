@@ -10,36 +10,23 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PayoutCategory,
   PayoutCategory$inboundSchema,
-  PayoutCategory$outboundSchema,
 } from "./payoutcategory.js";
 import {
   PayoutMerchantSummary,
   PayoutMerchantSummary$inboundSchema,
-  PayoutMerchantSummary$Outbound,
-  PayoutMerchantSummary$outboundSchema,
 } from "./payoutmerchantsummary.js";
 import {
   PayoutPaymentService,
   PayoutPaymentService$inboundSchema,
-  PayoutPaymentService$Outbound,
-  PayoutPaymentService$outboundSchema,
 } from "./payoutpaymentservice.js";
-import {
-  PayoutStatus,
-  PayoutStatus$inboundSchema,
-  PayoutStatus$outboundSchema,
-} from "./payoutstatus.js";
+import { PayoutStatus, PayoutStatus$inboundSchema } from "./payoutstatus.js";
 import {
   TransactionBuyerOutput,
   TransactionBuyerOutput$inboundSchema,
-  TransactionBuyerOutput$Outbound,
-  TransactionBuyerOutput$outboundSchema,
 } from "./transactionbuyeroutput.js";
 import {
   TransactionPaymentMethodOutput,
   TransactionPaymentMethodOutput$inboundSchema,
-  TransactionPaymentMethodOutput$Outbound,
-  TransactionPaymentMethodOutput$outboundSchema,
 } from "./transactionpaymentmethodoutput.js";
 
 /**
@@ -135,75 +122,6 @@ export const PayoutSummary$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type PayoutSummary$Outbound = {
-  type: "payout";
-  id?: string | null | undefined;
-  amount: number;
-  buyer?: TransactionBuyerOutput$Outbound | null | undefined;
-  category?: string | null | undefined;
-  created_at: string;
-  currency: string;
-  external_identifier?: string | null | undefined;
-  merchant?: PayoutMerchantSummary$Outbound | null | undefined;
-  merchant_account_id?: string | null | undefined;
-  payment_method: TransactionPaymentMethodOutput$Outbound;
-  payment_service: PayoutPaymentService$Outbound;
-  payment_service_payout_id?: string | null | undefined;
-  status: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const PayoutSummary$outboundSchema: z.ZodType<
-  PayoutSummary$Outbound,
-  z.ZodTypeDef,
-  PayoutSummary
-> = z.object({
-  type: z.literal("payout").default("payout" as const),
-  id: z.nullable(z.string()).optional(),
-  amount: z.number().int(),
-  buyer: z.nullable(TransactionBuyerOutput$outboundSchema).optional(),
-  category: z.nullable(PayoutCategory$outboundSchema).optional(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  currency: z.string(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  merchant: z.nullable(PayoutMerchantSummary$outboundSchema).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  paymentMethod: TransactionPaymentMethodOutput$outboundSchema,
-  paymentService: PayoutPaymentService$outboundSchema,
-  paymentServicePayoutId: z.nullable(z.string()).optional(),
-  status: PayoutStatus$outboundSchema,
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    createdAt: "created_at",
-    externalIdentifier: "external_identifier",
-    merchantAccountId: "merchant_account_id",
-    paymentMethod: "payment_method",
-    paymentService: "payment_service",
-    paymentServicePayoutId: "payment_service_payout_id",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutSummary$ {
-  /** @deprecated use `PayoutSummary$inboundSchema` instead. */
-  export const inboundSchema = PayoutSummary$inboundSchema;
-  /** @deprecated use `PayoutSummary$outboundSchema` instead. */
-  export const outboundSchema = PayoutSummary$outboundSchema;
-  /** @deprecated use `PayoutSummary$Outbound` instead. */
-  export type Outbound = PayoutSummary$Outbound;
-}
-
-export function payoutSummaryToJSON(payoutSummary: PayoutSummary): string {
-  return JSON.stringify(PayoutSummary$outboundSchema.parse(payoutSummary));
-}
 
 export function payoutSummaryFromJSON(
   jsonString: string,

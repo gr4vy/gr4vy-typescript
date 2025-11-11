@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 /**
  * Gift card error codes.
@@ -58,24 +54,3 @@ export const GiftCardErrorCode$inboundSchema: z.ZodType<
     z.nativeEnum(GiftCardErrorCode),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const GiftCardErrorCode$outboundSchema: z.ZodType<
-  GiftCardErrorCode,
-  z.ZodTypeDef,
-  GiftCardErrorCode
-> = z.union([
-  z.nativeEnum(GiftCardErrorCode),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GiftCardErrorCode$ {
-  /** @deprecated use `GiftCardErrorCode$inboundSchema` instead. */
-  export const inboundSchema = GiftCardErrorCode$inboundSchema;
-  /** @deprecated use `GiftCardErrorCode$outboundSchema` instead. */
-  export const outboundSchema = GiftCardErrorCode$outboundSchema;
-}

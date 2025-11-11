@@ -10,7 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ReportCreatorType,
   ReportCreatorType$inboundSchema,
-  ReportCreatorType$outboundSchema,
 } from "./reportcreatortype.js";
 
 export type ReportSummary = {
@@ -65,56 +64,6 @@ export const ReportSummary$inboundSchema: z.ZodType<
     "creator_type": "creatorType",
   });
 });
-
-/** @internal */
-export type ReportSummary$Outbound = {
-  type: "report";
-  id: string;
-  merchant_account_id: string;
-  name: string;
-  creator_id?: string | null | undefined;
-  creator_display_name?: string | null | undefined;
-  creator_type?: string | null | undefined;
-};
-
-/** @internal */
-export const ReportSummary$outboundSchema: z.ZodType<
-  ReportSummary$Outbound,
-  z.ZodTypeDef,
-  ReportSummary
-> = z.object({
-  type: z.literal("report").default("report" as const),
-  id: z.string(),
-  merchantAccountId: z.string(),
-  name: z.string(),
-  creatorId: z.nullable(z.string()).optional(),
-  creatorDisplayName: z.nullable(z.string()).optional(),
-  creatorType: z.nullable(ReportCreatorType$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    creatorId: "creator_id",
-    creatorDisplayName: "creator_display_name",
-    creatorType: "creator_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportSummary$ {
-  /** @deprecated use `ReportSummary$inboundSchema` instead. */
-  export const inboundSchema = ReportSummary$inboundSchema;
-  /** @deprecated use `ReportSummary$outboundSchema` instead. */
-  export const outboundSchema = ReportSummary$outboundSchema;
-  /** @deprecated use `ReportSummary$Outbound` instead. */
-  export type Outbound = ReportSummary$Outbound;
-}
-
-export function reportSummaryToJSON(reportSummary: ReportSummary): string {
-  return JSON.stringify(ReportSummary$outboundSchema.parse(reportSummary));
-}
 
 export function reportSummaryFromJSON(
   jsonString: string,

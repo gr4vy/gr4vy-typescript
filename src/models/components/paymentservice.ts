@@ -7,27 +7,15 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Field,
-  Field$inboundSchema,
-  Field$Outbound,
-  Field$outboundSchema,
-} from "./field.js";
+import { Field, Field$inboundSchema } from "./field.js";
 import {
   MerchantProfileSchemeSummary,
   MerchantProfileSchemeSummary$inboundSchema,
-  MerchantProfileSchemeSummary$Outbound,
-  MerchantProfileSchemeSummary$outboundSchema,
 } from "./merchantprofileschemesummary.js";
-import {
-  Method,
-  Method$inboundSchema,
-  Method$outboundSchema,
-} from "./method.js";
+import { Method, Method$inboundSchema } from "./method.js";
 import {
   PaymentServiceStatus,
   PaymentServiceStatus$inboundSchema,
-  PaymentServiceStatus$outboundSchema,
 } from "./paymentservicestatus.js";
 
 export type PaymentService = {
@@ -170,105 +158,6 @@ export const PaymentService$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type PaymentService$Outbound = {
-  type: "payment-service";
-  id: string;
-  merchant_account_id: string;
-  payment_service_definition_id: string;
-  active: boolean;
-  method: string;
-  display_name: string;
-  position: number;
-  status?: string | undefined;
-  accepted_currencies: Array<string>;
-  accepted_countries: Array<string>;
-  payment_method_tokenization_enabled: boolean;
-  network_tokens_enabled: boolean;
-  open_loop: boolean;
-  settlement_reporting_enabled: boolean;
-  three_d_secure_enabled?: boolean | null | undefined;
-  merchant_profile?:
-    | { [k: string]: MerchantProfileSchemeSummary$Outbound | null }
-    | null
-    | undefined;
-  webhook_url?: string | null | undefined;
-  fields?: Array<Field$Outbound> | null | undefined;
-  reporting_fields?: Array<Field$Outbound> | null | undefined;
-  is_deleted: boolean;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const PaymentService$outboundSchema: z.ZodType<
-  PaymentService$Outbound,
-  z.ZodTypeDef,
-  PaymentService
-> = z.object({
-  type: z.literal("payment-service").default("payment-service" as const),
-  id: z.string().default("The ID of the payment service"),
-  merchantAccountId: z.string(),
-  paymentServiceDefinitionId: z.string(),
-  active: z.boolean().default(true),
-  method: Method$outboundSchema,
-  displayName: z.string(),
-  position: z.number().int(),
-  status: PaymentServiceStatus$outboundSchema.optional(),
-  acceptedCurrencies: z.array(z.string()),
-  acceptedCountries: z.array(z.string()),
-  paymentMethodTokenizationEnabled: z.boolean(),
-  networkTokensEnabled: z.boolean(),
-  openLoop: z.boolean(),
-  settlementReportingEnabled: z.boolean(),
-  threeDSecureEnabled: z.nullable(z.boolean()).optional(),
-  merchantProfile: z.nullable(
-    z.record(z.nullable(MerchantProfileSchemeSummary$outboundSchema)),
-  ).optional(),
-  webhookUrl: z.nullable(z.string()).optional(),
-  fields: z.nullable(z.array(Field$outboundSchema)).optional(),
-  reportingFields: z.nullable(z.array(Field$outboundSchema)).optional(),
-  isDeleted: z.boolean().default(false),
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    paymentServiceDefinitionId: "payment_service_definition_id",
-    displayName: "display_name",
-    acceptedCurrencies: "accepted_currencies",
-    acceptedCountries: "accepted_countries",
-    paymentMethodTokenizationEnabled: "payment_method_tokenization_enabled",
-    networkTokensEnabled: "network_tokens_enabled",
-    openLoop: "open_loop",
-    settlementReportingEnabled: "settlement_reporting_enabled",
-    threeDSecureEnabled: "three_d_secure_enabled",
-    merchantProfile: "merchant_profile",
-    webhookUrl: "webhook_url",
-    reportingFields: "reporting_fields",
-    isDeleted: "is_deleted",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentService$ {
-  /** @deprecated use `PaymentService$inboundSchema` instead. */
-  export const inboundSchema = PaymentService$inboundSchema;
-  /** @deprecated use `PaymentService$outboundSchema` instead. */
-  export const outboundSchema = PaymentService$outboundSchema;
-  /** @deprecated use `PaymentService$Outbound` instead. */
-  export type Outbound = PaymentService$Outbound;
-}
-
-export function paymentServiceToJSON(paymentService: PaymentService): string {
-  return JSON.stringify(PaymentService$outboundSchema.parse(paymentService));
-}
 
 export function paymentServiceFromJSON(
   jsonString: string,

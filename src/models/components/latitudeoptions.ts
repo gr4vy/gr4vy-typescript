@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LatitudeOptions = {
   /**
@@ -14,19 +11,6 @@ export type LatitudeOptions = {
    */
   promotionReference?: string | null | undefined;
 };
-
-/** @internal */
-export const LatitudeOptions$inboundSchema: z.ZodType<
-  LatitudeOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  promotion_reference: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "promotion_reference": "promotionReference",
-  });
-});
 
 /** @internal */
 export type LatitudeOptions$Outbound = {
@@ -46,31 +30,8 @@ export const LatitudeOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LatitudeOptions$ {
-  /** @deprecated use `LatitudeOptions$inboundSchema` instead. */
-  export const inboundSchema = LatitudeOptions$inboundSchema;
-  /** @deprecated use `LatitudeOptions$outboundSchema` instead. */
-  export const outboundSchema = LatitudeOptions$outboundSchema;
-  /** @deprecated use `LatitudeOptions$Outbound` instead. */
-  export type Outbound = LatitudeOptions$Outbound;
-}
-
 export function latitudeOptionsToJSON(
   latitudeOptions: LatitudeOptions,
 ): string {
   return JSON.stringify(LatitudeOptions$outboundSchema.parse(latitudeOptions));
-}
-
-export function latitudeOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<LatitudeOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LatitudeOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LatitudeOptions' from JSON`,
-  );
 }

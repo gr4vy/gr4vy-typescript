@@ -4,154 +4,126 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Airline,
-  Airline$inboundSchema,
   Airline$Outbound,
   Airline$outboundSchema,
 } from "./airline.js";
 import {
   ApplePayPaymentMethodCreate,
-  ApplePayPaymentMethodCreate$inboundSchema,
   ApplePayPaymentMethodCreate$Outbound,
   ApplePayPaymentMethodCreate$outboundSchema,
 } from "./applepaypaymentmethodcreate.js";
 import {
   BrowserInfo,
-  BrowserInfo$inboundSchema,
   BrowserInfo$Outbound,
   BrowserInfo$outboundSchema,
 } from "./browserinfo.js";
 import {
   CardWithUrlPaymentMethodCreate,
-  CardWithUrlPaymentMethodCreate$inboundSchema,
   CardWithUrlPaymentMethodCreate$Outbound,
   CardWithUrlPaymentMethodCreate$outboundSchema,
 } from "./cardwithurlpaymentmethodcreate.js";
 import {
   CartItem,
-  CartItem$inboundSchema,
   CartItem$Outbound,
   CartItem$outboundSchema,
 } from "./cartitem.js";
 import {
   CheckoutSessionWithUrlPaymentMethodCreate,
-  CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
   CheckoutSessionWithUrlPaymentMethodCreate$Outbound,
   CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
 } from "./checkoutsessionwithurlpaymentmethodcreate.js";
 import {
   ClickToPayFPANPaymentMethodCreate,
-  ClickToPayFPANPaymentMethodCreate$inboundSchema,
   ClickToPayFPANPaymentMethodCreate$Outbound,
   ClickToPayFPANPaymentMethodCreate$outboundSchema,
 } from "./clicktopayfpanpaymentmethodcreate.js";
 import {
   ClickToPayPaymentMethodCreate,
-  ClickToPayPaymentMethodCreate$inboundSchema,
   ClickToPayPaymentMethodCreate$Outbound,
   ClickToPayPaymentMethodCreate$outboundSchema,
 } from "./clicktopaypaymentmethodcreate.js";
 import {
   GiftCardTokenTransactionCreate,
-  GiftCardTokenTransactionCreate$inboundSchema,
   GiftCardTokenTransactionCreate$Outbound,
   GiftCardTokenTransactionCreate$outboundSchema,
 } from "./giftcardtokentransactioncreate.js";
 import {
   GiftCardTransactionCreate,
-  GiftCardTransactionCreate$inboundSchema,
   GiftCardTransactionCreate$Outbound,
   GiftCardTransactionCreate$outboundSchema,
 } from "./giftcardtransactioncreate.js";
 import {
   GooglePayFPANPaymentMethodCreate,
-  GooglePayFPANPaymentMethodCreate$inboundSchema,
   GooglePayFPANPaymentMethodCreate$Outbound,
   GooglePayFPANPaymentMethodCreate$outboundSchema,
 } from "./googlepayfpanpaymentmethodcreate.js";
 import {
   GooglePayPaymentMethodCreate,
-  GooglePayPaymentMethodCreate$inboundSchema,
   GooglePayPaymentMethodCreate$Outbound,
   GooglePayPaymentMethodCreate$outboundSchema,
 } from "./googlepaypaymentmethodcreate.js";
 import {
   GuestBuyerInput,
-  GuestBuyerInput$inboundSchema,
   GuestBuyerInput$Outbound,
   GuestBuyerInput$outboundSchema,
 } from "./guestbuyerinput.js";
 import {
   IntegrationClient,
-  IntegrationClient$inboundSchema,
   IntegrationClient$outboundSchema,
 } from "./integrationclient.js";
 import {
   NetworkTokenPaymentMethodCreate,
-  NetworkTokenPaymentMethodCreate$inboundSchema,
   NetworkTokenPaymentMethodCreate$Outbound,
   NetworkTokenPaymentMethodCreate$outboundSchema,
 } from "./networktokenpaymentmethodcreate.js";
 import {
   PlaidPaymentMethodCreate,
-  PlaidPaymentMethodCreate$inboundSchema,
   PlaidPaymentMethodCreate$Outbound,
   PlaidPaymentMethodCreate$outboundSchema,
 } from "./plaidpaymentmethodcreate.js";
 import {
   Recipient,
-  Recipient$inboundSchema,
   Recipient$Outbound,
   Recipient$outboundSchema,
 } from "./recipient.js";
 import {
   RedirectPaymentMethodCreate,
-  RedirectPaymentMethodCreate$inboundSchema,
   RedirectPaymentMethodCreate$Outbound,
   RedirectPaymentMethodCreate$outboundSchema,
 } from "./redirectpaymentmethodcreate.js";
 import {
   StatementDescriptor,
-  StatementDescriptor$inboundSchema,
   StatementDescriptor$Outbound,
   StatementDescriptor$outboundSchema,
 } from "./statementdescriptor.js";
 import {
   ThreeDSecureDataV1,
-  ThreeDSecureDataV1$inboundSchema,
   ThreeDSecureDataV1$Outbound,
   ThreeDSecureDataV1$outboundSchema,
 } from "./threedsecuredatav1.js";
 import {
   ThreeDSecureDataV2,
-  ThreeDSecureDataV2$inboundSchema,
   ThreeDSecureDataV2$Outbound,
   ThreeDSecureDataV2$outboundSchema,
 } from "./threedsecuredatav2.js";
 import {
   TokenPaymentMethodCreate,
-  TokenPaymentMethodCreate$inboundSchema,
   TokenPaymentMethodCreate$Outbound,
   TokenPaymentMethodCreate$outboundSchema,
 } from "./tokenpaymentmethodcreate.js";
 import {
   TransactionConnectionOptions,
-  TransactionConnectionOptions$inboundSchema,
   TransactionConnectionOptions$Outbound,
   TransactionConnectionOptions$outboundSchema,
 } from "./transactionconnectionoptions.js";
 import {
   TransactionIntent,
-  TransactionIntent$inboundSchema,
   TransactionIntent$outboundSchema,
 } from "./transactionintent.js";
 import {
   TransactionPaymentSource,
-  TransactionPaymentSource$inboundSchema,
   TransactionPaymentSource$outboundSchema,
 } from "./transactionpaymentsource.js";
 
@@ -373,25 +345,6 @@ export type TransactionCreate = {
 };
 
 /** @internal */
-export const TransactionCreatePaymentMethod$inboundSchema: z.ZodType<
-  TransactionCreatePaymentMethod,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  RedirectPaymentMethodCreate$inboundSchema,
-  ClickToPayPaymentMethodCreate$inboundSchema,
-  ClickToPayFPANPaymentMethodCreate$inboundSchema,
-  GooglePayFPANPaymentMethodCreate$inboundSchema,
-  NetworkTokenPaymentMethodCreate$inboundSchema,
-  CardWithUrlPaymentMethodCreate$inboundSchema,
-  ApplePayPaymentMethodCreate$inboundSchema,
-  GooglePayPaymentMethodCreate$inboundSchema,
-  TokenPaymentMethodCreate$inboundSchema,
-  PlaidPaymentMethodCreate$inboundSchema,
-  CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
-]);
-
-/** @internal */
 export type TransactionCreatePaymentMethod$Outbound =
   | RedirectPaymentMethodCreate$Outbound
   | ClickToPayPaymentMethodCreate$Outbound
@@ -424,19 +377,6 @@ export const TransactionCreatePaymentMethod$outboundSchema: z.ZodType<
   CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionCreatePaymentMethod$ {
-  /** @deprecated use `TransactionCreatePaymentMethod$inboundSchema` instead. */
-  export const inboundSchema = TransactionCreatePaymentMethod$inboundSchema;
-  /** @deprecated use `TransactionCreatePaymentMethod$outboundSchema` instead. */
-  export const outboundSchema = TransactionCreatePaymentMethod$outboundSchema;
-  /** @deprecated use `TransactionCreatePaymentMethod$Outbound` instead. */
-  export type Outbound = TransactionCreatePaymentMethod$Outbound;
-}
-
 export function transactionCreatePaymentMethodToJSON(
   transactionCreatePaymentMethod: TransactionCreatePaymentMethod,
 ): string {
@@ -446,26 +386,6 @@ export function transactionCreatePaymentMethodToJSON(
     ),
   );
 }
-
-export function transactionCreatePaymentMethodFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionCreatePaymentMethod, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionCreatePaymentMethod$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionCreatePaymentMethod' from JSON`,
-  );
-}
-
-/** @internal */
-export const TransactionCreateGiftCards$inboundSchema: z.ZodType<
-  TransactionCreateGiftCards,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  GiftCardTransactionCreate$inboundSchema,
-  GiftCardTokenTransactionCreate$inboundSchema,
-]);
 
 /** @internal */
 export type TransactionCreateGiftCards$Outbound =
@@ -482,19 +402,6 @@ export const TransactionCreateGiftCards$outboundSchema: z.ZodType<
   GiftCardTokenTransactionCreate$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionCreateGiftCards$ {
-  /** @deprecated use `TransactionCreateGiftCards$inboundSchema` instead. */
-  export const inboundSchema = TransactionCreateGiftCards$inboundSchema;
-  /** @deprecated use `TransactionCreateGiftCards$outboundSchema` instead. */
-  export const outboundSchema = TransactionCreateGiftCards$outboundSchema;
-  /** @deprecated use `TransactionCreateGiftCards$Outbound` instead. */
-  export type Outbound = TransactionCreateGiftCards$Outbound;
-}
-
 export function transactionCreateGiftCardsToJSON(
   transactionCreateGiftCards: TransactionCreateGiftCards,
 ): string {
@@ -502,26 +409,6 @@ export function transactionCreateGiftCardsToJSON(
     TransactionCreateGiftCards$outboundSchema.parse(transactionCreateGiftCards),
   );
 }
-
-export function transactionCreateGiftCardsFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionCreateGiftCards, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionCreateGiftCards$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionCreateGiftCards' from JSON`,
-  );
-}
-
-/** @internal */
-export const ThreeDSecureData$inboundSchema: z.ZodType<
-  ThreeDSecureData,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  ThreeDSecureDataV1$inboundSchema,
-  ThreeDSecureDataV2$inboundSchema,
-]);
 
 /** @internal */
 export type ThreeDSecureData$Outbound =
@@ -538,19 +425,6 @@ export const ThreeDSecureData$outboundSchema: z.ZodType<
   ThreeDSecureDataV2$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThreeDSecureData$ {
-  /** @deprecated use `ThreeDSecureData$inboundSchema` instead. */
-  export const inboundSchema = ThreeDSecureData$inboundSchema;
-  /** @deprecated use `ThreeDSecureData$outboundSchema` instead. */
-  export const outboundSchema = ThreeDSecureData$outboundSchema;
-  /** @deprecated use `ThreeDSecureData$Outbound` instead. */
-  export type Outbound = ThreeDSecureData$Outbound;
-}
-
 export function threeDSecureDataToJSON(
   threeDSecureData: ThreeDSecureData,
 ): string {
@@ -558,122 +432,6 @@ export function threeDSecureDataToJSON(
     ThreeDSecureData$outboundSchema.parse(threeDSecureData),
   );
 }
-
-export function threeDSecureDataFromJSON(
-  jsonString: string,
-): SafeParseResult<ThreeDSecureData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ThreeDSecureData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ThreeDSecureData' from JSON`,
-  );
-}
-
-/** @internal */
-export const TransactionCreate$inboundSchema: z.ZodType<
-  TransactionCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  amount: z.number().int(),
-  currency: z.string(),
-  country: z.nullable(z.string()).optional(),
-  payment_method: z.nullable(
-    z.union([
-      RedirectPaymentMethodCreate$inboundSchema,
-      ClickToPayPaymentMethodCreate$inboundSchema,
-      ClickToPayFPANPaymentMethodCreate$inboundSchema,
-      GooglePayFPANPaymentMethodCreate$inboundSchema,
-      NetworkTokenPaymentMethodCreate$inboundSchema,
-      CardWithUrlPaymentMethodCreate$inboundSchema,
-      ApplePayPaymentMethodCreate$inboundSchema,
-      GooglePayPaymentMethodCreate$inboundSchema,
-      TokenPaymentMethodCreate$inboundSchema,
-      PlaidPaymentMethodCreate$inboundSchema,
-      CheckoutSessionWithUrlPaymentMethodCreate$inboundSchema,
-    ]),
-  ).optional(),
-  buyer: z.nullable(GuestBuyerInput$inboundSchema).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  gift_cards: z.nullable(
-    z.array(
-      z.union([
-        GiftCardTransactionCreate$inboundSchema,
-        GiftCardTokenTransactionCreate$inboundSchema,
-      ]),
-    ),
-  ).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  intent: TransactionIntent$inboundSchema.optional(),
-  store: z.boolean().default(false),
-  three_d_secure_data: z.nullable(
-    z.union([
-      ThreeDSecureDataV1$inboundSchema,
-      ThreeDSecureDataV2$inboundSchema,
-    ]),
-  ).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  is_subsequent_payment: z.boolean().default(false),
-  merchant_initiated: z.boolean().default(false),
-  payment_source: TransactionPaymentSource$inboundSchema.optional(),
-  airline: z.nullable(Airline$inboundSchema).optional(),
-  cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
-  statement_descriptor: z.nullable(StatementDescriptor$inboundSchema)
-    .optional(),
-  previous_scheme_transaction_id: z.nullable(z.string()).optional(),
-  browser_info: z.nullable(BrowserInfo$inboundSchema).optional(),
-  shipping_details_id: z.nullable(z.string()).optional(),
-  connection_options: z.nullable(TransactionConnectionOptions$inboundSchema)
-    .optional(),
-  async_capture: z.boolean().default(false),
-  anti_fraud_fingerprint: z.nullable(z.string()).optional(),
-  payment_service_id: z.nullable(z.string()).optional(),
-  account_funding_transaction: z.boolean().default(false),
-  allow_partial_authorization: z.boolean().default(false),
-  recipient: z.nullable(Recipient$inboundSchema).optional(),
-  installment_count: z.nullable(z.number().int()).optional(),
-  tax_amount: z.nullable(z.number().int()).optional(),
-  merchant_tax_id: z.nullable(z.string()).optional(),
-  customer_reference_number: z.nullable(z.string()).optional(),
-  amount_includes_tax: z.nullable(z.boolean()).optional(),
-  supplier_order_number: z.nullable(z.string()).optional(),
-  duty_amount: z.nullable(z.number().int()).optional(),
-  shipping_amount: z.nullable(z.number().int()).optional(),
-  integration_client: z.nullable(IntegrationClient$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method": "paymentMethod",
-    "buyer_id": "buyerId",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "gift_cards": "giftCards",
-    "external_identifier": "externalIdentifier",
-    "three_d_secure_data": "threeDSecureData",
-    "is_subsequent_payment": "isSubsequentPayment",
-    "merchant_initiated": "merchantInitiated",
-    "payment_source": "paymentSource",
-    "cart_items": "cartItems",
-    "statement_descriptor": "statementDescriptor",
-    "previous_scheme_transaction_id": "previousSchemeTransactionId",
-    "browser_info": "browserInfo",
-    "shipping_details_id": "shippingDetailsId",
-    "connection_options": "connectionOptions",
-    "async_capture": "asyncCapture",
-    "anti_fraud_fingerprint": "antiFraudFingerprint",
-    "payment_service_id": "paymentServiceId",
-    "account_funding_transaction": "accountFundingTransaction",
-    "allow_partial_authorization": "allowPartialAuthorization",
-    "installment_count": "installmentCount",
-    "tax_amount": "taxAmount",
-    "merchant_tax_id": "merchantTaxId",
-    "customer_reference_number": "customerReferenceNumber",
-    "amount_includes_tax": "amountIncludesTax",
-    "supplier_order_number": "supplierOrderNumber",
-    "duty_amount": "dutyAmount",
-    "shipping_amount": "shippingAmount",
-    "integration_client": "integrationClient",
-  });
-});
 
 /** @internal */
 export type TransactionCreate$Outbound = {
@@ -846,33 +604,10 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionCreate$ {
-  /** @deprecated use `TransactionCreate$inboundSchema` instead. */
-  export const inboundSchema = TransactionCreate$inboundSchema;
-  /** @deprecated use `TransactionCreate$outboundSchema` instead. */
-  export const outboundSchema = TransactionCreate$outboundSchema;
-  /** @deprecated use `TransactionCreate$Outbound` instead. */
-  export type Outbound = TransactionCreate$Outbound;
-}
-
 export function transactionCreateToJSON(
   transactionCreate: TransactionCreate,
 ): string {
   return JSON.stringify(
     TransactionCreate$outboundSchema.parse(transactionCreate),
-  );
-}
-
-export function transactionCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionCreate' from JSON`,
   );
 }

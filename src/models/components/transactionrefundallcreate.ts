@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TransactionRefundAllCreate = {
   /**
@@ -18,20 +15,6 @@ export type TransactionRefundAllCreate = {
    */
   externalIdentifier?: string | null | undefined;
 };
-
-/** @internal */
-export const TransactionRefundAllCreate$inboundSchema: z.ZodType<
-  TransactionRefundAllCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  reason: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "external_identifier": "externalIdentifier",
-  });
-});
 
 /** @internal */
 export type TransactionRefundAllCreate$Outbound = {
@@ -53,33 +36,10 @@ export const TransactionRefundAllCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionRefundAllCreate$ {
-  /** @deprecated use `TransactionRefundAllCreate$inboundSchema` instead. */
-  export const inboundSchema = TransactionRefundAllCreate$inboundSchema;
-  /** @deprecated use `TransactionRefundAllCreate$outboundSchema` instead. */
-  export const outboundSchema = TransactionRefundAllCreate$outboundSchema;
-  /** @deprecated use `TransactionRefundAllCreate$Outbound` instead. */
-  export type Outbound = TransactionRefundAllCreate$Outbound;
-}
-
 export function transactionRefundAllCreateToJSON(
   transactionRefundAllCreate: TransactionRefundAllCreate,
 ): string {
   return JSON.stringify(
     TransactionRefundAllCreate$outboundSchema.parse(transactionRefundAllCreate),
-  );
-}
-
-export function transactionRefundAllCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionRefundAllCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionRefundAllCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionRefundAllCreate' from JSON`,
   );
 }

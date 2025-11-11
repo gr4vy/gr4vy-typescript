@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountUpdaterOptions = {
   /**
@@ -30,27 +27,6 @@ export type AccountUpdaterOptions = {
    */
   errorCode?: string | null | undefined;
 };
-
-/** @internal */
-export const AccountUpdaterOptions$inboundSchema: z.ZodType<
-  AccountUpdaterOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  response_code: z.nullable(z.literal("updated").default("updated")).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  expiration_month: z.nullable(z.string()).optional(),
-  expiration_year: z.nullable(z.string()).optional(),
-  error_code: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "response_code": "responseCode",
-    "account_number": "accountNumber",
-    "expiration_month": "expirationMonth",
-    "expiration_year": "expirationYear",
-    "error_code": "errorCode",
-  });
-});
 
 /** @internal */
 export type AccountUpdaterOptions$Outbound = {
@@ -82,33 +58,10 @@ export const AccountUpdaterOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountUpdaterOptions$ {
-  /** @deprecated use `AccountUpdaterOptions$inboundSchema` instead. */
-  export const inboundSchema = AccountUpdaterOptions$inboundSchema;
-  /** @deprecated use `AccountUpdaterOptions$outboundSchema` instead. */
-  export const outboundSchema = AccountUpdaterOptions$outboundSchema;
-  /** @deprecated use `AccountUpdaterOptions$Outbound` instead. */
-  export type Outbound = AccountUpdaterOptions$Outbound;
-}
-
 export function accountUpdaterOptionsToJSON(
   accountUpdaterOptions: AccountUpdaterOptions,
 ): string {
   return JSON.stringify(
     AccountUpdaterOptions$outboundSchema.parse(accountUpdaterOptions),
-  );
-}
-
-export function accountUpdaterOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountUpdaterOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountUpdaterOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountUpdaterOptions' from JSON`,
   );
 }

@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentOptionOutput,
   PaymentOptionOutput$inboundSchema,
-  PaymentOptionOutput$Outbound,
-  PaymentOptionOutput$outboundSchema,
 } from "./paymentoptionoutput.js";
 
 export type PaymentOptions = {
@@ -28,37 +26,6 @@ export const PaymentOptions$inboundSchema: z.ZodType<
 > = z.object({
   items: z.array(PaymentOptionOutput$inboundSchema),
 });
-
-/** @internal */
-export type PaymentOptions$Outbound = {
-  items: Array<PaymentOptionOutput$Outbound>;
-};
-
-/** @internal */
-export const PaymentOptions$outboundSchema: z.ZodType<
-  PaymentOptions$Outbound,
-  z.ZodTypeDef,
-  PaymentOptions
-> = z.object({
-  items: z.array(PaymentOptionOutput$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentOptions$ {
-  /** @deprecated use `PaymentOptions$inboundSchema` instead. */
-  export const inboundSchema = PaymentOptions$inboundSchema;
-  /** @deprecated use `PaymentOptions$outboundSchema` instead. */
-  export const outboundSchema = PaymentOptions$outboundSchema;
-  /** @deprecated use `PaymentOptions$Outbound` instead. */
-  export type Outbound = PaymentOptions$Outbound;
-}
-
-export function paymentOptionsToJSON(paymentOptions: PaymentOptions): string {
-  return JSON.stringify(PaymentOptions$outboundSchema.parse(paymentOptions));
-}
 
 export function paymentOptionsFromJSON(
   jsonString: string,

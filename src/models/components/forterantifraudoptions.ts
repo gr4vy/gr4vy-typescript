@@ -4,23 +4,14 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 import {
   ForterAntiFraudOptionsCartItem,
-  ForterAntiFraudOptionsCartItem$inboundSchema,
   ForterAntiFraudOptionsCartItem$Outbound,
   ForterAntiFraudOptionsCartItem$outboundSchema,
 } from "./forterantifraudoptionscartitem.js";
 import {
   ForterAntiFraudOptionsDiscount,
-  ForterAntiFraudOptionsDiscount$inboundSchema,
   ForterAntiFraudOptionsDiscount$Outbound,
   ForterAntiFraudOptionsDiscount$outboundSchema,
 } from "./forterantifraudoptionsdiscount.js";
@@ -56,17 +47,6 @@ export type ForterAntiFraudOptions = {
 };
 
 /** @internal */
-export const DeliveryType$inboundSchema: z.ZodType<
-  DeliveryType,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(DeliveryType),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const DeliveryType$outboundSchema: z.ZodType<
   DeliveryType,
   z.ZodTypeDef,
@@ -75,40 +55,6 @@ export const DeliveryType$outboundSchema: z.ZodType<
   z.nativeEnum(DeliveryType),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeliveryType$ {
-  /** @deprecated use `DeliveryType$inboundSchema` instead. */
-  export const inboundSchema = DeliveryType$inboundSchema;
-  /** @deprecated use `DeliveryType$outboundSchema` instead. */
-  export const outboundSchema = DeliveryType$outboundSchema;
-}
-
-/** @internal */
-export const ForterAntiFraudOptions$inboundSchema: z.ZodType<
-  ForterAntiFraudOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  delivery_type: z.nullable(DeliveryType$inboundSchema).optional(),
-  delivery_method: z.nullable(z.string()).optional(),
-  is_guest_buyer: z.nullable(z.boolean()).optional(),
-  cart_items: z.nullable(z.array(ForterAntiFraudOptionsCartItem$inboundSchema))
-    .optional(),
-  total_discount: z.nullable(ForterAntiFraudOptionsDiscount$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "delivery_type": "deliveryType",
-    "delivery_method": "deliveryMethod",
-    "is_guest_buyer": "isGuestBuyer",
-    "cart_items": "cartItems",
-    "total_discount": "totalDiscount",
-  });
-});
 
 /** @internal */
 export type ForterAntiFraudOptions$Outbound = {
@@ -145,33 +91,10 @@ export const ForterAntiFraudOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptions$ {
-  /** @deprecated use `ForterAntiFraudOptions$inboundSchema` instead. */
-  export const inboundSchema = ForterAntiFraudOptions$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptions$outboundSchema` instead. */
-  export const outboundSchema = ForterAntiFraudOptions$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptions$Outbound` instead. */
-  export type Outbound = ForterAntiFraudOptions$Outbound;
-}
-
 export function forterAntiFraudOptionsToJSON(
   forterAntiFraudOptions: ForterAntiFraudOptions,
 ): string {
   return JSON.stringify(
     ForterAntiFraudOptions$outboundSchema.parse(forterAntiFraudOptions),
-  );
-}
-
-export function forterAntiFraudOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<ForterAntiFraudOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ForterAntiFraudOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ForterAntiFraudOptions' from JSON`,
   );
 }

@@ -7,16 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CancelStatus,
-  CancelStatus$inboundSchema,
-  CancelStatus$outboundSchema,
-} from "./cancelstatus.js";
+import { CancelStatus, CancelStatus$inboundSchema } from "./cancelstatus.js";
 import {
   TransactionOutput,
   TransactionOutput$inboundSchema,
-  TransactionOutput$Outbound,
-  TransactionOutput$outboundSchema,
 } from "./transactionoutput.js";
 
 export type TransactionCancel = {
@@ -61,56 +55,6 @@ export const TransactionCancel$inboundSchema: z.ZodType<
     "raw_response_description": "rawResponseDescription",
   });
 });
-
-/** @internal */
-export type TransactionCancel$Outbound = {
-  type: "transaction-cancel";
-  status: string;
-  code: string | null;
-  raw_response_code: string | null;
-  raw_response_description: string | null;
-  transaction: TransactionOutput$Outbound;
-};
-
-/** @internal */
-export const TransactionCancel$outboundSchema: z.ZodType<
-  TransactionCancel$Outbound,
-  z.ZodTypeDef,
-  TransactionCancel
-> = z.object({
-  type: z.literal("transaction-cancel").default("transaction-cancel" as const),
-  status: CancelStatus$outboundSchema,
-  code: z.nullable(z.string()),
-  rawResponseCode: z.nullable(z.string()),
-  rawResponseDescription: z.nullable(z.string()),
-  transaction: TransactionOutput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    rawResponseCode: "raw_response_code",
-    rawResponseDescription: "raw_response_description",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionCancel$ {
-  /** @deprecated use `TransactionCancel$inboundSchema` instead. */
-  export const inboundSchema = TransactionCancel$inboundSchema;
-  /** @deprecated use `TransactionCancel$outboundSchema` instead. */
-  export const outboundSchema = TransactionCancel$outboundSchema;
-  /** @deprecated use `TransactionCancel$Outbound` instead. */
-  export type Outbound = TransactionCancel$Outbound;
-}
-
-export function transactionCancelToJSON(
-  transactionCancel: TransactionCancel,
-): string {
-  return JSON.stringify(
-    TransactionCancel$outboundSchema.parse(transactionCancel),
-  );
-}
 
 export function transactionCancelFromJSON(
   jsonString: string,

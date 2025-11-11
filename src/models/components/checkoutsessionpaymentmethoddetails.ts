@@ -7,11 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardType,
-  CardType$inboundSchema,
-  CardType$outboundSchema,
-} from "./cardtype.js";
+import { CardType, CardType$inboundSchema } from "./cardtype.js";
 
 export type CheckoutSessionPaymentMethodDetails = {
   /**
@@ -49,57 +45,6 @@ export const CheckoutSessionPaymentMethodDetails$inboundSchema: z.ZodType<
     "card_issuer_name": "cardIssuerName",
   });
 });
-
-/** @internal */
-export type CheckoutSessionPaymentMethodDetails$Outbound = {
-  bin?: string | null | undefined;
-  card_country?: string | null | undefined;
-  card_type?: string | null | undefined;
-  card_issuer_name?: string | null | undefined;
-};
-
-/** @internal */
-export const CheckoutSessionPaymentMethodDetails$outboundSchema: z.ZodType<
-  CheckoutSessionPaymentMethodDetails$Outbound,
-  z.ZodTypeDef,
-  CheckoutSessionPaymentMethodDetails
-> = z.object({
-  bin: z.nullable(z.string()).optional(),
-  cardCountry: z.nullable(z.string()).optional(),
-  cardType: z.nullable(CardType$outboundSchema).optional(),
-  cardIssuerName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cardCountry: "card_country",
-    cardType: "card_type",
-    cardIssuerName: "card_issuer_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckoutSessionPaymentMethodDetails$ {
-  /** @deprecated use `CheckoutSessionPaymentMethodDetails$inboundSchema` instead. */
-  export const inboundSchema =
-    CheckoutSessionPaymentMethodDetails$inboundSchema;
-  /** @deprecated use `CheckoutSessionPaymentMethodDetails$outboundSchema` instead. */
-  export const outboundSchema =
-    CheckoutSessionPaymentMethodDetails$outboundSchema;
-  /** @deprecated use `CheckoutSessionPaymentMethodDetails$Outbound` instead. */
-  export type Outbound = CheckoutSessionPaymentMethodDetails$Outbound;
-}
-
-export function checkoutSessionPaymentMethodDetailsToJSON(
-  checkoutSessionPaymentMethodDetails: CheckoutSessionPaymentMethodDetails,
-): string {
-  return JSON.stringify(
-    CheckoutSessionPaymentMethodDetails$outboundSchema.parse(
-      checkoutSessionPaymentMethodDetails,
-    ),
-  );
-}
 
 export function checkoutSessionPaymentMethodDetailsFromJSON(
   jsonString: string,

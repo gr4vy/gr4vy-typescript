@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AffirmItineraryOptions = {
   /**
@@ -40,26 +37,6 @@ export type AffirmItineraryOptions = {
 };
 
 /** @internal */
-export const AffirmItineraryOptions$inboundSchema: z.ZodType<
-  AffirmItineraryOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.nullable(z.string()).optional(),
-  sku: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  venue: z.nullable(z.string()).optional(),
-  location: z.nullable(z.string()).optional(),
-  date_start: z.nullable(z.string()).optional(),
-  management: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "date_start": "dateStart",
-  });
-});
-
-/** @internal */
 export type AffirmItineraryOptions$Outbound = {
   type?: string | null | undefined;
   sku?: string | null | undefined;
@@ -90,33 +67,10 @@ export const AffirmItineraryOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AffirmItineraryOptions$ {
-  /** @deprecated use `AffirmItineraryOptions$inboundSchema` instead. */
-  export const inboundSchema = AffirmItineraryOptions$inboundSchema;
-  /** @deprecated use `AffirmItineraryOptions$outboundSchema` instead. */
-  export const outboundSchema = AffirmItineraryOptions$outboundSchema;
-  /** @deprecated use `AffirmItineraryOptions$Outbound` instead. */
-  export type Outbound = AffirmItineraryOptions$Outbound;
-}
-
 export function affirmItineraryOptionsToJSON(
   affirmItineraryOptions: AffirmItineraryOptions,
 ): string {
   return JSON.stringify(
     AffirmItineraryOptions$outboundSchema.parse(affirmItineraryOptions),
-  );
-}
-
-export function affirmItineraryOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<AffirmItineraryOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AffirmItineraryOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AffirmItineraryOptions' from JSON`,
   );
 }

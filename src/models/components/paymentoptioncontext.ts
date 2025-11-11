@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentOptionContextApprovalUI,
   PaymentOptionContextApprovalUI$inboundSchema,
-  PaymentOptionContextApprovalUI$Outbound,
-  PaymentOptionContextApprovalUI$outboundSchema,
 } from "./paymentoptioncontextapprovalui.js";
 
 export type Two = boolean | any;
@@ -33,30 +31,6 @@ export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z.union(
   [z.boolean(), z.any()],
 );
 
-/** @internal */
-export type Two$Outbound = boolean | any;
-
-/** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .union([z.boolean(), z.any()]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
-export function twoToJSON(two: Two): string {
-  return JSON.stringify(Two$outboundSchema.parse(two));
-}
-
 export function twoFromJSON(
   jsonString: string,
 ): SafeParseResult<Two, SDKValidationError> {
@@ -73,33 +47,6 @@ export const RequiredFields$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.boolean(), z.record(z.union([z.boolean(), z.any()]))]);
-
-/** @internal */
-export type RequiredFields$Outbound = boolean | { [k: string]: boolean | any };
-
-/** @internal */
-export const RequiredFields$outboundSchema: z.ZodType<
-  RequiredFields$Outbound,
-  z.ZodTypeDef,
-  RequiredFields
-> = z.union([z.boolean(), z.record(z.union([z.boolean(), z.any()]))]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequiredFields$ {
-  /** @deprecated use `RequiredFields$inboundSchema` instead. */
-  export const inboundSchema = RequiredFields$inboundSchema;
-  /** @deprecated use `RequiredFields$outboundSchema` instead. */
-  export const outboundSchema = RequiredFields$outboundSchema;
-  /** @deprecated use `RequiredFields$Outbound` instead. */
-  export type Outbound = RequiredFields$Outbound;
-}
-
-export function requiredFieldsToJSON(requiredFields: RequiredFields): string {
-  return JSON.stringify(RequiredFields$outboundSchema.parse(requiredFields));
-}
 
 export function requiredFieldsFromJSON(
   jsonString: string,
@@ -132,60 +79,6 @@ export const PaymentOptionContext$inboundSchema: z.ZodType<
     "requires_tokenized_redirect_popup": "requiresTokenizedRedirectPopup",
   });
 });
-
-/** @internal */
-export type PaymentOptionContext$Outbound = {
-  approval_ui?: PaymentOptionContextApprovalUI$Outbound | null | undefined;
-  required_fields?:
-    | { [k: string]: boolean | { [k: string]: boolean | any } }
-    | null
-    | undefined;
-  redirect_requires_popup: boolean;
-  requires_tokenized_redirect_popup: boolean;
-};
-
-/** @internal */
-export const PaymentOptionContext$outboundSchema: z.ZodType<
-  PaymentOptionContext$Outbound,
-  z.ZodTypeDef,
-  PaymentOptionContext
-> = z.object({
-  approvalUi: z.nullable(PaymentOptionContextApprovalUI$outboundSchema)
-    .optional(),
-  requiredFields: z.nullable(
-    z.record(z.union([z.boolean(), z.record(z.union([z.boolean(), z.any()]))])),
-  ).optional(),
-  redirectRequiresPopup: z.boolean(),
-  requiresTokenizedRedirectPopup: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    approvalUi: "approval_ui",
-    requiredFields: "required_fields",
-    redirectRequiresPopup: "redirect_requires_popup",
-    requiresTokenizedRedirectPopup: "requires_tokenized_redirect_popup",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentOptionContext$ {
-  /** @deprecated use `PaymentOptionContext$inboundSchema` instead. */
-  export const inboundSchema = PaymentOptionContext$inboundSchema;
-  /** @deprecated use `PaymentOptionContext$outboundSchema` instead. */
-  export const outboundSchema = PaymentOptionContext$outboundSchema;
-  /** @deprecated use `PaymentOptionContext$Outbound` instead. */
-  export type Outbound = PaymentOptionContext$Outbound;
-}
-
-export function paymentOptionContextToJSON(
-  paymentOptionContext: PaymentOptionContext,
-): string {
-  return JSON.stringify(
-    PaymentOptionContext$outboundSchema.parse(paymentOptionContext),
-  );
-}
 
 export function paymentOptionContextFromJSON(
   jsonString: string,

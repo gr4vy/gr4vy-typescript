@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TrustlyOptions = {
   /**
@@ -17,16 +14,6 @@ export type TrustlyOptions = {
    */
   urlScheme?: string | null | undefined;
 };
-
-/** @internal */
-export const TrustlyOptions$inboundSchema: z.ZodType<
-  TrustlyOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  refreshSplitToken: z.nullable(z.boolean()).optional(),
-  urlScheme: z.nullable(z.string()).optional(),
-});
 
 /** @internal */
 export type TrustlyOptions$Outbound = {
@@ -44,29 +31,6 @@ export const TrustlyOptions$outboundSchema: z.ZodType<
   urlScheme: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrustlyOptions$ {
-  /** @deprecated use `TrustlyOptions$inboundSchema` instead. */
-  export const inboundSchema = TrustlyOptions$inboundSchema;
-  /** @deprecated use `TrustlyOptions$outboundSchema` instead. */
-  export const outboundSchema = TrustlyOptions$outboundSchema;
-  /** @deprecated use `TrustlyOptions$Outbound` instead. */
-  export type Outbound = TrustlyOptions$Outbound;
-}
-
 export function trustlyOptionsToJSON(trustlyOptions: TrustlyOptions): string {
   return JSON.stringify(TrustlyOptions$outboundSchema.parse(trustlyOptions));
-}
-
-export function trustlyOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<TrustlyOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TrustlyOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TrustlyOptions' from JSON`,
-  );
 }

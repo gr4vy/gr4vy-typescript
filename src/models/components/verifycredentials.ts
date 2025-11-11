@@ -4,15 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Field,
-  Field$inboundSchema,
-  Field$Outbound,
-  Field$outboundSchema,
-} from "./field.js";
+import { Field, Field$Outbound, Field$outboundSchema } from "./field.js";
 
 export type VerifyCredentials = {
   /**
@@ -28,22 +20,6 @@ export type VerifyCredentials = {
    */
   fields: Array<Field>;
 };
-
-/** @internal */
-export const VerifyCredentials$inboundSchema: z.ZodType<
-  VerifyCredentials,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_service_definition_id: z.string(),
-  payment_service_id: z.nullable(z.string()).optional(),
-  fields: z.array(Field$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_service_definition_id": "paymentServiceDefinitionId",
-    "payment_service_id": "paymentServiceId",
-  });
-});
 
 /** @internal */
 export type VerifyCredentials$Outbound = {
@@ -68,33 +44,10 @@ export const VerifyCredentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyCredentials$ {
-  /** @deprecated use `VerifyCredentials$inboundSchema` instead. */
-  export const inboundSchema = VerifyCredentials$inboundSchema;
-  /** @deprecated use `VerifyCredentials$outboundSchema` instead. */
-  export const outboundSchema = VerifyCredentials$outboundSchema;
-  /** @deprecated use `VerifyCredentials$Outbound` instead. */
-  export type Outbound = VerifyCredentials$Outbound;
-}
-
 export function verifyCredentialsToJSON(
   verifyCredentials: VerifyCredentials,
 ): string {
   return JSON.stringify(
     VerifyCredentials$outboundSchema.parse(verifyCredentials),
-  );
-}
-
-export function verifyCredentialsFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyCredentials, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VerifyCredentials$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyCredentials' from JSON`,
   );
 }

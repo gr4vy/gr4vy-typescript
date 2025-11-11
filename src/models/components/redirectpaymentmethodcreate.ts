@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { OpenEnum, Unrecognized } from "../../types/enums.js";
 
 /**
  * The method to use, this can be any of the methods that support redirect requests.
@@ -157,17 +150,6 @@ export type RedirectPaymentMethodCreate = {
 };
 
 /** @internal */
-export const RedirectPaymentMethodCreateMethod$inboundSchema: z.ZodType<
-  RedirectPaymentMethodCreateMethod,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(RedirectPaymentMethodCreateMethod),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
 export const RedirectPaymentMethodCreateMethod$outboundSchema: z.ZodType<
   RedirectPaymentMethodCreateMethod,
   z.ZodTypeDef,
@@ -176,40 +158,6 @@ export const RedirectPaymentMethodCreateMethod$outboundSchema: z.ZodType<
   z.nativeEnum(RedirectPaymentMethodCreateMethod),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RedirectPaymentMethodCreateMethod$ {
-  /** @deprecated use `RedirectPaymentMethodCreateMethod$inboundSchema` instead. */
-  export const inboundSchema = RedirectPaymentMethodCreateMethod$inboundSchema;
-  /** @deprecated use `RedirectPaymentMethodCreateMethod$outboundSchema` instead. */
-  export const outboundSchema =
-    RedirectPaymentMethodCreateMethod$outboundSchema;
-}
-
-/** @internal */
-export const RedirectPaymentMethodCreate$inboundSchema: z.ZodType<
-  RedirectPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  method: RedirectPaymentMethodCreateMethod$inboundSchema,
-  buyer_id: z.nullable(z.string()).optional(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  country: z.string(),
-  currency: z.string(),
-  redirect_url: z.string(),
-  external_identifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_id": "buyerId",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "redirect_url": "redirectUrl",
-    "external_identifier": "externalIdentifier",
-  });
-});
 
 /** @internal */
 export type RedirectPaymentMethodCreate$Outbound = {
@@ -244,19 +192,6 @@ export const RedirectPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RedirectPaymentMethodCreate$ {
-  /** @deprecated use `RedirectPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = RedirectPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `RedirectPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = RedirectPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `RedirectPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = RedirectPaymentMethodCreate$Outbound;
-}
-
 export function redirectPaymentMethodCreateToJSON(
   redirectPaymentMethodCreate: RedirectPaymentMethodCreate,
 ): string {
@@ -264,15 +199,5 @@ export function redirectPaymentMethodCreateToJSON(
     RedirectPaymentMethodCreate$outboundSchema.parse(
       redirectPaymentMethodCreate,
     ),
-  );
-}
-
-export function redirectPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<RedirectPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RedirectPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RedirectPaymentMethodCreate' from JSON`,
   );
 }

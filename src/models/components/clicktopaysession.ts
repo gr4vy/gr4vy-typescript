@@ -34,48 +34,6 @@ export const ClickToPaySession$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ClickToPaySession$Outbound = {
-  digital_payment_application_id: string;
-  digital_payment_application_name: string;
-};
-
-/** @internal */
-export const ClickToPaySession$outboundSchema: z.ZodType<
-  ClickToPaySession$Outbound,
-  z.ZodTypeDef,
-  ClickToPaySession
-> = z.object({
-  digitalPaymentApplicationId: z.string(),
-  digitalPaymentApplicationName: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    digitalPaymentApplicationId: "digital_payment_application_id",
-    digitalPaymentApplicationName: "digital_payment_application_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClickToPaySession$ {
-  /** @deprecated use `ClickToPaySession$inboundSchema` instead. */
-  export const inboundSchema = ClickToPaySession$inboundSchema;
-  /** @deprecated use `ClickToPaySession$outboundSchema` instead. */
-  export const outboundSchema = ClickToPaySession$outboundSchema;
-  /** @deprecated use `ClickToPaySession$Outbound` instead. */
-  export type Outbound = ClickToPaySession$Outbound;
-}
-
-export function clickToPaySessionToJSON(
-  clickToPaySession: ClickToPaySession,
-): string {
-  return JSON.stringify(
-    ClickToPaySession$outboundSchema.parse(clickToPaySession),
-  );
-}
-
 export function clickToPaySessionFromJSON(
   jsonString: string,
 ): SafeParseResult<ClickToPaySession, SDKValidationError> {

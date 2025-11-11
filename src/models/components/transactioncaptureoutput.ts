@@ -7,16 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CaptureStatus,
-  CaptureStatus$inboundSchema,
-  CaptureStatus$outboundSchema,
-} from "./capturestatus.js";
+import { CaptureStatus, CaptureStatus$inboundSchema } from "./capturestatus.js";
 import {
   TransactionOutput,
   TransactionOutput$inboundSchema,
-  TransactionOutput$Outbound,
-  TransactionOutput$outboundSchema,
 } from "./transactionoutput.js";
 
 export type TransactionCaptureOutput = {
@@ -61,58 +55,6 @@ export const TransactionCaptureOutput$inboundSchema: z.ZodType<
     "raw_response_description": "rawResponseDescription",
   });
 });
-
-/** @internal */
-export type TransactionCaptureOutput$Outbound = {
-  type: "transaction-capture";
-  status: string;
-  code: string | null;
-  raw_response_code: string | null;
-  raw_response_description: string | null;
-  transaction: TransactionOutput$Outbound;
-};
-
-/** @internal */
-export const TransactionCaptureOutput$outboundSchema: z.ZodType<
-  TransactionCaptureOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionCaptureOutput
-> = z.object({
-  type: z.literal("transaction-capture").default(
-    "transaction-capture" as const,
-  ),
-  status: CaptureStatus$outboundSchema,
-  code: z.nullable(z.string()),
-  rawResponseCode: z.nullable(z.string()),
-  rawResponseDescription: z.nullable(z.string()),
-  transaction: TransactionOutput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    rawResponseCode: "raw_response_code",
-    rawResponseDescription: "raw_response_description",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionCaptureOutput$ {
-  /** @deprecated use `TransactionCaptureOutput$inboundSchema` instead. */
-  export const inboundSchema = TransactionCaptureOutput$inboundSchema;
-  /** @deprecated use `TransactionCaptureOutput$outboundSchema` instead. */
-  export const outboundSchema = TransactionCaptureOutput$outboundSchema;
-  /** @deprecated use `TransactionCaptureOutput$Outbound` instead. */
-  export type Outbound = TransactionCaptureOutput$Outbound;
-}
-
-export function transactionCaptureOutputToJSON(
-  transactionCaptureOutput: TransactionCaptureOutput,
-): string {
-  return JSON.stringify(
-    TransactionCaptureOutput$outboundSchema.parse(transactionCaptureOutput),
-  );
-}
 
 export function transactionCaptureOutputFromJSON(
   jsonString: string,

@@ -75,7 +75,6 @@ export const TaxIdKind$inboundSchema: z.ZodType<
     z.nativeEnum(TaxIdKind),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const TaxIdKind$outboundSchema: z.ZodType<
   TaxIdKind,
@@ -85,14 +84,3 @@ export const TaxIdKind$outboundSchema: z.ZodType<
   z.nativeEnum(TaxIdKind),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TaxIdKind$ {
-  /** @deprecated use `TaxIdKind$inboundSchema` instead. */
-  export const inboundSchema = TaxIdKind$inboundSchema;
-  /** @deprecated use `TaxIdKind$outboundSchema` instead. */
-  export const outboundSchema = TaxIdKind$outboundSchema;
-}

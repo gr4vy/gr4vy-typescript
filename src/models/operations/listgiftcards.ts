@@ -29,78 +29,6 @@ export type ListGiftCardsResponse = {
 };
 
 /** @internal */
-export const ListGiftCardsGlobals$inboundSchema: z.ZodType<
-  ListGiftCardsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListGiftCardsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListGiftCardsGlobals$outboundSchema: z.ZodType<
-  ListGiftCardsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListGiftCardsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListGiftCardsGlobals$ {
-  /** @deprecated use `ListGiftCardsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListGiftCardsGlobals$inboundSchema;
-  /** @deprecated use `ListGiftCardsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListGiftCardsGlobals$outboundSchema;
-  /** @deprecated use `ListGiftCardsGlobals$Outbound` instead. */
-  export type Outbound = ListGiftCardsGlobals$Outbound;
-}
-
-export function listGiftCardsGlobalsToJSON(
-  listGiftCardsGlobals: ListGiftCardsGlobals,
-): string {
-  return JSON.stringify(
-    ListGiftCardsGlobals$outboundSchema.parse(listGiftCardsGlobals),
-  );
-}
-
-export function listGiftCardsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListGiftCardsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListGiftCardsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListGiftCardsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListGiftCardsRequest$inboundSchema: z.ZodType<
-  ListGiftCardsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "buyer_id": "buyerId",
-  });
-});
-
-/** @internal */
 export type ListGiftCardsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
@@ -127,34 +55,11 @@ export const ListGiftCardsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListGiftCardsRequest$ {
-  /** @deprecated use `ListGiftCardsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListGiftCardsRequest$inboundSchema;
-  /** @deprecated use `ListGiftCardsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListGiftCardsRequest$outboundSchema;
-  /** @deprecated use `ListGiftCardsRequest$Outbound` instead. */
-  export type Outbound = ListGiftCardsRequest$Outbound;
-}
-
 export function listGiftCardsRequestToJSON(
   listGiftCardsRequest: ListGiftCardsRequest,
 ): string {
   return JSON.stringify(
     ListGiftCardsRequest$outboundSchema.parse(listGiftCardsRequest),
-  );
-}
-
-export function listGiftCardsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListGiftCardsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListGiftCardsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListGiftCardsRequest' from JSON`,
   );
 }
 
@@ -170,45 +75,6 @@ export const ListGiftCardsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListGiftCardsResponse$Outbound = {
-  Result: components.GiftCards$Outbound;
-};
-
-/** @internal */
-export const ListGiftCardsResponse$outboundSchema: z.ZodType<
-  ListGiftCardsResponse$Outbound,
-  z.ZodTypeDef,
-  ListGiftCardsResponse
-> = z.object({
-  result: components.GiftCards$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListGiftCardsResponse$ {
-  /** @deprecated use `ListGiftCardsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListGiftCardsResponse$inboundSchema;
-  /** @deprecated use `ListGiftCardsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListGiftCardsResponse$outboundSchema;
-  /** @deprecated use `ListGiftCardsResponse$Outbound` instead. */
-  export type Outbound = ListGiftCardsResponse$Outbound;
-}
-
-export function listGiftCardsResponseToJSON(
-  listGiftCardsResponse: ListGiftCardsResponse,
-): string {
-  return JSON.stringify(
-    ListGiftCardsResponse$outboundSchema.parse(listGiftCardsResponse),
-  );
-}
 
 export function listGiftCardsResponseFromJSON(
   jsonString: string,

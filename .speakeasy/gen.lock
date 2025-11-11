@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: bdba47fce19e40935c10aaaff1436726
+  docChecksum: 51c720d734e7fc53ca512a43ce730475
   docVersion: 1.0.0
-  speakeasyVersion: 1.649.0
-  generationVersion: 2.739.1
-  releaseVersion: 1.6.2
-  configChecksum: 209481ec8c6fe15ceaa7873557863333
+  speakeasyVersion: 1.653.0
+  generationVersion: 2.748.0
+  releaseVersion: 1.6.3
+  configChecksum: 48512c21f94ef507f1709e5eddb2d725
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.0
+    core: 3.26.4
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -4475,3 +4475,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.cartItems.[].upc` **Added**\n  *  `response.cart_items.[].upc` **Added**\n* `gr4vy.transactions.get()`:  `response.cart_items.[].upc` **Added**\n* `gr4vy.transactions.update()`:  `response.cart_items.[].upc` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction-output].cartItems.[].upc` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction-output].cartItems.[].upc` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.cartItems.[].upc` **Added**\n* `gr4vy.transactions.sync()`:  `response.cart_items.[].upc` **Added**\n* `gr4vy.paymentOptions.list()`: \n  *  `request.paymentoptionrequest.cartItems.[].upc` **Added**\n* `gr4vy.checkoutSessions.create()`: \n  *  `request.checkoutsessioncreate.cartItems.[].upc` **Added**\n  *  `response.cart_items.[].upc` **Added**\n* `gr4vy.checkoutSessions.get()`:  `response.cart_items.[].upc` **Added**\n* `gr4vy.checkoutSessions.update()`: \n  *  `request.checkoutsessioncreate.cartItems.[].upc` **Added**\n  *  `response.cart_items.[].upc` **Added**\n* `gr4vy.paymentLinks.list()`:  `response.items.[].cartItems.[].upc` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.cartItems.[].upc` **Added**\n  *  `response.cart_items.[].upc` **Added**\n* `gr4vy.paymentLinks.get()`:  `response.cart_items.[].upc` **Added**\n"

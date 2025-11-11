@@ -26,7 +26,6 @@ export const TaxId$inboundSchema: z.ZodType<TaxId, z.ZodTypeDef, unknown> = z
     value: z.string(),
     kind: TaxIdKind$inboundSchema,
   });
-
 /** @internal */
 export type TaxId$Outbound = {
   value: string;
@@ -43,23 +42,9 @@ export const TaxId$outboundSchema: z.ZodType<
   kind: TaxIdKind$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TaxId$ {
-  /** @deprecated use `TaxId$inboundSchema` instead. */
-  export const inboundSchema = TaxId$inboundSchema;
-  /** @deprecated use `TaxId$outboundSchema` instead. */
-  export const outboundSchema = TaxId$outboundSchema;
-  /** @deprecated use `TaxId$Outbound` instead. */
-  export type Outbound = TaxId$Outbound;
-}
-
 export function taxIdToJSON(taxId: TaxId): string {
   return JSON.stringify(TaxId$outboundSchema.parse(taxId));
 }
-
 export function taxIdFromJSON(
   jsonString: string,
 ): SafeParseResult<TaxId, SDKValidationError> {

@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AdyenOptions = {
   /**
@@ -13,15 +10,6 @@ export type AdyenOptions = {
    */
   additionalData?: { [k: string]: string } | null | undefined;
 };
-
-/** @internal */
-export const AdyenOptions$inboundSchema: z.ZodType<
-  AdyenOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  additionalData: z.nullable(z.record(z.string())).optional(),
-});
 
 /** @internal */
 export type AdyenOptions$Outbound = {
@@ -37,29 +25,6 @@ export const AdyenOptions$outboundSchema: z.ZodType<
   additionalData: z.nullable(z.record(z.string())).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AdyenOptions$ {
-  /** @deprecated use `AdyenOptions$inboundSchema` instead. */
-  export const inboundSchema = AdyenOptions$inboundSchema;
-  /** @deprecated use `AdyenOptions$outboundSchema` instead. */
-  export const outboundSchema = AdyenOptions$outboundSchema;
-  /** @deprecated use `AdyenOptions$Outbound` instead. */
-  export type Outbound = AdyenOptions$Outbound;
-}
-
 export function adyenOptionsToJSON(adyenOptions: AdyenOptions): string {
   return JSON.stringify(AdyenOptions$outboundSchema.parse(adyenOptions));
-}
-
-export function adyenOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<AdyenOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AdyenOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AdyenOptions' from JSON`,
-  );
 }

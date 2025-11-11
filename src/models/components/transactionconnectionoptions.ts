@@ -4,168 +4,138 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountUpdaterOptions,
-  AccountUpdaterOptions$inboundSchema,
   AccountUpdaterOptions$Outbound,
   AccountUpdaterOptions$outboundSchema,
 } from "./accountupdateroptions.js";
 import {
   AdyenCardOptions,
-  AdyenCardOptions$inboundSchema,
   AdyenCardOptions$Outbound,
   AdyenCardOptions$outboundSchema,
 } from "./adyencardoptions.js";
 import {
   AdyenOptions,
-  AdyenOptions$inboundSchema,
   AdyenOptions$Outbound,
   AdyenOptions$outboundSchema,
 } from "./adyenoptions.js";
 import {
   AdyenSepaOptions,
-  AdyenSepaOptions$inboundSchema,
   AdyenSepaOptions$Outbound,
   AdyenSepaOptions$outboundSchema,
 } from "./adyensepaoptions.js";
 import {
   AffirmOptions,
-  AffirmOptions$inboundSchema,
   AffirmOptions$Outbound,
   AffirmOptions$outboundSchema,
 } from "./affirmoptions.js";
 import {
   BraintreeOptions,
-  BraintreeOptions$inboundSchema,
   BraintreeOptions$Outbound,
   BraintreeOptions$outboundSchema,
 } from "./braintreeoptions.js";
 import {
   CybersourceAntiFraudOptions,
-  CybersourceAntiFraudOptions$inboundSchema,
   CybersourceAntiFraudOptions$Outbound,
   CybersourceAntiFraudOptions$outboundSchema,
 } from "./cybersourceantifraudoptions.js";
 import {
   CybersourceOptions,
-  CybersourceOptions$inboundSchema,
   CybersourceOptions$Outbound,
   CybersourceOptions$outboundSchema,
 } from "./cybersourceoptions.js";
 import {
   DlocalOptions,
-  DlocalOptions$inboundSchema,
   DlocalOptions$Outbound,
   DlocalOptions$outboundSchema,
 } from "./dlocaloptions.js";
 import {
   DlocalUPIOptions,
-  DlocalUPIOptions$inboundSchema,
   DlocalUPIOptions$Outbound,
   DlocalUPIOptions$outboundSchema,
 } from "./dlocalupioptions.js";
 import {
   FiservOptions,
-  FiservOptions$inboundSchema,
   FiservOptions$Outbound,
   FiservOptions$outboundSchema,
 } from "./fiservoptions.js";
 import {
   ForterAntiFraudOptions,
-  ForterAntiFraudOptions$inboundSchema,
   ForterAntiFraudOptions$Outbound,
   ForterAntiFraudOptions$outboundSchema,
 } from "./forterantifraudoptions.js";
 import {
   GivingBlockOptions,
-  GivingBlockOptions$inboundSchema,
   GivingBlockOptions$Outbound,
   GivingBlockOptions$outboundSchema,
 } from "./givingblockoptions.js";
 import {
   LatitudeOptions,
-  LatitudeOptions$inboundSchema,
   LatitudeOptions$Outbound,
   LatitudeOptions$outboundSchema,
 } from "./latitudeoptions.js";
 import {
   MattildaTapiOptions,
-  MattildaTapiOptions$inboundSchema,
   MattildaTapiOptions$Outbound,
   MattildaTapiOptions$outboundSchema,
 } from "./mattildatapioptions.js";
 import {
   MockCardOptions,
-  MockCardOptions$inboundSchema,
   MockCardOptions$Outbound,
   MockCardOptions$outboundSchema,
 } from "./mockcardoptions.js";
 import {
   MonatoSpeiOptions,
-  MonatoSpeiOptions$inboundSchema,
   MonatoSpeiOptions$Outbound,
   MonatoSpeiOptions$outboundSchema,
 } from "./monatospeioptions.js";
 import {
   NuveiOptions,
-  NuveiOptions$inboundSchema,
   NuveiOptions$Outbound,
   NuveiOptions$outboundSchema,
 } from "./nuveioptions.js";
 import {
   NuveiPSEOptions,
-  NuveiPSEOptions$inboundSchema,
   NuveiPSEOptions$Outbound,
   NuveiPSEOptions$outboundSchema,
 } from "./nuveipseoptions.js";
 import {
   OxxoOptions,
-  OxxoOptions$inboundSchema,
   OxxoOptions$Outbound,
   OxxoOptions$outboundSchema,
 } from "./oxxooptions.js";
 import {
   PaypalOptions,
-  PaypalOptions$inboundSchema,
   PaypalOptions$Outbound,
   PaypalOptions$outboundSchema,
 } from "./paypaloptions.js";
 import {
   PowertranzOptions,
-  PowertranzOptions$inboundSchema,
   PowertranzOptions$Outbound,
   PowertranzOptions$outboundSchema,
 } from "./powertranzoptions.js";
 import {
   StripeOptions,
-  StripeOptions$inboundSchema,
   StripeOptions$Outbound,
   StripeOptions$outboundSchema,
 } from "./stripeoptions.js";
 import {
   TravelhubOptions,
-  TravelhubOptions$inboundSchema,
   TravelhubOptions$Outbound,
   TravelhubOptions$outboundSchema,
 } from "./travelhuboptions.js";
 import {
   TrustlyOptions,
-  TrustlyOptions$inboundSchema,
   TrustlyOptions$Outbound,
   TrustlyOptions$outboundSchema,
 } from "./trustlyoptions.js";
 import {
   WpayEverdaypayOptions,
-  WpayEverdaypayOptions$inboundSchema,
   WpayEverdaypayOptions$Outbound,
   WpayEverdaypayOptions$outboundSchema,
 } from "./wpayeverdaypayoptions.js";
 import {
   WpayPaytoOptions,
-  WpayPaytoOptions$inboundSchema,
   WpayPaytoOptions$Outbound,
   WpayPaytoOptions$outboundSchema,
 } from "./wpaypaytooptions.js";
@@ -334,103 +304,6 @@ export type TransactionConnectionOptions = {
 };
 
 /** @internal */
-export const TransactionConnectionOptions$inboundSchema: z.ZodType<
-  TransactionConnectionOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "account-updater": z.nullable(AccountUpdaterOptions$inboundSchema).optional(),
-  "adyen-afterpay": z.nullable(AdyenOptions$inboundSchema).optional(),
-  "adyen-alipay": z.nullable(AdyenOptions$inboundSchema).optional(),
-  "adyen-card": z.nullable(AdyenCardOptions$inboundSchema).optional(),
-  "adyen-cashapp": z.nullable(AdyenOptions$inboundSchema).optional(),
-  "adyen-giropay": z.nullable(AdyenOptions$inboundSchema).optional(),
-  "adyen-ideal": z.nullable(AdyenOptions$inboundSchema).optional(),
-  "adyen-sepa": z.nullable(AdyenSepaOptions$inboundSchema).optional(),
-  "adyen-sofort": z.nullable(AdyenOptions$inboundSchema).optional(),
-  "adyen-vipps": z.nullable(AdyenOptions$inboundSchema).optional(),
-  "affirm-affirm": z.nullable(AffirmOptions$inboundSchema).optional(),
-  "braintree-card": z.nullable(BraintreeOptions$inboundSchema).optional(),
-  "cybersource-anti-fraud": z.nullable(
-    CybersourceAntiFraudOptions$inboundSchema,
-  ).optional(),
-  "cybersource-card": z.nullable(CybersourceOptions$inboundSchema).optional(),
-  "cybersource-ideal": z.nullable(CybersourceOptions$inboundSchema).optional(),
-  "cybersource-kcp": z.nullable(CybersourceOptions$inboundSchema).optional(),
-  "dlocal-nequi": z.nullable(DlocalOptions$inboundSchema).optional(),
-  "dlocal-upi": z.nullable(DlocalUPIOptions$inboundSchema).optional(),
-  "fiserv-card": z.nullable(FiservOptions$inboundSchema).optional(),
-  "forter-anti-fraud": z.nullable(ForterAntiFraudOptions$inboundSchema)
-    .optional(),
-  "gem-gem": z.nullable(LatitudeOptions$inboundSchema).optional(),
-  "gem-gemds": z.nullable(LatitudeOptions$inboundSchema).optional(),
-  "givingblock-givingblock": z.nullable(GivingBlockOptions$inboundSchema)
-    .optional(),
-  "latitude-latitude": z.nullable(LatitudeOptions$inboundSchema).optional(),
-  "latitude-latitudeds": z.nullable(LatitudeOptions$inboundSchema).optional(),
-  "mattilda-tapi": z.nullable(MattildaTapiOptions$inboundSchema).optional(),
-  "mattilda-tapifintechs": z.nullable(MattildaTapiOptions$inboundSchema)
-    .optional(),
-  "monato-spei": z.nullable(MonatoSpeiOptions$inboundSchema).optional(),
-  "mock-card": z.nullable(MockCardOptions$inboundSchema).optional(),
-  "nuvei-card": z.nullable(NuveiOptions$inboundSchema).optional(),
-  "nuvei-pse": z.nullable(NuveiPSEOptions$inboundSchema).optional(),
-  "oxxo-oxxo": z.nullable(OxxoOptions$inboundSchema).optional(),
-  "paypal-paypal": z.nullable(PaypalOptions$inboundSchema).optional(),
-  "paypal-paypalpaylater": z.nullable(PaypalOptions$inboundSchema).optional(),
-  "powertranz-card": z.nullable(PowertranzOptions$inboundSchema).optional(),
-  "stripe-card": z.nullable(StripeOptions$inboundSchema).optional(),
-  "travelhub-card": z.nullable(TravelhubOptions$inboundSchema).optional(),
-  "trustly-trustly": z.nullable(TrustlyOptions$inboundSchema).optional(),
-  "wpay-everydaypay": z.nullable(WpayEverdaypayOptions$inboundSchema)
-    .optional(),
-  "wpay-payto": z.nullable(WpayPaytoOptions$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "account-updater": "accountUpdater",
-    "adyen-afterpay": "adyenAfterpay",
-    "adyen-alipay": "adyenAlipay",
-    "adyen-card": "adyenCard",
-    "adyen-cashapp": "adyenCashapp",
-    "adyen-giropay": "adyenGiropay",
-    "adyen-ideal": "adyenIdeal",
-    "adyen-sepa": "adyenSepa",
-    "adyen-sofort": "adyenSofort",
-    "adyen-vipps": "adyenVipps",
-    "affirm-affirm": "affirmAffirm",
-    "braintree-card": "braintreeCard",
-    "cybersource-anti-fraud": "cybersourceAntiFraud",
-    "cybersource-card": "cybersourceCard",
-    "cybersource-ideal": "cybersourceIdeal",
-    "cybersource-kcp": "cybersourceKcp",
-    "dlocal-nequi": "dlocalNequi",
-    "dlocal-upi": "dlocalUpi",
-    "fiserv-card": "fiservCard",
-    "forter-anti-fraud": "forterAntiFraud",
-    "gem-gem": "gemGem",
-    "gem-gemds": "gemGemds",
-    "givingblock-givingblock": "givingblockGivingblock",
-    "latitude-latitude": "latitudeLatitude",
-    "latitude-latitudeds": "latitudeLatitudeds",
-    "mattilda-tapi": "mattildaTapi",
-    "mattilda-tapifintechs": "mattildaTapifintechs",
-    "monato-spei": "monatoSpei",
-    "mock-card": "mockCard",
-    "nuvei-card": "nuveiCard",
-    "nuvei-pse": "nuveiPse",
-    "oxxo-oxxo": "oxxoOxxo",
-    "paypal-paypal": "paypalPaypal",
-    "paypal-paypalpaylater": "paypalPaypalpaylater",
-    "powertranz-card": "powertranzCard",
-    "stripe-card": "stripeCard",
-    "travelhub-card": "travelhubCard",
-    "trustly-trustly": "trustlyTrustly",
-    "wpay-everydaypay": "wpayEverydaypay",
-    "wpay-payto": "wpayPayto",
-  });
-});
-
-/** @internal */
 export type TransactionConnectionOptions$Outbound = {
   "account-updater"?: AccountUpdaterOptions$Outbound | null | undefined;
   "adyen-afterpay"?: AdyenOptions$Outbound | null | undefined;
@@ -571,19 +444,6 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionConnectionOptions$ {
-  /** @deprecated use `TransactionConnectionOptions$inboundSchema` instead. */
-  export const inboundSchema = TransactionConnectionOptions$inboundSchema;
-  /** @deprecated use `TransactionConnectionOptions$outboundSchema` instead. */
-  export const outboundSchema = TransactionConnectionOptions$outboundSchema;
-  /** @deprecated use `TransactionConnectionOptions$Outbound` instead. */
-  export type Outbound = TransactionConnectionOptions$Outbound;
-}
-
 export function transactionConnectionOptionsToJSON(
   transactionConnectionOptions: TransactionConnectionOptions,
 ): string {
@@ -591,15 +451,5 @@ export function transactionConnectionOptionsToJSON(
     TransactionConnectionOptions$outboundSchema.parse(
       transactionConnectionOptions,
     ),
-  );
-}
-
-export function transactionConnectionOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionConnectionOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionConnectionOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionConnectionOptions' from JSON`,
   );
 }

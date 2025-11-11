@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateCheckoutSessionGlobals = {
   merchantAccountId?: string | undefined;
@@ -24,78 +21,6 @@ export type UpdateCheckoutSessionRequest = {
   merchantAccountId?: string | null | undefined;
   checkoutSessionCreate: components.CheckoutSessionCreate;
 };
-
-/** @internal */
-export const UpdateCheckoutSessionGlobals$inboundSchema: z.ZodType<
-  UpdateCheckoutSessionGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type UpdateCheckoutSessionGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const UpdateCheckoutSessionGlobals$outboundSchema: z.ZodType<
-  UpdateCheckoutSessionGlobals$Outbound,
-  z.ZodTypeDef,
-  UpdateCheckoutSessionGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateCheckoutSessionGlobals$ {
-  /** @deprecated use `UpdateCheckoutSessionGlobals$inboundSchema` instead. */
-  export const inboundSchema = UpdateCheckoutSessionGlobals$inboundSchema;
-  /** @deprecated use `UpdateCheckoutSessionGlobals$outboundSchema` instead. */
-  export const outboundSchema = UpdateCheckoutSessionGlobals$outboundSchema;
-  /** @deprecated use `UpdateCheckoutSessionGlobals$Outbound` instead. */
-  export type Outbound = UpdateCheckoutSessionGlobals$Outbound;
-}
-
-export function updateCheckoutSessionGlobalsToJSON(
-  updateCheckoutSessionGlobals: UpdateCheckoutSessionGlobals,
-): string {
-  return JSON.stringify(
-    UpdateCheckoutSessionGlobals$outboundSchema.parse(
-      updateCheckoutSessionGlobals,
-    ),
-  );
-}
-
-export function updateCheckoutSessionGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateCheckoutSessionGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateCheckoutSessionGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateCheckoutSessionGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateCheckoutSessionRequest$inboundSchema: z.ZodType<
-  UpdateCheckoutSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  session_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  CheckoutSessionCreate: components.CheckoutSessionCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "session_id": "sessionId",
-    "CheckoutSessionCreate": "checkoutSessionCreate",
-  });
-});
 
 /** @internal */
 export type UpdateCheckoutSessionRequest$Outbound = {
@@ -120,19 +45,6 @@ export const UpdateCheckoutSessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateCheckoutSessionRequest$ {
-  /** @deprecated use `UpdateCheckoutSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateCheckoutSessionRequest$inboundSchema;
-  /** @deprecated use `UpdateCheckoutSessionRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateCheckoutSessionRequest$outboundSchema;
-  /** @deprecated use `UpdateCheckoutSessionRequest$Outbound` instead. */
-  export type Outbound = UpdateCheckoutSessionRequest$Outbound;
-}
-
 export function updateCheckoutSessionRequestToJSON(
   updateCheckoutSessionRequest: UpdateCheckoutSessionRequest,
 ): string {
@@ -140,15 +52,5 @@ export function updateCheckoutSessionRequestToJSON(
     UpdateCheckoutSessionRequest$outboundSchema.parse(
       updateCheckoutSessionRequest,
     ),
-  );
-}
-
-export function updateCheckoutSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateCheckoutSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateCheckoutSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateCheckoutSessionRequest' from JSON`,
   );
 }

@@ -9,7 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ReportSpecModel,
   ReportSpecModel$inboundSchema,
-  ReportSpecModel$outboundSchema,
 } from "./reportspecmodel.js";
 
 export type ReportSpec = {
@@ -29,39 +28,6 @@ export const ReportSpec$inboundSchema: z.ZodType<
   model: ReportSpecModel$inboundSchema,
   params: z.record(z.any()),
 });
-
-/** @internal */
-export type ReportSpec$Outbound = {
-  model: string;
-  params: { [k: string]: any };
-};
-
-/** @internal */
-export const ReportSpec$outboundSchema: z.ZodType<
-  ReportSpec$Outbound,
-  z.ZodTypeDef,
-  ReportSpec
-> = z.object({
-  model: ReportSpecModel$outboundSchema,
-  params: z.record(z.any()),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportSpec$ {
-  /** @deprecated use `ReportSpec$inboundSchema` instead. */
-  export const inboundSchema = ReportSpec$inboundSchema;
-  /** @deprecated use `ReportSpec$outboundSchema` instead. */
-  export const outboundSchema = ReportSpec$outboundSchema;
-  /** @deprecated use `ReportSpec$Outbound` instead. */
-  export type Outbound = ReportSpec$Outbound;
-}
-
-export function reportSpecToJSON(reportSpec: ReportSpec): string {
-  return JSON.stringify(ReportSpec$outboundSchema.parse(reportSpec));
-}
 
 export function reportSpecFromJSON(
   jsonString: string,

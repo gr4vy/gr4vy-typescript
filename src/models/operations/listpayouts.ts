@@ -33,71 +33,6 @@ export type ListPayoutsResponse = {
 };
 
 /** @internal */
-export const ListPayoutsGlobals$inboundSchema: z.ZodType<
-  ListPayoutsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type ListPayoutsGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const ListPayoutsGlobals$outboundSchema: z.ZodType<
-  ListPayoutsGlobals$Outbound,
-  z.ZodTypeDef,
-  ListPayoutsGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPayoutsGlobals$ {
-  /** @deprecated use `ListPayoutsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListPayoutsGlobals$inboundSchema;
-  /** @deprecated use `ListPayoutsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListPayoutsGlobals$outboundSchema;
-  /** @deprecated use `ListPayoutsGlobals$Outbound` instead. */
-  export type Outbound = ListPayoutsGlobals$Outbound;
-}
-
-export function listPayoutsGlobalsToJSON(
-  listPayoutsGlobals: ListPayoutsGlobals,
-): string {
-  return JSON.stringify(
-    ListPayoutsGlobals$outboundSchema.parse(listPayoutsGlobals),
-  );
-}
-
-export function listPayoutsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListPayoutsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListPayoutsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListPayoutsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListPayoutsRequest$inboundSchema: z.ZodType<
-  ListPayoutsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  merchantAccountId: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type ListPayoutsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
@@ -115,34 +50,11 @@ export const ListPayoutsRequest$outboundSchema: z.ZodType<
   merchantAccountId: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPayoutsRequest$ {
-  /** @deprecated use `ListPayoutsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListPayoutsRequest$inboundSchema;
-  /** @deprecated use `ListPayoutsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListPayoutsRequest$outboundSchema;
-  /** @deprecated use `ListPayoutsRequest$Outbound` instead. */
-  export type Outbound = ListPayoutsRequest$Outbound;
-}
-
 export function listPayoutsRequestToJSON(
   listPayoutsRequest: ListPayoutsRequest,
 ): string {
   return JSON.stringify(
     ListPayoutsRequest$outboundSchema.parse(listPayoutsRequest),
-  );
-}
-
-export function listPayoutsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListPayoutsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListPayoutsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListPayoutsRequest' from JSON`,
   );
 }
 
@@ -158,45 +70,6 @@ export const ListPayoutsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ListPayoutsResponse$Outbound = {
-  Result: components.PayoutSummaries$Outbound;
-};
-
-/** @internal */
-export const ListPayoutsResponse$outboundSchema: z.ZodType<
-  ListPayoutsResponse$Outbound,
-  z.ZodTypeDef,
-  ListPayoutsResponse
-> = z.object({
-  result: components.PayoutSummaries$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListPayoutsResponse$ {
-  /** @deprecated use `ListPayoutsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListPayoutsResponse$inboundSchema;
-  /** @deprecated use `ListPayoutsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListPayoutsResponse$outboundSchema;
-  /** @deprecated use `ListPayoutsResponse$Outbound` instead. */
-  export type Outbound = ListPayoutsResponse$Outbound;
-}
-
-export function listPayoutsResponseToJSON(
-  listPayoutsResponse: ListPayoutsResponse,
-): string {
-  return JSON.stringify(
-    ListPayoutsResponse$outboundSchema.parse(listPayoutsResponse),
-  );
-}
 
 export function listPayoutsResponseFromJSON(
   jsonString: string,

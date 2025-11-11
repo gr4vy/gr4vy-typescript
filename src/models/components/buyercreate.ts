@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BillingDetailsInput,
-  BillingDetailsInput$inboundSchema,
   BillingDetailsInput$Outbound,
   BillingDetailsInput$outboundSchema,
 } from "./billingdetailsinput.js";
@@ -35,25 +31,6 @@ export type BuyerCreate = {
    */
   accountNumber?: string | null | undefined;
 };
-
-/** @internal */
-export const BuyerCreate$inboundSchema: z.ZodType<
-  BuyerCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_name: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  billing_details: z.nullable(BillingDetailsInput$inboundSchema).optional(),
-  account_number: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "external_identifier": "externalIdentifier",
-    "billing_details": "billingDetails",
-    "account_number": "accountNumber",
-  });
-});
 
 /** @internal */
 export type BuyerCreate$Outbound = {
@@ -82,29 +59,6 @@ export const BuyerCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BuyerCreate$ {
-  /** @deprecated use `BuyerCreate$inboundSchema` instead. */
-  export const inboundSchema = BuyerCreate$inboundSchema;
-  /** @deprecated use `BuyerCreate$outboundSchema` instead. */
-  export const outboundSchema = BuyerCreate$outboundSchema;
-  /** @deprecated use `BuyerCreate$Outbound` instead. */
-  export type Outbound = BuyerCreate$Outbound;
-}
-
 export function buyerCreateToJSON(buyerCreate: BuyerCreate): string {
   return JSON.stringify(BuyerCreate$outboundSchema.parse(buyerCreate));
-}
-
-export function buyerCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<BuyerCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BuyerCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BuyerCreate' from JSON`,
-  );
 }

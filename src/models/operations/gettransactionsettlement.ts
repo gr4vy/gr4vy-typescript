@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetTransactionSettlementGlobals = {
   merchantAccountId?: string | undefined;
@@ -26,78 +23,6 @@ export type GetTransactionSettlementRequest = {
    */
   merchantAccountId?: string | null | undefined;
 };
-
-/** @internal */
-export const GetTransactionSettlementGlobals$inboundSchema: z.ZodType<
-  GetTransactionSettlementGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type GetTransactionSettlementGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const GetTransactionSettlementGlobals$outboundSchema: z.ZodType<
-  GetTransactionSettlementGlobals$Outbound,
-  z.ZodTypeDef,
-  GetTransactionSettlementGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTransactionSettlementGlobals$ {
-  /** @deprecated use `GetTransactionSettlementGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetTransactionSettlementGlobals$inboundSchema;
-  /** @deprecated use `GetTransactionSettlementGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetTransactionSettlementGlobals$outboundSchema;
-  /** @deprecated use `GetTransactionSettlementGlobals$Outbound` instead. */
-  export type Outbound = GetTransactionSettlementGlobals$Outbound;
-}
-
-export function getTransactionSettlementGlobalsToJSON(
-  getTransactionSettlementGlobals: GetTransactionSettlementGlobals,
-): string {
-  return JSON.stringify(
-    GetTransactionSettlementGlobals$outboundSchema.parse(
-      getTransactionSettlementGlobals,
-    ),
-  );
-}
-
-export function getTransactionSettlementGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTransactionSettlementGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTransactionSettlementGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTransactionSettlementGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetTransactionSettlementRequest$inboundSchema: z.ZodType<
-  GetTransactionSettlementRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  transaction_id: z.string(),
-  settlement_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_id": "transactionId",
-    "settlement_id": "settlementId",
-  });
-});
 
 /** @internal */
 export type GetTransactionSettlementRequest$Outbound = {
@@ -122,19 +47,6 @@ export const GetTransactionSettlementRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTransactionSettlementRequest$ {
-  /** @deprecated use `GetTransactionSettlementRequest$inboundSchema` instead. */
-  export const inboundSchema = GetTransactionSettlementRequest$inboundSchema;
-  /** @deprecated use `GetTransactionSettlementRequest$outboundSchema` instead. */
-  export const outboundSchema = GetTransactionSettlementRequest$outboundSchema;
-  /** @deprecated use `GetTransactionSettlementRequest$Outbound` instead. */
-  export type Outbound = GetTransactionSettlementRequest$Outbound;
-}
-
 export function getTransactionSettlementRequestToJSON(
   getTransactionSettlementRequest: GetTransactionSettlementRequest,
 ): string {
@@ -142,15 +54,5 @@ export function getTransactionSettlementRequestToJSON(
     GetTransactionSettlementRequest$outboundSchema.parse(
       getTransactionSettlementRequest,
     ),
-  );
-}
-
-export function getTransactionSettlementRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTransactionSettlementRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTransactionSettlementRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTransactionSettlementRequest' from JSON`,
   );
 }

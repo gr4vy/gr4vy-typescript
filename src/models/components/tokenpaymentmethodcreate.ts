@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create a transaction with the ID (token) of a stored payment method (and an optional URL for approval)
@@ -29,23 +26,6 @@ export type TokenPaymentMethodCreate = {
    */
   redirectUrl?: string | null | undefined;
 };
-
-/** @internal */
-export const TokenPaymentMethodCreate$inboundSchema: z.ZodType<
-  TokenPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  method: z.literal("id").default("id"),
-  security_code: z.nullable(z.string()).optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "security_code": "securityCode",
-    "redirect_url": "redirectUrl",
-  });
-});
 
 /** @internal */
 export type TokenPaymentMethodCreate$Outbound = {
@@ -72,33 +52,10 @@ export const TokenPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TokenPaymentMethodCreate$ {
-  /** @deprecated use `TokenPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = TokenPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `TokenPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema = TokenPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `TokenPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = TokenPaymentMethodCreate$Outbound;
-}
-
 export function tokenPaymentMethodCreateToJSON(
   tokenPaymentMethodCreate: TokenPaymentMethodCreate,
 ): string {
   return JSON.stringify(
     TokenPaymentMethodCreate$outboundSchema.parse(tokenPaymentMethodCreate),
-  );
-}
-
-export function tokenPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<TokenPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TokenPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TokenPaymentMethodCreate' from JSON`,
   );
 }

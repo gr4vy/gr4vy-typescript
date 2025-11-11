@@ -4,18 +4,13 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MerchantProfileScheme,
-  MerchantProfileScheme$inboundSchema,
   MerchantProfileScheme$Outbound,
   MerchantProfileScheme$outboundSchema,
 } from "./merchantprofilescheme.js";
 import {
   VoidableField,
-  VoidableField$inboundSchema,
   VoidableField$Outbound,
   VoidableField$outboundSchema,
 } from "./voidablefield.js";
@@ -82,42 +77,6 @@ export type PaymentServiceUpdate = {
 };
 
 /** @internal */
-export const PaymentServiceUpdate$inboundSchema: z.ZodType<
-  PaymentServiceUpdate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_name: z.nullable(z.string()).optional(),
-  fields: z.nullable(z.array(VoidableField$inboundSchema)).optional(),
-  reporting_fields: z.nullable(z.array(VoidableField$inboundSchema)).optional(),
-  position: z.nullable(z.number().int()).optional(),
-  accepted_currencies: z.nullable(z.array(z.string())).optional(),
-  accepted_countries: z.nullable(z.array(z.string())).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  three_d_secure_enabled: z.nullable(z.boolean()).optional(),
-  merchant_profile: z.nullable(
-    z.record(z.nullable(MerchantProfileScheme$inboundSchema)),
-  ).optional(),
-  payment_method_tokenization_enabled: z.nullable(z.boolean()).optional(),
-  network_tokens_enabled: z.nullable(z.boolean()).optional(),
-  open_loop: z.nullable(z.boolean()).optional(),
-  settlement_reporting_enabled: z.boolean().default(false),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "reporting_fields": "reportingFields",
-    "accepted_currencies": "acceptedCurrencies",
-    "accepted_countries": "acceptedCountries",
-    "three_d_secure_enabled": "threeDSecureEnabled",
-    "merchant_profile": "merchantProfile",
-    "payment_method_tokenization_enabled": "paymentMethodTokenizationEnabled",
-    "network_tokens_enabled": "networkTokensEnabled",
-    "open_loop": "openLoop",
-    "settlement_reporting_enabled": "settlementReportingEnabled",
-  });
-});
-
-/** @internal */
 export type PaymentServiceUpdate$Outbound = {
   display_name?: string | null | undefined;
   fields?: Array<VoidableField$Outbound> | null | undefined;
@@ -173,33 +132,10 @@ export const PaymentServiceUpdate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentServiceUpdate$ {
-  /** @deprecated use `PaymentServiceUpdate$inboundSchema` instead. */
-  export const inboundSchema = PaymentServiceUpdate$inboundSchema;
-  /** @deprecated use `PaymentServiceUpdate$outboundSchema` instead. */
-  export const outboundSchema = PaymentServiceUpdate$outboundSchema;
-  /** @deprecated use `PaymentServiceUpdate$Outbound` instead. */
-  export type Outbound = PaymentServiceUpdate$Outbound;
-}
-
 export function paymentServiceUpdateToJSON(
   paymentServiceUpdate: PaymentServiceUpdate,
 ): string {
   return JSON.stringify(
     PaymentServiceUpdate$outboundSchema.parse(paymentServiceUpdate),
-  );
-}
-
-export function paymentServiceUpdateFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentServiceUpdate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentServiceUpdate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentServiceUpdate' from JSON`,
   );
 }

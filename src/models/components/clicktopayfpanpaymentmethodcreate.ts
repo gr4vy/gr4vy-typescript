@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Create a Click to Pay payment with an FPAN or virtual PAN
@@ -51,33 +48,6 @@ export type ClickToPayFPANPaymentMethodCreate = {
 };
 
 /** @internal */
-export const ClickToPayFPANPaymentMethodCreate$inboundSchema: z.ZodType<
-  ClickToPayFPANPaymentMethodCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  expiration_date: z.string(),
-  number: z.string(),
-  buyer_external_identifier: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  card_type: z.nullable(z.string()).optional(),
-  method: z.literal("click-to-pay").default("click-to-pay").optional(),
-  redirect_url: z.nullable(z.string()).optional(),
-  security_code: z.nullable(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "buyer_external_identifier": "buyerExternalIdentifier",
-    "buyer_id": "buyerId",
-    "external_identifier": "externalIdentifier",
-    "card_type": "cardType",
-    "redirect_url": "redirectUrl",
-    "security_code": "securityCode",
-  });
-});
-
-/** @internal */
 export type ClickToPayFPANPaymentMethodCreate$Outbound = {
   expiration_date: string;
   number: string;
@@ -117,20 +87,6 @@ export const ClickToPayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClickToPayFPANPaymentMethodCreate$ {
-  /** @deprecated use `ClickToPayFPANPaymentMethodCreate$inboundSchema` instead. */
-  export const inboundSchema = ClickToPayFPANPaymentMethodCreate$inboundSchema;
-  /** @deprecated use `ClickToPayFPANPaymentMethodCreate$outboundSchema` instead. */
-  export const outboundSchema =
-    ClickToPayFPANPaymentMethodCreate$outboundSchema;
-  /** @deprecated use `ClickToPayFPANPaymentMethodCreate$Outbound` instead. */
-  export type Outbound = ClickToPayFPANPaymentMethodCreate$Outbound;
-}
-
 export function clickToPayFPANPaymentMethodCreateToJSON(
   clickToPayFPANPaymentMethodCreate: ClickToPayFPANPaymentMethodCreate,
 ): string {
@@ -138,15 +94,5 @@ export function clickToPayFPANPaymentMethodCreateToJSON(
     ClickToPayFPANPaymentMethodCreate$outboundSchema.parse(
       clickToPayFPANPaymentMethodCreate,
     ),
-  );
-}
-
-export function clickToPayFPANPaymentMethodCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<ClickToPayFPANPaymentMethodCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ClickToPayFPANPaymentMethodCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ClickToPayFPANPaymentMethodCreate' from JSON`,
   );
 }

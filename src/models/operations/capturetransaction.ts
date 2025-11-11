@@ -37,77 +37,6 @@ export type CaptureTransactionResponseCaptureTransaction =
   | components.TransactionCaptureOutput;
 
 /** @internal */
-export const CaptureTransactionGlobals$inboundSchema: z.ZodType<
-  CaptureTransactionGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type CaptureTransactionGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const CaptureTransactionGlobals$outboundSchema: z.ZodType<
-  CaptureTransactionGlobals$Outbound,
-  z.ZodTypeDef,
-  CaptureTransactionGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CaptureTransactionGlobals$ {
-  /** @deprecated use `CaptureTransactionGlobals$inboundSchema` instead. */
-  export const inboundSchema = CaptureTransactionGlobals$inboundSchema;
-  /** @deprecated use `CaptureTransactionGlobals$outboundSchema` instead. */
-  export const outboundSchema = CaptureTransactionGlobals$outboundSchema;
-  /** @deprecated use `CaptureTransactionGlobals$Outbound` instead. */
-  export type Outbound = CaptureTransactionGlobals$Outbound;
-}
-
-export function captureTransactionGlobalsToJSON(
-  captureTransactionGlobals: CaptureTransactionGlobals,
-): string {
-  return JSON.stringify(
-    CaptureTransactionGlobals$outboundSchema.parse(captureTransactionGlobals),
-  );
-}
-
-export function captureTransactionGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CaptureTransactionGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CaptureTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CaptureTransactionGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CaptureTransactionRequest$inboundSchema: z.ZodType<
-  CaptureTransactionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  transaction_id: z.string(),
-  prefer: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  TransactionCaptureCreate: components.TransactionCaptureCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_id": "transactionId",
-    "TransactionCaptureCreate": "transactionCaptureCreate",
-  });
-});
-
-/** @internal */
 export type CaptureTransactionRequest$Outbound = {
   transaction_id: string;
   prefer?: Array<string> | null | undefined;
@@ -132,34 +61,11 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CaptureTransactionRequest$ {
-  /** @deprecated use `CaptureTransactionRequest$inboundSchema` instead. */
-  export const inboundSchema = CaptureTransactionRequest$inboundSchema;
-  /** @deprecated use `CaptureTransactionRequest$outboundSchema` instead. */
-  export const outboundSchema = CaptureTransactionRequest$outboundSchema;
-  /** @deprecated use `CaptureTransactionRequest$Outbound` instead. */
-  export type Outbound = CaptureTransactionRequest$Outbound;
-}
-
 export function captureTransactionRequestToJSON(
   captureTransactionRequest: CaptureTransactionRequest,
 ): string {
   return JSON.stringify(
     CaptureTransactionRequest$outboundSchema.parse(captureTransactionRequest),
-  );
-}
-
-export function captureTransactionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CaptureTransactionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CaptureTransactionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CaptureTransactionRequest' from JSON`,
   );
 }
 
@@ -173,48 +79,6 @@ export const CaptureTransactionResponseCaptureTransaction$inboundSchema:
     components.TransactionOutput$inboundSchema,
     components.TransactionCaptureOutput$inboundSchema,
   ]);
-
-/** @internal */
-export type CaptureTransactionResponseCaptureTransaction$Outbound =
-  | components.TransactionOutput$Outbound
-  | components.TransactionCaptureOutput$Outbound;
-
-/** @internal */
-export const CaptureTransactionResponseCaptureTransaction$outboundSchema:
-  z.ZodType<
-    CaptureTransactionResponseCaptureTransaction$Outbound,
-    z.ZodTypeDef,
-    CaptureTransactionResponseCaptureTransaction
-  > = z.union([
-    components.TransactionOutput$outboundSchema,
-    components.TransactionCaptureOutput$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CaptureTransactionResponseCaptureTransaction$ {
-  /** @deprecated use `CaptureTransactionResponseCaptureTransaction$inboundSchema` instead. */
-  export const inboundSchema =
-    CaptureTransactionResponseCaptureTransaction$inboundSchema;
-  /** @deprecated use `CaptureTransactionResponseCaptureTransaction$outboundSchema` instead. */
-  export const outboundSchema =
-    CaptureTransactionResponseCaptureTransaction$outboundSchema;
-  /** @deprecated use `CaptureTransactionResponseCaptureTransaction$Outbound` instead. */
-  export type Outbound = CaptureTransactionResponseCaptureTransaction$Outbound;
-}
-
-export function captureTransactionResponseCaptureTransactionToJSON(
-  captureTransactionResponseCaptureTransaction:
-    CaptureTransactionResponseCaptureTransaction,
-): string {
-  return JSON.stringify(
-    CaptureTransactionResponseCaptureTransaction$outboundSchema.parse(
-      captureTransactionResponseCaptureTransaction,
-    ),
-  );
-}
 
 export function captureTransactionResponseCaptureTransactionFromJSON(
   jsonString: string,

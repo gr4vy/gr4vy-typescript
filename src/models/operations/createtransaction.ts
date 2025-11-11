@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateTransactionGlobals = {
   merchantAccountId?: string | undefined;
@@ -32,78 +29,6 @@ export type CreateTransactionRequest = {
   xForwardedFor?: string | undefined;
   transactionCreate: components.TransactionCreate;
 };
-
-/** @internal */
-export const CreateTransactionGlobals$inboundSchema: z.ZodType<
-  CreateTransactionGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type CreateTransactionGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const CreateTransactionGlobals$outboundSchema: z.ZodType<
-  CreateTransactionGlobals$Outbound,
-  z.ZodTypeDef,
-  CreateTransactionGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateTransactionGlobals$ {
-  /** @deprecated use `CreateTransactionGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreateTransactionGlobals$inboundSchema;
-  /** @deprecated use `CreateTransactionGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreateTransactionGlobals$outboundSchema;
-  /** @deprecated use `CreateTransactionGlobals$Outbound` instead. */
-  export type Outbound = CreateTransactionGlobals$Outbound;
-}
-
-export function createTransactionGlobalsToJSON(
-  createTransactionGlobals: CreateTransactionGlobals,
-): string {
-  return JSON.stringify(
-    CreateTransactionGlobals$outboundSchema.parse(createTransactionGlobals),
-  );
-}
-
-export function createTransactionGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateTransactionGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateTransactionGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateTransactionRequest$inboundSchema: z.ZodType<
-  CreateTransactionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  "idempotency-key": z.nullable(z.string()).optional(),
-  "X-Forwarded-For": z.string().optional(),
-  TransactionCreate: components.TransactionCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-    "X-Forwarded-For": "xForwardedFor",
-    "TransactionCreate": "transactionCreate",
-  });
-});
 
 /** @internal */
 export type CreateTransactionRequest$Outbound = {
@@ -131,33 +56,10 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateTransactionRequest$ {
-  /** @deprecated use `CreateTransactionRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateTransactionRequest$inboundSchema;
-  /** @deprecated use `CreateTransactionRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateTransactionRequest$outboundSchema;
-  /** @deprecated use `CreateTransactionRequest$Outbound` instead. */
-  export type Outbound = CreateTransactionRequest$Outbound;
-}
-
 export function createTransactionRequestToJSON(
   createTransactionRequest: CreateTransactionRequest,
 ): string {
   return JSON.stringify(
     CreateTransactionRequest$outboundSchema.parse(createTransactionRequest),
-  );
-}
-
-export function createTransactionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateTransactionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateTransactionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateTransactionRequest' from JSON`,
   );
 }

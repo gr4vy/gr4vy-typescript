@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const PaymentLinkStatus = {
   Active: "active",
@@ -27,24 +23,3 @@ export const PaymentLinkStatus$inboundSchema: z.ZodType<
     z.nativeEnum(PaymentLinkStatus),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const PaymentLinkStatus$outboundSchema: z.ZodType<
-  PaymentLinkStatus,
-  z.ZodTypeDef,
-  PaymentLinkStatus
-> = z.union([
-  z.nativeEnum(PaymentLinkStatus),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentLinkStatus$ {
-  /** @deprecated use `PaymentLinkStatus$inboundSchema` instead. */
-  export const inboundSchema = PaymentLinkStatus$inboundSchema;
-  /** @deprecated use `PaymentLinkStatus$outboundSchema` instead. */
-  export const outboundSchema = PaymentLinkStatus$outboundSchema;
-}

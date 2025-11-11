@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ApplePaySessionRequest = {
   /**
@@ -18,21 +15,6 @@ export type ApplePaySessionRequest = {
    */
   domainName: string;
 };
-
-/** @internal */
-export const ApplePaySessionRequest$inboundSchema: z.ZodType<
-  ApplePaySessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  validation_url: z.string(),
-  domain_name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "validation_url": "validationUrl",
-    "domain_name": "domainName",
-  });
-});
 
 /** @internal */
 export type ApplePaySessionRequest$Outbound = {
@@ -55,33 +37,10 @@ export const ApplePaySessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplePaySessionRequest$ {
-  /** @deprecated use `ApplePaySessionRequest$inboundSchema` instead. */
-  export const inboundSchema = ApplePaySessionRequest$inboundSchema;
-  /** @deprecated use `ApplePaySessionRequest$outboundSchema` instead. */
-  export const outboundSchema = ApplePaySessionRequest$outboundSchema;
-  /** @deprecated use `ApplePaySessionRequest$Outbound` instead. */
-  export type Outbound = ApplePaySessionRequest$Outbound;
-}
-
 export function applePaySessionRequestToJSON(
   applePaySessionRequest: ApplePaySessionRequest,
 ): string {
   return JSON.stringify(
     ApplePaySessionRequest$outboundSchema.parse(applePaySessionRequest),
-  );
-}
-
-export function applePaySessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ApplePaySessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApplePaySessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApplePaySessionRequest' from JSON`,
   );
 }

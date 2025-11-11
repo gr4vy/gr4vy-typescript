@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryPhone = {
   /**
@@ -13,16 +10,6 @@ export type ForterAntiFraudOptionsCartItemBeneficiaryPhone = {
    */
   phone: string;
 };
-
-/** @internal */
-export const ForterAntiFraudOptionsCartItemBeneficiaryPhone$inboundSchema:
-  z.ZodType<
-    ForterAntiFraudOptionsCartItemBeneficiaryPhone,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    phone: z.string(),
-  });
 
 /** @internal */
 export type ForterAntiFraudOptionsCartItemBeneficiaryPhone$Outbound = {
@@ -39,22 +26,6 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryPhone$outboundSchema:
     phone: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForterAntiFraudOptionsCartItemBeneficiaryPhone$ {
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryPhone$inboundSchema` instead. */
-  export const inboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryPhone$inboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryPhone$outboundSchema` instead. */
-  export const outboundSchema =
-    ForterAntiFraudOptionsCartItemBeneficiaryPhone$outboundSchema;
-  /** @deprecated use `ForterAntiFraudOptionsCartItemBeneficiaryPhone$Outbound` instead. */
-  export type Outbound =
-    ForterAntiFraudOptionsCartItemBeneficiaryPhone$Outbound;
-}
-
 export function forterAntiFraudOptionsCartItemBeneficiaryPhoneToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryPhone:
     ForterAntiFraudOptionsCartItemBeneficiaryPhone,
@@ -63,21 +34,5 @@ export function forterAntiFraudOptionsCartItemBeneficiaryPhoneToJSON(
     ForterAntiFraudOptionsCartItemBeneficiaryPhone$outboundSchema.parse(
       forterAntiFraudOptionsCartItemBeneficiaryPhone,
     ),
-  );
-}
-
-export function forterAntiFraudOptionsCartItemBeneficiaryPhoneFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ForterAntiFraudOptionsCartItemBeneficiaryPhone,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ForterAntiFraudOptionsCartItemBeneficiaryPhone$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ForterAntiFraudOptionsCartItemBeneficiaryPhone' from JSON`,
   );
 }

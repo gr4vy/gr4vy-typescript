@@ -4,26 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetPaymentServiceDefinitionRequest = {
   paymentServiceDefinitionId: string;
 };
-
-/** @internal */
-export const GetPaymentServiceDefinitionRequest$inboundSchema: z.ZodType<
-  GetPaymentServiceDefinitionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  payment_service_definition_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_service_definition_id": "paymentServiceDefinitionId",
-  });
-});
 
 /** @internal */
 export type GetPaymentServiceDefinitionRequest$Outbound = {
@@ -43,20 +27,6 @@ export const GetPaymentServiceDefinitionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPaymentServiceDefinitionRequest$ {
-  /** @deprecated use `GetPaymentServiceDefinitionRequest$inboundSchema` instead. */
-  export const inboundSchema = GetPaymentServiceDefinitionRequest$inboundSchema;
-  /** @deprecated use `GetPaymentServiceDefinitionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    GetPaymentServiceDefinitionRequest$outboundSchema;
-  /** @deprecated use `GetPaymentServiceDefinitionRequest$Outbound` instead. */
-  export type Outbound = GetPaymentServiceDefinitionRequest$Outbound;
-}
-
 export function getPaymentServiceDefinitionRequestToJSON(
   getPaymentServiceDefinitionRequest: GetPaymentServiceDefinitionRequest,
 ): string {
@@ -64,16 +34,5 @@ export function getPaymentServiceDefinitionRequestToJSON(
     GetPaymentServiceDefinitionRequest$outboundSchema.parse(
       getPaymentServiceDefinitionRequest,
     ),
-  );
-}
-
-export function getPaymentServiceDefinitionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetPaymentServiceDefinitionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetPaymentServiceDefinitionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetPaymentServiceDefinitionRequest' from JSON`,
   );
 }

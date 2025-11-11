@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
+import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type ThreeDSecureDataV2 = {
   /**
@@ -45,27 +38,6 @@ export type ThreeDSecureDataV2 = {
 };
 
 /** @internal */
-export const ThreeDSecureDataV2$inboundSchema: z.ZodType<
-  ThreeDSecureDataV2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cavv: z.string(),
-  eci: z.string(),
-  version: z.string(),
-  directory_response: z.string(),
-  scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  authentication_response: z.nullable(z.string()).optional(),
-  directory_transaction_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "directory_response": "directoryResponse",
-    "authentication_response": "authenticationResponse",
-    "directory_transaction_id": "directoryTransactionId",
-  });
-});
-
-/** @internal */
 export type ThreeDSecureDataV2$Outbound = {
   cavv: string;
   eci: string;
@@ -97,33 +69,10 @@ export const ThreeDSecureDataV2$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThreeDSecureDataV2$ {
-  /** @deprecated use `ThreeDSecureDataV2$inboundSchema` instead. */
-  export const inboundSchema = ThreeDSecureDataV2$inboundSchema;
-  /** @deprecated use `ThreeDSecureDataV2$outboundSchema` instead. */
-  export const outboundSchema = ThreeDSecureDataV2$outboundSchema;
-  /** @deprecated use `ThreeDSecureDataV2$Outbound` instead. */
-  export type Outbound = ThreeDSecureDataV2$Outbound;
-}
-
 export function threeDSecureDataV2ToJSON(
   threeDSecureDataV2: ThreeDSecureDataV2,
 ): string {
   return JSON.stringify(
     ThreeDSecureDataV2$outboundSchema.parse(threeDSecureDataV2),
-  );
-}
-
-export function threeDSecureDataV2FromJSON(
-  jsonString: string,
-): SafeParseResult<ThreeDSecureDataV2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ThreeDSecureDataV2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ThreeDSecureDataV2' from JSON`,
   );
 }

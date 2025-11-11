@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AuditLogEntryOutput,
   AuditLogEntryOutput$inboundSchema,
-  AuditLogEntryOutput$Outbound,
-  AuditLogEntryOutput$outboundSchema,
 } from "./auditlogentryoutput.js";
 
 export type AuditLogEntries = {
@@ -49,50 +47,6 @@ export const AuditLogEntries$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type AuditLogEntries$Outbound = {
-  items: Array<AuditLogEntryOutput$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const AuditLogEntries$outboundSchema: z.ZodType<
-  AuditLogEntries$Outbound,
-  z.ZodTypeDef,
-  AuditLogEntries
-> = z.object({
-  items: z.array(AuditLogEntryOutput$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuditLogEntries$ {
-  /** @deprecated use `AuditLogEntries$inboundSchema` instead. */
-  export const inboundSchema = AuditLogEntries$inboundSchema;
-  /** @deprecated use `AuditLogEntries$outboundSchema` instead. */
-  export const outboundSchema = AuditLogEntries$outboundSchema;
-  /** @deprecated use `AuditLogEntries$Outbound` instead. */
-  export type Outbound = AuditLogEntries$Outbound;
-}
-
-export function auditLogEntriesToJSON(
-  auditLogEntries: AuditLogEntries,
-): string {
-  return JSON.stringify(AuditLogEntries$outboundSchema.parse(auditLogEntries));
-}
 
 export function auditLogEntriesFromJSON(
   jsonString: string,

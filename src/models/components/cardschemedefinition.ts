@@ -44,54 +44,6 @@ export const CardSchemeDefinition$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CardSchemeDefinition$Outbound = {
-  type: "card-scheme-definition";
-  id: string;
-  icon_url: string;
-  display_name: string;
-};
-
-/** @internal */
-export const CardSchemeDefinition$outboundSchema: z.ZodType<
-  CardSchemeDefinition$Outbound,
-  z.ZodTypeDef,
-  CardSchemeDefinition
-> = z.object({
-  type: z.literal("card-scheme-definition").default(
-    "card-scheme-definition" as const,
-  ),
-  id: z.string(),
-  iconUrl: z.string(),
-  displayName: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    iconUrl: "icon_url",
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CardSchemeDefinition$ {
-  /** @deprecated use `CardSchemeDefinition$inboundSchema` instead. */
-  export const inboundSchema = CardSchemeDefinition$inboundSchema;
-  /** @deprecated use `CardSchemeDefinition$outboundSchema` instead. */
-  export const outboundSchema = CardSchemeDefinition$outboundSchema;
-  /** @deprecated use `CardSchemeDefinition$Outbound` instead. */
-  export type Outbound = CardSchemeDefinition$Outbound;
-}
-
-export function cardSchemeDefinitionToJSON(
-  cardSchemeDefinition: CardSchemeDefinition,
-): string {
-  return JSON.stringify(
-    CardSchemeDefinition$outboundSchema.parse(cardSchemeDefinition),
-  );
-}
-
 export function cardSchemeDefinitionFromJSON(
   jsonString: string,
 ): SafeParseResult<CardSchemeDefinition, SDKValidationError> {

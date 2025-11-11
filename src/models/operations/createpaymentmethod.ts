@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreatePaymentMethodGlobals = {
   merchantAccountId?: string | undefined;
@@ -32,72 +29,6 @@ export type CreatePaymentMethodRequest = {
 };
 
 /** @internal */
-export const CreatePaymentMethodGlobals$inboundSchema: z.ZodType<
-  CreatePaymentMethodGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type CreatePaymentMethodGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const CreatePaymentMethodGlobals$outboundSchema: z.ZodType<
-  CreatePaymentMethodGlobals$Outbound,
-  z.ZodTypeDef,
-  CreatePaymentMethodGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePaymentMethodGlobals$ {
-  /** @deprecated use `CreatePaymentMethodGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreatePaymentMethodGlobals$inboundSchema;
-  /** @deprecated use `CreatePaymentMethodGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreatePaymentMethodGlobals$outboundSchema;
-  /** @deprecated use `CreatePaymentMethodGlobals$Outbound` instead. */
-  export type Outbound = CreatePaymentMethodGlobals$Outbound;
-}
-
-export function createPaymentMethodGlobalsToJSON(
-  createPaymentMethodGlobals: CreatePaymentMethodGlobals,
-): string {
-  return JSON.stringify(
-    CreatePaymentMethodGlobals$outboundSchema.parse(createPaymentMethodGlobals),
-  );
-}
-
-export function createPaymentMethodGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePaymentMethodGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePaymentMethodGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePaymentMethodGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePaymentMethodBody$inboundSchema: z.ZodType<
-  CreatePaymentMethodBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  components.RedirectPaymentMethodCreate$inboundSchema,
-  components.CardPaymentMethodCreate$inboundSchema,
-  components.CheckoutSessionPaymentMethodCreate$inboundSchema,
-  components.PlaidPaymentMethodCreate$inboundSchema,
-]);
-
-/** @internal */
 export type CreatePaymentMethodBody$Outbound =
   | components.RedirectPaymentMethodCreate$Outbound
   | components.CardPaymentMethodCreate$Outbound
@@ -116,19 +47,6 @@ export const CreatePaymentMethodBody$outboundSchema: z.ZodType<
   components.PlaidPaymentMethodCreate$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePaymentMethodBody$ {
-  /** @deprecated use `CreatePaymentMethodBody$inboundSchema` instead. */
-  export const inboundSchema = CreatePaymentMethodBody$inboundSchema;
-  /** @deprecated use `CreatePaymentMethodBody$outboundSchema` instead. */
-  export const outboundSchema = CreatePaymentMethodBody$outboundSchema;
-  /** @deprecated use `CreatePaymentMethodBody$Outbound` instead. */
-  export type Outbound = CreatePaymentMethodBody$Outbound;
-}
-
 export function createPaymentMethodBodyToJSON(
   createPaymentMethodBody: CreatePaymentMethodBody,
 ): string {
@@ -136,35 +54,6 @@ export function createPaymentMethodBodyToJSON(
     CreatePaymentMethodBody$outboundSchema.parse(createPaymentMethodBody),
   );
 }
-
-export function createPaymentMethodBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePaymentMethodBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePaymentMethodBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePaymentMethodBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePaymentMethodRequest$inboundSchema: z.ZodType<
-  CreatePaymentMethodRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  RequestBody: z.union([
-    components.RedirectPaymentMethodCreate$inboundSchema,
-    components.CardPaymentMethodCreate$inboundSchema,
-    components.CheckoutSessionPaymentMethodCreate$inboundSchema,
-    components.PlaidPaymentMethodCreate$inboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreatePaymentMethodRequest$Outbound = {
@@ -195,33 +84,10 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePaymentMethodRequest$ {
-  /** @deprecated use `CreatePaymentMethodRequest$inboundSchema` instead. */
-  export const inboundSchema = CreatePaymentMethodRequest$inboundSchema;
-  /** @deprecated use `CreatePaymentMethodRequest$outboundSchema` instead. */
-  export const outboundSchema = CreatePaymentMethodRequest$outboundSchema;
-  /** @deprecated use `CreatePaymentMethodRequest$Outbound` instead. */
-  export type Outbound = CreatePaymentMethodRequest$Outbound;
-}
-
 export function createPaymentMethodRequestToJSON(
   createPaymentMethodRequest: CreatePaymentMethodRequest,
 ): string {
   return JSON.stringify(
     CreatePaymentMethodRequest$outboundSchema.parse(createPaymentMethodRequest),
-  );
-}
-
-export function createPaymentMethodRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePaymentMethodRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePaymentMethodRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePaymentMethodRequest' from JSON`,
   );
 }

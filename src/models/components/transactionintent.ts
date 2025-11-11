@@ -25,7 +25,6 @@ export const TransactionIntent$inboundSchema: z.ZodType<
     z.nativeEnum(TransactionIntent),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const TransactionIntent$outboundSchema: z.ZodType<
   TransactionIntent,
@@ -35,14 +34,3 @@ export const TransactionIntent$outboundSchema: z.ZodType<
   z.nativeEnum(TransactionIntent),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionIntent$ {
-  /** @deprecated use `TransactionIntent$inboundSchema` instead. */
-  export const inboundSchema = TransactionIntent$inboundSchema;
-  /** @deprecated use `TransactionIntent$outboundSchema` instead. */
-  export const outboundSchema = TransactionIntent$outboundSchema;
-}

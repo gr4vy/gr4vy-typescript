@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateReportExecutionUrlGlobals = {
   merchantAccountId?: string | undefined;
@@ -30,81 +27,6 @@ export type CreateReportExecutionUrlRequest = {
     | components.ReportExecutionUrlGenerate
     | undefined;
 };
-
-/** @internal */
-export const CreateReportExecutionUrlGlobals$inboundSchema: z.ZodType<
-  CreateReportExecutionUrlGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type CreateReportExecutionUrlGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const CreateReportExecutionUrlGlobals$outboundSchema: z.ZodType<
-  CreateReportExecutionUrlGlobals$Outbound,
-  z.ZodTypeDef,
-  CreateReportExecutionUrlGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReportExecutionUrlGlobals$ {
-  /** @deprecated use `CreateReportExecutionUrlGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreateReportExecutionUrlGlobals$inboundSchema;
-  /** @deprecated use `CreateReportExecutionUrlGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreateReportExecutionUrlGlobals$outboundSchema;
-  /** @deprecated use `CreateReportExecutionUrlGlobals$Outbound` instead. */
-  export type Outbound = CreateReportExecutionUrlGlobals$Outbound;
-}
-
-export function createReportExecutionUrlGlobalsToJSON(
-  createReportExecutionUrlGlobals: CreateReportExecutionUrlGlobals,
-): string {
-  return JSON.stringify(
-    CreateReportExecutionUrlGlobals$outboundSchema.parse(
-      createReportExecutionUrlGlobals,
-    ),
-  );
-}
-
-export function createReportExecutionUrlGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateReportExecutionUrlGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateReportExecutionUrlGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateReportExecutionUrlGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateReportExecutionUrlRequest$inboundSchema: z.ZodType<
-  CreateReportExecutionUrlRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  report_id: z.string(),
-  report_execution_id: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  ReportExecutionUrlGenerate: components
-    .ReportExecutionUrlGenerate$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "report_id": "reportId",
-    "report_execution_id": "reportExecutionId",
-    "ReportExecutionUrlGenerate": "reportExecutionUrlGenerate",
-  });
-});
 
 /** @internal */
 export type CreateReportExecutionUrlRequest$Outbound = {
@@ -135,19 +57,6 @@ export const CreateReportExecutionUrlRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReportExecutionUrlRequest$ {
-  /** @deprecated use `CreateReportExecutionUrlRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateReportExecutionUrlRequest$inboundSchema;
-  /** @deprecated use `CreateReportExecutionUrlRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateReportExecutionUrlRequest$outboundSchema;
-  /** @deprecated use `CreateReportExecutionUrlRequest$Outbound` instead. */
-  export type Outbound = CreateReportExecutionUrlRequest$Outbound;
-}
-
 export function createReportExecutionUrlRequestToJSON(
   createReportExecutionUrlRequest: CreateReportExecutionUrlRequest,
 ): string {
@@ -155,15 +64,5 @@ export function createReportExecutionUrlRequestToJSON(
     CreateReportExecutionUrlRequest$outboundSchema.parse(
       createReportExecutionUrlRequest,
     ),
-  );
-}
-
-export function createReportExecutionUrlRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateReportExecutionUrlRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateReportExecutionUrlRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateReportExecutionUrlRequest' from JSON`,
   );
 }

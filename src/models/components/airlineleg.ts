@@ -124,7 +124,6 @@ export const RouteType$inboundSchema: z.ZodType<
     z.nativeEnum(RouteType),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const RouteType$outboundSchema: z.ZodType<
   RouteType,
@@ -134,17 +133,6 @@ export const RouteType$outboundSchema: z.ZodType<
   z.nativeEnum(RouteType),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RouteType$ {
-  /** @deprecated use `RouteType$inboundSchema` instead. */
-  export const inboundSchema = RouteType$inboundSchema;
-  /** @deprecated use `RouteType$outboundSchema` instead. */
-  export const outboundSchema = RouteType$outboundSchema;
-}
 
 /** @internal */
 export const AirlineLeg$inboundSchema: z.ZodType<
@@ -206,7 +194,6 @@ export const AirlineLeg$inboundSchema: z.ZodType<
     "tax_amount": "taxAmount",
   });
 });
-
 /** @internal */
 export type AirlineLeg$Outbound = {
   arrival_airport?: string | null | undefined;
@@ -291,23 +278,9 @@ export const AirlineLeg$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AirlineLeg$ {
-  /** @deprecated use `AirlineLeg$inboundSchema` instead. */
-  export const inboundSchema = AirlineLeg$inboundSchema;
-  /** @deprecated use `AirlineLeg$outboundSchema` instead. */
-  export const outboundSchema = AirlineLeg$outboundSchema;
-  /** @deprecated use `AirlineLeg$Outbound` instead. */
-  export type Outbound = AirlineLeg$Outbound;
-}
-
 export function airlineLegToJSON(airlineLeg: AirlineLeg): string {
   return JSON.stringify(AirlineLeg$outboundSchema.parse(airlineLeg));
 }
-
 export function airlineLegFromJSON(
   jsonString: string,
 ): SafeParseResult<AirlineLeg, SDKValidationError> {

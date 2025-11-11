@@ -4,18 +4,13 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BillingDetailsInput,
-  BillingDetailsInput$inboundSchema,
   BillingDetailsInput$Outbound,
   BillingDetailsInput$outboundSchema,
 } from "./billingdetailsinput.js";
 import {
   ShippingDetailsCreate,
-  ShippingDetailsCreate$inboundSchema,
   ShippingDetailsCreate$Outbound,
   ShippingDetailsCreate$outboundSchema,
 } from "./shippingdetailscreate.js";
@@ -42,27 +37,6 @@ export type GuestBuyerInput = {
    */
   shippingDetails?: ShippingDetailsCreate | null | undefined;
 };
-
-/** @internal */
-export const GuestBuyerInput$inboundSchema: z.ZodType<
-  GuestBuyerInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_name: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  billing_details: z.nullable(BillingDetailsInput$inboundSchema).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  shipping_details: z.nullable(ShippingDetailsCreate$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "external_identifier": "externalIdentifier",
-    "billing_details": "billingDetails",
-    "account_number": "accountNumber",
-    "shipping_details": "shippingDetails",
-  });
-});
 
 /** @internal */
 export type GuestBuyerInput$Outbound = {
@@ -94,31 +68,8 @@ export const GuestBuyerInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GuestBuyerInput$ {
-  /** @deprecated use `GuestBuyerInput$inboundSchema` instead. */
-  export const inboundSchema = GuestBuyerInput$inboundSchema;
-  /** @deprecated use `GuestBuyerInput$outboundSchema` instead. */
-  export const outboundSchema = GuestBuyerInput$outboundSchema;
-  /** @deprecated use `GuestBuyerInput$Outbound` instead. */
-  export type Outbound = GuestBuyerInput$Outbound;
-}
-
 export function guestBuyerInputToJSON(
   guestBuyerInput: GuestBuyerInput,
 ): string {
   return JSON.stringify(GuestBuyerInput$outboundSchema.parse(guestBuyerInput));
-}
-
-export function guestBuyerInputFromJSON(
-  jsonString: string,
-): SafeParseResult<GuestBuyerInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GuestBuyerInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GuestBuyerInput' from JSON`,
-  );
 }

@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TravelHubCustomData = {
   /**
@@ -21,17 +18,6 @@ export type TravelHubCustomData = {
    */
   type?: string | null | undefined;
 };
-
-/** @internal */
-export const TravelHubCustomData$inboundSchema: z.ZodType<
-  TravelHubCustomData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  value: z.string(),
-  type: z.nullable(z.string()).optional(),
-});
 
 /** @internal */
 export type TravelHubCustomData$Outbound = {
@@ -51,33 +37,10 @@ export const TravelHubCustomData$outboundSchema: z.ZodType<
   type: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TravelHubCustomData$ {
-  /** @deprecated use `TravelHubCustomData$inboundSchema` instead. */
-  export const inboundSchema = TravelHubCustomData$inboundSchema;
-  /** @deprecated use `TravelHubCustomData$outboundSchema` instead. */
-  export const outboundSchema = TravelHubCustomData$outboundSchema;
-  /** @deprecated use `TravelHubCustomData$Outbound` instead. */
-  export type Outbound = TravelHubCustomData$Outbound;
-}
-
 export function travelHubCustomDataToJSON(
   travelHubCustomData: TravelHubCustomData,
 ): string {
   return JSON.stringify(
     TravelHubCustomData$outboundSchema.parse(travelHubCustomData),
-  );
-}
-
-export function travelHubCustomDataFromJSON(
-  jsonString: string,
-): SafeParseResult<TravelHubCustomData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TravelHubCustomData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TravelHubCustomData' from JSON`,
   );
 }

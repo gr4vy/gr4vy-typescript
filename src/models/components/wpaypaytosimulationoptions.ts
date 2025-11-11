@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WpayPaytoSimulationOptions = {
   /**
@@ -17,16 +14,6 @@ export type WpayPaytoSimulationOptions = {
    */
   delay?: number | null | undefined;
 };
-
-/** @internal */
-export const WpayPaytoSimulationOptions$inboundSchema: z.ZodType<
-  WpayPaytoSimulationOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  simulate: z.nullable(z.string()).optional(),
-  delay: z.nullable(z.number().int()).optional(),
-});
 
 /** @internal */
 export type WpayPaytoSimulationOptions$Outbound = {
@@ -44,33 +31,10 @@ export const WpayPaytoSimulationOptions$outboundSchema: z.ZodType<
   delay: z.nullable(z.number().int()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WpayPaytoSimulationOptions$ {
-  /** @deprecated use `WpayPaytoSimulationOptions$inboundSchema` instead. */
-  export const inboundSchema = WpayPaytoSimulationOptions$inboundSchema;
-  /** @deprecated use `WpayPaytoSimulationOptions$outboundSchema` instead. */
-  export const outboundSchema = WpayPaytoSimulationOptions$outboundSchema;
-  /** @deprecated use `WpayPaytoSimulationOptions$Outbound` instead. */
-  export type Outbound = WpayPaytoSimulationOptions$Outbound;
-}
-
 export function wpayPaytoSimulationOptionsToJSON(
   wpayPaytoSimulationOptions: WpayPaytoSimulationOptions,
 ): string {
   return JSON.stringify(
     WpayPaytoSimulationOptions$outboundSchema.parse(wpayPaytoSimulationOptions),
-  );
-}
-
-export function wpayPaytoSimulationOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<WpayPaytoSimulationOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WpayPaytoSimulationOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WpayPaytoSimulationOptions' from JSON`,
   );
 }

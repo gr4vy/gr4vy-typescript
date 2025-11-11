@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ReportExecution,
   ReportExecution$inboundSchema,
-  ReportExecution$Outbound,
-  ReportExecution$outboundSchema,
 } from "./reportexecution.js";
 
 export type ReportExecutions = {
@@ -49,52 +47,6 @@ export const ReportExecutions$inboundSchema: z.ZodType<
     "previous_cursor": "previousCursor",
   });
 });
-
-/** @internal */
-export type ReportExecutions$Outbound = {
-  items: Array<ReportExecution$Outbound>;
-  limit: number;
-  next_cursor?: string | null | undefined;
-  previous_cursor?: string | null | undefined;
-};
-
-/** @internal */
-export const ReportExecutions$outboundSchema: z.ZodType<
-  ReportExecutions$Outbound,
-  z.ZodTypeDef,
-  ReportExecutions
-> = z.object({
-  items: z.array(ReportExecution$outboundSchema),
-  limit: z.number().int().default(20),
-  nextCursor: z.nullable(z.string()).optional(),
-  previousCursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextCursor: "next_cursor",
-    previousCursor: "previous_cursor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportExecutions$ {
-  /** @deprecated use `ReportExecutions$inboundSchema` instead. */
-  export const inboundSchema = ReportExecutions$inboundSchema;
-  /** @deprecated use `ReportExecutions$outboundSchema` instead. */
-  export const outboundSchema = ReportExecutions$outboundSchema;
-  /** @deprecated use `ReportExecutions$Outbound` instead. */
-  export type Outbound = ReportExecutions$Outbound;
-}
-
-export function reportExecutionsToJSON(
-  reportExecutions: ReportExecutions,
-): string {
-  return JSON.stringify(
-    ReportExecutions$outboundSchema.parse(reportExecutions),
-  );
-}
 
 export function reportExecutionsFromJSON(
   jsonString: string,

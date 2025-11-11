@@ -27,7 +27,6 @@ export const IntegrationClient$inboundSchema: z.ZodType<
     z.nativeEnum(IntegrationClient),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const IntegrationClient$outboundSchema: z.ZodType<
   IntegrationClient,
@@ -37,14 +36,3 @@ export const IntegrationClient$outboundSchema: z.ZodType<
   z.nativeEnum(IntegrationClient),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationClient$ {
-  /** @deprecated use `IntegrationClient$inboundSchema` instead. */
-  export const inboundSchema = IntegrationClient$inboundSchema;
-  /** @deprecated use `IntegrationClient$outboundSchema` instead. */
-  export const outboundSchema = IntegrationClient$outboundSchema;
-}

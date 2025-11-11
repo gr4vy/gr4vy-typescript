@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ReportExecutionUrlGenerate = {
   /**
@@ -14,19 +11,6 @@ export type ReportExecutionUrlGenerate = {
    */
   expiresIn?: number | undefined;
 };
-
-/** @internal */
-export const ReportExecutionUrlGenerate$inboundSchema: z.ZodType<
-  ReportExecutionUrlGenerate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  expires_in: z.number().int().default(5),
-}).transform((v) => {
-  return remap$(v, {
-    "expires_in": "expiresIn",
-  });
-});
 
 /** @internal */
 export type ReportExecutionUrlGenerate$Outbound = {
@@ -46,33 +30,10 @@ export const ReportExecutionUrlGenerate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReportExecutionUrlGenerate$ {
-  /** @deprecated use `ReportExecutionUrlGenerate$inboundSchema` instead. */
-  export const inboundSchema = ReportExecutionUrlGenerate$inboundSchema;
-  /** @deprecated use `ReportExecutionUrlGenerate$outboundSchema` instead. */
-  export const outboundSchema = ReportExecutionUrlGenerate$outboundSchema;
-  /** @deprecated use `ReportExecutionUrlGenerate$Outbound` instead. */
-  export type Outbound = ReportExecutionUrlGenerate$Outbound;
-}
-
 export function reportExecutionUrlGenerateToJSON(
   reportExecutionUrlGenerate: ReportExecutionUrlGenerate,
 ): string {
   return JSON.stringify(
     ReportExecutionUrlGenerate$outboundSchema.parse(reportExecutionUrlGenerate),
-  );
-}
-
-export function reportExecutionUrlGenerateFromJSON(
-  jsonString: string,
-): SafeParseResult<ReportExecutionUrlGenerate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ReportExecutionUrlGenerate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ReportExecutionUrlGenerate' from JSON`,
   );
 }

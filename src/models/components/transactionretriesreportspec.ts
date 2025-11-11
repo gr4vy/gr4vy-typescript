@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TransactionRetriesReportSpec = {
   /**
@@ -17,16 +14,6 @@ export type TransactionRetriesReportSpec = {
    */
   params: { [k: string]: any };
 };
-
-/** @internal */
-export const TransactionRetriesReportSpec$inboundSchema: z.ZodType<
-  TransactionRetriesReportSpec,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  model: z.literal("transaction_retries").default("transaction_retries"),
-  params: z.record(z.any()),
-});
 
 /** @internal */
 export type TransactionRetriesReportSpec$Outbound = {
@@ -46,19 +33,6 @@ export const TransactionRetriesReportSpec$outboundSchema: z.ZodType<
   params: z.record(z.any()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionRetriesReportSpec$ {
-  /** @deprecated use `TransactionRetriesReportSpec$inboundSchema` instead. */
-  export const inboundSchema = TransactionRetriesReportSpec$inboundSchema;
-  /** @deprecated use `TransactionRetriesReportSpec$outboundSchema` instead. */
-  export const outboundSchema = TransactionRetriesReportSpec$outboundSchema;
-  /** @deprecated use `TransactionRetriesReportSpec$Outbound` instead. */
-  export type Outbound = TransactionRetriesReportSpec$Outbound;
-}
-
 export function transactionRetriesReportSpecToJSON(
   transactionRetriesReportSpec: TransactionRetriesReportSpec,
 ): string {
@@ -66,15 +40,5 @@ export function transactionRetriesReportSpecToJSON(
     TransactionRetriesReportSpec$outboundSchema.parse(
       transactionRetriesReportSpec,
     ),
-  );
-}
-
-export function transactionRetriesReportSpecFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionRetriesReportSpec, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionRetriesReportSpec$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionRetriesReportSpec' from JSON`,
   );
 }

@@ -36,7 +36,6 @@ export const TransactionPaymentSource$inboundSchema: z.ZodType<
     z.nativeEnum(TransactionPaymentSource),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
 /** @internal */
 export const TransactionPaymentSource$outboundSchema: z.ZodType<
   TransactionPaymentSource,
@@ -46,14 +45,3 @@ export const TransactionPaymentSource$outboundSchema: z.ZodType<
   z.nativeEnum(TransactionPaymentSource),
   z.string().and(z.custom<Unrecognized<string>>()),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionPaymentSource$ {
-  /** @deprecated use `TransactionPaymentSource$inboundSchema` instead. */
-  export const inboundSchema = TransactionPaymentSource$inboundSchema;
-  /** @deprecated use `TransactionPaymentSource$outboundSchema` instead. */
-  export const outboundSchema = TransactionPaymentSource$outboundSchema;
-}

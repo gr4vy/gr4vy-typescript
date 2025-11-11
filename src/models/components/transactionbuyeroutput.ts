@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BillingDetailsOutput,
   BillingDetailsOutput$inboundSchema,
-  BillingDetailsOutput$Outbound,
-  BillingDetailsOutput$outboundSchema,
 } from "./billingdetailsoutput.js";
 
 export type TransactionBuyerOutput = {
@@ -61,58 +59,6 @@ export const TransactionBuyerOutput$inboundSchema: z.ZodType<
     "account_number": "accountNumber",
   });
 });
-
-/** @internal */
-export type TransactionBuyerOutput$Outbound = {
-  type: "buyer";
-  id?: string | null | undefined;
-  display_name?: string | null | undefined;
-  external_identifier?: string | null | undefined;
-  billing_details?: BillingDetailsOutput$Outbound | null | undefined;
-  account_number?: string | null | undefined;
-};
-
-/** @internal */
-export const TransactionBuyerOutput$outboundSchema: z.ZodType<
-  TransactionBuyerOutput$Outbound,
-  z.ZodTypeDef,
-  TransactionBuyerOutput
-> = z.object({
-  type: z.literal("buyer").default("buyer" as const),
-  id: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  billingDetails: z.nullable(BillingDetailsOutput$outboundSchema).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    externalIdentifier: "external_identifier",
-    billingDetails: "billing_details",
-    accountNumber: "account_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionBuyerOutput$ {
-  /** @deprecated use `TransactionBuyerOutput$inboundSchema` instead. */
-  export const inboundSchema = TransactionBuyerOutput$inboundSchema;
-  /** @deprecated use `TransactionBuyerOutput$outboundSchema` instead. */
-  export const outboundSchema = TransactionBuyerOutput$outboundSchema;
-  /** @deprecated use `TransactionBuyerOutput$Outbound` instead. */
-  export type Outbound = TransactionBuyerOutput$Outbound;
-}
-
-export function transactionBuyerOutputToJSON(
-  transactionBuyerOutput: TransactionBuyerOutput,
-): string {
-  return JSON.stringify(
-    TransactionBuyerOutput$outboundSchema.parse(transactionBuyerOutput),
-  );
-}
 
 export function transactionBuyerOutputFromJSON(
   jsonString: string,

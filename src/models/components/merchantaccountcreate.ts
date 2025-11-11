@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
+import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type MerchantAccountCreate = {
   /**
@@ -93,60 +86,6 @@ export type MerchantAccountCreate = {
 };
 
 /** @internal */
-export const MerchantAccountCreate$inboundSchema: z.ZodType<
-  MerchantAccountCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  account_updater_enabled: z.boolean().default(false),
-  account_updater_request_encryption_key: z.nullable(z.string()).optional(),
-  account_updater_request_encryption_key_id: z.nullable(z.string()).optional(),
-  account_updater_response_decryption_key: z.nullable(z.string()).optional(),
-  account_updater_response_decryption_key_id: z.nullable(z.string()).optional(),
-  over_capture_amount: z.nullable(z.number().int()).optional(),
-  over_capture_percentage: z.nullable(z.number().int()).optional(),
-  loon_client_key: z.nullable(z.string()).optional(),
-  loon_secret_key: z.nullable(z.string()).optional(),
-  loon_accepted_schemes: z.nullable(z.array(CardScheme$inboundSchema))
-    .optional(),
-  visa_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  visa_network_tokens_app_id: z.nullable(z.string()).optional(),
-  amex_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  amex_network_tokens_app_id: z.nullable(z.string()).optional(),
-  mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
-  async_network_tokens_enabled: z.boolean().default(false),
-  id: z.string(),
-  display_name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "account_updater_enabled": "accountUpdaterEnabled",
-    "account_updater_request_encryption_key":
-      "accountUpdaterRequestEncryptionKey",
-    "account_updater_request_encryption_key_id":
-      "accountUpdaterRequestEncryptionKeyId",
-    "account_updater_response_decryption_key":
-      "accountUpdaterResponseDecryptionKey",
-    "account_updater_response_decryption_key_id":
-      "accountUpdaterResponseDecryptionKeyId",
-    "over_capture_amount": "overCaptureAmount",
-    "over_capture_percentage": "overCapturePercentage",
-    "loon_client_key": "loonClientKey",
-    "loon_secret_key": "loonSecretKey",
-    "loon_accepted_schemes": "loonAcceptedSchemes",
-    "visa_network_tokens_requestor_id": "visaNetworkTokensRequestorId",
-    "visa_network_tokens_app_id": "visaNetworkTokensAppId",
-    "amex_network_tokens_requestor_id": "amexNetworkTokensRequestorId",
-    "amex_network_tokens_app_id": "amexNetworkTokensAppId",
-    "mastercard_network_tokens_requestor_id":
-      "mastercardNetworkTokensRequestorId",
-    "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
-    "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
-    "display_name": "displayName",
-  });
-});
-
-/** @internal */
 export type MerchantAccountCreate$Outbound = {
   account_updater_enabled: boolean;
   account_updater_request_encryption_key?: string | null | undefined;
@@ -223,33 +162,10 @@ export const MerchantAccountCreate$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MerchantAccountCreate$ {
-  /** @deprecated use `MerchantAccountCreate$inboundSchema` instead. */
-  export const inboundSchema = MerchantAccountCreate$inboundSchema;
-  /** @deprecated use `MerchantAccountCreate$outboundSchema` instead. */
-  export const outboundSchema = MerchantAccountCreate$outboundSchema;
-  /** @deprecated use `MerchantAccountCreate$Outbound` instead. */
-  export type Outbound = MerchantAccountCreate$Outbound;
-}
-
 export function merchantAccountCreateToJSON(
   merchantAccountCreate: MerchantAccountCreate,
 ): string {
   return JSON.stringify(
     MerchantAccountCreate$outboundSchema.parse(merchantAccountCreate),
-  );
-}
-
-export function merchantAccountCreateFromJSON(
-  jsonString: string,
-): SafeParseResult<MerchantAccountCreate, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MerchantAccountCreate$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MerchantAccountCreate' from JSON`,
   );
 }

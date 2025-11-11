@@ -26,45 +26,6 @@ export const Creator$inboundSchema: z.ZodType<Creator, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Creator$Outbound = {
-  id: string;
-  name: string;
-  email_address: string;
-};
-
-/** @internal */
-export const Creator$outboundSchema: z.ZodType<
-  Creator$Outbound,
-  z.ZodTypeDef,
-  Creator
-> = z.object({
-  id: z.string(),
-  name: z.string(),
-  emailAddress: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    emailAddress: "email_address",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Creator$ {
-  /** @deprecated use `Creator$inboundSchema` instead. */
-  export const inboundSchema = Creator$inboundSchema;
-  /** @deprecated use `Creator$outboundSchema` instead. */
-  export const outboundSchema = Creator$outboundSchema;
-  /** @deprecated use `Creator$Outbound` instead. */
-  export type Outbound = Creator$Outbound;
-}
-
-export function creatorToJSON(creator: Creator): string {
-  return JSON.stringify(Creator$outboundSchema.parse(creator));
-}
-
 export function creatorFromJSON(
   jsonString: string,
 ): SafeParseResult<Creator, SDKValidationError> {

@@ -4,14 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
+import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type PaymentMethodCard = {
   /**
@@ -35,25 +28,6 @@ export type PaymentMethodCard = {
    */
   externalIdentifier?: string | null | undefined;
 };
-
-/** @internal */
-export const PaymentMethodCard$inboundSchema: z.ZodType<
-  PaymentMethodCard,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  method: z.literal("card").default("card"),
-  number: z.string(),
-  expiration_date: z.string(),
-  card_scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "card_scheme": "cardScheme",
-    "external_identifier": "externalIdentifier",
-  });
-});
 
 /** @internal */
 export type PaymentMethodCard$Outbound = {
@@ -83,33 +57,10 @@ export const PaymentMethodCard$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethodCard$ {
-  /** @deprecated use `PaymentMethodCard$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethodCard$inboundSchema;
-  /** @deprecated use `PaymentMethodCard$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethodCard$outboundSchema;
-  /** @deprecated use `PaymentMethodCard$Outbound` instead. */
-  export type Outbound = PaymentMethodCard$Outbound;
-}
-
 export function paymentMethodCardToJSON(
   paymentMethodCard: PaymentMethodCard,
 ): string {
   return JSON.stringify(
     PaymentMethodCard$outboundSchema.parse(paymentMethodCard),
-  );
-}
-
-export function paymentMethodCardFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentMethodCard, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentMethodCard$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentMethodCard' from JSON`,
   );
 }

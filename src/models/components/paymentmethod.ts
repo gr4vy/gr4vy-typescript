@@ -7,33 +7,17 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Buyer,
-  Buyer$inboundSchema,
-  Buyer$Outbound,
-  Buyer$outboundSchema,
-} from "./buyer.js";
-import {
-  CardScheme,
-  CardScheme$inboundSchema,
-  CardScheme$outboundSchema,
-} from "./cardscheme.js";
-import {
-  Method,
-  Method$inboundSchema,
-  Method$outboundSchema,
-} from "./method.js";
-import { Mode, Mode$inboundSchema, Mode$outboundSchema } from "./mode.js";
+import { Buyer, Buyer$inboundSchema } from "./buyer.js";
+import { CardScheme, CardScheme$inboundSchema } from "./cardscheme.js";
+import { Method, Method$inboundSchema } from "./method.js";
+import { Mode, Mode$inboundSchema } from "./mode.js";
 import {
   PaymentMethodDetailsCard,
   PaymentMethodDetailsCard$inboundSchema,
-  PaymentMethodDetailsCard$Outbound,
-  PaymentMethodDetailsCard$outboundSchema,
 } from "./paymentmethoddetailscard.js";
 import {
   PaymentMethodStatus,
   PaymentMethodStatus$inboundSchema,
-  PaymentMethodStatus$outboundSchema,
 } from "./paymentmethodstatus.js";
 
 /**
@@ -194,103 +178,6 @@ export const PaymentMethod$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type PaymentMethod$Outbound = {
-  type: "payment-method";
-  approval_url?: string | null | undefined;
-  country?: string | null | undefined;
-  currency?: string | null | undefined;
-  details?: PaymentMethodDetailsCard$Outbound | null | undefined;
-  expiration_date?: string | null | undefined;
-  fingerprint?: string | null | undefined;
-  label?: string | null | undefined;
-  last_replaced_at?: string | null | undefined;
-  method: string;
-  mode?: string | null | undefined;
-  scheme?: string | null | undefined;
-  id: string;
-  merchant_account_id: string;
-  additional_schemes?: Array<string> | null | undefined;
-  cit_last_used_at?: string | null | undefined;
-  cit_usage_count: number;
-  has_replacement: boolean;
-  last_used_at?: string | null | undefined;
-  usage_count: number;
-  buyer?: Buyer$Outbound | null | undefined;
-  external_identifier?: string | null | undefined;
-  status: string;
-  created_at: string;
-  updated_at: string;
-};
-
-/** @internal */
-export const PaymentMethod$outboundSchema: z.ZodType<
-  PaymentMethod$Outbound,
-  z.ZodTypeDef,
-  PaymentMethod
-> = z.object({
-  type: z.literal("payment-method").default("payment-method" as const),
-  approvalUrl: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  details: z.nullable(PaymentMethodDetailsCard$outboundSchema).optional(),
-  expirationDate: z.nullable(z.string()).optional(),
-  fingerprint: z.nullable(z.string()).optional(),
-  label: z.nullable(z.string()).optional(),
-  lastReplacedAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  method: Method$outboundSchema,
-  mode: z.nullable(Mode$outboundSchema).optional(),
-  scheme: z.nullable(CardScheme$outboundSchema).optional(),
-  id: z.string(),
-  merchantAccountId: z.string(),
-  additionalSchemes: z.nullable(z.array(CardScheme$outboundSchema)).optional(),
-  citLastUsedAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  citUsageCount: z.number().int(),
-  hasReplacement: z.boolean(),
-  lastUsedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  usageCount: z.number().int(),
-  buyer: z.nullable(Buyer$outboundSchema).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  status: PaymentMethodStatus$outboundSchema,
-  createdAt: z.date().transform(v => v.toISOString()),
-  updatedAt: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    approvalUrl: "approval_url",
-    expirationDate: "expiration_date",
-    lastReplacedAt: "last_replaced_at",
-    merchantAccountId: "merchant_account_id",
-    additionalSchemes: "additional_schemes",
-    citLastUsedAt: "cit_last_used_at",
-    citUsageCount: "cit_usage_count",
-    hasReplacement: "has_replacement",
-    lastUsedAt: "last_used_at",
-    usageCount: "usage_count",
-    externalIdentifier: "external_identifier",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentMethod$ {
-  /** @deprecated use `PaymentMethod$inboundSchema` instead. */
-  export const inboundSchema = PaymentMethod$inboundSchema;
-  /** @deprecated use `PaymentMethod$outboundSchema` instead. */
-  export const outboundSchema = PaymentMethod$outboundSchema;
-  /** @deprecated use `PaymentMethod$Outbound` instead. */
-  export type Outbound = PaymentMethod$Outbound;
-}
-
-export function paymentMethodToJSON(paymentMethod: PaymentMethod): string {
-  return JSON.stringify(PaymentMethod$outboundSchema.parse(paymentMethod));
-}
 
 export function paymentMethodFromJSON(
   jsonString: string,

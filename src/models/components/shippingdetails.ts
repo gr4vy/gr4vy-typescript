@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
+import { Address, Address$inboundSchema } from "./address.js";
 
 export type ShippingDetails = {
   /**
@@ -72,61 +67,6 @@ export const ShippingDetails$inboundSchema: z.ZodType<
     "buyer_id": "buyerId",
   });
 });
-
-/** @internal */
-export type ShippingDetails$Outbound = {
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  email_address?: string | null | undefined;
-  phone_number?: string | null | undefined;
-  address?: Address$Outbound | null | undefined;
-  id?: string | null | undefined;
-  buyer_id?: string | null | undefined;
-  type: "shipping-details";
-};
-
-/** @internal */
-export const ShippingDetails$outboundSchema: z.ZodType<
-  ShippingDetails$Outbound,
-  z.ZodTypeDef,
-  ShippingDetails
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$outboundSchema).optional(),
-  id: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  type: z.literal("shipping-details").default("shipping-details" as const),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    phoneNumber: "phone_number",
-    buyerId: "buyer_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ShippingDetails$ {
-  /** @deprecated use `ShippingDetails$inboundSchema` instead. */
-  export const inboundSchema = ShippingDetails$inboundSchema;
-  /** @deprecated use `ShippingDetails$outboundSchema` instead. */
-  export const outboundSchema = ShippingDetails$outboundSchema;
-  /** @deprecated use `ShippingDetails$Outbound` instead. */
-  export type Outbound = ShippingDetails$Outbound;
-}
-
-export function shippingDetailsToJSON(
-  shippingDetails: ShippingDetails,
-): string {
-  return JSON.stringify(ShippingDetails$outboundSchema.parse(shippingDetails));
-}
 
 export function shippingDetailsFromJSON(
   jsonString: string,

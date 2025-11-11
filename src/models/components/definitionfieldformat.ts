@@ -3,11 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
 
 export const DefinitionFieldFormat = {
   Text: "text",
@@ -28,24 +24,3 @@ export const DefinitionFieldFormat$inboundSchema: z.ZodType<
     z.nativeEnum(DefinitionFieldFormat),
     z.string().transform(catchUnrecognizedEnum),
   ]);
-
-/** @internal */
-export const DefinitionFieldFormat$outboundSchema: z.ZodType<
-  DefinitionFieldFormat,
-  z.ZodTypeDef,
-  DefinitionFieldFormat
-> = z.union([
-  z.nativeEnum(DefinitionFieldFormat),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DefinitionFieldFormat$ {
-  /** @deprecated use `DefinitionFieldFormat$inboundSchema` instead. */
-  export const inboundSchema = DefinitionFieldFormat$inboundSchema;
-  /** @deprecated use `DefinitionFieldFormat$outboundSchema` instead. */
-  export const outboundSchema = DefinitionFieldFormat$outboundSchema;
-}

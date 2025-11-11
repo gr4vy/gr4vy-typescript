@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateGiftCardGlobals = {
   merchantAccountId?: string | undefined;
@@ -20,74 +17,6 @@ export type CreateGiftCardRequest = {
   merchantAccountId?: string | null | undefined;
   giftCardCreate: components.GiftCardCreate;
 };
-
-/** @internal */
-export const CreateGiftCardGlobals$inboundSchema: z.ZodType<
-  CreateGiftCardGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/** @internal */
-export type CreateGiftCardGlobals$Outbound = {
-  merchantAccountId?: string | undefined;
-};
-
-/** @internal */
-export const CreateGiftCardGlobals$outboundSchema: z.ZodType<
-  CreateGiftCardGlobals$Outbound,
-  z.ZodTypeDef,
-  CreateGiftCardGlobals
-> = z.object({
-  merchantAccountId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateGiftCardGlobals$ {
-  /** @deprecated use `CreateGiftCardGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreateGiftCardGlobals$inboundSchema;
-  /** @deprecated use `CreateGiftCardGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreateGiftCardGlobals$outboundSchema;
-  /** @deprecated use `CreateGiftCardGlobals$Outbound` instead. */
-  export type Outbound = CreateGiftCardGlobals$Outbound;
-}
-
-export function createGiftCardGlobalsToJSON(
-  createGiftCardGlobals: CreateGiftCardGlobals,
-): string {
-  return JSON.stringify(
-    CreateGiftCardGlobals$outboundSchema.parse(createGiftCardGlobals),
-  );
-}
-
-export function createGiftCardGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateGiftCardGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateGiftCardGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateGiftCardGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateGiftCardRequest$inboundSchema: z.ZodType<
-  CreateGiftCardRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  GiftCardCreate: components.GiftCardCreate$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "GiftCardCreate": "giftCardCreate",
-  });
-});
 
 /** @internal */
 export type CreateGiftCardRequest$Outbound = {
@@ -109,33 +38,10 @@ export const CreateGiftCardRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateGiftCardRequest$ {
-  /** @deprecated use `CreateGiftCardRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateGiftCardRequest$inboundSchema;
-  /** @deprecated use `CreateGiftCardRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateGiftCardRequest$outboundSchema;
-  /** @deprecated use `CreateGiftCardRequest$Outbound` instead. */
-  export type Outbound = CreateGiftCardRequest$Outbound;
-}
-
 export function createGiftCardRequestToJSON(
   createGiftCardRequest: CreateGiftCardRequest,
 ): string {
   return JSON.stringify(
     CreateGiftCardRequest$outboundSchema.parse(createGiftCardRequest),
-  );
-}
-
-export function createGiftCardRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateGiftCardRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateGiftCardRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateGiftCardRequest' from JSON`,
   );
 }

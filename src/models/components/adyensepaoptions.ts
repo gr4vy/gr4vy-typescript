@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AdyenAutoRescueSepaScenariosEnum,
-  AdyenAutoRescueSepaScenariosEnum$inboundSchema,
   AdyenAutoRescueSepaScenariosEnum$outboundSchema,
 } from "./adyenautorescuesepascenariosenum.js";
 
@@ -36,21 +32,6 @@ export type AdyenSepaOptions = {
 };
 
 /** @internal */
-export const AdyenSepaOptions$inboundSchema: z.ZodType<
-  AdyenSepaOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  autoRescue: z.nullable(z.boolean()).optional(),
-  maxDaysToRescue: z.nullable(z.number().int()).optional(),
-  additionalData: z.nullable(z.record(z.string())).optional(),
-  autoRescueSepaScenario: z.nullable(
-    AdyenAutoRescueSepaScenariosEnum$inboundSchema,
-  ).optional(),
-  ownerName: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AdyenSepaOptions$Outbound = {
   autoRescue?: boolean | null | undefined;
   maxDaysToRescue?: number | null | undefined;
@@ -74,33 +55,10 @@ export const AdyenSepaOptions$outboundSchema: z.ZodType<
   ownerName: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AdyenSepaOptions$ {
-  /** @deprecated use `AdyenSepaOptions$inboundSchema` instead. */
-  export const inboundSchema = AdyenSepaOptions$inboundSchema;
-  /** @deprecated use `AdyenSepaOptions$outboundSchema` instead. */
-  export const outboundSchema = AdyenSepaOptions$outboundSchema;
-  /** @deprecated use `AdyenSepaOptions$Outbound` instead. */
-  export type Outbound = AdyenSepaOptions$Outbound;
-}
-
 export function adyenSepaOptionsToJSON(
   adyenSepaOptions: AdyenSepaOptions,
 ): string {
   return JSON.stringify(
     AdyenSepaOptions$outboundSchema.parse(adyenSepaOptions),
-  );
-}
-
-export function adyenSepaOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<AdyenSepaOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AdyenSepaOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AdyenSepaOptions' from JSON`,
   );
 }
