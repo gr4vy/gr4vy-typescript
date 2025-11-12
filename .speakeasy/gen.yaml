@@ -25,7 +25,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.6.3
+  version: 1.6.4
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -77,6 +77,7 @@ typescript:
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInit: |-
     new Gr4vy({
         id: "example",

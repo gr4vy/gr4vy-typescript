@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Gift card error codes.
@@ -49,8 +50,4 @@ export const GiftCardErrorCode$inboundSchema: z.ZodType<
   GiftCardErrorCode,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(GiftCardErrorCode),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(GiftCardErrorCode);

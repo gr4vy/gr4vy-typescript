@@ -3,11 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const CardScheme = {
   Accel: "accel",
@@ -42,17 +39,10 @@ export const CardScheme$inboundSchema: z.ZodType<
   CardScheme,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(CardScheme),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(CardScheme);
 /** @internal */
 export const CardScheme$outboundSchema: z.ZodType<
-  CardScheme,
+  string,
   z.ZodTypeDef,
   CardScheme
-> = z.union([
-  z.nativeEnum(CardScheme),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(CardScheme);

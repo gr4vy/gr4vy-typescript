@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const AntiFraudDecision = {
   Accept: "accept",
@@ -21,8 +22,4 @@ export const AntiFraudDecision$inboundSchema: z.ZodType<
   AntiFraudDecision,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(AntiFraudDecision),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(AntiFraudDecision);

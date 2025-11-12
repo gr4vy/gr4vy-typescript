@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const ReportSpecModel = {
   Transactions: "transactions",
@@ -18,8 +19,4 @@ export const ReportSpecModel$inboundSchema: z.ZodType<
   ReportSpecModel,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(ReportSpecModel),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(ReportSpecModel);

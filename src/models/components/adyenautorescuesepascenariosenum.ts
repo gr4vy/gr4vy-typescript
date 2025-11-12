@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const AdyenAutoRescueSepaScenariosEnum = {
   AutoRescueSuccessfulFirst: "AutoRescueSuccessfulFirst",
@@ -16,10 +17,7 @@ export type AdyenAutoRescueSepaScenariosEnum = OpenEnum<
 
 /** @internal */
 export const AdyenAutoRescueSepaScenariosEnum$outboundSchema: z.ZodType<
-  AdyenAutoRescueSepaScenariosEnum,
+  string,
   z.ZodTypeDef,
   AdyenAutoRescueSepaScenariosEnum
-> = z.union([
-  z.nativeEnum(AdyenAutoRescueSepaScenariosEnum),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(AdyenAutoRescueSepaScenariosEnum);

@@ -3,11 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const TaxIdKind = {
   AeTrn: "ae.trn",
@@ -70,17 +67,10 @@ export const TaxIdKind$inboundSchema: z.ZodType<
   TaxIdKind,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(TaxIdKind),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(TaxIdKind);
 /** @internal */
 export const TaxIdKind$outboundSchema: z.ZodType<
-  TaxIdKind,
+  string,
   z.ZodTypeDef,
   TaxIdKind
-> = z.union([
-  z.nativeEnum(TaxIdKind),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(TaxIdKind);

@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const VaultPaymentMethodCriteria = {
   Always: "ALWAYS",
@@ -31,13 +32,10 @@ export type BraintreeDynamicDataFieldsOptions = {
 
 /** @internal */
 export const VaultPaymentMethodCriteria$outboundSchema: z.ZodType<
-  VaultPaymentMethodCriteria,
+  string,
   z.ZodTypeDef,
   VaultPaymentMethodCriteria
-> = z.union([
-  z.nativeEnum(VaultPaymentMethodCriteria),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(VaultPaymentMethodCriteria);
 
 /** @internal */
 export type BraintreeDynamicDataFieldsOptions$Outbound = {

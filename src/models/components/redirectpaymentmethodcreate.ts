@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The method to use, this can be any of the methods that support redirect requests.
@@ -151,13 +152,10 @@ export type RedirectPaymentMethodCreate = {
 
 /** @internal */
 export const RedirectPaymentMethodCreateMethod$outboundSchema: z.ZodType<
-  RedirectPaymentMethodCreateMethod,
+  string,
   z.ZodTypeDef,
   RedirectPaymentMethodCreateMethod
-> = z.union([
-  z.nativeEnum(RedirectPaymentMethodCreateMethod),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(RedirectPaymentMethodCreateMethod);
 
 /** @internal */
 export type RedirectPaymentMethodCreate$Outbound = {

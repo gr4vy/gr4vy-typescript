@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`, `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
@@ -47,13 +48,10 @@ export type DlocalUPIRecurringInfoOptions = {
 
 /** @internal */
 export const SubscriptionFrequencyUnit$outboundSchema: z.ZodType<
-  SubscriptionFrequencyUnit,
+  string,
   z.ZodTypeDef,
   SubscriptionFrequencyUnit
-> = z.union([
-  z.nativeEnum(SubscriptionFrequencyUnit),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(SubscriptionFrequencyUnit);
 
 /** @internal */
 export type DlocalUPIRecurringInfoOptions$Outbound = {

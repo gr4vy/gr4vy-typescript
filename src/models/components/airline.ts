@@ -5,11 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -118,20 +115,13 @@ export const TicketDeliveryMethod$inboundSchema: z.ZodType<
   TicketDeliveryMethod,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(TicketDeliveryMethod),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(TicketDeliveryMethod);
 /** @internal */
 export const TicketDeliveryMethod$outboundSchema: z.ZodType<
-  TicketDeliveryMethod,
+  string,
   z.ZodTypeDef,
   TicketDeliveryMethod
-> = z.union([
-  z.nativeEnum(TicketDeliveryMethod),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(TicketDeliveryMethod);
 
 /** @internal */
 export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =

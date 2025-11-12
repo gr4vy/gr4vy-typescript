@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import {
   ForterAntiFraudOptionsCartItem,
   ForterAntiFraudOptionsCartItem$Outbound,
@@ -48,13 +49,10 @@ export type ForterAntiFraudOptions = {
 
 /** @internal */
 export const DeliveryType$outboundSchema: z.ZodType<
-  DeliveryType,
+  string,
   z.ZodTypeDef,
   DeliveryType
-> = z.union([
-  z.nativeEnum(DeliveryType),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(DeliveryType);
 
 /** @internal */
 export type ForterAntiFraudOptions$Outbound = {
