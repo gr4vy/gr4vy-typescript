@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: a261be0493328036db5a17c440ef320d
+  docChecksum: a56494e6bdec976d0f399233aed51a7e
   docVersion: 1.0.0
-  speakeasyVersion: 1.654.0
-  generationVersion: 2.750.0
-  releaseVersion: 1.6.4
-  configChecksum: b2db00eb8b964cb3e65b29f2d5911e26
+  speakeasyVersion: 1.655.0
+  generationVersion: 2.751.0
+  releaseVersion: 1.6.5
+  configChecksum: 4250566e17039e016dc68af62ec86e47
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4475,3 +4475,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.mock-card.skipRetry` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.mock-card.skipRetry` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.mock-card.skipRetry` **Added**\n"

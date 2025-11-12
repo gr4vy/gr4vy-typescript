@@ -15,6 +15,10 @@ export type MockCardOptions = {
    * Allows for mocking the merchant advice code.
    */
   merchantAdviceCode?: MockCardMerchantAdviceCodeOptions | null | undefined;
+  /**
+   * When set to true, prevents retries on failed transactions.
+   */
+  skipRetry?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -23,6 +27,7 @@ export type MockCardOptions$Outbound = {
     | MockCardMerchantAdviceCodeOptions$Outbound
     | null
     | undefined;
+  skip_retry?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -34,9 +39,11 @@ export const MockCardOptions$outboundSchema: z.ZodType<
   merchantAdviceCode: z.nullable(
     MockCardMerchantAdviceCodeOptions$outboundSchema,
   ).optional(),
+  skipRetry: z.nullable(z.boolean()).optional(),
 }).transform((v) => {
   return remap$(v, {
     merchantAdviceCode: "merchant_advice_code",
+    skipRetry: "skip_retry",
   });
 });
 
