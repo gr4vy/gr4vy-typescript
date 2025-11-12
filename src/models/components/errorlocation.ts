@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const ErrorLocation = {
   Query: "query",
@@ -19,8 +20,4 @@ export const ErrorLocation$inboundSchema: z.ZodType<
   ErrorLocation,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(ErrorLocation),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(ErrorLocation);

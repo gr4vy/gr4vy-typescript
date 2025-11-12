@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const CVVResponseCode = {
   Match: "match",
@@ -18,8 +19,4 @@ export const CVVResponseCode$inboundSchema: z.ZodType<
   CVVResponseCode,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(CVVResponseCode),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(CVVResponseCode);

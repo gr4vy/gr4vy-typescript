@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -113,11 +114,8 @@ export type TransactionEventOutput = {
 };
 
 /** @internal */
-export const Name$inboundSchema: z.ZodType<Name, z.ZodTypeDef, unknown> = z
-  .union([
-    z.nativeEnum(Name),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+export const Name$inboundSchema: z.ZodType<Name, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Name);
 
 /** @internal */
 export const TransactionEventOutput$inboundSchema: z.ZodType<

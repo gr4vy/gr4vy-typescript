@@ -3,11 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const Method = {
   Abitab: "abitab",
@@ -121,14 +118,8 @@ export const Method = {
 export type Method = OpenEnum<typeof Method>;
 
 /** @internal */
-export const Method$inboundSchema: z.ZodType<Method, z.ZodTypeDef, unknown> = z
-  .union([
-    z.nativeEnum(Method),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+export const Method$inboundSchema: z.ZodType<Method, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Method);
 /** @internal */
-export const Method$outboundSchema: z.ZodType<Method, z.ZodTypeDef, Method> = z
-  .union([
-    z.nativeEnum(Method),
-    z.string().and(z.custom<Unrecognized<string>>()),
-  ]);
+export const Method$outboundSchema: z.ZodType<string, z.ZodTypeDef, Method> =
+  openEnums.outboundSchema(Method);

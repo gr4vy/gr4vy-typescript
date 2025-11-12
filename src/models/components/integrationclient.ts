@@ -3,11 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const IntegrationClient = {
   Redirect: "redirect",
@@ -22,17 +19,10 @@ export const IntegrationClient$inboundSchema: z.ZodType<
   IntegrationClient,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(IntegrationClient),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(IntegrationClient);
 /** @internal */
 export const IntegrationClient$outboundSchema: z.ZodType<
-  IntegrationClient,
+  string,
   z.ZodTypeDef,
   IntegrationClient
-> = z.union([
-  z.nativeEnum(IntegrationClient),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(IntegrationClient);

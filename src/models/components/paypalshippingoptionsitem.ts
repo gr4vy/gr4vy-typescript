@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import {
   PaypalShippingOptionsItemAmount,
   PaypalShippingOptionsItemAmount$Outbound,
@@ -45,13 +46,10 @@ export type PaypalShippingOptionsItem = {
 
 /** @internal */
 export const PaypalShippingOptionsItemType$outboundSchema: z.ZodType<
-  PaypalShippingOptionsItemType,
+  string,
   z.ZodTypeDef,
   PaypalShippingOptionsItemType
-> = z.union([
-  z.nativeEnum(PaypalShippingOptionsItemType),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(PaypalShippingOptionsItemType);
 
 /** @internal */
 export type PaypalShippingOptionsItem$Outbound = {

@@ -3,11 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const ProductType = {
   Physical: "physical",
@@ -26,17 +23,10 @@ export const ProductType$inboundSchema: z.ZodType<
   ProductType,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(ProductType),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(ProductType);
 /** @internal */
 export const ProductType$outboundSchema: z.ZodType<
-  ProductType,
+  string,
   z.ZodTypeDef,
   ProductType
-> = z.union([
-  z.nativeEnum(ProductType),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(ProductType);

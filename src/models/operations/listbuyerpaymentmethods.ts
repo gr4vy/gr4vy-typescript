@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export type ListBuyerPaymentMethodsGlobals = {
   merchantAccountId?: string | undefined;
@@ -54,11 +55,8 @@ export type ListBuyerPaymentMethodsRequest = {
 };
 
 /** @internal */
-export const OrderBy$outboundSchema: z.ZodType<OrderBy, z.ZodTypeDef, OrderBy> =
-  z.union([
-    z.nativeEnum(OrderBy),
-    z.string().and(z.custom<Unrecognized<string>>()),
-  ]);
+export const OrderBy$outboundSchema: z.ZodType<string, z.ZodTypeDef, OrderBy> =
+  openEnums.outboundSchema(OrderBy);
 
 /** @internal */
 export type ListBuyerPaymentMethodsRequest$Outbound = {

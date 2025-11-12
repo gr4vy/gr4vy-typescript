@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const DefinitionFieldFormat = {
   Text: "text",
@@ -19,8 +20,4 @@ export const DefinitionFieldFormat$inboundSchema: z.ZodType<
   DefinitionFieldFormat,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(DefinitionFieldFormat),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(DefinitionFieldFormat);

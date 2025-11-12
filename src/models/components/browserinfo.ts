@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { OpenEnum, Unrecognized } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The platform that is being used to access the website.
@@ -45,13 +46,10 @@ export type BrowserInfo = {
 
 /** @internal */
 export const UserDevice$outboundSchema: z.ZodType<
-  UserDevice,
+  string,
   z.ZodTypeDef,
   UserDevice
-> = z.union([
-  z.nativeEnum(UserDevice),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(UserDevice);
 
 /** @internal */
 export type BrowserInfo$Outbound = {

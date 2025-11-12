@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const GiftCardServiceProvider = {
   MockGiftCard: "mock-gift-card",
@@ -16,8 +17,4 @@ export const GiftCardServiceProvider$inboundSchema: z.ZodType<
   GiftCardServiceProvider,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(GiftCardServiceProvider),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(GiftCardServiceProvider);

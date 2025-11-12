@@ -3,11 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const TransactionIntent = {
   Authorize: "authorize",
@@ -20,17 +17,10 @@ export const TransactionIntent$inboundSchema: z.ZodType<
   TransactionIntent,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(TransactionIntent),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(TransactionIntent);
 /** @internal */
 export const TransactionIntent$outboundSchema: z.ZodType<
-  TransactionIntent,
+  string,
   z.ZodTypeDef,
   TransactionIntent
-> = z.union([
-  z.nativeEnum(TransactionIntent),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+> = openEnums.outboundSchema(TransactionIntent);

@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { catchUnrecognizedEnum, OpenEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const ApprovalTarget = {
   NewWindow: "new_window",
@@ -16,8 +17,4 @@ export const ApprovalTarget$inboundSchema: z.ZodType<
   ApprovalTarget,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(ApprovalTarget),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = openEnums.inboundSchema(ApprovalTarget);
