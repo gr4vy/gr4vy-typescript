@@ -87,6 +87,7 @@ export const Name = {
   TheGivingBlockTransactionConversionSucceeded:
     "the-giving-block-transaction-conversion-succeeded",
   RealTimeAccountUpdate: "real-time-account-update",
+  PlaidRequestEvent: "plaid-request-event",
 } as const;
 /**
  * The specific event name.
