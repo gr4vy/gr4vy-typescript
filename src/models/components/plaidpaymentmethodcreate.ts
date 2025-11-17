@@ -37,6 +37,10 @@ export type PlaidPaymentMethodCreate = {
    * The merchant reference for this payment method.
    */
   buyerExternalIdentifier?: string | null | undefined;
+  /**
+   * The merchant identifier for this payment method.
+   */
+  externalIdentifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -47,6 +51,7 @@ export type PlaidPaymentMethodCreate$Outbound = {
   payment_service_id?: string | null | undefined;
   buyer_id?: string | null | undefined;
   buyer_external_identifier?: string | null | undefined;
+  external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -61,12 +66,14 @@ export const PlaidPaymentMethodCreate$outboundSchema: z.ZodType<
   paymentServiceId: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     accountId: "account_id",
     paymentServiceId: "payment_service_id",
     buyerId: "buyer_id",
     buyerExternalIdentifier: "buyer_external_identifier",
+    externalIdentifier: "external_identifier",
   });
 });
 
