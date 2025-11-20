@@ -320,6 +320,10 @@ export type TransactionOutput = {
    */
   merchantTaxId?: string | null | undefined;
   /**
+   * Invoice number or Purchase Order number.
+   */
+  purchaseOrderNumber?: string | null | undefined;
+  /**
    * Customer code or reference.
    */
   customerReferenceNumber?: string | null | undefined;
@@ -425,6 +429,7 @@ export const TransactionOutput$inboundSchema: z.ZodType<
   session_token: z.nullable(z.string()).optional(),
   tax_amount: z.nullable(z.number().int()).optional(),
   merchant_tax_id: z.nullable(z.string()).optional(),
+  purchase_order_number: z.nullable(z.string()).optional(),
   customer_reference_number: z.nullable(z.string()).optional(),
   amount_includes_tax: z.nullable(z.boolean()).optional(),
   supplier_order_number: z.nullable(z.string()).optional(),
@@ -480,6 +485,7 @@ export const TransactionOutput$inboundSchema: z.ZodType<
     "session_token": "sessionToken",
     "tax_amount": "taxAmount",
     "merchant_tax_id": "merchantTaxId",
+    "purchase_order_number": "purchaseOrderNumber",
     "customer_reference_number": "customerReferenceNumber",
     "amount_includes_tax": "amountIncludesTax",
     "supplier_order_number": "supplierOrderNumber",

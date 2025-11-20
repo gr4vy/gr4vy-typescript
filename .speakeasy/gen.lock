@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: fc3d219bf272dd8bc60565f8d9799f39
+  docChecksum: 7f95f338339c03c9d198611b04c9029e
   docVersion: 1.0.0
-  speakeasyVersion: 1.658.1
-  generationVersion: 2.755.6
-  releaseVersion: 1.6.7
-  configChecksum: 5f9798ad20ef986d9f9e13b5b73ebeff
+  speakeasyVersion: 1.658.2
+  generationVersion: 2.755.9
+  releaseVersion: 1.6.8
+  configChecksum: 1744f05ee9595ce626ff7c6bf2d7f96b
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4475,4 +4475,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.paymentMethods.create()`: \n  *  `requestbody.[plaidPaymentMethodCreate].externalIdentifier` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.paymentMethod.[plaidPaymentMethodCreate].externalIdentifier` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.purchaseOrderNumber` **Added**\n  *  `response.purchase_order_number` **Added**\n* `gr4vy.transactions.get()`:  `response.purchase_order_number` **Added**\n* `gr4vy.transactions.update()`:  `response.purchase_order_number` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction-output].purchaseOrderNumber` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction-output].purchaseOrderNumber` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.purchaseOrderNumber` **Added**\n* `gr4vy.transactions.sync()`:  `response.purchase_order_number` **Added**\n"

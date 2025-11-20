@@ -319,6 +319,10 @@ export type TransactionCreate = {
    */
   merchantTaxId?: string | null | undefined;
   /**
+   * Invoice number or Purchase Order number.
+   */
+  purchaseOrderNumber?: string | null | undefined;
+  /**
    * Customer code or reference.
    */
   customerReferenceNumber?: string | null | undefined;
@@ -490,6 +494,7 @@ export type TransactionCreate$Outbound = {
   installment_count?: number | null | undefined;
   tax_amount?: number | null | undefined;
   merchant_tax_id?: string | null | undefined;
+  purchase_order_number?: string | null | undefined;
   customer_reference_number?: string | null | undefined;
   amount_includes_tax?: boolean | null | undefined;
   supplier_order_number?: string | null | undefined;
@@ -564,6 +569,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   installmentCount: z.nullable(z.number().int()).optional(),
   taxAmount: z.nullable(z.number().int()).optional(),
   merchantTaxId: z.nullable(z.string()).optional(),
+  purchaseOrderNumber: z.nullable(z.string()).optional(),
   customerReferenceNumber: z.nullable(z.string()).optional(),
   amountIncludesTax: z.nullable(z.boolean()).optional(),
   supplierOrderNumber: z.nullable(z.string()).optional(),
@@ -595,6 +601,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     installmentCount: "installment_count",
     taxAmount: "tax_amount",
     merchantTaxId: "merchant_tax_id",
+    purchaseOrderNumber: "purchase_order_number",
     customerReferenceNumber: "customer_reference_number",
     amountIncludesTax: "amount_includes_tax",
     supplierOrderNumber: "supplier_order_number",
