@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 7f95f338339c03c9d198611b04c9029e
+  docChecksum: 830cdca53bcbad201f33db55b521ffcf
   docVersion: 1.0.0
-  speakeasyVersion: 1.658.2
-  generationVersion: 2.755.9
-  releaseVersion: 1.6.8
-  configChecksum: 1744f05ee9595ce626ff7c6bf2d7f96b
+  speakeasyVersion: 1.660.0
+  generationVersion: 2.760.2
+  releaseVersion: 1.6.9
+  configChecksum: 3ab5735882484d37e5c482713c173d87
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.7
+    core: 3.26.9
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -190,6 +190,7 @@ generatedFiles:
   - docs/models/components/networktokens.md
   - docs/models/components/networktokenstatus.md
   - docs/models/components/nuveiairlinedataoptions.md
+  - docs/models/components/nuveiidealoptions.md
   - docs/models/components/nuveioptions.md
   - docs/models/components/nuveipseoptions.md
   - docs/models/components/oxxooptions.md
@@ -832,6 +833,7 @@ generatedFiles:
   - src/models/components/networktokens.ts
   - src/models/components/networktokenstatus.ts
   - src/models/components/nuveiairlinedataoptions.ts
+  - src/models/components/nuveiidealoptions.ts
   - src/models/components/nuveioptions.ts
   - src/models/components/nuveipseoptions.ts
   - src/models/components/oxxooptions.ts
@@ -1113,6 +1115,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/unrecognized.ts
   - tsconfig.json
 examples:
   create_account_updater_job:
@@ -4475,4 +4478,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.purchaseOrderNumber` **Added**\n  *  `response.purchase_order_number` **Added**\n* `gr4vy.transactions.get()`:  `response.purchase_order_number` **Added**\n* `gr4vy.transactions.update()`:  `response.purchase_order_number` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction-output].purchaseOrderNumber` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction-output].purchaseOrderNumber` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.purchaseOrderNumber` **Added**\n* `gr4vy.transactions.sync()`:  `response.purchase_order_number` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.nuvei-ideal` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.nuvei-ideal` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.nuvei-ideal` **Added**\n"
