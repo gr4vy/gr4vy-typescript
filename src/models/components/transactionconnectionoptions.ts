@@ -90,6 +90,11 @@ import {
   MonatoSpeiOptions$outboundSchema,
 } from "./monatospeioptions.js";
 import {
+  NuveiIDealOptions,
+  NuveiIDealOptions$Outbound,
+  NuveiIDealOptions$outboundSchema,
+} from "./nuveiidealoptions.js";
+import {
   NuveiOptions,
   NuveiOptions$Outbound,
   NuveiOptions$outboundSchema,
@@ -262,6 +267,10 @@ export type TransactionConnectionOptions = {
    */
   nuveiCard?: NuveiOptions | null | undefined;
   /**
+   * Custom options to be passed to the `nuvei-ideal` connector.
+   */
+  nuveiIdeal?: NuveiIDealOptions | null | undefined;
+  /**
    * Custom options to be passed to the `nuvei-pse` connector.
    */
   nuveiPse?: NuveiPSEOptions | null | undefined;
@@ -338,6 +347,7 @@ export type TransactionConnectionOptions$Outbound = {
   "monato-spei"?: MonatoSpeiOptions$Outbound | null | undefined;
   "mock-card"?: MockCardOptions$Outbound | null | undefined;
   "nuvei-card"?: NuveiOptions$Outbound | null | undefined;
+  "nuvei-ideal"?: NuveiIDealOptions$Outbound | null | undefined;
   "nuvei-pse"?: NuveiPSEOptions$Outbound | null | undefined;
   "oxxo-oxxo"?: OxxoOptions$Outbound | null | undefined;
   "paypal-paypal"?: PaypalOptions$Outbound | null | undefined;
@@ -389,6 +399,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   monatoSpei: z.nullable(MonatoSpeiOptions$outboundSchema).optional(),
   mockCard: z.nullable(MockCardOptions$outboundSchema).optional(),
   nuveiCard: z.nullable(NuveiOptions$outboundSchema).optional(),
+  nuveiIdeal: z.nullable(NuveiIDealOptions$outboundSchema).optional(),
   nuveiPse: z.nullable(NuveiPSEOptions$outboundSchema).optional(),
   oxxoOxxo: z.nullable(OxxoOptions$outboundSchema).optional(),
   paypalPaypal: z.nullable(PaypalOptions$outboundSchema).optional(),
@@ -431,6 +442,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     monatoSpei: "monato-spei",
     mockCard: "mock-card",
     nuveiCard: "nuvei-card",
+    nuveiIdeal: "nuvei-ideal",
     nuveiPse: "nuvei-pse",
     oxxoOxxo: "oxxo-oxxo",
     paypalPaypal: "paypal-paypal",
