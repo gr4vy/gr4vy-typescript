@@ -18,6 +18,10 @@ export type CybersourceOptions = {
    * The shipping method for this transaction.
    */
   shipToMethod?: string | null | undefined;
+  /**
+   * Brief description of the order or any comment you wish to add to the order.
+   */
+  comments?: string | null | undefined;
 };
 
 /** @internal */
@@ -25,6 +29,7 @@ export type CybersourceOptions$Outbound = {
   meta_key_merchant_id?: string | null | undefined;
   merchant_defined_information?: { [k: string]: string } | null | undefined;
   ship_to_method?: string | null | undefined;
+  comments?: string | null | undefined;
 };
 
 /** @internal */
@@ -36,6 +41,7 @@ export const CybersourceOptions$outboundSchema: z.ZodType<
   metaKeyMerchantId: z.nullable(z.string()).optional(),
   merchantDefinedInformation: z.nullable(z.record(z.string())).optional(),
   shipToMethod: z.nullable(z.string()).optional(),
+  comments: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     metaKeyMerchantId: "meta_key_merchant_id",
