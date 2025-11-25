@@ -77,24 +77,16 @@ export type Spec$Outbound =
 export const Spec$outboundSchema: z.ZodType<Spec$Outbound, z.ZodTypeDef, Spec> =
   z.union([
     AccountsReceivablesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("accounts_receivables") }),
     ),
     DetailedSettlementReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("detailed_settlement") }),
     ),
     TransactionRetriesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transaction_retries") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("transaction_retries") }),
     ),
     TransactionsReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transactions") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("transactions") }),
     ),
   ]);
 
@@ -131,24 +123,16 @@ export const ReportCreate$outboundSchema: z.ZodType<
   scheduleTimezone: z.string().default("Etc/UTC"),
   spec: z.union([
     AccountsReceivablesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("accounts_receivables") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("accounts_receivables") }),
     ),
     DetailedSettlementReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("detailed_settlement") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("detailed_settlement") }),
     ),
     TransactionRetriesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transaction_retries") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("transaction_retries") }),
     ),
     TransactionsReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transactions") }).transform((v) => ({
-        model: v.model,
-      })),
+      z.object({ model: z.literal("transactions") }),
     ),
   ]),
 }).transform((v) => {
