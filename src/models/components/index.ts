@@ -237,7 +237,6 @@ export * from "./transactioncapturecreate.js";
 export * from "./transactionconnectionoptions.js";
 export * from "./transactioncreate.js";
 export * from "./transactionevent.js";
-export * from "./transactioneventcontext.js";
 export * from "./transactionevents.js";
 export * from "./transactiongiftcard.js";
 export * from "./transactionintent.js";

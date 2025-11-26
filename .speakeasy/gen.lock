@@ -1,19 +1,18 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: f26f7fdfc82f2ddcf2344b79b07ee21e
+  docChecksum: f7a46f940cff848463de3ee3d794eb19
   docVersion: 1.0.0
-  speakeasyVersion: 1.661.3
+  speakeasyVersion: 1.662.0
   generationVersion: 2.763.3
-  releaseVersion: 1.7.1
-  configChecksum: 7e03f3447500319da363d2ab543183c4
+  releaseVersion: 1.8.0
+  configChecksum: 40ffda137b6cc9599135e1c4e8d12eaa
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
     core: 3.26.10
     defaultEnabledRetries: 0.1.0
@@ -300,7 +299,6 @@ generatedFiles:
   - docs/models/components/transactioncreategiftcards.md
   - docs/models/components/transactioncreatepaymentmethod.md
   - docs/models/components/transactionevent.md
-  - docs/models/components/transactioneventcontext.md
   - docs/models/components/transactionevents.md
   - docs/models/components/transactiongiftcard.md
   - docs/models/components/transactionintent.md
@@ -502,6 +500,7 @@ generatedFiles:
   - docs/models/operations/listreportsresponse.md
   - docs/models/operations/listtransactioneventsglobals.md
   - docs/models/operations/listtransactioneventsrequest.md
+  - docs/models/operations/listtransactioneventsresponse.md
   - docs/models/operations/listtransactionrefundsglobals.md
   - docs/models/operations/listtransactionrefundsrequest.md
   - docs/models/operations/listtransactionsettlementsglobals.md
@@ -929,7 +928,6 @@ generatedFiles:
   - src/models/components/transactionconnectionoptions.ts
   - src/models/components/transactioncreate.ts
   - src/models/components/transactionevent.ts
-  - src/models/components/transactioneventcontext.ts
   - src/models/components/transactionevents.ts
   - src/models/components/transactiongiftcard.ts
   - src/models/components/transactionintent.ts
@@ -4477,3 +4475,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Typescript SDK Changes Detected:
+  * `gr4vy.transactions.events.list()`:  `response.items.[].context` **Changed** **Breaking** :warning:
