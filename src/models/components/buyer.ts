@@ -8,9 +8,9 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  BillingDetailsOutput,
-  BillingDetailsOutput$inboundSchema,
-} from "./billingdetailsoutput.js";
+  BillingDetails,
+  BillingDetails$inboundSchema,
+} from "./billingdetails.js";
 
 export type Buyer = {
   /**
@@ -36,7 +36,7 @@ export type Buyer = {
   /**
    * The billing name, address, email, and other fields for this buyer.
    */
-  billingDetails?: BillingDetailsOutput | null | undefined;
+  billingDetails?: BillingDetails | null | undefined;
   /**
    * The buyer account number
    */
@@ -59,7 +59,7 @@ export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
     merchant_account_id: z.string(),
     display_name: z.nullable(z.string()).optional(),
     external_identifier: z.nullable(z.string()).optional(),
-    billing_details: z.nullable(BillingDetailsOutput$inboundSchema).optional(),
+    billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
     account_number: z.nullable(z.string()).optional(),
     created_at: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)

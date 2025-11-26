@@ -1,18 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: b9717772667cf39fe8fee3f56e8b6e98
+  docChecksum: f26f7fdfc82f2ddcf2344b79b07ee21e
   docVersion: 1.0.0
-  speakeasyVersion: 1.661.1
-  generationVersion: 2.763.2
-  releaseVersion: 1.6.10
-  configChecksum: e7e7ba064a27b85152cd22d4cc18413d
+  speakeasyVersion: 1.661.4
+  generationVersion: 2.763.3
+  releaseVersion: 1.7.0
+  configChecksum: 628d977f012dc53be24ecab561671fba
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
+    additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
     core: 3.26.10
     defaultEnabledRetries: 0.1.0
@@ -67,12 +68,11 @@ generatedFiles:
   - docs/models/components/approvaltarget.md
   - docs/models/components/auditlogaction.md
   - docs/models/components/auditlogentries.md
-  - docs/models/components/auditlogentryoutput.md
+  - docs/models/components/auditlogentry.md
   - docs/models/components/auditlogentryresource.md
   - docs/models/components/auditlogentryuser.md
   - docs/models/components/avsresponsecode.md
-  - docs/models/components/billingdetailsinput.md
-  - docs/models/components/billingdetailsoutput.md
+  - docs/models/components/billingdetails.md
   - docs/models/components/braintreedynamicdatafieldsoptions.md
   - docs/models/components/braintreeoptions.md
   - docs/models/components/browserinfo.md
@@ -93,9 +93,9 @@ generatedFiles:
   - docs/models/components/checkoutpayoutoptions.md
   - docs/models/components/checkoutsession.md
   - docs/models/components/checkoutsessioncreate.md
+  - docs/models/components/checkoutsessionpaymentmethod.md
   - docs/models/components/checkoutsessionpaymentmethodcreate.md
   - docs/models/components/checkoutsessionpaymentmethoddetails.md
-  - docs/models/components/checkoutsessionpaymentmethodoutput.md
   - docs/models/components/checkoutsessionwithurlpaymentmethodcreate.md
   - docs/models/components/clicktopayfpanpaymentmethodcreate.md
   - docs/models/components/clicktopaypaymentmethodcreate.md
@@ -164,8 +164,7 @@ generatedFiles:
   - docs/models/components/googlepaypaymentoptioncontext.md
   - docs/models/components/googlepaysession.md
   - docs/models/components/googlepaysessionrequest.md
-  - docs/models/components/guestbuyerinput.md
-  - docs/models/components/guestbuyeroutput.md
+  - docs/models/components/guestbuyer.md
   - docs/models/components/instrumenttype.md
   - docs/models/components/integrationclient.md
   - docs/models/components/items.md
@@ -205,10 +204,10 @@ generatedFiles:
   - docs/models/components/paymentmethodstatus.md
   - docs/models/components/paymentmethodstoredcard.md
   - docs/models/components/paymentmethodsummaries.md
-  - docs/models/components/paymentmethodsummaryoutput.md
+  - docs/models/components/paymentmethodsummary.md
+  - docs/models/components/paymentoption.md
   - docs/models/components/paymentoptioncontext.md
   - docs/models/components/paymentoptioncontextapprovalui.md
-  - docs/models/components/paymentoptionoutput.md
   - docs/models/components/paymentoptionrequest.md
   - docs/models/components/paymentoptions.md
   - docs/models/components/paymentservice.md
@@ -291,21 +290,22 @@ generatedFiles:
   - docs/models/components/ticketdeliverymethod.md
   - docs/models/components/token.md
   - docs/models/components/tokenpaymentmethodcreate.md
-  - docs/models/components/transactionbuyeroutput.md
+  - docs/models/components/transaction.md
+  - docs/models/components/transactionbuyer.md
   - docs/models/components/transactioncancel.md
+  - docs/models/components/transactioncapture.md
   - docs/models/components/transactioncapturecreate.md
-  - docs/models/components/transactioncaptureoutput.md
   - docs/models/components/transactionconnectionoptions.md
   - docs/models/components/transactioncreate.md
   - docs/models/components/transactioncreategiftcards.md
   - docs/models/components/transactioncreatepaymentmethod.md
-  - docs/models/components/transactioneventoutput.md
+  - docs/models/components/transactionevent.md
+  - docs/models/components/transactioneventcontext.md
   - docs/models/components/transactionevents.md
   - docs/models/components/transactiongiftcard.md
   - docs/models/components/transactionintent.md
   - docs/models/components/transactionintentoutcome.md
-  - docs/models/components/transactionoutput.md
-  - docs/models/components/transactionpaymentmethodoutput.md
+  - docs/models/components/transactionpaymentmethod.md
   - docs/models/components/transactionpaymentservice.md
   - docs/models/components/transactionpaymentsource.md
   - docs/models/components/transactionrefundallcreate.md
@@ -314,10 +314,10 @@ generatedFiles:
   - docs/models/components/transactionsreportspec.md
   - docs/models/components/transactionstatus.md
   - docs/models/components/transactionsummaries.md
-  - docs/models/components/transactionsummaryoutput.md
-  - docs/models/components/transactionthreedsecuresummaryoutput.md
+  - docs/models/components/transactionsummary.md
+  - docs/models/components/transactionthreedsecuresummary.md
   - docs/models/components/transactionupdate.md
-  - docs/models/components/transactionvoidoutput.md
+  - docs/models/components/transactionvoid.md
   - docs/models/components/travelhubcustomdata.md
   - docs/models/components/travelhuboptions.md
   - docs/models/components/trustlyoptions.md
@@ -716,12 +716,11 @@ generatedFiles:
   - src/models/components/approvaltarget.ts
   - src/models/components/auditlogaction.ts
   - src/models/components/auditlogentries.ts
-  - src/models/components/auditlogentryoutput.ts
+  - src/models/components/auditlogentry.ts
   - src/models/components/auditlogentryresource.ts
   - src/models/components/auditlogentryuser.ts
   - src/models/components/avsresponsecode.ts
-  - src/models/components/billingdetailsinput.ts
-  - src/models/components/billingdetailsoutput.ts
+  - src/models/components/billingdetails.ts
   - src/models/components/braintreedynamicdatafieldsoptions.ts
   - src/models/components/braintreeoptions.ts
   - src/models/components/browserinfo.ts
@@ -741,9 +740,9 @@ generatedFiles:
   - src/models/components/checkoutpayoutoptions.ts
   - src/models/components/checkoutsession.ts
   - src/models/components/checkoutsessioncreate.ts
+  - src/models/components/checkoutsessionpaymentmethod.ts
   - src/models/components/checkoutsessionpaymentmethodcreate.ts
   - src/models/components/checkoutsessionpaymentmethoddetails.ts
-  - src/models/components/checkoutsessionpaymentmethodoutput.ts
   - src/models/components/checkoutsessionwithurlpaymentmethodcreate.ts
   - src/models/components/clicktopayfpanpaymentmethodcreate.ts
   - src/models/components/clicktopaypaymentmethodcreate.ts
@@ -809,8 +808,7 @@ generatedFiles:
   - src/models/components/googlepaypaymentoptioncontext.ts
   - src/models/components/googlepaysession.ts
   - src/models/components/googlepaysessionrequest.ts
-  - src/models/components/guestbuyerinput.ts
-  - src/models/components/guestbuyeroutput.ts
+  - src/models/components/guestbuyer.ts
   - src/models/components/index.ts
   - src/models/components/instrumenttype.ts
   - src/models/components/integrationclient.ts
@@ -848,10 +846,10 @@ generatedFiles:
   - src/models/components/paymentmethodstatus.ts
   - src/models/components/paymentmethodstoredcard.ts
   - src/models/components/paymentmethodsummaries.ts
-  - src/models/components/paymentmethodsummaryoutput.ts
+  - src/models/components/paymentmethodsummary.ts
+  - src/models/components/paymentoption.ts
   - src/models/components/paymentoptioncontext.ts
   - src/models/components/paymentoptioncontextapprovalui.ts
-  - src/models/components/paymentoptionoutput.ts
   - src/models/components/paymentoptionrequest.ts
   - src/models/components/paymentoptions.ts
   - src/models/components/paymentservice.ts
@@ -923,19 +921,20 @@ generatedFiles:
   - src/models/components/threedsecurestatus.ts
   - src/models/components/threedsecurev2.ts
   - src/models/components/tokenpaymentmethodcreate.ts
-  - src/models/components/transactionbuyeroutput.ts
+  - src/models/components/transaction.ts
+  - src/models/components/transactionbuyer.ts
   - src/models/components/transactioncancel.ts
+  - src/models/components/transactioncapture.ts
   - src/models/components/transactioncapturecreate.ts
-  - src/models/components/transactioncaptureoutput.ts
   - src/models/components/transactionconnectionoptions.ts
   - src/models/components/transactioncreate.ts
-  - src/models/components/transactioneventoutput.ts
+  - src/models/components/transactionevent.ts
+  - src/models/components/transactioneventcontext.ts
   - src/models/components/transactionevents.ts
   - src/models/components/transactiongiftcard.ts
   - src/models/components/transactionintent.ts
   - src/models/components/transactionintentoutcome.ts
-  - src/models/components/transactionoutput.ts
-  - src/models/components/transactionpaymentmethodoutput.ts
+  - src/models/components/transactionpaymentmethod.ts
   - src/models/components/transactionpaymentservice.ts
   - src/models/components/transactionpaymentsource.ts
   - src/models/components/transactionrefundallcreate.ts
@@ -944,10 +943,10 @@ generatedFiles:
   - src/models/components/transactionsreportspec.ts
   - src/models/components/transactionstatus.ts
   - src/models/components/transactionsummaries.ts
-  - src/models/components/transactionsummaryoutput.ts
-  - src/models/components/transactionthreedsecuresummaryoutput.ts
+  - src/models/components/transactionsummary.ts
+  - src/models/components/transactionthreedsecuresummary.ts
   - src/models/components/transactionupdate.ts
-  - src/models/components/transactionvoidoutput.ts
+  - src/models/components/transactionvoid.ts
   - src/models/components/travelhubcustomdata.ts
   - src/models/components/travelhuboptions.ts
   - src/models/components/trustlyoptions.ts
@@ -3928,7 +3927,7 @@ examples:
           application_name: "core-api"
       responses:
         "200":
-          application/json: {"items": [{"type": "transaction-event", "id": "f133a3b7-e67e-4d83-bcd3-3e438fedf348", "name": "transaction-api-request", "created_at": "2013-07-16T19:23:00.000+00:00", "context": {}}], "limit": 20}
+          application/json: {"items": [{"type": "transaction-event", "id": "f133a3b7-e67e-4d83-bcd3-3e438fedf348", "name": "transaction-api-request", "created_at": "2013-07-16T19:23:00.000+00:00", "context": {"transaction_id": "<id>", "created_at": "1713124938909"}}], "limit": 20}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -4478,4 +4477,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.cybersource-card.comments` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.cybersource-card.comments` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.cybersource-card.comments` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes Detected:
+  * `gr4vy.transactions.events.list()`:  `response.items.[].context` **Changed** **Breaking** :warning:

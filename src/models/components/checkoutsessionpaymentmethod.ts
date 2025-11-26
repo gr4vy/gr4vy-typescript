@@ -12,7 +12,7 @@ import {
   CheckoutSessionPaymentMethodDetails$inboundSchema,
 } from "./checkoutsessionpaymentmethoddetails.js";
 
-export type CheckoutSessionPaymentMethodOutput = {
+export type CheckoutSessionPaymentMethod = {
   /**
    * Always `payment-method`
    */
@@ -44,8 +44,8 @@ export type CheckoutSessionPaymentMethodOutput = {
 };
 
 /** @internal */
-export const CheckoutSessionPaymentMethodOutput$inboundSchema: z.ZodType<
-  CheckoutSessionPaymentMethodOutput,
+export const CheckoutSessionPaymentMethod$inboundSchema: z.ZodType<
+  CheckoutSessionPaymentMethod,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -59,13 +59,12 @@ export const CheckoutSessionPaymentMethodOutput$inboundSchema: z.ZodType<
   fingerprint: z.nullable(z.string()).optional(),
 });
 
-export function checkoutSessionPaymentMethodOutputFromJSON(
+export function checkoutSessionPaymentMethodFromJSON(
   jsonString: string,
-): SafeParseResult<CheckoutSessionPaymentMethodOutput, SDKValidationError> {
+): SafeParseResult<CheckoutSessionPaymentMethod, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      CheckoutSessionPaymentMethodOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutSessionPaymentMethodOutput' from JSON`,
+    (x) => CheckoutSessionPaymentMethod$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckoutSessionPaymentMethod' from JSON`,
   );
 }

@@ -7,13 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  TransactionOutput,
-  TransactionOutput$inboundSchema,
-} from "./transactionoutput.js";
+import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 import { VoidStatus, VoidStatus$inboundSchema } from "./voidstatus.js";
 
-export type TransactionVoidOutput = {
+export type TransactionVoid = {
   /**
    * Always `transaction-void`.
    */
@@ -34,12 +31,12 @@ export type TransactionVoidOutput = {
   /**
    * A full transaction resource.
    */
-  transaction: TransactionOutput;
+  transaction: Transaction;
 };
 
 /** @internal */
-export const TransactionVoidOutput$inboundSchema: z.ZodType<
-  TransactionVoidOutput,
+export const TransactionVoid$inboundSchema: z.ZodType<
+  TransactionVoid,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -48,7 +45,7 @@ export const TransactionVoidOutput$inboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   raw_response_code: z.nullable(z.string()),
   raw_response_description: z.nullable(z.string()),
-  transaction: TransactionOutput$inboundSchema,
+  transaction: Transaction$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",
@@ -56,12 +53,12 @@ export const TransactionVoidOutput$inboundSchema: z.ZodType<
   });
 });
 
-export function transactionVoidOutputFromJSON(
+export function transactionVoidFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionVoidOutput, SDKValidationError> {
+): SafeParseResult<TransactionVoid, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionVoidOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionVoidOutput' from JSON`,
+    (x) => TransactionVoid$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionVoid' from JSON`,
   );
 }

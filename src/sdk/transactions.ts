@@ -66,7 +66,7 @@ export class Transactions extends ClientSDK {
     idempotencyKey?: string | null | undefined,
     xForwardedFor?: string | undefined,
     options?: RequestOptions,
-  ): Promise<components.TransactionOutput> {
+  ): Promise<components.Transaction> {
     return unwrapAsync(transactionsCreate(
       this,
       transactionCreate,
@@ -87,7 +87,7 @@ export class Transactions extends ClientSDK {
     transactionId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.TransactionOutput> {
+  ): Promise<components.Transaction> {
     return unwrapAsync(transactionsGet(
       this,
       transactionId,
@@ -107,7 +107,7 @@ export class Transactions extends ClientSDK {
     transactionId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.TransactionOutput> {
+  ): Promise<components.Transaction> {
     return unwrapAsync(transactionsUpdate(
       this,
       transactionUpdate,
@@ -190,7 +190,7 @@ export class Transactions extends ClientSDK {
     transactionId: string,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.TransactionOutput> {
+  ): Promise<components.Transaction> {
     return unwrapAsync(transactionsSync(
       this,
       transactionId,

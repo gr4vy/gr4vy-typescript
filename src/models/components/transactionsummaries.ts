@@ -8,15 +8,15 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  TransactionSummaryOutput,
-  TransactionSummaryOutput$inboundSchema,
-} from "./transactionsummaryoutput.js";
+  TransactionSummary,
+  TransactionSummary$inboundSchema,
+} from "./transactionsummary.js";
 
 export type TransactionSummaries = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<TransactionSummaryOutput>;
+  items: Array<TransactionSummary>;
   /**
    * The number of items for this page.
    */
@@ -37,7 +37,7 @@ export const TransactionSummaries$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(TransactionSummaryOutput$inboundSchema),
+  items: z.array(TransactionSummary$inboundSchema),
   limit: z.number().int().default(20),
   next_cursor: z.nullable(z.string()).optional(),
   previous_cursor: z.nullable(z.string()).optional(),

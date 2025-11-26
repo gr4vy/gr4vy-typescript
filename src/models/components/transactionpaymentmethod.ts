@@ -19,7 +19,7 @@ import {
   PaymentMethodDetailsCard$inboundSchema,
 } from "./paymentmethoddetailscard.js";
 
-export type TransactionPaymentMethodOutput = {
+export type TransactionPaymentMethod = {
   /**
    * Always `payment-method`.
    */
@@ -84,8 +84,8 @@ export type TransactionPaymentMethodOutput = {
 };
 
 /** @internal */
-export const TransactionPaymentMethodOutput$inboundSchema: z.ZodType<
-  TransactionPaymentMethodOutput,
+export const TransactionPaymentMethod$inboundSchema: z.ZodType<
+  TransactionPaymentMethod,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -118,12 +118,12 @@ export const TransactionPaymentMethodOutput$inboundSchema: z.ZodType<
   });
 });
 
-export function transactionPaymentMethodOutputFromJSON(
+export function transactionPaymentMethodFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionPaymentMethodOutput, SDKValidationError> {
+): SafeParseResult<TransactionPaymentMethod, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionPaymentMethodOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionPaymentMethodOutput' from JSON`,
+    (x) => TransactionPaymentMethod$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionPaymentMethod' from JSON`,
   );
 }

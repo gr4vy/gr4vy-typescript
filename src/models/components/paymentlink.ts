@@ -21,9 +21,9 @@ import {
   StatementDescriptor$inboundSchema,
 } from "./statementdescriptor.js";
 import {
-  TransactionBuyerOutput,
-  TransactionBuyerOutput$inboundSchema,
-} from "./transactionbuyeroutput.js";
+  TransactionBuyer,
+  TransactionBuyer$inboundSchema,
+} from "./transactionbuyer.js";
 import {
   TransactionIntent,
   TransactionIntent$inboundSchema,
@@ -131,7 +131,7 @@ export type PaymentLink = {
   /**
    * The buyer associated with the payment link.
    */
-  buyer?: TransactionBuyerOutput | null | undefined;
+  buyer?: TransactionBuyer | null | undefined;
   /**
    * The shipping details for the payment link.
    */
@@ -176,7 +176,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   status: PaymentLinkStatus$inboundSchema,
-  buyer: z.nullable(TransactionBuyerOutput$inboundSchema).optional(),
+  buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
   shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
   connection_options: z.nullable(z.record(z.record(z.any()))).optional(),
 }).transform((v) => {

@@ -5,10 +5,10 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
-  BillingDetailsInput,
-  BillingDetailsInput$Outbound,
-  BillingDetailsInput$outboundSchema,
-} from "./billingdetailsinput.js";
+  BillingDetails,
+  BillingDetails$Outbound,
+  BillingDetails$outboundSchema,
+} from "./billingdetails.js";
 
 /**
  * Request body for creating a new buyer
@@ -25,7 +25,7 @@ export type BuyerCreate = {
   /**
    * The billing name, address, email, and other fields for this buyer.
    */
-  billingDetails?: BillingDetailsInput | null | undefined;
+  billingDetails?: BillingDetails | null | undefined;
   /**
    * The buyer account number
    */
@@ -36,7 +36,7 @@ export type BuyerCreate = {
 export type BuyerCreate$Outbound = {
   display_name?: string | null | undefined;
   external_identifier?: string | null | undefined;
-  billing_details?: BillingDetailsInput$Outbound | null | undefined;
+  billing_details?: BillingDetails$Outbound | null | undefined;
   account_number?: string | null | undefined;
 };
 
@@ -48,7 +48,7 @@ export const BuyerCreate$outboundSchema: z.ZodType<
 > = z.object({
   displayName: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
-  billingDetails: z.nullable(BillingDetailsInput$outboundSchema).optional(),
+  billingDetails: z.nullable(BillingDetails$outboundSchema).optional(),
   accountNumber: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

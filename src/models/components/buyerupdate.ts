@@ -5,10 +5,10 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
-  BillingDetailsInput,
-  BillingDetailsInput$Outbound,
-  BillingDetailsInput$outboundSchema,
-} from "./billingdetailsinput.js";
+  BillingDetails,
+  BillingDetails$Outbound,
+  BillingDetails$outboundSchema,
+} from "./billingdetails.js";
 
 /**
  * Request body for updating an existing buyer
@@ -29,7 +29,7 @@ export type BuyerUpdate = {
   /**
    * The billing name, address, email, and other fields for this buyer.
    */
-  billingDetails?: BillingDetailsInput | null | undefined;
+  billingDetails?: BillingDetails | null | undefined;
 };
 
 /** @internal */
@@ -37,7 +37,7 @@ export type BuyerUpdate$Outbound = {
   display_name?: string | null | undefined;
   external_identifier?: string | null | undefined;
   account_number?: string | null | undefined;
-  billing_details?: BillingDetailsInput$Outbound | null | undefined;
+  billing_details?: BillingDetails$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -49,7 +49,7 @@ export const BuyerUpdate$outboundSchema: z.ZodType<
   displayName: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
   accountNumber: z.nullable(z.string()).optional(),
-  billingDetails: z.nullable(BillingDetailsInput$outboundSchema).optional(),
+  billingDetails: z.nullable(BillingDetails$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",

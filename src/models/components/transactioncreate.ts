@@ -65,10 +65,10 @@ import {
   GooglePayPaymentMethodCreate$outboundSchema,
 } from "./googlepaypaymentmethodcreate.js";
 import {
-  GuestBuyerInput,
-  GuestBuyerInput$Outbound,
-  GuestBuyerInput$outboundSchema,
-} from "./guestbuyerinput.js";
+  GuestBuyer,
+  GuestBuyer$Outbound,
+  GuestBuyer$outboundSchema,
+} from "./guestbuyer.js";
 import {
   IntegrationClient,
   IntegrationClient$outboundSchema,
@@ -185,7 +185,7 @@ export type TransactionCreate = {
   /**
    * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
    */
-  buyer?: GuestBuyerInput | null | undefined;
+  buyer?: GuestBuyer | null | undefined;
   /**
    * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
    */
@@ -456,7 +456,7 @@ export type TransactionCreate$Outbound = {
     | CheckoutSessionWithUrlPaymentMethodCreate$Outbound
     | null
     | undefined;
-  buyer?: GuestBuyerInput$Outbound | null | undefined;
+  buyer?: GuestBuyer$Outbound | null | undefined;
   buyer_id?: string | null | undefined;
   buyer_external_identifier?: string | null | undefined;
   gift_cards?:
@@ -527,7 +527,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
       CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
     ]),
   ).optional(),
-  buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
+  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
   buyerId: z.nullable(z.string()).optional(),
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   giftCards: z.nullable(

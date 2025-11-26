@@ -10,10 +10,10 @@ import {
   CartItem$outboundSchema,
 } from "./cartitem.js";
 import {
-  GuestBuyerInput,
-  GuestBuyerInput$Outbound,
-  GuestBuyerInput$outboundSchema,
-} from "./guestbuyerinput.js";
+  GuestBuyer,
+  GuestBuyer$Outbound,
+  GuestBuyer$outboundSchema,
+} from "./guestbuyer.js";
 import {
   StatementDescriptor,
   StatementDescriptor$Outbound,
@@ -37,7 +37,7 @@ export type PaymentLinkCreate = {
   /**
    * The guest buyer for the payment link.
    */
-  buyer?: GuestBuyerInput | null | undefined;
+  buyer?: GuestBuyer | null | undefined;
   /**
    * The expiration date and time for the payment link.
    */
@@ -119,7 +119,7 @@ export type PaymentLinkCreate = {
 
 /** @internal */
 export type PaymentLinkCreate$Outbound = {
-  buyer?: GuestBuyerInput$Outbound | null | undefined;
+  buyer?: GuestBuyer$Outbound | null | undefined;
   expires_at?: string | null | undefined;
   connection_options?: TransactionConnectionOptions$Outbound | null | undefined;
   external_identifier?: string | null | undefined;
@@ -148,7 +148,7 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentLinkCreate
 > = z.object({
-  buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
+  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
   expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
     .optional(),

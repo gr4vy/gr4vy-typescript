@@ -6,16 +6,13 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  PaymentOptionOutput,
-  PaymentOptionOutput$inboundSchema,
-} from "./paymentoptionoutput.js";
+import { PaymentOption, PaymentOption$inboundSchema } from "./paymentoption.js";
 
 export type PaymentOptions = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<PaymentOptionOutput>;
+  items: Array<PaymentOption>;
 };
 
 /** @internal */
@@ -24,7 +21,7 @@ export const PaymentOptions$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(PaymentOptionOutput$inboundSchema),
+  items: z.array(PaymentOption$inboundSchema),
 });
 
 export function paymentOptionsFromJSON(

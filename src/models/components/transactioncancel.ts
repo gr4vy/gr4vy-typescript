@@ -8,10 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CancelStatus, CancelStatus$inboundSchema } from "./cancelstatus.js";
-import {
-  TransactionOutput,
-  TransactionOutput$inboundSchema,
-} from "./transactionoutput.js";
+import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
 export type TransactionCancel = {
   /**
@@ -34,7 +31,7 @@ export type TransactionCancel = {
   /**
    * A full transaction resource.
    */
-  transaction: TransactionOutput;
+  transaction: Transaction;
 };
 
 /** @internal */
@@ -48,7 +45,7 @@ export const TransactionCancel$inboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   raw_response_code: z.nullable(z.string()),
   raw_response_description: z.nullable(z.string()),
-  transaction: TransactionOutput$inboundSchema,
+  transaction: Transaction$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",

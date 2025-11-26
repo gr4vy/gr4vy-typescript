@@ -33,7 +33,7 @@ import {
  */
 export type ResponseData = ThreeDSecureDataV1 | ThreeDSecureV2;
 
-export type TransactionThreeDSecureSummaryOutput = {
+export type TransactionThreeDSecureSummary = {
   /**
    * The version of 3DS used for this transaction.
    */
@@ -74,8 +74,8 @@ export function responseDataFromJSON(
 }
 
 /** @internal */
-export const TransactionThreeDSecureSummaryOutput$inboundSchema: z.ZodType<
-  TransactionThreeDSecureSummaryOutput,
+export const TransactionThreeDSecureSummary$inboundSchema: z.ZodType<
+  TransactionThreeDSecureSummary,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -93,13 +93,12 @@ export const TransactionThreeDSecureSummaryOutput$inboundSchema: z.ZodType<
   });
 });
 
-export function transactionThreeDSecureSummaryOutputFromJSON(
+export function transactionThreeDSecureSummaryFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionThreeDSecureSummaryOutput, SDKValidationError> {
+): SafeParseResult<TransactionThreeDSecureSummary, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      TransactionThreeDSecureSummaryOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionThreeDSecureSummaryOutput' from JSON`,
+    (x) => TransactionThreeDSecureSummary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionThreeDSecureSummary' from JSON`,
   );
 }

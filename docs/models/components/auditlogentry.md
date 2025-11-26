@@ -1,11 +1,11 @@
-# AuditLogEntryOutput
+# AuditLogEntry
 
 ## Example Usage
 
 ```typescript
-import { AuditLogEntryOutput } from "@gr4vy/sdk/models/components";
+import { AuditLogEntry } from "@gr4vy/sdk/models/components";
 
-let value: AuditLogEntryOutput = {
+let value: AuditLogEntry = {
   resource: {
     type: "user",
     id: "d0f98bc9-8915-413c-a1de-d853eb658c1b",

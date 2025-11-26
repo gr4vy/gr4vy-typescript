@@ -22,7 +22,7 @@ import {
  *
  * A summary of a payment method.
  */
-export type PaymentMethodSummaryOutput = {
+export type PaymentMethodSummary = {
   /**
    * Always `payment-method`.
    */
@@ -103,8 +103,8 @@ export type PaymentMethodSummaryOutput = {
 };
 
 /** @internal */
-export const PaymentMethodSummaryOutput$inboundSchema: z.ZodType<
-  PaymentMethodSummaryOutput,
+export const PaymentMethodSummary$inboundSchema: z.ZodType<
+  PaymentMethodSummary,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -149,12 +149,12 @@ export const PaymentMethodSummaryOutput$inboundSchema: z.ZodType<
   });
 });
 
-export function paymentMethodSummaryOutputFromJSON(
+export function paymentMethodSummaryFromJSON(
   jsonString: string,
-): SafeParseResult<PaymentMethodSummaryOutput, SDKValidationError> {
+): SafeParseResult<PaymentMethodSummary, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => PaymentMethodSummaryOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentMethodSummaryOutput' from JSON`,
+    (x) => PaymentMethodSummary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentMethodSummary' from JSON`,
   );
 }

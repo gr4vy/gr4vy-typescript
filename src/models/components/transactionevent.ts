@@ -9,6 +9,10 @@ import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  TransactionEventContext,
+  TransactionEventContext$inboundSchema,
+} from "./transactioneventcontext.js";
 
 /**
  * The specific event name.
@@ -94,7 +98,7 @@ export const Name = {
  */
 export type Name = OpenEnum<typeof Name>;
 
-export type TransactionEventOutput = {
+export type TransactionEvent = {
   /**
    * Always `transaction-event`.
    */
@@ -111,7 +115,7 @@ export type TransactionEventOutput = {
    * The date this event was created at.
    */
   createdAt: Date;
-  context: { [k: string]: any };
+  context: TransactionEventContext;
 };
 
 /** @internal */
@@ -119,8 +123,8 @@ export const Name$inboundSchema: z.ZodType<Name, z.ZodTypeDef, unknown> =
   openEnums.inboundSchema(Name);
 
 /** @internal */
-export const TransactionEventOutput$inboundSchema: z.ZodType<
-  TransactionEventOutput,
+export const TransactionEvent$inboundSchema: z.ZodType<
+  TransactionEvent,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -128,19 +132,19 @@ export const TransactionEventOutput$inboundSchema: z.ZodType<
   id: z.string(),
   name: Name$inboundSchema,
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  context: z.record(z.any()),
+  context: TransactionEventContext$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",
   });
 });
 
-export function transactionEventOutputFromJSON(
+export function transactionEventFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionEventOutput, SDKValidationError> {
+): SafeParseResult<TransactionEvent, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionEventOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionEventOutput' from JSON`,
+    (x) => TransactionEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionEvent' from JSON`,
   );
 }

@@ -10,13 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Airline, Airline$inboundSchema } from "./airline.js";
 import { CartItem, CartItem$inboundSchema } from "./cartitem.js";
 import {
-  CheckoutSessionPaymentMethodOutput,
-  CheckoutSessionPaymentMethodOutput$inboundSchema,
-} from "./checkoutsessionpaymentmethodoutput.js";
-import {
-  GuestBuyerOutput,
-  GuestBuyerOutput$inboundSchema,
-} from "./guestbuyeroutput.js";
+  CheckoutSessionPaymentMethod,
+  CheckoutSessionPaymentMethod$inboundSchema,
+} from "./checkoutsessionpaymentmethod.js";
+import { GuestBuyer, GuestBuyer$inboundSchema } from "./guestbuyer.js";
 
 export type CheckoutSession = {
   /**
@@ -30,7 +27,7 @@ export type CheckoutSession = {
   /**
    * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
    */
-  buyer?: GuestBuyerOutput | null | undefined;
+  buyer?: GuestBuyer | null | undefined;
   /**
    * The airline addendum data which describes the airline booking associated with this transaction.
    */
@@ -62,7 +59,7 @@ export type CheckoutSession = {
   /**
    * Information about the payment method stored on the checkout session.
    */
-  paymentMethod?: CheckoutSessionPaymentMethodOutput | null | undefined;
+  paymentMethod?: CheckoutSessionPaymentMethod | null | undefined;
 };
 
 /** @internal */
@@ -73,7 +70,7 @@ export const CheckoutSession$inboundSchema: z.ZodType<
 > = z.object({
   cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  buyer: z.nullable(GuestBuyerOutput$inboundSchema).optional(),
+  buyer: z.nullable(GuestBuyer$inboundSchema).optional(),
   airline: z.nullable(Airline$inboundSchema).optional(),
   amount: z.nullable(z.number().int()).optional(),
   currency: z.nullable(z.string()).optional(),
@@ -81,7 +78,7 @@ export const CheckoutSession$inboundSchema: z.ZodType<
   type: z.literal("checkout-session").default("checkout-session"),
   id: z.string(),
   expires_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  payment_method: z.nullable(CheckoutSessionPaymentMethodOutput$inboundSchema)
+  payment_method: z.nullable(CheckoutSessionPaymentMethod$inboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {
