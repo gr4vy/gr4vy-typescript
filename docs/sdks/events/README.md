@@ -30,7 +30,9 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.events.list("7099948d-7286-47e4-aad8-b68f7eb44591");
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -55,7 +57,9 @@ async function run() {
   const res = await transactionsEventsList(gr4vy, "7099948d-7286-47e4-aad8-b68f7eb44591");
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("transactionsEventsList failed:", res.error);
   }
@@ -78,7 +82,7 @@ run();
 
 ### Response
 
-**Promise\<[components.TransactionEvents](../../models/components/transactionevents.md)\>**
+**Promise\<[operations.ListTransactionEventsResponse](../../models/operations/listtransactioneventsresponse.md)\>**
 
 ### Errors
 

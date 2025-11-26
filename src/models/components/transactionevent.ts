@@ -9,10 +9,6 @@ import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  TransactionEventContext,
-  TransactionEventContext$inboundSchema,
-} from "./transactioneventcontext.js";
 
 /**
  * The specific event name.
@@ -115,7 +111,7 @@ export type TransactionEvent = {
    * The date this event was created at.
    */
   createdAt: Date;
-  context: TransactionEventContext;
+  context: { [k: string]: any };
 };
 
 /** @internal */
@@ -132,7 +128,7 @@ export const TransactionEvent$inboundSchema: z.ZodType<
   id: z.string(),
   name: Name$inboundSchema,
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  context: TransactionEventContext$inboundSchema,
+  context: z.record(z.any()),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",

@@ -4,6 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListTransactionEventsGlobals = {
   merchantAccountId?: string | undefined;
@@ -26,6 +30,10 @@ export type ListTransactionEventsRequest = {
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
+};
+
+export type ListTransactionEventsResponse = {
+  result: components.TransactionEvents;
 };
 
 /** @internal */
@@ -59,5 +67,28 @@ export function listTransactionEventsRequestToJSON(
     ListTransactionEventsRequest$outboundSchema.parse(
       listTransactionEventsRequest,
     ),
+  );
+}
+
+/** @internal */
+export const ListTransactionEventsResponse$inboundSchema: z.ZodType<
+  ListTransactionEventsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.TransactionEvents$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+export function listTransactionEventsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTransactionEventsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTransactionEventsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransactionEventsResponse' from JSON`,
   );
 }

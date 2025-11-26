@@ -4,8 +4,8 @@
 
 import { transactionsEventsList } from "../funcs/transactionsEventsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Events extends ClientSDK {
   /**
@@ -20,8 +20,10 @@ export class Events extends ClientSDK {
     limit?: number | undefined,
     merchantAccountId?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<components.TransactionEvents> {
-    return unwrapAsync(transactionsEventsList(
+  ): Promise<
+    PageIterator<operations.ListTransactionEventsResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(transactionsEventsList(
       this,
       transactionId,
       cursor,
