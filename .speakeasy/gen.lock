@@ -3,10 +3,10 @@ id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
   docChecksum: f26f7fdfc82f2ddcf2344b79b07ee21e
   docVersion: 1.0.0
-  speakeasyVersion: 1.661.4
+  speakeasyVersion: 1.661.3
   generationVersion: 2.763.3
-  releaseVersion: 1.7.0
-  configChecksum: 628d977f012dc53be24ecab561671fba
+  releaseVersion: 1.7.1
+  configChecksum: 7e03f3447500319da363d2ab543183c4
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
@@ -4477,6 +4477,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes Detected:
-  * `gr4vy.transactions.events.list()`:  `response.items.[].context` **Changed** **Breaking** :warning:
