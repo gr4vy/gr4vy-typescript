@@ -15,10 +15,10 @@ import {
   CartItem$outboundSchema,
 } from "./cartitem.js";
 import {
-  GuestBuyerInput,
-  GuestBuyerInput$Outbound,
-  GuestBuyerInput$outboundSchema,
-} from "./guestbuyerinput.js";
+  GuestBuyer,
+  GuestBuyer$Outbound,
+  GuestBuyer$outboundSchema,
+} from "./guestbuyer.js";
 
 export type CheckoutSessionCreate = {
   /**
@@ -32,7 +32,7 @@ export type CheckoutSessionCreate = {
   /**
    * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
    */
-  buyer?: GuestBuyerInput | null | undefined;
+  buyer?: GuestBuyer | null | undefined;
   /**
    * The airline addendum data which describes the airline booking associated with this transaction.
    */
@@ -59,7 +59,7 @@ export type CheckoutSessionCreate = {
 export type CheckoutSessionCreate$Outbound = {
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   metadata?: { [k: string]: string } | null | undefined;
-  buyer?: GuestBuyerInput$Outbound | null | undefined;
+  buyer?: GuestBuyer$Outbound | null | undefined;
   airline?: Airline$Outbound | null | undefined;
   amount?: number | null | undefined;
   currency?: string | null | undefined;
@@ -75,7 +75,7 @@ export const CheckoutSessionCreate$outboundSchema: z.ZodType<
 > = z.object({
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
+  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
   amount: z.nullable(z.number().int()).optional(),
   currency: z.nullable(z.string()).optional(),

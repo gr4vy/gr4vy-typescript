@@ -5,10 +5,10 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
-  GuestBuyerInput,
-  GuestBuyerInput$Outbound,
-  GuestBuyerInput$outboundSchema,
-} from "./guestbuyerinput.js";
+  GuestBuyer,
+  GuestBuyer$Outbound,
+  GuestBuyer$outboundSchema,
+} from "./guestbuyer.js";
 import {
   PaymentMethodCard,
   PaymentMethodCard$Outbound,
@@ -80,7 +80,7 @@ export type PayoutCreate = {
   /**
    * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
    */
-  buyer?: GuestBuyerInput | null | undefined;
+  buyer?: GuestBuyer | null | undefined;
   /**
    * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
    */
@@ -127,7 +127,7 @@ export type PayoutCreate$Outbound = {
   category?: string | null | undefined;
   external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
-  buyer?: GuestBuyerInput$Outbound | null | undefined;
+  buyer?: GuestBuyer$Outbound | null | undefined;
   buyer_external_identifier?: string | null | undefined;
   merchant?: PayoutMerchant$Outbound | null | undefined;
   connection_options?: PayoutConnectionOptions$Outbound | null | undefined;
@@ -149,7 +149,7 @@ export const PayoutCreate$outboundSchema: z.ZodType<
   category: z.nullable(PayoutCategory$outboundSchema).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
-  buyer: z.nullable(GuestBuyerInput$outboundSchema).optional(),
+  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   merchant: z.nullable(PayoutMerchant$outboundSchema).optional(),
   connectionOptions: z.nullable(PayoutConnectionOptions$outboundSchema)

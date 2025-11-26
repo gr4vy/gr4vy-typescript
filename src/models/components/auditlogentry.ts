@@ -20,7 +20,7 @@ import {
   AuditLogEntryUser$inboundSchema,
 } from "./auditlogentryuser.js";
 
-export type AuditLogEntryOutput = {
+export type AuditLogEntry = {
   /**
    * Always `audit-log`.
    */
@@ -43,8 +43,8 @@ export type AuditLogEntryOutput = {
 };
 
 /** @internal */
-export const AuditLogEntryOutput$inboundSchema: z.ZodType<
-  AuditLogEntryOutput,
+export const AuditLogEntry$inboundSchema: z.ZodType<
+  AuditLogEntry,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -61,12 +61,12 @@ export const AuditLogEntryOutput$inboundSchema: z.ZodType<
   });
 });
 
-export function auditLogEntryOutputFromJSON(
+export function auditLogEntryFromJSON(
   jsonString: string,
-): SafeParseResult<AuditLogEntryOutput, SDKValidationError> {
+): SafeParseResult<AuditLogEntry, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => AuditLogEntryOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AuditLogEntryOutput' from JSON`,
+    (x) => AuditLogEntry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AuditLogEntry' from JSON`,
   );
 }

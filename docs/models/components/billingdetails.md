@@ -1,11 +1,11 @@
-# BillingDetailsInput
+# BillingDetails
 
 ## Example Usage
 
 ```typescript
-import { BillingDetailsInput } from "@gr4vy/sdk/models/components";
+import { BillingDetails } from "@gr4vy/sdk/models/components";
 
-let value: BillingDetailsInput = {};
+let value: BillingDetails = {};
 ```
 
 ## Fields

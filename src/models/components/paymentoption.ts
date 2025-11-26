@@ -26,7 +26,7 @@ export type Context =
   | WalletPaymentOptionContext
   | PaymentOptionContext;
 
-export type PaymentOptionOutput = {
+export type PaymentOption = {
   type?: "payment-option" | undefined;
   method: string;
   iconUrl?: string | null | undefined;
@@ -61,8 +61,8 @@ export function contextFromJSON(
 }
 
 /** @internal */
-export const PaymentOptionOutput$inboundSchema: z.ZodType<
-  PaymentOptionOutput,
+export const PaymentOption$inboundSchema: z.ZodType<
+  PaymentOption,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -88,12 +88,12 @@ export const PaymentOptionOutput$inboundSchema: z.ZodType<
   });
 });
 
-export function paymentOptionOutputFromJSON(
+export function paymentOptionFromJSON(
   jsonString: string,
-): SafeParseResult<PaymentOptionOutput, SDKValidationError> {
+): SafeParseResult<PaymentOption, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => PaymentOptionOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentOptionOutput' from JSON`,
+    (x) => PaymentOption$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentOption' from JSON`,
   );
 }

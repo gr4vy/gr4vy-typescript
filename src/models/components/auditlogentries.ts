@@ -7,16 +7,13 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  AuditLogEntryOutput,
-  AuditLogEntryOutput$inboundSchema,
-} from "./auditlogentryoutput.js";
+import { AuditLogEntry, AuditLogEntry$inboundSchema } from "./auditlogentry.js";
 
 export type AuditLogEntries = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<AuditLogEntryOutput>;
+  items: Array<AuditLogEntry>;
   /**
    * The number of items for this page.
    */
@@ -37,7 +34,7 @@ export const AuditLogEntries$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(AuditLogEntryOutput$inboundSchema),
+  items: z.array(AuditLogEntry$inboundSchema),
   limit: z.number().int().default(20),
   next_cursor: z.nullable(z.string()).optional(),
   previous_cursor: z.nullable(z.string()).optional(),

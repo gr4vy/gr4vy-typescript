@@ -8,12 +8,9 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CaptureStatus, CaptureStatus$inboundSchema } from "./capturestatus.js";
-import {
-  TransactionOutput,
-  TransactionOutput$inboundSchema,
-} from "./transactionoutput.js";
+import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
-export type TransactionCaptureOutput = {
+export type TransactionCapture = {
   /**
    * Always `transaction-capture`.
    */
@@ -34,12 +31,12 @@ export type TransactionCaptureOutput = {
   /**
    * A full transaction resource.
    */
-  transaction: TransactionOutput;
+  transaction: Transaction;
 };
 
 /** @internal */
-export const TransactionCaptureOutput$inboundSchema: z.ZodType<
-  TransactionCaptureOutput,
+export const TransactionCapture$inboundSchema: z.ZodType<
+  TransactionCapture,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -48,7 +45,7 @@ export const TransactionCaptureOutput$inboundSchema: z.ZodType<
   code: z.nullable(z.string()),
   raw_response_code: z.nullable(z.string()),
   raw_response_description: z.nullable(z.string()),
-  transaction: TransactionOutput$inboundSchema,
+  transaction: Transaction$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",
@@ -56,12 +53,12 @@ export const TransactionCaptureOutput$inboundSchema: z.ZodType<
   });
 });
 
-export function transactionCaptureOutputFromJSON(
+export function transactionCaptureFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionCaptureOutput, SDKValidationError> {
+): SafeParseResult<TransactionCapture, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionCaptureOutput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionCaptureOutput' from JSON`,
+    (x) => TransactionCapture$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionCapture' from JSON`,
   );
 }
