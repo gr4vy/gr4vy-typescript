@@ -35,6 +35,7 @@ async function run() {
     amount: 1299,
     country: "DE",
     currency: "EUR",
+    store: true,
   });
 
   console.log(result);
@@ -63,6 +64,7 @@ async function run() {
     amount: 1299,
     country: "DE",
     currency: "EUR",
+    store: true,
   });
   if (res.ok) {
     const { value: result } = res;

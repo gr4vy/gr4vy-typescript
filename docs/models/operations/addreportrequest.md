@@ -12,6 +12,7 @@ let value: AddReportRequest = {
     scheduleEnabled: true,
     scheduleTimezone: "UTC",
     spec: {
+      model: "transactions",
       params: {
         "fields": [
           "id",

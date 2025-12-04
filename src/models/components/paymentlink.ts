@@ -140,6 +140,14 @@ export type PaymentLink = {
    * The connection options for the payment link.
    */
   connectionOptions?: { [k: string]: { [k: string]: any } } | null | undefined;
+  /**
+   * Whether the payment method was stored.
+   */
+  store?: boolean | undefined;
+  /**
+   * The ID of the buyer to associate with the stored payment method.
+   */
+  buyerId?: string | null | undefined;
 };
 
 /** @internal */
@@ -179,6 +187,8 @@ export const PaymentLink$inboundSchema: z.ZodType<
   buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
   shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
   connection_options: z.nullable(z.record(z.record(z.any()))).optional(),
+  store: z.boolean().default(false),
+  buyer_id: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "expires_at": "expiresAt",
@@ -198,6 +208,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
     "shipping_details": "shippingDetails",
     "connection_options": "connectionOptions",
+    "buyer_id": "buyerId",
   });
 });
 

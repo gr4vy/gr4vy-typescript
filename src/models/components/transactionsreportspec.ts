@@ -8,7 +8,7 @@ export type TransactionsReportSpec = {
   /**
    * The report model type.
    */
-  model?: "transactions" | undefined;
+  model: "transactions";
   /**
    * The parameters for the transactions report model.
    */
@@ -27,7 +27,7 @@ export const TransactionsReportSpec$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TransactionsReportSpec
 > = z.object({
-  model: z.literal("transactions").default("transactions" as const),
+  model: z.literal("transactions"),
   params: z.record(z.any()),
 });
 

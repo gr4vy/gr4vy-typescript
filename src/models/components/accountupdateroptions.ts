@@ -30,7 +30,7 @@ export type AccountUpdaterOptions = {
 
 /** @internal */
 export type AccountUpdaterOptions$Outbound = {
-  response_code: "updated" | null;
+  response_code?: "updated" | null | undefined;
   account_number?: string | null | undefined;
   expiration_month?: string | null | undefined;
   expiration_year?: string | null | undefined;
@@ -43,7 +43,7 @@ export const AccountUpdaterOptions$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountUpdaterOptions
 > = z.object({
-  responseCode: z.nullable(z.literal("updated")),
+  responseCode: z.nullable(z.literal("updated")).optional(),
   accountNumber: z.nullable(z.string()).optional(),
   expirationMonth: z.nullable(z.string()).optional(),
   expirationYear: z.nullable(z.string()).optional(),

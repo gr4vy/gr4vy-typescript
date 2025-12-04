@@ -36,7 +36,7 @@ export type ClickToPayFPANPaymentMethodCreate = {
   /**
    * Aways `click-to-pay`.
    */
-  method?: "click-to-pay" | undefined;
+  method: "click-to-pay";
   /**
    * The URL to redirect a user back to after the complete 3DS in browser.
    */

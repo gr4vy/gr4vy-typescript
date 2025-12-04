@@ -16,7 +16,7 @@ export type ClickToPayPaymentMethodCreate = {
   /**
    * Aways `click-to-pay`.
    */
-  method?: "click-to-pay" | undefined;
+  method: "click-to-pay";
   /**
    * The device token.
    */

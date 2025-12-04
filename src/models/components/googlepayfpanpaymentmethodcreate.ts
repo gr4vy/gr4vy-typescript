@@ -36,7 +36,7 @@ export type GooglePayFPANPaymentMethodCreate = {
   /**
    * Aways `googlepay_pan_only`.
    */
-  method?: "googlepay_pan_only" | undefined;
+  method: "googlepay_pan_only";
   /**
    * The URL to redirect a user back to after the complete 3DS in browser.
    */

@@ -6,6 +6,7 @@
 import { AccountsReceivablesReportSpec } from "@gr4vy/sdk/models/components";
 
 let value: AccountsReceivablesReportSpec = {
+  model: "accounts_receivables",
   params: {
     "filters": {
       "timestamp": {
@@ -21,5 +22,5 @@ let value: AccountsReceivablesReportSpec = {
 
 | Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `model`                                                                                            | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The report model type.                                                                             | accounts_receivables                                                                               |
+| `model`                                                                                            | *"accounts_receivables"*                                                                           | :heavy_check_mark:                                                                                 | The report model type.                                                                             | accounts_receivables                                                                               |
 | `params`                                                                                           | Record<string, *any*>                                                                              | :heavy_check_mark:                                                                                 | The parameters for the accounts receivables report model.                                          | {<br/>"filters": {<br/>"timestamp": {<br/>"end": "2024-05-31T23:59:59Z",<br/>"start": "2024-05-01T00:00:00Z"<br/>}<br/>}<br/>} |
