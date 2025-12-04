@@ -37,6 +37,7 @@ const value: components.TokenPaymentMethodCreate = {
 
 ```typescript
 const value: components.ApplePayPaymentMethodCreate = {
+  method: "applepay",
   token: {
     "paymentData": {
       "data":
@@ -67,6 +68,7 @@ const value: components.ApplePayPaymentMethodCreate = {
 
 ```typescript
 const value: components.ClickToPayPaymentMethodCreate = {
+  method: "click-to-pay",
   token: "4111123456789012",
   cryptogram: "A3F9C2D47E1B56A9",
   expirationDate: "12/30",
@@ -79,6 +81,7 @@ const value: components.ClickToPayPaymentMethodCreate = {
 const value: components.ClickToPayFPANPaymentMethodCreate = {
   expirationDate: "12/30",
   number: "4111111111111111",
+  method: "click-to-pay",
 };
 ```
 
@@ -86,6 +89,7 @@ const value: components.ClickToPayFPANPaymentMethodCreate = {
 
 ```typescript
 const value: components.GooglePayPaymentMethodCreate = {
+  method: "googlepay",
   token: "{\"signature\":\"MEUCIEg4a4A+pu+AUjgVjBpfz9msLqQOkT5kz7htz...",
 };
 ```
@@ -96,6 +100,7 @@ const value: components.GooglePayPaymentMethodCreate = {
 const value: components.GooglePayFPANPaymentMethodCreate = {
   expirationDate: "12/30",
   number: "4111111111111111",
+  method: "googlepay_pan_only",
 };
 ```
 
@@ -103,6 +108,7 @@ const value: components.GooglePayFPANPaymentMethodCreate = {
 
 ```typescript
 const value: components.NetworkTokenPaymentMethodCreate = {
+  method: "network-token",
   token: "4111123456789012",
   expirationDate: "12/30",
 };

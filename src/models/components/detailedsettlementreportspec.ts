@@ -8,7 +8,7 @@ export type DetailedSettlementReportSpec = {
   /**
    * The report model type.
    */
-  model?: "detailed_settlement" | undefined;
+  model: "detailed_settlement";
   /**
    * The parameters for the detailed settlement report model.
    */
@@ -27,9 +27,7 @@ export const DetailedSettlementReportSpec$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DetailedSettlementReportSpec
 > = z.object({
-  model: z.literal("detailed_settlement").default(
-    "detailed_settlement" as const,
-  ),
+  model: z.literal("detailed_settlement"),
   params: z.record(z.any()),
 });
 

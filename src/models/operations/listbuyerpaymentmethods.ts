@@ -62,7 +62,7 @@ export const OrderBy$outboundSchema: z.ZodType<string, z.ZodTypeDef, OrderBy> =
 export type ListBuyerPaymentMethodsRequest$Outbound = {
   buyer_id?: string | null | undefined;
   buyer_external_identifier?: string | null | undefined;
-  sort_by: "last_used_at" | null;
+  sort_by?: "last_used_at" | null | undefined;
   order_by: string;
   country?: string | null | undefined;
   currency?: string | null | undefined;
@@ -77,7 +77,7 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.nullable(z.string()).optional(),
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  sortBy: z.nullable(z.literal("last_used_at")),
+  sortBy: z.nullable(z.literal("last_used_at")).optional(),
   orderBy: OrderBy$outboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),

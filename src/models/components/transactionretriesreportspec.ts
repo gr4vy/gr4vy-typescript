@@ -8,7 +8,7 @@ export type TransactionRetriesReportSpec = {
   /**
    * The report model type.
    */
-  model?: "transaction_retries" | undefined;
+  model: "transaction_retries";
   /**
    * The parameters for the transaction retries report model.
    */
@@ -27,9 +27,7 @@ export const TransactionRetriesReportSpec$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TransactionRetriesReportSpec
 > = z.object({
-  model: z.literal("transaction_retries").default(
-    "transaction_retries" as const,
-  ),
+  model: z.literal("transaction_retries"),
   params: z.record(z.any()),
 });
 

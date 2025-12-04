@@ -10,6 +10,7 @@ let value: AddPaymentLinkRequest = {
     amount: 1299,
     country: "DE",
     currency: "EUR",
+    store: true,
   },
 };
 ```

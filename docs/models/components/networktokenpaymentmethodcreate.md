@@ -6,6 +6,7 @@
 import { NetworkTokenPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: NetworkTokenPaymentMethodCreate = {
+  method: "network-token",
   token: "4111123456789012",
   expirationDate: "12/30",
 };
@@ -15,7 +16,7 @@ let value: NetworkTokenPaymentMethodCreate = {
 
 | Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `method`                                                              | *string*                                                              | :heavy_check_mark:                                                    | Always `network-token`.                                               | network-token                                                         |
+| `method`                                                              | *"network-token"*                                                     | :heavy_check_mark:                                                    | Always `network-token`.                                               | network-token                                                         |
 | `token`                                                               | *string*                                                              | :heavy_check_mark:                                                    | The scheme token.                                                     | 4111123456789012                                                      |
 | `expirationDate`                                                      | *string*                                                              | :heavy_check_mark:                                                    | The expiration date of the token.                                     | 12/30                                                                 |
 | `cryptogram`                                                          | *string*                                                              | :heavy_minus_sign:                                                    | The payment cryptogram for the network token.                         | A3F9C2D47E1B56A9                                                      |

@@ -9,6 +9,7 @@ The report specification.
 
 ```typescript
 const value: components.AccountsReceivablesReportSpec = {
+  model: "accounts_receivables",
   params: {
     "filters": {
       "timestamp": {
@@ -24,6 +25,7 @@ const value: components.AccountsReceivablesReportSpec = {
 
 ```typescript
 const value: components.DetailedSettlementReportSpec = {
+  model: "detailed_settlement",
   params: {
     "filters": {
       "ingested_at": {
@@ -39,6 +41,7 @@ const value: components.DetailedSettlementReportSpec = {
 
 ```typescript
 const value: components.TransactionRetriesReportSpec = {
+  model: "transaction_retries",
   params: {
     "filters": {
       "created_at": {
@@ -54,6 +57,7 @@ const value: components.TransactionRetriesReportSpec = {
 
 ```typescript
 const value: components.TransactionsReportSpec = {
+  model: "transactions",
   params: {
     "fields": [
       "id",

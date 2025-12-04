@@ -8,7 +8,7 @@ export type AccountsReceivablesReportSpec = {
   /**
    * The report model type.
    */
-  model?: "accounts_receivables" | undefined;
+  model: "accounts_receivables";
   /**
    * The parameters for the accounts receivables report model.
    */
@@ -27,9 +27,7 @@ export const AccountsReceivablesReportSpec$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountsReceivablesReportSpec
 > = z.object({
-  model: z.literal("accounts_receivables").default(
-    "accounts_receivables" as const,
-  ),
+  model: z.literal("accounts_receivables"),
   params: z.record(z.any()),
 });
 

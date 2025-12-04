@@ -10,6 +10,7 @@ integration.
 import { ClickToPayPaymentMethodCreate } from "@gr4vy/sdk/models/components";
 
 let value: ClickToPayPaymentMethodCreate = {
+  method: "click-to-pay",
   token: "4111123456789012",
   cryptogram: "A3F9C2D47E1B56A9",
   expirationDate: "12/30",
@@ -20,7 +21,7 @@ let value: ClickToPayPaymentMethodCreate = {
 
 | Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `method`                                                              | *string*                                                              | :heavy_check_mark:                                                    | Aways `click-to-pay`.                                                 | click-to-pay                                                          |
+| `method`                                                              | *"click-to-pay"*                                                      | :heavy_check_mark:                                                    | Aways `click-to-pay`.                                                 | click-to-pay                                                          |
 | `token`                                                               | *string*                                                              | :heavy_check_mark:                                                    | The device token.                                                     | 4111123456789012                                                      |
 | `cryptogram`                                                          | *string*                                                              | :heavy_check_mark:                                                    | The payment cryptogram for the device token.                          | A3F9C2D47E1B56A9                                                      |
 | `expirationDate`                                                      | *string*                                                              | :heavy_check_mark:                                                    | The expiration date of the device token.                              | 12/30                                                                 |

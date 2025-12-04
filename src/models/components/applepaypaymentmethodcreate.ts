@@ -40,7 +40,7 @@ export type ApplePayPaymentMethodCreate = {
   /**
    * Always `applepay`
    */
-  method?: "applepay" | undefined;
+  method: "applepay";
   /**
    * The opaque token as received from the Apple Pay JS library. This format may change between JS library versions.
    */

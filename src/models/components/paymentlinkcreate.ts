@@ -115,6 +115,14 @@ export type PaymentLinkCreate = {
    * The way payment method information made it to this transaction.
    */
   paymentSource?: TransactionPaymentSource | undefined;
+  /**
+   * Whether to store the payment method for future use.
+   */
+  store?: boolean | undefined;
+  /**
+   * The ID of the buyer to associate the payment method with. Note: When `buyer_id` is provided, the payment link should be treated as a secret as it will allow the user to manage payment methods for the associated buyer.
+   */
+  buyerId?: string | null | undefined;
 };
 
 /** @internal */
@@ -140,6 +148,8 @@ export type PaymentLinkCreate$Outbound = {
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   metadata?: { [k: string]: any } | null | undefined;
   payment_source?: string | undefined;
+  store: boolean;
+  buyer_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -171,6 +181,8 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
   paymentSource: TransactionPaymentSource$outboundSchema.optional(),
+  store: z.boolean().default(false),
+  buyerId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     expiresAt: "expires_at",
@@ -187,6 +199,7 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
     returnUrl: "return_url",
     cartItems: "cart_items",
     paymentSource: "payment_source",
+    buyerId: "buyer_id",
   });
 });
 

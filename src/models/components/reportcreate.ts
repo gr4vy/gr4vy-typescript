@@ -33,10 +33,10 @@ import {
  * The report specification.
  */
 export type Spec =
-  | (AccountsReceivablesReportSpec & { model: "accounts_receivables" })
-  | (DetailedSettlementReportSpec & { model: "detailed_settlement" })
-  | (TransactionRetriesReportSpec & { model: "transaction_retries" })
-  | (TransactionsReportSpec & { model: "transactions" });
+  | AccountsReceivablesReportSpec
+  | DetailedSettlementReportSpec
+  | TransactionRetriesReportSpec
+  | TransactionsReportSpec;
 
 export type ReportCreate = {
   /**
@@ -60,34 +60,26 @@ export type ReportCreate = {
    * The report specification.
    */
   spec:
-    | (AccountsReceivablesReportSpec & { model: "accounts_receivables" })
-    | (DetailedSettlementReportSpec & { model: "detailed_settlement" })
-    | (TransactionRetriesReportSpec & { model: "transaction_retries" })
-    | (TransactionsReportSpec & { model: "transactions" });
+    | AccountsReceivablesReportSpec
+    | DetailedSettlementReportSpec
+    | TransactionRetriesReportSpec
+    | TransactionsReportSpec;
 };
 
 /** @internal */
 export type Spec$Outbound =
-  | (AccountsReceivablesReportSpec$Outbound & { model: "accounts_receivables" })
-  | (DetailedSettlementReportSpec$Outbound & { model: "detailed_settlement" })
-  | (TransactionRetriesReportSpec$Outbound & { model: "transaction_retries" })
-  | (TransactionsReportSpec$Outbound & { model: "transactions" });
+  | AccountsReceivablesReportSpec$Outbound
+  | DetailedSettlementReportSpec$Outbound
+  | TransactionRetriesReportSpec$Outbound
+  | TransactionsReportSpec$Outbound;
 
 /** @internal */
 export const Spec$outboundSchema: z.ZodType<Spec$Outbound, z.ZodTypeDef, Spec> =
   z.union([
-    AccountsReceivablesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("accounts_receivables") }),
-    ),
-    DetailedSettlementReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("detailed_settlement") }),
-    ),
-    TransactionRetriesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transaction_retries") }),
-    ),
-    TransactionsReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transactions") }),
-    ),
+    AccountsReceivablesReportSpec$outboundSchema,
+    DetailedSettlementReportSpec$outboundSchema,
+    TransactionRetriesReportSpec$outboundSchema,
+    TransactionsReportSpec$outboundSchema,
   ]);
 
 export function specToJSON(spec: Spec): string {
@@ -102,12 +94,10 @@ export type ReportCreate$Outbound = {
   schedule_enabled: boolean;
   schedule_timezone: string;
   spec:
-    | (AccountsReceivablesReportSpec$Outbound & {
-      model: "accounts_receivables";
-    })
-    | (DetailedSettlementReportSpec$Outbound & { model: "detailed_settlement" })
-    | (TransactionRetriesReportSpec$Outbound & { model: "transaction_retries" })
-    | (TransactionsReportSpec$Outbound & { model: "transactions" });
+    | AccountsReceivablesReportSpec$Outbound
+    | DetailedSettlementReportSpec$Outbound
+    | TransactionRetriesReportSpec$Outbound
+    | TransactionsReportSpec$Outbound;
 };
 
 /** @internal */
@@ -122,18 +112,10 @@ export const ReportCreate$outboundSchema: z.ZodType<
   scheduleEnabled: z.boolean(),
   scheduleTimezone: z.string().default("Etc/UTC"),
   spec: z.union([
-    AccountsReceivablesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("accounts_receivables") }),
-    ),
-    DetailedSettlementReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("detailed_settlement") }),
-    ),
-    TransactionRetriesReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transaction_retries") }),
-    ),
-    TransactionsReportSpec$outboundSchema.and(
-      z.object({ model: z.literal("transactions") }),
-    ),
+    AccountsReceivablesReportSpec$outboundSchema,
+    DetailedSettlementReportSpec$outboundSchema,
+    TransactionRetriesReportSpec$outboundSchema,
+    TransactionsReportSpec$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

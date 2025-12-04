@@ -18,7 +18,7 @@ export type NetworkTokenPaymentMethodCreate = {
   /**
    * Always `network-token`.
    */
-  method?: "network-token" | undefined;
+  method: "network-token";
   /**
    * The scheme token.
    */
