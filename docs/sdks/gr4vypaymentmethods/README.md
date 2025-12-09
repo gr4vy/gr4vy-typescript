@@ -1,5 +1,4 @@
-# Gr4vyPaymentMethods
-(*buyers.paymentMethods*)
+# Buyers.PaymentMethods
 
 ## Overview
 
