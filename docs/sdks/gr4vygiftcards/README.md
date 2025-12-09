@@ -1,5 +1,4 @@
-# Gr4vyGiftCards
-(*buyers.giftCards*)
+# Buyers.GiftCards
 
 ## Overview
 
