@@ -106,6 +106,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Waave: "waave",
   Webpay: "webpay",
   Wechat: "wechat",
+  Wero: "wero",
   Yape: "yape",
   Zippay: "zippay",
 } as const;

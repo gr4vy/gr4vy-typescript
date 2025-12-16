@@ -8,7 +8,7 @@ import { PaymentMethodSummaries } from "@gr4vy/sdk/models/components";
 let value: PaymentMethodSummaries = {
   items: [
     {
-      method: "thaiqr",
+      method: "touchngo",
       id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
       merchantAccountId: "default",
       citUsageCount: 50,
