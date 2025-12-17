@@ -20,7 +20,7 @@ export type PayoutMerchantSummary = {
   /**
    * Always `merchant`.
    */
-  type?: "merchant" | undefined;
+  type: "merchant";
   /**
    * The name of the merchant.
    */

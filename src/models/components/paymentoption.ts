@@ -27,7 +27,7 @@ export type Context =
   | PaymentOptionContext;
 
 export type PaymentOption = {
-  type?: "payment-option" | undefined;
+  type: "payment-option";
   method: string;
   iconUrl?: string | null | undefined;
   mode: Mode;

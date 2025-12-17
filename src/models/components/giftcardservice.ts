@@ -16,7 +16,7 @@ export type GiftCardService = {
   /**
    * Always `gift-card-service`.
    */
-  type?: "gift-card-service" | undefined;
+  type: "gift-card-service";
   /**
    * The ID for the gift card service.
    */

@@ -12,7 +12,7 @@ export type CardSchemeDefinition = {
   /**
    * Always `card-scheme-definition`.
    */
-  type?: "card-scheme-definition" | undefined;
+  type: "card-scheme-definition";
   /**
    * The ID for the card scheme.
    */

@@ -16,7 +16,7 @@ export type Buyer = {
   /**
    * Always `buyer`.
    */
-  type?: "buyer" | undefined;
+  type: "buyer";
   /**
    * The ID for the buyer.
    */

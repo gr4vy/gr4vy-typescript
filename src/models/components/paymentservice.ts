@@ -22,8 +22,8 @@ export type PaymentService = {
   /**
    * Always `payment-service`
    */
-  type?: "payment-service" | undefined;
-  id?: string | undefined;
+  type: "payment-service";
+  id: string;
   /**
    * The ID of the merchant account this job belongs to.
    */
@@ -35,7 +35,7 @@ export type PaymentService = {
   /**
    * Defines if this payment service is currently active.
    */
-  active?: boolean | undefined;
+  active: boolean;
   method: Method;
   /**
    * The display name for the payment service.
@@ -96,7 +96,7 @@ export type PaymentService = {
   /**
    * Defines if this payment service has been deleted
    */
-  isDeleted?: boolean | undefined;
+  isDeleted: boolean;
   /**
    * The date and time when this payment service was first created in our system.
    */

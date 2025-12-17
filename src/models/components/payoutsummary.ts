@@ -40,7 +40,7 @@ export type PayoutSummary = {
   /**
    * Always `payout`.
    */
-  type?: "payout" | undefined;
+  type: "payout";
   /**
    * The ID for the payout.
    */

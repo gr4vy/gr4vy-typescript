@@ -16,7 +16,7 @@ export type PaymentServiceToken = {
   /**
    * Always `payment-service-token`.
    */
-  type?: "payment-service-token" | undefined;
+  type: "payment-service-token";
   /**
    * The ID for the payment service token.
    */

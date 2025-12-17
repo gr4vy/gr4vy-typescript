@@ -21,7 +21,7 @@ export type ReportExecution = {
   /**
    * Always `report-execution`.
    */
-  type?: "report-execution" | undefined;
+  type: "report-execution";
   /**
    * The unique ID for the report execution.
    */

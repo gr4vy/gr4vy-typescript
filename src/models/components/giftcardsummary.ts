@@ -16,7 +16,7 @@ export type GiftCardSummary = {
   /**
    * Always `gift-card`.
    */
-  type?: "gift-card" | undefined;
+  type: "gift-card";
   /**
    * The ID for the gift card.
    */

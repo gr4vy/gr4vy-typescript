@@ -13,7 +13,7 @@ export type TransactionPaymentService = {
   /**
    * Always `payment-service`.
    */
-  type?: "payment-service" | undefined;
+  type: "payment-service";
   /**
    * The ID for the payment-service.
    */

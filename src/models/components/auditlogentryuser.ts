@@ -13,7 +13,7 @@ export type AuditLogEntryUser = {
   /**
    * Always `user`.
    */
-  type?: "user" | undefined;
+  type: "user";
   /**
    * The ID of the user.
    */

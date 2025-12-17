@@ -47,7 +47,7 @@ export type CheckoutSession = {
   /**
    * Always `checkout-session`
    */
-  type?: "checkout-session" | undefined;
+  type: "checkout-session";
   /**
    * The ID for the checkout session.
    */

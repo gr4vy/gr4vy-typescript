@@ -98,7 +98,7 @@ export type TransactionEvent = {
   /**
    * Always `transaction-event`.
    */
-  type?: "transaction-event" | undefined;
+  type: "transaction-event";
   /**
    * The ID for the event.
    */

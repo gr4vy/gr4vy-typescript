@@ -41,7 +41,7 @@ export type PaymentLink = {
   /**
    * Always `payment-link`.
    */
-  type?: "payment-link" | undefined;
+  type: "payment-link";
   /**
    * The URL for the payment link.
    */
@@ -143,7 +143,7 @@ export type PaymentLink = {
   /**
    * Whether the payment method was stored.
    */
-  store?: boolean | undefined;
+  store: boolean;
   /**
    * The ID of the buyer to associate with the stored payment method.
    */

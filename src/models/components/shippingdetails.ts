@@ -41,7 +41,7 @@ export type ShippingDetails = {
   /**
    * Always `shipping-details`.
    */
-  type?: "shipping-details" | undefined;
+  type: "shipping-details";
 };
 
 /** @internal */
