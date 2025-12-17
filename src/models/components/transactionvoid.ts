@@ -14,7 +14,7 @@ export type TransactionVoid = {
   /**
    * Always `transaction-void`.
    */
-  type?: "transaction-void" | undefined;
+  type: "transaction-void";
   status: VoidStatus;
   /**
    * The standardized error code set by Gr4vy.

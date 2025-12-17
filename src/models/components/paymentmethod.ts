@@ -31,7 +31,7 @@ export type PaymentMethod = {
   /**
    * Always `payment-method`.
    */
-  type?: "payment-method" | undefined;
+  type: "payment-method";
   /**
    * The optional URL that the buyer needs to be redirected to to further authorize their payment.
    */

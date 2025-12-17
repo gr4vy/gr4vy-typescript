@@ -13,7 +13,7 @@ export type MerchantAccount = {
   /**
    * Always `merchant-account`.
    */
-  type?: "merchant-account" | undefined;
+  type: "merchant-account";
   /**
    * The ID for the merchant account.
    */
@@ -89,7 +89,7 @@ export type MerchantAccount = {
   /**
    * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
    */
-  asyncNetworkTokensEnabled?: boolean | undefined;
+  asyncNetworkTokensEnabled: boolean;
   /**
    * The date this merchant account was created at.
    */

@@ -24,7 +24,7 @@ export type GiftCardRedemption = {
   /**
    * Always `gift-card-redemption`.
    */
-  type?: "gift-card-redemption" | undefined;
+  type: "gift-card-redemption";
   /**
    * The ID for the gift card redemption.
    */

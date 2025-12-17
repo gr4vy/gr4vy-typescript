@@ -11,7 +11,7 @@ export type Cryptogram = {
   /**
    * Always `network-token-cryptogram`.
    */
-  type?: "network-token-cryptogram" | undefined;
+  type: "network-token-cryptogram";
   /**
    * The cryptogram of the network token.
    */

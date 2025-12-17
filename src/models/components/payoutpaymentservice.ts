@@ -12,7 +12,7 @@ export type PayoutPaymentService = {
   /**
    * Always `payment-service`.
    */
-  type?: "payment-service" | undefined;
+  type: "payment-service";
   /**
    * The ID for the payout service.
    */
@@ -20,7 +20,7 @@ export type PayoutPaymentService = {
   /**
    * Always `card`.
    */
-  method?: "card" | undefined;
+  method: "card";
   /**
    * The ID of the connection used for this payout.
    */

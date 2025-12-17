@@ -14,7 +14,7 @@ export type TransactionCapture = {
   /**
    * Always `transaction-capture`.
    */
-  type?: "transaction-capture" | undefined;
+  type: "transaction-capture";
   status: CaptureStatus;
   /**
    * The standardized error code set by Gr4vy.

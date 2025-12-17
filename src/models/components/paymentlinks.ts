@@ -17,7 +17,7 @@ export type PaymentLinks = {
   /**
    * The number of items for this page.
    */
-  limit?: number | undefined;
+  limit: number;
   /**
    * The cursor pointing at the next page of items.
    */

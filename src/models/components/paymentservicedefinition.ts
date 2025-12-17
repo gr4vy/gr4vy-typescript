@@ -34,7 +34,7 @@ export type PaymentServiceDefinition = {
   /**
    * Always `payment-service-definition`.
    */
-  type?: "payment-service-definition" | undefined;
+  type: "payment-service-definition";
   /**
    * A human friendly name for this service.
    */

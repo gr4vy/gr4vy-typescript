@@ -14,7 +14,7 @@ export type TransactionCancel = {
   /**
    * Always `transaction-cancel`.
    */
-  type?: "transaction-cancel" | undefined;
+  type: "transaction-cancel";
   status: CancelStatus;
   /**
    * The standardized error code set by Gr4vy.

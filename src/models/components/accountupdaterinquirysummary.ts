@@ -12,7 +12,7 @@ export type AccountUpdaterInquirySummary = {
   /**
    * Always `account-updater-inquiry`
    */
-  type?: "account-updater-inquiry" | undefined;
+  type: "account-updater-inquiry";
   /**
    * The ID for the account updater inquiry.
    */

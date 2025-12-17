@@ -83,7 +83,7 @@ export type Transaction = {
   /**
    * Always `transaction`.
    */
-  type?: "transaction" | undefined;
+  type: "transaction";
   /**
    * The ID for the transaction.
    */
@@ -161,7 +161,7 @@ export type Transaction = {
   /**
    * Whether a manual anti fraud review is pending with an anti fraud service.
    */
-  pendingReview?: boolean | undefined;
+  pendingReview: boolean;
   /**
    * The buyer used for this transaction.
    */

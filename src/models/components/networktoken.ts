@@ -16,7 +16,7 @@ export type NetworkToken = {
   /**
    * Always `network-token`.
    */
-  type?: "network-token" | undefined;
+  type: "network-token";
   /**
    * The ID for the network token.
    */

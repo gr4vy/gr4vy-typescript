@@ -16,7 +16,7 @@ export type DigitalWallet = {
   /**
    * Always `digital-wallet`.
    */
-  type?: "digital-wallet" | undefined;
+  type: "digital-wallet";
   /**
    * The ID for the digital wallet.
    */
@@ -49,15 +49,15 @@ export type DigitalWallet = {
   /**
    * The number of active custom certificates registered for this digital wallet (Apple Pay only).
    */
-  activeCertificateCount?: number | undefined;
+  activeCertificateCount: number;
   /**
    * The number of pending custom certificates registered for this digital wallet (Apple Pay only).
    */
-  pendingCertificateCount?: number | undefined;
+  pendingCertificateCount: number;
   /**
    * The number of expired custom certificates registered for this digital wallet (Apple Pay only).
    */
-  expiredCertificateCount?: number | undefined;
+  expiredCertificateCount: number;
   /**
    * Custom attributes for some digital wallets. Currently only used by Click to Pay.
    */

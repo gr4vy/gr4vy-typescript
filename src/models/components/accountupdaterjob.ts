@@ -16,7 +16,7 @@ export type AccountUpdaterJob = {
   /**
    * Always `account-updater-job`
    */
-  type?: "account-updater-job" | undefined;
+  type: "account-updater-job";
   /**
    * The ID for the account updater job.
    */

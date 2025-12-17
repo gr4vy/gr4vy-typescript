@@ -16,7 +16,7 @@ export type CheckoutSessionPaymentMethod = {
   /**
    * Always `payment-method`
    */
-  type?: "payment-method" | undefined;
+  type: "payment-method";
   /**
    * The ID of the payment method.
    */
@@ -32,7 +32,7 @@ export type CheckoutSessionPaymentMethod = {
   /**
    * Always `card`
    */
-  method?: "card" | undefined;
+  method: "card";
   /**
    * The scheme of the card.
    */

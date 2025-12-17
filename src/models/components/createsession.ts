@@ -19,7 +19,7 @@ export type CreateSession = {
   /**
    * Always `payment-service-session`.
    */
-  type?: "payment-service-session" | undefined;
+  type: "payment-service-session";
   status: CreateSessionStatus;
   /**
    * A generic error code that may be returned when the session could not be generated.

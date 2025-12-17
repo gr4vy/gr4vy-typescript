@@ -25,7 +25,7 @@ export type Report = {
   /**
    * Always `report`.
    */
-  type?: "report" | undefined;
+  type: "report";
   /**
    * The unique ID for the report.
    */

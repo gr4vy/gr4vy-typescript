@@ -24,7 +24,7 @@ export type AuditLogEntry = {
   /**
    * Always `audit-log`.
    */
-  type?: "audit-log" | undefined;
+  type: "audit-log";
   /**
    * The ID for the audit log entry.
    */

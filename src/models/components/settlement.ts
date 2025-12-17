@@ -79,7 +79,7 @@ export type Settlement = {
   /**
    * Always `settlement`.
    */
-  type?: "settlement" | undefined;
+  type: "settlement";
 };
 
 /** @internal */

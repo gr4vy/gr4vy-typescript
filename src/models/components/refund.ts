@@ -18,7 +18,7 @@ export type Refund = {
   /**
    * Always `refund`.
    */
-  type?: "refund" | undefined;
+  type: "refund";
   /**
    * The unique identifier for the refund.
    */
