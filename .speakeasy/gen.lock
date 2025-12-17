@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: a3730930b67d20d5331d65a39c21880e
+  docChecksum: 8807221957c5fb82754257bcfa1afd09
   docVersion: 1.0.0
-  speakeasyVersion: 1.678.0
-  generationVersion: 2.787.2
-  releaseVersion: 1.9.3
-  configChecksum: 50096583ed6d2faefa0f5af50a43a84c
+  speakeasyVersion: 1.678.1
+  generationVersion: 2.787.5
+  releaseVersion: 1.9.4
+  configChecksum: 151913f812bbc6787a040a8e0e4e03cf
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: b0092e46-2d02-4abb-927b-9c5b547d691f
-  pristine_commit_hash: b472a8398a571e5905be0f6151616becc1f06b0f
-  pristine_tree_hash: a54d2fb3738a511d481012a13b1be54c632439b9
+  generation_id: b245ca4e-6d9a-4e96-8781-6397268b0d94
+  pristine_commit_hash: e652fa9f4b37295930d38761de9ee607369436df
+  pristine_tree_hash: 7894b854537385e287383b16ca324cb235ca4939
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1167,8 +1167,8 @@ trackedFiles:
     pristine_git_object: af910b264da2303f33c2820ec95f584890ae1465
   docs/models/components/trustlyoptions.md:
     id: 35b0d9e7ac72
-    last_write_checksum: sha1:5c26e7140fb9628afef05568fc277f6ed20a1104
-    pristine_git_object: 07f90350cae891bb7e633a9b84cd5cfd91d64a68
+    last_write_checksum: sha1:61060dd4d1281fbc6696b21e5a49acec804b4389
+    pristine_git_object: e40a7fd703f3513e0937e0e2fa014750c46a72a0
   docs/models/components/two.md:
     id: c50292f1feee
     last_write_checksum: sha1:71378ce87107b13eacd55064dfde6a0cb0ca6a6e
@@ -2203,12 +2203,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:b66c764d5f81b0a8a9840ca72c27211e438e20fc
-    pristine_git_object: 4b864262d93ddfefff6198f7a84e6359490ccd26
+    last_write_checksum: sha1:9b61555e244b89e9c23f2576eb84e930b8162806
+    pristine_git_object: 4b134f0a4828dfe08ce33e0c4db7b176ed95f448
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:71a279bc08209a05ccc155f285494a1f12c07846
-    pristine_git_object: d728d564b0b8a43cd442b04049cdcd831bad76d9
+    last_write_checksum: sha1:f10ad5c6a405178e761f9d46409edd491f1b2f64
+    pristine_git_object: ce1f79e64ee115c72b1bbd35a911c38a9e618851
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2603,8 +2603,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:93637cf29e208fef80645b65b5e6fca7c7428c6f
-    pristine_git_object: 2149139e73a3e3fce8abb24a3318d8e800cd081a
+    last_write_checksum: sha1:8febffab95cbc53e57d8bf0010ed98742d58786e
+    pristine_git_object: 9b099458776dc0214aacbbdb7dc3bcf9ef084525
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3683,8 +3683,8 @@ trackedFiles:
     pristine_git_object: 89e1f3c76a70178d8d103b3d96c7f326d627683e
   src/models/components/trustlyoptions.ts:
     id: 97911f96855a
-    last_write_checksum: sha1:19476bcfe9e5f3ef85cd9c7aaa6cb91ade92fa30
-    pristine_git_object: 28973acd3cdd55b2acc8d144e077a233c020ab1b
+    last_write_checksum: sha1:148c00ab68807636f6c0367730f9bce3c3ce96b0
+    pristine_git_object: 358367c30c846e3ce34521b95b007473a84a69f4
   src/models/components/userstatus.ts:
     id: f9babedd0feb
     last_write_checksum: sha1:f53b7b13e912e9dfdb672efff63262a501cffad1
@@ -7710,6 +7710,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.trustly-trustly.urlScheme` **Removed** **Breaking** :warning:\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.trustly-trustly.urlScheme` **Removed** **Breaking** :warning:\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.trustly-trustly.urlScheme` **Removed** **Breaking** :warning:\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

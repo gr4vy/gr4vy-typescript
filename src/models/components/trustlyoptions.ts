@@ -9,16 +9,11 @@ export type TrustlyOptions = {
    * Indicates to Gr4vy whether or not the stored Trustly agreement needs refreshing.
    */
   refreshSplitToken?: boolean | null | undefined;
-  /**
-   * URL scheme for an app.
-   */
-  urlScheme?: string | null | undefined;
 };
 
 /** @internal */
 export type TrustlyOptions$Outbound = {
   refreshSplitToken?: boolean | null | undefined;
-  urlScheme?: string | null | undefined;
 };
 
 /** @internal */
@@ -28,7 +23,6 @@ export const TrustlyOptions$outboundSchema: z.ZodType<
   TrustlyOptions
 > = z.object({
   refreshSplitToken: z.nullable(z.boolean()).optional(),
-  urlScheme: z.nullable(z.string()).optional(),
 });
 
 export function trustlyOptionsToJSON(trustlyOptions: TrustlyOptions): string {
