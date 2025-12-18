@@ -35,6 +35,11 @@ import {
   BraintreeOptions$outboundSchema,
 } from "./braintreeoptions.js";
 import {
+  ChaseOptions,
+  ChaseOptions$Outbound,
+  ChaseOptions$outboundSchema,
+} from "./chaseoptions.js";
+import {
   CybersourceAntiFraudOptions,
   CybersourceAntiFraudOptions$Outbound,
   CybersourceAntiFraudOptions$outboundSchema,
@@ -195,6 +200,10 @@ export type TransactionConnectionOptions = {
    */
   braintreeCard?: BraintreeOptions | null | undefined;
   /**
+   * Custom options to be passed to the `chaseorbital-card` connector.
+   */
+  chaseorbitalCard?: ChaseOptions | null | undefined;
+  /**
    * Custom options to be passed to the `cybersource-anti-fraud` connector.
    */
   cybersourceAntiFraud?: CybersourceAntiFraudOptions | null | undefined;
@@ -326,6 +335,7 @@ export type TransactionConnectionOptions$Outbound = {
   "adyen-vipps"?: AdyenOptions$Outbound | null | undefined;
   "affirm-affirm"?: AffirmOptions$Outbound | null | undefined;
   "braintree-card"?: BraintreeOptions$Outbound | null | undefined;
+  "chaseorbital-card"?: ChaseOptions$Outbound | null | undefined;
   "cybersource-anti-fraud"?:
     | CybersourceAntiFraudOptions$Outbound
     | null
@@ -378,6 +388,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   adyenVipps: z.nullable(AdyenOptions$outboundSchema).optional(),
   affirmAffirm: z.nullable(AffirmOptions$outboundSchema).optional(),
   braintreeCard: z.nullable(BraintreeOptions$outboundSchema).optional(),
+  chaseorbitalCard: z.nullable(ChaseOptions$outboundSchema).optional(),
   cybersourceAntiFraud: z.nullable(CybersourceAntiFraudOptions$outboundSchema)
     .optional(),
   cybersourceCard: z.nullable(CybersourceOptions$outboundSchema).optional(),
@@ -424,6 +435,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     adyenVipps: "adyen-vipps",
     affirmAffirm: "affirm-affirm",
     braintreeCard: "braintree-card",
+    chaseorbitalCard: "chaseorbital-card",
     cybersourceAntiFraud: "cybersource-anti-fraud",
     cybersourceCard: "cybersource-card",
     cybersourceIdeal: "cybersource-ideal",
