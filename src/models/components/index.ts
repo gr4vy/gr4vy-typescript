@@ -46,6 +46,7 @@ export * from "./cardschemedefinitions.js";
 export * from "./cardtype.js";
 export * from "./cardwithurlpaymentmethodcreate.js";
 export * from "./cartitem.js";
+export * from "./chaseoptions.js";
 export * from "./checkoutpayoutoptions.js";
 export * from "./checkoutsession.js";
 export * from "./checkoutsessioncreate.js";
