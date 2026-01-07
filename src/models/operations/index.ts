@@ -74,6 +74,7 @@ export * from "./listpaymentservices.js";
 export * from "./listpayouts.js";
 export * from "./listreportexecutions.js";
 export * from "./listreports.js";
+export * from "./listtransactionactions.js";
 export * from "./listtransactionevents.js";
 export * from "./listtransactionrefunds.js";
 export * from "./listtransactions.js";

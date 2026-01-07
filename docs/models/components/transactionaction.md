@@ -1,0 +1,36 @@
+# TransactionAction
+
+## Example Usage
+
+```typescript
+import { TransactionAction } from "@gr4vy/sdk/models/components";
+
+let value: TransactionAction = {
+  id: "decline-early",
+  flow: "non-card-transaction",
+  ruleId: "f133a3b7-e67e-4d83-bcd3-3e438fedf348",
+  createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
+  outcome: {
+    "result": [
+      {
+        "instrument": "pan",
+        "payment_service_id": "ce26a7d7-fec0-4d47-8efa-044a32b09bc6",
+        "transformations": [],
+      },
+    ],
+    "type": "card-routing",
+    "version": 2,
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                | Type                                                                                                                                                                 | Required                                                                                                                                                             | Description                                                                                                                                                          | Example                                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                                                                               | *"action"*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                   | Always `action`.                                                                                                                                                     | action                                                                                                                                                               |
+| `id`                                                                                                                                                                 | [components.FlowAction](../../models/components/flowaction.md)                                                                                                       | :heavy_check_mark:                                                                                                                                                   | N/A                                                                                                                                                                  |                                                                                                                                                                      |
+| `flow`                                                                                                                                                               | [components.Flow](../../models/components/flow.md)                                                                                                                   | :heavy_check_mark:                                                                                                                                                   | N/A                                                                                                                                                                  |                                                                                                                                                                      |
+| `ruleId`                                                                                                                                                             | *string*                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                   | The ID of the rule that triggered this action.                                                                                                                       | f133a3b7-e67e-4d83-bcd3-3e438fedf348                                                                                                                                 |
+| `createdAt`                                                                                                                                                          | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                                        | :heavy_check_mark:                                                                                                                                                   | The date this action was created at.                                                                                                                                 | 2013-07-16T19:23:00.000+00:00                                                                                                                                        |
+| `outcome`                                                                                                                                                            | Record<string, *any*>                                                                                                                                                | :heavy_check_mark:                                                                                                                                                   | The outcome of the action.                                                                                                                                           | {<br/>"result": [<br/>{<br/>"instrument": "pan",<br/>"payment_service_id": "ce26a7d7-fec0-4d47-8efa-044a32b09bc6",<br/>"transformations": []<br/>}<br/>],<br/>"type": "card-routing",<br/>"version": 2<br/>} |
