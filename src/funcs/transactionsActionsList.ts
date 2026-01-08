@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get Flow actions for transaction
+ * List transaction Flow rules
  *
  * @remarks
- * Retrieve the list of Flow actions that have been triggered for a transaction.
+ * Retrieve the list of Flow rule actions that have been triggered for a transaction.
  */
 export function transactionsActionsList(
   client: Gr4vyCore,

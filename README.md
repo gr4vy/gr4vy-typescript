@@ -408,7 +408,7 @@ try {
 
 #### [Transactions.Actions](docs/sdks/actions/README.md)
 
-* [list](docs/sdks/actions/README.md#list) - Get Flow actions for transaction
+* [list](docs/sdks/actions/README.md#list) - List transaction Flow rules
 
 #### [Transactions.Events](docs/sdks/events/README.md)
 
@@ -1005,7 +1005,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`reportsGet`](docs/sdks/reports/README.md#get) - Get a report
 - [`reportsList`](docs/sdks/reports/README.md#list) - List configured reports
 - [`reportsPut`](docs/sdks/reports/README.md#put) - Update a report
-- [`transactionsActionsList`](docs/sdks/actions/README.md#list) - Get Flow actions for transaction
+- [`transactionsActionsList`](docs/sdks/actions/README.md#list) - List transaction Flow rules
 - [`transactionsCancel`](docs/sdks/transactions/README.md#cancel) - Cancel transaction
 - [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
 - [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create transaction
