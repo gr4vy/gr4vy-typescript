@@ -225,6 +225,7 @@ export * from "./stripeconnectoptions.js";
 export * from "./stripeoptions.js";
 export * from "./taxid.js";
 export * from "./taxidkind.js";
+export * from "./threedsecure.js";
 export * from "./threedsecuredatav1.js";
 export * from "./threedsecuredatav2.js";
 export * from "./threedsecureerror.js";

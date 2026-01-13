@@ -99,6 +99,11 @@ import {
   StatementDescriptor$outboundSchema,
 } from "./statementdescriptor.js";
 import {
+  ThreeDSecure,
+  ThreeDSecure$Outbound,
+  ThreeDSecure$outboundSchema,
+} from "./threedsecure.js";
+import {
   ThreeDSecureDataV1,
   ThreeDSecureDataV1$Outbound,
   ThreeDSecureDataV1$outboundSchema,
@@ -219,6 +224,10 @@ export type TransactionCreate = {
    * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
    */
   threeDSecureData?: ThreeDSecureDataV1 | ThreeDSecureDataV2 | null | undefined;
+  /**
+   * Optional 3-D Secure values to use during the authentication flow.
+   */
+  threeDSecure?: ThreeDSecure | null | undefined;
   /**
    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
    */
@@ -474,6 +483,7 @@ export type TransactionCreate$Outbound = {
     | ThreeDSecureDataV2$Outbound
     | null
     | undefined;
+  three_d_secure?: ThreeDSecure$Outbound | null | undefined;
   metadata?: { [k: string]: string } | null | undefined;
   is_subsequent_payment: boolean;
   merchant_initiated: boolean;
@@ -547,6 +557,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
       ThreeDSecureDataV2$outboundSchema,
     ]),
   ).optional(),
+  threeDSecure: z.nullable(ThreeDSecure$outboundSchema).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
   isSubsequentPayment: z.boolean().default(false),
   merchantInitiated: z.boolean().default(false),
@@ -584,6 +595,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     giftCards: "gift_cards",
     externalIdentifier: "external_identifier",
     threeDSecureData: "three_d_secure_data",
+    threeDSecure: "three_d_secure",
     isSubsequentPayment: "is_subsequent_payment",
     merchantInitiated: "merchant_initiated",
     paymentSource: "payment_source",
