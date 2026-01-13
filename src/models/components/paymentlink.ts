@@ -148,6 +148,10 @@ export type PaymentLink = {
    * The ID of the buyer to associate with the stored payment method.
    */
   buyerId?: string | null | undefined;
+  /**
+   * The number of installments a buyer is required to make.
+   */
+  installmentCount?: number | null | undefined;
 };
 
 /** @internal */
@@ -189,6 +193,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
   connection_options: z.nullable(z.record(z.record(z.any()))).optional(),
   store: z.boolean().default(false),
   buyer_id: z.nullable(z.string()).optional(),
+  installment_count: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "expires_at": "expiresAt",
@@ -209,6 +214,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
     "shipping_details": "shippingDetails",
     "connection_options": "connectionOptions",
     "buyer_id": "buyerId",
+    "installment_count": "installmentCount",
   });
 });
 

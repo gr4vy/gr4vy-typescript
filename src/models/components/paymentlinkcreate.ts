@@ -123,6 +123,10 @@ export type PaymentLinkCreate = {
    * The ID of the buyer to associate the payment method with. Note: When `buyer_id` is provided, the payment link should be treated as a secret as it will allow the user to manage payment methods for the associated buyer.
    */
   buyerId?: string | null | undefined;
+  /**
+   * The number of installments a buyer is required to make.
+   */
+  installmentCount?: number | null | undefined;
 };
 
 /** @internal */
@@ -150,6 +154,7 @@ export type PaymentLinkCreate$Outbound = {
   payment_source?: string | undefined;
   store: boolean;
   buyer_id?: string | null | undefined;
+  installment_count?: number | null | undefined;
 };
 
 /** @internal */
@@ -183,6 +188,7 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
   paymentSource: TransactionPaymentSource$outboundSchema.optional(),
   store: z.boolean().default(false),
   buyerId: z.nullable(z.string()).optional(),
+  installmentCount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     expiresAt: "expires_at",
@@ -200,6 +206,7 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
     cartItems: "cart_items",
     paymentSource: "payment_source",
     buyerId: "buyer_id",
+    installmentCount: "installment_count",
   });
 });
 
