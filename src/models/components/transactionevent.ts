@@ -72,6 +72,8 @@ export const Name = {
     "payment-connector-report-chargeback-posted",
   PaymentConnectorReportChargebackReversalPosted:
     "payment-connector-report-chargeback-reversal-posted",
+  PaymentConnectorTransactionWebhookProcessed:
+    "payment-connector-transaction-webhook-processed",
   DigitalWalletApplePayTokenDecrypted:
     "digital-wallet-apple-pay-token-decrypted",
   DigitalWalletGooglePayTokenDecrypted:

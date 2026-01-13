@@ -32,19 +32,8 @@ export type VoidTransactionRequest = {
  * Successful Response
  */
 export type VoidTransactionResponseVoidTransaction =
-  | (components.Transaction & { status: "processing" })
-  | (components.Transaction & { status: "authorization_succeeded" })
-  | (components.Transaction & { status: "authorization_declined" })
-  | (components.Transaction & { status: "authorization_failed" })
-  | (components.Transaction & { status: "authorization_voided" })
-  | (components.Transaction & { status: "authorization_void_pending" })
-  | (components.Transaction & { status: "capture_succeeded" })
-  | (components.Transaction & { status: "capture_pending" })
-  | (components.Transaction & { status: "buyer_approval_pending" })
-  | (components.TransactionVoid & { status: "succeeded" })
-  | (components.TransactionVoid & { status: "pending" })
-  | (components.TransactionVoid & { status: "declined" })
-  | (components.TransactionVoid & { status: "failed" });
+  | components.Transaction
+  | components.TransactionVoid;
 
 /** @internal */
 export type VoidTransactionRequest$Outbound = {
@@ -82,45 +71,8 @@ export const VoidTransactionResponseVoidTransaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("processing") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("authorization_succeeded") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("authorization_declined") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("authorization_failed") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("authorization_voided") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("authorization_void_pending") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("capture_succeeded") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("capture_pending") }),
-  ),
-  components.Transaction$inboundSchema.and(
-    z.object({ status: z.literal("buyer_approval_pending") }),
-  ),
-  components.TransactionVoid$inboundSchema.and(
-    z.object({ status: z.literal("succeeded") }),
-  ),
-  components.TransactionVoid$inboundSchema.and(
-    z.object({ status: z.literal("pending") }),
-  ),
-  components.TransactionVoid$inboundSchema.and(
-    z.object({ status: z.literal("declined") }),
-  ),
-  components.TransactionVoid$inboundSchema.and(
-    z.object({ status: z.literal("failed") }),
-  ),
+  components.Transaction$inboundSchema,
+  components.TransactionVoid$inboundSchema,
 ]);
 
 export function voidTransactionResponseVoidTransactionFromJSON(
