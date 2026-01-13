@@ -54,6 +54,10 @@ export type TransactionThreeDSecureSummary = {
    * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
    */
   errorData?: ThreeDSecureError | null | undefined;
+  /**
+   * The amount used for 3DS authentication.
+   */
+  amount?: number | null | undefined;
 };
 
 /** @internal */
@@ -86,6 +90,7 @@ export const TransactionThreeDSecureSummary$inboundSchema: z.ZodType<
     z.union([ThreeDSecureDataV1$inboundSchema, ThreeDSecureV2$inboundSchema]),
   ).optional(),
   error_data: z.nullable(ThreeDSecureError$inboundSchema).optional(),
+  amount: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "response_data": "responseData",
