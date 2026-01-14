@@ -343,6 +343,10 @@ export type Transaction = {
    * Total shipping amount.
    */
   shippingAmount?: number | null | undefined;
+  /**
+   * This is the ISO8583 response code code received from the payment service.
+   */
+  isoResponseCode?: string | null | undefined;
 };
 
 /** @internal */
@@ -434,6 +438,7 @@ export const Transaction$inboundSchema: z.ZodType<
   supplier_order_number: z.nullable(z.string()).optional(),
   duty_amount: z.nullable(z.number().int()).optional(),
   shipping_amount: z.nullable(z.number().int()).optional(),
+  iso_response_code: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "reconciliation_id": "reconciliationId",
@@ -490,6 +495,7 @@ export const Transaction$inboundSchema: z.ZodType<
     "supplier_order_number": "supplierOrderNumber",
     "duty_amount": "dutyAmount",
     "shipping_amount": "shippingAmount",
+    "iso_response_code": "isoResponseCode",
   });
 });
 
