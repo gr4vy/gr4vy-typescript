@@ -395,6 +395,13 @@ try {
 * [url](docs/sdks/executions/README.md#url) - Create URL for executed report
 * [get](docs/sdks/executions/README.md#get) - Get executed report
 
+### [ThreeDsScenarios](docs/sdks/threedsscenarios/README.md)
+
+* [create](docs/sdks/threedsscenarios/README.md#create) - Create a 3DS scenario
+* [list](docs/sdks/threedsscenarios/README.md#list) - List 3DS scenario
+* [update](docs/sdks/threedsscenarios/README.md#update) - Update a 3DS scenario
+* [delete](docs/sdks/threedsscenarios/README.md#delete) - Delete a 3DS scenario
+
 ### [Transactions](docs/sdks/transactions/README.md)
 
 * [list](docs/sdks/transactions/README.md#list) - List transactions
@@ -1005,6 +1012,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`reportsGet`](docs/sdks/reports/README.md#get) - Get a report
 - [`reportsList`](docs/sdks/reports/README.md#list) - List configured reports
 - [`reportsPut`](docs/sdks/reports/README.md#put) - Update a report
+- [`threeDsScenariosCreate`](docs/sdks/threedsscenarios/README.md#create) - Create a 3DS scenario
+- [`threeDsScenariosDelete`](docs/sdks/threedsscenarios/README.md#delete) - Delete a 3DS scenario
+- [`threeDsScenariosList`](docs/sdks/threedsscenarios/README.md#list) - List 3DS scenario
+- [`threeDsScenariosUpdate`](docs/sdks/threedsscenarios/README.md#update) - Update a 3DS scenario
 - [`transactionsActionsList`](docs/sdks/actions/README.md#list) - List transaction Flow rules
 - [`transactionsCancel`](docs/sdks/transactions/README.md#cancel) - Cancel transaction
 - [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
