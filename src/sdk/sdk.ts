@@ -20,6 +20,7 @@ import { Payouts } from "./payouts.js";
 import { Refunds } from "./refunds.js";
 import { ReportExecutions } from "./reportexecutions.js";
 import { Reports } from "./reports.js";
+import { ThreeDsScenarios } from "./threedsscenarios.js";
 import { Transactions } from "./transactions.js";
 
 export class Gr4vy extends ClientSDK {
@@ -105,6 +106,11 @@ export class Gr4vy extends ClientSDK {
   private _merchantAccounts?: MerchantAccounts;
   get merchantAccounts(): MerchantAccounts {
     return (this._merchantAccounts ??= new MerchantAccounts(this._options));
+  }
+
+  private _threeDsScenarios?: ThreeDsScenarios;
+  get threeDsScenarios(): ThreeDsScenarios {
+    return (this._threeDsScenarios ??= new ThreeDsScenarios(this._options));
   }
 
   private _payouts?: Payouts;
