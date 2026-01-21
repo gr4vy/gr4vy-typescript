@@ -70,6 +70,7 @@ export const Method = {
   Oney3x: "oney_3x",
   Oney4x: "oney_4x",
   Oney6x: "oney_6x",
+  Onlinebankingcz: "onlinebankingcz",
   Ovo: "ovo",
   Oxxo: "oxxo",
   P24: "p24",

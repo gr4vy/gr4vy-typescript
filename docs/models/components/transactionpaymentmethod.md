@@ -6,7 +6,7 @@
 import { TransactionPaymentMethod } from "@gr4vy/sdk/models/components";
 
 let value: TransactionPaymentMethod = {
-  method: "giropay",
+  method: "givingblock",
 };
 ```
 

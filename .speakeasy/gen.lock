@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: a0402f9289839f519b1dfbde05a05469
+  docChecksum: 63c279dda4afad3307bdb6c027c289ca
   docVersion: 1.0.0
-  speakeasyVersion: 1.690.0
+  speakeasyVersion: 1.691.0
   generationVersion: 2.797.1
-  releaseVersion: 1.9.13
-  configChecksum: a03a7e6e9ca6e1926811c789cd38c5a9
+  releaseVersion: 1.9.14
+  configChecksum: 319f0eb2117e56fe15caeba7cdc25bab
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 77a2c792-92e5-4daa-8869-0b5df02debe0
-  pristine_commit_hash: aede3f1c1ea60371bce82de686ac98e643f01571
-  pristine_tree_hash: 85f893fe7a130abf11225b9732c287e321ccd95d
+  generation_id: fb396ea9-4116-4a6f-a138-c224e8ae6980
+  pristine_commit_hash: 0dd35c21c53c7af9d3996a75af6c90b7aa08cbef
+  pristine_tree_hash: 7d21193bc035324ea485fa6dd5d1926dc0ac70b8
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -611,8 +611,8 @@ trackedFiles:
     pristine_git_object: d2933e2b7c67660719da23854d1c7e5d6e59b4d8
   docs/models/components/method.md:
     id: ed7b996a91be
-    last_write_checksum: sha1:ef999f7e368694f3807084762e82e3353d7f792a
-    pristine_git_object: 1485893221cfd532d9b94a07ddaf023119f83f6f
+    last_write_checksum: sha1:1f5c43a28ac4b3e7acb9de670a0a25006503fd8c
+    pristine_git_object: 895a1618a1bbb61e4a5cec3b466a520a43dc4e0c
   docs/models/components/mockcardmerchantadvicecodeoptions.md:
     id: 0d96c7e86e98
     last_write_checksum: sha1:763b42886dccaec1d9cd3ae84fc663b927f647df
@@ -763,8 +763,8 @@ trackedFiles:
     pristine_git_object: 765ca2a9a8858ed8c4b880db8ca64e4368fafa1d
   docs/models/components/paymentservices.md:
     id: f74761644de8
-    last_write_checksum: sha1:e71b2f4aead0d2d54e68f042b45f310f8aa291ef
-    pristine_git_object: a7766448a35741229b5d4f816e479bc5a2b27c5a
+    last_write_checksum: sha1:de61703983f83376ac7e29358dc552ed06e8c330
+    pristine_git_object: 7b4f22654f893f445b06fd0d5fa4a4c49e6c3124
   docs/models/components/paymentservicestatus.md:
     id: c7b060c52db2
     last_write_checksum: sha1:df39417c74c79cadb51bd4fc8da60e5c14d9541e
@@ -867,8 +867,8 @@ trackedFiles:
     pristine_git_object: e761bf52d30c05a424be01d10ae3051d550c181f
   docs/models/components/redirectpaymentmethodcreatemethod.md:
     id: 7dea7cd505c1
-    last_write_checksum: sha1:e52cd0c978cdf24a36f57092bd7a3af20e9988bf
-    pristine_git_object: cf3bf7fe7c52d3bd88aaff270b54ca2c194fbd5a
+    last_write_checksum: sha1:b51a019e82ef13ca9cad167dbd0bb8fe86cbff48
+    pristine_git_object: 2dc9ac6b4ede800af7874544b36fb302d3f385e1
   docs/models/components/refund.md:
     id: a9ba6686865f
     last_write_checksum: sha1:2ac8bc7e0bb42334744d9fb7342a718a3fd90081
@@ -1171,8 +1171,8 @@ trackedFiles:
     pristine_git_object: 5a180b87813db5a23ee43796a8888a82ea2dcb9d
   docs/models/components/transactionpaymentmethod.md:
     id: 9647910716b8
-    last_write_checksum: sha1:395ab0dd313883bd80a142a655b0cf6cdbd8c1d0
-    pristine_git_object: 8c38ac0c03df4fb8395df92b8b631497a7f44c76
+    last_write_checksum: sha1:6154aaf2ab7ac601a65c74e4fcf9dee34220ef72
+    pristine_git_object: 6ab3881e3c982997a41aeb230a1e621170fae40d
   docs/models/components/transactionpaymentservice.md:
     id: 54dc46af9195
     last_write_checksum: sha1:0d5ff19c90da701fe2c9a6c34c8a8ba6f8edead2
@@ -2319,12 +2319,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:2d20bfa142a2398e0f807f4c7a6daccb37c23bf7
-    pristine_git_object: 0d6e01a70ee848940e9c90ca05c54340a832a37f
+    last_write_checksum: sha1:8d2610824bb0d1df4cfbaca69a56235f25b08343
+    pristine_git_object: 8d149f670134bcdd432b9a2f454249a0dce4bffb
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:0676707df4b844aae60ec8c6e6bb5588d947008f
-    pristine_git_object: afb7ff06c430ba22b29857b0f733b1ecafa41eab
+    last_write_checksum: sha1:455a7d3208800358f6f4c4591bbee3c2d0c6a417
+    pristine_git_object: 78f1ab64e0937f00148aa1fba91c308fa9c3a8fd
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2739,8 +2739,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:da4a4171e029c2435fe4940a102d27cb663e6431
-    pristine_git_object: 236bf0e969ac4353638effee7ba99dc81cf4f48b
+    last_write_checksum: sha1:bf93c572baea72ce9102e36465a2c8de46270a0a
+    pristine_git_object: fe4537200c6b5f06244ed7edfcbe71401b817934
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3319,8 +3319,8 @@ trackedFiles:
     pristine_git_object: 6576342ef8237993049cf9c8eca4fc53cdb3d263
   src/models/components/method.ts:
     id: adb48915eaab
-    last_write_checksum: sha1:f066d9be3e43d1934136384e852fe0ffb4087af3
-    pristine_git_object: 14b16c6c04c195a97910508b0e2fbb7256a9adf2
+    last_write_checksum: sha1:8b29037c0a17dcafd07574a87e0033f5a4e4d22c
+    pristine_git_object: 6193762b7f224aa31eee81aed023d53d2568b277
   src/models/components/mockcardmerchantadvicecodeoptions.ts:
     id: 1bdd755e6cae
     last_write_checksum: sha1:8c7fbe6301e75fd3aeeaddc1edd03b927f1887a9
@@ -3559,8 +3559,8 @@ trackedFiles:
     pristine_git_object: 4eff2feca5c1703e932d73afc892179325c6da12
   src/models/components/redirectpaymentmethodcreate.ts:
     id: 14d691083459
-    last_write_checksum: sha1:d816b2bc93452b4f4f28ebcb4306039c112d0f2b
-    pristine_git_object: 880366ec0f7c1e9c742ca365bbef6e1f474383af
+    last_write_checksum: sha1:5ce797844d5cc6f9198dc72d649328f3ec879796
+    pristine_git_object: c981abe7175a5b0c104f16797c7d42780cdabfa7
   src/models/components/refund.ts:
     id: 9464a442cd5b
     last_write_checksum: sha1:4b9f40c0f71f1203cce647b32ed4c62b6a856935
@@ -8089,6 +8089,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
