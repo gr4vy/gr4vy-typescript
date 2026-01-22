@@ -114,6 +114,7 @@ export * from "./giftcardsummary.js";
 export * from "./giftcardtokentransactioncreate.js";
 export * from "./giftcardtransactioncreate.js";
 export * from "./givingblockoptions.js";
+export * from "./gocardlessoptions.js";
 export * from "./googlepayassurancedetails.js";
 export * from "./googlepayfpanpaymentmethodcreate.js";
 export * from "./googlepaypaymentmethodcreate.js";

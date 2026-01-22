@@ -75,6 +75,11 @@ import {
   GivingBlockOptions$outboundSchema,
 } from "./givingblockoptions.js";
 import {
+  GoCardlessOptions,
+  GoCardlessOptions$Outbound,
+  GoCardlessOptions$outboundSchema,
+} from "./gocardlessoptions.js";
+import {
   LatitudeOptions,
   LatitudeOptions$Outbound,
   LatitudeOptions$outboundSchema,
@@ -248,6 +253,10 @@ export type TransactionConnectionOptions = {
    */
   givingblockGivingblock?: GivingBlockOptions | null | undefined;
   /**
+   * Custom options to be passed to the `gocardless-gocardless` connector.
+   */
+  gocardlessGocardless?: GoCardlessOptions | null | undefined;
+  /**
    * Custom options to be passed to the `latitude-latitude` connector.
    */
   latitudeLatitude?: LatitudeOptions | null | undefined;
@@ -350,6 +359,7 @@ export type TransactionConnectionOptions$Outbound = {
   "gem-gem"?: LatitudeOptions$Outbound | null | undefined;
   "gem-gemds"?: LatitudeOptions$Outbound | null | undefined;
   "givingblock-givingblock"?: GivingBlockOptions$Outbound | null | undefined;
+  "gocardless-gocardless"?: GoCardlessOptions$Outbound | null | undefined;
   "latitude-latitude"?: LatitudeOptions$Outbound | null | undefined;
   "latitude-latitudeds"?: LatitudeOptions$Outbound | null | undefined;
   "mattilda-tapi"?: MattildaTapiOptions$Outbound | null | undefined;
@@ -402,6 +412,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   gemGemds: z.nullable(LatitudeOptions$outboundSchema).optional(),
   givingblockGivingblock: z.nullable(GivingBlockOptions$outboundSchema)
     .optional(),
+  gocardlessGocardless: z.nullable(GoCardlessOptions$outboundSchema).optional(),
   latitudeLatitude: z.nullable(LatitudeOptions$outboundSchema).optional(),
   latitudeLatitudeds: z.nullable(LatitudeOptions$outboundSchema).optional(),
   mattildaTapi: z.nullable(MattildaTapiOptions$outboundSchema).optional(),
@@ -447,6 +458,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     gemGem: "gem-gem",
     gemGemds: "gem-gemds",
     givingblockGivingblock: "givingblock-givingblock",
+    gocardlessGocardless: "gocardless-gocardless",
     latitudeLatitude: "latitude-latitude",
     latitudeLatitudeds: "latitude-latitudeds",
     mattildaTapi: "mattilda-tapi",
