@@ -21,7 +21,7 @@ const value: components.RedirectPaymentMethodCreate = {
   method: "paypal",
   country: "DE",
   currency: "EUR",
-  redirectUrl: "https://oblong-convection.name",
+  redirectUrl: "https://example.com/callback",
 };
 ```
 
