@@ -121,7 +121,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentMethods.paymentServiceTokens.create({
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    redirectUrl: "https://dual-futon.biz",
+    redirectUrl: "https://example.com/callback",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
 
   console.log(result);
@@ -148,7 +148,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await paymentMethodsPaymentServiceTokensCreate(gr4vy, {
     paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
-    redirectUrl: "https://dual-futon.biz",
+    redirectUrl: "https://example.com/callback",
   }, "ef9496d8-53a5-4aad-8ca2-00eb68334389");
   if (res.ok) {
     const { value: result } = res;
