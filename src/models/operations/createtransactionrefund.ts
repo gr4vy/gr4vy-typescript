@@ -19,6 +19,10 @@ export type CreateTransactionRefundRequest = {
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
+  /**
+   * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+   */
+  idempotencyKey?: string | null | undefined;
   transactionRefundCreate: components.TransactionRefundCreate;
 };
 
@@ -26,6 +30,7 @@ export type CreateTransactionRefundRequest = {
 export type CreateTransactionRefundRequest$Outbound = {
   transaction_id: string;
   merchantAccountId?: string | null | undefined;
+  "idempotency-key"?: string | null | undefined;
   TransactionRefundCreate: components.TransactionRefundCreate$Outbound;
 };
 
@@ -37,10 +42,12 @@ export const CreateTransactionRefundRequest$outboundSchema: z.ZodType<
 > = z.object({
   transactionId: z.string(),
   merchantAccountId: z.nullable(z.string()).optional(),
+  idempotencyKey: z.nullable(z.string()).optional(),
   transactionRefundCreate: components.TransactionRefundCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
+    idempotencyKey: "idempotency-key",
     transactionRefundCreate: "TransactionRefundCreate",
   });
 });

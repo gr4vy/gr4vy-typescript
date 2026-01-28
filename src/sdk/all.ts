@@ -21,6 +21,7 @@ export class All extends ClientSDK {
       | null
       | undefined,
     merchantAccountId?: string | null | undefined,
+    idempotencyKey?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Refunds> {
     return unwrapAsync(transactionsRefundsAllCreate(
@@ -28,6 +29,7 @@ export class All extends ClientSDK {
       transactionId,
       transactionRefundAllCreate,
       merchantAccountId,
+      idempotencyKey,
       options,
     ));
   }

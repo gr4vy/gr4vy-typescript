@@ -45,6 +45,7 @@ export class Gr4vyRefunds extends ClientSDK {
     transactionRefundCreate: components.TransactionRefundCreate,
     transactionId: string,
     merchantAccountId?: string | null | undefined,
+    idempotencyKey?: string | null | undefined,
     options?: RequestOptions,
   ): Promise<components.Refund> {
     return unwrapAsync(transactionsRefundsCreate(
@@ -52,6 +53,7 @@ export class Gr4vyRefunds extends ClientSDK {
       transactionRefundCreate,
       transactionId,
       merchantAccountId,
+      idempotencyKey,
       options,
     ));
   }

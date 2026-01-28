@@ -27,7 +27,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.9.17
+  version: 1.9.18
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -76,6 +76,7 @@ typescript:
   inputModelSuffix: input
   jsonpath: legacy
   laxMode: strict
+  legacyFileNaming: true
   maxMethodParams: 4
   methodArguments: infer-optional-args
   modelPropertyCasing: camel

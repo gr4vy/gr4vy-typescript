@@ -40,6 +40,7 @@ export function transactionsRefundsAllCreate(
     | null
     | undefined,
   merchantAccountId?: string | null | undefined,
+  idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -71,6 +72,7 @@ export function transactionsRefundsAllCreate(
     transactionId,
     transactionRefundAllCreate,
     merchantAccountId,
+    idempotencyKey,
     options,
   ));
 }
@@ -83,6 +85,7 @@ async function $do(
     | null
     | undefined,
   merchantAccountId?: string | null | undefined,
+  idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -116,6 +119,7 @@ async function $do(
     transactionId: transactionId,
     transactionRefundAllCreate: transactionRefundAllCreate,
     merchantAccountId: merchantAccountId,
+    idempotencyKey: idempotencyKey,
   };
 
   const parsed = safeParse(
@@ -146,6 +150,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "idempotency-key": encodeSimple(
+      "idempotency-key",
+      payload["idempotency-key"],
+      { explode: false, charEncoding: "none" },
+    ),
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
       payload.merchantAccountId ?? client._options.merchantAccountId,
