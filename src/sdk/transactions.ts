@@ -156,13 +156,15 @@ export class Transactions extends ClientSDK {
     transactionId: string,
     prefer?: Array<string> | null | undefined,
     merchantAccountId?: string | null | undefined,
+    idempotencyKey?: string | null | undefined,
     options?: RequestOptions,
-  ): Promise<operations.VoidTransactionResponseVoidTransaction> {
+  ): Promise<operations.VoidTransactionResponse200VoidTransaction> {
     return unwrapAsync(transactionsVoid(
       this,
       transactionId,
       prefer,
       merchantAccountId,
+      idempotencyKey,
       options,
     ));
   }

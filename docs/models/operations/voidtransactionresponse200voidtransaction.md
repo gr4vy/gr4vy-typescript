@@ -1,4 +1,4 @@
-# VoidTransactionResponseVoidTransaction
+# VoidTransactionResponse200VoidTransaction
 
 Successful Response
 
