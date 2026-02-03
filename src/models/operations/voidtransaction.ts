@@ -26,12 +26,16 @@ export type VoidTransactionRequest = {
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
+  /**
+   * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+   */
+  idempotencyKey?: string | null | undefined;
 };
 
 /**
  * Successful Response
  */
-export type VoidTransactionResponseVoidTransaction =
+export type VoidTransactionResponse200VoidTransaction =
   | components.Transaction
   | components.TransactionVoid;
 
@@ -40,6 +44,7 @@ export type VoidTransactionRequest$Outbound = {
   transaction_id: string;
   prefer?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
+  "idempotency-key"?: string | null | undefined;
 };
 
 /** @internal */
@@ -51,9 +56,11 @@ export const VoidTransactionRequest$outboundSchema: z.ZodType<
   transactionId: z.string(),
   prefer: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
+  idempotencyKey: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
+    idempotencyKey: "idempotency-key",
   });
 });
 
@@ -66,8 +73,8 @@ export function voidTransactionRequestToJSON(
 }
 
 /** @internal */
-export const VoidTransactionResponseVoidTransaction$inboundSchema: z.ZodType<
-  VoidTransactionResponseVoidTransaction,
+export const VoidTransactionResponse200VoidTransaction$inboundSchema: z.ZodType<
+  VoidTransactionResponse200VoidTransaction,
   z.ZodTypeDef,
   unknown
 > = z.union([
@@ -75,13 +82,18 @@ export const VoidTransactionResponseVoidTransaction$inboundSchema: z.ZodType<
   components.TransactionVoid$inboundSchema,
 ]);
 
-export function voidTransactionResponseVoidTransactionFromJSON(
+export function voidTransactionResponse200VoidTransactionFromJSON(
   jsonString: string,
-): SafeParseResult<VoidTransactionResponseVoidTransaction, SDKValidationError> {
+): SafeParseResult<
+  VoidTransactionResponse200VoidTransaction,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      VoidTransactionResponseVoidTransaction$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VoidTransactionResponseVoidTransaction' from JSON`,
+      VoidTransactionResponse200VoidTransaction$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'VoidTransactionResponse200VoidTransaction' from JSON`,
   );
 }

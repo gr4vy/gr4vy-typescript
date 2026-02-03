@@ -36,10 +36,11 @@ export function transactionsVoid(
   transactionId: string,
   prefer?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
+  idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.VoidTransactionResponseVoidTransaction,
+    operations.VoidTransactionResponse200VoidTransaction,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -67,6 +68,7 @@ export function transactionsVoid(
     transactionId,
     prefer,
     merchantAccountId,
+    idempotencyKey,
     options,
   ));
 }
@@ -76,11 +78,12 @@ async function $do(
   transactionId: string,
   prefer?: Array<string> | null | undefined,
   merchantAccountId?: string | null | undefined,
+  idempotencyKey?: string | null | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.VoidTransactionResponseVoidTransaction,
+      operations.VoidTransactionResponse200VoidTransaction,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -109,6 +112,7 @@ async function $do(
     transactionId: transactionId,
     prefer: prefer,
     merchantAccountId: merchantAccountId,
+    idempotencyKey: idempotencyKey,
   };
 
   const parsed = safeParse(
@@ -133,6 +137,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "idempotency-key": encodeSimple(
+      "idempotency-key",
+      payload["idempotency-key"],
+      { explode: false, charEncoding: "none" },
+    ),
     "x-gr4vy-merchant-account-id": encodeSimple(
       "x-gr4vy-merchant-account-id",
       payload.merchantAccountId ?? client._options.merchantAccountId,
@@ -209,7 +218,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.VoidTransactionResponseVoidTransaction,
+    operations.VoidTransactionResponse200VoidTransaction,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -233,7 +242,7 @@ async function $do(
   >(
     M.json(
       200,
-      operations.VoidTransactionResponseVoidTransaction$inboundSchema,
+      operations.VoidTransactionResponse200VoidTransaction$inboundSchema,
     ),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
