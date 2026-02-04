@@ -1,4 +1,4 @@
-# CaptureTransactionResponseCaptureTransaction
+# CaptureTransactionResponse200CaptureTransaction
 
 Successful Response
 
