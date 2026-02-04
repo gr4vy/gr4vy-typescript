@@ -11,8 +11,16 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
+import { ThreeDsConfiguration } from "./threedsconfiguration.js";
 
 export class MerchantAccounts extends ClientSDK {
+  private _threeDsConfiguration?: ThreeDsConfiguration;
+  get threeDsConfiguration(): ThreeDsConfiguration {
+    return (this._threeDsConfiguration ??= new ThreeDsConfiguration(
+      this._options,
+    ));
+  }
+
   /**
    * List all merchant accounts
    *

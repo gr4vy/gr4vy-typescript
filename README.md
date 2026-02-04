@@ -316,6 +316,13 @@ try {
 * [get](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
 * [update](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
 
+#### [MerchantAccounts.ThreeDsConfiguration](docs/sdks/threedsconfiguration/README.md)
+
+* [create](docs/sdks/threedsconfiguration/README.md#create) - Create 3DS configuration for merchant
+* [list](docs/sdks/threedsconfiguration/README.md#list) - List 3DS configurations for merchant
+* [update](docs/sdks/threedsconfiguration/README.md#update) - Edit 3DS configuration
+* [delete](docs/sdks/threedsconfiguration/README.md#delete) - Delete 3DS configuration for a merchant
+
 ### [PaymentLinks](docs/sdks/paymentlinks/README.md)
 
 * [create](docs/sdks/paymentlinks/README.md#create) - Add a payment link
@@ -971,6 +978,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`merchantAccountsCreate`](docs/sdks/merchantaccounts/README.md#create) - Create a merchant account
 - [`merchantAccountsGet`](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
 - [`merchantAccountsList`](docs/sdks/merchantaccounts/README.md#list) - List all merchant accounts
+- [`merchantAccountsThreeDsConfigurationCreate`](docs/sdks/threedsconfiguration/README.md#create) - Create 3DS configuration for merchant
+- [`merchantAccountsThreeDsConfigurationDelete`](docs/sdks/threedsconfiguration/README.md#delete) - Delete 3DS configuration for a merchant
+- [`merchantAccountsThreeDsConfigurationList`](docs/sdks/threedsconfiguration/README.md#list) - List 3DS configurations for merchant
+- [`merchantAccountsThreeDsConfigurationUpdate`](docs/sdks/threedsconfiguration/README.md#update) - Edit 3DS configuration
 - [`merchantAccountsUpdate`](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
 - [`paymentLinksCreate`](docs/sdks/paymentlinks/README.md#create) - Add a payment link
 - [`paymentLinksExpire`](docs/sdks/paymentlinks/README.md#expire) - Expire a payment link

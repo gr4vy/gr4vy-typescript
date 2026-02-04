@@ -10,6 +10,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import { Gr4vyError } from "../models/errors/gr4vyerror.js";
 import {
   ConnectionError,
@@ -26,18 +27,20 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Capture transaction
+ * Create 3DS configuration for merchant
  *
  * @remarks
- * Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
+ * Create a new 3DS configuration for a merchant account.
  */
-export function transactionsCapture(
+export function merchantAccountsThreeDsConfigurationCreate(
   client: Gr4vyCore,
-  request: operations.CaptureTransactionRequest,
+  merchantAccountThreeDSConfigurationCreate:
+    components.MerchantAccountThreeDSConfigurationCreate,
+  merchantAccountId: string,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.CaptureTransactionResponse200CaptureTransaction,
+    components.MerchantAccountThreeDSConfiguration,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -62,19 +65,22 @@ export function transactionsCapture(
 > {
   return new APIPromise($do(
     client,
-    request,
+    merchantAccountThreeDSConfigurationCreate,
+    merchantAccountId,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  request: operations.CaptureTransactionRequest,
+  merchantAccountThreeDSConfigurationCreate:
+    components.MerchantAccountThreeDSConfigurationCreate,
+  merchantAccountId: string,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.CaptureTransactionResponse200CaptureTransaction,
+      components.MerchantAccountThreeDSConfiguration,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -99,45 +105,43 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.CreateThreeDsConfigurationRequest = {
+    merchantAccountThreeDSConfigurationCreate:
+      merchantAccountThreeDSConfigurationCreate,
+    merchantAccountId: merchantAccountId,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => operations.CaptureTransactionRequest$outboundSchema.parse(value),
+    input,
+    (value) =>
+      operations.CreateThreeDsConfigurationRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.TransactionCaptureCreate, {
-    explode: true,
-  });
+  const body = encodeJSON(
+    "body",
+    payload.MerchantAccountThreeDSConfigurationCreate,
+    { explode: true },
+  );
 
   const pathParams = {
-    transaction_id: encodeSimple("transaction_id", payload.transaction_id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
+    merchant_account_id: encodeSimple(
+      "merchant_account_id",
+      payload.merchant_account_id,
+      { explode: false, charEncoding: "percent" },
+    ),
   };
 
-  const path = pathToFunc("/transactions/{transaction_id}/capture")(pathParams);
+  const path = pathToFunc(
+    "/merchant-accounts/{merchant_account_id}/three-ds-configurations",
+  )(pathParams);
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "idempotency-key": encodeSimple(
-      "idempotency-key",
-      payload["idempotency-key"],
-      { explode: false, charEncoding: "none" },
-    ),
-    "x-gr4vy-merchant-account-id": encodeSimple(
-      "x-gr4vy-merchant-account-id",
-      payload.merchantAccountId ?? client._options.merchantAccountId,
-      { explode: false, charEncoding: "none" },
-    ),
-    "prefer": encodeSimple("prefer", payload.prefer, {
-      explode: false,
-      charEncoding: "none",
-    }),
   }));
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
@@ -147,7 +151,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "capture_transaction",
+    operationID: "create_three_ds_configuration",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -205,7 +209,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.CaptureTransactionResponse200CaptureTransaction,
+    components.MerchantAccountThreeDSConfiguration,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -227,10 +231,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(
-      200,
-      operations.CaptureTransactionResponse200CaptureTransaction$inboundSchema,
-    ),
+    M.json(201, components.MerchantAccountThreeDSConfiguration$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),

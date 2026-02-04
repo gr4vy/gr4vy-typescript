@@ -7,7 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 
 export type GetMerchantAccountRequest = {
   /**
-   * The ID of the merchant account
+   * The ID of the merchant account.
    */
   merchantAccountId: string;
 };

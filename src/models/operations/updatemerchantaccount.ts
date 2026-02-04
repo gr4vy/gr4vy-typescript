@@ -8,7 +8,7 @@ import * as components from "../components/index.js";
 
 export type UpdateMerchantAccountRequest = {
   /**
-   * The ID of the merchant account
+   * The ID of the merchant account.
    */
   merchantAccountId: string;
   merchantAccountUpdate: components.MerchantAccountUpdate;

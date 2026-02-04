@@ -26,13 +26,17 @@ export type CaptureTransactionRequest = {
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
+  /**
+   * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+   */
+  idempotencyKey?: string | null | undefined;
   transactionCaptureCreate: components.TransactionCaptureCreate;
 };
 
 /**
  * Successful Response
  */
-export type CaptureTransactionResponseCaptureTransaction =
+export type CaptureTransactionResponse200CaptureTransaction =
   | components.Transaction
   | components.TransactionCapture;
 
@@ -41,6 +45,7 @@ export type CaptureTransactionRequest$Outbound = {
   transaction_id: string;
   prefer?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
+  "idempotency-key"?: string | null | undefined;
   TransactionCaptureCreate: components.TransactionCaptureCreate$Outbound;
 };
 
@@ -53,10 +58,12 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
   transactionId: z.string(),
   prefer: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
+  idempotencyKey: z.nullable(z.string()).optional(),
   transactionCaptureCreate: components.TransactionCaptureCreate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
+    idempotencyKey: "idempotency-key",
     transactionCaptureCreate: "TransactionCaptureCreate",
   });
 });
@@ -70,9 +77,9 @@ export function captureTransactionRequestToJSON(
 }
 
 /** @internal */
-export const CaptureTransactionResponseCaptureTransaction$inboundSchema:
+export const CaptureTransactionResponse200CaptureTransaction$inboundSchema:
   z.ZodType<
-    CaptureTransactionResponseCaptureTransaction,
+    CaptureTransactionResponse200CaptureTransaction,
     z.ZodTypeDef,
     unknown
   > = z.union([
@@ -80,18 +87,18 @@ export const CaptureTransactionResponseCaptureTransaction$inboundSchema:
     components.TransactionCapture$inboundSchema,
   ]);
 
-export function captureTransactionResponseCaptureTransactionFromJSON(
+export function captureTransactionResponse200CaptureTransactionFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  CaptureTransactionResponseCaptureTransaction,
+  CaptureTransactionResponse200CaptureTransaction,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      CaptureTransactionResponseCaptureTransaction$inboundSchema.parse(
+      CaptureTransactionResponse200CaptureTransaction$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'CaptureTransactionResponseCaptureTransaction' from JSON`,
+    `Failed to parse 'CaptureTransactionResponse200CaptureTransaction' from JSON`,
   );
 }
