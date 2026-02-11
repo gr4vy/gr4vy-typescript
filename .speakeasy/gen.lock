@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: c53450070a1feb2df0f7c62705835963
+  docChecksum: 06cbb888ff515821dfe1944e144b913a
   docVersion: 1.0.0
-  speakeasyVersion: 1.709.1
-  generationVersion: 2.812.2
-  releaseVersion: 1.10.2
-  configChecksum: 6e3788de96e84f04a21ea1878bc81827
+  speakeasyVersion: 1.709.4
+  generationVersion: 2.816.0
+  releaseVersion: 1.10.3
+  configChecksum: ab40df4710e5ee9814130ec857f96c4f
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 3e7ffc4e-dbdd-41cf-bd09-8d69c2aff1f8
-  pristine_commit_hash: 5bac96d427651a1b656d6b51001241b82d0c2bc9
-  pristine_tree_hash: a5432d03de82cbec715d858f844badb8e459ca87
+  generation_id: 1c4a8d39-4ae4-496a-a4a7-ba5d112efe16
+  pristine_commit_hash: ac634d4aec7a254a400e2585b38c6aa6e094bd7e
+  pristine_tree_hash: c9946408a08153abcd19bf9d3bb9f7c323d892b3
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2363,12 +2363,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:a775a80d763de9d275077d75bd12488162662b3b
-    pristine_git_object: 3f1592492d5a5a575ec0f101fb3727738a1ad1d6
+    last_write_checksum: sha1:3ecbb8e427f68166834b71d064542a7839e07fa4
+    pristine_git_object: ec7474a225f49f90110a926c5837e697212c0442
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:d4e42bc4bc7cb2ca59d3da1fff084c2b96753b1b
-    pristine_git_object: 26c3d2ad6b8b8abfcfecce57651b0dd30893d4fc
+    last_write_checksum: sha1:ecffab4648a57c62e14e65409eb737b0211f05ef
+    pristine_git_object: de10364815f8d9a8ac95eebdf8dcec47517fe9e8
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2799,8 +2799,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:39b7f0c714bec5031572d3a5050115dceb07072a
-    pristine_git_object: 11528ea15fca3012a74cfe70097c16fbf13b5cea
+    last_write_checksum: sha1:80f3592aee958f071ae4f5dce143d693c27a7b00
+    pristine_git_object: d2edfff23b953a798107b237ba4f2d768d3b6266
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
