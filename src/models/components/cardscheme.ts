@@ -26,6 +26,7 @@ export const CardScheme = {
   Nyce: "nyce",
   Other: "other",
   Pulse: "pulse",
+  Qcard: "qcard",
   Rupay: "rupay",
   Star: "star",
   Uatp: "uatp",
