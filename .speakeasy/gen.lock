@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 443cb8b391708a091a1e8e2803624e0d
+  docChecksum: 298d0882d8ed1a10296af801588ddcad
   docVersion: 1.0.0
-  speakeasyVersion: 1.718.0
+  speakeasyVersion: 1.719.0
   generationVersion: 2.824.1
-  releaseVersion: 1.10.5
-  configChecksum: 9f6012924ad483a385e99874673af1ac
+  releaseVersion: 1.10.6
+  configChecksum: 23f44e8b8b60381dc74cf6373a8d32d8
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 452f115a-1ddc-4abe-8268-d585521d306c
-  pristine_commit_hash: bfe670993a917d2a50a684d4cbd0373f9cd63912
-  pristine_tree_hash: d922cbed248840e7dfddbecba521ab0426c0a887
+  generation_id: 2c11237c-730a-46d8-b79a-e1d32727e977
+  pristine_commit_hash: 49e488c16c0cf495ee42eceb67d8c2673a82ec11
+  pristine_tree_hash: 664a45419c7a398f3fa07bdc9843193fbf0956fd
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -681,6 +681,10 @@ trackedFiles:
     id: 873bfd6fbc1c
     last_write_checksum: sha1:bccedeedc19063b8d8ebdabf493bf52187c4b804
     pristine_git_object: bec2f7025ce6cbf7673255ce664f1d821b96b072
+  docs/models/components/nuveiklarnaoptions.md:
+    id: e8e0e5f20888
+    last_write_checksum: sha1:8d5b6442bb00c90b387ce9fb9393ca2056377317
+    pristine_git_object: ccc486cd609719c9788ea36f989afd4bbaa44d7d
   docs/models/components/nuveioptions.md:
     id: c11ef0d4014c
     last_write_checksum: sha1:e3e5d7cf24a2259686f42737f278074f772b3580
@@ -1159,8 +1163,8 @@ trackedFiles:
     pristine_git_object: b4d17514562bf317ade83c502b1fca59226b32db
   docs/models/components/transactionconnectionoptions.md:
     id: a4843e535547
-    last_write_checksum: sha1:774b3fa06ff560a5832c507f197653943dae4cac
-    pristine_git_object: 7bc58febf5cc15f4e63d94fd682682f51c2b8e15
+    last_write_checksum: sha1:2a6fb04cbb299c41e4a650da4fdb4bd4929c6575
+    pristine_git_object: a9a761548ddb3107868ea8deff8efeade9d56922
   docs/models/components/transactioncreate.md:
     id: 652e84478e51
     last_write_checksum: sha1:be6ffb47a3c0dd952dc04dfb256e947a7b82d758
@@ -2363,12 +2367,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:0c424aa22aa33519fe66afc7f9f87b396e35e3a1
-    pristine_git_object: f41600b0fd48a5b45730358f4d53e67026cbbb0a
+    last_write_checksum: sha1:9aeadc322476050869a3b386f90afe4ab7fc0c54
+    pristine_git_object: 3ce8195ad4da0d9de86553581767292fe3eabeee
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:abf4b74148081706af1451be5c2714403b134960
-    pristine_git_object: 9a996c8b440f5dd718d53e4f17a6441c9967fc59
+    last_write_checksum: sha1:0abfc0c837251975f94a26c029723255cc29ce83
+    pristine_git_object: 68df7f964b297ca8e27d1d21d3ea30837491baf8
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2799,8 +2803,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4e508e5bacceed1661a598c4fa00b855263ac272
-    pristine_git_object: ceac55868ee40920c196f0ad93189f7c0c50e854
+    last_write_checksum: sha1:244d630981e17ea85309fe588e200fe27548e8e8
+    pristine_git_object: 235d4bddf525b4d56edd44ac28f8ec85c4d6d5a7
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3339,8 +3343,8 @@ trackedFiles:
     pristine_git_object: 69087ec944a2c1c9708600957b19a242916e9fda
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:75281fafc466630f5cd9fecff06917d28fbd9d53
-    pristine_git_object: 43be6472815d9382b7b561694ed2f2c0d49c392c
+    last_write_checksum: sha1:d58c77f4d7989d3497503c6c9d14b1099e160a61
+    pristine_git_object: 71e75f9d39ab48674754ed7cca56110b51bb590b
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:a9de7594f2b7692d9a8630a3d49e82de22d37380
@@ -3445,6 +3449,10 @@ trackedFiles:
     id: 945d689a5c25
     last_write_checksum: sha1:a7e1991e74efddb3291456ac16f24344f54487b4
     pristine_git_object: cc7e23ee76d21872664e53c5d91d88eaedc2ce93
+  src/models/components/nuveiklarnaoptions.ts:
+    id: 91724922c08b
+    last_write_checksum: sha1:f11eca1040434d4d2c226d1d1d93c6d703ebf908
+    pristine_git_object: 3d82fcaa448229ab406258fceb034344998a96d8
   src/models/components/nuveioptions.ts:
     id: ad8d56d88f5d
     last_write_checksum: sha1:0e1a513f026e03e2fc22ae2dc3190f6583146918
@@ -3867,8 +3875,8 @@ trackedFiles:
     pristine_git_object: e6bd805f9f3a40cf15ef965745d94da9782a078c
   src/models/components/transactionconnectionoptions.ts:
     id: 3f42998a2d5b
-    last_write_checksum: sha1:208285d6acb06fac5ec84a558fd8b7e3e592e939
-    pristine_git_object: 45aa87520759dab96374e704f2f081d1d3e3785c
+    last_write_checksum: sha1:f2fa2d0fe3e3fc3971f41a4d802c2302239c6699
+    pristine_git_object: 50cbbd1856d5a3bf1fc40dac773679edba26e1a3
   src/models/components/transactioncreate.ts:
     id: 6ba6f0cd74e3
     last_write_checksum: sha1:a05efa3e6ceb15e3d61c444de1bf17f8b854393f
@@ -8321,7 +8329,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.buyers.paymentMethods.list()`:  `response.items[].scheme.enum(qcard)` **Added**\n* `gr4vy.paymentMethods.list()`:  `response.items[].scheme.enum(qcard)` **Added**\n* `gr4vy.paymentMethods.create()`:  `response.scheme.enum(qcard)` **Added**\n* `gr4vy.paymentMethods.get()`:  `response.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.list()`:  `response.items[].paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.paymentMethod.union(NetworkTokenPaymentMethodCreate).cardScheme.enum(qcard)` **Added**\n  *  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.get()`:  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.update()`:  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.transactions.sync()`:  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.checkoutSessions.create()`:  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.checkoutSessions.update()`:  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.checkoutSessions.get()`:  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.merchantAccounts.list()`:  `response.items[].loonAcceptedSchemes[].enum(qcard)` **Added**\n* `gr4vy.merchantAccounts.create()`: \n  *  `request.loonAcceptedSchemes[].enum(qcard)` **Added**\n  *  `response.loonAcceptedSchemes[].enum(qcard)` **Added**\n* `gr4vy.merchantAccounts.get()`:  `response.loonAcceptedSchemes[].enum(qcard)` **Added**\n* `gr4vy.merchantAccounts.update()`: \n  *  `request.merchantAccountUpdate.loonAcceptedSchemes[].enum(qcard)` **Added**\n  *  `response.loonAcceptedSchemes[].enum(qcard)` **Added**\n* `gr4vy.merchantAccounts.threeDsConfiguration.create()`: \n  *  `request.merchantAccountThreeDsConfigurationCreate.scheme.enum(qcard)` **Added**\n  *  `response.scheme.enum(qcard)` **Added**\n* `gr4vy.merchantAccounts.threeDsConfiguration.list()`:  `response.items[].scheme.enum(qcard)` **Added**\n* `gr4vy.merchantAccounts.threeDsConfiguration.update()`: \n  *  `request.merchantAccountThreeDsConfigurationUpdate.scheme.enum(qcard)` **Added**\n  *  `response.scheme.enum(qcard)` **Added**\n* `gr4vy.payouts.list()`:  `response.items[].paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.payouts.create()`: \n  *  `request.payoutCreate.paymentMethod.union(PaymentMethodCard).cardScheme.enum(qcard)` **Added**\n  *  `response.paymentMethod.scheme.enum(qcard)` **Added**\n* `gr4vy.payouts.get()`:  `response.paymentMethod.scheme.enum(qcard)` **Added**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.nuveiKlarna` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.nuveiKlarna` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.nuveiKlarna` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

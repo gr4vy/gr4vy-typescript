@@ -148,6 +148,7 @@ export * from "./networktokens.js";
 export * from "./networktokenstatus.js";
 export * from "./nuveiairlinedataoptions.js";
 export * from "./nuveiidealoptions.js";
+export * from "./nuveiklarnaoptions.js";
 export * from "./nuveioptions.js";
 export * from "./nuveipseoptions.js";
 export * from "./oxxooptions.js";
