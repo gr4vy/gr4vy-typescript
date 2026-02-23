@@ -26,6 +26,8 @@ export const RedirectPaymentMethodCreateMethod = {
   Blik: "blik",
   Boleto: "boleto",
   Boost: "boost",
+  Breb: "breb",
+  Capitec: "capitec",
   Cashapp: "cashapp",
   Clearpay: "clearpay",
   Dana: "dana",
