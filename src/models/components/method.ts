@@ -24,6 +24,8 @@ export const Method = {
   Blik: "blik",
   Boleto: "boleto",
   Boost: "boost",
+  Breb: "breb",
+  Capitec: "capitec",
   Card: "card",
   Cashapp: "cashapp",
   Chaseorbital: "chaseorbital",
