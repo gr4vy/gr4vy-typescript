@@ -30,7 +30,7 @@ describe("pemToPkcs8", () => {
 
   test("throws on missing END marker", () => {
     const pem = "-----BEGIN PRIVATE KEY-----\nAQID";
-    expect(() => pemToPkcs8(pem)).toThrow(/missing 'BEGIN PRIVATE KEY'/);
+    expect(() => pemToPkcs8(pem)).toThrow(/missing.*END PRIVATE KEY/);
   });
 
 });
