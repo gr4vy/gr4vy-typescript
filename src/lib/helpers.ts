@@ -132,7 +132,6 @@ export async function getKeyId(privateKey: string): Promise<string> {
 
   const keyData = pemToPkcs8(privateKey);
   const algorithm = detectKeyAlgorithm(keyData);
-  
   const cryptoKey = await crypto.subtle.importKey(
     "pkcs8",
     keyData,
