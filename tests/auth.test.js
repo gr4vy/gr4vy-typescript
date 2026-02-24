@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import snakecaseKeys from "snakecase-keys";
 import timekeeper from "timekeeper";
 import { describe, expect, test } from "vitest";
-import { version } from "../package.json";
 import { getEmbedToken, getToken, JWTScope, updateToken, SDK_METADATA } from "../src";
 
 const privateKey = `-----BEGIN PRIVATE KEY-----
