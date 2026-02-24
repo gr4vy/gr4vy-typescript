@@ -308,7 +308,7 @@ async function $do(
       giftCardsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,

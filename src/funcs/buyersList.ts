@@ -306,7 +306,7 @@ async function $do(
       buyersList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,

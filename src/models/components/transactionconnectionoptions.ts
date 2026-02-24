@@ -55,6 +55,11 @@ import {
   DlocalOptions$outboundSchema,
 } from "./dlocaloptions.js";
 import {
+  DlocalPIXOptions,
+  DlocalPIXOptions$Outbound,
+  DlocalPIXOptions$outboundSchema,
+} from "./dlocalpixoptions.js";
+import {
   DlocalUPIOptions,
   DlocalUPIOptions$Outbound,
   DlocalUPIOptions$outboundSchema,
@@ -238,6 +243,10 @@ export type TransactionConnectionOptions = {
    */
   dlocalUpi?: DlocalUPIOptions | null | undefined;
   /**
+   * Custom options to be passed to the `dlocal-pix` connector.
+   */
+  dlocalPix?: DlocalPIXOptions | null | undefined;
+  /**
    * Custom options to be passed to the `fiserv-card` connector.
    */
   fiservCard?: FiservOptions | null | undefined;
@@ -363,6 +372,7 @@ export type TransactionConnectionOptions$Outbound = {
   "cybersource-kcp"?: CybersourceOptions$Outbound | null | undefined;
   "dlocal-nequi"?: DlocalOptions$Outbound | null | undefined;
   "dlocal-upi"?: DlocalUPIOptions$Outbound | null | undefined;
+  "dlocal-pix"?: DlocalPIXOptions$Outbound | null | undefined;
   "fiserv-card"?: FiservOptions$Outbound | null | undefined;
   "forter-anti-fraud"?: ForterAntiFraudOptions$Outbound | null | undefined;
   "gem-gem"?: LatitudeOptions$Outbound | null | undefined;
@@ -416,6 +426,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   cybersourceKcp: z.nullable(CybersourceOptions$outboundSchema).optional(),
   dlocalNequi: z.nullable(DlocalOptions$outboundSchema).optional(),
   dlocalUpi: z.nullable(DlocalUPIOptions$outboundSchema).optional(),
+  dlocalPix: z.nullable(DlocalPIXOptions$outboundSchema).optional(),
   fiservCard: z.nullable(FiservOptions$outboundSchema).optional(),
   forterAntiFraud: z.nullable(ForterAntiFraudOptions$outboundSchema).optional(),
   gemGem: z.nullable(LatitudeOptions$outboundSchema).optional(),
@@ -464,6 +475,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     cybersourceKcp: "cybersource-kcp",
     dlocalNequi: "dlocal-nequi",
     dlocalUpi: "dlocal-upi",
+    dlocalPix: "dlocal-pix",
     fiservCard: "fiserv-card",
     forterAntiFraud: "forter-anti-fraud",
     gemGem: "gem-gem",
