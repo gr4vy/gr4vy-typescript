@@ -1,5 +1,5 @@
-import keyto from "@trust/keyto";
-import { jwkThumbprintByEncoding } from "jwk-thumbprint";
+import { createPrivateKey } from "node:crypto";
+import { calculateJwkThumbprint, exportJWK } from "jose";
 
 /**
  * Attempts to detect the JS runtime and its version based on available globals.
@@ -32,18 +32,10 @@ export function getRuntime() {
  * Calculate the Key ID
  */
 export async function getKeyId(privateKey: string): Promise<string> {
-  const jwk = keyto.from(privateKey, "pem").toJwk("private");
+  const key = createPrivateKey(privateKey);
+  const jwk = await exportJWK(key);
 
-  const keyid = jwkThumbprintByEncoding(
-    stripUndefined(jwk),
-    "SHA-256",
-    "base64url"
-  );
-  if (keyid == null) {
-    throw new Error("Failed to generate jwk thumbprint");
-  }
-
-  return keyid;
+  return calculateJwkThumbprint(jwk, "sha256");
 }
 
 export function stripUndefined<T extends {}>(
