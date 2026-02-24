@@ -1,4 +1,4 @@
-import { createPrivateKey } from "node:crypto";
+import { createPrivateKey } from "crypto";
 import { calculateJwkThumbprint, exportJWK } from "jose";
 
 /**
