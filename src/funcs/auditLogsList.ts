@@ -309,7 +309,7 @@ async function $do(
       auditLogsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,

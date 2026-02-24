@@ -348,7 +348,7 @@ async function $do(
       transactionsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,

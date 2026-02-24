@@ -310,7 +310,7 @@ async function $do(
       paymentServicesList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,
