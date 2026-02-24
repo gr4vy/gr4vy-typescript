@@ -1,0 +1,16 @@
+# DlocalPIXOptions
+
+## Example Usage
+
+```typescript
+import { DlocalPIXOptions } from "@gr4vy/sdk/models/components";
+
+let value: DlocalPIXOptions = {};
+```
+
+## Fields
+
+| Field                                                                                                                                            | Type                                                                                                                                             | Required                                                                                                                                         | Description                                                                                                                                      | Example                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `subscription`                                                                                                                                   | [components.DlocalPIXSubscriptionOptions](../../models/components/dlocalpixsubscriptionoptions.md)                                               | :heavy_minus_sign:                                                                                                                               | Passes `subscription` data to the dLocal API for those connectors that need it.                                                                  |                                                                                                                                                  |
+| `scheduledDate`                                                                                                                                  | *string*                                                                                                                                         | :heavy_minus_sign:                                                                                                                               | Defines scheduled payment start date. Must be provided in ISO 8601 format `(YYYY-MM-DD`). If not specified, The default is 2 days in the future. | 2030-12-01                                                                                                                                       |

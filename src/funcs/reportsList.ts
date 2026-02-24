@@ -309,7 +309,7 @@ async function $do(
       reportsList(
         client,
         {
-          ...request,
+          ...request!,
           cursor: nextCursor,
         },
         options,
