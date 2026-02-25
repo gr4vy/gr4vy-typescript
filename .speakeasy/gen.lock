@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: db7c72f3c8f87c634bb9863a56d24882
+  docChecksum: 640f2518dbd1e9a54edb650996b992b4
   docVersion: 1.0.0
-  speakeasyVersion: 1.726.0
-  generationVersion: 2.839.0
-  releaseVersion: 1.10.10
-  configChecksum: db8f47221c33606edd8c7db47d5291d4
+  speakeasyVersion: 1.730.0
+  generationVersion: 2.844.2
+  releaseVersion: 1.10.11
+  configChecksum: 3edbb5de7969b51d080425c0e6bf1f71
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: a6aa44c1-6a00-4af4-913d-2b50e34c1e27
-  pristine_commit_hash: 4d08d999b6a92ef5be157b8528127a4e698646be
-  pristine_tree_hash: 437c2063df284256fd07dcd464099ea0044ab4c3
+  generation_id: 2016f9fc-eb4a-481c-b96e-b9e0bfa9ce40
+  pristine_commit_hash: 21c56e3797ad1e623edd007a1a649c6a137d6cba
+  pristine_tree_hash: 4734d91462d62074a1ebf720da010098257004ed
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2387,12 +2387,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d44da004512fce0a581743b3cbcf50edca892970
-    pristine_git_object: 7328a5250c03eef2bbfda53d1f741d042b9f15c3
+    last_write_checksum: sha1:79d79d486a0b6413b944a50309a8a31d61afd49b
+    pristine_git_object: e309425a688bd43ff8074c35cbaa9ff858d9a336
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:a6f71451c22d8348de86763967b3805480081db0
-    pristine_git_object: ce45b7eaa6c1f9f178a36b3d5139c66b6ac1d3cf
+    last_write_checksum: sha1:18b26619a4e1a18b904cf86a7e0af107a347e5db
+    pristine_git_object: dcdbf56c88100ef9d6be7ecde28e3233b327844e
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2823,8 +2823,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:8ebf3a87dd82c6c0102b9c41395da133cd20a652
-    pristine_git_object: 09820b1d2ffc92444dde4fc831d1ae15bf55a8b8
+    last_write_checksum: sha1:6e1b10e50277e521b0648cd9a1a4d4ada7811135
+    pristine_git_object: 6d29a4b263c84e7448dd35f5caf554d6a0527218
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3183,8 +3183,8 @@ trackedFiles:
     pristine_git_object: 2a7f09a672a4c3165f153885d6d20c899096c4a6
   src/models/components/dlocalpixsubscriptionamountoptions.ts:
     id: b5d1667a1b06
-    last_write_checksum: sha1:3f1eaec01473ebade98912b2d521dd02af4ee4dc
-    pristine_git_object: ee74125f04f60f95beefd38ba4b734e3159a3df9
+    last_write_checksum: sha1:061cb56f899053f42fb22aeb1a5dd7935bbab931
+    pristine_git_object: 647abb164cac58cf1d8a8dc300b6cef45a9230e6
   src/models/components/dlocalpixsubscriptionoptions.ts:
     id: 315ad869d762
     last_write_checksum: sha1:84925493ab1eceaa1448116df80650d65cdb0ce1
@@ -8361,7 +8361,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.dlocalPix` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.dlocalPix` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.dlocalPix` **Added**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.dlocalPix.subscription.amount.minValue` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.dlocalPix.subscription.amount.minValue` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.dlocalPix.subscription.amount.minValue` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
