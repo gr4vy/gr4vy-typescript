@@ -19,7 +19,6 @@
   "devDependencies": {
     "@eslint/js": "^9.26.0",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/trust__keyto": "^1.0.4",
     "@types/uuid": "^11.0.0",
     "eslint": "^9.26.0",
     "globals": "^15.14.0",
@@ -29,7 +28,6 @@
     "vitest": "^4.0.3"
   },
   "dependencies": {
-    "@trust/keyto": "^1.0.1",
     "jsonwebtoken": "^9.0.3",
     "jwk-thumbprint": "^0.1.4",
     "snakecase-keys": "^6.0.0",
