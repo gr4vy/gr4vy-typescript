@@ -33,7 +33,7 @@ export type DlocalPIXSubscriptionAmountOptions = {
   /**
    * Minimum payer enrollment limit, not minimum recurring charge amount.
    */
-  minValue: string;
+  minValue: string | null;
 };
 
 /** @internal */
@@ -47,7 +47,7 @@ export const DlocalPIXSubscriptionAmountOptionsType$outboundSchema: z.ZodType<
 export type DlocalPIXSubscriptionAmountOptions$Outbound = {
   type: string;
   value?: string | null | undefined;
-  min_value: string;
+  min_value: string | null;
 };
 
 /** @internal */
@@ -58,7 +58,7 @@ export const DlocalPIXSubscriptionAmountOptions$outboundSchema: z.ZodType<
 > = z.object({
   type: DlocalPIXSubscriptionAmountOptionsType$outboundSchema,
   value: z.nullable(z.string()).optional(),
-  minValue: z.string(),
+  minValue: z.nullable(z.string()),
 }).transform((v) => {
   return remap$(v, {
     minValue: "min_value",
