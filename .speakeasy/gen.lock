@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 640f2518dbd1e9a54edb650996b992b4
+  docChecksum: b9eaedf40f2d8eccb99bdf3b2a833e6e
   docVersion: 1.0.0
-  speakeasyVersion: 1.730.0
-  generationVersion: 2.844.2
-  releaseVersion: 1.10.11
-  configChecksum: 3edbb5de7969b51d080425c0e6bf1f71
+  speakeasyVersion: 1.730.1
+  generationVersion: 2.844.3
+  releaseVersion: 1.10.12
+  configChecksum: f14878e6b1af6f98332365745b8a2ee9
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 2016f9fc-eb4a-481c-b96e-b9e0bfa9ce40
-  pristine_commit_hash: 21c56e3797ad1e623edd007a1a649c6a137d6cba
-  pristine_tree_hash: 4734d91462d62074a1ebf720da010098257004ed
+  generation_id: 9c4a001d-9ff3-4e3d-b061-3d2b9e6109f1
+  pristine_commit_hash: e039f3079b45c3ba10164063a93163414a3a9daf
+  pristine_tree_hash: 7e6385d7adfab122318b4da011e82450d03214dc
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2387,12 +2387,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:79d79d486a0b6413b944a50309a8a31d61afd49b
-    pristine_git_object: e309425a688bd43ff8074c35cbaa9ff858d9a336
+    last_write_checksum: sha1:5cb5ae57f684edc98fdbf750a05b1b803e7d1275
+    pristine_git_object: 0530da992f4496274e047d5b3b94417f5d5efc1a
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:18b26619a4e1a18b904cf86a7e0af107a347e5db
-    pristine_git_object: dcdbf56c88100ef9d6be7ecde28e3233b327844e
+    last_write_checksum: sha1:49744c9d28d64049b941076516d92f921ab90300
+    pristine_git_object: 8548d96004ad249c7ba9ccbde1d95c7a4c4ac065
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2823,8 +2823,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:6e1b10e50277e521b0648cd9a1a4d4ada7811135
-    pristine_git_object: 6d29a4b263c84e7448dd35f5caf554d6a0527218
+    last_write_checksum: sha1:11625a1ce76e7c7c9fc2a034f16a366476ee64e9
+    pristine_git_object: 3d7acffea91ddc9ef0b49d75a5b4c3fb37aba72f
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -8361,7 +8361,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.dlocalPix.subscription.amount.minValue` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.dlocalPix.subscription.amount.minValue` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.dlocalPix.subscription.amount.minValue` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
