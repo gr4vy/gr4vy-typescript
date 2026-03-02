@@ -29,3 +29,4 @@
 /node_modules
 /.tsbuildinfo
 private_key.pem
+private_rsa_key.pem

@@ -1,6 +1,15 @@
 import { jwkThumbprintByEncoding } from "jwk-thumbprint";
 
 /**
+ * JWT signing algorithms supported by SDK token helpers.
+ *
+ * Only SHA-512 variants are supported:
+ * - ES512 for EC keys (P-521)
+ * - RS512 for RSA keys
+ */
+export type JwtSigningAlgorithm = "ES512" | "RS512";
+
+/**
  * Decodes a base64 string into a Uint8Array.
  *
  * Supports browser (atob), Node.js (Buffer), and other JS runtimes.
@@ -59,6 +68,116 @@ export function pemToPkcs8(privateKey: string): Uint8Array {
   return decodeBase64(cleaned);
 }
 
+const RSA_ENCRYPTION_OID = "1.2.840.113549.1.1.1";
+const EC_PUBLIC_KEY_OID = "1.2.840.10045.2.1";
+
+function readDerLength(data: Uint8Array, offset: number) {
+  if (offset >= data.length) {
+    throw new Error("Invalid PKCS#8 key format");
+  }
+
+  const first = data[offset]!;
+  if ((first & 0x80) === 0) {
+    return { length: first, bytesRead: 1 };
+  }
+
+  const byteCount = first & 0x7f;
+  if (byteCount === 0 || offset + 1 + byteCount > data.length) {
+    throw new Error("Invalid PKCS#8 key format");
+  }
+
+  let length = 0;
+  for (let index = 0; index < byteCount; index++) {
+    length = (length << 8) | data[offset + 1 + index]!;
+  }
+
+  return { length, bytesRead: 1 + byteCount };
+}
+
+function readDerElement(data: Uint8Array, offset: number, expectedTag?: number) {
+  if (offset + 1 >= data.length) {
+    throw new Error("Invalid PKCS#8 key format");
+  }
+
+  const tag = data[offset];
+  if (typeof expectedTag === "number" && tag !== expectedTag) {
+    throw new Error("Invalid PKCS#8 key format");
+  }
+
+  const { length, bytesRead } = readDerLength(data, offset + 1);
+  const valueStart = offset + 1 + bytesRead;
+  const valueEnd = valueStart + length;
+
+  if (valueEnd > data.length) {
+    throw new Error("Invalid PKCS#8 key format");
+  }
+
+  return {
+    valueStart,
+    valueEnd,
+    nextOffset: valueEnd,
+  };
+}
+
+function decodeOid(oidBytes: Uint8Array): string {
+  if (oidBytes.length === 0) {
+    throw new Error("Invalid PKCS#8 key format");
+  }
+
+  const first = oidBytes[0]!;
+  const arcs: number[] = [Math.floor(first / 40), first % 40];
+  let value = 0;
+
+  for (let index = 1; index < oidBytes.length; index++) {
+    const byte = oidBytes[index]!;
+    value = (value << 7) | (byte & 0x7f);
+
+    if ((byte & 0x80) === 0) {
+      arcs.push(value);
+      value = 0;
+    }
+  }
+
+  if (value !== 0) {
+    throw new Error("Invalid PKCS#8 key format");
+  }
+
+  return arcs.join(".");
+}
+
+export function detectJwtSigningAlgorithm(
+  privateKey: string,
+): JwtSigningAlgorithm {
+  /**
+   * PKCS#8 keys are wrapped in an ASN.1 PrivateKeyInfo structure.
+   *
+   * `BEGIN PRIVATE KEY` is not enough to identify RSA vs EC since both can use
+   * that same PEM label. We therefore read the algorithm OID from DER:
+   * - 1.2.840.113549.1.1.1 => RSA => RS512
+   * - 1.2.840.10045.2.1    => EC  => ES512
+   */
+  const keyData = pemToPkcs8(privateKey);
+  const topSequence = readDerElement(keyData, 0, 0x30);
+
+  let cursor = topSequence.valueStart;
+  const version = readDerElement(keyData, cursor, 0x02);
+  cursor = version.nextOffset;
+
+  const algorithmIdentifier = readDerElement(keyData, cursor, 0x30);
+  const oid = readDerElement(keyData, algorithmIdentifier.valueStart, 0x06);
+  const oidString = decodeOid(keyData.slice(oid.valueStart, oid.valueEnd));
+
+  if (oidString === RSA_ENCRYPTION_OID) {
+    return "RS512";
+  }
+
+  if (oidString === EC_PUBLIC_KEY_OID) {
+    return "ES512";
+  }
+
+  throw new Error("Unsupported key type. Only ECDSA and RSA are supported.");
+}
+
 /**
  * Attempts to detect the JS runtime and its version based on available globals.
  */
@@ -87,15 +206,29 @@ export function getRuntime() {
 }
 
 /**
- * Calculate the Key ID
+ * Calculates a JWK thumbprint-based `kid` for a private key.
+ *
+ * The caller passes `jwtAlgorithm` so algorithm detection happens once at the
+ * call site and both signing and key import stay consistent.
+ *
+ * @param privateKey - PEM-encoded PKCS#8 private key (`BEGIN PRIVATE KEY`).
+ * @param jwtAlgorithm - Previously detected JWT algorithm (`ES512` or `RS512`).
+ * @returns A base64url-encoded key ID value.
  */
-export async function getKeyId(privateKey: string): Promise<string> {
+export async function getKeyId(
+  privateKey: string,
+  jwtAlgorithm: JwtSigningAlgorithm,
+): Promise<string> {
   if (typeof crypto === "undefined" || crypto.subtle == null) {
     throw new Error("WebCrypto API is not available in this runtime");
   }
 
-  const keyData = pemToPkcs8(privateKey);
-  const algorithm = { name: "ECDSA", namedCurve: "P-521" };
+  const keyData = pemToPkcs8(privateKey).buffer as ArrayBuffer;
+
+  const algorithm =
+    jwtAlgorithm === "RS512"
+      ? { name: "RSASSA-PKCS1-v1_5", hash: "SHA-512" as const }
+      : { name: "ECDSA", namedCurve: "P-521" as const };
 
   const cryptoKey = await crypto.subtle.importKey(
     "pkcs8",

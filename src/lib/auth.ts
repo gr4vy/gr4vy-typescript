@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 
 import { CartItem } from "../models/components";
 import { SDK_METADATA } from "./config";
-import { getKeyId } from "./helpers";
+import { detectJwtSigningAlgorithm, getKeyId } from "./helpers";
 
 /**
  * Helper method for generating a bearer token for use with the SDK
@@ -49,7 +49,8 @@ export const getToken = async (options: {
     expiresIn = "30s",
   } = options;
 
-  const keyid = await getKeyId(privateKey);
+  const algorithm = detectJwtSigningAlgorithm(privateKey);
+  const keyid = await getKeyId(privateKey, algorithm);
   const claims: Claims = { scopes };
 
   if (checkoutSessionId) {
@@ -64,7 +65,7 @@ export const getToken = async (options: {
   }
 
   return jwt.sign(claims, privateKey, {
-    algorithm: "ES512",
+    algorithm,
     keyid,
     jwtid: uuid(),
     expiresIn: expiresIn,
@@ -90,8 +91,10 @@ export const updateToken = async (options: {
     expiresIn = "30s",
   } = options;
 
+  const algorithm = detectJwtSigningAlgorithm(privateKey);
+
   const payload = jwt.verify(token, privateKey, {
-    algorithms: ['ES512'],
+    algorithms: [algorithm],
     ignoreExpiration: true,
   }) as JwtPayload | Claims
 
