@@ -25,12 +25,12 @@ describe("pemToPkcs8", () => {
 
   test("throws on missing BEGIN marker", () => {
     const pem = "AQID\n-----END PRIVATE KEY-----";
-    expect(() => pemToPkcs8(pem)).toThrow(/missing 'BEGIN PRIVATE KEY'/);
+    expect(() => pemToPkcs8(pem)).toThrow("Invalid PEM format for private key. This function only accepts PKCS#8 keys with 'BEGIN PRIVATE KEY' and 'END PRIVATE KEY' markers. Other PEM formats such as 'BEGIN RSA PRIVATE KEY' (PKCS#1) or 'BEGIN EC PRIVATE KEY' (SEC1) are not supported.");
   });
 
   test("throws on missing END marker", () => {
     const pem = "-----BEGIN PRIVATE KEY-----\nAQID";
-    expect(() => pemToPkcs8(pem)).toThrow(/missing.*END PRIVATE KEY/);
+    expect(() => pemToPkcs8(pem)).toThrow("Invalid PEM format for private key. This function only accepts PKCS#8 keys with 'BEGIN PRIVATE KEY' and 'END PRIVATE KEY' markers. Other PEM formats such as 'BEGIN RSA PRIVATE KEY' (PKCS#1) or 'BEGIN EC PRIVATE KEY' (SEC1) are not supported.");
   });
 
 });
