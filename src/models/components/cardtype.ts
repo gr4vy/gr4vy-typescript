@@ -19,3 +19,9 @@ export const CardType$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = openEnums.inboundSchema(CardType);
+/** @internal */
+export const CardType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CardType
+> = openEnums.outboundSchema(CardType);
