@@ -55,7 +55,7 @@ export function pemToPkcs8(privateKey: string): Uint8Array {
     !privateKey.includes("-----END PRIVATE KEY-----")
   ) {
     throw new Error(
-      "Invalid PEM format: missing 'BEGIN PRIVATE KEY' or 'END PRIVATE KEY' markers.",
+      "Invalid PEM format for private key. This function only accepts PKCS#8 keys with 'BEGIN PRIVATE KEY' and 'END PRIVATE KEY' markers. Other PEM formats such as 'BEGIN RSA PRIVATE KEY' (PKCS#1) or 'BEGIN EC PRIVATE KEY' (SEC1) are not supported.",
     );
   }
 
