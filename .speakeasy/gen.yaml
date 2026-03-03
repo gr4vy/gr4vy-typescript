@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.10.13
+  version: 1.10.14
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -109,4 +109,6 @@ typescript:
       package: fs
       type: packageImport
   useIndexModules: true
+  useOxlint: false
+  useTsgo: false
   zodVersion: v3

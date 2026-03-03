@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { CardType, CardType$outboundSchema } from "./cardtype.js";
 
 /**
  * Create a Google Pay payment with an FPAN.
@@ -32,7 +33,7 @@ export type GooglePayFPANPaymentMethodCreate = {
   /**
    * The type of the card used
    */
-  cardType?: string | null | undefined;
+  cardType?: CardType | null | undefined;
   /**
    * Aways `googlepay_pan_only`.
    */
@@ -71,7 +72,7 @@ export const GooglePayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
-  cardType: z.nullable(z.string()).optional(),
+  cardType: z.nullable(CardType$outboundSchema).optional(),
   method: z.literal("googlepay_pan_only"),
   redirectUrl: z.nullable(z.string()).optional(),
   securityCode: z.nullable(z.any()).optional(),

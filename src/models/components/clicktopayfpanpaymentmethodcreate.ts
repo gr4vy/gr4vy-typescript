@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { CardType, CardType$outboundSchema } from "./cardtype.js";
 
 /**
  * Create a Click to Pay payment with an FPAN or virtual PAN
@@ -32,7 +33,7 @@ export type ClickToPayFPANPaymentMethodCreate = {
   /**
    * The type of the card used
    */
-  cardType?: string | null | undefined;
+  cardType?: CardType | null | undefined;
   /**
    * Aways `click-to-pay`.
    */
@@ -71,7 +72,7 @@ export const ClickToPayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
-  cardType: z.nullable(z.string()).optional(),
+  cardType: z.nullable(CardType$outboundSchema).optional(),
   method: z.literal("click-to-pay"),
   redirectUrl: z.nullable(z.string()).optional(),
   securityCode: z.nullable(z.any()).optional(),

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { CardType, CardType$outboundSchema } from "./cardtype.js";
 
 /**
  * Create a transaction with raw card details
@@ -32,7 +33,7 @@ export type CardWithUrlPaymentMethodCreate = {
   /**
    * The type of the card used
    */
-  cardType?: string | null | undefined;
+  cardType?: CardType | null | undefined;
   /**
    * Always `card`
    */
@@ -71,7 +72,7 @@ export const CardWithUrlPaymentMethodCreate$outboundSchema: z.ZodType<
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
-  cardType: z.nullable(z.string()).optional(),
+  cardType: z.nullable(CardType$outboundSchema).optional(),
   method: z.literal("card").default("card" as const),
   securityCode: z.nullable(z.string()).optional(),
   redirectUrl: z.nullable(z.string()).optional(),
