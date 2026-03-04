@@ -222,6 +222,8 @@ export * from "./reportspecmodel.js";
 export * from "./reportsummary.js";
 export * from "./reportupdate.js";
 export * from "./requiredcheckoutfields.js";
+export * from "./riskifiedantifraudoptions.js";
+export * from "./riskifiedantifraudoptionslineitem.js";
 export * from "./security.js";
 export * from "./settlement.js";
 export * from "./settlements.js";
