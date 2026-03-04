@@ -140,6 +140,11 @@ import {
   PowertranzOptions$outboundSchema,
 } from "./powertranzoptions.js";
 import {
+  RiskifiedAntiFraudOptions,
+  RiskifiedAntiFraudOptions$Outbound,
+  RiskifiedAntiFraudOptions$outboundSchema,
+} from "./riskifiedantifraudoptions.js";
+import {
   StripeOptions,
   StripeOptions$Outbound,
   StripeOptions$outboundSchema,
@@ -327,6 +332,10 @@ export type TransactionConnectionOptions = {
    */
   powertranzCard?: PowertranzOptions | null | undefined;
   /**
+   * Custom options to be passed to the `riskified-anti-fraud` connector.
+   */
+  riskifiedAntiFraud?: RiskifiedAntiFraudOptions | null | undefined;
+  /**
    * Custom options to be passed to the `stripe-card` connector.
    */
   stripeCard?: StripeOptions | null | undefined;
@@ -393,6 +402,10 @@ export type TransactionConnectionOptions$Outbound = {
   "paypal-paypal"?: PaypalOptions$Outbound | null | undefined;
   "paypal-paypalpaylater"?: PaypalOptions$Outbound | null | undefined;
   "powertranz-card"?: PowertranzOptions$Outbound | null | undefined;
+  "riskified-anti-fraud"?:
+    | RiskifiedAntiFraudOptions$Outbound
+    | null
+    | undefined;
   "stripe-card"?: StripeOptions$Outbound | null | undefined;
   "travelhub-card"?: TravelhubOptions$Outbound | null | undefined;
   "trustly-trustly"?: TrustlyOptions$Outbound | null | undefined;
@@ -449,6 +462,8 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   paypalPaypal: z.nullable(PaypalOptions$outboundSchema).optional(),
   paypalPaypalpaylater: z.nullable(PaypalOptions$outboundSchema).optional(),
   powertranzCard: z.nullable(PowertranzOptions$outboundSchema).optional(),
+  riskifiedAntiFraud: z.nullable(RiskifiedAntiFraudOptions$outboundSchema)
+    .optional(),
   stripeCard: z.nullable(StripeOptions$outboundSchema).optional(),
   travelhubCard: z.nullable(TravelhubOptions$outboundSchema).optional(),
   trustlyTrustly: z.nullable(TrustlyOptions$outboundSchema).optional(),
@@ -496,6 +511,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     paypalPaypal: "paypal-paypal",
     paypalPaypalpaylater: "paypal-paypalpaylater",
     powertranzCard: "powertranz-card",
+    riskifiedAntiFraud: "riskified-anti-fraud",
     stripeCard: "stripe-card",
     travelhubCard: "travelhub-card",
     trustlyTrustly: "trustly-trustly",
