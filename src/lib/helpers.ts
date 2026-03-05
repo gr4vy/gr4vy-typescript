@@ -1,5 +1,10 @@
 /**
- * Attempts to detect the JS runtime and its version based on available globals.
+ * Best-effort runtime identification used for SDK metadata/user-agent strings.
+ *
+ * The function prefers browser-style detection via `navigator.userAgent` and
+ * falls back to Node.js `process.version` when available.
+ *
+ * @returns A runtime identifier string, or `"<unknown-runtime>"` when not detectable.
  */
 export function getRuntime() {
   if (
@@ -25,11 +30,67 @@ export function getRuntime() {
   return "<unknown-runtime>";
 }
 
+let cachedWebCrypto: Crypto | undefined;
+
 /**
- * Calculate the Key ID (JWK Thumbprint per RFC 7638)
+ * Resolves a Web Crypto implementation across supported runtimes.
+ *
+ * Resolution order:
+ * 1. `globalThis.crypto` when already exposed by the runtime.
+ * 2. Node.js fallback via `node:crypto`.webcrypto (important for some Node 18 setups).
+ *
+ * @returns A Web Crypto compatible `Crypto` object with `subtle` APIs.
+ * @throws If no Web Crypto implementation is available.
+ */
+async function resolveWebCrypto(): Promise<Crypto> {
+  // Browsers, Bun, Deno, and many Node setups expose crypto globally.
+  if (globalThis.crypto?.subtle != null) {
+    return globalThis.crypto;
+  }
+
+  // Reuse the resolved Node fallback to avoid repeated dynamic imports.
+  if (cachedWebCrypto != null) {
+    return cachedWebCrypto;
+  }
+
+  try {
+    // Node.js fallback for environments where globalThis.crypto is not wired.
+    const nodeCrypto = await import("node:crypto");
+    if (nodeCrypto.webcrypto?.subtle != null) {
+      cachedWebCrypto = nodeCrypto.webcrypto as unknown as Crypto;
+      return cachedWebCrypto;
+    }
+  } catch {
+    // Intentionally ignored. We'll throw a descriptive error below.
+  }
+
+  throw new Error(
+    "Web Crypto API is unavailable. Expected globalThis.crypto.subtle or Node's crypto.webcrypto."
+  );
+}
+
+/**
+ * Derives JWT `kid` from a private key using an RFC 7638 JWK thumbprint.
+ *
+ * Expected key format:
+ * - PKCS#8 PEM-encoded private key
+ * - EC P-521 curve (matches ES512 signing)
+ *
+ * Steps:
+ * 1. Decode PEM to PKCS#8 DER bytes.
+ * 2. Import key through Web Crypto.
+ * 3. Export as JWK and validate required fields.
+ * 4. Hash the canonical RFC 7638 thumbprint input with SHA-256.
+ * 5. Return base64url encoded digest.
+ *
+ * @param privateKey PEM-encoded PKCS#8 EC private key.
+ * @returns The base64url-encoded JWK thumbprint used as JWT `kid`.
+ * @throws If key parsing/import/export/validation/digest fails.
  */
 export async function getKeyId(privateKey: string): Promise<string> {
   try {
+    const runtimeCrypto = await resolveWebCrypto();
+
     // Parse PEM to DER binary
     const pemBody = privateKey
       .replace(/-----BEGIN PRIVATE KEY-----/, "")
@@ -38,7 +99,7 @@ export async function getKeyId(privateKey: string): Promise<string> {
     const der = Uint8Array.from(atob(pemBody), (c) => c.charCodeAt(0));
 
     // Import as extractable CryptoKey (ES512 = P-521)
-    const key = await crypto.subtle.importKey(
+    const key = await runtimeCrypto.subtle.importKey(
       "pkcs8",
       der,
       { name: "ECDSA", namedCurve: "P-521" },
@@ -46,8 +107,8 @@ export async function getKeyId(privateKey: string): Promise<string> {
       ["sign"]
     );
 
-    // Export as JWK, compute RFC 7638 thumbprint
-    const jwk = await crypto.subtle.exportKey("jwk", key);
+    // Export as JWK and validate fields required to build an RFC 7638 thumbprint.
+    const jwk = await runtimeCrypto.subtle.exportKey("jwk", key);
     const requiredFields = ["kty", "crv", "x", "y"] as const;
     const invalidFields = requiredFields.filter((field) => {
       const value = jwk[field];
@@ -65,13 +126,14 @@ export async function getKeyId(privateKey: string): Promise<string> {
       throw new Error("Imported key is not an EC P-521 private key");
     }
 
+    // RFC 7638 canonical member set for EC keys: crv, kty, x, y.
     const input = JSON.stringify({
       crv: jwk.crv,
       kty: jwk.kty,
       x: jwk.x,
       y: jwk.y,
     });
-    const hash = await crypto.subtle.digest(
+    const hash = await runtimeCrypto.subtle.digest(
       "SHA-256",
       new TextEncoder().encode(input)
     );
