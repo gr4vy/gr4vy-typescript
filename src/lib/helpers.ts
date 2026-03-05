@@ -53,15 +53,31 @@ async function resolveWebCrypto(): Promise<Crypto> {
     return cachedWebCrypto;
   }
 
-  try {
-    // Node.js fallback for environments where globalThis.crypto is not wired.
-    const nodeCrypto = await import("node:crypto");
-    if (nodeCrypto.webcrypto?.subtle != null) {
-      cachedWebCrypto = nodeCrypto.webcrypto as unknown as Crypto;
-      return cachedWebCrypto;
+  const gt: unknown = globalThis;
+  const isNodeRuntime =
+    typeof gt === "object" &&
+    gt != null &&
+    "process" in gt &&
+    typeof gt.process === "object" &&
+    gt.process != null &&
+    "versions" in gt.process &&
+    typeof gt.process.versions === "object" &&
+    gt.process.versions != null &&
+    "node" in gt.process.versions;
+
+  // Avoid attempting to resolve `node:crypto` in non-Node runtimes.
+  if (isNodeRuntime) {
+    try {
+      // Keep the specifier non-literal to avoid eager bundler resolution.
+      const nodeCryptoSpecifier = `node${":"}crypto`;
+      const nodeCrypto = await import(nodeCryptoSpecifier);
+      if (nodeCrypto.webcrypto?.subtle != null) {
+        cachedWebCrypto = nodeCrypto.webcrypto as unknown as Crypto;
+        return cachedWebCrypto;
+      }
+    } catch {
+      // Intentionally ignored. We'll throw a descriptive error below.
     }
-  } catch {
-    // Intentionally ignored. We'll throw a descriptive error below.
   }
 
   throw new Error(
