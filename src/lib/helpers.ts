@@ -1,3 +1,5 @@
+import { bytesFromBase64 } from "./base64";
+
 /**
  * Best-effort runtime identification used for SDK metadata/user-agent strings.
  *
@@ -112,7 +114,7 @@ export async function getKeyId(privateKey: string): Promise<string> {
       .replace(/-----BEGIN PRIVATE KEY-----/, "")
       .replace(/-----END PRIVATE KEY-----/, "")
       .replace(/\s/g, "");
-    const der = Uint8Array.from(atob(pemBody), (c) => c.charCodeAt(0));
+    const der = bytesFromBase64(pemBody);
 
     // Import as extractable CryptoKey (ES512 = P-521)
     const key = await runtimeCrypto.subtle.importKey(
