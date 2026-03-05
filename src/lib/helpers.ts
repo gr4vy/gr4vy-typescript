@@ -1,6 +1,3 @@
-import keyto from "@trust/keyto";
-import { jwkThumbprintByEncoding } from "jwk-thumbprint";
-
 /**
  * Attempts to detect the JS runtime and its version based on available globals.
  */
@@ -29,36 +26,41 @@ export function getRuntime() {
 }
 
 /**
- * Calculate the Key ID
+ * Calculate the Key ID (JWK Thumbprint per RFC 7638)
  */
 export async function getKeyId(privateKey: string): Promise<string> {
-  const jwk = keyto.from(privateKey, "pem").toJwk("private");
+  // Parse PEM to DER binary
+  const pemBody = privateKey
+    .replace(/-----BEGIN PRIVATE KEY-----/, "")
+    .replace(/-----END PRIVATE KEY-----/, "")
+    .replace(/\s/g, "");
+  const der = Uint8Array.from(atob(pemBody), (c) => c.charCodeAt(0));
 
-  const keyid = jwkThumbprintByEncoding(
-    stripUndefined(jwk),
-    "SHA-256",
-    "base64url"
+  // Import as extractable CryptoKey (ES512 = P-521)
+  const key = await crypto.subtle.importKey(
+    "pkcs8",
+    der,
+    { name: "ECDSA", namedCurve: "P-521" },
+    true,
+    ["sign"]
   );
-  if (keyid == null) {
-    throw new Error("Failed to generate jwk thumbprint");
-  }
 
-  return keyid;
-}
+  // Export as JWK, compute RFC 7638 thumbprint
+  const jwk = await crypto.subtle.exportKey("jwk", key);
+  const input = JSON.stringify({
+    crv: jwk.crv,
+    kty: jwk.kty,
+    x: jwk.x,
+    y: jwk.y,
+  });
+  const hash = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(input)
+  );
 
-export function stripUndefined<T extends {}>(
-  obj: T
-): { [K in keyof T]?: Exclude<T[K], undefined> } {
-  const newObj: { [K in keyof T]?: Exclude<T[K], undefined> } = {};
-  const target: Record<string, unknown> = newObj;
-
-  for (const entry of Object.entries(obj)) {
-    const [key, value] = entry;
-
-    if (typeof value !== "undefined") {
-      target[key] = value;
-    }
-  }
-
-  return newObj;
+  // Base64url encode
+  return btoa(String.fromCharCode(...new Uint8Array(hash)))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
 }
