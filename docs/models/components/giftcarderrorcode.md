@@ -14,11 +14,11 @@ documentation: https://docs.gr4vy.com/guides/features/gift-cards/simulator
 import { GiftCardErrorCode } from "@gr4vy/sdk/models/components";
 
 let value: GiftCardErrorCode = "incorrect_currency";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "invalid_gift_card" | "expired_card" | "inactive_card" | "invalid_service_credentials" | "invalid_amount" | "incorrect_currency" | "insufficient_funds" | "invalid_service_configuration" | "operation_canceled" | "service_error" | "service_network_error" | "unknown_error" | "max_gift_cards_reached" | Unrecognized<string>

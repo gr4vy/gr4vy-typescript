@@ -6,11 +6,11 @@
 import { ApprovalTarget } from "@gr4vy/sdk/models/components";
 
 let value: ApprovalTarget = "any";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "new_window" | "any" | Unrecognized<string>

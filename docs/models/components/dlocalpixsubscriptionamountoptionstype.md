@@ -8,11 +8,11 @@ Indicates the amount type unit for the subscription. Allowed values are: `FIXED`
 import { DlocalPIXSubscriptionAmountOptionsType } from "@gr4vy/sdk/models/components";
 
 let value: DlocalPIXSubscriptionAmountOptionsType = "FIXED";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "FIXED" | "VARIABLE" | Unrecognized<string>
