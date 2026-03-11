@@ -6,11 +6,11 @@
 import { GiftCardServiceProvider } from "@gr4vy/sdk/models/components";
 
 let value: GiftCardServiceProvider = "mock-gift-card";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "mock-gift-card" | "qwikcilver-gift-card" | Unrecognized<string>
