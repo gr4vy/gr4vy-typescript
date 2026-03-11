@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: d62afa1d59601b7c6ccc95602e499cad
+  docChecksum: a33e6e11e39530ed212517a26bdd7fed
   docVersion: 1.0.0
-  speakeasyVersion: 1.751.2
-  generationVersion: 2.859.0
-  releaseVersion: 2.0.2
-  configChecksum: 89728bd5e663f90d8ab867b3e7bf7b8b
+  speakeasyVersion: 1.751.3
+  generationVersion: 2.859.2
+  releaseVersion: 2.0.3
+  configChecksum: 57719572e4d27e106735501713a9ee48
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: d3795b15-f4b0-4eb6-9946-5458974f6834
-  pristine_commit_hash: 3fd81a263e2a63433a39cb782923f862dae01261
-  pristine_tree_hash: a00852736fbfbb3a85e51f72b2daa7574436a0e0
+  generation_id: 54b74769-ad96-49a3-949a-b3af97786d05
+  pristine_commit_hash: ebf900137edc043929cfbc60eecd6574c2b68ac3
+  pristine_tree_hash: cb8c1117876ce0f2c30f43dc7630dd13cef35927
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -591,8 +591,8 @@ trackedFiles:
     pristine_git_object: 63848b2ff70a9d3967847bd25796b17016fe2109
   docs/models/components/instrumenttype.md:
     id: 761eb620eb28
-    last_write_checksum: sha1:b42813afad8fa2b02efd04c278afbc4ab5799e4c
-    pristine_git_object: e61d50bad690e172c60749d2232c97d9e30d2983
+    last_write_checksum: sha1:c5fc62559047e93e8f73baeeef06e0305a60efc4
+    pristine_git_object: 52e6fd6630818313f4984e500a25b5b378fdabf6
   docs/models/components/integrationclient.md:
     id: dd503b09bbc1
     last_write_checksum: sha1:283b8f251f9ab928f44c9248abf345f4501a11f4
@@ -1195,8 +1195,8 @@ trackedFiles:
     pristine_git_object: b4d17514562bf317ade83c502b1fca59226b32db
   docs/models/components/transactionconnectionoptions.md:
     id: a4843e535547
-    last_write_checksum: sha1:19a3d6af05c2c1d1699695538565d6504326a00d
-    pristine_git_object: b5ea1c036c6b5f58928e0c46e548a8a2e44f5dbe
+    last_write_checksum: sha1:678cb6053d1cecddc49ff469688b598f79decb31
+    pristine_git_object: abb5673298d401ea77d431dab1cd665102533021
   docs/models/components/transactioncreate.md:
     id: 652e84478e51
     last_write_checksum: sha1:be6ffb47a3c0dd952dc04dfb256e947a7b82d758
@@ -2399,12 +2399,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:ccc4ae0680f156d96097e566d8cdae3f4a117957
-    pristine_git_object: dce870e594f269a36f5bbd5bd84c7cb1707ab999
+    last_write_checksum: sha1:50f3be98220630e3fcdd75241584f095166eb569
+    pristine_git_object: cdf08221e429ceb1443567309835ac92f1eccdc2
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:97817f63f619f92502233c44df97bf85b5451b9e
-    pristine_git_object: 4c33f6c066820a81ce3ee5d3a070e67ccaf062c6
+    last_write_checksum: sha1:ac9e6a769a612e5bdf7db7e4bf5346671fecb723
+    pristine_git_object: 5d93999d82f6fae9f54ce4bed3d9834b787ba97d
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2835,8 +2835,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:c8ef76dd8381c28a6bdcca3114512eae04010593
-    pristine_git_object: bd20e4ccc3b27b451eb950056827d2bd1c2d3ae9
+    last_write_checksum: sha1:377df9f24afc460e79f345c69fd031a135038355
+    pristine_git_object: c9b6fbdacc7b7e5fc0f2a31297ae9b98509f2d57
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3391,8 +3391,8 @@ trackedFiles:
     pristine_git_object: f580dbea25b4787430bcad8b8b337e9de38b90fa
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
-    last_write_checksum: sha1:a9de7594f2b7692d9a8630a3d49e82de22d37380
-    pristine_git_object: ffbbc3b37d576253d97389e14a7c4671ba79fec5
+    last_write_checksum: sha1:bc91a710a9a09a03593fd28f024f153893b5076e
+    pristine_git_object: 57e527fc1dc121075f0972a209532a87658f2d93
   src/models/components/integrationclient.ts:
     id: 3063d4bae680
     last_write_checksum: sha1:17bf6dbac92265960dec449f20c20443178c5c5d
@@ -3927,8 +3927,8 @@ trackedFiles:
     pristine_git_object: e6bd805f9f3a40cf15ef965745d94da9782a078c
   src/models/components/transactionconnectionoptions.ts:
     id: 3f42998a2d5b
-    last_write_checksum: sha1:c3fbe21e1a8b5ef42f409bf6666f52ba1c1b9ca3
-    pristine_git_object: 0edffcf781d58636c71b855fa68f9041a4359970
+    last_write_checksum: sha1:a9c243f193e743278edef38adf2af41d93bc4ab7
+    pristine_git_object: 90b90f187fb6f4e6904759d6470f2e08abe52f3c
   src/models/components/transactioncreate.ts:
     id: 6ba6f0cd74e3
     last_write_checksum: sha1:a05efa3e6ceb15e3d61c444de1bf17f8b854393f
@@ -8381,6 +8381,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.list()`:  `response.items[].instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.adyenPix` **Added**\n  *  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.get()`:  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenPix` **Added**\n  *  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.sync()`:  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenPix` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
