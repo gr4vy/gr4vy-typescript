@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Gr4vy",
   "main": "./index.js",
   "sideEffects": false,
@@ -25,7 +25,7 @@
     "timekeeper": "^2.3.1",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.26.0",
-    "vitest": "^4.0.3"
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.3",
