@@ -12,7 +12,10 @@ export type CreatePaymentMethodGlobals = {
 
 export type CreatePaymentMethodBody =
   | components.RedirectPaymentMethodCreate
+  | components.ACHBankPaymentMethodCreate
+  | components.BACSBankPaymentMethodCreate
   | components.CardPaymentMethodCreate
+  | components.SEPABankPaymentMethodCreate
   | components.CheckoutSessionPaymentMethodCreate
   | components.PlaidPaymentMethodCreate;
 
@@ -23,7 +26,10 @@ export type CreatePaymentMethodRequest = {
   merchantAccountId?: string | null | undefined;
   requestBody:
     | components.RedirectPaymentMethodCreate
+    | components.ACHBankPaymentMethodCreate
+    | components.BACSBankPaymentMethodCreate
     | components.CardPaymentMethodCreate
+    | components.SEPABankPaymentMethodCreate
     | components.CheckoutSessionPaymentMethodCreate
     | components.PlaidPaymentMethodCreate;
 };
@@ -31,7 +37,10 @@ export type CreatePaymentMethodRequest = {
 /** @internal */
 export type CreatePaymentMethodBody$Outbound =
   | components.RedirectPaymentMethodCreate$Outbound
+  | components.ACHBankPaymentMethodCreate$Outbound
+  | components.BACSBankPaymentMethodCreate$Outbound
   | components.CardPaymentMethodCreate$Outbound
+  | components.SEPABankPaymentMethodCreate$Outbound
   | components.CheckoutSessionPaymentMethodCreate$Outbound
   | components.PlaidPaymentMethodCreate$Outbound;
 
@@ -42,7 +51,10 @@ export const CreatePaymentMethodBody$outboundSchema: z.ZodType<
   CreatePaymentMethodBody
 > = z.union([
   components.RedirectPaymentMethodCreate$outboundSchema,
+  components.ACHBankPaymentMethodCreate$outboundSchema,
+  components.BACSBankPaymentMethodCreate$outboundSchema,
   components.CardPaymentMethodCreate$outboundSchema,
+  components.SEPABankPaymentMethodCreate$outboundSchema,
   components.CheckoutSessionPaymentMethodCreate$outboundSchema,
   components.PlaidPaymentMethodCreate$outboundSchema,
 ]);
@@ -60,7 +72,10 @@ export type CreatePaymentMethodRequest$Outbound = {
   merchantAccountId?: string | null | undefined;
   RequestBody:
     | components.RedirectPaymentMethodCreate$Outbound
+    | components.ACHBankPaymentMethodCreate$Outbound
+    | components.BACSBankPaymentMethodCreate$Outbound
     | components.CardPaymentMethodCreate$Outbound
+    | components.SEPABankPaymentMethodCreate$Outbound
     | components.CheckoutSessionPaymentMethodCreate$Outbound
     | components.PlaidPaymentMethodCreate$Outbound;
 };
@@ -74,7 +89,10 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   merchantAccountId: z.nullable(z.string()).optional(),
   requestBody: z.union([
     components.RedirectPaymentMethodCreate$outboundSchema,
+    components.ACHBankPaymentMethodCreate$outboundSchema,
+    components.BACSBankPaymentMethodCreate$outboundSchema,
     components.CardPaymentMethodCreate$outboundSchema,
+    components.SEPABankPaymentMethodCreate$outboundSchema,
     components.CheckoutSessionPaymentMethodCreate$outboundSchema,
     components.PlaidPaymentMethodCreate$outboundSchema,
   ]),
