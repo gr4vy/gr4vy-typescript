@@ -39,3 +39,33 @@ const value: components.PlaidPaymentMethodCreate = {
 };
 ```
 
+### `components.ACHBankPaymentMethodCreate`
+
+```typescript
+const value: components.ACHBankPaymentMethodCreate = {
+  accountHolder: {},
+  accountNumber: "123456789",
+  routingNumber: "000000111",
+  accountType: "checking",
+};
+```
+
+### `components.BACSBankPaymentMethodCreate`
+
+```typescript
+const value: components.BACSBankPaymentMethodCreate = {
+  accountHolder: {},
+  accountNumber: "12345678",
+  routingNumber: "11-22-33",
+};
+```
+
+### `components.SEPABankPaymentMethodCreate`
+
+```typescript
+const value: components.SEPABankPaymentMethodCreate = {
+  accountHolder: {},
+  accountNumber: "ES1234567891234",
+};
+```
+
