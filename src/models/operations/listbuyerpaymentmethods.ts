@@ -5,11 +5,25 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as openEnums from "../../types/enums.js";
-import { OpenEnum } from "../../types/enums.js";
+import { ClosedEnum, OpenEnum } from "../../types/enums.js";
 
 export type ListBuyerPaymentMethodsGlobals = {
   merchantAccountId?: string | undefined;
 };
+
+/**
+ * The field to sort the payment methods by.
+ */
+export const SortBy = {
+  LastUsedAt: "last_used_at",
+  UsageCount: "usage_count",
+  CitLastUsedAt: "cit_last_used_at",
+  CitUsageCount: "cit_usage_count",
+} as const;
+/**
+ * The field to sort the payment methods by.
+ */
+export type SortBy = ClosedEnum<typeof SortBy>;
 
 /**
  * The direction to sort the payment methods in.
@@ -35,7 +49,7 @@ export type ListBuyerPaymentMethodsRequest = {
   /**
    * The field to sort the payment methods by.
    */
-  sortBy?: "last_used_at" | null | undefined;
+  sortBy?: SortBy | null | undefined;
   /**
    * The direction to sort the payment methods in.
    */
@@ -55,6 +69,10 @@ export type ListBuyerPaymentMethodsRequest = {
 };
 
 /** @internal */
+export const SortBy$outboundSchema: z.ZodNativeEnum<typeof SortBy> = z
+  .nativeEnum(SortBy);
+
+/** @internal */
 export const OrderBy$outboundSchema: z.ZodType<string, z.ZodTypeDef, OrderBy> =
   openEnums.outboundSchema(OrderBy);
 
@@ -62,7 +80,7 @@ export const OrderBy$outboundSchema: z.ZodType<string, z.ZodTypeDef, OrderBy> =
 export type ListBuyerPaymentMethodsRequest$Outbound = {
   buyer_id?: string | null | undefined;
   buyer_external_identifier?: string | null | undefined;
-  sort_by?: "last_used_at" | null | undefined;
+  sort_by?: string | null | undefined;
   order_by: string;
   country?: string | null | undefined;
   currency?: string | null | undefined;
@@ -77,7 +95,7 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerId: z.nullable(z.string()).optional(),
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  sortBy: z.nullable(z.literal("last_used_at")).optional(),
+  sortBy: z.nullable(SortBy$outboundSchema).optional(),
   orderBy: OrderBy$outboundSchema.default("desc"),
   country: z.nullable(z.string()).optional(),
   currency: z.nullable(z.string()).optional(),

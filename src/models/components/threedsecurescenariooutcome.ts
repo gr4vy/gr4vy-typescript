@@ -23,7 +23,7 @@ export type ThreeDSecureScenarioOutcome = {
   /**
    * The version of 3DS which will be simulated.
    */
-  version: string;
+  version?: string | null | undefined;
   authentication: ThreeDSecureScenarioOutcomeAuthentication;
   /**
    * 3DS result value. Required if authentication status is "C".
@@ -37,14 +37,14 @@ export const ThreeDSecureScenarioOutcome$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  version: z.string(),
+  version: z.nullable(z.string()).optional(),
   authentication: ThreeDSecureScenarioOutcomeAuthentication$inboundSchema,
   result: z.nullable(ThreeDSecureScenarioOutcomeResult$inboundSchema)
     .optional(),
 });
 /** @internal */
 export type ThreeDSecureScenarioOutcome$Outbound = {
-  version: string;
+  version?: string | null | undefined;
   authentication: ThreeDSecureScenarioOutcomeAuthentication$Outbound;
   result?: ThreeDSecureScenarioOutcomeResult$Outbound | null | undefined;
 };
@@ -55,7 +55,7 @@ export const ThreeDSecureScenarioOutcome$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ThreeDSecureScenarioOutcome
 > = z.object({
-  version: z.string(),
+  version: z.nullable(z.string()).optional(),
   authentication: ThreeDSecureScenarioOutcomeAuthentication$outboundSchema,
   result: z.nullable(ThreeDSecureScenarioOutcomeResult$outboundSchema)
     .optional(),

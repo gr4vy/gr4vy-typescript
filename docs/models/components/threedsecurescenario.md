@@ -12,7 +12,6 @@ let value: ThreeDSecureScenario = {
   updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
   conditions: {},
   outcome: {
-    version: "2.2.0",
     authentication: {
       transactionStatus: "Y",
     },
