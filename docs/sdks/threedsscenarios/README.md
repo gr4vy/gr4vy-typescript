@@ -33,7 +33,6 @@ async function run() {
   const result = await gr4vy.threeDsScenarios.create({
     conditions: {},
     outcome: {
-      version: "2.2.0",
       authentication: {
         transactionStatus: "Y",
       },
@@ -65,7 +64,6 @@ async function run() {
   const res = await threeDsScenariosCreate(gr4vy, {
     conditions: {},
     outcome: {
-      version: "2.2.0",
       authentication: {
         transactionStatus: "Y",
       },

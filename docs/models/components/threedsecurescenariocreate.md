@@ -8,7 +8,6 @@ import { ThreeDSecureScenarioCreate } from "@gr4vy/sdk/models/components";
 let value: ThreeDSecureScenarioCreate = {
   conditions: {},
   outcome: {
-    version: "2.2.0",
     authentication: {
       transactionStatus: "Y",
     },

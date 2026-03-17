@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 0c5e96a7d4bc9c1e13f8926c4c43d101
+  docChecksum: 8445912de5df2945c0c3c3d6cfe0bcd0
   docVersion: 1.0.0
-  speakeasyVersion: 1.752.0
-  generationVersion: 2.859.2
-  releaseVersion: 2.0.4
-  configChecksum: cb86052ee20071953ad24eb9df2382f4
+  speakeasyVersion: 1.755.1
+  generationVersion: 2.865.2
+  releaseVersion: 2.0.5
+  configChecksum: 266e9e124eb34596a5ec19cdcfcd9676
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 1e2e01c6-3f48-412e-852c-e8c8f2df3852
-  pristine_commit_hash: b3826442290f2744e9a4acaf2a5ba8a3377449d1
-  pristine_tree_hash: 24c27bfcdcba17e020bd0ee7d3afcc987e73f25e
+  generation_id: 21994de0-8a84-4edb-81e5-7250e1988a09
+  pristine_commit_hash: e0ef694fa800e9ce5594e858d9c8a1d33a0552b6
+  pristine_tree_hash: da54030199fc1913d629ced820c01dedaf253b85
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.26.41
+    core: 3.26.42
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -1127,20 +1127,20 @@ trackedFiles:
     pristine_git_object: a3739f5b7d01fcccf402ed84c2e70fe7c5150ea0
   docs/models/components/threedsecurescenario.md:
     id: 432e32569f09
-    last_write_checksum: sha1:dad9e7dd2ff6277f382d8fd2516b775fe7f693b3
-    pristine_git_object: cb40707de3ab17a62904481de0b761088f8dc923
+    last_write_checksum: sha1:a6a53ae953ac7d4721f1c7789d0967dcff1ec9da
+    pristine_git_object: 922ffaecc88342a1bd08fefd2db149c8e0a731b5
   docs/models/components/threedsecurescenarioconditions.md:
     id: 92458fa39b31
     last_write_checksum: sha1:71cae5540883bb393f141f2e9b1fa3df36b0ee00
     pristine_git_object: e272247e82ae1492ac6cfe1c1dc26981eef65b48
   docs/models/components/threedsecurescenariocreate.md:
     id: c32402ab84db
-    last_write_checksum: sha1:c02dc412187ff52e34101dc6dc912d8696ef1d5a
-    pristine_git_object: b8c54316b5c1d73b1c09e41d969cf404deab71c9
+    last_write_checksum: sha1:647c87c7375c28101e7a94a9c7001eecba8dc6f5
+    pristine_git_object: 5e9cab27292a28a1172e4fdec5a1eb20afa4ed69
   docs/models/components/threedsecurescenariooutcome.md:
     id: "912435943930"
-    last_write_checksum: sha1:b74f0bfd0e704545976af30a8e01763ed538363b
-    pristine_git_object: 0a0d3f0bb020ebdc23483c19b3706412254fadb2
+    last_write_checksum: sha1:4d24ab2f57b09562f17169ffb4dece6b4e1e6ebc
+    pristine_git_object: db8fbdb14ff14c9fba312acc71bafe4385098be6
   docs/models/components/threedsecurescenariooutcomeauthentication.md:
     id: 961ce7c4b099
     last_write_checksum: sha1:024712ddf7b7ad4ca3d48d1ca7fb17428c4a8d16
@@ -1607,8 +1607,8 @@ trackedFiles:
     pristine_git_object: f21ede4f76bff012911ed20e51cf54eb0a941492
   docs/models/operations/createthreedsscenariorequest.md:
     id: eee397ae055e
-    last_write_checksum: sha1:685dc74204da7b4de91021ea9a728e9794c0ed59
-    pristine_git_object: 2b3064c155a38bdae71302a2894bb0986999b643
+    last_write_checksum: sha1:347cee80cea865d3d0bd611ff6c58a1d34d410cb
+    pristine_git_object: 89e73f64a45b981bbe352a03f3d57e8c9be6a7c2
   docs/models/operations/createtransactionglobals.md:
     id: e94fa0dfb3b5
     last_write_checksum: sha1:3bb4b5e5c067fdea80bf97222b3598c20615b3e2
@@ -1899,8 +1899,8 @@ trackedFiles:
     pristine_git_object: 6872574cae97a6d31e1d60543db5295c9c917953
   docs/models/operations/listbuyerpaymentmethodsrequest.md:
     id: d17e367b14fe
-    last_write_checksum: sha1:d5cd4e3b415a103d47300c4c8e146ed14a881fc0
-    pristine_git_object: d01c4044a2115653aa5bebfebc4febca0d5e9b82
+    last_write_checksum: sha1:cb107bdfb88c4baae537542f4a48725410f6419b
+    pristine_git_object: 8549f0e80ceb6d434986553dda4b65735fe0cc79
   docs/models/operations/listbuyersglobals.md:
     id: 900cfb84eebf
     last_write_checksum: sha1:367827e2e942ff4f810ab277ba26dd5baddc6525
@@ -2141,6 +2141,10 @@ trackedFiles:
     id: 51a80bdd4ee7
     last_write_checksum: sha1:43252de07850eecd82c405f9eb6739e30324581f
     pristine_git_object: e70f014cff7a311fd98031bfd75c7cc0dffc1836
+  docs/models/operations/sortby.md:
+    id: 6e8a73340afa
+    last_write_checksum: sha1:21761ba7d613dc64a9295063ad4184053034c2f2
+    pristine_git_object: 5792e8139daebda04ba814b75def62e2f822e479
   docs/models/operations/suspendpaymentmethodnetworktokenglobals.md:
     id: d74821bd1eef
     last_write_checksum: sha1:9014fa45cc28af0049a5fb9f7c1263b9d7bf8d5d
@@ -2387,8 +2391,8 @@ trackedFiles:
     pristine_git_object: d132e5e87947ee213eed55f3ab5aaad98e2639bf
   docs/sdks/threedsscenarios/README.md:
     id: 81ff4c3f8215
-    last_write_checksum: sha1:41e5abcbcbab369377078093c16b1024f11a50b4
-    pristine_git_object: c9bebf6f14b8f484f6908e4eb7c681b6c259eecb
+    last_write_checksum: sha1:342e8502e46f206d39d0f061b5e5a0961bb054db
+    pristine_git_object: 6ba01aa8ce14d5bb68f53d01bde052cfae9da510
   docs/sdks/transactions/README.md:
     id: 85592abe3c6b
     last_write_checksum: sha1:2fbac95d1dfd7931d7dde72d9bdf213c26f2c0c1
@@ -2419,12 +2423,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:4b4f0531972cabd83f1f715058e0bf04e57da83a
-    pristine_git_object: c0bf30ac5829d9b40755e7343505ef41660f03e0
+    last_write_checksum: sha1:8c2d5fe749fdc16865b89070593ccf84f8413b00
+    pristine_git_object: 1154c9f9b3d35cb195152be816a4e0fcf07234a8
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:77ed2c10ff9287743cd7bf85e043a8ad6d365c76
-    pristine_git_object: d197fefe571cafc89a09293647a19b9f4ed3195c
+    last_write_checksum: sha1:ddc1e15e4c547f6d5aadcbf928e8e2bec755eac0
+    pristine_git_object: 8dc98199449da9bede9dc4ebbf8e7bf2a3724db5
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2855,8 +2859,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:d9b3819ac388c77a651795d2cb08c13492fbae85
-    pristine_git_object: 8be328f1f76499f82ce84eba1280a4adbead9059
+    last_write_checksum: sha1:3a1d33d2f70842e58504a71155246a178bd3dc65
+    pristine_git_object: 7e1a9e0591c4545e884f270170097e0d48921b50
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3903,8 +3907,8 @@ trackedFiles:
     pristine_git_object: 5d53f80817946edbb8e735f36af262690ff98b29
   src/models/components/threedsecurescenariooutcome.ts:
     id: 2082c8b19d0e
-    last_write_checksum: sha1:954abea5fbb0c8d8f241e9d0bbe7e16e553602fa
-    pristine_git_object: 7289af7a498909570b776124470bf5a6c807a60b
+    last_write_checksum: sha1:050cc41ab957cb1ec75e02f59210dd3eb8d7b961
+    pristine_git_object: 2597bbfaa8e909eab416c3313f91eec6efe0f0a2
   src/models/components/threedsecurescenariooutcomeauthentication.ts:
     id: 4f98c719db5c
     last_write_checksum: sha1:da855879994585164cc4990a3c76cb8251227929
@@ -4411,8 +4415,8 @@ trackedFiles:
     pristine_git_object: c25a5bccbcf9a9759da46a32d5af209863fafb5b
   src/models/operations/listbuyerpaymentmethods.ts:
     id: 99984a3b72b5
-    last_write_checksum: sha1:4fd76937827818f128bb018409d0692e8ca1ad73
-    pristine_git_object: e489e40b9a60c2a655dabbca99e570b1f9be554c
+    last_write_checksum: sha1:684ada34667d898e7c895913b71318eb17f736a9
+    pristine_git_object: e59e2e0bce8941134494bc88df4a99d583053661
   src/models/operations/listbuyers.ts:
     id: 0da0f567b48b
     last_write_checksum: sha1:a54d0cfbc2026388eec9350888bd4a53784e1777
@@ -8159,10 +8163,10 @@ examples:
   create_three_ds_scenario:
     speakeasy-default-create-three-ds-scenario:
       requestBody:
-        application/json: {"conditions": {}, "outcome": {"version": "2.2.0", "authentication": {"transaction_status": "Y"}}}
+        application/json: {"conditions": {}, "outcome": {"authentication": {"transaction_status": "Y"}}}
       responses:
         "201":
-          application/json: {"type": "three-d-secure-scenario", "id": "550e8400-e29b-41d4-a716-446655440000", "merchant_account_id": "merchant-account-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "conditions": {}, "outcome": {"version": "2.2.0", "authentication": {"transaction_status": "Y"}}}
+          application/json: {"type": "three-d-secure-scenario", "id": "550e8400-e29b-41d4-a716-446655440000", "merchant_account_id": "merchant-account-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "conditions": {}, "outcome": {"authentication": {"transaction_status": "Y"}}}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -8228,7 +8232,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"type": "three-d-secure-scenario", "id": "550e8400-e29b-41d4-a716-446655440000", "merchant_account_id": "merchant-account-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "conditions": {}, "outcome": {"version": "2.2.0", "authentication": {"transaction_status": "Y"}}}
+          application/json: {"type": "three-d-secure-scenario", "id": "550e8400-e29b-41d4-a716-446655440000", "merchant_account_id": "merchant-account-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "conditions": {}, "outcome": {"authentication": {"transaction_status": "Y"}}}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -8417,9 +8421,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `gr4vy.paymentMethods.create()`:  `requestBody` **Changed**
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.threeDsScenarios.create()`: \n  *  `request.threeDSecureScenarioCreate.outcome.version` **Changed**\n  *  `response.outcome.version` **Changed** (Breaking ⚠️)\n* `gr4vy.threeDsScenarios.list()`:  `response.items[].outcome.version` **Changed** (Breaking ⚠️)\n* `gr4vy.threeDsScenarios.update()`: \n  *  `request.threeDSecureScenarioUpdate.outcome.version` **Changed**\n  *  `response.outcome.version` **Changed** (Breaking ⚠️)\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

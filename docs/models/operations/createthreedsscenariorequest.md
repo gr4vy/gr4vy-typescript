@@ -9,7 +9,6 @@ let value: CreateThreeDsScenarioRequest = {
   threeDSecureScenarioCreate: {
     conditions: {},
     outcome: {
-      version: "2.2.0",
       authentication: {
         transactionStatus: "Y",
       },
