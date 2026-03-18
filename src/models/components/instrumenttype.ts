@@ -15,7 +15,7 @@ export const InstrumentType = {
   Applepay: "applepay",
   NetworkToken: "network_token",
   Plaid: "plaid",
-  BankDetails: "bank_details",
+  Bank: "bank",
 } as const;
 export type InstrumentType = OpenEnum<typeof InstrumentType>;
 
