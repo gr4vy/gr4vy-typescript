@@ -122,6 +122,14 @@ const value: components.PlaidPaymentMethodCreate = {
 };
 ```
 
+### `components.BaseBankPaymentMethodCreate`
+
+```typescript
+const value: components.BaseBankPaymentMethodCreate = {
+  accountHolder: {},
+};
+```
+
 ### `components.CheckoutSessionWithUrlPaymentMethodCreate`
 
 ```typescript

@@ -32,6 +32,7 @@ export * from "./auditlogentryuser.js";
 export * from "./avsresponsecode.js";
 export * from "./bacsbankpaymentmethodcreate.js";
 export * from "./bankaccountholder.js";
+export * from "./basebankpaymentmethodcreate.js";
 export * from "./billingdetails.js";
 export * from "./braintreedynamicdatafieldsoptions.js";
 export * from "./braintreeoptions.js";

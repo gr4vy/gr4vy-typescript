@@ -15,6 +15,11 @@ import {
   ApplePayPaymentMethodCreate$outboundSchema,
 } from "./applepaypaymentmethodcreate.js";
 import {
+  BaseBankPaymentMethodCreate,
+  BaseBankPaymentMethodCreate$Outbound,
+  BaseBankPaymentMethodCreate$outboundSchema,
+} from "./basebankpaymentmethodcreate.js";
+import {
   BrowserInfo,
   BrowserInfo$Outbound,
   BrowserInfo$outboundSchema,
@@ -146,6 +151,7 @@ export type TransactionCreatePaymentMethod =
   | GooglePayPaymentMethodCreate
   | TokenPaymentMethodCreate
   | PlaidPaymentMethodCreate
+  | BaseBankPaymentMethodCreate
   | CheckoutSessionWithUrlPaymentMethodCreate;
 
 export type TransactionCreateGiftCards =
@@ -184,6 +190,7 @@ export type TransactionCreate = {
     | GooglePayPaymentMethodCreate
     | TokenPaymentMethodCreate
     | PlaidPaymentMethodCreate
+    | BaseBankPaymentMethodCreate
     | CheckoutSessionWithUrlPaymentMethodCreate
     | null
     | undefined;
@@ -369,6 +376,7 @@ export type TransactionCreatePaymentMethod$Outbound =
   | GooglePayPaymentMethodCreate$Outbound
   | TokenPaymentMethodCreate$Outbound
   | PlaidPaymentMethodCreate$Outbound
+  | BaseBankPaymentMethodCreate$Outbound
   | CheckoutSessionWithUrlPaymentMethodCreate$Outbound;
 
 /** @internal */
@@ -387,6 +395,7 @@ export const TransactionCreatePaymentMethod$outboundSchema: z.ZodType<
   GooglePayPaymentMethodCreate$outboundSchema,
   TokenPaymentMethodCreate$outboundSchema,
   PlaidPaymentMethodCreate$outboundSchema,
+  BaseBankPaymentMethodCreate$outboundSchema,
   CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
 ]);
 
@@ -462,6 +471,7 @@ export type TransactionCreate$Outbound = {
     | GooglePayPaymentMethodCreate$Outbound
     | TokenPaymentMethodCreate$Outbound
     | PlaidPaymentMethodCreate$Outbound
+    | BaseBankPaymentMethodCreate$Outbound
     | CheckoutSessionWithUrlPaymentMethodCreate$Outbound
     | null
     | undefined;
@@ -534,6 +544,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
       GooglePayPaymentMethodCreate$outboundSchema,
       TokenPaymentMethodCreate$outboundSchema,
       PlaidPaymentMethodCreate$outboundSchema,
+      BaseBankPaymentMethodCreate$outboundSchema,
       CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
     ]),
   ).optional(),

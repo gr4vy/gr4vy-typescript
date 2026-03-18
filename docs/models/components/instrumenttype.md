@@ -13,5 +13,5 @@ let value: InstrumentType = "pan";
 ## Values
 
 ```typescript
-"pan" | "card_token" | "redirect" | "redirect_token" | "googlepay" | "applepay" | "network_token" | "plaid" | "bank_details" | Unrecognized<string>
+"pan" | "card_token" | "redirect" | "redirect_token" | "googlepay" | "applepay" | "network_token" | "plaid" | "bank" | Unrecognized<string>
 ```
