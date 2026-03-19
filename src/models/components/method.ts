@@ -35,6 +35,7 @@ export const Method = {
   Dcb: "dcb",
   Dlocal: "dlocal",
   Ebanx: "ebanx",
+  Eckoh: "eckoh",
   Efecty: "efecty",
   Eps: "eps",
   Everydaypay: "everydaypay",

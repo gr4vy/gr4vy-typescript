@@ -34,6 +34,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Dcb: "dcb",
   Dlocal: "dlocal",
   Ebanx: "ebanx",
+  Eckoh: "eckoh",
   Efecty: "efecty",
   Eps: "eps",
   Everydaypay: "everydaypay",
