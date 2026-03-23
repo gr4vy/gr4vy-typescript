@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 import { Gr4vyError } from "./gr4vyerror.js";
 
@@ -27,6 +28,10 @@ export type Error409Data = {
    * A list of details that further ellaborate on the error.
    */
   details?: Array<components.ErrorDetail> | undefined;
+  /**
+   * The ID of the conflicting resource.
+   */
+  resourceId?: string | null | undefined;
 };
 
 export class Error409 extends Gr4vyError {
@@ -46,6 +51,10 @@ export class Error409 extends Gr4vyError {
    * A list of details that further ellaborate on the error.
    */
   details?: Array<components.ErrorDetail> | undefined;
+  /**
+   * The ID of the conflicting resource.
+   */
+  resourceId?: string | null | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: Error409Data;
@@ -61,6 +70,7 @@ export class Error409 extends Gr4vyError {
     if (err.code != null) this.code = err.code;
     if (err.status != null) this.status = err.status;
     if (err.details != null) this.details = err.details;
+    if (err.resourceId != null) this.resourceId = err.resourceId;
 
     this.name = "Error409";
   }
@@ -77,12 +87,17 @@ export const Error409$inboundSchema: z.ZodType<
   status: z.number().int().default(409),
   message: z.string().default("Generic error"),
   details: z.array(components.ErrorDetail$inboundSchema).optional(),
+  resource_id: z.nullable(z.string()).optional(),
   request$: z.instanceof(Request),
   response$: z.instanceof(Response),
   body$: z.string(),
 })
   .transform((v) => {
-    return new Error409(v, {
+    const remapped = remap$(v, {
+      "resource_id": "resourceId",
+    });
+
+    return new Error409(remapped, {
       request: v.request$,
       response: v.response$,
       body: v.body$,

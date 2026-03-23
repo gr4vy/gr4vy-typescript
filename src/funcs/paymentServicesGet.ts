@@ -126,7 +126,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc("/payment-services/{payment_service_id}")(pathParams);
 
   const headers = new Headers(compactMap({

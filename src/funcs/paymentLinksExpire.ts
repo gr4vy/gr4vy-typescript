@@ -125,7 +125,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/payment-links/{payment_link_id}/expire")(
     pathParams,
   );

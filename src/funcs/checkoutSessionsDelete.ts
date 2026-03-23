@@ -126,7 +126,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/checkout/sessions/{session_id}")(pathParams);
 
   const headers = new Headers(compactMap({

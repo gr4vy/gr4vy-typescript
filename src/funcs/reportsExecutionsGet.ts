@@ -126,7 +126,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc("/report-executions/{report_execution_id}")(
     pathParams,
   );

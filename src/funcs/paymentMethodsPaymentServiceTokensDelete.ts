@@ -137,7 +137,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/payment-methods/{payment_method_id}/payment-service-tokens/{payment_service_token_id}",
   )(pathParams);

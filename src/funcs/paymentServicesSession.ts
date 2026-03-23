@@ -131,7 +131,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc("/payment-services/{payment_service_id}/sessions")(
     pathParams,
   );

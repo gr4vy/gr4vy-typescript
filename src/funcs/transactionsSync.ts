@@ -125,7 +125,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/transactions/{transaction_id}/sync")(pathParams);
 
   const headers = new Headers(compactMap({
