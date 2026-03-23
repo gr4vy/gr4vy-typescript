@@ -127,7 +127,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc("/three-ds-scenarios/{three_ds_scenario_id}")(
     pathParams,
   );

@@ -146,7 +146,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/transactions/{transaction_id}/events")(pathParams);
 
   const query = encodeFormQuery({

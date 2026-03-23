@@ -134,7 +134,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc("/digital-wallets/{digital_wallet_id}/domains")(
     pathParams,
   );

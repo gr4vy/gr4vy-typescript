@@ -125,7 +125,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/gift-cards/{gift_card_id}")(pathParams);
 
   const headers = new Headers(compactMap({

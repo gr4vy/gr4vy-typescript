@@ -141,7 +141,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/cryptogram",
   )(pathParams);

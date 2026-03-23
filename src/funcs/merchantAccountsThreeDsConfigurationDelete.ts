@@ -132,7 +132,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/merchant-accounts/{merchant_account_id}/three-ds-configurations/{three_ds_configuration_id}",
   )(pathParams);

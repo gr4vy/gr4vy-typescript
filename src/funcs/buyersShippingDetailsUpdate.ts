@@ -141,7 +141,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/buyers/{buyer_id}/shipping-details/{shipping_details_id}",
   )(pathParams);
