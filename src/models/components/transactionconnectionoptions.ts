@@ -212,6 +212,10 @@ export type TransactionConnectionOptions = {
    */
   adyenSofort?: AdyenOptions | null | undefined;
   /**
+   * Custom options to be passed to the `adyen-swish` connector.
+   */
+  adyenSwish?: AdyenOptions | null | undefined;
+  /**
    * Custom options to be passed to the `adyen-vipps` connector.
    */
   adyenVipps?: AdyenOptions | null | undefined;
@@ -373,6 +377,7 @@ export type TransactionConnectionOptions$Outbound = {
   "adyen-pix"?: AdyenOptions$Outbound | null | undefined;
   "adyen-sepa"?: AdyenSepaOptions$Outbound | null | undefined;
   "adyen-sofort"?: AdyenOptions$Outbound | null | undefined;
+  "adyen-swish"?: AdyenOptions$Outbound | null | undefined;
   "adyen-vipps"?: AdyenOptions$Outbound | null | undefined;
   "affirm-affirm"?: AffirmOptions$Outbound | null | undefined;
   "braintree-card"?: BraintreeOptions$Outbound | null | undefined;
@@ -434,6 +439,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   adyenPix: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenSepa: z.nullable(AdyenSepaOptions$outboundSchema).optional(),
   adyenSofort: z.nullable(AdyenOptions$outboundSchema).optional(),
+  adyenSwish: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenVipps: z.nullable(AdyenOptions$outboundSchema).optional(),
   affirmAffirm: z.nullable(AffirmOptions$outboundSchema).optional(),
   braintreeCard: z.nullable(BraintreeOptions$outboundSchema).optional(),
@@ -487,6 +493,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     adyenPix: "adyen-pix",
     adyenSepa: "adyen-sepa",
     adyenSofort: "adyen-sofort",
+    adyenSwish: "adyen-swish",
     adyenVipps: "adyen-vipps",
     affirmAffirm: "affirm-affirm",
     braintreeCard: "braintree-card",
