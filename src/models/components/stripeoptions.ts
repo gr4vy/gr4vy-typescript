@@ -12,10 +12,6 @@ import {
 
 export type StripeOptions = {
   /**
-   * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
-   */
-  errorOnRequiresAction?: boolean | null | undefined;
-  /**
    * Stripe options to support Stripe Connect
    */
   stripeConnect?: StripeConnectOptions | null | undefined;
@@ -23,7 +19,6 @@ export type StripeOptions = {
 
 /** @internal */
 export type StripeOptions$Outbound = {
-  error_on_requires_action?: boolean | null | undefined;
   stripe_connect?: StripeConnectOptions$Outbound | null | undefined;
 };
 
@@ -33,11 +28,9 @@ export const StripeOptions$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   StripeOptions
 > = z.object({
-  errorOnRequiresAction: z.nullable(z.boolean()).optional(),
   stripeConnect: z.nullable(StripeConnectOptions$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
-    errorOnRequiresAction: "error_on_requires_action",
     stripeConnect: "stripe_connect",
   });
 });

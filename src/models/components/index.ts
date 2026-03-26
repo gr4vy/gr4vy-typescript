@@ -237,6 +237,7 @@ export * from "./shippingdetailscreate.js";
 export * from "./shippingdetailslist.js";
 export * from "./shippingdetailsupdate.js";
 export * from "./statementdescriptor.js";
+export * from "./stripecardoptions.js";
 export * from "./stripeconnectoptions.js";
 export * from "./stripeoptions.js";
 export * from "./taxid.js";
