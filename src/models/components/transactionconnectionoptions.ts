@@ -145,6 +145,11 @@ import {
   RiskifiedAntiFraudOptions$outboundSchema,
 } from "./riskifiedantifraudoptions.js";
 import {
+  StripeCardOptions,
+  StripeCardOptions$Outbound,
+  StripeCardOptions$outboundSchema,
+} from "./stripecardoptions.js";
+import {
   StripeOptions,
   StripeOptions$Outbound,
   StripeOptions$outboundSchema,
@@ -344,9 +349,17 @@ export type TransactionConnectionOptions = {
    */
   riskifiedAntiFraud?: RiskifiedAntiFraudOptions | null | undefined;
   /**
+   * Custom options to be passed to the `stripe-affirm` connector.
+   */
+  stripeAffirm?: StripeOptions | null | undefined;
+  /**
    * Custom options to be passed to the `stripe-card` connector.
    */
-  stripeCard?: StripeOptions | null | undefined;
+  stripeCard?: StripeCardOptions | null | undefined;
+  /**
+   * Custom options to be passed to the `stripe-klarna` connector.
+   */
+  stripeKlarna?: StripeOptions | null | undefined;
   /**
    * Custom options to be passed to the `travelhub-card` connector.
    */
@@ -416,7 +429,9 @@ export type TransactionConnectionOptions$Outbound = {
     | RiskifiedAntiFraudOptions$Outbound
     | null
     | undefined;
-  "stripe-card"?: StripeOptions$Outbound | null | undefined;
+  "stripe-affirm"?: StripeOptions$Outbound | null | undefined;
+  "stripe-card"?: StripeCardOptions$Outbound | null | undefined;
+  "stripe-klarna"?: StripeOptions$Outbound | null | undefined;
   "travelhub-card"?: TravelhubOptions$Outbound | null | undefined;
   "trustly-trustly"?: TrustlyOptions$Outbound | null | undefined;
   "wpay-everydaypay"?: WpayEverdaypayOptions$Outbound | null | undefined;
@@ -476,7 +491,9 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   powertranzCard: z.nullable(PowertranzOptions$outboundSchema).optional(),
   riskifiedAntiFraud: z.nullable(RiskifiedAntiFraudOptions$outboundSchema)
     .optional(),
-  stripeCard: z.nullable(StripeOptions$outboundSchema).optional(),
+  stripeAffirm: z.nullable(StripeOptions$outboundSchema).optional(),
+  stripeCard: z.nullable(StripeCardOptions$outboundSchema).optional(),
+  stripeKlarna: z.nullable(StripeOptions$outboundSchema).optional(),
   travelhubCard: z.nullable(TravelhubOptions$outboundSchema).optional(),
   trustlyTrustly: z.nullable(TrustlyOptions$outboundSchema).optional(),
   wpayEverydaypay: z.nullable(WpayEverdaypayOptions$outboundSchema).optional(),
@@ -526,7 +543,9 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     paypalPaypalpaylater: "paypal-paypalpaylater",
     powertranzCard: "powertranz-card",
     riskifiedAntiFraud: "riskified-anti-fraud",
+    stripeAffirm: "stripe-affirm",
     stripeCard: "stripe-card",
+    stripeKlarna: "stripe-klarna",
     travelhubCard: "travelhub-card",
     trustlyTrustly: "trustly-trustly",
     wpayEverydaypay: "wpay-everydaypay",
