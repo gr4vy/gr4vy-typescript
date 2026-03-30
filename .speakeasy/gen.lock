@@ -1,29 +1,29 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: dc20363f8b5b98547871a6b5350a4ccb
+  docChecksum: 51b03d3086f63341c3159b74c09622a6
   docVersion: 1.0.0
-  speakeasyVersion: 1.759.3
-  generationVersion: 2.869.25
-  releaseVersion: 2.0.11
-  configChecksum: 84942b7d7ed91345c006803d0da55053
+  speakeasyVersion: 1.760.0
+  generationVersion: 2.873.1
+  releaseVersion: 2.0.12
+  configChecksum: 184862454897c0b5b2993e0bc309c7a1
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: b9609826-24a7-49c4-9f08-52e285109f29
-  pristine_commit_hash: 0bb661a27e8327af94211e89f6f92a9c8a383e1f
-  pristine_tree_hash: 30ea6e33ebf633b6acf3561105287b12d4c851b9
+  generation_id: 908cc6ee-b847-415d-9324-a2b7e359678e
+  pristine_commit_hash: 70947d23626dedc9aa4ca41e60d46c55cf6c03fd
+  pristine_tree_hash: f9cea1ccbf7d719bd1c5c5343a1c712002f33336
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.26.44
+    core: 3.26.45
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     flattening: 2.82.1
-    globalSecurity: 2.82.15
+    globalSecurity: 2.82.16
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.1
     globalServerURLs: 2.83.1
@@ -2431,12 +2431,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d1bfd707d1794179a3ad4e34d1c701701e0bd32f
-    pristine_git_object: 8d3a30fec81c754f6396a14e137a361c32f25a65
+    last_write_checksum: sha1:4a16e19085ab5619e0eb724aa37df6af2e458790
+    pristine_git_object: f1e35044547634fc0e8c4dc5f6610843cbd19fd5
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:4f148fb98c9fd6afb6c521959970219578afdf16
-    pristine_git_object: 9de1d36177d5fb1510446e89cea712b0e7a1bcb9
+    last_write_checksum: sha1:a519b4f3df433774c5e5d92814602f9c332b71ca
+    pristine_git_object: 2fe26932f79154152aae540deddf7cbb1fe43adb
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2867,8 +2867,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:29cd7ac1ca7402c2692dfed0ce0b27cecd789761
-    pristine_git_object: bf461215879fc7b1915fa49dce85da5e759d161b
+    last_write_checksum: sha1:9a33feaa21039fe3a99fa5da04415c0308656ce7
+    pristine_git_object: 378afc6493e7b79395735f5d18b7f20a8039167d
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -2919,8 +2919,8 @@ trackedFiles:
     pristine_git_object: b5b1505728bfb13684fdad1682c1ad4b1d6daec4
   src/lib/security.ts:
     id: 0502afa7922e
-    last_write_checksum: sha1:7338bf7b5e7d9bbe1eb2363e250a70f20be045a2
-    pristine_git_object: dedbca7d86018ac992411335d805051c47601fd3
+    last_write_checksum: sha1:79f85996e8ebbf5afd818a6e10a903d12625ea8c
+    pristine_git_object: 4753ab4876c567a6a7c07bb76db5057515cdcd6f
   src/lib/url.ts:
     id: b0057e24ed76
     last_write_checksum: sha1:3bceadd74bf0b31adf13eb06b7531077c3e07d65
