@@ -362,6 +362,10 @@ export type TransactionCreate = {
    * Defines the client where the session for this transaction is going to be used. Please refer to the connections documentation for more guidance.
    */
   integrationClient?: IntegrationClient | null | undefined;
+  /**
+   * The date and time when the buyer's approval window for this transaction expires. If not provided, this is automatically computed from the connector's default expiration time. The value cannot exceed the connector's maximum approval window.
+   */
+  approvalExpiresAt?: Date | null | undefined;
 };
 
 /** @internal */
@@ -521,6 +525,7 @@ export type TransactionCreate$Outbound = {
   duty_amount?: number | null | undefined;
   shipping_amount?: number | null | undefined;
   integration_client?: string | null | undefined;
+  approval_expires_at?: string | null | undefined;
 };
 
 /** @internal */
@@ -598,6 +603,8 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   dutyAmount: z.nullable(z.number().int()).optional(),
   shippingAmount: z.nullable(z.number().int()).optional(),
   integrationClient: z.nullable(IntegrationClient$outboundSchema).optional(),
+  approvalExpiresAt: z.nullable(z.date().transform(v => v.toISOString()))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethod: "payment_method",
@@ -631,6 +638,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     dutyAmount: "duty_amount",
     shippingAmount: "shipping_amount",
     integrationClient: "integration_client",
+    approvalExpiresAt: "approval_expires_at",
   });
 });
 
