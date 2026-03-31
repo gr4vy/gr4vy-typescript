@@ -5,9 +5,9 @@
 ### Available Operations
 
 * [list](#list) - List payment services
-* [create](#create) - Update a configured payment service
+* [create](#create) - Configure a payment service
 * [get](#get) - Get payment service
-* [update](#update) - Configure a payment service
+* [update](#update) - Update a configured payment service
 * [delete](#delete) - Delete a configured payment service
 * [verify](#verify) - Verify payment service credentials
 * [session](#session) - Create a session for a payment service definition
@@ -106,11 +106,11 @@ run();
 
 ## create
 
-Updates the configuration of a payment service.
+Configures a new payment service for use by merchants.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="update_payment_service" method="post" path="/payment-services" -->
+<!-- UsageSnippet language="typescript" operationID="create_payment_service" method="post" path="/payment-services" -->
 ```typescript
 import { Gr4vy, withToken } from "@gr4vy/sdk";
 import fs from "fs";
@@ -129,10 +129,6 @@ async function run() {
     displayName: "Stripe",
     paymentServiceDefinitionId: "stripe-card",
     fields: [
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
       {
         key: "api_key",
         value: "key-12345",
@@ -178,10 +174,6 @@ async function run() {
     displayName: "Stripe",
     paymentServiceDefinitionId: "stripe-card",
     fields: [
-      {
-        key: "api_key",
-        value: "key-12345",
-      },
       {
         key: "api_key",
         value: "key-12345",
@@ -334,11 +326,11 @@ run();
 
 ## update
 
-Configures a new payment service for use by merchants.
+Updates the configuration of a payment service.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="create_payment_service" method="put" path="/payment-services/{payment_service_id}" -->
+<!-- UsageSnippet language="typescript" operationID="update_payment_service" method="put" path="/payment-services/{payment_service_id}" -->
 ```typescript
 import { Gr4vy, withToken } from "@gr4vy/sdk";
 import fs from "fs";

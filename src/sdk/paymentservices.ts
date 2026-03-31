@@ -36,10 +36,10 @@ export class PaymentServices extends ClientSDK {
   }
 
   /**
-   * Update a configured payment service
+   * Configure a payment service
    *
    * @remarks
-   * Updates the configuration of a payment service.
+   * Configures a new payment service for use by merchants.
    */
   async create(
     paymentServiceCreate: components.PaymentServiceCreate,
@@ -74,10 +74,10 @@ export class PaymentServices extends ClientSDK {
   }
 
   /**
-   * Configure a payment service
+   * Update a configured payment service
    *
    * @remarks
-   * Configures a new payment service for use by merchants.
+   * Updates the configuration of a payment service.
    */
   async update(
     paymentServiceUpdate: components.PaymentServiceUpdate,
