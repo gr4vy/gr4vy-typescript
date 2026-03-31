@@ -12,16 +12,21 @@ export type UpdatePaymentServiceGlobals = {
 
 export type UpdatePaymentServiceRequest = {
   /**
+   * the ID of the payment service
+   */
+  paymentServiceId: string;
+  /**
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
-  paymentServiceCreate: components.PaymentServiceCreate;
+  paymentServiceUpdate: components.PaymentServiceUpdate;
 };
 
 /** @internal */
 export type UpdatePaymentServiceRequest$Outbound = {
+  payment_service_id: string;
   merchantAccountId?: string | null | undefined;
-  PaymentServiceCreate: components.PaymentServiceCreate$Outbound;
+  PaymentServiceUpdate: components.PaymentServiceUpdate$Outbound;
 };
 
 /** @internal */
@@ -30,11 +35,13 @@ export const UpdatePaymentServiceRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdatePaymentServiceRequest
 > = z.object({
+  paymentServiceId: z.string(),
   merchantAccountId: z.nullable(z.string()).optional(),
-  paymentServiceCreate: components.PaymentServiceCreate$outboundSchema,
+  paymentServiceUpdate: components.PaymentServiceUpdate$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    paymentServiceCreate: "PaymentServiceCreate",
+    paymentServiceId: "payment_service_id",
+    paymentServiceUpdate: "PaymentServiceUpdate",
   });
 });
 

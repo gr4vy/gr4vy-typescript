@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Configure a payment service
+ * Update a configured payment service
  *
  * @remarks
- * Configures a new payment service for use by merchants.
+ * Updates the configuration of a payment service.
  */
 export function paymentServicesUpdate(
   client: Gr4vyCore,
@@ -106,7 +106,7 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.CreatePaymentServiceRequest = {
+  const input: operations.UpdatePaymentServiceRequest = {
     paymentServiceUpdate: paymentServiceUpdate,
     paymentServiceId: paymentServiceId,
     merchantAccountId: merchantAccountId,
@@ -115,7 +115,7 @@ async function $do(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.CreatePaymentServiceRequest$outboundSchema.parse(value),
+      operations.UpdatePaymentServiceRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -152,7 +152,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "create_payment_service",
+    operationID: "update_payment_service",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
