@@ -313,6 +313,10 @@ export type TransactionConnectionOptions = {
    */
   mockCard?: MockCardOptions | null | undefined;
   /**
+   * Custom options to be passed to the `mockds-card` connector.
+   */
+  mockdsCard?: MockCardOptions | null | undefined;
+  /**
    * Custom options to be passed to the `nuvei-card` connector.
    */
   nuveiCard?: NuveiOptions | null | undefined;
@@ -417,6 +421,7 @@ export type TransactionConnectionOptions$Outbound = {
   "mattilda-tapifintechs"?: MattildaTapiOptions$Outbound | null | undefined;
   "monato-spei"?: MonatoSpeiOptions$Outbound | null | undefined;
   "mock-card"?: MockCardOptions$Outbound | null | undefined;
+  "mockds-card"?: MockCardOptions$Outbound | null | undefined;
   "nuvei-card"?: NuveiOptions$Outbound | null | undefined;
   "nuvei-ideal"?: NuveiIDealOptions$Outbound | null | undefined;
   "nuvei-klarna"?: NuveiKlarnaOptions$Outbound | null | undefined;
@@ -481,6 +486,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     .optional(),
   monatoSpei: z.nullable(MonatoSpeiOptions$outboundSchema).optional(),
   mockCard: z.nullable(MockCardOptions$outboundSchema).optional(),
+  mockdsCard: z.nullable(MockCardOptions$outboundSchema).optional(),
   nuveiCard: z.nullable(NuveiOptions$outboundSchema).optional(),
   nuveiIdeal: z.nullable(NuveiIDealOptions$outboundSchema).optional(),
   nuveiKlarna: z.nullable(NuveiKlarnaOptions$outboundSchema).optional(),
@@ -534,6 +540,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     mattildaTapifintechs: "mattilda-tapifintechs",
     monatoSpei: "monato-spei",
     mockCard: "mock-card",
+    mockdsCard: "mockds-card",
     nuveiCard: "nuvei-card",
     nuveiIdeal: "nuvei-ideal",
     nuveiKlarna: "nuvei-klarna",
