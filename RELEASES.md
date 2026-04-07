@@ -1845,3 +1845,13 @@ Based on:
 - [typescript v2.0.16] .
 ### Releases
 - [NPM v2.0.16] https://www.npmjs.com/package/@gr4vy/sdk/v/2.0.16 - .
+
+## 2026-04-07 12:34:04
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.761.1 (2.879.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v2.0.17] .
+### Releases
+- [NPM v2.0.17] https://www.npmjs.com/package/@gr4vy/sdk/v/2.0.17 - .
