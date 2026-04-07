@@ -292,14 +292,17 @@ export type TransactionCreate = {
    */
   connectionOptions?: TransactionConnectionOptions | null | undefined;
   /**
-   * Whether to capture the transaction asynchronously.
+   * Whether to capture the transaction asynchronously when an authorization-capture split occurs.
    *
    * @remarks
    *
-   * - When `async_capture` is `false` (default), the transaction is captured in the same request.
-   * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
+   * This flag is only used if the transaction flow is split between authorization and capture.
+   * The split itself is not controlled by this flag and depends on other conditions, including delayed capture support, direct capture support, card scheme, gift cards, and anti-fraud decision.
    *
-   * Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`.
+   * - When `async_capture` is `false` (default) and applicable, the capture is attempted in the same request.
+   * - When `async_capture` is `true` and applicable, the capture is performed outside the context of this request.
+   *
+   * Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`. Please check the public documentation for full authorization-capture split behavior details.
    */
   asyncCapture?: boolean | undefined;
   /**
