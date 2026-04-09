@@ -55,6 +55,22 @@ export type GiftCard = {
    * The date this gift card record was last updated at.
    */
   updatedAt: Date;
+  /**
+   * The timestamp when this gift card was last used in a transaction.
+   */
+  lastUsedAt?: Date | null | undefined;
+  /**
+   * The number of times this gift card has been used in transactions.
+   */
+  usageCount: number;
+  /**
+   * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+   */
+  citLastUsedAt?: Date | null | undefined;
+  /**
+   * The number of times this gift card has been used in transactions for client initiated transactions.
+   */
+  citUsageCount: number;
 };
 
 /** @internal */
@@ -76,6 +92,14 @@ export const GiftCard$inboundSchema: z.ZodType<
   buyer: z.nullable(Buyer$inboundSchema).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  usage_count: z.number().int(),
+  cit_last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  cit_usage_count: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "merchant_account_id": "merchantAccountId",
@@ -84,6 +108,10 @@ export const GiftCard$inboundSchema: z.ZodType<
     "expiration_date": "expirationDate",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
+    "last_used_at": "lastUsedAt",
+    "usage_count": "usageCount",
+    "cit_last_used_at": "citLastUsedAt",
+    "cit_usage_count": "citUsageCount",
   });
 });
 

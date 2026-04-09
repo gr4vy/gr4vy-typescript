@@ -61,6 +61,22 @@ export type GiftCardSummary = {
    * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
    */
   balanceRawErrorMessage?: string | null | undefined;
+  /**
+   * The timestamp when this gift card was last used in a transaction.
+   */
+  lastUsedAt?: Date | null | undefined;
+  /**
+   * The number of times this gift card has been used in transactions.
+   */
+  usageCount: number;
+  /**
+   * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+   */
+  citLastUsedAt?: Date | null | undefined;
+  /**
+   * The number of times this gift card has been used in transactions for client initiated transactions.
+   */
+  citUsageCount: number;
 };
 
 /** @internal */
@@ -83,6 +99,14 @@ export const GiftCardSummary$inboundSchema: z.ZodType<
   balance_error_code: z.nullable(GiftCardErrorCode$inboundSchema).optional(),
   balance_raw_error_code: z.nullable(z.string()).optional(),
   balance_raw_error_message: z.nullable(z.string()).optional(),
+  last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  usage_count: z.number().int(),
+  cit_last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  cit_usage_count: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "merchant_account_id": "merchantAccountId",
@@ -91,6 +115,10 @@ export const GiftCardSummary$inboundSchema: z.ZodType<
     "balance_error_code": "balanceErrorCode",
     "balance_raw_error_code": "balanceRawErrorCode",
     "balance_raw_error_message": "balanceRawErrorMessage",
+    "last_used_at": "lastUsedAt",
+    "usage_count": "usageCount",
+    "cit_last_used_at": "citLastUsedAt",
+    "cit_usage_count": "citUsageCount",
   });
 });
 

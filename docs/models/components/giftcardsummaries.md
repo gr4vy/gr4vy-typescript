@@ -12,6 +12,8 @@ let value: GiftCardSummaries = {
       bin: "412345",
       subBin: "554",
       last4: "1234",
+      usageCount: 100,
+      citUsageCount: 50,
     },
   ],
 };
