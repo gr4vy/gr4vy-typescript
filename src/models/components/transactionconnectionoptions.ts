@@ -269,6 +269,10 @@ export type TransactionConnectionOptions = {
    */
   dlocalPix?: DlocalPIXOptions | null | undefined;
   /**
+   * Custom options to be passed to the `dlocal-gcash` connector.
+   */
+  dlocalGcash?: DlocalOptions | null | undefined;
+  /**
    * Custom options to be passed to the `fiserv-card` connector.
    */
   fiservCard?: FiservOptions | null | undefined;
@@ -414,6 +418,7 @@ export type TransactionConnectionOptions$Outbound = {
   "dlocal-nequi"?: DlocalOptions$Outbound | null | undefined;
   "dlocal-upi"?: DlocalUPIOptions$Outbound | null | undefined;
   "dlocal-pix"?: DlocalPIXOptions$Outbound | null | undefined;
+  "dlocal-gcash"?: DlocalOptions$Outbound | null | undefined;
   "fiserv-card"?: FiservOptions$Outbound | null | undefined;
   "forter-anti-fraud"?: ForterAntiFraudOptions$Outbound | null | undefined;
   "gem-gem"?: LatitudeOptions$Outbound | null | undefined;
@@ -478,6 +483,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   dlocalNequi: z.nullable(DlocalOptions$outboundSchema).optional(),
   dlocalUpi: z.nullable(DlocalUPIOptions$outboundSchema).optional(),
   dlocalPix: z.nullable(DlocalPIXOptions$outboundSchema).optional(),
+  dlocalGcash: z.nullable(DlocalOptions$outboundSchema).optional(),
   fiservCard: z.nullable(FiservOptions$outboundSchema).optional(),
   forterAntiFraud: z.nullable(ForterAntiFraudOptions$outboundSchema).optional(),
   gemGem: z.nullable(LatitudeOptions$outboundSchema).optional(),
@@ -535,6 +541,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     dlocalNequi: "dlocal-nequi",
     dlocalUpi: "dlocal-upi",
     dlocalPix: "dlocal-pix",
+    dlocalGcash: "dlocal-gcash",
     fiservCard: "fiserv-card",
     forterAntiFraud: "forter-anti-fraud",
     gemGem: "gem-gem",
