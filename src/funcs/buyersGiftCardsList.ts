@@ -34,9 +34,7 @@ import { Result } from "../types/fp.js";
  */
 export function buyersGiftCardsList(
   client: Gr4vyCore,
-  buyerExternalIdentifier?: string | null | undefined,
-  buyerId?: string | null | undefined,
-  merchantAccountId?: string | null | undefined,
+  request?: operations.ListBuyerGiftCardsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -65,18 +63,14 @@ export function buyersGiftCardsList(
 > {
   return new APIPromise($do(
     client,
-    buyerExternalIdentifier,
-    buyerId,
-    merchantAccountId,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  buyerExternalIdentifier?: string | null | undefined,
-  buyerId?: string | null | undefined,
-  merchantAccountId?: string | null | undefined,
+  request?: operations.ListBuyerGiftCardsRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -106,14 +100,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListBuyerGiftCardsRequest | undefined = {
-    buyerExternalIdentifier: buyerExternalIdentifier,
-    buyerId: buyerId,
-    merchantAccountId: merchantAccountId,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListBuyerGiftCardsRequest$outboundSchema.optional().parse(
         value,
@@ -131,6 +119,8 @@ async function $do(
   const query = encodeFormQuery({
     "buyer_external_identifier": payload?.buyer_external_identifier,
     "buyer_id": payload?.buyer_id,
+    "order_by": payload?.order_by,
+    "sort_by": payload?.sort_by,
   });
 
   const headers = new Headers(compactMap({
