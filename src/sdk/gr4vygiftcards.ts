@@ -5,6 +5,7 @@
 import { buyersGiftCardsList } from "../funcs/buyersGiftCardsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Gr4vyGiftCards extends ClientSDK {
@@ -15,16 +16,12 @@ export class Gr4vyGiftCards extends ClientSDK {
    * List all the stored gift cards for a specific buyer.
    */
   async list(
-    buyerExternalIdentifier?: string | null | undefined,
-    buyerId?: string | null | undefined,
-    merchantAccountId?: string | null | undefined,
+    request?: operations.ListBuyerGiftCardsRequest | undefined,
     options?: RequestOptions,
   ): Promise<components.GiftCardSummaries> {
     return unwrapAsync(buyersGiftCardsList(
       this,
-      buyerExternalIdentifier,
-      buyerId,
-      merchantAccountId,
+      request,
       options,
     ));
   }

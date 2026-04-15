@@ -4,14 +4,50 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as openEnums from "../../types/enums.js";
+import { ClosedEnum, OpenEnum } from "../../types/enums.js";
 
 export type ListBuyerGiftCardsGlobals = {
   merchantAccountId?: string | undefined;
 };
 
+/**
+ * The field to sort the gift cards by.
+ */
+export const QueryParamSortBy = {
+  LastUsedAt: "last_used_at",
+  UsageCount: "usage_count",
+  CitLastUsedAt: "cit_last_used_at",
+  CitUsageCount: "cit_usage_count",
+} as const;
+/**
+ * The field to sort the gift cards by.
+ */
+export type QueryParamSortBy = ClosedEnum<typeof QueryParamSortBy>;
+
+/**
+ * The direction to sort the gift cards in.
+ */
+export const QueryParamOrderBy = {
+  Asc: "asc",
+  Desc: "desc",
+} as const;
+/**
+ * The direction to sort the gift cards in.
+ */
+export type QueryParamOrderBy = OpenEnum<typeof QueryParamOrderBy>;
+
 export type ListBuyerGiftCardsRequest = {
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
+  /**
+   * The field to sort the gift cards by.
+   */
+  sortBy?: QueryParamSortBy | null | undefined;
+  /**
+   * The direction to sort the gift cards in.
+   */
+  orderBy?: QueryParamOrderBy | undefined;
   /**
    * The ID of the merchant account to use for this request.
    */
@@ -19,9 +55,23 @@ export type ListBuyerGiftCardsRequest = {
 };
 
 /** @internal */
+export const QueryParamSortBy$outboundSchema: z.ZodNativeEnum<
+  typeof QueryParamSortBy
+> = z.nativeEnum(QueryParamSortBy);
+
+/** @internal */
+export const QueryParamOrderBy$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  QueryParamOrderBy
+> = openEnums.outboundSchema(QueryParamOrderBy);
+
+/** @internal */
 export type ListBuyerGiftCardsRequest$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   buyer_id?: string | null | undefined;
+  sort_by?: string | null | undefined;
+  order_by: string;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -33,11 +83,15 @@ export const ListBuyerGiftCardsRequest$outboundSchema: z.ZodType<
 > = z.object({
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   buyerId: z.nullable(z.string()).optional(),
+  sortBy: z.nullable(QueryParamSortBy$outboundSchema).optional(),
+  orderBy: QueryParamOrderBy$outboundSchema.default("desc"),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerExternalIdentifier: "buyer_external_identifier",
     buyerId: "buyer_id",
+    sortBy: "sort_by",
+    orderBy: "order_by",
   });
 });
 
