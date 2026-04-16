@@ -100,6 +100,14 @@ export type PaymentMethodSummary = {
    * The number of times this payment method has been used in transactions.
    */
   usageCount: number;
+  /**
+   * The scheme transaction identifier stored against this payment method.
+   */
+  schemeTransactionId: string | null;
+  /**
+   * The scheme associated with scheme_transaction_id. Only applies to card payments.
+   */
+  schemeTransactionIdScheme: CardScheme | null;
 };
 
 /** @internal */
@@ -134,6 +142,8 @@ export const PaymentMethodSummary$inboundSchema: z.ZodType<
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   usage_count: z.number().int(),
+  scheme_transaction_id: z.nullable(z.string()),
+  scheme_transaction_id_scheme: z.nullable(CardScheme$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "approval_url": "approvalUrl",
@@ -146,6 +156,8 @@ export const PaymentMethodSummary$inboundSchema: z.ZodType<
     "has_replacement": "hasReplacement",
     "last_used_at": "lastUsedAt",
     "usage_count": "usageCount",
+    "scheme_transaction_id": "schemeTransactionId",
+    "scheme_transaction_id_scheme": "schemeTransactionIdScheme",
   });
 });
 

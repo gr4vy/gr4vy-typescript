@@ -14,6 +14,8 @@ let value: PaymentMethodSummaries = {
       citUsageCount: 50,
       hasReplacement: false,
       usageCount: 100,
+      schemeTransactionId: "123456789012345",
+      schemeTransactionIdScheme: "visa",
     },
   ],
 };
