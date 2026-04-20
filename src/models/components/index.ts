@@ -87,6 +87,7 @@ export * from "./dlocalupioptions.js";
 export * from "./dlocalupirecurringinfooptions.js";
 export * from "./dlocalupiwalletoptions.js";
 export * from "./dlocalwalletoptions.js";
+export * from "./ecommpayoptions.js";
 export * from "./errordetail.js";
 export * from "./errorlocation.js";
 export * from "./field.js";
