@@ -96,6 +96,7 @@ export * from "./updatebuyershippingdetails.js";
 export * from "./updatecheckoutsession.js";
 export * from "./updatedigitalwallet.js";
 export * from "./updatemerchantaccount.js";
+export * from "./updatepaymentmethod.js";
 export * from "./updatepaymentservice.js";
 export * from "./updatereport.js";
 export * from "./updatethreedsscenario.js";
