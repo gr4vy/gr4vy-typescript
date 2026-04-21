@@ -172,6 +172,7 @@ export * from "./paymentmethodstatus.js";
 export * from "./paymentmethodstoredcard.js";
 export * from "./paymentmethodsummaries.js";
 export * from "./paymentmethodsummary.js";
+export * from "./paymentmethodupdate.js";
 export * from "./paymentoption.js";
 export * from "./paymentoptioncontext.js";
 export * from "./paymentoptioncontextapprovalui.js";

@@ -335,6 +335,7 @@ try {
 * [list](docs/sdks/paymentmethods/README.md#list) - List all payment methods
 * [create](docs/sdks/paymentmethods/README.md#create) - Create payment method
 * [get](docs/sdks/paymentmethods/README.md#get) - Get payment method
+* [update](docs/sdks/paymentmethods/README.md#update) - Update payment method
 * [delete](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
 
 #### [PaymentMethods.NetworkTokens](docs/sdks/networktokens/README.md)
@@ -1008,6 +1009,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentMethodsPaymentServiceTokensCreate`](docs/sdks/paymentservicetokens/README.md#create) - Create payment service token
 - [`paymentMethodsPaymentServiceTokensDelete`](docs/sdks/paymentservicetokens/README.md#delete) - Delete payment service token
 - [`paymentMethodsPaymentServiceTokensList`](docs/sdks/paymentservicetokens/README.md#list) - List payment service tokens
+- [`paymentMethodsUpdate`](docs/sdks/paymentmethods/README.md#update) - Update payment method
 - [`paymentOptionsList`](docs/sdks/paymentoptions/README.md#list) - List payment options
 - [`paymentServiceDefinitionsGet`](docs/sdks/paymentservicedefinitions/README.md#get) - Get a payment service definition
 - [`paymentServiceDefinitionsList`](docs/sdks/paymentservicedefinitions/README.md#list) - List payment service definitions

@@ -6,6 +6,7 @@ import { paymentMethodsCreate } from "../funcs/paymentMethodsCreate.js";
 import { paymentMethodsDelete } from "../funcs/paymentMethodsDelete.js";
 import { paymentMethodsGet } from "../funcs/paymentMethodsGet.js";
 import { paymentMethodsList } from "../funcs/paymentMethodsList.js";
+import { paymentMethodsUpdate } from "../funcs/paymentMethodsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -78,6 +79,27 @@ export class PaymentMethods extends ClientSDK {
   ): Promise<components.PaymentMethod> {
     return unwrapAsync(paymentMethodsGet(
       this,
+      paymentMethodId,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Update payment method
+   *
+   * @remarks
+   * Update the details of a stored payment method.
+   */
+  async update(
+    paymentMethodUpdate: components.PaymentMethodUpdate,
+    paymentMethodId: string,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.PaymentMethod> {
+    return unwrapAsync(paymentMethodsUpdate(
+      this,
+      paymentMethodUpdate,
       paymentMethodId,
       merchantAccountId,
       options,
