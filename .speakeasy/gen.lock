@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 59405e8455d7b19950881e8fb11dc4e7
+  docChecksum: 1f364007fc0032c548b8fd7729bfc928
   docVersion: 1.0.0
   speakeasyVersion: 1.761.9
   generationVersion: 2.881.4
-  releaseVersion: 2.0.29
-  configChecksum: 88df155db74ba8c61f42bacd1f389d0a
+  releaseVersion: 2.0.30
+  configChecksum: f33353072da99c7cfe173205cd9a9b4c
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 55fc9f90-a7fc-43f2-a267-b6f8aca65946
-  pristine_commit_hash: 988f77775c215488b69a944cdd629e48c2247839
-  pristine_tree_hash: 662d348400e2dd56502b3eb4da8ca8b8f05205ed
+  generation_id: d632a608-21d9-4595-bda7-5c4279577a41
+  pristine_commit_hash: 60388ea523f11cf57873021d354bf4ed1f0f413d
+  pristine_tree_hash: 221af76551f78d034926332fd9b094a89f14653c
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -795,8 +795,8 @@ trackedFiles:
     pristine_git_object: 2dc6a55aaeece1eba3ebfba0cfeda059ee624510
   docs/models/components/paymentmethodupdate.md:
     id: d0576f1cf371
-    last_write_checksum: sha1:42a9390948d5d1065ef462c000ae851c624a0ead
-    pristine_git_object: 024484b93893db6a38c9973d13360cf04b38b84a
+    last_write_checksum: sha1:45afc11ccd993011df46388c496ec89949ecfbf6
+    pristine_git_object: daba4904c4297073e276531f35f30fb85b716b5f
   docs/models/components/paymentoption.md:
     id: 7940dca2b1a8
     last_write_checksum: sha1:2c4cfee6ebf16c7ba1a078a94f672cf4be42808c
@@ -2455,12 +2455,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:edb979b986f587dd4d0f93cef918a930280a16bf
-    pristine_git_object: ccbfd16b7b578c353ed6807e5556b60083f33a9c
+    last_write_checksum: sha1:93b8855139cf98ed50becb37c90bd9a9b452ad60
+    pristine_git_object: d98a617bf54541da60f6c99471a78f0aa0645b80
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:4ef4479b1d796ee4774180a66e87834c297ae9e4
-    pristine_git_object: 2c667922e9d9e21ca56edc6e0a3cfaea9bb1e6b4
+    last_write_checksum: sha1:6ec42aca16d720cf74b9cd5b56b573fcf23a38db
+    pristine_git_object: 746d682288ee2938315d0a0ec01dbd89c53230e4
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2895,8 +2895,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:b21ee305129e8154ea8488089847bbc4293de0db
-    pristine_git_object: 5a63d22fd84508ececd0e28f9de7646cd29f4b36
+    last_write_checksum: sha1:fddefd784e626f97326a661ff936993b48d60eff
+    pristine_git_object: 4dfded548225bd239c66107c308309f52d73a35e
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3639,8 +3639,8 @@ trackedFiles:
     pristine_git_object: f2d28ac258f7ea115045758097faa48586b97620
   src/models/components/paymentmethodupdate.ts:
     id: 3c4f894445dc
-    last_write_checksum: sha1:9ea2c34075dcceba43d866ff40fc8be422ee4842
-    pristine_git_object: 405b1d067f60da97dc0d547196d69edfd03293e1
+    last_write_checksum: sha1:ac0aa04ff76013fa6fc25139bd287c4d0f7a145a
+    pristine_git_object: a681a97b58ba8676c621438bd68a69bf0bc82100
   src/models/components/paymentoption.ts:
     id: d323c0d81daa
     last_write_checksum: sha1:fdcb066e83f07eacdba6667d23cb9500d61d9f13
@@ -8518,7 +8518,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.buyers.paymentMethods.list()`:  `response.items[]` **Changed**\n* `gr4vy.paymentMethods.list()`:  `response.items[]` **Changed**\n* `gr4vy.paymentMethods.create()`:  `response` **Changed**\n* `gr4vy.paymentMethods.get()`:  `response` **Changed**\n* `gr4vy.paymentMethods.update()`:  `response` **Changed**\n* `gr4vy.digitalWallets.create()`: \n  *  `request.digitalWalletCreate.provider.enum(paze)` **Added**\n  *  `response.provider.enum(paze)` **Added**\n* `gr4vy.digitalWallets.list()`:  `response.items[].provider.enum(paze)` **Added**\n* `gr4vy.digitalWallets.get()`:  `response.provider.enum(paze)` **Added**\n* `gr4vy.digitalWallets.update()`:  `response.provider.enum(paze)` **Added**\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].paymentMethod` **Changed**\n* `gr4vy.transactions.create()`:  `response.paymentMethod` **Changed**\n* `gr4vy.transactions.get()`:  `response.paymentMethod` **Changed**\n* `gr4vy.transactions.update()`:  `response.paymentMethod` **Changed**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).paymentMethod` **Changed**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).paymentMethod` **Changed**\n* `gr4vy.transactions.cancel()`:  `response.transaction.paymentMethod` **Changed**\n* `gr4vy.transactions.sync()`:  `response.paymentMethod` **Changed**\n* `gr4vy.paymentOptions.list()`:  `response.items[].mode.enum(paze)` **Added**\n* `gr4vy.paymentServiceDefinitions.list()`:  `response.items[]` **Changed**\n* `gr4vy.paymentServiceDefinitions.get()`:  `response` **Changed**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].method.enum(paze)` **Added**\n* `gr4vy.paymentServices.create()`:  `response.method.enum(paze)` **Added**\n* `gr4vy.paymentServices.get()`:  `response.method.enum(paze)` **Added**\n* `gr4vy.paymentServices.update()`:  `response.method.enum(paze)` **Added**\n* `gr4vy.payouts.list()`:  `response.items[].paymentMethod` **Changed**\n* `gr4vy.payouts.create()`:  `response.paymentMethod` **Changed**\n* `gr4vy.payouts.get()`:  `response.paymentMethod` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
