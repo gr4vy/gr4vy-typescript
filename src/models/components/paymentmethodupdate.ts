@@ -15,11 +15,11 @@ export type PaymentMethodUpdate = {
    */
   expirationDate?: string | null | undefined;
   /**
-   * A scheme transaction identifier to associate with this payment method.
+   * A scheme transaction identifier to associate with this payment method. Explicitly setting this field to `null` will also clear `scheme_transaction_id_scheme` as a side-effect. When setting a new value and `scheme_transaction_id_scheme` is both omitted from the payload and previously unset,`scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
    */
   schemeTransactionId?: string | null | undefined;
   /**
-   * The scheme associated with scheme_transaction_id. Only applies to card payments.
+   * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
    */
   schemeTransactionIdScheme?: CardScheme | null | undefined;
 };
