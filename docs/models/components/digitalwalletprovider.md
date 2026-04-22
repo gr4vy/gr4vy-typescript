@@ -5,7 +5,7 @@
 ```typescript
 import { DigitalWalletProvider } from "@gr4vy/sdk/models/components";
 
-let value: DigitalWalletProvider = "click-to-pay";
+let value: DigitalWalletProvider = "paze";
 
 // Open enum: unrecognized values are captured as Unrecognized<string>
 ```
@@ -13,5 +13,5 @@ let value: DigitalWalletProvider = "click-to-pay";
 ## Values
 
 ```typescript
-"apple" | "google" | "click-to-pay" | Unrecognized<string>
+"apple" | "google" | "click-to-pay" | "paze" | Unrecognized<string>
 ```

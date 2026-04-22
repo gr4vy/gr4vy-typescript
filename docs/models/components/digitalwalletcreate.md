@@ -8,7 +8,7 @@ Request body for registering a new digital wallet
 import { DigitalWalletCreate } from "@gr4vy/sdk/models/components";
 
 let value: DigitalWalletCreate = {
-  provider: "click-to-pay",
+  provider: "paze",
   merchantName: "<value>",
   acceptTermsAndConditions: false,
 };

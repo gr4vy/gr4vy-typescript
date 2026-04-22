@@ -10,6 +10,7 @@ export const DigitalWalletProvider = {
   Apple: "apple",
   Google: "google",
   ClickToPay: "click-to-pay",
+  Paze: "paze",
 } as const;
 export type DigitalWalletProvider = OpenEnum<typeof DigitalWalletProvider>;
 

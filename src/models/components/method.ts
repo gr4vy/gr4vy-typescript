@@ -85,6 +85,7 @@ export const Method = {
   Paypay: "paypay",
   Payto: "payto",
   Payvalida: "payvalida",
+  Paze: "paze",
   Picpay: "picpay",
   Pix: "pix",
   Plaid: "plaid",

@@ -13,5 +13,5 @@ let value: Mode = "card";
 ## Values
 
 ```typescript
-"card" | "redirect" | "applepay" | "googlepay" | "checkout-session" | "click-to-pay" | "gift-card" | "bank" | Unrecognized<string>
+"card" | "redirect" | "applepay" | "googlepay" | "checkout-session" | "click-to-pay" | "gift-card" | "bank" | "paze" | Unrecognized<string>
 ```
