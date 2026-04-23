@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  DigitalWalletAddress,
+  DigitalWalletAddress$inboundSchema,
+} from "./digitalwalletaddress.js";
+import {
   DigitalWalletProvider,
   DigitalWalletProvider$inboundSchema,
 } from "./digitalwalletprovider.js";
@@ -42,6 +46,18 @@ export type DigitalWallet = {
    * The country code where the merchant is registered.
    */
   merchantCountryCode?: string | null | undefined;
+  /**
+   * Merchant classification for the type of goods or services it provides.
+   */
+  merchantCategoryCode?: string | null | undefined;
+  /**
+   * The merchant address associated with the digital wallet.
+   */
+  address?: DigitalWalletAddress | null | undefined;
+  /**
+   * Provider-specific configuration. Currently only used by Paze.
+   */
+  extraConfiguration?: { [k: string]: any } | null | undefined;
   /**
    * The list of domain names that a digital wallet can be used on (deprecated).
    */
@@ -86,6 +102,9 @@ export const DigitalWallet$inboundSchema: z.ZodType<
   merchant_display_name: z.nullable(z.string()).optional(),
   merchant_url: z.nullable(z.string()).optional(),
   merchant_country_code: z.nullable(z.string()).optional(),
+  merchant_category_code: z.nullable(z.string()).optional(),
+  address: z.nullable(DigitalWalletAddress$inboundSchema).optional(),
+  extra_configuration: z.nullable(z.record(z.any())).optional(),
   domain_names: z.array(z.string()),
   active_certificate_count: z.number().int().default(0),
   pending_certificate_count: z.number().int().default(0),
@@ -100,6 +119,8 @@ export const DigitalWallet$inboundSchema: z.ZodType<
     "merchant_display_name": "merchantDisplayName",
     "merchant_url": "merchantUrl",
     "merchant_country_code": "merchantCountryCode",
+    "merchant_category_code": "merchantCategoryCode",
+    "extra_configuration": "extraConfiguration",
     "domain_names": "domainNames",
     "active_certificate_count": "activeCertificateCount",
     "pending_certificate_count": "pendingCertificateCount",
