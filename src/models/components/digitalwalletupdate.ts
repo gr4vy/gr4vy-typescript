@@ -4,6 +4,11 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  DigitalWalletAddress,
+  DigitalWalletAddress$Outbound,
+  DigitalWalletAddress$outboundSchema,
+} from "./digitalwalletaddress.js";
 
 /**
  * Request body for editing a registered digital wallet
@@ -14,6 +19,9 @@ export type DigitalWalletUpdate = {
   merchantDisplayName?: string | null | undefined;
   merchantUrl?: string | null | undefined;
   merchantCountryCode?: string | null | undefined;
+  merchantCategoryCode?: string | null | undefined;
+  address?: DigitalWalletAddress | null | undefined;
+  extraConfiguration?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -23,6 +31,9 @@ export type DigitalWalletUpdate$Outbound = {
   merchant_display_name?: string | null | undefined;
   merchant_url?: string | null | undefined;
   merchant_country_code?: string | null | undefined;
+  merchant_category_code?: string | null | undefined;
+  address?: DigitalWalletAddress$Outbound | null | undefined;
+  extra_configuration?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -36,6 +47,9 @@ export const DigitalWalletUpdate$outboundSchema: z.ZodType<
   merchantDisplayName: z.nullable(z.string()).optional(),
   merchantUrl: z.nullable(z.string()).optional(),
   merchantCountryCode: z.nullable(z.string()).optional(),
+  merchantCategoryCode: z.nullable(z.string()).optional(),
+  address: z.nullable(DigitalWalletAddress$outboundSchema).optional(),
+  extraConfiguration: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     merchantName: "merchant_name",
@@ -43,6 +57,8 @@ export const DigitalWalletUpdate$outboundSchema: z.ZodType<
     merchantDisplayName: "merchant_display_name",
     merchantUrl: "merchant_url",
     merchantCountryCode: "merchant_country_code",
+    merchantCategoryCode: "merchant_category_code",
+    extraConfiguration: "extra_configuration",
   });
 });
 
