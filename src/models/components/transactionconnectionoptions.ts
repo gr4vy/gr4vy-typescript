@@ -20,6 +20,11 @@ import {
   AdyenOptions$outboundSchema,
 } from "./adyenoptions.js";
 import {
+  AdyenPixOptions,
+  AdyenPixOptions$Outbound,
+  AdyenPixOptions$outboundSchema,
+} from "./adyenpixoptions.js";
+import {
   AdyenSepaOptions,
   AdyenSepaOptions$Outbound,
   AdyenSepaOptions$outboundSchema,
@@ -216,7 +221,7 @@ export type TransactionConnectionOptions = {
   /**
    * Custom options to be passed to the `adyen-pix` connector.
    */
-  adyenPix?: AdyenOptions | null | undefined;
+  adyenPix?: AdyenPixOptions | null | undefined;
   /**
    * Custom options to be passed to the `adyen-sepa` connector.
    */
@@ -409,7 +414,7 @@ export type TransactionConnectionOptions$Outbound = {
   "adyen-giropay"?: AdyenOptions$Outbound | null | undefined;
   "adyen-ideal"?: AdyenOptions$Outbound | null | undefined;
   "adyen-paypay"?: AdyenOptions$Outbound | null | undefined;
-  "adyen-pix"?: AdyenOptions$Outbound | null | undefined;
+  "adyen-pix"?: AdyenPixOptions$Outbound | null | undefined;
   "adyen-sepa"?: AdyenSepaOptions$Outbound | null | undefined;
   "adyen-sofort"?: AdyenOptions$Outbound | null | undefined;
   "adyen-swish"?: AdyenOptions$Outbound | null | undefined;
@@ -477,7 +482,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   adyenGiropay: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenIdeal: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenPaypay: z.nullable(AdyenOptions$outboundSchema).optional(),
-  adyenPix: z.nullable(AdyenOptions$outboundSchema).optional(),
+  adyenPix: z.nullable(AdyenPixOptions$outboundSchema).optional(),
   adyenSepa: z.nullable(AdyenSepaOptions$outboundSchema).optional(),
   adyenSofort: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenSwish: z.nullable(AdyenOptions$outboundSchema).optional(),
