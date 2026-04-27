@@ -8,9 +8,9 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  DigitalWalletAddress,
-  DigitalWalletAddress$inboundSchema,
-} from "./digitalwalletaddress.js";
+  ApiTypesDigitalWalletAddress,
+  ApiTypesDigitalWalletAddress$inboundSchema,
+} from "./apitypesdigitalwalletaddress.js";
 import {
   DigitalWalletProvider,
   DigitalWalletProvider$inboundSchema,
@@ -53,7 +53,7 @@ export type DigitalWallet = {
   /**
    * The merchant address associated with the digital wallet.
    */
-  address?: DigitalWalletAddress | null | undefined;
+  address?: ApiTypesDigitalWalletAddress | null | undefined;
   /**
    * Provider-specific configuration. Currently only used by Paze.
    */
@@ -103,7 +103,7 @@ export const DigitalWallet$inboundSchema: z.ZodType<
   merchant_url: z.nullable(z.string()).optional(),
   merchant_country_code: z.nullable(z.string()).optional(),
   merchant_category_code: z.nullable(z.string()).optional(),
-  address: z.nullable(DigitalWalletAddress$inboundSchema).optional(),
+  address: z.nullable(ApiTypesDigitalWalletAddress$inboundSchema).optional(),
   extra_configuration: z.nullable(z.record(z.any())).optional(),
   domain_names: z.array(z.string()),
   active_certificate_count: z.number().int().default(0),

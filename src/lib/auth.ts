@@ -1,7 +1,7 @@
+import { randomUUID } from "node:crypto";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import type { StringValue } from "ms";
 import snakeCaseKeys from "snakecase-keys";
-import { v4 as uuid } from "uuid";
 
 import { CartItem } from "../models/components";
 import { SDK_METADATA } from "./config";
@@ -66,7 +66,7 @@ export const getToken = async (options: {
   return jwt.sign(claims, privateKey, {
     algorithm: "ES512",
     keyid,
-    jwtid: uuid(),
+    jwtid: randomUUID(),
     expiresIn: expiresIn,
     notBefore: "0s",
     issuer: SDK_METADATA.userAgent,
