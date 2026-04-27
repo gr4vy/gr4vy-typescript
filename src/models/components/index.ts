@@ -21,6 +21,7 @@ export * from "./airline.js";
 export * from "./airlineleg.js";
 export * from "./airlinepassenger.js";
 export * from "./antifrauddecision.js";
+export * from "./apitypesdigitalwalletaddress.js";
 export * from "./applepaypaymentmethodcreate.js";
 export * from "./applepaysessionrequest.js";
 export * from "./approvaltarget.js";
