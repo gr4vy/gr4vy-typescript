@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import type { StringValue } from "ms";
 import snakeCaseKeys from "snakecase-keys";
@@ -5,18 +6,6 @@ import snakeCaseKeys from "snakecase-keys";
 import { CartItem } from "../models/components";
 import { SDK_METADATA } from "./config";
 import { getKeyId } from "./helpers";
-
-// Web Crypto is available in browsers, Bun, Deno, Workers, and Node 19+.
-// Older Node falls back to a lazy `node:crypto` import — kept non-literal so
-// bundlers targeting non-Node runtimes don't try to resolve it statically.
-async function generateJti(): Promise<string> {
-  if (globalThis.crypto?.randomUUID) {
-    return globalThis.crypto.randomUUID();
-  }
-  const nodeCryptoSpecifier = `node${":"}crypto`;
-  const nodeCrypto = await import(nodeCryptoSpecifier);
-  return nodeCrypto.randomUUID();
-}
 
 /**
  * Helper method for generating a bearer token for use with the SDK
@@ -77,7 +66,7 @@ export const getToken = async (options: {
   return jwt.sign(claims, privateKey, {
     algorithm: "ES512",
     keyid,
-    jwtid: await generateJti(),
+    jwtid: randomUUID(),
     expiresIn: expiresIn,
     notBefore: "0s",
     issuer: SDK_METADATA.userAgent,
