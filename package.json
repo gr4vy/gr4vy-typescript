@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "2.0.32",
+  "version": "2.0.33",
   "author": "Gr4vy",
   "main": "./index.js",
   "sideEffects": false,
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.3",
-    "snakecase-keys": "^6.0.0",
+    "snakecase-keys": "^8.1.0",
     "zod": "^3.25.0 || ^4.0.0"
   }
 }

@@ -29,12 +29,12 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 2.0.32
+  version: 2.0.33
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
       jsonwebtoken: ^9.0.3
-      snakecase-keys: ^6.0.0
+      snakecase-keys: ^8.1.0
     devDependencies:
       '@types/jsonwebtoken': ^9.0.10
       timekeeper: ^2.3.1
