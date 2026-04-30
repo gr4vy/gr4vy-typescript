@@ -104,6 +104,15 @@ const value: components.GooglePayFPANPaymentMethodCreate = {
 };
 ```
 
+### `components.PazePaymentMethodCreate`
+
+```typescript
+const value: components.PazePaymentMethodCreate = {
+  method: "paze",
+  token: "<value>",
+};
+```
+
 ### `components.NetworkTokenPaymentMethodCreate`
 
 ```typescript
