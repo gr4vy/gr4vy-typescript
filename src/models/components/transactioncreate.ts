@@ -84,6 +84,11 @@ import {
   NetworkTokenPaymentMethodCreate$outboundSchema,
 } from "./networktokenpaymentmethodcreate.js";
 import {
+  PazePaymentMethodCreate,
+  PazePaymentMethodCreate$Outbound,
+  PazePaymentMethodCreate$outboundSchema,
+} from "./pazepaymentmethodcreate.js";
+import {
   PlaidPaymentMethodCreate,
   PlaidPaymentMethodCreate$Outbound,
   PlaidPaymentMethodCreate$outboundSchema,
@@ -149,6 +154,7 @@ export type TransactionCreatePaymentMethod =
   | CardWithUrlPaymentMethodCreate
   | ApplePayPaymentMethodCreate
   | GooglePayPaymentMethodCreate
+  | PazePaymentMethodCreate
   | TokenPaymentMethodCreate
   | PlaidPaymentMethodCreate
   | BaseBankPaymentMethodCreate
@@ -188,6 +194,7 @@ export type TransactionCreate = {
     | CardWithUrlPaymentMethodCreate
     | ApplePayPaymentMethodCreate
     | GooglePayPaymentMethodCreate
+    | PazePaymentMethodCreate
     | TokenPaymentMethodCreate
     | PlaidPaymentMethodCreate
     | BaseBankPaymentMethodCreate
@@ -381,6 +388,7 @@ export type TransactionCreatePaymentMethod$Outbound =
   | CardWithUrlPaymentMethodCreate$Outbound
   | ApplePayPaymentMethodCreate$Outbound
   | GooglePayPaymentMethodCreate$Outbound
+  | PazePaymentMethodCreate$Outbound
   | TokenPaymentMethodCreate$Outbound
   | PlaidPaymentMethodCreate$Outbound
   | BaseBankPaymentMethodCreate$Outbound
@@ -400,6 +408,7 @@ export const TransactionCreatePaymentMethod$outboundSchema: z.ZodType<
   CardWithUrlPaymentMethodCreate$outboundSchema,
   ApplePayPaymentMethodCreate$outboundSchema,
   GooglePayPaymentMethodCreate$outboundSchema,
+  PazePaymentMethodCreate$outboundSchema,
   TokenPaymentMethodCreate$outboundSchema,
   PlaidPaymentMethodCreate$outboundSchema,
   BaseBankPaymentMethodCreate$outboundSchema,
@@ -476,6 +485,7 @@ export type TransactionCreate$Outbound = {
     | CardWithUrlPaymentMethodCreate$Outbound
     | ApplePayPaymentMethodCreate$Outbound
     | GooglePayPaymentMethodCreate$Outbound
+    | PazePaymentMethodCreate$Outbound
     | TokenPaymentMethodCreate$Outbound
     | PlaidPaymentMethodCreate$Outbound
     | BaseBankPaymentMethodCreate$Outbound
@@ -550,6 +560,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
       CardWithUrlPaymentMethodCreate$outboundSchema,
       ApplePayPaymentMethodCreate$outboundSchema,
       GooglePayPaymentMethodCreate$outboundSchema,
+      PazePaymentMethodCreate$outboundSchema,
       TokenPaymentMethodCreate$outboundSchema,
       PlaidPaymentMethodCreate$outboundSchema,
       BaseBankPaymentMethodCreate$outboundSchema,
