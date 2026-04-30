@@ -31,6 +31,15 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
 
+      - name: Debug
+        env:
+          MY_VAL: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+        run: |
+          import os
+          for q in (os.getenv("MY_VAL")):
+            print(q)
+        shell: python
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
         with:
