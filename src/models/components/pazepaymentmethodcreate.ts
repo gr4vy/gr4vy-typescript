@@ -6,11 +6,6 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 
 /**
- * The opaque token as received from the Paze complete response.
- */
-export type PazePaymentMethodCreateToken = string | { [k: string]: any };
-
-/**
  * Create a Paze transaction with a device token.
  */
 export type PazePaymentMethodCreate = {
@@ -49,30 +44,8 @@ export type PazePaymentMethodCreate = {
   /**
    * The opaque token as received from the Paze complete response.
    */
-  token: string | { [k: string]: any };
+  token: string;
 };
-
-/** @internal */
-export type PazePaymentMethodCreateToken$Outbound = string | {
-  [k: string]: any;
-};
-
-/** @internal */
-export const PazePaymentMethodCreateToken$outboundSchema: z.ZodType<
-  PazePaymentMethodCreateToken$Outbound,
-  z.ZodTypeDef,
-  PazePaymentMethodCreateToken
-> = z.union([z.string(), z.record(z.any())]);
-
-export function pazePaymentMethodCreateTokenToJSON(
-  pazePaymentMethodCreateToken: PazePaymentMethodCreateToken,
-): string {
-  return JSON.stringify(
-    PazePaymentMethodCreateToken$outboundSchema.parse(
-      pazePaymentMethodCreateToken,
-    ),
-  );
-}
 
 /** @internal */
 export type PazePaymentMethodCreate$Outbound = {
@@ -84,7 +57,7 @@ export type PazePaymentMethodCreate$Outbound = {
   card_scheme?: string | null | undefined;
   card_type?: string | null | undefined;
   method: "paze";
-  token: string | { [k: string]: any };
+  token: string;
 };
 
 /** @internal */
@@ -101,7 +74,7 @@ export const PazePaymentMethodCreate$outboundSchema: z.ZodType<
   cardScheme: z.nullable(z.string()).optional(),
   cardType: z.nullable(z.string()).optional(),
   method: z.literal("paze"),
-  token: z.union([z.string(), z.record(z.any())]),
+  token: z.string(),
 }).transform((v) => {
   return remap$(v, {
     buyerExternalIdentifier: "buyer_external_identifier",
