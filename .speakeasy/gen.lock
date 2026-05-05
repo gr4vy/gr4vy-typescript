@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 6aa33f22c076ffb13fd1712e09de4aa1
+  docChecksum: d4e5b6d1cd0b58bd8543cb50f13515c6
   docVersion: 1.0.0
-  speakeasyVersion: 1.761.10
-  generationVersion: 2.881.16
-  releaseVersion: 2.0.39
-  configChecksum: 1097d17b2f2d44fec3942b8c9dd985c7
+  speakeasyVersion: 1.761.11
+  generationVersion: 2.881.17
+  releaseVersion: 2.0.40
+  configChecksum: 12db251e2308f5a1c8c405ab103ade7d
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: f219330d-d1f2-4f10-9a74-c70a1fd31eaa
-  pristine_commit_hash: f444bf612dca3a19a2529fdbda0be51e07d62c8f
-  pristine_tree_hash: 837ebf42934c30c84a7126d1f421cd447cf7c37c
+  generation_id: 09e5abda-a289-4fa5-91e4-af6f3b0aeb16
+  pristine_commit_hash: 9d248cc1005987fb4771b8129892eed68464b098
+  pristine_tree_hash: d8acd00a5949fd859b9e022ecb47564d8e6b725c
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.26.49
+    core: 3.26.50
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -943,12 +943,8 @@ trackedFiles:
     pristine_git_object: a95343312245179f48af2bf179e8bbc0c34e1af3
   docs/models/components/pazepaymentmethodcreate.md:
     id: ebfc2151e85f
-    last_write_checksum: sha1:466fee7816ac1cdbcb77adbb9fa08661a89eadb1
-    pristine_git_object: ba53d983e4ad0b3dc27f91fd34a90ab54286fc9b
-  docs/models/components/pazepaymentmethodcreatetoken.md:
-    id: b4d273419208
-    last_write_checksum: sha1:845bf915d2485c0854b912b2b904a5476253a1d4
-    pristine_git_object: 9cacf938c0b8b6dbf31be64830dfc2fce2625a98
+    last_write_checksum: sha1:842c82334c92ac4f6dc47c1a596de6476a93693c
+    pristine_git_object: e6be4843664b9d14ae1f568009a7089f95e20804
   docs/models/components/plaidpaymentmethodcreate.md:
     id: 78c11e55808c
     last_write_checksum: sha1:cb6438135db6dc4604091862195f33ffc7e24cd4
@@ -2483,12 +2479,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:8e477f16419467a1178ff132cb8c3c34bd57f3ab
-    pristine_git_object: 5a6568107a7c60fd74fc50a2678c805d86569903
+    last_write_checksum: sha1:28f42facab4909caf35cde0e555ad669ddd3084f
+    pristine_git_object: 695f19aab39250d56880ad1209c548e11463932e
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:585c8904e65975a0859cd3d2cec36ecb2da0c05d
-    pristine_git_object: 330ddd78249aecdbb94f352ca55eeb6b6722219f
+    last_write_checksum: sha1:f161cee812677d7c2344c6afdcc0f855d8cf18b9
+    pristine_git_object: 5f193c7f680b1ce449fd87376e37d8b044df83d4
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2923,8 +2919,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:dd0987c85da0f97b02906524b0a7a985e9f27d18
-    pristine_git_object: 41dea80ee557cf26e35c852f357a7a7a465ee401
+    last_write_checksum: sha1:8a5adc3dcddf5ee0e0b38925b5fa33092a8cb6cd
+    pristine_git_object: eface8c586f87c1519d71d802a95b7392b11a9bb
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3807,8 +3803,8 @@ trackedFiles:
     pristine_git_object: b4e3938190c5a676ddde5c3c984539fefbe5f817
   src/models/components/pazepaymentmethodcreate.ts:
     id: aeebb19d0253
-    last_write_checksum: sha1:c1e091899ec595da221644a85cac2b9e47a16e22
-    pristine_git_object: 0e48a3ff8c2fda64f19a3c7075f88323f85ccad6
+    last_write_checksum: sha1:79c67824271de9b0054d7fdc6fd5ebcbf0274d7f
+    pristine_git_object: cdd46904df232aca83a1fd735f070af108ab7432
   src/models/components/plaidpaymentmethodcreate.ts:
     id: 684078f8ab65
     last_write_checksum: sha1:ba824caeb674574cf0520f817e0fa11d29790f39
@@ -8570,7 +8566,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.adyenGcash` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenGcash` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenGcash` **Added**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.paymentMethod.union(PazePaymentMethodCreate).token` **Changed** (Breaking ⚠️)\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
