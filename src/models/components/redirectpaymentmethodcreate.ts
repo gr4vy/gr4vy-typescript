@@ -27,6 +27,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Boleto: "boleto",
   Boost: "boost",
   Breb: "breb",
+  Ach: "ach",
   Capitec: "capitec",
   Cashapp: "cashapp",
   Clearpay: "clearpay",

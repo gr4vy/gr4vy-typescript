@@ -22,6 +22,7 @@ export const Method = {
   Becs: "becs",
   Bitpay: "bitpay",
   Blik: "blik",
+  Ach: "ach",
   Boleto: "boleto",
   Boost: "boost",
   Breb: "breb",
