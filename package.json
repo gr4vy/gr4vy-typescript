@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/sdk",
-  "version": "2.0.42",
+  "version": "2.0.43",
   "author": "Gr4vy",
   "main": "./index.js",
   "sideEffects": false,
