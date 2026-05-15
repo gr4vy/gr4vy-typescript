@@ -76,6 +76,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Pagoefectivo: "pagoefectivo",
   Payid: "payid",
   Paymaya: "paymaya",
+  Paysquad: "paysquad",
   Paypal: "paypal",
   Paypalpaylater: "paypalpaylater",
   Paypay: "paypay",
