@@ -207,6 +207,10 @@ export type TransactionConnectionOptions = {
    */
   adyenCashapp?: AdyenOptions | null | undefined;
   /**
+   * Custom options to be passed to the `adyen-gcash` connector.
+   */
+  adyenGcash?: AdyenOptions | null | undefined;
+  /**
    * Custom options to be passed to the `adyen-giropay` connector.
    */
   adyenGiropay?: AdyenOptions | null | undefined;
@@ -411,6 +415,7 @@ export type TransactionConnectionOptions$Outbound = {
   "adyen-alipay"?: AdyenOptions$Outbound | null | undefined;
   "adyen-card"?: AdyenCardOptions$Outbound | null | undefined;
   "adyen-cashapp"?: AdyenOptions$Outbound | null | undefined;
+  "adyen-gcash"?: AdyenOptions$Outbound | null | undefined;
   "adyen-giropay"?: AdyenOptions$Outbound | null | undefined;
   "adyen-ideal"?: AdyenOptions$Outbound | null | undefined;
   "adyen-paypay"?: AdyenOptions$Outbound | null | undefined;
@@ -479,6 +484,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   adyenAlipay: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenCard: z.nullable(AdyenCardOptions$outboundSchema).optional(),
   adyenCashapp: z.nullable(AdyenOptions$outboundSchema).optional(),
+  adyenGcash: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenGiropay: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenIdeal: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenPaypay: z.nullable(AdyenOptions$outboundSchema).optional(),
@@ -539,6 +545,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     adyenAlipay: "adyen-alipay",
     adyenCard: "adyen-card",
     adyenCashapp: "adyen-cashapp",
+    adyenGcash: "adyen-gcash",
     adyenGiropay: "adyen-giropay",
     adyenIdeal: "adyen-ideal",
     adyenPaypay: "adyen-paypay",

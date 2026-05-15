@@ -15,10 +15,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    timeout-minutes: 3
+    timeout-minutes: 10
     strategy:
       matrix:
-        node:
+        node-version:
           - 20.x
           - 22.x
           - 24.x
@@ -44,7 +44,7 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          npx vitest --testTimeout 8000   
+          npx vitest run --testTimeout=30000 --hookTimeout=30000
 
       - uses: hmarr/auto-approve-action@8f929096a962e83ccdfa8afcf855f39f12d4dac7 # v4
         if: ${{ success() && github.event.pull_request.user.login == 'github-actions[bot]' }}

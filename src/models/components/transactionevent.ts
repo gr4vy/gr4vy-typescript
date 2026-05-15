@@ -80,6 +80,7 @@ export const Name = {
     "digital-wallet-google-pay-token-decrypted",
   DigitalWalletClickToPayTokenDecrypted:
     "digital-wallet-click-to-pay-token-decrypted",
+  DigitalWalletPazeTokenDecrypted: "digital-wallet-paze-token-decrypted",
   NetworkTokenProvisionSucceeded: "network-token-provision-succeeded",
   NetworkTokenProvisionFailed: "network-token-provision-failed",
   NetworkTokenCryptogramProvisionSucceeded:
