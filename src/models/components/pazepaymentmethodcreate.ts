@@ -45,6 +45,10 @@ export type PazePaymentMethodCreate = {
    * The opaque token as received from the Paze complete response.
    */
   token: string;
+  /**
+   * The signed checkout JWS as received from the Paze checkout response.
+   */
+  checkoutToken?: string | null | undefined;
 };
 
 /** @internal */
@@ -58,6 +62,7 @@ export type PazePaymentMethodCreate$Outbound = {
   card_type?: string | null | undefined;
   method: "paze";
   token: string;
+  checkout_token?: string | null | undefined;
 };
 
 /** @internal */
@@ -75,6 +80,7 @@ export const PazePaymentMethodCreate$outboundSchema: z.ZodType<
   cardType: z.nullable(z.string()).optional(),
   method: z.literal("paze"),
   token: z.string(),
+  checkoutToken: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     buyerExternalIdentifier: "buyer_external_identifier",
@@ -84,6 +90,7 @@ export const PazePaymentMethodCreate$outboundSchema: z.ZodType<
     cardSuffix: "card_suffix",
     cardScheme: "card_scheme",
     cardType: "card_type",
+    checkoutToken: "checkout_token",
   });
 });
 
