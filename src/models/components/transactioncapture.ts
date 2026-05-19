@@ -40,6 +40,10 @@ export type TransactionCapture = {
    * The payment service's unique ID for the capture.
    */
   paymentServiceCaptureId?: string | null | undefined;
+  /**
+   * The external identifier for the capture.
+   */
+  externalIdentifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -56,12 +60,14 @@ export const TransactionCapture$inboundSchema: z.ZodType<
   transaction: Transaction$inboundSchema,
   capture_id: z.nullable(z.string()).optional(),
   payment_service_capture_id: z.nullable(z.string()).optional(),
+  external_identifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",
     "raw_response_description": "rawResponseDescription",
     "capture_id": "captureId",
     "payment_service_capture_id": "paymentServiceCaptureId",
+    "external_identifier": "externalIdentifier",
   });
 });
 

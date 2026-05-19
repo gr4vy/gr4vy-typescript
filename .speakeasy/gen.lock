@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 7e450a2b13a55749b50674070c016c32
+  docChecksum: 42957dba280740954c790b6741156f16
   docVersion: 1.0.0
-  speakeasyVersion: 1.763.1
+  speakeasyVersion: 1.763.2
   generationVersion: 2.884.4
-  releaseVersion: 2.0.46
-  configChecksum: ca7a68eb98ff75d4febdb276cf845612
+  releaseVersion: 2.0.47
+  configChecksum: fe3c1d4f2f2f0310e3568a3e6e498e68
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 24070a56-73dd-41c9-91bf-479160457812
-  pristine_commit_hash: 3107e7c71be1f4aa19a2bd15341d97df330b2884
-  pristine_tree_hash: 950be87667fbfb184e1b3816380dc02b4043b9c3
+  generation_id: e69adbf7-6433-4659-9be2-5a1bc6641bb4
+  pristine_commit_hash: c511e1b7473beec4e54c49cc2e8ea8b0b67d1f12
+  pristine_tree_hash: f6c542092363cd221ffb1014262f5ca3caa540ee
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1247,8 +1247,8 @@ trackedFiles:
     pristine_git_object: 90cb827a3c336fa04b91bf05654b6ec7a35e853a
   docs/models/components/transactioncapture.md:
     id: 6234f4354db0
-    last_write_checksum: sha1:69aafc2be6c4d013388483f4dac688bbaeac43dd
-    pristine_git_object: 8c2c5fd4504ef010696991377b9cf5c02e6c8653
+    last_write_checksum: sha1:39b0c78ae9c31867814d3e1599a232f7f14209fd
+    pristine_git_object: 79f69fcdf3ad95abfee425c52278496178e87c27
   docs/models/components/transactioncapturecreate.md:
     id: f1fb39b47632
     last_write_checksum: sha1:53b0a1b6d3de87ca0e68e6c3ad71d4c7c2f0df3f
@@ -2479,12 +2479,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:1b92292bd2ea3896fdbbbecbca047dde364b19b2
-    pristine_git_object: 3064ddf243e1c642590db0be50c4735cb4aad202
+    last_write_checksum: sha1:d4cdc879bf59718d93490e15a68d034e1be7d158
+    pristine_git_object: 0fe9179c335b3209c56e2779121d038d018b9ab2
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:cdf089e7284f4a0da510fd857bf589b717480e97
-    pristine_git_object: 4f3bb2cc21189915202becfaa925a3c41fcf63de
+    last_write_checksum: sha1:bf082379045a0c6c100f0b9a02d63df95d23e16a
+    pristine_git_object: b8e4d410c528b6b5932293bd85e8bbaa3710c889
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2919,8 +2919,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:1e69fca96ca8866fb57a976522707ab3a92b62c2
-    pristine_git_object: 0fe6eec88ffe24fe1e9eff4dedb366107dabe67d
+    last_write_checksum: sha1:ca24e674f33a41511ed20f7d5d7cdad9f9315211
+    pristine_git_object: bef4fe5ab3d67a2ec6f3705f041dee8d85dce255
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -4059,8 +4059,8 @@ trackedFiles:
     pristine_git_object: 516355afbf14f2f608b47eca95d36260bd0d9e20
   src/models/components/transactioncapture.ts:
     id: 387980a8eff0
-    last_write_checksum: sha1:e070294ca276a9bdee1c023532e2e34210da9100
-    pristine_git_object: 55be24dc260cebb03d83d7d05b66112e8bc2433b
+    last_write_checksum: sha1:f0d60ead332d2f84ab1ec2aa63e1c1bf1541c354
+    pristine_git_object: 15df967f063a9510147cb8b26cff63a6d02e0854
   src/models/components/transactioncapturecreate.ts:
     id: da95f52c14de
     last_write_checksum: sha1:c0d48450f5f20c5e335cdbf4d1498a6386fa4cb3
@@ -8566,7 +8566,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.paymentMethod.union(PazePaymentMethodCreate).checkoutToken` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `gr4vy.transactions.capture()`:  `response.union(TransactionCapture).externalIdentifier` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
