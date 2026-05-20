@@ -296,6 +296,7 @@ try {
 
 * [googlePay](docs/sdks/sessions/README.md#googlepay) - Create a Google Pay session
 * [applePay](docs/sdks/sessions/README.md#applepay) - Create a Apple Pay session
+* [paze](docs/sdks/sessions/README.md#paze) - Create a Paze session
 * [clickToPay](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
 
 ### [GiftCards](docs/sdks/giftcards/README.md)
@@ -978,6 +979,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`digitalWalletsSessionsApplePay`](docs/sdks/sessions/README.md#applepay) - Create a Apple Pay session
 - [`digitalWalletsSessionsClickToPay`](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
 - [`digitalWalletsSessionsGooglePay`](docs/sdks/sessions/README.md#googlepay) - Create a Google Pay session
+- [`digitalWalletsSessionsPaze`](docs/sdks/sessions/README.md#paze) - Create a Paze session
 - [`digitalWalletsUpdate`](docs/sdks/digitalwallets/README.md#update) - Update digital wallet
 - [`giftCardsBalancesList`](docs/sdks/balances/README.md#list) - List gift card balances
 - [`giftCardsCreate`](docs/sdks/giftcards/README.md#create) - Create gift card

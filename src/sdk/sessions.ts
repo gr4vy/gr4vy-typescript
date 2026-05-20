@@ -5,8 +5,10 @@
 import { digitalWalletsSessionsApplePay } from "../funcs/digitalWalletsSessionsApplePay.js";
 import { digitalWalletsSessionsClickToPay } from "../funcs/digitalWalletsSessionsClickToPay.js";
 import { digitalWalletsSessionsGooglePay } from "../funcs/digitalWalletsSessionsGooglePay.js";
+import { digitalWalletsSessionsPaze } from "../funcs/digitalWalletsSessionsPaze.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Sessions extends ClientSDK {
@@ -43,6 +45,27 @@ export class Sessions extends ClientSDK {
     return unwrapAsync(digitalWalletsSessionsApplePay(
       this,
       applePaySessionRequest,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Create a Paze session
+   *
+   * @remarks
+   * Create a session for use with Paze.
+   */
+  async paze(
+    pazeSessionRequest: components.PazeSessionRequest,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<
+    operations.CreatePazeDigitalWalletSessionResponseCreatePazeDigitalWalletSession
+  > {
+    return unwrapAsync(digitalWalletsSessionsPaze(
+      this,
+      pazeSessionRequest,
       merchantAccountId,
       options,
     ));
