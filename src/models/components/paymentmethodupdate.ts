@@ -22,6 +22,10 @@ export type PaymentMethodUpdate = {
    * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
    */
   schemeTransactionIdScheme?: CardScheme | null | undefined;
+  /**
+   * A transaction link identifier to associate with this payment method.
+   */
+  transactionLinkId?: string | null | undefined;
 };
 
 /** @internal */
@@ -29,6 +33,7 @@ export type PaymentMethodUpdate$Outbound = {
   expiration_date?: string | null | undefined;
   scheme_transaction_id?: string | null | undefined;
   scheme_transaction_id_scheme?: string | null | undefined;
+  transaction_link_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -40,11 +45,13 @@ export const PaymentMethodUpdate$outboundSchema: z.ZodType<
   expirationDate: z.nullable(z.string()).optional(),
   schemeTransactionId: z.nullable(z.string()).optional(),
   schemeTransactionIdScheme: z.nullable(CardScheme$outboundSchema).optional(),
+  transactionLinkId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     expirationDate: "expiration_date",
     schemeTransactionId: "scheme_transaction_id",
     schemeTransactionIdScheme: "scheme_transaction_id_scheme",
+    transactionLinkId: "transaction_link_id",
   });
 });
 
