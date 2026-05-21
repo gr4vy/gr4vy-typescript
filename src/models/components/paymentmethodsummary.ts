@@ -108,6 +108,10 @@ export type PaymentMethodSummary = {
    * The scheme associated with scheme_transaction_id. Only applies to card payments.
    */
   schemeTransactionIdScheme: CardScheme | null;
+  /**
+   * The transaction link identifier stored against this payment method.
+   */
+  transactionLinkId?: string | null | undefined;
 };
 
 /** @internal */
@@ -144,6 +148,7 @@ export const PaymentMethodSummary$inboundSchema: z.ZodType<
   usage_count: z.number().int(),
   scheme_transaction_id: z.nullable(z.string()),
   scheme_transaction_id_scheme: z.nullable(CardScheme$inboundSchema),
+  transaction_link_id: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "approval_url": "approvalUrl",
@@ -158,6 +163,7 @@ export const PaymentMethodSummary$inboundSchema: z.ZodType<
     "usage_count": "usageCount",
     "scheme_transaction_id": "schemeTransactionId",
     "scheme_transaction_id_scheme": "schemeTransactionIdScheme",
+    "transaction_link_id": "transactionLinkId",
   });
 });
 
