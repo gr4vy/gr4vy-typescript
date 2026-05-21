@@ -287,6 +287,10 @@ export type TransactionCreate = {
    */
   previousSchemeTransactionId?: string | null | undefined;
   /**
+   * A scheme's transaction link identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Mastercard Transaction Link ID (TLID).
+   */
+  previousTransactionLinkId?: string | null | undefined;
+  /**
    * Information about the browser used by the buyer. This can be used by anti-fraud services.
    */
   browserInfo?: BrowserInfo | null | undefined;
@@ -519,6 +523,7 @@ export type TransactionCreate$Outbound = {
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   statement_descriptor?: StatementDescriptor$Outbound | null | undefined;
   previous_scheme_transaction_id?: string | null | undefined;
+  previous_transaction_link_id?: string | null | undefined;
   browser_info?: BrowserInfo$Outbound | null | undefined;
   shipping_details_id?: string | null | undefined;
   connection_options?: TransactionConnectionOptions$Outbound | null | undefined;
@@ -597,6 +602,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
     .optional(),
   previousSchemeTransactionId: z.nullable(z.string()).optional(),
+  previousTransactionLinkId: z.nullable(z.string()).optional(),
   browserInfo: z.nullable(BrowserInfo$outboundSchema).optional(),
   shippingDetailsId: z.nullable(z.string()).optional(),
   connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
@@ -634,6 +640,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     cartItems: "cart_items",
     statementDescriptor: "statement_descriptor",
     previousSchemeTransactionId: "previous_scheme_transaction_id",
+    previousTransactionLinkId: "previous_transaction_link_id",
     browserInfo: "browser_info",
     shippingDetailsId: "shipping_details_id",
     connectionOptions: "connection_options",
