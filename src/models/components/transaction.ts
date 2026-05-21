@@ -247,6 +247,10 @@ export type Transaction = {
    */
   schemeTransactionId?: string | null | undefined;
   /**
+   * A transaction link identifier for the transaction used by the scheme itself, when available.
+   */
+  transactionLinkId?: string | null | undefined;
+  /**
    * The 3-D Secure data that was sent to the payment service for the transaction.
    */
   threeDSecure?: TransactionThreeDSecureSummary | null | undefined;
@@ -400,6 +404,7 @@ export const Transaction$inboundSchema: z.ZodType<
   statement_descriptor: z.nullable(StatementDescriptor$inboundSchema)
     .optional(),
   scheme_transaction_id: z.nullable(z.string()).optional(),
+  transaction_link_id: z.nullable(z.string()).optional(),
   three_d_secure: z.nullable(TransactionThreeDSecureSummary$inboundSchema)
     .optional(),
   payment_service_transaction_id: z.nullable(z.string()).optional(),
@@ -472,6 +477,7 @@ export const Transaction$inboundSchema: z.ZodType<
     "cart_items": "cartItems",
     "statement_descriptor": "statementDescriptor",
     "scheme_transaction_id": "schemeTransactionId",
+    "transaction_link_id": "transactionLinkId",
     "three_d_secure": "threeDSecure",
     "payment_service_transaction_id": "paymentServiceTransactionId",
     "additional_identifiers": "additionalIdentifiers",
