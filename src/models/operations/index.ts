@@ -89,6 +89,7 @@ export * from "./listtransactions.js";
 export * from "./listtransactionsettlements.js";
 export * from "./registerdigitalwalletdomain.js";
 export * from "./resumepaymentmethodnetworktoken.js";
+export * from "./reviewpazemobilesession.js";
 export * from "./suspendpaymentmethodnetworktoken.js";
 export * from "./synctransaction.js";
 export * from "./unregisterdigitalwalletdomain.js";

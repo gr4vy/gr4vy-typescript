@@ -6,6 +6,7 @@ import { digitalWalletsSessionsApplePay } from "../funcs/digitalWalletsSessionsA
 import { digitalWalletsSessionsClickToPay } from "../funcs/digitalWalletsSessionsClickToPay.js";
 import { digitalWalletsSessionsGooglePay } from "../funcs/digitalWalletsSessionsGooglePay.js";
 import { digitalWalletsSessionsPaze } from "../funcs/digitalWalletsSessionsPaze.js";
+import { digitalWalletsSessionsPazeMobileSessionReview } from "../funcs/digitalWalletsSessionsPazeMobileSessionReview.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -66,6 +67,25 @@ export class Sessions extends ClientSDK {
     return unwrapAsync(digitalWalletsSessionsPaze(
       this,
       pazeSessionRequest,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Review a Paze session
+   *
+   * @remarks
+   * Review a Paze checkout session and retrieve the selected card, consumer, and shipping address details.
+   */
+  async pazeMobileSessionReview(
+    pazeSessionReviewRequest: components.PazeSessionReviewRequest,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.PazeSessionReview> {
+    return unwrapAsync(digitalWalletsSessionsPazeMobileSessionReview(
+      this,
+      pazeSessionReviewRequest,
       merchantAccountId,
       options,
     ));
