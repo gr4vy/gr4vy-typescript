@@ -114,6 +114,10 @@ export type PaymentMethod = {
    */
   schemeTransactionIdScheme: CardScheme | null;
   /**
+   * The transaction link identifier stored against this payment method.
+   */
+  transactionLinkId?: string | null | undefined;
+  /**
    * The optional buyer for which this payment method has been stored.
    */
   buyer?: Buyer | null | undefined;
@@ -166,6 +170,7 @@ export const PaymentMethod$inboundSchema: z.ZodType<
   usage_count: z.number().int(),
   scheme_transaction_id: z.nullable(z.string()),
   scheme_transaction_id_scheme: z.nullable(CardScheme$inboundSchema),
+  transaction_link_id: z.nullable(z.string()).optional(),
   buyer: z.nullable(Buyer$inboundSchema).optional(),
   external_identifier: z.nullable(z.string()).optional(),
   status: PaymentMethodStatus$inboundSchema,
@@ -185,6 +190,7 @@ export const PaymentMethod$inboundSchema: z.ZodType<
     "usage_count": "usageCount",
     "scheme_transaction_id": "schemeTransactionId",
     "scheme_transaction_id_scheme": "schemeTransactionIdScheme",
+    "transaction_link_id": "transactionLinkId",
     "external_identifier": "externalIdentifier",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
