@@ -6,6 +6,7 @@ import { digitalWalletsSessionsApplePay } from "../funcs/digitalWalletsSessionsA
 import { digitalWalletsSessionsClickToPay } from "../funcs/digitalWalletsSessionsClickToPay.js";
 import { digitalWalletsSessionsGooglePay } from "../funcs/digitalWalletsSessionsGooglePay.js";
 import { digitalWalletsSessionsPaze } from "../funcs/digitalWalletsSessionsPaze.js";
+import { digitalWalletsSessionsPazeMobileSessionCreate } from "../funcs/digitalWalletsSessionsPazeMobileSessionCreate.js";
 import { digitalWalletsSessionsPazeMobileSessionReview } from "../funcs/digitalWalletsSessionsPazeMobileSessionReview.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -46,6 +47,25 @@ export class Sessions extends ClientSDK {
     return unwrapAsync(digitalWalletsSessionsApplePay(
       this,
       applePaySessionRequest,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Create a Paze mobile session
+   *
+   * @remarks
+   * Create a mobile session for use with Paze.
+   */
+  async pazeMobileSessionCreate(
+    pazeMobileSessionCreateRequest: components.PazeMobileSessionCreateRequest,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.PazeMobileSessionCreate> {
+    return unwrapAsync(digitalWalletsSessionsPazeMobileSessionCreate(
+      this,
+      pazeMobileSessionCreateRequest,
       merchantAccountId,
       options,
     ));
