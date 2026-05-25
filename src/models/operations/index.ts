@@ -24,6 +24,7 @@ export * from "./createpaymentservicedefinitionsession.js";
 export * from "./createpaymentservicesession.js";
 export * from "./createpayout.js";
 export * from "./createpazedigitalwalletsession.js";
+export * from "./createpazemobilesession.js";
 export * from "./createreportexecutionurl.js";
 export * from "./createthreedsconfiguration.js";
 export * from "./createthreedsscenario.js";

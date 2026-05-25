@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 27647e64228756a4417b641ea3be30b7
+  docChecksum: 3251743990e75f7c4b4ddbf744830aad
   docVersion: 1.0.0
-  speakeasyVersion: 1.763.5
-  generationVersion: 2.884.11
-  releaseVersion: 2.0.52
-  configChecksum: 9bbd8dd929904194d18cb5aa7ca9582f
+  speakeasyVersion: 1.764.1
+  generationVersion: 2.885.1
+  releaseVersion: 2.0.53
+  configChecksum: cc56cdcec5361e297dc03607cbbe301a
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: f5d560f5-48b4-4bb7-a836-39c83d594f76
-  pristine_commit_hash: 05f2eee1f9cf63547d9e84eee2b647f61102dd82
-  pristine_tree_hash: 3524055ee3d70d522c14fae6189fb44f251ca9b3
+  generation_id: 7268bb27-c797-493c-95fb-8ebb1ca4606d
+  pristine_commit_hash: 2f1265fda751c24bedc9bf6397e43f62a02eef94
+  pristine_tree_hash: 0841eeda15a9a26a9b51dc734a3a250b3564a9ef
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.26.50
+    core: 3.26.51
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -65,6 +65,10 @@ trackedFiles:
     id: 0ce9707cb848
     last_write_checksum: sha1:bc4454e196fcd219f5a78da690375a884f5ed07b
     pristine_git_object: 08f95f4552349360b2c0b01802aa71ec3a55d2c2
+  docs/models/components/acceptedpaymentcardnetworks.md:
+    id: 850a1d69d862
+    last_write_checksum: sha1:0849cac14ec30d3f36c28a98f63390f105cf4a9d
+    pristine_git_object: bfffecde0d240304dbd51ca1f81e687c9fb0b8f7
   docs/models/components/accountsreceivablesreportspec.md:
     id: 460dd90babda
     last_write_checksum: sha1:66df8a152db13bb897ecd08d1d61b4c372ec33f4
@@ -217,6 +221,10 @@ trackedFiles:
     id: 84939a273c67
     last_write_checksum: sha1:73a6ed330a81c6daf4a9eca10482d6ab32268e77
     pristine_git_object: 24713ea71b3bef4023a16bb980d0e648df274c17
+  docs/models/components/billingpreference.md:
+    id: 4f02419d1a87
+    last_write_checksum: sha1:55e48755b7369c712caf0bc0b3eb1cb6e3cdccf0
+    pristine_git_object: b394cf2921222b80abd8796194c7ea02883a267e
   docs/models/components/braintreedynamicdatafieldsoptions.md:
     id: 0146b15ba10e
     last_write_checksum: sha1:ccd5186bd10dc5fc5cf07da8a49d20f4ccb27f0e
@@ -641,6 +649,10 @@ trackedFiles:
     id: dd503b09bbc1
     last_write_checksum: sha1:283b8f251f9ab928f44c9248abf345f4501a11f4
     pristine_git_object: 7db5cc5440b05ea99948f3c7cba2bdbb1270dc0d
+  docs/models/components/intent.md:
+    id: 040bc6b151e6
+    last_write_checksum: sha1:8906db9d810a91da0378d5e3fe15107db80be66e
+    pristine_git_object: b3b6fad25c8726d9906c2a669988fa3b2bba1334
   docs/models/components/items.md:
     id: 88ffcd973b51
     last_write_checksum: sha1:94e2784a7ca9039074a191c72f22e63396a53e33
@@ -957,6 +969,14 @@ trackedFiles:
     id: b5943124ad31
     last_write_checksum: sha1:716e774589040fc1186db88d722bd3413ba78d99
     pristine_git_object: 126b1f5699c5e0df5a22f53cf3313cb60da3b9e0
+  docs/models/components/pazeclient.md:
+    id: 4848485b4b64
+    last_write_checksum: sha1:c4a5b80cbf0e9bad19162f2f8e9d9a521bf11c9f
+    pristine_git_object: 686a228db10ea52066eea7e419ef82dd12c1d345
+  docs/models/components/pazecobranditem.md:
+    id: 0fc3d6d2dc18
+    last_write_checksum: sha1:f1b93cfc2c91e9545634acf3b18b1f710bba4392
+    pristine_git_object: 695333322653fcde0fea194b9eb0a80a3cf623e2
   docs/models/components/pazeconsumer.md:
     id: f255e37b3cc3
     last_write_checksum: sha1:a0dec299fd1b8532a8d73a20f5f34b3ea8376124
@@ -981,6 +1001,14 @@ trackedFiles:
     id: 239ecc5f052c
     last_write_checksum: sha1:7191eee08b63f333c488abc92f17c0b04f701add
     pristine_git_object: d9ead7a528a651a2ec18218018485663eeecf298
+  docs/models/components/pazemobilesessioncreate.md:
+    id: 6bb3b7d0f728
+    last_write_checksum: sha1:929b77fd1a7561c8509708c6efdf0c37b740c16b
+    pristine_git_object: 4d92eade3ea5217e8e5029c0c5ad6cd41c9f585a
+  docs/models/components/pazemobilesessioncreaterequest.md:
+    id: 272e8695beba
+    last_write_checksum: sha1:0b8d43fa1f460b55892d091f020c048963f15a33
+    pristine_git_object: 6eaf883d818b368729a6889a8f1d00fdbeb471b5
   docs/models/components/pazepaymentmethodcreate.md:
     id: ebfc2151e85f
     last_write_checksum: sha1:194864495196ed68147ed7dc585dfc31bab5b756
@@ -1005,6 +1033,10 @@ trackedFiles:
     id: 1b3a8927bcf1
     last_write_checksum: sha1:739658686697ee1426870b64de807984021a0ea5
     pristine_git_object: e72dff444215593114125625c871d7180b9a67f9
+  docs/models/components/pazetransactionvalue.md:
+    id: 186fc97319a7
+    last_write_checksum: sha1:cbf7d91c01aa2939a08432e566089afc6d416d26
+    pristine_git_object: 01122804252a72e78db194380b1c3c0e2d5e6a41
   docs/models/components/pazewebsession.md:
     id: 219f5de5a100
     last_write_checksum: sha1:62efab45ed44e1cb9d4de005bf11917a70c94863
@@ -1173,6 +1205,10 @@ trackedFiles:
     id: 27844f391590
     last_write_checksum: sha1:4cadc31d45db4b6209fee1d23bf7876f895c1058
     pristine_git_object: 874d0209e3addf509d6a03c04f5954789922ce4c
+  docs/models/components/shippingpreference.md:
+    id: dbf20a239535
+    last_write_checksum: sha1:dc7ddd9916a6cada9eaf2ee1679e2e66384aa378
+    pristine_git_object: 3f239ea6b463753dbb6a20242875fb78dbe5b046
   docs/models/components/source.md:
     id: 11d9227b9692
     last_write_checksum: sha1:e1389d7dd947d372b104c791076e2da7cec766b6
@@ -1401,6 +1437,10 @@ trackedFiles:
     id: 84b37ae3b1bc
     last_write_checksum: sha1:02dd03d7e04339b8d9368bfa5faaa244b68d3bf3
     pristine_git_object: 18a8fac733df800ba0f6428c66965c9bb2722c09
+  docs/models/components/transactiontype.md:
+    id: 48cd8e184ec8
+    last_write_checksum: sha1:a40ae90e41339f2a977009754f60a60f9c8fc6a2
+    pristine_git_object: 2180c88b70d85734edaafeaeb35f1e4b7f979f0f
   docs/models/components/transactionupdate.md:
     id: 480ae42662da
     last_write_checksum: sha1:f69fe494ea4b5f8cef96b28c0f8d53d951213f4e
@@ -1709,6 +1749,14 @@ trackedFiles:
     id: c663555b9ec7
     last_write_checksum: sha1:a89a35606113aa85677937f07a3b4e646da4e1d7
     pristine_git_object: 63196697dc6fe45d9c9b3ee29ca202f748028a1f
+  docs/models/operations/createpazemobilesessionglobals.md:
+    id: 5164794ca056
+    last_write_checksum: sha1:cd5976212e1f064b5212e6a2ae477d11ed28fe16
+    pristine_git_object: 971149c6348375091cef47fd5bdb970e89888a03
+  docs/models/operations/createpazemobilesessionrequest.md:
+    id: cf58fb52aef2
+    last_write_checksum: sha1:3fd39b0a99570492b0cbb5998ca2d899d7f5c514
+    pristine_git_object: 68468ba4a9a8bcd280b2765ce485f5e39af9cc2c
   docs/models/operations/createreportexecutionurlglobals.md:
     id: 48b91c4c4341
     last_write_checksum: sha1:86d89ee65b9cb9ec6d9cc86dbebd0b4b355ff8ba
@@ -2519,8 +2567,8 @@ trackedFiles:
     pristine_git_object: 3f1dcf14aa1553f86d0f137ee1e6a7ef310f82ba
   docs/sdks/sessions/README.md:
     id: 57ad62844f79
-    last_write_checksum: sha1:ea4339ea450ecc4236c42d7b312e1122387040c3
-    pristine_git_object: 34834741c3ee6a23859745b4db06539cb9fa5f32
+    last_write_checksum: sha1:b4d33c7f68acf8b567ee9b2d43b5c494dfba6fe4
+    pristine_git_object: ee9205c12b2acf28332b22ba397fcf555d26dfc1
   docs/sdks/settlements/README.md:
     id: c0b0673bed80
     last_write_checksum: sha1:40b3f6cb6b899323576dbd0edc88d7196bc9dce9
@@ -2567,12 +2615,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:3e8f61533315fbcbbf831da190f452151205b808
-    pristine_git_object: 6aee2313ca6951c1271ccdc47b2480374a89eb2b
+    last_write_checksum: sha1:bed390014eef66db0d003fce41218694c42adec8
+    pristine_git_object: c196e754b2d8c8c73643cfcf0bca63f83d22c355
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:0fe4ffcde1d37266d2bdb19397b3f0b03df09e8d
-    pristine_git_object: ae77a01628206f08f855df496569745809690d90
+    last_write_checksum: sha1:c6ad02186dd0c04c3decbdbd609d9fda013ac410
+    pristine_git_object: fabcd9ff016c8a47446dee6968a2fa3fc73d9e81
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2693,6 +2741,10 @@ trackedFiles:
     id: 9370c334be57
     last_write_checksum: sha1:fb813f562b17abc8a64bd649538b8c817eb8021b
     pristine_git_object: 25453ba95920fb569b770b9d2229d8ee9a555c3e
+  src/funcs/digitalWalletsSessionsPazeMobileSessionCreate.ts:
+    id: 4e90199427a4
+    last_write_checksum: sha1:6ab6f2ca995fc9ed458e4e3452c5422b032edbd9
+    pristine_git_object: f48af7a624aec01b53c6cc9595e70fc4327d128b
   src/funcs/digitalWalletsSessionsPazeMobileSessionReview.ts:
     id: 05fe72a492d5
     last_write_checksum: sha1:e16e0c3b7298721927254230bc1a41b0c5f36bca
@@ -3015,8 +3067,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:26eef7b63b5bfb8fe4e89237c4dd2f913626a60f
-    pristine_git_object: 8250b7cb7d48203994b625b57f39be40c9ed5f4f
+    last_write_checksum: sha1:0903cc12c27ca9b56fcec9971e373647595bf251
+    pristine_git_object: bccac5888eecdbe9a523fdccabd9c29a9b2f86cd
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3607,8 +3659,8 @@ trackedFiles:
     pristine_git_object: 69087ec944a2c1c9708600957b19a242916e9fda
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:65fe626acee6598e1e2dcf68fab4906b769020ad
-    pristine_git_object: 35973f2fa19aab9eb22e3d6891b8b9ed56933cdf
+    last_write_checksum: sha1:67cba0fbc19919ab51dddc5e03615191bb0521c7
+    pristine_git_object: b2b69b4a62373e6f7506452220ee0e8acf10a640
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:b015e998608879b86fe6021f202742235f0f3036
@@ -3901,6 +3953,14 @@ trackedFiles:
     id: 4455470a013f
     last_write_checksum: sha1:acf93e3a4a8dea45734f75195f87eb0759d93720
     pristine_git_object: de0aa10acab8f197d0b62959bcc600bd489116f4
+  src/models/components/pazeclient.ts:
+    id: fcefe06f107b
+    last_write_checksum: sha1:f2b68e7f83c802a75b63708b9e5a9a3c8f72b322
+    pristine_git_object: ef75b44a297afa4ce31246cb234e9557d1df4a80
+  src/models/components/pazecobranditem.ts:
+    id: df6f463c680b
+    last_write_checksum: sha1:3289bd2e2004b1bc48fe8a3eb3b2a73933f6ad53
+    pristine_git_object: cd27a134c7df4c009fca91ec9464bb1544e85d4f
   src/models/components/pazeconsumer.ts:
     id: 328852fff751
     last_write_checksum: sha1:ce658f0f130bd47d58e308063fe02867b1693376
@@ -3925,6 +3985,14 @@ trackedFiles:
     id: 8e30250fb46e
     last_write_checksum: sha1:08df316c5cbd917ad4c0f7ba39aada7ad7a7a0f4
     pristine_git_object: a3b445f8fa1130b43e89f64c57ab421cfc7105fe
+  src/models/components/pazemobilesessioncreate.ts:
+    id: cece4970e7b6
+    last_write_checksum: sha1:c9ba2ed5f12850e92cec4c197f7aa7b673ef4fd6
+    pristine_git_object: 2f3d799cce901e14710c41bd982df6072000fa0e
+  src/models/components/pazemobilesessioncreaterequest.ts:
+    id: 0db3ef924f1c
+    last_write_checksum: sha1:e1b642c49efa96615e70cab5177ee32049b2255c
+    pristine_git_object: 77721caec5e117d2df3bdd90813dfae424fcaa01
   src/models/components/pazepaymentmethodcreate.ts:
     id: aeebb19d0253
     last_write_checksum: sha1:5129def5736093cc902b671d818fb515bc45b5d3
@@ -3949,6 +4017,10 @@ trackedFiles:
     id: 0890626a4060
     last_write_checksum: sha1:9d7a9ecbb0b23a216e3dcec1167ba28175a9af9a
     pristine_git_object: e6fdb3fcde105c27e261d918cc1e889ac3bfccd7
+  src/models/components/pazetransactionvalue.ts:
+    id: c8a8eb00306a
+    last_write_checksum: sha1:66e0fb1e2b02550152fb7fad77bce55e6c5f8f55
+    pristine_git_object: 8489c222179b992937c6520895b50c64f4768863
   src/models/components/pazewebsession.ts:
     id: 711f6d2b2cdf
     last_write_checksum: sha1:1741d4109dda657f66d26111dfc7600aa8ca5535
@@ -4505,6 +4577,10 @@ trackedFiles:
     id: 50657a4ed9e0
     last_write_checksum: sha1:944d78e995b24e4427f014714d13da295ac4091e
     pristine_git_object: e82424a02ae22a5a39326d3e2017a6c06a27c55e
+  src/models/operations/createpazemobilesession.ts:
+    id: 3b7f384a38d5
+    last_write_checksum: sha1:150250f862c2fedb838e4b42733cb0388c4efa92
+    pristine_git_object: daf6595d819cbe1a181c6121f490d022a776297a
   src/models/operations/createreportexecutionurl.ts:
     id: e60e32eb6feb
     last_write_checksum: sha1:59e270982775a3daf0332be4a18be2a1f13f1e0a
@@ -4651,8 +4727,8 @@ trackedFiles:
     pristine_git_object: ab0e6ba680e244dee50dcfa67e1d780e18d1acdb
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:c6756d470f4c95a08334b2d69b0d0c17a78abf17
-    pristine_git_object: 3f836f8f2f959c8d00ee83252f12fc00c5a99e53
+    last_write_checksum: sha1:4c7a7bc04e03e269020679e819c88968aa6e85a8
+    pristine_git_object: dd43572a99190253d0cb48de90a9124e903cf5cc
   src/models/operations/listallreportexecutions.ts:
     id: f30c1a3628ed
     last_write_checksum: sha1:e17d6663809664a6a93851f32464e6a2f340451f
@@ -4963,8 +5039,8 @@ trackedFiles:
     pristine_git_object: 3e138eb7cdabfbee0ee74939acdb2b762b6fa09d
   src/sdk/sessions.ts:
     id: 8dd1c8430722
-    last_write_checksum: sha1:7c586f57b3c165fdd0133d1943f890b6745732b7
-    pristine_git_object: 23b98f5249a3f7aad1ad7202d6e26ad9ebe745ec
+    last_write_checksum: sha1:179195c64c33816369db9e550dd6c5eedfded227
+    pristine_git_object: 8588c63db7b98d07315ad93c7c1adcfc7d8b25ab
   src/sdk/settlements.ts:
     id: 6e1522c36cd5
     last_write_checksum: sha1:9f7605b73ff06aa024f6ea26d02d7ab5aba6ef2f
@@ -4987,8 +5063,8 @@ trackedFiles:
     pristine_git_object: 00fac973a1d819cbacbafceab94661d33b7b48b5
   src/types/async.ts:
     id: fac8da972f86
-    last_write_checksum: sha1:3ff07b3feaf390ec1aeb18ff938e139c6c4a9585
-    pristine_git_object: 689dba5de50e8769e5f3bb913e3f42a146d15bc1
+    last_write_checksum: sha1:675d04bb4b4081dc3482f18de98674f9b446e7b4
+    pristine_git_object: 1543b95cf7be9b5a871d7395f259dbd65331dc21
   src/types/blobs.ts:
     id: f8ab9b326c86
     last_write_checksum: sha1:cf45d78916671cb6345a11c97c633c64402bc27c
@@ -8782,11 +8858,42 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  create_paze_mobile_session:
+    speakeasy-default-create-paze-mobile-session:
+      requestBody:
+        application/json: {"client": {"id": "0UVAS9Y03YNJ39XXYIN313F4DZNCjIGmqs4Iw32EPnZV0800o"}, "sessionId": "24e4dbb9-4f5e-43e8-8375-e9fd45650bc9", "accessToken": "<value>", "callbackURLScheme": "Gr4vyCallback", "intent": "EXPRESS_CHECKOUT", "alwaysEnableCheckout": false}
+      responses:
+        "200":
+          application/json: {"pazeCheckoutUrl": "https://wide-eyed-apricot.net/", "clientContext": "<value>", "ewSID": "<id>", "timestampISO8601": "<value>"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Typescript SDK Changes:
-  * `gr4vy.digitalWallets.sessions.pazeMobileSessionReview()`: **Added**
+  * `gr4vy.digitalWallets.sessions.pazeMobileSessionCreate()`: **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
