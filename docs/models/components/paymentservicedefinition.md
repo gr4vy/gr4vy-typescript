@@ -16,6 +16,7 @@ let value: PaymentServiceDefinition = {
       required: true,
       format: "boolean",
       secret: true,
+      verifiable: true,
     },
   ],
   reportingFields: [
@@ -25,6 +26,7 @@ let value: PaymentServiceDefinition = {
       required: true,
       format: "boolean",
       secret: true,
+      verifiable: true,
     },
   ],
   supportedCurrencies: [

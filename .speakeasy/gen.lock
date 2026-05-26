@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 3251743990e75f7c4b4ddbf744830aad
+  docChecksum: b7a0f0553c4c46d64c91ae79803c15ab
   docVersion: 1.0.0
-  speakeasyVersion: 1.764.1
-  generationVersion: 2.885.1
-  releaseVersion: 2.0.53
-  configChecksum: cc56cdcec5361e297dc03607cbbe301a
+  speakeasyVersion: 1.766.0
+  generationVersion: 2.887.0
+  releaseVersion: 2.0.54
+  configChecksum: 352192c6a2305ff5d5ae2c0751127058
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 7268bb27-c797-493c-95fb-8ebb1ca4606d
-  pristine_commit_hash: 2f1265fda751c24bedc9bf6397e43f62a02eef94
-  pristine_tree_hash: 0841eeda15a9a26a9b51dc734a3a250b3564a9ef
+  generation_id: 76afb70c-d3f4-472d-b46e-bdbe9741c5cc
+  pristine_commit_hash: 6338eea37fbc22e3f2ff2533b857d2a940326403
+  pristine_tree_hash: 1a022a2f8048c9ffcde4f44c22c21c4722b4cbf7
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.26.51
+    core: 3.26.52
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -379,8 +379,8 @@ trackedFiles:
     pristine_git_object: af0708f635d269d589448ab9f74349b434accc9e
   docs/models/components/definitionfield.md:
     id: d5b1ae305435
-    last_write_checksum: sha1:c57da6e987b407f254b3e1688368fd0c420687e6
-    pristine_git_object: 1047d9f687ea3a8fc091dc45b47ad38438d79f07
+    last_write_checksum: sha1:f1d25e1e2d161834efe41091101c89e5c1ae17fa
+    pristine_git_object: 37c76eb70594067c43431df4a8b55a3ae526787c
   docs/models/components/definitionfieldformat.md:
     id: 3d722da12938
     last_write_checksum: sha1:9ee28ca20918564160183878ea328ccb019ec043
@@ -875,8 +875,8 @@ trackedFiles:
     pristine_git_object: a8f98f63ea67655d09f2a8b8be9e697d99f922a9
   docs/models/components/paymentservicedefinition.md:
     id: a0d10e1197c4
-    last_write_checksum: sha1:e3c3e5c64dfb8737621d87422fdca99b0ddb804d
-    pristine_git_object: ab6959316b92b2e8359cbffc16c275b3cf6ea355
+    last_write_checksum: sha1:0c6f45ab436d8389f5b54ff802ac2c059859d786
+    pristine_git_object: e784163a3fd05c9d6962cba9abc5433999604ef1
   docs/models/components/paymentservicedefinitions.md:
     id: 6f147b0f509e
     last_write_checksum: sha1:000c6d7f2413cb83132c0dab0e4cf6e0faeddbba
@@ -2187,8 +2187,8 @@ trackedFiles:
     pristine_git_object: 9191c9ff9e59cff3bfdd411e50fb3aed692b7777
   docs/models/operations/listpaymentservicedefinitionsresponse.md:
     id: cae1b3499e48
-    last_write_checksum: sha1:d1bc9b36236d108e77edf1481d76f02e6b6b2fb4
-    pristine_git_object: 34beebc5dbad9f9ca01127449c270872521514e4
+    last_write_checksum: sha1:cacbc58423950e1e5ebb4f3567ede8093d77e185
+    pristine_git_object: 3d2ba7e96f519298755d2ec715630fa683c99cdd
   docs/models/operations/listpaymentservicesglobals.md:
     id: efab4550c6af
     last_write_checksum: sha1:079353656ca44ba8a3d0dd83bd0a872b6cd9aa1f
@@ -2615,12 +2615,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:bed390014eef66db0d003fce41218694c42adec8
-    pristine_git_object: c196e754b2d8c8c73643cfcf0bca63f83d22c355
+    last_write_checksum: sha1:9895b61b6af9559646998b7ff378e8650ef4ef34
+    pristine_git_object: a468d618d638509cc53ed1da190fd704cc7f472a
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:c6ad02186dd0c04c3decbdbd609d9fda013ac410
-    pristine_git_object: fabcd9ff016c8a47446dee6968a2fa3fc73d9e81
+    last_write_checksum: sha1:c9d692f02c2612d032878c183e46594a39145bf9
+    pristine_git_object: cfff8893bcfd1bde281a19c5bb86ccba27523763
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3067,8 +3067,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:0903cc12c27ca9b56fcec9971e373647595bf251
-    pristine_git_object: bccac5888eecdbe9a523fdccabd9c29a9b2f86cd
+    last_write_checksum: sha1:c595686535105f5b1c45e75b3de2b3a5e657c518
+    pristine_git_object: 7cabdf863d8c864627a352593804837dea847388
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3415,8 +3415,8 @@ trackedFiles:
     pristine_git_object: c198069a36d2d16f29d28a8a54034b8a46f94c2f
   src/models/components/definitionfield.ts:
     id: 445b329966b2
-    last_write_checksum: sha1:4358d2417d22adae200b4f7ad90d0e06cd86db5d
-    pristine_git_object: d0b396d16b7ce3ab72f7c3150192b83055247859
+    last_write_checksum: sha1:d3379a1b70e95bc5a0a332da7e25149a4ec7a583
+    pristine_git_object: 5cad54111eb2d1a795166673a9550e261b8a0df6
   src/models/components/definitionfieldformat.ts:
     id: 17d49befa6b6
     last_write_checksum: sha1:c084ae7d3c8180c6d3b50aa2e9c1886b53bcf610
@@ -7167,7 +7167,7 @@ examples:
           application_name: "core-api"
       responses:
         "200":
-          application/json: {"id": "adyen-ideal", "type": "payment-service-definition", "display_name": "iDEAL", "method": "multibanco", "fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "boolean", "secret": true}], "reporting_fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true}], "supported_currencies": ["USD", "GBP", "EUR", "AUD"], "supported_countries": ["US"], "mode": "card", "supported_features": {"key": true, "key1": false}, "required_checkout_fields": [{"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "100px", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}, "supported_integration_clients": ["redirect"]}
+          application/json: {"id": "adyen-ideal", "type": "payment-service-definition", "display_name": "iDEAL", "method": "multibanco", "fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "boolean", "secret": true, "verifiable": true}], "reporting_fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true, "verifiable": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true, "verifiable": true}], "supported_currencies": ["USD", "GBP", "EUR", "AUD"], "supported_countries": ["US"], "mode": "card", "supported_features": {"key": true, "key1": false}, "required_checkout_fields": [{"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "100px", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}, "supported_integration_clients": ["redirect"]}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -8893,7 +8893,8 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Typescript SDK Changes:
-  * `gr4vy.digitalWallets.sessions.pazeMobileSessionCreate()`: **Added**
+  * `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].fields[].verifiable` **Added**
+  * `gr4vy.paymentServiceDefinitions.get()`:  `response.fields[].verifiable` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore

@@ -33,6 +33,10 @@ export type DefinitionField = {
    * Defines if this field is secret. When `true` the field's value is not returned when querying the payment service information.
    */
   secret: boolean;
+  /**
+   * Defines if this field can be verified through the verify credentials button.
+   */
+  verifiable: boolean;
 };
 
 /** @internal */
@@ -46,6 +50,7 @@ export const DefinitionField$inboundSchema: z.ZodType<
   required: z.boolean(),
   format: DefinitionFieldFormat$inboundSchema,
   secret: z.boolean(),
+  verifiable: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",

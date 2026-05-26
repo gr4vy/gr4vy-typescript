@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 2.0.53
+  version: 2.0.54
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -84,6 +84,7 @@ typescript:
   packageName: '@gr4vy/sdk'
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
+  privateIdentifierPrefix: '#'
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
