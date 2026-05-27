@@ -19,7 +19,6 @@ export const RedirectPaymentMethodCreateMethod = {
   Arcuspaynetwork: "arcuspaynetwork",
   Bacs: "bacs",
   Bancontact: "bancontact",
-  Banked: "banked",
   Bcp: "bcp",
   Becs: "becs",
   Bitpay: "bitpay",
