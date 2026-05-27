@@ -10,7 +10,7 @@ A stored payment method.
 import { PaymentMethod } from "@gr4vy/sdk/models/components";
 
 let value: PaymentMethod = {
-  method: "thaiqr",
+  method: "touchngo",
   id: "ef9496d8-53a5-4aad-8ca2-00eb68334389",
   merchantAccountId: "default",
   citUsageCount: 50,

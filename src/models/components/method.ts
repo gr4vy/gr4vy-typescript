@@ -17,7 +17,6 @@ export const Method = {
   Bacs: "bacs",
   Bancontact: "bancontact",
   Bank: "bank",
-  Banked: "banked",
   Bcp: "bcp",
   Becs: "becs",
   Bitpay: "bitpay",
