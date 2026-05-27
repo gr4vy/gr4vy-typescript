@@ -20,8 +20,6 @@ let value: PazeSessionReview = {
   },
   shippingAddress: {
     line1: "51551 Raynor Stream",
-    line2: "<value>",
-    line3: "<value>",
     city: "East Kory",
     state: "ND",
     zip: "67137",
@@ -50,14 +48,10 @@ let value: PazeSessionReview = {
       artWidth: 80,
     },
     billingAddress: {
-      name: "<value>",
       line1: "<value>",
-      line2: "<value>",
-      line3: "<value>",
-      city: "Fort Armani",
-      state: "Maine",
-      zip: "49394",
-      countryCode: "CD",
+      city: "Port Marina",
+      state: "South Dakota",
+      zip: "39033",
     },
   },
   links: {

@@ -21,14 +21,10 @@ let value: PazeMaskedCard = {
     artWidth: 80,
   },
   billingAddress: {
-    name: "<value>",
     line1: "<value>",
-    line2: "<value>",
-    line3: "<value>",
-    city: "Fort Armani",
-    state: "Maine",
-    zip: "49394",
-    countryCode: "CD",
+    city: "Port Marina",
+    state: "South Dakota",
+    zip: "39033",
   },
 };
 ```

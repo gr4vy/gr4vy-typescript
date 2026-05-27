@@ -27,7 +27,29 @@ export const PazeMobileNumber$inboundSchema: z.ZodType<
   countryCode: z.string(),
   phoneNumber: z.string(),
 });
+/** @internal */
+export type PazeMobileNumber$Outbound = {
+  countryCode: string;
+  phoneNumber: string;
+};
 
+/** @internal */
+export const PazeMobileNumber$outboundSchema: z.ZodType<
+  PazeMobileNumber$Outbound,
+  z.ZodTypeDef,
+  PazeMobileNumber
+> = z.object({
+  countryCode: z.string(),
+  phoneNumber: z.string(),
+});
+
+export function pazeMobileNumberToJSON(
+  pazeMobileNumber: PazeMobileNumber,
+): string {
+  return JSON.stringify(
+    PazeMobileNumber$outboundSchema.parse(pazeMobileNumber),
+  );
+}
 export function pazeMobileNumberFromJSON(
   jsonString: string,
 ): SafeParseResult<PazeMobileNumber, SDKValidationError> {

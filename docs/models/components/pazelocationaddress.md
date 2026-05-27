@@ -1,15 +1,16 @@
-# PazeBillingAddress
+# PazeLocationAddress
 
 ## Example Usage
 
 ```typescript
-import { PazeBillingAddress } from "@gr4vy/sdk/models/components";
+import { PazeLocationAddress } from "@gr4vy/sdk/models/components";
 
-let value: PazeBillingAddress = {
+let value: PazeLocationAddress = {
   line1: "<value>",
-  city: "Bartellbury",
-  state: "Alabama",
-  zip: "88087",
+  city: "Trenton",
+  state: "Missouri",
+  zip: "44902-5055",
+  countryCode: "FR",
 };
 ```
 
@@ -24,4 +25,4 @@ let value: PazeBillingAddress = {
 | `city`                                             | *string*                                           | :heavy_check_mark:                                 | City.                                              |
 | `state`                                            | *string*                                           | :heavy_check_mark:                                 | State or region.                                   |
 | `zip`                                              | *string*                                           | :heavy_check_mark:                                 | Postal code.                                       |
-| `countryCode`                                      | *string*                                           | :heavy_minus_sign:                                 | ISO 3166-1 alpha-2 country code.                   |
+| `countryCode`                                      | *string*                                           | :heavy_check_mark:                                 | ISO 3166-1 alpha-2 country code.                   |
