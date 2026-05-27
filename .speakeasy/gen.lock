@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: b7a0f0553c4c46d64c91ae79803c15ab
+  docChecksum: 186d8b719323871ab63c6e07a56afd35
   docVersion: 1.0.0
-  speakeasyVersion: 1.766.0
-  generationVersion: 2.887.0
-  releaseVersion: 2.0.54
-  configChecksum: 352192c6a2305ff5d5ae2c0751127058
+  speakeasyVersion: 1.767.0
+  generationVersion: 2.888.0
+  releaseVersion: 2.0.55
+  configChecksum: 651af62574df2b81abf04835e46d4868
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 76afb70c-d3f4-472d-b46e-bdbe9741c5cc
-  pristine_commit_hash: 6338eea37fbc22e3f2ff2533b857d2a940326403
-  pristine_tree_hash: 1a022a2f8048c9ffcde4f44c22c21c4722b4cbf7
+  generation_id: f0307688-a998-45b9-a4fb-68ab67e139b3
+  pristine_commit_hash: e5ceecd00dcd9e08ee82749c3620f07a4f5b0fe4
+  pristine_tree_hash: f0d6a4b3c10b920a7b2a5a80a015357a49425c4b
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.26.52
+    core: 3.26.53
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -1355,8 +1355,8 @@ trackedFiles:
     pristine_git_object: 79f69fcdf3ad95abfee425c52278496178e87c27
   docs/models/components/transactioncapturecreate.md:
     id: f1fb39b47632
-    last_write_checksum: sha1:53b0a1b6d3de87ca0e68e6c3ad71d4c7c2f0df3f
-    pristine_git_object: b4d17514562bf317ade83c502b1fca59226b32db
+    last_write_checksum: sha1:1ba8c9fd4381194da96b806cadafce26c6a53f48
+    pristine_git_object: 3355ae730bde7842acdfef01a95073781231aae4
   docs/models/components/transactionconnectionoptions.md:
     id: a4843e535547
     last_write_checksum: sha1:c91f4042d45bf4965354f3974021503a0bd2fca8
@@ -2615,12 +2615,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:9895b61b6af9559646998b7ff378e8650ef4ef34
-    pristine_git_object: a468d618d638509cc53ed1da190fd704cc7f472a
+    last_write_checksum: sha1:54783e5434620c3d2b0e9d17fa46c6918e1680e9
+    pristine_git_object: 5ae0795c09c1235bf103ec800d447aadc7279c9a
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:c9d692f02c2612d032878c183e46594a39145bf9
-    pristine_git_object: cfff8893bcfd1bde281a19c5bb86ccba27523763
+    last_write_checksum: sha1:4d37792849c564501bfaa6097ecae3a8b9fc15eb
+    pristine_git_object: 8e071cd4b3cd2cdcc0e0602df272941fe7085ed3
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3067,8 +3067,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:c595686535105f5b1c45e75b3de2b3a5e657c518
-    pristine_git_object: 7cabdf863d8c864627a352593804837dea847388
+    last_write_checksum: sha1:ce00092914a40cde14ae8bcc4068305f73235474
+    pristine_git_object: 2b0ff06c91878c06e9ece6d4faa20fb70e659e44
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -4283,8 +4283,8 @@ trackedFiles:
     pristine_git_object: 15df967f063a9510147cb8b26cff63a6d02e0854
   src/models/components/transactioncapturecreate.ts:
     id: da95f52c14de
-    last_write_checksum: sha1:c0d48450f5f20c5e335cdbf4d1498a6386fa4cb3
-    pristine_git_object: e6bd805f9f3a40cf15ef965745d94da9782a078c
+    last_write_checksum: sha1:7573b71095a87cf227b4a446f5bcc464279cb12b
+    pristine_git_object: e6efd188005402e00802f1927b27007dbe3583b8
   src/models/components/transactionconnectionoptions.ts:
     id: 3f42998a2d5b
     last_write_checksum: sha1:be2ab7acb925d1508f6234cf849b1e714e5ff1d9
@@ -8891,10 +8891,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].fields[].verifiable` **Added**
-  * `gr4vy.paymentServiceDefinitions.get()`:  `response.fields[].verifiable` **Added**
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.capture()`: \n  *  `request.transactionCaptureCreate.cartItems` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
