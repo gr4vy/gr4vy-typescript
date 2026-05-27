@@ -9,6 +9,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PazeDeliveryContactDetails,
   PazeDeliveryContactDetails$inboundSchema,
+  PazeDeliveryContactDetails$Outbound,
+  PazeDeliveryContactDetails$outboundSchema,
 } from "./pazedeliverycontactdetails.js";
 
 export type PazeShippingAddress = {
@@ -19,11 +21,11 @@ export type PazeShippingAddress = {
   /**
    * Line 2 of the address.
    */
-  line2: string | null;
+  line2?: string | null | undefined;
   /**
    * Line 3 of the address.
    */
-  line3: string | null;
+  line3?: string | null | undefined;
   /**
    * City.
    */
@@ -50,15 +52,49 @@ export const PazeShippingAddress$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   line1: z.string(),
-  line2: z.nullable(z.string()),
-  line3: z.nullable(z.string()),
+  line2: z.nullable(z.string()).optional(),
+  line3: z.nullable(z.string()).optional(),
   city: z.string(),
   state: z.string(),
   zip: z.string(),
   countryCode: z.string(),
   deliveryContactDetails: z.nullable(PazeDeliveryContactDetails$inboundSchema),
 });
+/** @internal */
+export type PazeShippingAddress$Outbound = {
+  line1: string;
+  line2?: string | null | undefined;
+  line3?: string | null | undefined;
+  city: string;
+  state: string;
+  zip: string;
+  countryCode: string;
+  deliveryContactDetails: PazeDeliveryContactDetails$Outbound | null;
+};
 
+/** @internal */
+export const PazeShippingAddress$outboundSchema: z.ZodType<
+  PazeShippingAddress$Outbound,
+  z.ZodTypeDef,
+  PazeShippingAddress
+> = z.object({
+  line1: z.string(),
+  line2: z.nullable(z.string()).optional(),
+  line3: z.nullable(z.string()).optional(),
+  city: z.string(),
+  state: z.string(),
+  zip: z.string(),
+  countryCode: z.string(),
+  deliveryContactDetails: z.nullable(PazeDeliveryContactDetails$outboundSchema),
+});
+
+export function pazeShippingAddressToJSON(
+  pazeShippingAddress: PazeShippingAddress,
+): string {
+  return JSON.stringify(
+    PazeShippingAddress$outboundSchema.parse(pazeShippingAddress),
+  );
+}
 export function pazeShippingAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<PazeShippingAddress, SDKValidationError> {

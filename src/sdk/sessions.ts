@@ -6,6 +6,7 @@ import { digitalWalletsSessionsApplePay } from "../funcs/digitalWalletsSessionsA
 import { digitalWalletsSessionsClickToPay } from "../funcs/digitalWalletsSessionsClickToPay.js";
 import { digitalWalletsSessionsGooglePay } from "../funcs/digitalWalletsSessionsGooglePay.js";
 import { digitalWalletsSessionsPaze } from "../funcs/digitalWalletsSessionsPaze.js";
+import { digitalWalletsSessionsPazeMobileSessionComplete } from "../funcs/digitalWalletsSessionsPazeMobileSessionComplete.js";
 import { digitalWalletsSessionsPazeMobileSessionCreate } from "../funcs/digitalWalletsSessionsPazeMobileSessionCreate.js";
 import { digitalWalletsSessionsPazeMobileSessionReview } from "../funcs/digitalWalletsSessionsPazeMobileSessionReview.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -106,6 +107,25 @@ export class Sessions extends ClientSDK {
     return unwrapAsync(digitalWalletsSessionsPazeMobileSessionReview(
       this,
       pazeSessionReviewRequest,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Complete a Paze session
+   *
+   * @remarks
+   * Complete a Paze checkout session and retrieve the secure payload required to settle the payment.
+   */
+  async pazeMobileSessionComplete(
+    pazeSessionCompleteRequest: components.PazeSessionCompleteRequest,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.PazeSessionComplete> {
+    return unwrapAsync(digitalWalletsSessionsPazeMobileSessionComplete(
+      this,
+      pazeSessionCompleteRequest,
       merchantAccountId,
       options,
     ));

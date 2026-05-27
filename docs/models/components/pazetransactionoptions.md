@@ -1,0 +1,17 @@
+# PazeTransactionOptions
+
+## Example Usage
+
+```typescript
+import { PazeTransactionOptions } from "@gr4vy/sdk/models/components";
+
+let value: PazeTransactionOptions = {};
+```
+
+## Fields
+
+| Field                                                                                                                    | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              | Example                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `merchantCategoryCode`                                                                                                   | *string*                                                                                                                 | :heavy_minus_sign:                                                                                                       | Merchant Category Code (MCC) of the merchant.                                                                            | 2121                                                                                                                     |
+| `billingPreference`                                                                                                      | [components.PazeTransactionOptionsBillingPreference](../../models/components/pazetransactionoptionsbillingpreference.md) | :heavy_minus_sign:                                                                                                       | Verbosity of the billing address required by the merchant.                                                               | ALL                                                                                                                      |
+| `payloadTypeIndicator`                                                                                                   | [components.PayloadTypeIndicator](../../models/components/payloadtypeindicator.md)                                       | :heavy_minus_sign:                                                                                                       | ID returns `payloadId` only (default). PAYMENT returns `payloadId` and `securePayload`.                                  | PAYMENT                                                                                                                  |

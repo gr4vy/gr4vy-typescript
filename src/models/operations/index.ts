@@ -8,6 +8,7 @@ export * from "./addpaymentlink.js";
 export * from "./addreport.js";
 export * from "./canceltransaction.js";
 export * from "./capturetransaction.js";
+export * from "./completepazemobilesession.js";
 export * from "./configuredigitalwallet.js";
 export * from "./createaccountupdaterjob.js";
 export * from "./createapplepaydigitalwalletsession.js";

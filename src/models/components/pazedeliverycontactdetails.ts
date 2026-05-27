@@ -9,6 +9,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PazeMobileNumber,
   PazeMobileNumber$inboundSchema,
+  PazeMobileNumber$Outbound,
+  PazeMobileNumber$outboundSchema,
 } from "./pazemobilenumber.js";
 
 export type PazeDeliveryContactDetails = {
@@ -28,7 +30,29 @@ export const PazeDeliveryContactDetails$inboundSchema: z.ZodType<
   contactFullName: z.nullable(z.string()),
   contactPhoneNumber: z.nullable(PazeMobileNumber$inboundSchema),
 });
+/** @internal */
+export type PazeDeliveryContactDetails$Outbound = {
+  contactFullName: string | null;
+  contactPhoneNumber: PazeMobileNumber$Outbound | null;
+};
 
+/** @internal */
+export const PazeDeliveryContactDetails$outboundSchema: z.ZodType<
+  PazeDeliveryContactDetails$Outbound,
+  z.ZodTypeDef,
+  PazeDeliveryContactDetails
+> = z.object({
+  contactFullName: z.nullable(z.string()),
+  contactPhoneNumber: z.nullable(PazeMobileNumber$outboundSchema),
+});
+
+export function pazeDeliveryContactDetailsToJSON(
+  pazeDeliveryContactDetails: PazeDeliveryContactDetails,
+): string {
+  return JSON.stringify(
+    PazeDeliveryContactDetails$outboundSchema.parse(pazeDeliveryContactDetails),
+  );
+}
 export function pazeDeliveryContactDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<PazeDeliveryContactDetails, SDKValidationError> {

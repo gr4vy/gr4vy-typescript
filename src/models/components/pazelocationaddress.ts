@@ -3,11 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type PazeBillingAddress = {
+export type PazeLocationAddress = {
   /**
    * Name of the organization or entity at the address.
    */
@@ -39,14 +36,26 @@ export type PazeBillingAddress = {
   /**
    * ISO 3166-1 alpha-2 country code.
    */
-  countryCode?: string | null | undefined;
+  countryCode: string;
 };
 
 /** @internal */
-export const PazeBillingAddress$inboundSchema: z.ZodType<
-  PazeBillingAddress,
+export type PazeLocationAddress$Outbound = {
+  name?: string | null | undefined;
+  line1: string;
+  line2?: string | null | undefined;
+  line3?: string | null | undefined;
+  city: string;
+  state: string;
+  zip: string;
+  countryCode: string;
+};
+
+/** @internal */
+export const PazeLocationAddress$outboundSchema: z.ZodType<
+  PazeLocationAddress$Outbound,
   z.ZodTypeDef,
-  unknown
+  PazeLocationAddress
 > = z.object({
   name: z.nullable(z.string()).optional(),
   line1: z.string(),
@@ -55,15 +64,13 @@ export const PazeBillingAddress$inboundSchema: z.ZodType<
   city: z.string(),
   state: z.string(),
   zip: z.string(),
-  countryCode: z.nullable(z.string()).optional(),
+  countryCode: z.string(),
 });
 
-export function pazeBillingAddressFromJSON(
-  jsonString: string,
-): SafeParseResult<PazeBillingAddress, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PazeBillingAddress$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PazeBillingAddress' from JSON`,
+export function pazeLocationAddressToJSON(
+  pazeLocationAddress: PazeLocationAddress,
+): string {
+  return JSON.stringify(
+    PazeLocationAddress$outboundSchema.parse(pazeLocationAddress),
   );
 }

@@ -299,6 +299,7 @@ try {
 * [pazeMobileSessionCreate](docs/sdks/sessions/README.md#pazemobilesessioncreate) - Create a Paze mobile session
 * [paze](docs/sdks/sessions/README.md#paze) - Create a Paze session
 * [pazeMobileSessionReview](docs/sdks/sessions/README.md#pazemobilesessionreview) - Review a Paze session
+* [pazeMobileSessionComplete](docs/sdks/sessions/README.md#pazemobilesessioncomplete) - Complete a Paze session
 * [clickToPay](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
 
 ### [GiftCards](docs/sdks/giftcards/README.md)
@@ -982,6 +983,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`digitalWalletsSessionsClickToPay`](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
 - [`digitalWalletsSessionsGooglePay`](docs/sdks/sessions/README.md#googlepay) - Create a Google Pay session
 - [`digitalWalletsSessionsPaze`](docs/sdks/sessions/README.md#paze) - Create a Paze session
+- [`digitalWalletsSessionsPazeMobileSessionComplete`](docs/sdks/sessions/README.md#pazemobilesessioncomplete) - Complete a Paze session
 - [`digitalWalletsSessionsPazeMobileSessionCreate`](docs/sdks/sessions/README.md#pazemobilesessioncreate) - Create a Paze mobile session
 - [`digitalWalletsSessionsPazeMobileSessionReview`](docs/sdks/sessions/README.md#pazemobilesessionreview) - Review a Paze session
 - [`digitalWalletsUpdate`](docs/sdks/digitalwallets/README.md#update) - Update digital wallet
