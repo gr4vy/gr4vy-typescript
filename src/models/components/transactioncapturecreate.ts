@@ -3,11 +3,17 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import {
   Airline,
   Airline$Outbound,
   Airline$outboundSchema,
 } from "./airline.js";
+import {
+  CartItem,
+  CartItem$Outbound,
+  CartItem$outboundSchema,
+} from "./cartitem.js";
 
 /**
  * Request body for capturing an authorized transaction.
@@ -21,12 +27,17 @@ export type TransactionCaptureCreate = {
    * The airline data to submit to the payment service during the capture call.
    */
   airline?: Airline | null | undefined;
+  /**
+   * An array of cart items that represents the line items of this capture.
+   */
+  cartItems?: Array<CartItem> | null | undefined;
 };
 
 /** @internal */
 export type TransactionCaptureCreate$Outbound = {
   amount?: number | null | undefined;
   airline?: Airline$Outbound | null | undefined;
+  cart_items?: Array<CartItem$Outbound> | null | undefined;
 };
 
 /** @internal */
@@ -37,6 +48,11 @@ export const TransactionCaptureCreate$outboundSchema: z.ZodType<
 > = z.object({
   amount: z.nullable(z.number().int()).optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
+  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    cartItems: "cart_items",
+  });
 });
 
 export function transactionCaptureCreateToJSON(
