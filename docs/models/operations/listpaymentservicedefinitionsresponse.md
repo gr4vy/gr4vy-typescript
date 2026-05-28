@@ -11,7 +11,7 @@ let value: ListPaymentServiceDefinitionsResponse = {
       {
         id: "adyen-ideal",
         displayName: "iDEAL",
-        method: "onlinebankingcz",
+        method: "ovo",
         fields: [
           {
             key: "private_api_key",
