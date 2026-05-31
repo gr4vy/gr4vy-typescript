@@ -118,6 +118,18 @@ weekday schedule:
 - **`coverage`** — runs the full suite once with `--coverage` and posts a sticky
   PR comment with the report above. It is **not** a dependency of `merge`, so it
   never blocks shipping.
+
+  This is the mechanism for keeping tests in step with the API. A new feature
+  produces a new OpenAPI spec, which Speakeasy regenerates into a bot PR that
+  adds new `src/funcs/*` operations **but no E2E tests**. Those new operations
+  appear in the comment's "no E2E test" list, so each regen PR is a standing
+  prompt to backfill tests. For the report to reflect the PR's newly generated
+  endpoints, the job checks out the **PR head** and is therefore gated to
+  **same-repo PRs** (the regen bot qualifies) so untrusted fork code never runs
+  with `PRIVATE_KEY`.
+
+  Note: because CI here uses `pull_request_target`, the workflow that runs on any
+  PR is the one on `main` — changes to this job only take effect once merged.
 - **`merge`** — for generated SDK update PRs (opened by `github-actions[bot]`),
   a green `test` job auto-approves and squash-merges the PR, cutting the next
   release. Keeping the suite fast (via sharding) is what keeps this pipeline

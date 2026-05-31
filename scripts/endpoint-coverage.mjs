@@ -52,16 +52,15 @@ lines.push(`| Functions | ${pct("functions")}% |`);
 lines.push(`| Lines | ${pct("lines")}% |`);
 lines.push("");
 if (missed.length) {
-  lines.push("<details><summary>Endpoints not reached (" + missed.length + ")</summary>");
+  lines.push(`> ⚠️ **${missed.length} endpoint operation(s) have no E2E test.** ` +
+    `Newly generated endpoints show up here — consider adding tests for them.`);
   lines.push("");
   for (const name of missed) lines.push(`- \`${name}\``);
-  lines.push("");
-  lines.push("</details>");
 } else {
   lines.push("✅ Every endpoint operation was reached by the suite.");
 }
 lines.push("");
-lines.push("<sub>`src/funcs/*` is one file per API operation; coverage over that directory is the endpoint-reach metric.</sub>");
+lines.push("<sub>`src/funcs/*` is one file per API operation; coverage over that directory is the endpoint-reach metric. See [TESTING.md](../TESTING.md).</sub>");
 
 const markdown = lines.join("\n");
 writeFileSync(join(COVERAGE_DIR, "endpoint-coverage.md"), markdown + "\n");

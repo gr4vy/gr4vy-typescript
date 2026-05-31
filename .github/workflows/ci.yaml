@@ -64,18 +64,32 @@ jobs:
   # full suite once (un-sharded) so a single coverage report is produced. This
   # job is intentionally NOT a dependency of `merge`, so it never blocks the
   # auto-merge of generated SDK PRs.
+  #
+  # Purpose: generated SDK PRs (new OpenAPI spec -> Speakeasy regen) add new
+  # `src/funcs/*` operations but no E2E tests. This comment surfaces every
+  # operation the suite does not yet reach, so newly generated endpoints show up
+  # as "not reached" and we can add tests for them over time.
+  #
+  # Gated to same-repo PRs: it checks out the PR head (so the report reflects the
+  # PR's code, including newly generated endpoints) and uses PRIVATE_KEY, which
+  # must not run untrusted fork code. SDK-regen PRs are opened by
+  # github-actions[bot] within this repo, so they qualify.
   coverage:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.event_name == 'pull_request_target'
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.pull_request.head.repo.full_name == github.repository
 
     permissions:
       contents: read
       pull-requests: write
 
     steps:
-      - name: Check out the repo
+      - name: Check out the PR head
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Use Node.js 22.x
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
