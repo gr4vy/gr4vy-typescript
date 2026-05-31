@@ -18,5 +18,14 @@ export default defineConfig({
     hookTimeout: 30_000,
     // Keep the offline unit tests (auth, webhook) and the live E2E suites together.
     include: ["tests/**/*.test.{ts,js}"],
+    coverage: {
+      provider: "v8",
+      // `src/funcs/*` is one file per API operation, so coverage over this
+      // directory doubles as an "endpoints reached" metric (see
+      // scripts/endpoint-coverage.mjs). `src/sdk/*` are the namespace wrappers.
+      include: ["src/funcs/**", "src/sdk/**"],
+      reporter: ["text-summary", "json-summary", "json"],
+      reportsDirectory: "coverage",
+    },
   },
 });

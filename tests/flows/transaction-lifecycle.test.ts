@@ -131,6 +131,15 @@ describe("Transaction lifecycle", () => {
 
     const settlements = await gr4vy.transactions.settlements.list(transaction.id);
     expect(settlements).toBeDefined();
+
+    // No settlement exists yet for a freshly captured transaction in the mock
+    // env, so fetching one by id is exercised at the request level.
+    await expect(
+      gr4vy.transactions.settlements.get(
+        transaction.id,
+        "00000000-0000-0000-0000-000000000000"
+      )
+    ).rejects.toThrow();
   });
 
   // `sync` is not supported by the mock-card connector; exercise the call shape

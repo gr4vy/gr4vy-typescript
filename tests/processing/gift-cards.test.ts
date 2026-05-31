@@ -34,4 +34,12 @@ describe("Gift Cards", () => {
       })
     ).rejects.toThrow();
   });
+
+  // No gift card exists to fetch/delete on the mock merchant, so get/delete are
+  // exercised against a non-existent id and expected to be rejected.
+  test("get and delete are exercised at the request level", async () => {
+    const bogus = "00000000-0000-0000-0000-000000000000";
+    await expect(gr4vy.giftCards.get(bogus)).rejects.toThrow();
+    await expect(gr4vy.giftCards.delete(bogus)).rejects.toThrow();
+  });
 });

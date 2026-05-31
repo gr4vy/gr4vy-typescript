@@ -53,16 +53,36 @@ describe("Payment Methods", () => {
       expect(Array.isArray(tokens.items)).toBe(true);
     });
 
-    // Provisioning a network token requires the merchant account to be onboarded
+    // Provisioning a network token (and the suspend/resume/delete/cryptogram
+    // operations that follow it) requires the merchant account to be onboarded
     // with the card schemes (Visa/Mastercard requestor IDs) — not available on
-    // the mock merchant. We assert the call is well-formed and that the API
-    // rejects it for a real reason rather than silently skipping coverage.
-    test("provisioning is exercised at the request level", async () => {
+    // the mock merchant. Each call is asserted to be well-formed and rejected by
+    // the API for a real reason rather than silently skipping coverage.
+    test("provision / suspend / resume / delete / cryptogram are exercised at the request level", async () => {
       const card = await storeCard();
+      const bogusToken = "00000000-0000-0000-0000-000000000000";
+
       await expect(
         gr4vy.paymentMethods.networkTokens.create(
           { merchantInitiated: true, isSubsequentPayment: false },
           card.id
+        )
+      ).rejects.toThrow();
+
+      await expect(
+        gr4vy.paymentMethods.networkTokens.suspend(card.id, bogusToken)
+      ).rejects.toThrow();
+      await expect(
+        gr4vy.paymentMethods.networkTokens.resume(card.id, bogusToken)
+      ).rejects.toThrow();
+      await expect(
+        gr4vy.paymentMethods.networkTokens.delete(card.id, bogusToken)
+      ).rejects.toThrow();
+      await expect(
+        gr4vy.paymentMethods.networkTokens.cryptogram.create(
+          { merchantInitiated: true },
+          card.id,
+          bogusToken
         )
       ).rejects.toThrow();
     });
@@ -75,6 +95,27 @@ describe("Payment Methods", () => {
         card.id
       );
       expect(Array.isArray(tokens.items)).toBe(true);
+    });
+
+    // Creating/deleting a service token requires a tokenization-capable service,
+    // which mock-card is not; exercise the call shape at the request level.
+    test("create and delete are exercised at the request level", async () => {
+      const card = await storeCard();
+      await expect(
+        gr4vy.paymentMethods.paymentServiceTokens.create(
+          {
+            paymentServiceId: "00000000-0000-0000-0000-000000000000",
+            redirectUrl: "https://example.com/return",
+          },
+          card.id
+        )
+      ).rejects.toThrow();
+      await expect(
+        gr4vy.paymentMethods.paymentServiceTokens.delete(
+          card.id,
+          "00000000-0000-0000-0000-000000000000"
+        )
+      ).rejects.toThrow();
     });
   });
 });

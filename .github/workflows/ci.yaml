@@ -60,6 +60,45 @@ jobs:
         with:
           github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
 
+  # Reports code coverage and endpoint reach as a sticky PR comment. Runs the
+  # full suite once (un-sharded) so a single coverage report is produced. This
+  # job is intentionally NOT a dependency of `merge`, so it never blocks the
+  # auto-merge of generated SDK PRs.
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'pull_request_target'
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 22.x
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run tests with coverage
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: npx vitest run --coverage --testTimeout=30000 --hookTimeout=30000
+
+      - name: Build endpoint coverage report
+        run: node scripts/endpoint-coverage.mjs
+
+      - name: Comment coverage on the PR
+        uses: marocchino/sticky-pull-request-comment@d2ad0de260ae8b0235ce059e63f2949ba9e05943 # v2.9.3
+        with:
+          header: test-coverage
+          path: coverage/endpoint-coverage.md
+
   merge:
     needs: test
     runs-on: ubuntu-latest
