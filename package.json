@@ -13,13 +13,11 @@
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
-    
-  },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
     "@types/jsonwebtoken": "^9.0.10",
     "eslint": "^9.26.0",
+    "fast-check": "^4.8.0",
     "globals": "^15.14.0",
     "timekeeper": "^2.3.1",
     "typescript": "~5.8.3",

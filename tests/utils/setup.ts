@@ -5,7 +5,7 @@ import { Gr4vy, withToken } from "../../src";
 import { HTTPClient } from "../../src/lib/http";
 
 const loadPrivateKey = (): string => {
-  let privateKey = process.env.PRIVATE_KEY;
+  let privateKey = process.env["PRIVATE_KEY"];
 
   if (!privateKey) {
     const filename = path.resolve(__dirname, "./../../private_key.pem");
@@ -18,7 +18,7 @@ const loadPrivateKey = (): string => {
 const httpClient = new HTTPClient({
   /**
    * Adds a custom HTTP client that inserts random fields in the response,
-   * ensuring we test for forward compatibility. 
+   * ensuring we test for forward compatibility.
    */
   fetcher: async (request) => {
     const originalResponse = await fetch(request);
@@ -50,7 +50,7 @@ const httpClient = new HTTPClient({
   },
 });
 
-const createGr4vyClient = (
+export const createGr4vyClient = (
   privateKey: string,
   merchantAccountId?: string
 ): Gr4vy => {
@@ -63,8 +63,22 @@ const createGr4vyClient = (
   });
 };
 
-export const setupEnvironment = async (): Promise<Gr4vy> => {
-  // Create a merchant account
+export interface TestMerchant {
+  /** Merchant-scoped client, with a `mock-card` payment service provisioned. */
+  client: Gr4vy;
+  /** The randomly generated merchant account id this client is scoped to. */
+  merchantAccountId: string;
+  /** The private key, for spinning up additional clients in the same suite. */
+  privateKey: string;
+}
+
+/**
+ * Provisions an isolated merchant account with a `mock-card` payment service and
+ * returns a merchant-scoped client plus its identifiers. Each test file should
+ * call this once in `beforeAll` so files never share state and can run in
+ * parallel across vitest workers / CI shards.
+ */
+export const setupMerchant = async (): Promise<TestMerchant> => {
   const privateKey = loadPrivateKey();
   const adminClient = createGr4vyClient(privateKey);
   const merchantAccountId = crypto.randomBytes(8).toString("hex");
@@ -72,9 +86,8 @@ export const setupEnvironment = async (): Promise<Gr4vy> => {
     id: merchantAccountId,
     displayName: merchantAccountId,
   });
-  const merchantClient = createGr4vyClient(privateKey, merchantAccount.id);
-  // Setup a payment service
-  await merchantClient.paymentServices.create({
+  const client = createGr4vyClient(privateKey, merchantAccount.id);
+  await client.paymentServices.create({
     acceptedCountries: ["US"],
     acceptedCurrencies: ["USD"],
     displayName: "Payment service",
@@ -82,9 +95,20 @@ export const setupEnvironment = async (): Promise<Gr4vy> => {
     fields: [{ key: "merchant_id", value: "test" }],
   });
 
-  return merchantClient;
+  return { client, merchantAccountId: merchantAccount.id, privateKey };
+};
+
+/**
+ * Back-compat helper used by the original suites: returns only the merchant
+ * client. New suites should prefer {@link setupMerchant} when they need the
+ * merchant id (e.g. to namespace external identifiers).
+ */
+export const setupEnvironment = async (): Promise<Gr4vy> => {
+  const { client } = await setupMerchant();
+  return client;
 };
 
 export const cleanupEnvironment = async (): Promise<void> => {
-  // no-op
+  // Merchant accounts in the sandbox are disposable and left in place; there is
+  // no public delete endpoint for them, so cleanup is intentionally a no-op.
 };
