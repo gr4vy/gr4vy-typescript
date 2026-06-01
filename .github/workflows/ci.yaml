@@ -71,8 +71,30 @@ jobs:
         run: |
           npx vitest run --testTimeout=30000 --hookTimeout=30000 --shard=${{ matrix.shard }}/4
 
-      - uses: hmarr/auto-approve-action@8f929096a962e83ccdfa8afcf855f39f12d4dac7 # v4
-        if: ${{ success() && github.event.pull_request.user.login == 'github-actions[bot]' }}
+  # Single, stable status check that gates merge. The `test` job fans out across a
+  # node × shard matrix, so its per-job names ("test (20.x, 1)" …) change whenever
+  # the matrix changes — which silently breaks any branch ruleset that requires
+  # the old names. This job gives the ruleset one fixed context ("ci-complete") to
+  # require, and it only succeeds when every shard passed. It also performs the
+  # auto-approve once, after all shards are green, rather than prematurely per
+  # shard.
+  ci-complete:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Verify all test shards passed
+        run: |
+          if [ "${{ needs.test.result }}" != "success" ]; then
+            echo "test matrix result: ${{ needs.test.result }}"
+            exit 1
+          fi
+      - name: Auto-approve generated SDK PRs
+        if: ${{ github.event.pull_request.user.login == 'github-actions[bot]' }}
+        uses: hmarr/auto-approve-action@8f929096a962e83ccdfa8afcf855f39f12d4dac7 # v4
         with:
           github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
 
@@ -133,7 +155,7 @@ jobs:
           path: coverage/endpoint-coverage.md
 
   merge:
-    needs: test
+    needs: ci-complete
     runs-on: ubuntu-latest
 
     permissions:
