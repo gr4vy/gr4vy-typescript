@@ -5,15 +5,15 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.768.2
   generationVersion: 2.889.1
-  releaseVersion: 2.1.2
-  configChecksum: 2fbbab914dda29ab786291cf792f4bba
+  releaseVersion: 2.1.3
+  configChecksum: 35d84d9057d104f0beae9cf348669956
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: fde1079c-816f-4374-bc61-c01eda3bca65
-  pristine_commit_hash: 3a91eaa827e87ad7714f54cec5f1ce6cf86bd15d
-  pristine_tree_hash: fd018bde93f1721ab413ad815b8bd63ac1828481
+  generation_id: 1031f4bd-4001-4f0a-abf4-f377d318876a
+  pristine_commit_hash: 542da6bb8201591c19013bea05b0521253886507
+  pristine_tree_hash: 73b11d52563d1de478f5b275a0f76528ef4ac4f3
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2667,12 +2667,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:2f08d26699d7877a10db834067dad277a192693f
-    pristine_git_object: 97a53259b83a09ef1b8feb6970f7263515a8fce6
+    last_write_checksum: sha1:a3c13392e179cd9f3fb6a44715f69b5aaf01da1f
+    pristine_git_object: 80dc9ef9499ee78a41e4a1853e91705c707f3554
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:d605033d0f50ece5337fe8719293a226f0bec73c
-    pristine_git_object: 926b5e5d156e84b9eef8f5b706deac87b7f4f762
+    last_write_checksum: sha1:35fed7cecb958e37e16c840212e326dcce7c3295
+    pristine_git_object: 33a6e7d04d740b7f709f29c318aa84ff4c8fb9e7
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3123,8 +3123,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:01b0b7f904f7168a81912324e3e6950cc2f976ac
-    pristine_git_object: edf90d2f54d4722a522b5a8132f52f9e771fda60
+    last_write_checksum: sha1:bee526406b6752d96b7387e80d38932e12703a14
+    pristine_git_object: 46ed866b0796c12a60334b4cfe229e38ca0ccb47
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -9010,7 +9010,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.buyers.paymentMethods.list()`:  `response.items[].method` **Changed**\n* `gr4vy.paymentMethods.list()`:  `response.items[].method` **Changed**\n* `gr4vy.paymentMethods.create()`: \n  *  `requestBody.union(RedirectPaymentMethodCreate).method` **Changed**\n  *  `response.method` **Changed**\n* `gr4vy.paymentMethods.get()`:  `response.method` **Changed**\n* `gr4vy.paymentMethods.update()`:  `response.method` **Changed**\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].paymentMethod.method` **Changed**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate` **Changed**\n  *  `response.paymentMethod.method` **Changed**\n* `gr4vy.transactions.get()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions` **Changed**\n  *  `response.paymentMethod.method` **Changed**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).paymentMethod.method` **Changed**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).paymentMethod.method` **Changed**\n* `gr4vy.transactions.cancel()`:  `response.transaction.paymentMethod.method` **Changed**\n* `gr4vy.transactions.sync()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].method` **Changed**\n* `gr4vy.paymentServiceDefinitions.get()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].method` **Changed**\n* `gr4vy.paymentServices.create()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.get()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.update()`:  `response.method` **Changed**\n* `gr4vy.payouts.list()`:  `response.items[].paymentMethod.method` **Changed**\n* `gr4vy.payouts.create()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.payouts.get()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
