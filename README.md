@@ -1090,12 +1090,18 @@ You can also enable a default debug logger by setting an environment variable `G
 
 ## Testing
 
-To run the tests, install NPM, ensure to download the `private_key.pem` for the test environment, and run the following.
+The SDK has an end-to-end test suite that runs against the E2E sandbox. Place
+the `private_key.pem` for the test environment in the repo root (or export
+`PRIVATE_KEY`), then:
 
 ```sh
 npm install
-npx vitest --testTimeout 8000
+npx vitest run
 ```
+
+See **[TESTING.md](TESTING.md)** for the full guide — suite layout, parallelism
+and CI sharding, property-based tests, coverage / endpoint-reach reporting, and
+how testing ties into the release pipeline.
 
 ## Contributions
 

@@ -14,22 +14,47 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    # The suite runs against the real E2E sandbox with PRIVATE_KEY. On
+    # pull_request_target the workflow runs with repo secrets, so restrict the
+    # secret-backed matrix to same-repo PRs (e.g. the generated SDK PRs) plus
+    # push/schedule/dispatch. This stops forked PRs from spinning up a 3×4 matrix
+    # of secret-backed sandbox calls (a cost / DoS vector), while the secret
+    # itself was never exposed to fork code (the PR head isn't checked out).
+    if: >-
+      github.event_name != 'pull_request_target' ||
+      github.event.pull_request.head.repo.full_name == github.repository
     timeout-minutes: 10
     strategy:
+      fail-fast: false
       matrix:
         node-version:
           - 20.x
           - 22.x
           - 24.x
+        # The E2E suite is split into shards that run in parallel. Each test file
+        # provisions its own merchant account, so vitest can safely distribute the
+        # files across shards. Bump `shard-total` (and this list) to add capacity.
+        shard:
+          - 1
+          - 2
+          - 3
+          - 4
 
     permissions:
       contents: write
       pull-requests: write
 
     steps:
+      # Under pull_request_target the workflow defaults to the base ref, which
+      # would mean the auto-merge gate never runs the PR's own code. For trusted
+      # same-repo PRs (e.g. the generated SDK update PRs) check out the PR head so
+      # `merge` (which needs this job) actually validates the generated code.
+      # Fork PRs fall back to the base ref so untrusted code never runs with the
+      # repo secret.
       - name: Check out the repo
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          ref: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name == github.repository) && github.event.pull_request.head.sha || github.sha }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
@@ -44,12 +69,68 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          npx vitest run --testTimeout=30000 --hookTimeout=30000
+          npx vitest run --testTimeout=30000 --hookTimeout=30000 --shard=${{ matrix.shard }}/4
 
       - uses: hmarr/auto-approve-action@8f929096a962e83ccdfa8afcf855f39f12d4dac7 # v4
         if: ${{ success() && github.event.pull_request.user.login == 'github-actions[bot]' }}
         with:
           github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+
+  # Reports code coverage and endpoint reach as a sticky PR comment. Runs the
+  # full suite once (un-sharded) so a single coverage report is produced. This
+  # job is intentionally NOT a dependency of `merge`, so it never blocks the
+  # auto-merge of generated SDK PRs.
+  #
+  # Purpose: generated SDK PRs (new OpenAPI spec -> Speakeasy regen) add new
+  # `src/funcs/*` operations but no E2E tests. This comment surfaces every
+  # operation the suite does not yet reach, so newly generated endpoints show up
+  # as "not reached" and we can add tests for them over time.
+  #
+  # Gated to same-repo PRs: it checks out the PR head (so the report reflects the
+  # PR's code, including newly generated endpoints) and uses PRIVATE_KEY, which
+  # must not run untrusted fork code. SDK-regen PRs are opened by
+  # github-actions[bot] within this repo, so they qualify.
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Check out the PR head
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 22.x
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run tests with coverage
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          # Record outgoing HTTP calls so endpoint reach is measured from real
+          # requests, not statement coverage.
+          GR4VY_TRACK_HTTP: "1"
+        run: npx vitest run --coverage --testTimeout=30000 --hookTimeout=30000
+
+      - name: Build endpoint coverage report
+        run: node scripts/endpoint-coverage.mjs
+
+      - name: Comment coverage on the PR
+        uses: marocchino/sticky-pull-request-comment@d2ad0de260ae8b0235ce059e63f2949ba9e05943 # v2.9.3
+        with:
+          header: test-coverage
+          path: coverage/endpoint-coverage.md
 
   merge:
     needs: test
