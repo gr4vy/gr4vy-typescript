@@ -31,7 +31,14 @@ const recordHttpCall = (method: string, url: string): void => {
       httpLogFile = path.join(httpLogDir, `calls-${process.pid}-${suffix}.jsonl`);
     }
     const pathname = new URL(url).pathname;
-    fs.appendFileSync(httpLogFile, JSON.stringify({ method, pathname }) + "\n");
+    // Fire-and-forget async append: keeps instrumentation off the request hot
+    // path (no synchronous I/O blocking the event loop). O_APPEND keeps each
+    // small line atomic, and errors are ignored — this is best-effort tracking.
+    fs.appendFile(
+      httpLogFile,
+      JSON.stringify({ method, pathname }) + "\n",
+      () => {}
+    );
   } catch {
     // best-effort instrumentation; never fail a test because of it
   }

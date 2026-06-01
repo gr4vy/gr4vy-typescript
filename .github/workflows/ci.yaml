@@ -14,7 +14,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    # The suite runs against the real E2E sandbox with PRIVATE_KEY. On
+    # pull_request_target the workflow runs with repo secrets, so restrict the
+    # secret-backed matrix to same-repo PRs (e.g. the generated SDK PRs) plus
+    # push/schedule/dispatch. This stops forked PRs from spinning up a 3×4 matrix
+    # of secret-backed sandbox calls (a cost / DoS vector), while the secret
+    # itself was never exposed to fork code (the PR head isn't checked out).
+    if: >-
+      github.event_name != 'pull_request_target' ||
+      github.event.pull_request.head.repo.full_name == github.repository
     timeout-minutes: 10
     strategy:
       fail-fast: false
