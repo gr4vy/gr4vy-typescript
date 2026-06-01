@@ -37,7 +37,7 @@ typescript:
       snakecase-keys: ^8.1.0
     devDependencies:
       '@types/jsonwebtoken': ^9.0.10
-      '@vitest/coverage-v8': ^4.1.5
+      '@vitest/coverage-v8': ^4.1.7
       fast-check: ^4.8.0
       timekeeper: ^2.3.1
       vitest: ^4.1.5

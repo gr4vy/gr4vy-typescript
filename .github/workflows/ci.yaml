@@ -37,8 +37,16 @@ jobs:
       pull-requests: write
 
     steps:
+      # Under pull_request_target the workflow defaults to the base ref, which
+      # would mean the auto-merge gate never runs the PR's own code. For trusted
+      # same-repo PRs (e.g. the generated SDK update PRs) check out the PR head so
+      # `merge` (which needs this job) actually validates the generated code.
+      # Fork PRs fall back to the base ref so untrusted code never runs with the
+      # repo secret.
       - name: Check out the repo
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          ref: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name == github.repository) && github.event.pull_request.head.sha || '' }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
@@ -102,6 +110,9 @@ jobs:
       - name: Run tests with coverage
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          # Record outgoing HTTP calls so endpoint reach is measured from real
+          # requests, not statement coverage.
+          GR4VY_TRACK_HTTP: "1"
         run: npx vitest run --coverage --testTimeout=30000 --hookTimeout=30000
 
       - name: Build endpoint coverage report

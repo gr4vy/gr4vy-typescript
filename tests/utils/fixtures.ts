@@ -32,7 +32,8 @@ export const uniqueId = (prefix = "ts-e2e"): string =>
  */
 export const APPROVING_CARD: RawCard = {
   number: "4111111111111111",
-  expiration_date: "11/25",
+  // Far-future expiry so the fixture never lapses and gets rejected as expired.
+  expiration_date: "12/35",
   security_code: "123",
 };
 

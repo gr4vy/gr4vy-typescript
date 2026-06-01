@@ -15,12 +15,37 @@ const loadPrivateKey = (): string => {
   return privateKey;
 };
 
+// When GR4VY_TRACK_HTTP is set (the CI coverage job sets it), record every
+// outgoing request's method + path. scripts/endpoint-coverage.mjs uses these to
+// compute endpoint reach from *observed HTTP calls* rather than statement
+// coverage, so an operation only counts as reached if a request was actually
+// sent. Each worker writes its own file to avoid cross-process races.
+const httpLogDir = path.resolve(__dirname, "./../../coverage/http");
+let httpLogFile: string | undefined;
+const recordHttpCall = (method: string, url: string): void => {
+  if (!process.env["GR4VY_TRACK_HTTP"]) return;
+  try {
+    if (!httpLogFile) {
+      fs.mkdirSync(httpLogDir, { recursive: true });
+      const suffix = crypto.randomBytes(4).toString("hex");
+      httpLogFile = path.join(httpLogDir, `calls-${process.pid}-${suffix}.jsonl`);
+    }
+    const pathname = new URL(url).pathname;
+    fs.appendFileSync(httpLogFile, JSON.stringify({ method, pathname }) + "\n");
+  } catch {
+    // best-effort instrumentation; never fail a test because of it
+  }
+};
+
 const httpClient = new HTTPClient({
   /**
    * Adds a custom HTTP client that inserts random fields in the response,
    * ensuring we test for forward compatibility.
    */
   fetcher: async (request) => {
+    if (request instanceof Request) {
+      recordHttpCall(request.method, request.url);
+    }
     const originalResponse = await fetch(request);
     const contentType = originalResponse.headers.get("content-type");
     if (!contentType || !contentType.includes("application/json")) {

@@ -97,15 +97,23 @@ skipped, so they still count toward endpoint reach.
 ## Coverage
 
 ```sh
-npx vitest run --coverage
+GR4VY_TRACK_HTTP=1 npx vitest run --coverage
 node scripts/endpoint-coverage.mjs
 ```
 
-Coverage is scoped to `src/funcs/**` and `src/sdk/**`. Since `src/funcs/*.ts` is
-**one file per API operation**, coverage over that directory doubles as an
-"endpoints reached" metric. `scripts/endpoint-coverage.mjs` turns the
-`coverage-summary.json` into a Markdown report (endpoints reached + statement /
-branch / function / line coverage, and a list of any operations not reached).
+`scripts/endpoint-coverage.mjs` produces a Markdown report with two things:
+
+- **Endpoints reached** — measured from the **HTTP requests the suite actually
+  sends**. When `GR4VY_TRACK_HTTP=1` is set, the test fetcher
+  (`tests/utils/setup.ts`) logs each request's method + path to
+  `coverage/http/*.jsonl`; the script maps those to the `src/funcs/*` operations
+  (one file per operation) by method + path template. An operation only counts
+  as reached if a request was genuinely issued — so a call that fails local
+  validation before sending does **not** inflate the number. Operations with no
+  request show up as "no E2E test" (this is how newly generated endpoints
+  surface).
+- **Code coverage** — statement / branch / function / line percentages for
+  `src/funcs/**` and `src/sdk/**`, read from `coverage-summary.json`.
 
 ## CI & the release pipeline
 
