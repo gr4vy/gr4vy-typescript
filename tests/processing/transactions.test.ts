@@ -72,13 +72,18 @@ describe("Transactions", () => {
       metadata: { original: "value" },
     });
 
+    const newExternalIdentifier = uniqueId("txn-updated");
     const updated = await gr4vy.transactions.update(
-      { metadata: { updated: "value" } },
+      {
+        metadata: { updated: "value" },
+        externalIdentifier: newExternalIdentifier,
+      },
       created.id
     );
     expect(updated.metadata?.["updated"]).toBe("value");
     // metadata is fully replaced on update, per the API contract.
     expect(updated.metadata?.["original"]).toBeUndefined();
+    expect(updated.externalIdentifier).toBe(newExternalIdentifier);
   });
 
   // Property: any accepted amount/currency authorises and the response echoes

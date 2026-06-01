@@ -46,7 +46,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
         with:
-          ref: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name == github.repository) && github.event.pull_request.head.sha || '' }}
+          ref: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name == github.repository) && github.event.pull_request.head.sha || github.sha }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1

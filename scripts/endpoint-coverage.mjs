@@ -12,7 +12,7 @@
 //
 // Writes coverage/endpoint-coverage.md (for the PR comment) and prints it.
 // Exits 0 always — this is a report, not a gate.
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const COVERAGE_DIR = "coverage";
@@ -122,5 +122,8 @@ lines.push(
 );
 
 const markdown = lines.join("\n");
+// Ensure the output dir exists — the script may run even when --coverage wasn't,
+// and it must never fail the job just because of a missing directory.
+mkdirSync(COVERAGE_DIR, { recursive: true });
 writeFileSync(join(COVERAGE_DIR, "endpoint-coverage.md"), markdown + "\n");
 console.log(markdown);
