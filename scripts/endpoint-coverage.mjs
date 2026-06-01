@@ -41,7 +41,14 @@ try {
   const dir = join(COVERAGE_DIR, "http");
   for (const f of readdirSync(dir).filter((f) => f.endsWith(".jsonl"))) {
     for (const line of readFileSync(join(dir, f), "utf8").split("\n")) {
-      if (line.trim()) calls.push(JSON.parse(line));
+      if (!line.trim()) continue;
+      // Skip malformed/truncated lines (e.g. a worker that crashed mid-write) —
+      // this is best-effort instrumentation and must never fail the report.
+      try {
+        calls.push(JSON.parse(line));
+      } catch {
+        // ignore this line
+      }
     }
   }
 } catch {
