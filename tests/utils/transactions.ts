@@ -1,8 +1,7 @@
 import { Gr4vy } from "../../src";
 import { Transaction, TransactionCreate } from "../../src/models/components";
-import { APPROVING_CARD } from "./fixtures";
+import { APPROVING_CARD, uniqueId } from "./fixtures";
 import { putCheckoutSessionCard } from "./fields";
-import { uniqueId } from "./fixtures";
 
 /**
  * Authorises (or captures) a transaction the way a real integration does: open a

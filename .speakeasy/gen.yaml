@@ -40,7 +40,7 @@ typescript:
       '@vitest/coverage-v8': ^4.1.7
       fast-check: ^4.8.0
       timekeeper: ^2.3.1
-      vitest: ^4.1.5
+      vitest: ^4.1.7
     peerDependencies: {}
   additionalPackageJSON: {}
   additionalScripts: {}

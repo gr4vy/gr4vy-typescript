@@ -7,9 +7,21 @@ import { Address, BillingDetails, CartItem } from "../../src/models/components";
  * coverage without blowing the CI time budget. The seed is fixed (overridable via
  * `FC_SEED`) so a failing case is reproducible from the CI logs.
  */
+const DEFAULT_SEED = 42;
+
+// Use FC_SEED when it parses to a real number; otherwise fall back to the
+// default so a non-numeric env value (common in CI templating) can't turn the
+// seed into NaN and make fast-check behave unexpectedly.
+const resolveSeed = (): number => {
+  const raw = process.env["FC_SEED"];
+  if (!raw) return DEFAULT_SEED;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) ? parsed : DEFAULT_SEED;
+};
+
 export const fcParams = <Ts = unknown>(numRuns = 5): fc.Parameters<Ts> => ({
   numRuns,
-  seed: process.env["FC_SEED"] ? Number(process.env["FC_SEED"]) : 42,
+  seed: resolveSeed(),
 });
 
 /** Minor-unit amount the mock connector reliably authorises. */
