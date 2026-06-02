@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 407dec5758895f7e98490a93634c2626
+  docChecksum: e911c7f3b53cdb0c78d3c95198e0771f
   docVersion: 1.0.0
-  speakeasyVersion: 1.768.2
-  generationVersion: 2.889.1
-  releaseVersion: 2.1.3
-  configChecksum: 35d84d9057d104f0beae9cf348669956
+  speakeasyVersion: 1.769.2
+  generationVersion: 2.892.5
+  releaseVersion: 2.1.4
+  configChecksum: 4ad22d86f132b7e4427f524d9def6c2b
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 1031f4bd-4001-4f0a-abf4-f377d318876a
-  pristine_commit_hash: 542da6bb8201591c19013bea05b0521253886507
-  pristine_tree_hash: 73b11d52563d1de478f5b275a0f76528ef4ac4f3
+  generation_id: 8e96288a-c6ad-4d8b-8854-99025cef10b9
+  pristine_commit_hash: 1650cc07156aae58746f9d63e6ab83dd02d65c95
+  pristine_tree_hash: 5a2e9ee1512d87fbe8e12a23108335b5a682e4f8
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1403,8 +1403,8 @@ trackedFiles:
     pristine_git_object: 3355ae730bde7842acdfef01a95073781231aae4
   docs/models/components/transactionconnectionoptions.md:
     id: a4843e535547
-    last_write_checksum: sha1:3cf2d9ef1cf7b462fa8923bbf464600a5c79987d
-    pristine_git_object: edcf654c7aff50396f0fdf227d3607fd4c7d6e4f
+    last_write_checksum: sha1:a541e584eedc923a56a66c81cc47175e89600029
+    pristine_git_object: 7bf755f1f7d208c68119f146ee286ec79ebc5c00
   docs/models/components/transactioncreate.md:
     id: 652e84478e51
     last_write_checksum: sha1:8ac36e911fcfecda4c6cb6fedfde45932db4f04c
@@ -2667,12 +2667,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:a3c13392e179cd9f3fb6a44715f69b5aaf01da1f
-    pristine_git_object: 80dc9ef9499ee78a41e4a1853e91705c707f3554
+    last_write_checksum: sha1:963b911818e7b09c7d6bb3c9b461451b25869838
+    pristine_git_object: 0f3ebe4ad582be095dc87278d96036529b5fff20
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:35fed7cecb958e37e16c840212e326dcce7c3295
-    pristine_git_object: 33a6e7d04d740b7f709f29c318aa84ff4c8fb9e7
+    last_write_checksum: sha1:69696bf5b530d524d174636b21f0bf280a778a7b
+    pristine_git_object: 03d8f7a5f1766f8af580fc72b61f174a3653d506
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3123,8 +3123,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:bee526406b6752d96b7387e80d38932e12703a14
-    pristine_git_object: 46ed866b0796c12a60334b4cfe229e38ca0ccb47
+    last_write_checksum: sha1:9f6e1f3b44aeaa146448bea9fa5e559000f469d3
+    pristine_git_object: a90671656b05dbee847c16f38026e59678f5b749
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -4371,8 +4371,8 @@ trackedFiles:
     pristine_git_object: e6efd188005402e00802f1927b27007dbe3583b8
   src/models/components/transactionconnectionoptions.ts:
     id: 3f42998a2d5b
-    last_write_checksum: sha1:3ed7bbe8b1bec415032bb281b3d9b608ce6ea2c5
-    pristine_git_object: 331cb7111b53f5aa89fbd8df1dd48377142c6945
+    last_write_checksum: sha1:0b3bfc29d45a544274fa0feba109bdde266571c6
+    pristine_git_object: 73417eb8cf11b0f6e0d1151dd9903be7389926c1
   src/models/components/transactioncreate.ts:
     id: 6ba6f0cd74e3
     last_write_checksum: sha1:6ded2ba1e78fea082466cd334d9cbbc02fa31b0c
@@ -9010,6 +9010,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.adyenAch` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenAch` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenAch` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
