@@ -82,6 +82,7 @@ export const Method = {
   Oxxo: "oxxo",
   P24: "p24",
   Pagoefectivo: "pagoefectivo",
+  Paybybank: "paybybank",
   Payid: "payid",
   Paymaya: "paymaya",
   Paysquad: "paysquad",

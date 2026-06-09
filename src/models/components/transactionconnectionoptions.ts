@@ -227,6 +227,10 @@ export type TransactionConnectionOptions = {
    */
   adyenKonbini?: AdyenOptions | null | undefined;
   /**
+   * Custom options to be passed to the `adyen-paybybank` connector.
+   */
+  adyenPaybybank?: AdyenOptions | null | undefined;
+  /**
    * Custom options to be passed to the `adyen-paypay` connector.
    */
   adyenPaypay?: AdyenOptions | null | undefined;
@@ -432,6 +436,7 @@ export type TransactionConnectionOptions$Outbound = {
   "adyen-giropay"?: AdyenOptions$Outbound | null | undefined;
   "adyen-ideal"?: AdyenOptions$Outbound | null | undefined;
   "adyen-konbini"?: AdyenOptions$Outbound | null | undefined;
+  "adyen-paybybank"?: AdyenOptions$Outbound | null | undefined;
   "adyen-paypay"?: AdyenOptions$Outbound | null | undefined;
   "adyen-pix"?: AdyenPixOptions$Outbound | null | undefined;
   "adyen-sepa"?: AdyenSepaOptions$Outbound | null | undefined;
@@ -504,6 +509,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   adyenGiropay: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenIdeal: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenKonbini: z.nullable(AdyenOptions$outboundSchema).optional(),
+  adyenPaybybank: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenPaypay: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenPix: z.nullable(AdyenPixOptions$outboundSchema).optional(),
   adyenSepa: z.nullable(AdyenSepaOptions$outboundSchema).optional(),
@@ -568,6 +574,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     adyenGiropay: "adyen-giropay",
     adyenIdeal: "adyen-ideal",
     adyenKonbini: "adyen-konbini",
+    adyenPaybybank: "adyen-paybybank",
     adyenPaypay: "adyen-paypay",
     adyenPix: "adyen-pix",
     adyenSepa: "adyen-sepa",
