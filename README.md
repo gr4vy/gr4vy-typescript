@@ -429,6 +429,11 @@ try {
 
 * [list](docs/sdks/actions/README.md#list) - List transaction Flow rules
 
+#### [Transactions.Captures](docs/sdks/captures/README.md)
+
+* [list](docs/sdks/captures/README.md#list) - List transaction captures
+* [get](docs/sdks/captures/README.md#get) - Get transaction capture
+
 #### [Transactions.Events](docs/sdks/events/README.md)
 
 * [list](docs/sdks/events/README.md#list) - List transaction events
@@ -1048,6 +1053,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transactionsActionsList`](docs/sdks/actions/README.md#list) - List transaction Flow rules
 - [`transactionsCancel`](docs/sdks/transactions/README.md#cancel) - Cancel transaction
 - [`transactionsCapture`](docs/sdks/transactions/README.md#capture) - Capture transaction
+- [`transactionsCapturesGet`](docs/sdks/captures/README.md#get) - Get transaction capture
+- [`transactionsCapturesList`](docs/sdks/captures/README.md#list) - List transaction captures
 - [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create transaction
 - [`transactionsEventsList`](docs/sdks/events/README.md#list) - List transaction events
 - [`transactionsGet`](docs/sdks/transactions/README.md#get) - Get transaction

@@ -16,6 +16,7 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Actions } from "./actions.js";
+import { Captures } from "./captures.js";
 import { Events } from "./events.js";
 import { Gr4vyRefunds } from "./gr4vyrefunds.js";
 import { Settlements } from "./settlements.js";
@@ -39,6 +40,11 @@ export class Transactions extends ClientSDK {
   private _settlements?: Settlements;
   get settlements(): Settlements {
     return (this._settlements ??= new Settlements(this._options));
+  }
+
+  private _captures?: Captures;
+  get captures(): Captures {
+    return (this._captures ??= new Captures(this._options));
   }
 
   /**
