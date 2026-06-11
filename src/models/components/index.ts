@@ -46,6 +46,8 @@ export * from "./buyercreate.js";
 export * from "./buyers.js";
 export * from "./buyerupdate.js";
 export * from "./cancelstatus.js";
+export * from "./capture.js";
+export * from "./capturecollection.js";
 export * from "./capturestatus.js";
 export * from "./cardpaymentmethodcreate.js";
 export * from "./cardscheme.js";

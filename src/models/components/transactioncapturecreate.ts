@@ -31,6 +31,14 @@ export type TransactionCaptureCreate = {
    * An array of cart items that represents the line items of this capture.
    */
   cartItems?: Array<CartItem> | null | undefined;
+  /**
+   * Whether this is marked as the final capture for the associated transaction. Must be `true` or omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is available on the connection.
+   */
+  final?: boolean | undefined;
+  /**
+   * An external identifier that can be used to match the capture against your own records.
+   */
+  externalIdentifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -38,6 +46,8 @@ export type TransactionCaptureCreate$Outbound = {
   amount?: number | null | undefined;
   airline?: Airline$Outbound | null | undefined;
   cart_items?: Array<CartItem$Outbound> | null | undefined;
+  final: boolean;
+  external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -49,9 +59,12 @@ export const TransactionCaptureCreate$outboundSchema: z.ZodType<
   amount: z.nullable(z.number().int()).optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+  final: z.boolean().default(true),
+  externalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     cartItems: "cart_items",
+    externalIdentifier: "external_identifier",
   });
 });
 
