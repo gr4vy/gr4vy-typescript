@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 2.1.7
+  version: 2.2.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -55,6 +55,7 @@ typescript:
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: GR4VY
+  eventStreamClassName: EventStream
   exportZodModelNamespace: false
   fixEnumNameSanitization: false
   flatAdditionalProperties: false
@@ -87,6 +88,7 @@ typescript:
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
   privateIdentifierPrefix: '#'
+  requestExtras: false
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2

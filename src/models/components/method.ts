@@ -54,6 +54,7 @@ export const Method = {
   Gopay: "gopay",
   Grabpay: "grabpay",
   Ideal: "ideal",
+  Interac: "interac",
   Kakaopay: "kakaopay",
   Kcp: "kcp",
   Khipu: "khipu",
