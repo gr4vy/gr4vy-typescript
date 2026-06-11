@@ -50,6 +50,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Gopay: "gopay",
   Grabpay: "grabpay",
   Ideal: "ideal",
+  Interac: "interac",
   Kakaopay: "kakaopay",
   Kcp: "kcp",
   Khipu: "khipu",
