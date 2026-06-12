@@ -10,11 +10,11 @@ export type NuveiPSEOptions = {
    */
   userType?: string | null | undefined;
   /**
-   * Customer’s document type
+   * Customer's document type
    */
   userFisNumber?: string | null | undefined;
   /**
-   * Customer’s document number
+   * Customer's document number
    */
   fiscalNumber?: string | null | undefined;
   /**
