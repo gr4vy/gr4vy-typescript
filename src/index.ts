@@ -7,6 +7,7 @@ export * from "./sdk";
 
 export {
     getEmbedToken,
+    getEmbedTokenWithCheckoutSession,
     getToken,
     JWTScope,
     updateToken,

@@ -3,9 +3,11 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import type { StringValue } from "ms";
 import snakeCaseKeys from "snakecase-keys";
 
-import { CartItem } from "../models/components";
+import { CartItem, CheckoutSessionCreate } from "../models/components";
 import { SDK_METADATA } from "./config";
 import { getKeyId } from "./helpers";
+
+import type { Gr4vy } from "../sdk/sdk";
 
 /**
  * Helper method for generating a bearer token for use with the SDK
@@ -119,6 +121,39 @@ export const getEmbedToken = async (options: {
     expiresIn: '1h'
    })
 }
+
+/**
+ * Helper method that creates a checkout session and returns an Embed token with
+ * the new checkout session ID baked in.
+ *
+ * This is a convenience wrapper around `getEmbedToken` for the common Embed flow
+ * where every transaction should be tied to a checkout session. It uses the
+ * provided (already authenticated) SDK client to create the checkout session,
+ * then signs an Embed token that pins the resulting `checkout_session_id`.
+ */
+export const getEmbedTokenWithCheckoutSession = async (options: {
+  client: Gr4vy;
+  privateKey: string;
+  embedParams?: EmbedParams;
+  /** Optional checkout session body to seed cart items, metadata, and so on. */
+  checkoutSession?: CheckoutSessionCreate;
+  /** Optional merchant account ID override. Defaults to the client's configured one. */
+  merchantAccountId?: string;
+}): Promise<string> => {
+  const { client, privateKey, embedParams, checkoutSession, merchantAccountId } =
+    options;
+
+  const session = await client.checkoutSessions.create(
+    checkoutSession,
+    merchantAccountId,
+  );
+
+  return getEmbedToken({
+    privateKey,
+    ...(embedParams ? { embedParams } : {}),
+    checkoutSessionId: session.id,
+  });
+};
 
 /**
  * Short hands for scopes. Strings can be used as well.
