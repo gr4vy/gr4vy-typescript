@@ -170,6 +170,43 @@ run();
 > **Note:** This will only create a token once. Use `withToken` to dynamically generate a token
 > for every request.
 
+### Attaching a checkout session automatically
+
+For Embed, it is recommended to attach a checkout session to every transaction. The
+`getEmbedTokenWithCheckoutSession` helper creates a checkout session using your SDK client and
+returns an Embed token with the resulting `checkout_session_id` already pinned, in a single call.
+
+```js
+import { Gr4vy, getEmbedTokenWithCheckoutSession, withToken } from "@gr4vy/sdk";
+
+async function run() {
+    const privateKey = fs.readFileSync("private_key.pem", "utf8")
+
+    const gr4vy = new Gr4vy({
+        server: "sandbox",
+        id: "example",
+        bearerAuth: withToken({ privateKey }),
+    });
+
+    const token = await getEmbedTokenWithCheckoutSession({
+      client: gr4vy,
+      privateKey,
+      embedParams: {
+        amount: 1299,
+        currency: 'USD',
+        buyerExternalIdentifier: 'user-1234',
+      }
+    });
+
+    console.log(token);
+}
+
+run();
+```
+
+You can optionally pass a `checkoutSession` body to seed the session (for example with cart items
+or metadata), and a `merchantAccountId` to override the client's configured merchant account.
+
 ## Merchant account ID selection
 
 Depending on the key used, you might need to explicitly define a merchant account ID to use. In our API, 

@@ -3,7 +3,8 @@ import snakecaseKeys from "snakecase-keys";
 import timekeeper from "timekeeper";
 import { describe, expect, test } from "vitest";
 import { version } from "../package.json";
-import { getEmbedToken, getToken, JWTScope, updateToken, SDK_METADATA } from "../src";
+import { getEmbedToken, getEmbedTokenWithCheckoutSession, getToken, JWTScope, updateToken, SDK_METADATA } from "../src";
+import { vi } from "vitest";
 
 const privateKey = `-----BEGIN PRIVATE KEY-----
 MIHuAgEAMBAGByqGSM49AgEGBSuBBAAjBIHWMIHTAgEBBEIBABM9jQu+HT87oIik
@@ -139,6 +140,50 @@ describe(".getEmbedToken", () => {
     });
 
     expect(decoded.payload.checkout_session_id).toEqual(checkoutSessionId);
+  });
+});
+
+describe(".getEmbedTokenWithCheckoutSession", () => {
+  test("should create a checkout session and pin its ID in the Embed token", async () => {
+    const create = vi.fn().mockResolvedValue({ id: checkoutSessionId });
+    const client = { checkoutSessions: { create } };
+
+    const token = await getEmbedTokenWithCheckoutSession({
+      client,
+      privateKey,
+      embedParams,
+    });
+
+    const decoded = jwt.verify(token, privateKey, {
+      algorithms: ["ES512"],
+      complete: true,
+    });
+
+    expect(create).toHaveBeenCalledTimes(1);
+    expect(decoded.payload.scopes).toEqual(["embed"]);
+    expect(decoded.payload.checkout_session_id).toEqual(checkoutSessionId);
+
+    const connOptions =
+      embedParams.connectionOptions || embedParams["connection_options"];
+    const expected = snakecaseKeys(embedParams, { exclude: ["metadata"] });
+    expected["connection_options"] = connOptions;
+    expect(decoded.payload.embed).toEqual(expected);
+  });
+
+  test("should forward the checkout session body and merchant account ID", async () => {
+    const create = vi.fn().mockResolvedValue({ id: checkoutSessionId });
+    const client = { checkoutSessions: { create } };
+
+    const checkoutSession = { metadata: { order: "123" } };
+
+    await getEmbedTokenWithCheckoutSession({
+      client,
+      privateKey,
+      checkoutSession,
+      merchantAccountId: "default",
+    });
+
+    expect(create).toHaveBeenCalledWith(checkoutSession, "default");
   });
 });
 
