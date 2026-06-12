@@ -177,6 +177,7 @@ For Embed, it is recommended to attach a checkout session to every transaction. 
 returns an Embed token with the resulting `checkout_session_id` already pinned, in a single call.
 
 ```js
+import fs from "node:fs";
 import { Gr4vy, getEmbedTokenWithCheckoutSession, withToken } from "@gr4vy/sdk";
 
 async function run() {
