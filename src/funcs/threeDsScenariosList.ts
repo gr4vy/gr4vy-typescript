@@ -3,7 +3,6 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
@@ -295,7 +294,8 @@ async function $do(
     >;
     "~next"?: { cursor: string };
   } => {
-    const nextCursor = dlv(responseData, "next_cursor");
+    const nextCursor =
+      (responseData as { next_cursor?: unknown | null }).next_cursor;
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
