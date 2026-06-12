@@ -84,6 +84,36 @@ describe("Transaction lifecycle", () => {
     expect(topLevel.id).toBe(firstRefundId);
   });
 
+  test("authorize → capture → read captures back via list and get", async () => {
+    const transaction = await authorize(4500);
+    expect(transaction.status).toBe("authorization_succeeded");
+
+    unwrapTransaction(
+      await gr4vy.transactions.capture({
+        transactionId: transaction.id,
+        transactionCaptureCreate: { amount: 4500 },
+      })
+    );
+
+    // Wait until the capture is recorded against the transaction.
+    await pollUntil(
+      () => gr4vy.transactions.get(transaction.id),
+      (t) => t.status === "capture_succeeded",
+      { description: "capture to succeed" }
+    );
+
+    // List captures, then read one back by id.
+    const captures = await gr4vy.transactions.captures.list(transaction.id);
+    expect(captures.items.length).toBeGreaterThanOrEqual(1);
+
+    const captureId = captures.items[0]!.id;
+    const fetched = await gr4vy.transactions.captures.get(
+      transaction.id,
+      captureId
+    );
+    expect(fetched.id).toBe(captureId);
+  });
+
   test("authorize → void releases the authorization", async () => {
     const transaction = await authorize(3300);
     expect(transaction.status).toBe("authorization_succeeded");
