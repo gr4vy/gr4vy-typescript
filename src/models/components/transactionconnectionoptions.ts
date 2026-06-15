@@ -199,6 +199,10 @@ export type TransactionConnectionOptions = {
    */
   adyenAfterpay?: AdyenOptions | null | undefined;
   /**
+   * Custom options to be passed to the `adyen-cashappafterpay` connector.
+   */
+  adyenCashappafterpay?: AdyenOptions | null | undefined;
+  /**
    * Custom options to be passed to the `adyen-alipay` connector.
    */
   adyenAlipay?: AdyenOptions | null | undefined;
@@ -429,6 +433,7 @@ export type TransactionConnectionOptions$Outbound = {
   "account-updater"?: AccountUpdaterOptions$Outbound | null | undefined;
   "adyen-ach"?: AdyenOptions$Outbound | null | undefined;
   "adyen-afterpay"?: AdyenOptions$Outbound | null | undefined;
+  "adyen-cashappafterpay"?: AdyenOptions$Outbound | null | undefined;
   "adyen-alipay"?: AdyenOptions$Outbound | null | undefined;
   "adyen-card"?: AdyenCardOptions$Outbound | null | undefined;
   "adyen-cashapp"?: AdyenOptions$Outbound | null | undefined;
@@ -502,6 +507,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   accountUpdater: z.nullable(AccountUpdaterOptions$outboundSchema).optional(),
   adyenAch: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenAfterpay: z.nullable(AdyenOptions$outboundSchema).optional(),
+  adyenCashappafterpay: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenAlipay: z.nullable(AdyenOptions$outboundSchema).optional(),
   adyenCard: z.nullable(AdyenCardOptions$outboundSchema).optional(),
   adyenCashapp: z.nullable(AdyenOptions$outboundSchema).optional(),
@@ -567,6 +573,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     accountUpdater: "account-updater",
     adyenAch: "adyen-ach",
     adyenAfterpay: "adyen-afterpay",
+    adyenCashappafterpay: "adyen-cashappafterpay",
     adyenAlipay: "adyen-alipay",
     adyenCard: "adyen-card",
     adyenCashapp: "adyen-cashapp",
