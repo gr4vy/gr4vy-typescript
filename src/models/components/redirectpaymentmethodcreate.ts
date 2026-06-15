@@ -29,6 +29,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Ach: "ach",
   Capitec: "capitec",
   Cashapp: "cashapp",
+  Cashappafterpay: "cashappafterpay",
   Clearpay: "clearpay",
   CustomPush: "custom_push",
   CustomRedirect: "custom_redirect",

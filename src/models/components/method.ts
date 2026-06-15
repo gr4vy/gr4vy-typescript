@@ -28,6 +28,7 @@ export const Method = {
   Capitec: "capitec",
   Card: "card",
   Cashapp: "cashapp",
+  Cashappafterpay: "cashappafterpay",
   Chaseorbital: "chaseorbital",
   Clearpay: "clearpay",
   ClickToPay: "click-to-pay",
