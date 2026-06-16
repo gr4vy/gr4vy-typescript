@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: d0190d70d4f9721af9120b306b150505
+  docChecksum: fb6c1f8912fb9e60b6f774e85d8e9b56
   docVersion: 1.0.0
-  speakeasyVersion: 1.778.0
-  generationVersion: 2.904.2
-  releaseVersion: 2.3.2
-  configChecksum: 2d140afa9abfe56d5e63d42d86f8c9de
+  speakeasyVersion: 1.780.0
+  generationVersion: 2.906.0
+  releaseVersion: 2.3.3
+  configChecksum: 704f55082ffc69383d87d341f7edd259
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 432a23e9-c0e5-4f18-a691-b700366785c0
-  pristine_commit_hash: 02bae36db2b676b5ca25367f9f02b4076e95a237
-  pristine_tree_hash: 74a96230e45b88ad06a90f5df540da4f37dc53fa
+  generation_id: 8612e21d-768b-4301-b3dd-59667a820497
+  pristine_commit_hash: bcc1addd7c62fee767ef5b7ae66ae44693fb2886
+  pristine_tree_hash: b0847a7d77bbb0813fa5171c3e3fb4205ebbd3ff
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -36,7 +36,7 @@ features:
     openEnums: 0.1.3
     pagination: 2.83.2
     responseFormat: 0.3.0
-    retries: 2.83.0
+    retries: 2.83.1
     sdkHooks: 0.4.0
     serverIDs: 2.81.2
     unions: 2.86.4
@@ -111,8 +111,8 @@ trackedFiles:
     pristine_git_object: 935685bcccf00c83d2019c20ea1dc1c185a499d7
   docs/models/components/adyencardoptions.md:
     id: c06a9296920b
-    last_write_checksum: sha1:81c552d8a04a6521976123678d2a00c2d3c2088f
-    pristine_git_object: 5812e8aff5095606c3a8fa7cf8494b8d1c6cd805
+    last_write_checksum: sha1:85300b9c72bc07a5a5e7c8092aff0df5d9131c49
+    pristine_git_object: fb388185a3b48ef472ae0dbb62d4d769e9078a0a
   docs/models/components/adyenoptions.md:
     id: 0e52d909a032
     last_write_checksum: sha1:8744c3a18ab8de0fa04c8a7d9c8e238e1563f773
@@ -2695,12 +2695,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:022be757076e3dbe4f53f4d7b0d7b126ecaf163e
-    pristine_git_object: 2ae6b6e34f997755bf66563cc8487fc44c927d4a
+    last_write_checksum: sha1:c0604c5fd2a86331e22225e7e858db2d475a92c9
+    pristine_git_object: cbaf08c5f0fc5e15ff8ce4cb932dac72e2599595
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:337cf9a92fded67dd75f456d505aaf149c48f83b
-    pristine_git_object: 04814f3421a02b8f06961f194baa3dadbce3b60b
+    last_write_checksum: sha1:9514a93889819ebf4aebac3778f3460aca1a92a6
+    pristine_git_object: 61a8738ccc483d50d38f1828ef7e2ff9aff2c18c
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3159,8 +3159,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4b9f15b93ea9cd92f3ae1057953c4e946578967e
-    pristine_git_object: bb78c97bb00c02cc9c9bf4f85cc0521c9765499a
+    last_write_checksum: sha1:5b65b44e66e8f6ff1887f9a61377f808dd8b09e8
+    pristine_git_object: 9788e20da2a0ab5cc30d4519f10b0e3a407da28b
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -3191,8 +3191,8 @@ trackedFiles:
     pristine_git_object: 8ce65db0f7c0d6b68f5edc3ebf518121e284e954
   src/lib/retries.ts:
     id: b24a69d15639
-    last_write_checksum: sha1:f3da74dffcbe2756c69393f8600205aa1dc06e68
-    pristine_git_object: e3ce9aba72150fc3c18f3105d39b21aba809377b
+    last_write_checksum: sha1:42c8f6cc4c875be236230a8c760f4f32d8c1ab68
+    pristine_git_object: 21a647e1e9ae64817fcd63b5dd6bb5a51b63d225
   src/lib/schemas.ts:
     id: deb4b531fae1
     last_write_checksum: sha1:209cfaabfa7fc1c1310f97453215cb0755619c6e
@@ -3247,8 +3247,8 @@ trackedFiles:
     pristine_git_object: 93ec7f9b421fb4d3e62505e30efa965d42e2aaac
   src/models/components/adyencardoptions.ts:
     id: 9f1739e5d3b5
-    last_write_checksum: sha1:170352333d76349966e82c20cfb3bc4edbfc60ac
-    pristine_git_object: a732765c4e1a946b6516c019189ff7eca22bfa5d
+    last_write_checksum: sha1:33248083c3a442e9a57f9e0ab50eb1f11a9b228a
+    pristine_git_object: acabf32d4ec2ee29b2bf40c4b1c25f79029c17f4
   src/models/components/adyenoptions.ts:
     id: a23d2defd337
     last_write_checksum: sha1:aa711bcd28d8b03d78a712e6d3bef9ee9b56a676
@@ -9123,7 +9123,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.buyers.paymentMethods.list()`:  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.list()`:  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.create()`: \n  *  `requestBody.union(RedirectPaymentMethodCreate).method.enum(cashappafterpay)` **Added**\n  *  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.get()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.update()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate` **Changed**\n  *  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.get()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenCashappafterpay` **Added**\n  *  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.sync()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServiceDefinitions.get()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.create()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.get()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.update()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.payouts.list()`:  `response.items[].paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.payouts.create()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.payouts.get()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenCashappafterpay` **Added**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.adyenCard` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenCard` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenCard` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

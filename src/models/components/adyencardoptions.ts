@@ -39,6 +39,26 @@ export type AdyenCardOptions = {
    * Passes information of splitting payment amounts to the Adyen API.
    */
   splits?: AdyenSplitsOptions | null | undefined;
+  /**
+   * Passes `merchantRiskIndicator` data to Adyen.
+   */
+  merchantRiskIndicator?: { [k: string]: any } | null | undefined;
+  /**
+   * Passes `accountInfo` data to Adyen.
+   */
+  accountInfo?: { [k: string]: any } | null | undefined;
+  /**
+   * Passes `riskData.customFields` to Adyen.
+   */
+  riskData?: { [k: string]: any } | null | undefined;
+  /**
+   * Passes `threeDS2RequestData.threeDSRequestorChallengeInd` to Adyen.
+   */
+  threeDSRequestorChallengeInd?: string | null | undefined;
+  /**
+   * Passes `authenticationData.attemptAuthentication` to Adyen.
+   */
+  attemptAuthentication?: string | null | undefined;
 };
 
 /** @internal */
@@ -49,6 +69,11 @@ export type AdyenCardOptions$Outbound = {
   autoRescueScenario?: string | null | undefined;
   window_origin?: string | null | undefined;
   splits?: AdyenSplitsOptions$Outbound | null | undefined;
+  merchantRiskIndicator?: { [k: string]: any } | null | undefined;
+  accountInfo?: { [k: string]: any } | null | undefined;
+  riskData?: { [k: string]: any } | null | undefined;
+  threeDSRequestorChallengeInd?: string | null | undefined;
+  attemptAuthentication?: string | null | undefined;
 };
 
 /** @internal */
@@ -65,6 +90,11 @@ export const AdyenCardOptions$outboundSchema: z.ZodType<
   ).optional(),
   windowOrigin: z.nullable(z.string()).optional(),
   splits: z.nullable(AdyenSplitsOptions$outboundSchema).optional(),
+  merchantRiskIndicator: z.nullable(z.record(z.any())).optional(),
+  accountInfo: z.nullable(z.record(z.any())).optional(),
+  riskData: z.nullable(z.record(z.any())).optional(),
+  threeDSRequestorChallengeInd: z.nullable(z.string()).optional(),
+  attemptAuthentication: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     windowOrigin: "window_origin",
