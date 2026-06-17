@@ -9,6 +9,7 @@ import { OpenEnum } from "../../types/enums.js";
 export const DefinitionFieldFormat = {
   Text: "text",
   Multiline: "multiline",
+  File: "file",
   Number: "number",
   Timezone: "timezone",
   Boolean: "boolean",
