@@ -5,7 +5,7 @@
 ```typescript
 import { DefinitionFieldFormat } from "@gr4vy/sdk/models/components";
 
-let value: DefinitionFieldFormat = "timezone";
+let value: DefinitionFieldFormat = "number";
 
 // Open enum: unrecognized values are captured as Unrecognized<string>
 ```
@@ -13,5 +13,5 @@ let value: DefinitionFieldFormat = "timezone";
 ## Values
 
 ```typescript
-"text" | "multiline" | "number" | "timezone" | "boolean" | Unrecognized<string>
+"text" | "multiline" | "file" | "number" | "timezone" | "boolean" | Unrecognized<string>
 ```
