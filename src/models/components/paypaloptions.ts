@@ -5,12 +5,24 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
+  PaypalOrderUpdateCallbackConfig,
+  PaypalOrderUpdateCallbackConfig$Outbound,
+  PaypalOrderUpdateCallbackConfig$outboundSchema,
+} from "./paypalorderupdatecallbackconfig.js";
+import {
   PaypalShippingOptions,
   PaypalShippingOptions$Outbound,
   PaypalShippingOptions$outboundSchema,
 } from "./paypalshippingoptions.js";
 
 export type PaypalOptions = {
+  /**
+   * Configuration for server-side callbacks during the PayPal checkout flow.
+   */
+  orderUpdateCallbackConfig?:
+    | PaypalOrderUpdateCallbackConfig
+    | null
+    | undefined;
   /**
    * Additional Set Transaction Context Values (STC) to be sent to PayPal as part of the transaction.
    */
@@ -23,6 +35,10 @@ export type PaypalOptions = {
 
 /** @internal */
 export type PaypalOptions$Outbound = {
+  order_update_callback_config?:
+    | PaypalOrderUpdateCallbackConfig$Outbound
+    | null
+    | undefined;
   additional_data?: Array<{ [k: string]: string }> | null | undefined;
   shipping?: PaypalShippingOptions$Outbound | null | undefined;
 };
@@ -33,10 +49,14 @@ export const PaypalOptions$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaypalOptions
 > = z.object({
+  orderUpdateCallbackConfig: z.nullable(
+    PaypalOrderUpdateCallbackConfig$outboundSchema,
+  ).optional(),
   additionalData: z.nullable(z.array(z.record(z.string()))).optional(),
   shipping: z.nullable(PaypalShippingOptions$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    orderUpdateCallbackConfig: "order_update_callback_config",
     additionalData: "additional_data",
   });
 });

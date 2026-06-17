@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: edfbc6d4890b5a7a336daa52269a8bbb
+  docChecksum: 70d52ef56326b243ae8e2078e6272737
   docVersion: 1.0.0
   speakeasyVersion: 1.781.0
   generationVersion: 2.907.0
-  releaseVersion: 2.3.4
-  configChecksum: 6ed4a777503c91ab4e07261ef91b4892
+  releaseVersion: 2.3.5
+  configChecksum: 419da3abd8a2c6f069e3d1ba385c1c6d
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: b7defabd-4195-4e45-a024-f8f0bd5c638e
-  pristine_commit_hash: 4759707fa51bbf88c277e043bd4ad4ee96622943
-  pristine_tree_hash: 4281de3537e0cadfba3a9f771d52209fd3ae3431
+  generation_id: d7a609f7-e841-44cc-aa4e-a66037c6d74e
+  pristine_commit_hash: 4c070b1a9bc9e33f7b00e24ac7a3ce495b299e52
+  pristine_tree_hash: 51969a253a22883e87d093af7d15becb78f936c0
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -253,6 +253,10 @@ trackedFiles:
     id: f766c9ece7a5
     last_write_checksum: sha1:0e7864ce167ee0b08c4ef034c88b2474e564c60c
     pristine_git_object: 208b8f0f6da2b127281e35c346f11cbb5e0c6a5a
+  docs/models/components/callbackevents.md:
+    id: 3116131e764b
+    last_write_checksum: sha1:b55c5f5baf4d28bd70d37ef6b737d55d93b9ee2d
+    pristine_git_object: 62642ca9ba22766a802b9ff37caaf0af90a0a142
   docs/models/components/cancelstatus.md:
     id: 7c61c43a374e
     last_write_checksum: sha1:826904feb18a2143f79278a53d02001a61b9b115
@@ -959,8 +963,12 @@ trackedFiles:
     pristine_git_object: c89cafa03a9876ce75333e5fb59950958cfbf588
   docs/models/components/paypaloptions.md:
     id: 6316e429c883
-    last_write_checksum: sha1:85ef4c8c0e74abead3af13897b5e102e4bc8007e
-    pristine_git_object: 1a35e7b4deafa66ec0fe3de12b9a62ecffe56f9a
+    last_write_checksum: sha1:415174e2c2e45f3326956b073b700c3bb545cd17
+    pristine_git_object: b7f5d1441e5f2132a5379c768414a31548dd5a96
+  docs/models/components/paypalorderupdatecallbackconfig.md:
+    id: 65fe14a433a7
+    last_write_checksum: sha1:9212cf3c280a27ed536c2f43b4b6a7d182eea1bf
+    pristine_git_object: 055e1b776285af0013e57d8ea238f63a5dcb2a7f
   docs/models/components/paypalshippingoptions.md:
     id: 413cf7d546ba
     last_write_checksum: sha1:d9417ea9d8b7e4e1cbe8b69f3a8137e065f8186a
@@ -2695,12 +2703,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:559bd96acf1121ba5178679ddcb6a1406b75e4db
-    pristine_git_object: 442e2d917b2cf3a3f85c29867c986d5dce5a9787
+    last_write_checksum: sha1:85375056da2ee45c54140ebec8b0a476e0595718
+    pristine_git_object: be1fc05fc533686b826a86cf509f7b5674d279cc
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:4ae32473bf06e2f754e687d810cd89396de11711
-    pristine_git_object: 80e7a47331ab83f45d31ba0888935800d44453b3
+    last_write_checksum: sha1:4ea28aeee831f3bc55b52d8e1e26006fe4d33fd3
+    pristine_git_object: dea225f79fcc214e5cc7a13649a1d37ca9876b65
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3159,8 +3167,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:c18ccc4d02073ebb318857f295aa12c5c211fbde
-    pristine_git_object: e145de36de9b97d29ba13080089103c6b412fe1a
+    last_write_checksum: sha1:354ede90a3353c17bf456510725db8117a5a9408
+    pristine_git_object: 0cf9c5271d0e7abd7558edae2937243633c13931
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -3751,8 +3759,8 @@ trackedFiles:
     pristine_git_object: 69087ec944a2c1c9708600957b19a242916e9fda
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:b5897855d9cf551ad9c9e45e6041559692a6fea7
-    pristine_git_object: bcd71ffe16ed1d981af8d8382d516c13939aacc4
+    last_write_checksum: sha1:a54cb2f8b2e2b0bc9a51e2e2d07e14038d07950c
+    pristine_git_object: 41893bfae79084835605e37825458c0a3168d166
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:b015e998608879b86fe6021f202742235f0f3036
@@ -4027,8 +4035,12 @@ trackedFiles:
     pristine_git_object: f49d27958ae78b9706d4cfdfa83db4f9c7119bbc
   src/models/components/paypaloptions.ts:
     id: f491b625e81e
-    last_write_checksum: sha1:19e00ece3ea7c80835e339f8bc0dfae789014ef0
-    pristine_git_object: 42eb3d7a9f02a744d8b9d2c3d6139ee8c45b0f3e
+    last_write_checksum: sha1:e3c24a8f5821bd7e8e7789d543401885da365f8e
+    pristine_git_object: aa4ac7a194bceea3cb431c6425b7aa3fe1bc0783
+  src/models/components/paypalorderupdatecallbackconfig.ts:
+    id: 43b945b21681
+    last_write_checksum: sha1:5a81f45e0a34f3cc20a19447b52dba882cb1e489
+    pristine_git_object: 9f7e96b4c2fd42d9746f260e6a9be1261e7e0e02
   src/models/components/paypalshippingoptions.ts:
     id: 4bab108143a8
     last_write_checksum: sha1:2c6dddf29ce1954af5b5c757145abc635f554f28
@@ -9123,10 +9135,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].fields[].format.enum(file)` **Added**
-  * `gr4vy.paymentServiceDefinitions.get()`:  `response.fields[].format.enum(file)` **Added**
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.paypalPaypal.orderUpdateCallbackConfig` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.paypalPaypal.orderUpdateCallbackConfig` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.paypalPaypal.orderUpdateCallbackConfig` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
