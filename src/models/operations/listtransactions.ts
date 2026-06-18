@@ -154,6 +154,10 @@ export type ListTransactionsRequest = {
    */
   disputed?: boolean | null | undefined;
   /**
+   * Filters for transactions that were reauthorized from the transaction with the provided ID.
+   */
+  reauthorizedFromTransactionId?: string | null | undefined;
+  /**
    * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
    */
   buyerSearch?: Array<string> | null | undefined;
@@ -212,6 +216,7 @@ export type ListTransactionsRequest$Outbound = {
   merchant_initiated?: boolean | null | undefined;
   used_3ds?: boolean | null | undefined;
   disputed?: boolean | null | undefined;
+  reauthorized_from_transaction_id?: string | null | undefined;
   buyer_search?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
@@ -268,6 +273,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   merchantInitiated: z.nullable(z.boolean()).optional(),
   used3ds: z.nullable(z.boolean()).optional(),
   disputed: z.nullable(z.boolean()).optional(),
+  reauthorizedFromTransactionId: z.nullable(z.string()).optional(),
   buyerSearch: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -305,6 +311,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     isSubsequentPayment: "is_subsequent_payment",
     merchantInitiated: "merchant_initiated",
     used3ds: "used_3ds",
+    reauthorizedFromTransactionId: "reauthorized_from_transaction_id",
     buyerSearch: "buyer_search",
   });
 });

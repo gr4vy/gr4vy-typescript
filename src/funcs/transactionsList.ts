@@ -165,6 +165,8 @@ async function $do(
     "payment_service_transaction_id": payload?.payment_service_transaction_id,
     "payment_source": payload?.payment_source,
     "pending_review": payload?.pending_review,
+    "reauthorized_from_transaction_id": payload
+      ?.reauthorized_from_transaction_id,
     "reconciliation_id": payload?.reconciliation_id,
     "search": payload?.search,
     "status": payload?.status,
