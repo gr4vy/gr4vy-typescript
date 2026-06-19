@@ -75,6 +75,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Oney4x: "oney_4x",
   Oney6x: "oney_6x",
   Onlinebankingcz: "onlinebankingcz",
+  Onelink: "onelink",
   Ovo: "ovo",
   Oxxo: "oxxo",
   P24: "p24",
