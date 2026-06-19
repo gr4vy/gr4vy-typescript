@@ -107,6 +107,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Spei: "spei",
   Stitch: "stitch",
   Swish: "swish",
+  Stripe: "stripe",
   Stripedd: "stripedd",
   Stripetoken: "stripetoken",
   Tapi: "tapi",

@@ -415,6 +415,10 @@ export type TransactionConnectionOptions = {
    */
   stripeOnelink?: StripeOptions | null | undefined;
   /**
+   * Custom options to be passed to the `stripe-stripe` connector.
+   */
+  stripeStripe?: StripeOptions | null | undefined;
+  /**
    * Custom options to be passed to the `travelhub-card` connector.
    */
   travelhubCard?: TravelhubOptions | null | undefined;
@@ -497,6 +501,7 @@ export type TransactionConnectionOptions$Outbound = {
   "stripe-card"?: StripeCardOptions$Outbound | null | undefined;
   "stripe-klarna"?: StripeOptions$Outbound | null | undefined;
   "stripe-onelink"?: StripeOptions$Outbound | null | undefined;
+  "stripe-stripe"?: StripeOptions$Outbound | null | undefined;
   "travelhub-card"?: TravelhubOptions$Outbound | null | undefined;
   "trustly-trustly"?: TrustlyOptions$Outbound | null | undefined;
   "wpay-everydaypay"?: WpayEverdaypayOptions$Outbound | null | undefined;
@@ -570,6 +575,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   stripeCard: z.nullable(StripeCardOptions$outboundSchema).optional(),
   stripeKlarna: z.nullable(StripeOptions$outboundSchema).optional(),
   stripeOnelink: z.nullable(StripeOptions$outboundSchema).optional(),
+  stripeStripe: z.nullable(StripeOptions$outboundSchema).optional(),
   travelhubCard: z.nullable(TravelhubOptions$outboundSchema).optional(),
   trustlyTrustly: z.nullable(TrustlyOptions$outboundSchema).optional(),
   wpayEverydaypay: z.nullable(WpayEverdaypayOptions$outboundSchema).optional(),
@@ -633,6 +639,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     stripeCard: "stripe-card",
     stripeKlarna: "stripe-klarna",
     stripeOnelink: "stripe-onelink",
+    stripeStripe: "stripe-stripe",
     travelhubCard: "travelhub-card",
     trustlyTrustly: "trustly-trustly",
     wpayEverydaypay: "wpay-everydaypay",
