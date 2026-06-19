@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 6208ad68cce54f2e8ef75cd9a98c3d8e
+  docChecksum: e5c9299e8e2e89c60253fce430bbda8f
   docVersion: 1.0.0
-  speakeasyVersion: 1.783.1
-  generationVersion: 2.910.1
-  releaseVersion: 2.3.6
-  configChecksum: 92545b287e75a283e8bf473a8ebecc9a
+  speakeasyVersion: 1.784.0
+  generationVersion: 2.911.0
+  releaseVersion: 2.3.7
+  configChecksum: a76291e04d7cc8daa7083976eee62016
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: ca9a9b59-12a9-42b8-8d4b-e295dbb27d18
-  pristine_commit_hash: 4b21135b4406411eaceee5dd3b99855607d72e32
-  pristine_tree_hash: 8fd57ca51db77e28d0679455a311c9016bcff567
+  generation_id: 86784135-5a07-4ce3-bdc1-b029bffa8c1d
+  pristine_commit_hash: ae0de743adb8df3a43ceeb42c09ea38d326e5311
+  pristine_tree_hash: 97c810ad50ecceeabb9ec9ea718f4ce70e345072
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -963,8 +963,8 @@ trackedFiles:
     pristine_git_object: c89cafa03a9876ce75333e5fb59950958cfbf588
   docs/models/components/paypaloptions.md:
     id: 6316e429c883
-    last_write_checksum: sha1:415174e2c2e45f3326956b073b700c3bb545cd17
-    pristine_git_object: b7f5d1441e5f2132a5379c768414a31548dd5a96
+    last_write_checksum: sha1:2c158fc037ab18ec6a08e17cab15455a42065eef
+    pristine_git_object: 94da41ae9bb559d75b0a17ecae7f7e17edf0637f
   docs/models/components/paypalorderupdatecallbackconfig.md:
     id: 65fe14a433a7
     last_write_checksum: sha1:9212cf3c280a27ed536c2f43b4b6a7d182eea1bf
@@ -2703,12 +2703,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:fa7e47998bc323c4a39cd174b9ecea160d5e4bb1
-    pristine_git_object: 4de438f35b9300fb871ccee295f6118a8cbbcede
+    last_write_checksum: sha1:51abfa11e9c10e6481560468b5debf3336f51c3d
+    pristine_git_object: 4fa12dd73f104cbdd576586274f5f9b0e965475b
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:8e8e6f424af240aa247de0cb997280aa487d8c4d
-    pristine_git_object: c1d5a24231e16a9521ecb054dc38301acf458912
+    last_write_checksum: sha1:80d42d076f93f3a5b590a62ab2318416813de178
+    pristine_git_object: 86e6352b7aff9f234524f9fbf976a853464e5dcb
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3167,8 +3167,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:d4339a4ceb60beb449e59ff37c013379bfa8d69a
-    pristine_git_object: 5c18e788de49cab86d6e323b62c3fd14be47c22b
+    last_write_checksum: sha1:55ac284ea082725f9357d4608d2b78ff540a953c
+    pristine_git_object: 6807d8681a69d37acdea11fddb8ade177606873a
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -4035,8 +4035,8 @@ trackedFiles:
     pristine_git_object: f49d27958ae78b9706d4cfdfa83db4f9c7119bbc
   src/models/components/paypaloptions.ts:
     id: f491b625e81e
-    last_write_checksum: sha1:e3c24a8f5821bd7e8e7789d543401885da365f8e
-    pristine_git_object: aa4ac7a194bceea3cb431c6425b7aa3fe1bc0783
+    last_write_checksum: sha1:074c8fa23eeb478320ee817ba12b919c6e6ea1f0
+    pristine_git_object: 6d00f5eb741ef95910f5614a891e8bffacaec677
   src/models/components/paypalorderupdatecallbackconfig.ts:
     id: 43b945b21681
     last_write_checksum: sha1:5a81f45e0a34f3cc20a19447b52dba882cb1e489
@@ -9135,7 +9135,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.list()`: \n  *  `request.reauthorizedFromTransactionId` **Added**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.paypalPaypal` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.paypalPaypal` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.paypalPaypal` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

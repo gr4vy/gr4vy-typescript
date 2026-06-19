@@ -31,6 +31,26 @@ export type PaypalOptions = {
    * Shipping information to be passed to the PayPal API.
    */
   shipping?: PaypalShippingOptions | null | undefined;
+  /**
+   * Customizes the PayPal Checkout button text. Use `PAY_NOW` to show a pay now button, or `CONTINUE` to show a continue button for deferred payments.
+   */
+  userAction?: string | null | undefined;
+  /**
+   * Controls the shipping address display in the PayPal Checkout flow. Use `GET_FROM_FILE` to use the shipping address from the PayPal account, `NO_SHIPPING` to hide shipping address fields, or `SET_PROVIDED_ADDRESS` to use the shipping address provided in the request.
+   */
+  shippingPreference?: string | null | undefined;
+  /**
+   * The merchant brand name that appears in the PayPal Checkout flow. Maximum 127 characters.
+   */
+  brandName?: string | null | undefined;
+  /**
+   * The type of landing page to display on the PayPal Checkout. Use `LOGIN` to show the PayPal login page, `GUEST_CHECKOUT` to show the guest checkout page, or `NO_PREFERENCE` to let PayPal decide.
+   */
+  landingPage?: string | null | undefined;
+  /**
+   * The BCP 47 locale used to localize the PayPal Checkout page. For example, `en-US` or `fr-FR`.
+   */
+  locale?: string | null | undefined;
 };
 
 /** @internal */
@@ -41,6 +61,11 @@ export type PaypalOptions$Outbound = {
     | undefined;
   additional_data?: Array<{ [k: string]: string }> | null | undefined;
   shipping?: PaypalShippingOptions$Outbound | null | undefined;
+  user_action?: string | null | undefined;
+  shipping_preference?: string | null | undefined;
+  brand_name?: string | null | undefined;
+  landing_page?: string | null | undefined;
+  locale?: string | null | undefined;
 };
 
 /** @internal */
@@ -54,10 +79,19 @@ export const PaypalOptions$outboundSchema: z.ZodType<
   ).optional(),
   additionalData: z.nullable(z.array(z.record(z.string()))).optional(),
   shipping: z.nullable(PaypalShippingOptions$outboundSchema).optional(),
+  userAction: z.nullable(z.string()).optional(),
+  shippingPreference: z.nullable(z.string()).optional(),
+  brandName: z.nullable(z.string()).optional(),
+  landingPage: z.nullable(z.string()).optional(),
+  locale: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     orderUpdateCallbackConfig: "order_update_callback_config",
     additionalData: "additional_data",
+    userAction: "user_action",
+    shippingPreference: "shipping_preference",
+    brandName: "brand_name",
+    landingPage: "landing_page",
   });
 });
 
