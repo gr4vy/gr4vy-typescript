@@ -87,6 +87,14 @@ export type MerchantAccount = {
    */
   mastercardNetworkTokensAppId?: string | null | undefined;
   /**
+   * Requestor ID provided for Discover after onboarding to use Network Tokens.
+   */
+  discoverNetworkTokensRequestorId?: string | null | undefined;
+  /**
+   * Application ID provided for Discover after onboarding to use Network Tokens.
+   */
+  discoverNetworkTokensAppId?: string | null | undefined;
+  /**
    * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
    */
   asyncNetworkTokensEnabled: boolean;
@@ -126,6 +134,8 @@ export const MerchantAccount$inboundSchema: z.ZodType<
   amex_network_tokens_app_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
   mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
+  discover_network_tokens_requestor_id: z.nullable(z.string()).optional(),
+  discover_network_tokens_app_id: z.nullable(z.string()).optional(),
   async_network_tokens_enabled: z.boolean().default(false),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -153,6 +163,8 @@ export const MerchantAccount$inboundSchema: z.ZodType<
     "mastercard_network_tokens_requestor_id":
       "mastercardNetworkTokensRequestorId",
     "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
+    "discover_network_tokens_requestor_id": "discoverNetworkTokensRequestorId",
+    "discover_network_tokens_app_id": "discoverNetworkTokensAppId",
     "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
     "created_at": "createdAt",
     "updated_at": "updatedAt",

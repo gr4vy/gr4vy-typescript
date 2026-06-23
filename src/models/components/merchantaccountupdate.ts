@@ -72,6 +72,14 @@ export type MerchantAccountUpdate = {
    */
   mastercardNetworkTokensAppId?: string | null | undefined;
   /**
+   * Requestor ID provided for Discover after onboarding to use Network Tokens.
+   */
+  discoverNetworkTokensRequestorId?: string | null | undefined;
+  /**
+   * Application ID provided for Discover after onboarding to use Network Tokens.
+   */
+  discoverNetworkTokensAppId?: string | null | undefined;
+  /**
    * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
    */
   asyncNetworkTokensEnabled?: boolean | undefined;
@@ -99,6 +107,8 @@ export type MerchantAccountUpdate$Outbound = {
   amex_network_tokens_app_id?: string | null | undefined;
   mastercard_network_tokens_requestor_id?: string | null | undefined;
   mastercard_network_tokens_app_id?: string | null | undefined;
+  discover_network_tokens_requestor_id?: string | null | undefined;
+  discover_network_tokens_app_id?: string | null | undefined;
   async_network_tokens_enabled: boolean;
   display_name?: string | null | undefined;
 };
@@ -126,6 +136,8 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
   amexNetworkTokensAppId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
   mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
+  discoverNetworkTokensRequestorId: z.nullable(z.string()).optional(),
+  discoverNetworkTokensAppId: z.nullable(z.string()).optional(),
   asyncNetworkTokensEnabled: z.boolean().default(false),
   displayName: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -151,6 +163,8 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
     mastercardNetworkTokensRequestorId:
       "mastercard_network_tokens_requestor_id",
     mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
+    discoverNetworkTokensRequestorId: "discover_network_tokens_requestor_id",
+    discoverNetworkTokensAppId: "discover_network_tokens_app_id",
     asyncNetworkTokensEnabled: "async_network_tokens_enabled",
     displayName: "display_name",
   });
