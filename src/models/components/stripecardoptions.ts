@@ -16,6 +16,10 @@ export type StripeCardOptions = {
    */
   stripeConnect?: StripeConnectOptions | null | undefined;
   /**
+   * A Stripe customer ID (`cus_xxx`) to associate with the PaymentIntent for network token transactions. When provided, Stripe Radar can access the customer's payment history, dispute rate, and account age to improve risk scoring for returning customers.
+   */
+  customerId?: string | null | undefined;
+  /**
    * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
    */
   errorOnRequiresAction?: boolean | null | undefined;
@@ -24,6 +28,7 @@ export type StripeCardOptions = {
 /** @internal */
 export type StripeCardOptions$Outbound = {
   stripe_connect?: StripeConnectOptions$Outbound | null | undefined;
+  customer_id?: string | null | undefined;
   error_on_requires_action?: boolean | null | undefined;
 };
 
@@ -34,10 +39,12 @@ export const StripeCardOptions$outboundSchema: z.ZodType<
   StripeCardOptions
 > = z.object({
   stripeConnect: z.nullable(StripeConnectOptions$outboundSchema).optional(),
+  customerId: z.nullable(z.string()).optional(),
   errorOnRequiresAction: z.nullable(z.boolean()).optional(),
 }).transform((v) => {
   return remap$(v, {
     stripeConnect: "stripe_connect",
+    customerId: "customer_id",
     errorOnRequiresAction: "error_on_requires_action",
   });
 });
