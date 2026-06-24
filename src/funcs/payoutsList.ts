@@ -40,9 +40,7 @@ import {
  */
 export function payoutsList(
   client: Gr4vyCore,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  merchantAccountId?: string | null | undefined,
+  request?: operations.ListPayoutsRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -74,18 +72,14 @@ export function payoutsList(
 > {
   return new APIPromise($do(
     client,
-    cursor,
-    limit,
-    merchantAccountId,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  merchantAccountId?: string | null | undefined,
+  request?: operations.ListPayoutsRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -118,14 +112,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListPayoutsRequest | undefined = {
-    cursor: cursor,
-    limit: limit,
-    merchantAccountId: merchantAccountId,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListPayoutsRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
@@ -139,8 +127,15 @@ async function $do(
   const path = pathToFunc("/payouts")();
 
   const query = encodeFormQuery({
+    "created_at_gte": payload?.created_at_gte,
+    "created_at_lte": payload?.created_at_lte,
     "cursor": payload?.cursor,
+    "external_identifier": payload?.external_identifier,
     "limit": payload?.limit,
+    "payment_service_payout_id": payload?.payment_service_payout_id,
+    "status": payload?.status,
+    "updated_at_gte": payload?.updated_at_gte,
+    "updated_at_lte": payload?.updated_at_lte,
   });
 
   const headers = new Headers(compactMap({
@@ -304,9 +299,10 @@ async function $do(
     const nextVal = () =>
       payoutsList(
         client,
-        nextCursor,
-        limit,
-        merchantAccountId,
+        {
+          ...request!,
+          cursor: nextCursor,
+        },
         options,
       );
 

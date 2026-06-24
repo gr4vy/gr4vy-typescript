@@ -19,16 +19,12 @@ export class Payouts extends ClientSDK {
    * Returns a list of payouts made.
    */
   async list(
-    cursor?: string | null | undefined,
-    limit?: number | undefined,
-    merchantAccountId?: string | null | undefined,
+    request?: operations.ListPayoutsRequest | undefined,
     options?: RequestOptions,
   ): Promise<PageIterator<operations.ListPayoutsResponse, { cursor: string }>> {
     return unwrapResultIterator(payoutsList(
       this,
-      cursor,
-      limit,
-      merchantAccountId,
+      request,
       options,
     ));
   }
