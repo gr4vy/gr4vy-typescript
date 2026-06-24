@@ -23,6 +23,34 @@ export type ListPayoutsRequest = {
    */
   limit?: number | undefined;
   /**
+   * Filters the results to only payouts created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  createdAtLte?: Date | null | undefined;
+  /**
+   * Filters the results to only payouts created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  createdAtGte?: Date | null | undefined;
+  /**
+   * Filters the results to only payouts updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  updatedAtLte?: Date | null | undefined;
+  /**
+   * Filters the results to only payouts updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  updatedAtGte?: Date | null | undefined;
+  /**
+   * Filters the results to only the payouts that have an `external_identifier` that exactly matches this value.
+   */
+  externalIdentifier?: string | null | undefined;
+  /**
+   * Filters the results to only the payouts that have a `payment_service_payout_id` that exactly matches this value.
+   */
+  paymentServicePayoutId?: string | null | undefined;
+  /**
+   * Filters the results to only the payouts that have a `status` that matches with any of the provided status values.
+   */
+  status?: Array<components.PayoutStatus> | null | undefined;
+  /**
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
@@ -36,6 +64,13 @@ export type ListPayoutsResponse = {
 export type ListPayoutsRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
+  created_at_lte?: string | null | undefined;
+  created_at_gte?: string | null | undefined;
+  updated_at_lte?: string | null | undefined;
+  updated_at_gte?: string | null | undefined;
+  external_identifier?: string | null | undefined;
+  payment_service_payout_id?: string | null | undefined;
+  status?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -47,7 +82,24 @@ export const ListPayoutsRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  createdAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  createdAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  updatedAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  updatedAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  externalIdentifier: z.nullable(z.string()).optional(),
+  paymentServicePayoutId: z.nullable(z.string()).optional(),
+  status: z.nullable(z.array(components.PayoutStatus$outboundSchema))
+    .optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    createdAtLte: "created_at_lte",
+    createdAtGte: "created_at_gte",
+    updatedAtLte: "updated_at_lte",
+    updatedAtGte: "updated_at_gte",
+    externalIdentifier: "external_identifier",
+    paymentServicePayoutId: "payment_service_payout_id",
+  });
 });
 
 export function listPayoutsRequestToJSON(
