@@ -39,20 +39,14 @@ export class PaymentLinks extends ClientSDK {
    * List all created payment links.
    */
   async list(
-    cursor?: string | null | undefined,
-    limit?: number | undefined,
-    buyerSearch?: Array<string> | null | undefined,
-    merchantAccountId?: string | null | undefined,
+    request?: operations.ListPaymentLinksRequest | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<operations.ListPaymentLinksResponse, { cursor: string }>
   > {
     return unwrapResultIterator(paymentLinksList(
       this,
-      cursor,
-      limit,
-      buyerSearch,
-      merchantAccountId,
+      request,
       options,
     ));
   }

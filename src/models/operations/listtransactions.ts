@@ -110,6 +110,10 @@ export type ListTransactionsRequest = {
    */
   checkoutSessionId?: string | null | undefined;
   /**
+   * Filters for transactions where the `payment_link_id` matches the provided value.
+   */
+  paymentLinkId?: string | null | undefined;
+  /**
    * Filters for transactions where the `reconciliation_id` matches the provided value.
    */
   reconciliationId?: string | null | undefined;
@@ -205,6 +209,7 @@ export type ListTransactionsRequest$Outbound = {
   has_refunds?: boolean | null | undefined;
   pending_review?: boolean | null | undefined;
   checkout_session_id?: string | null | undefined;
+  payment_link_id?: string | null | undefined;
   reconciliation_id?: string | null | undefined;
   has_gift_card_redemptions?: boolean | null | undefined;
   gift_card_id?: string | null | undefined;
@@ -260,6 +265,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   hasRefunds: z.nullable(z.boolean()).optional(),
   pendingReview: z.nullable(z.boolean()).optional(),
   checkoutSessionId: z.nullable(z.string()).optional(),
+  paymentLinkId: z.nullable(z.string()).optional(),
   reconciliationId: z.nullable(z.string()).optional(),
   hasGiftCardRedemptions: z.nullable(z.boolean()).optional(),
   giftCardId: z.nullable(z.string()).optional(),
@@ -301,6 +307,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
     hasRefunds: "has_refunds",
     pendingReview: "pending_review",
     checkoutSessionId: "checkout_session_id",
+    paymentLinkId: "payment_link_id",
     reconciliationId: "reconciliation_id",
     hasGiftCardRedemptions: "has_gift_card_redemptions",
     giftCardId: "gift_card_id",

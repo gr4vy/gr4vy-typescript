@@ -40,10 +40,7 @@ import {
  */
 export function paymentLinksList(
   client: Gr4vyCore,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  buyerSearch?: Array<string> | null | undefined,
-  merchantAccountId?: string | null | undefined,
+  request?: operations.ListPaymentLinksRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
@@ -75,20 +72,14 @@ export function paymentLinksList(
 > {
   return new APIPromise($do(
     client,
-    cursor,
-    limit,
-    buyerSearch,
-    merchantAccountId,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  cursor?: string | null | undefined,
-  limit?: number | undefined,
-  buyerSearch?: Array<string> | null | undefined,
-  merchantAccountId?: string | null | undefined,
+  request?: operations.ListPaymentLinksRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -121,15 +112,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.ListPaymentLinksRequest | undefined = {
-    cursor: cursor,
-    limit: limit,
-    buyerSearch: buyerSearch,
-    merchantAccountId: merchantAccountId,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListPaymentLinksRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
@@ -143,9 +127,18 @@ async function $do(
   const path = pathToFunc("/payment-links")();
 
   const query = encodeFormQuery({
+    "amount_eq": payload?.amount_eq,
+    "amount_gte": payload?.amount_gte,
+    "amount_lte": payload?.amount_lte,
     "buyer_search": payload?.buyer_search,
+    "created_at_gte": payload?.created_at_gte,
+    "created_at_lte": payload?.created_at_lte,
+    "currency": payload?.currency,
     "cursor": payload?.cursor,
     "limit": payload?.limit,
+    "status": payload?.status,
+    "updated_at_gte": payload?.updated_at_gte,
+    "updated_at_lte": payload?.updated_at_lte,
   });
 
   const headers = new Headers(compactMap({
@@ -309,10 +302,10 @@ async function $do(
     const nextVal = () =>
       paymentLinksList(
         client,
-        nextCursor,
-        limit,
-        buyerSearch,
-        merchantAccountId,
+        {
+          ...request!,
+          cursor: nextCursor,
+        },
         options,
       );
 

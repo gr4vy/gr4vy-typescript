@@ -155,6 +155,7 @@ async function $do(
     "merchant_initiated": payload?.merchant_initiated,
     "metadata": payload?.metadata,
     "method": payload?.method,
+    "payment_link_id": payload?.payment_link_id,
     "payment_method_bin": payload?.payment_method_bin,
     "payment_method_country": payload?.payment_method_country,
     "payment_method_fingerprint": payload?.payment_method_fingerprint,
