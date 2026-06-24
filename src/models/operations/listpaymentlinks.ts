@@ -23,6 +23,42 @@ export type ListPaymentLinksRequest = {
    */
   limit?: number | undefined;
   /**
+   * Filters the results to only payment links created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  createdAtLte?: Date | null | undefined;
+  /**
+   * Filters the results to only payment links created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  createdAtGte?: Date | null | undefined;
+  /**
+   * Filters the results to only payment links updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  updatedAtLte?: Date | null | undefined;
+  /**
+   * Filters the results to only payment links updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+   */
+  updatedAtGte?: Date | null | undefined;
+  /**
+   * Filters for payment links that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency codes.
+   */
+  currency?: Array<string> | null | undefined;
+  /**
+   * Filters for payment links that have an `amount` equal to this value.
+   */
+  amountEq?: number | null | undefined;
+  /**
+   * Filters for payment links that have an `amount` greater than or equal to this value.
+   */
+  amountGte?: number | null | undefined;
+  /**
+   * Filters for payment links that have an `amount` less than or equal to this value.
+   */
+  amountLte?: number | null | undefined;
+  /**
+   * Filters the results to only the payment links that have a `status` that matches with any of the provided status values.
+   */
+  status?: Array<components.PaymentLinkStatus> | null | undefined;
+  /**
    * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
    */
   buyerSearch?: Array<string> | null | undefined;
@@ -40,6 +76,15 @@ export type ListPaymentLinksResponse = {
 export type ListPaymentLinksRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
+  created_at_lte?: string | null | undefined;
+  created_at_gte?: string | null | undefined;
+  updated_at_lte?: string | null | undefined;
+  updated_at_gte?: string | null | undefined;
+  currency?: Array<string> | null | undefined;
+  amount_eq?: number | null | undefined;
+  amount_gte?: number | null | undefined;
+  amount_lte?: number | null | undefined;
+  status?: Array<string> | null | undefined;
   buyer_search?: Array<string> | null | undefined;
   merchantAccountId?: string | null | undefined;
 };
@@ -52,10 +97,27 @@ export const ListPaymentLinksRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  createdAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  createdAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  updatedAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  updatedAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  currency: z.nullable(z.array(z.string())).optional(),
+  amountEq: z.nullable(z.number().int()).optional(),
+  amountGte: z.nullable(z.number().int()).optional(),
+  amountLte: z.nullable(z.number().int()).optional(),
+  status: z.nullable(z.array(components.PaymentLinkStatus$outboundSchema))
+    .optional(),
   buyerSearch: z.nullable(z.array(z.string())).optional(),
   merchantAccountId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    createdAtLte: "created_at_lte",
+    createdAtGte: "created_at_gte",
+    updatedAtLte: "updated_at_lte",
+    updatedAtGte: "updated_at_gte",
+    amountEq: "amount_eq",
+    amountGte: "amount_gte",
+    amountLte: "amount_lte",
     buyerSearch: "buyer_search",
   });
 });
