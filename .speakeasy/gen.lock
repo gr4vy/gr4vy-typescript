@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 742672ed6622f3af1b3d39dfe798dca5
+  docChecksum: 063e66a7a32f23127d61911d3d4fb0fb
   docVersion: 1.0.0
-  speakeasyVersion: 1.785.0
-  generationVersion: 2.912.1
-  releaseVersion: 2.3.12
-  configChecksum: 09859b19e7750f05825ce295ebc217a3
+  speakeasyVersion: 1.786.1
+  generationVersion: 2.913.3
+  releaseVersion: 2.3.13
+  configChecksum: eeaa834b3c0de640fb7ef7021450a931
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 7123d7d3-4825-4c78-9f33-10573b1131ca
-  pristine_commit_hash: efaf17f569e7d8c825c63b77422abb99dc51067a
-  pristine_tree_hash: efd7c22025453ffc8daedd899a48fc5c326da383
+  generation_id: 19a5e244-4d0f-4a72-8108-61c1b98d6add
+  pristine_commit_hash: ceff8784481a1b361db6fa837d2f76792533181a
+  pristine_tree_hash: a10ec524c403c3b9a0450d61c833f1048e3ae39f
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -743,8 +743,8 @@ trackedFiles:
     pristine_git_object: cc746b832d99293c6c89060073ca7a59d95e5107
   docs/models/components/name.md:
     id: 817692a433a1
-    last_write_checksum: sha1:21adc98f21ec6f87ca7a1bd5018790ac4e36ba00
-    pristine_git_object: 288507ac6c78adde04d6eabaed69708316b15392
+    last_write_checksum: sha1:14d7103f5104469dfc7c5e4a63780fc49e6b6453
+    pristine_git_object: 439d93dd6c311d375200e172e87701eb7c501053
   docs/models/components/networktoken.md:
     id: 19d1036d468a
     last_write_checksum: sha1:21661faa38b9dfd8bcb4c59e5529bb38fc3d5959
@@ -2703,12 +2703,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d8170ca8cc14be75db89af74408833fa7f28cfbe
-    pristine_git_object: a6918335370862dc12f14354bf09ed272991ec72
+    last_write_checksum: sha1:d536a83f6482e2945594d5eacf45980efa65140c
+    pristine_git_object: d49538375906038cb50587fcd7e2a59c5e33f892
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:4a489692bd76de17f0f4a0f12b43520c029eb0e3
-    pristine_git_object: 8fbf7c7ac89041e7f7826dbec07f2072b6c2bb3b
+    last_write_checksum: sha1:b13b9b5a101527d937ef114a4cb509a27306c0c9
+    pristine_git_object: 82136c5741919cd3725537ea53a3af37865faa95
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3167,8 +3167,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:036751b7865787869349a0a42adec5ebc4022c4d
-    pristine_git_object: 3718a524ae78c6776d0205f687b16012f7ec47bb
+    last_write_checksum: sha1:4e277b2c8b3211720d7f42d937718e0beff3df5c
+    pristine_git_object: 83a57bcaaf9cfeca93137f453946ab9901ff45e3
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -4427,8 +4427,8 @@ trackedFiles:
     pristine_git_object: d7a77b99aa0711931d63cc97f8c564956c17e6d2
   src/models/components/transactionevent.ts:
     id: 0292335c036a
-    last_write_checksum: sha1:2e16b3a5da601ba393843fd5ecde8da1fd621e3f
-    pristine_git_object: 504c8b2b8045e71b7477f02248dfe62ba733d47c
+    last_write_checksum: sha1:2c15bdd0d743e375dbd1105172f974f26a6edc69
+    pristine_git_object: 80852abacf4f2cf92aaf19ab453d310e463a16d4
   src/models/components/transactionevents.ts:
     id: e28db099d773
     last_write_checksum: sha1:3181c13d7ff7d2142c766c69682ae0ad1d11f0c7
@@ -9135,7 +9135,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.paymentLinks.list()`:  `request` **Changed** (Breaking ⚠️)\n* `gr4vy.transactions.list()`: \n  *  `request.paymentLinkId` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `gr4vy.transactions.events.list()`:  `response.items[].name.enum(paymentConnectorReportRefundSettled)` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore

@@ -1,9 +1,9 @@
-speakeasyVersion: 1.785.0
+speakeasyVersion: 1.786.1
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:fb5eb7d16b0917b7be76dd1d2feba4377abcbac2e9cb3a1fe965c599c80cc8e2
-        sourceBlobDigest: sha256:7c650ea6d4dd7ba9fc3c58f53c891655ffded950efc7733adf76a6a656f5348a
+        sourceRevisionDigest: sha256:34049c5a15ae9625e791e46c651dfb61027dfb29aee8781727b54b51a945bf88
+        sourceBlobDigest: sha256:3afef43ab3c028d72ab7ddaa1e02be19798517da266162f4da9503fe6030de08
         tags:
             - latest
             - 1.0.0
@@ -16,10 +16,10 @@ targets:
     typescript:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:fb5eb7d16b0917b7be76dd1d2feba4377abcbac2e9cb3a1fe965c599c80cc8e2
-        sourceBlobDigest: sha256:7c650ea6d4dd7ba9fc3c58f53c891655ffded950efc7733adf76a6a656f5348a
+        sourceRevisionDigest: sha256:34049c5a15ae9625e791e46c651dfb61027dfb29aee8781727b54b51a945bf88
+        sourceBlobDigest: sha256:3afef43ab3c028d72ab7ddaa1e02be19798517da266162f4da9503fe6030de08
         codeSamplesNamespace: openapi-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:a1fc5c5c3d53198a644f725936af81384ed3d17f498546c2aa8ecd395a5d41c5
+        codeSamplesRevisionDigest: sha256:6fc5c06ec8c82b6fa3000c614c2a63019fb26afe3fc1eaeffb9d8ac15d5884d1
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
