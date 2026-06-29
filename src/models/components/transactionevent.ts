@@ -68,6 +68,8 @@ export const Name = {
     "payment-connector-external-transaction-request",
   PaymentConnectorReportTransactionSettled:
     "payment-connector-report-transaction-settled",
+  PaymentConnectorReportRefundSettled:
+    "payment-connector-report-refund-settled",
   PaymentConnectorReportChargebackPosted:
     "payment-connector-report-chargeback-posted",
   PaymentConnectorReportChargebackReversalPosted:
