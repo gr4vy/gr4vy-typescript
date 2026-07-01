@@ -5,7 +5,7 @@
 ```typescript
 import { ReportSpecModel } from "@gr4vy/sdk/models/components";
 
-let value: ReportSpecModel = "detailed_settlement";
+let value: ReportSpecModel = "accounts_receivables";
 
 // Open enum: unrecognized values are captured as Unrecognized<string>
 ```
@@ -13,5 +13,5 @@ let value: ReportSpecModel = "detailed_settlement";
 ## Values
 
 ```typescript
-"transactions" | "transaction_retries" | "detailed_settlement" | "accounts_receivables" | Unrecognized<string>
+"transactions" | "transaction_retries" | "detailed_settlement" | "accounts_receivables" | "ai_insights" | Unrecognized<string>
 ```

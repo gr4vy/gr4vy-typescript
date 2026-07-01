@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 063e66a7a32f23127d61911d3d4fb0fb
+  docChecksum: 367f24f9331b40827149c24c8faf725e
   docVersion: 1.0.0
-  speakeasyVersion: 1.786.1
-  generationVersion: 2.913.3
-  releaseVersion: 2.3.13
-  configChecksum: eeaa834b3c0de640fb7ef7021450a931
+  speakeasyVersion: 1.787.0
+  generationVersion: 2.914.0
+  releaseVersion: 2.3.14
+  configChecksum: 06666d25aba3c941931782d95e5b6566
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 19a5e244-4d0f-4a72-8108-61c1b98d6add
-  pristine_commit_hash: ceff8784481a1b361db6fa837d2f76792533181a
-  pristine_tree_hash: a10ec524c403c3b9a0450d61c833f1048e3ae39f
+  generation_id: a24b2e3d-aa3a-4eca-bbee-bf446188b364
+  pristine_commit_hash: b31c6d2575c634e172d0dc89171b0e1b84a84ee2
+  pristine_tree_hash: 27dfe2fb530a7cc90eb8374f8d3e8b9ad268ca72
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -149,6 +149,10 @@ trackedFiles:
     id: dce59c61b739
     last_write_checksum: sha1:ce9d1ba63d781d81b130a73b319aef091557c647
     pristine_git_object: f10b5e6f141abecae20d777e57f2dd054b626899
+  docs/models/components/aiinsightsreportspec.md:
+    id: e2d1f93490c6
+    last_write_checksum: sha1:b77b96ef42c2b9e98e455739087403b64d670b09
+    pristine_git_object: 97e74745bb00596db26975178a2d795ae0e59d04
   docs/models/components/airline.md:
     id: 0a705d7a76c1
     last_write_checksum: sha1:600da0cfcc98f449d898ca1785d1906dea16b13e
@@ -1131,12 +1135,12 @@ trackedFiles:
     pristine_git_object: 557bc5d1938c490905ff7bfbd04ab391d5e06b0e
   docs/models/components/refund.md:
     id: a9ba6686865f
-    last_write_checksum: sha1:f42fc885ae1ac05651e66ce239e017fb8ebd3873
-    pristine_git_object: 6194646303fac369928bb3711848e29e37214cb1
+    last_write_checksum: sha1:650659a038d706cb6fdaaa9158618102bbb4caa9
+    pristine_git_object: d0d7226b9dd3b7c5d4c0992a837338d417ae5d96
   docs/models/components/refunds.md:
     id: 48b5a2c11fe6
-    last_write_checksum: sha1:5ec0907eaf9c34865dd0862695f439613298aea6
-    pristine_git_object: 2f1f364b3d5c11becece1318bd61d4ec1e09712b
+    last_write_checksum: sha1:e58454a4088bf14c4f8357c42fbd1a04d8a8430f
+    pristine_git_object: d80cae64beea6e4841e114b7b10017c9e1df2c59
   docs/models/components/refundstatus.md:
     id: ccd8379bb890
     last_write_checksum: sha1:17c486ceaee62b5b3b535c2cc70634671abdf080
@@ -1151,8 +1155,8 @@ trackedFiles:
     pristine_git_object: 92a8e75ebf775d8a32574292462fbdedf2de103c
   docs/models/components/reportcreate.md:
     id: 6e899462ba7c
-    last_write_checksum: sha1:a23a398452d1007fef6d5b90f671cee9b6a758a3
-    pristine_git_object: b948ce954010776790ad6c7f59b6f8d3efd13f14
+    last_write_checksum: sha1:ef7e3f169b7774c9b8db71c7dd50d2a531ab0df7
+    pristine_git_object: c7370d497cede01eab3562f8c8ed9a589455ff09
   docs/models/components/reportcreatortype.md:
     id: 1b0df8a2ea71
     last_write_checksum: sha1:5bb357b33480efb3a073f7bc1bd3856a6fbd4658
@@ -1195,12 +1199,12 @@ trackedFiles:
     pristine_git_object: bd7ea4387222403bab3a313aeeda3ddda8fbc7e7
   docs/models/components/reportspec.md:
     id: cd1eb9b58845
-    last_write_checksum: sha1:a86f666c9d099c9204950b769ec9709b7e5a722e
-    pristine_git_object: d6599621c340c3b206897952230d465af615fea2
+    last_write_checksum: sha1:6a9a0b6af83b610898f167e668c330435d1b1a68
+    pristine_git_object: 23e1d3fa5ef4ae3fcbaaae094dc14ebf4eafff13
   docs/models/components/reportspecmodel.md:
     id: bb9b53f67701
-    last_write_checksum: sha1:859a1d21fedc031c0141a2dfd4bbd6396d4b4dc4
-    pristine_git_object: 03c7c352f363e0a051e417e7adbe4026e619e1ce
+    last_write_checksum: sha1:da9485ce55c3dc81871b5cfbe1cba9058c31d934
+    pristine_git_object: c095096bdeaa4a8dec25269ab16955505a3522f9
   docs/models/components/reportsummary.md:
     id: f8d0e8fdbd31
     last_write_checksum: sha1:bd8094b580428975d9f0a4344d6673706c0af77b
@@ -1275,8 +1279,8 @@ trackedFiles:
     pristine_git_object: 0328e467ab3b7cf54db3e46dc00733adc9e69cbb
   docs/models/components/spec.md:
     id: 26cc364d1057
-    last_write_checksum: sha1:42c7f14428e6960374d3981cc287186b242c1e52
-    pristine_git_object: bc889eecccce36ccd5130dfc4bf951ce6c7bf264
+    last_write_checksum: sha1:7a1b9c286b9ae2ab0caa5befa74c6c987803299e
+    pristine_git_object: b9f0ccb8534ab94c843cce16a59f180df47f27e8
   docs/models/components/statementdescriptor.md:
     id: 46f671cb928b
     last_write_checksum: sha1:7488cb14e5919307f092b26fb07e0c803d9af11c
@@ -1655,8 +1659,8 @@ trackedFiles:
     pristine_git_object: cce1548246b309225e9740c42a86601189f5931d
   docs/models/operations/addreportrequest.md:
     id: 302ed4484b53
-    last_write_checksum: sha1:56d8ac8dd6db8d8ee5f85c21e375e4716e9a6413
-    pristine_git_object: 798d2a96c7293d3cfd4faeb03968e438007057ea
+    last_write_checksum: sha1:9386e05f83709ff43417e6dec349222a0136e466
+    pristine_git_object: c355f9b2b1ca558acde8db4f87a2850879a11c82
   docs/models/operations/canceltransactionglobals.md:
     id: f5d06417559a
     last_write_checksum: sha1:c52f4d73c7a6d28358f2a7c431c22828287ec659
@@ -2703,12 +2707,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d536a83f6482e2945594d5eacf45980efa65140c
-    pristine_git_object: d49538375906038cb50587fcd7e2a59c5e33f892
+    last_write_checksum: sha1:5417f8e64a8a564939cbe8285f8bc44022315f5f
+    pristine_git_object: 89ebc21afc20d1954192bf102f19b34424ce4bb7
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:b13b9b5a101527d937ef114a4cb509a27306c0c9
-    pristine_git_object: 82136c5741919cd3725537ea53a3af37865faa95
+    last_write_checksum: sha1:f8b23c641ce5d9888b804ac968ecd8f26ea9ab84
+    pristine_git_object: c6b801cb111c2550b86824c1e296849827a54d77
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3167,8 +3171,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4e277b2c8b3211720d7f42d937718e0beff3df5c
-    pristine_git_object: 83a57bcaaf9cfeca93137f453946ab9901ff45e3
+    last_write_checksum: sha1:1af4ee87df94abe61d447201e90ab55d1a029d65
+    pristine_git_object: 1716deb2391a1f8968f12e01887b6750710a9a1f
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -3289,6 +3293,10 @@ trackedFiles:
     id: 0f8bd02a7bec
     last_write_checksum: sha1:46867537d9e5dee8df63d56cb8a1099c7fbaaf69
     pristine_git_object: 2dd2c3dd20cacd08d8bd5b376035d6fefb2e5978
+  src/models/components/aiinsightsreportspec.ts:
+    id: 31912139c59e
+    last_write_checksum: sha1:9aa2bdc4984b9f4ce2effa6823c0044a4522a56d
+    pristine_git_object: 55b3e70c76623c104685da8e8d95c7a5b6a06fac
   src/models/components/airline.ts:
     id: 426971da1b0d
     last_write_checksum: sha1:0fe6c517aa28f891a86853039d4ba47e100b41e0
@@ -3759,8 +3767,8 @@ trackedFiles:
     pristine_git_object: 69087ec944a2c1c9708600957b19a242916e9fda
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:a54cb2f8b2e2b0bc9a51e2e2d07e14038d07950c
-    pristine_git_object: 41893bfae79084835605e37825458c0a3168d166
+    last_write_checksum: sha1:8bdc291a9c4f3c6dd0b0228c577b160896faf215
+    pristine_git_object: b0e3c64ea29ca46d1e751463d0a107300be24a70
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:b015e998608879b86fe6021f202742235f0f3036
@@ -4179,8 +4187,8 @@ trackedFiles:
     pristine_git_object: 2f7bd530ba2622c1c110062774b5ac440b319a77
   src/models/components/refund.ts:
     id: 9464a442cd5b
-    last_write_checksum: sha1:4b9f40c0f71f1203cce647b32ed4c62b6a856935
-    pristine_git_object: 3bbc94787635f78a14a84133dce81d30fdd08a27
+    last_write_checksum: sha1:d4255cf0b4db621c400aa9aa845bd01a3d626894
+    pristine_git_object: b6563705aed369687c4369088e9624255435ac0d
   src/models/components/refunds.ts:
     id: 5a49bbce661f
     last_write_checksum: sha1:254650f88c490a7c9e58127fd9edc33cd907b05b
@@ -4199,8 +4207,8 @@ trackedFiles:
     pristine_git_object: 18bafe6640aac11c9100b9580b5ad3b03b1c7edd
   src/models/components/reportcreate.ts:
     id: c9cc57d07227
-    last_write_checksum: sha1:624cc3f83d9997358c5ac1b6e8cacec2dc74af13
-    pristine_git_object: 0dbe2f82435b78a9b00c79d59a12b1353c5b42bb
+    last_write_checksum: sha1:cec4bbffb8dc4dee071ad0ecd213708ad26d9d53
+    pristine_git_object: 4280d7350be440259b728764059646281adf3d78
   src/models/components/reportcreatortype.ts:
     id: 143876a3ee8b
     last_write_checksum: sha1:f147db7861f6db8f4499fba7da35b02851d36cff
@@ -4247,8 +4255,8 @@ trackedFiles:
     pristine_git_object: 8349186a090d76ad1b89946d3a47b1ac81b46bf0
   src/models/components/reportspecmodel.ts:
     id: 0f11ae344d98
-    last_write_checksum: sha1:ac513b78c8e662838ae4e76231a0861f62f039d6
-    pristine_git_object: d2d61f4e653d226a9700300c478dc0e21a1c236d
+    last_write_checksum: sha1:7a07fcbd860559c17254b770436e8432819ce3fd
+    pristine_git_object: b79f0ed6e6205d17ab5683b1c5211360bb458b33
   src/models/components/reportsummary.ts:
     id: 4e054bc50463
     last_write_checksum: sha1:5bfa865ffb75b9d1d32bc20fd07f1c40bd9f9caa
@@ -7066,7 +7074,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"items": [{"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "USD", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "USD", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "USD", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20}
+          application/json: {"items": [{"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "USD", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "USD", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "USD", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}], "limit": 20}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -7104,7 +7112,7 @@ examples:
         application/json: {}
       responses:
         "201":
-          application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "EUR", "amount": 1299, "target_type": "gift-card-redemption", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "failed", "currency": "EUR", "amount": 1299, "target_type": "gift-card-redemption", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -7140,7 +7148,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "declined", "currency": "EUR", "amount": 1299, "target_type": "gift-card-redemption", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "declined", "currency": "EUR", "amount": 1299, "target_type": "gift-card-redemption", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -7178,7 +7186,7 @@ examples:
         application/json: {"reason": "Refund due to user request.", "external_identifier": "refund-12345"}
       responses:
         "201":
-          application/json: {"items": [{"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "voided", "currency": "GBP", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "voided", "currency": "GBP", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20}
+          application/json: {"items": [{"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "voided", "currency": "GBP", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "voided", "currency": "GBP", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}], "limit": 20}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -7213,7 +7221,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "succeeded", "currency": "EUR", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "status": "succeeded", "currency": "EUR", "amount": 1299, "target_type": "payment-method", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "settled_amount": 1100, "settled": true}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -9135,9 +9143,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `gr4vy.transactions.events.list()`:  `response.items[].name.enum(paymentConnectorReportRefundSettled)` **Added**
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.refunds.list()`:  `response.items[]` **Changed**\n* `gr4vy.transactions.refunds.create()`:  `response` **Changed**\n* `gr4vy.transactions.refunds.get()`:  `response` **Changed**\n* `gr4vy.transactions.refunds.all.create()`:  `response.items[]` **Changed**\n* `gr4vy.refunds.get()`:  `response` **Changed**\n* `gr4vy.reports.list()`:  `response.items[].spec.model.enum(aiInsights)` **Added**\n* `gr4vy.reports.create()`: \n  *  `request.reportCreate.spec.union(ai_insights)` **Added**\n  *  `response.spec.model.enum(aiInsights)` **Added**\n* `gr4vy.reports.get()`:  `response.spec.model.enum(aiInsights)` **Added**\n* `gr4vy.reports.put()`:  `response.spec.model.enum(aiInsights)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

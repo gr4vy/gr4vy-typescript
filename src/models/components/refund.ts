@@ -89,6 +89,18 @@ export type Refund = {
    *  This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
    */
   rawResponseDescription?: string | null | undefined;
+  /**
+   * The ISO 4217 currency code of this refund's settlement.
+   */
+  settledCurrency?: string | null | undefined;
+  /**
+   * The net amount settled for this refund, in the smallest currency unit (for example, cents or pence).
+   */
+  settledAmount: number;
+  /**
+   * Indicates whether this refund has been settled.
+   */
+  settled: boolean;
 };
 
 /** @internal */
@@ -118,6 +130,9 @@ export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
     error_code: z.nullable(z.string()).optional(),
     raw_response_code: z.nullable(z.string()).optional(),
     raw_response_description: z.nullable(z.string()).optional(),
+    settled_currency: z.nullable(z.string()).optional(),
+    settled_amount: z.number().int().default(0),
+    settled: z.boolean(),
   }).transform((v) => {
     return remap$(v, {
       "transaction_id": "transactionId",
@@ -133,6 +148,8 @@ export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
       "error_code": "errorCode",
       "raw_response_code": "rawResponseCode",
       "raw_response_description": "rawResponseDescription",
+      "settled_currency": "settledCurrency",
+      "settled_amount": "settledAmount",
     });
   });
 

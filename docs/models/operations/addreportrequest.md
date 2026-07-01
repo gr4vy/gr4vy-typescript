@@ -12,16 +12,13 @@ let value: AddReportRequest = {
     scheduleEnabled: true,
     scheduleTimezone: "UTC",
     spec: {
-      model: "transactions",
+      model: "transaction_retries",
       params: {
-        "fields": [
-          "id",
-          "status",
-        ],
         "filters": {
-          "status": [
-            "succeeded",
-          ],
+          "created_at": {
+            "end": "2024-05-31T23:59:59Z",
+            "start": "2024-05-01T00:00:00Z",
+          },
         },
       },
     },

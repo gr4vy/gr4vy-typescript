@@ -20,6 +20,7 @@ export * from "./adyensepaoptions.js";
 export * from "./adyensplitsoptions.js";
 export * from "./affirmitineraryoptions.js";
 export * from "./affirmoptions.js";
+export * from "./aiinsightsreportspec.js";
 export * from "./airline.js";
 export * from "./airlineleg.js";
 export * from "./airlinepassenger.js";
