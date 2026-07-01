@@ -10,6 +10,11 @@ import {
   AccountsReceivablesReportSpec$outboundSchema,
 } from "./accountsreceivablesreportspec.js";
 import {
+  AIInsightsReportSpec,
+  AIInsightsReportSpec$Outbound,
+  AIInsightsReportSpec$outboundSchema,
+} from "./aiinsightsreportspec.js";
+import {
   DetailedSettlementReportSpec,
   DetailedSettlementReportSpec$Outbound,
   DetailedSettlementReportSpec$outboundSchema,
@@ -34,6 +39,7 @@ import {
  */
 export type Spec =
   | AccountsReceivablesReportSpec
+  | AIInsightsReportSpec
   | DetailedSettlementReportSpec
   | TransactionRetriesReportSpec
   | TransactionsReportSpec;
@@ -61,6 +67,7 @@ export type ReportCreate = {
    */
   spec:
     | AccountsReceivablesReportSpec
+    | AIInsightsReportSpec
     | DetailedSettlementReportSpec
     | TransactionRetriesReportSpec
     | TransactionsReportSpec;
@@ -69,6 +76,7 @@ export type ReportCreate = {
 /** @internal */
 export type Spec$Outbound =
   | AccountsReceivablesReportSpec$Outbound
+  | AIInsightsReportSpec$Outbound
   | DetailedSettlementReportSpec$Outbound
   | TransactionRetriesReportSpec$Outbound
   | TransactionsReportSpec$Outbound;
@@ -77,6 +85,7 @@ export type Spec$Outbound =
 export const Spec$outboundSchema: z.ZodType<Spec$Outbound, z.ZodTypeDef, Spec> =
   z.union([
     AccountsReceivablesReportSpec$outboundSchema,
+    AIInsightsReportSpec$outboundSchema,
     DetailedSettlementReportSpec$outboundSchema,
     TransactionRetriesReportSpec$outboundSchema,
     TransactionsReportSpec$outboundSchema,
@@ -95,6 +104,7 @@ export type ReportCreate$Outbound = {
   schedule_timezone: string;
   spec:
     | AccountsReceivablesReportSpec$Outbound
+    | AIInsightsReportSpec$Outbound
     | DetailedSettlementReportSpec$Outbound
     | TransactionRetriesReportSpec$Outbound
     | TransactionsReportSpec$Outbound;
@@ -113,6 +123,7 @@ export const ReportCreate$outboundSchema: z.ZodType<
   scheduleTimezone: z.string().default("Etc/UTC"),
   spec: z.union([
     AccountsReceivablesReportSpec$outboundSchema,
+    AIInsightsReportSpec$outboundSchema,
     DetailedSettlementReportSpec$outboundSchema,
     TransactionRetriesReportSpec$outboundSchema,
     TransactionsReportSpec$outboundSchema,

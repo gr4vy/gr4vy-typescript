@@ -11,13 +11,10 @@ let value: ReportCreate = {
   scheduleEnabled: true,
   scheduleTimezone: "UTC",
   spec: {
-    model: "detailed_settlement",
+    model: "ai_insights",
     params: {
       "filters": {
-        "ingested_at": {
-          "end": "day_end",
-          "start": "day_start",
-        },
+        "prompt_key": "payment_performance",
       },
     },
   },

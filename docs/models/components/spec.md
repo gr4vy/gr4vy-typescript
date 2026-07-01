@@ -21,6 +21,19 @@ const value: components.AccountsReceivablesReportSpec = {
 };
 ```
 
+### `components.AIInsightsReportSpec`
+
+```typescript
+const value: components.AIInsightsReportSpec = {
+  model: "ai_insights",
+  params: {
+    "filters": {
+      "prompt_key": "payment_performance",
+    },
+  },
+};
+```
+
 ### `components.DetailedSettlementReportSpec`
 
 ```typescript

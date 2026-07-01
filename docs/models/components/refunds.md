@@ -18,6 +18,8 @@ let value: Refunds = {
       transactionReconciliationId: "aLEnfXbt7jZXl4gBUNl0Cn",
       createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
       updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
+      settledAmount: 1100,
+      settled: true,
     },
   ],
 };
