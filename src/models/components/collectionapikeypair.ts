@@ -7,16 +7,13 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ApiRoutersMerchantAccountsSchemasMerchantAccount,
-  ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema,
-} from "./apiroutersmerchantaccountsschemasmerchantaccount.js";
+import { APIKeyPair, APIKeyPair$inboundSchema } from "./apikeypair.js";
 
-export type MerchantAccounts = {
+export type CollectionAPIKeyPair = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<ApiRoutersMerchantAccountsSchemasMerchantAccount>;
+  items: Array<APIKeyPair>;
   /**
    * The number of items for this page.
    */
@@ -32,14 +29,12 @@ export type MerchantAccounts = {
 };
 
 /** @internal */
-export const MerchantAccounts$inboundSchema: z.ZodType<
-  MerchantAccounts,
+export const CollectionAPIKeyPair$inboundSchema: z.ZodType<
+  CollectionAPIKeyPair,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(
-    ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema,
-  ),
+  items: z.array(APIKeyPair$inboundSchema),
   limit: z.number().int().default(20),
   next_cursor: z.nullable(z.string()).optional(),
   previous_cursor: z.nullable(z.string()).optional(),
@@ -50,12 +45,12 @@ export const MerchantAccounts$inboundSchema: z.ZodType<
   });
 });
 
-export function merchantAccountsFromJSON(
+export function collectionAPIKeyPairFromJSON(
   jsonString: string,
-): SafeParseResult<MerchantAccounts, SDKValidationError> {
+): SafeParseResult<CollectionAPIKeyPair, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => MerchantAccounts$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MerchantAccounts' from JSON`,
+    (x) => CollectionAPIKeyPair$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CollectionAPIKeyPair' from JSON`,
   );
 }

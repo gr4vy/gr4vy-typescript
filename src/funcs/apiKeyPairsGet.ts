@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -23,22 +23,23 @@ import {
 import * as errors from "../models/errors/index.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create a merchant account
+ * Get an API key pair
  *
  * @remarks
- * Create a new merchant account in an instance.
+ * Fetches an API key pair by its ID.
  */
-export function merchantAccountsCreate(
+export function apiKeyPairsGet(
   client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
+  apiKeyPairId: string,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+    components.APIKeyPair,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -63,19 +64,19 @@ export function merchantAccountsCreate(
 > {
   return new APIPromise($do(
     client,
-    request,
+    apiKeyPairId,
     options,
   ));
 }
 
 async function $do(
   client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
+  apiKeyPairId: string,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+      components.APIKeyPair,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -100,21 +101,30 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.GetApiKeyPairRequest = {
+    apiKeyPairId: apiKeyPairId,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => components.MerchantAccountCreate$outboundSchema.parse(value),
+    input,
+    (value) => operations.GetApiKeyPairRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = null;
 
-  const path = pathToFunc("/merchant-accounts")();
+  const pathParams = {
+    api_key_pair_id: encodeSimple("api_key_pair_id", payload.api_key_pair_id, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+  const path = pathToFunc("/api-key-pairs/{api_key_pair_id}")(pathParams);
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
@@ -125,7 +135,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "create_merchant_account",
+    operationID: "get_api_key_pair",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -133,13 +143,23 @@ async function $do(
     securitySource: client._options.bearerAuth,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 200,
+          maxInterval: 200,
+          exponent: 1,
+          maxElapsedTime: 1000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["5XX"],
   };
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "POST",
+    method: "GET",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -169,7 +189,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+    components.APIKeyPair,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -191,10 +211,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(
-      201,
-      components.ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema,
-    ),
+    M.json(200, components.APIKeyPair$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),

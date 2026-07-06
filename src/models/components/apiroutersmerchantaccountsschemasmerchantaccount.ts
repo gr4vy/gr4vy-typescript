@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CardScheme, CardScheme$inboundSchema } from "./cardscheme.js";
 
-export type MerchantAccount = {
+export type ApiRoutersMerchantAccountsSchemasMerchantAccount = {
   /**
    * Always `merchant-account`.
    */
@@ -109,74 +109,88 @@ export type MerchantAccount = {
 };
 
 /** @internal */
-export const MerchantAccount$inboundSchema: z.ZodType<
-  MerchantAccount,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.literal("merchant-account").default("merchant-account"),
-  id: z.string(),
-  display_name: z.string(),
-  loon_client_key: z.nullable(z.string()).optional(),
-  loon_secret_key: z.nullable(z.string()).optional(),
-  loon_accepted_schemes: z.nullable(z.array(CardScheme$inboundSchema))
-    .optional(),
-  account_updater_request_encryption_key: z.nullable(z.string()).optional(),
-  account_updater_request_encryption_key_id: z.nullable(z.string()).optional(),
-  account_updater_response_decryption_key: z.nullable(z.string()).optional(),
-  account_updater_response_decryption_key_id: z.nullable(z.string()).optional(),
-  account_updater_enabled: z.boolean(),
-  over_capture_amount: z.nullable(z.number().int()).optional(),
-  over_capture_percentage: z.nullable(z.number().int()).optional(),
-  visa_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  visa_network_tokens_app_id: z.nullable(z.string()).optional(),
-  amex_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  amex_network_tokens_app_id: z.nullable(z.string()).optional(),
-  mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
-  discover_network_tokens_requestor_id: z.nullable(z.string()).optional(),
-  discover_network_tokens_app_id: z.nullable(z.string()).optional(),
-  async_network_tokens_enabled: z.boolean().default(false),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "loon_client_key": "loonClientKey",
-    "loon_secret_key": "loonSecretKey",
-    "loon_accepted_schemes": "loonAcceptedSchemes",
-    "account_updater_request_encryption_key":
-      "accountUpdaterRequestEncryptionKey",
-    "account_updater_request_encryption_key_id":
-      "accountUpdaterRequestEncryptionKeyId",
-    "account_updater_response_decryption_key":
-      "accountUpdaterResponseDecryptionKey",
-    "account_updater_response_decryption_key_id":
-      "accountUpdaterResponseDecryptionKeyId",
-    "account_updater_enabled": "accountUpdaterEnabled",
-    "over_capture_amount": "overCaptureAmount",
-    "over_capture_percentage": "overCapturePercentage",
-    "visa_network_tokens_requestor_id": "visaNetworkTokensRequestorId",
-    "visa_network_tokens_app_id": "visaNetworkTokensAppId",
-    "amex_network_tokens_requestor_id": "amexNetworkTokensRequestorId",
-    "amex_network_tokens_app_id": "amexNetworkTokensAppId",
-    "mastercard_network_tokens_requestor_id":
-      "mastercardNetworkTokensRequestorId",
-    "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
-    "discover_network_tokens_requestor_id": "discoverNetworkTokensRequestorId",
-    "discover_network_tokens_app_id": "discoverNetworkTokensAppId",
-    "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
+export const ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema:
+  z.ZodType<
+    ApiRoutersMerchantAccountsSchemasMerchantAccount,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.literal("merchant-account").default("merchant-account"),
+    id: z.string(),
+    display_name: z.string(),
+    loon_client_key: z.nullable(z.string()).optional(),
+    loon_secret_key: z.nullable(z.string()).optional(),
+    loon_accepted_schemes: z.nullable(z.array(CardScheme$inboundSchema))
+      .optional(),
+    account_updater_request_encryption_key: z.nullable(z.string()).optional(),
+    account_updater_request_encryption_key_id: z.nullable(z.string())
+      .optional(),
+    account_updater_response_decryption_key: z.nullable(z.string()).optional(),
+    account_updater_response_decryption_key_id: z.nullable(z.string())
+      .optional(),
+    account_updater_enabled: z.boolean(),
+    over_capture_amount: z.nullable(z.number().int()).optional(),
+    over_capture_percentage: z.nullable(z.number().int()).optional(),
+    visa_network_tokens_requestor_id: z.nullable(z.string()).optional(),
+    visa_network_tokens_app_id: z.nullable(z.string()).optional(),
+    amex_network_tokens_requestor_id: z.nullable(z.string()).optional(),
+    amex_network_tokens_app_id: z.nullable(z.string()).optional(),
+    mastercard_network_tokens_requestor_id: z.nullable(z.string()).optional(),
+    mastercard_network_tokens_app_id: z.nullable(z.string()).optional(),
+    discover_network_tokens_requestor_id: z.nullable(z.string()).optional(),
+    discover_network_tokens_app_id: z.nullable(z.string()).optional(),
+    async_network_tokens_enabled: z.boolean().default(false),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_name": "displayName",
+      "loon_client_key": "loonClientKey",
+      "loon_secret_key": "loonSecretKey",
+      "loon_accepted_schemes": "loonAcceptedSchemes",
+      "account_updater_request_encryption_key":
+        "accountUpdaterRequestEncryptionKey",
+      "account_updater_request_encryption_key_id":
+        "accountUpdaterRequestEncryptionKeyId",
+      "account_updater_response_decryption_key":
+        "accountUpdaterResponseDecryptionKey",
+      "account_updater_response_decryption_key_id":
+        "accountUpdaterResponseDecryptionKeyId",
+      "account_updater_enabled": "accountUpdaterEnabled",
+      "over_capture_amount": "overCaptureAmount",
+      "over_capture_percentage": "overCapturePercentage",
+      "visa_network_tokens_requestor_id": "visaNetworkTokensRequestorId",
+      "visa_network_tokens_app_id": "visaNetworkTokensAppId",
+      "amex_network_tokens_requestor_id": "amexNetworkTokensRequestorId",
+      "amex_network_tokens_app_id": "amexNetworkTokensAppId",
+      "mastercard_network_tokens_requestor_id":
+        "mastercardNetworkTokensRequestorId",
+      "mastercard_network_tokens_app_id": "mastercardNetworkTokensAppId",
+      "discover_network_tokens_requestor_id":
+        "discoverNetworkTokensRequestorId",
+      "discover_network_tokens_app_id": "discoverNetworkTokensAppId",
+      "async_network_tokens_enabled": "asyncNetworkTokensEnabled",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
   });
-});
 
-export function merchantAccountFromJSON(
+export function apiRoutersMerchantAccountsSchemasMerchantAccountFromJSON(
   jsonString: string,
-): SafeParseResult<MerchantAccount, SDKValidationError> {
+): SafeParseResult<
+  ApiRoutersMerchantAccountsSchemasMerchantAccount,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => MerchantAccount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MerchantAccount' from JSON`,
+    (x) =>
+      ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ApiRoutersMerchantAccountsSchemasMerchantAccount' from JSON`,
   );
 }

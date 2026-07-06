@@ -7,7 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { Creator, Creator$inboundSchema } from "./creator.js";
+import {
+  ApiCommonSchemasCreator,
+  ApiCommonSchemasCreator$inboundSchema,
+} from "./apicommonschemascreator.js";
 import { RefundStatus, RefundStatus$inboundSchema } from "./refundstatus.js";
 import {
   RefundTargetType,
@@ -76,7 +79,7 @@ export type Refund = {
   /**
    * The user that created this resource
    */
-  creator?: Creator | null | undefined;
+  creator?: ApiCommonSchemasCreator | null | undefined;
   /**
    * The standardized error code set by Gr4vy.
    */
@@ -126,7 +129,7 @@ export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
     updated_at: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)
     ),
-    creator: z.nullable(Creator$inboundSchema).optional(),
+    creator: z.nullable(ApiCommonSchemasCreator$inboundSchema).optional(),
     error_code: z.nullable(z.string()).optional(),
     raw_response_code: z.nullable(z.string()).optional(),
     raw_response_description: z.nullable(z.string()).optional(),

@@ -27,18 +27,18 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create a merchant account
+ * Create an API key pair
  *
  * @remarks
- * Create a new merchant account in an instance.
+ * Create a new API key pair.
  */
-export function merchantAccountsCreate(
+export function apiKeyPairsCreate(
   client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
+  request: components.APIKeyPairCreate,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+    components.APIKeyPair,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -70,12 +70,12 @@ export function merchantAccountsCreate(
 
 async function $do(
   client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
+  request: components.APIKeyPairCreate,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+      components.APIKeyPair,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -102,7 +102,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => components.MerchantAccountCreate$outboundSchema.parse(value),
+    (value) => components.APIKeyPairCreate$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -111,7 +111,7 @@ async function $do(
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
 
-  const path = pathToFunc("/merchant-accounts")();
+  const path = pathToFunc("/api-key-pairs")();
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
@@ -125,7 +125,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "create_merchant_account",
+    operationID: "create_api_key_pair",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -169,7 +169,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+    components.APIKeyPair,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -191,10 +191,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(
-      201,
-      components.ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema,
-    ),
+    M.json(201, components.APIKeyPair$inboundSchema),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),

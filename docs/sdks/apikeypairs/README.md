@@ -1,21 +1,22 @@
-# MerchantAccounts
+# ApiKeyPairs
 
 ## Overview
 
 ### Available Operations
 
-* [list](#list) - List all merchant accounts
-* [create](#create) - Create a merchant account
-* [get](#get) - Get a merchant account
-* [update](#update) - Update a merchant account
+* [list](#list) - List all API key pairs
+* [create](#create) - Create an API key pair
+* [get](#get) - Get an API key pair
+* [update](#update) - Update an API key pair
+* [delete](#delete) - Delete an API key pair
 
 ## list
 
-List all merchant accounts in an instance.
+List all API key pairs.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="list_merchant_accounts" method="get" path="/merchant-accounts" -->
+<!-- UsageSnippet language="typescript" operationID="list_api_key_pairs" method="get" path="/api-key-pairs" -->
 ```typescript
 import { Gr4vy, withToken } from "@gr4vy/sdk";
 import fs from "fs";
@@ -30,7 +31,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.merchantAccounts.list();
+  const result = await gr4vy.apiKeyPairs.list();
 
   for await (const page of result) {
     console.log(page);
@@ -46,7 +47,7 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { merchantAccountsList } from "@gr4vy/sdk/funcs/merchantAccountsList.js";
+import { apiKeyPairsList } from "@gr4vy/sdk/funcs/apiKeyPairsList.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -55,14 +56,14 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await merchantAccountsList(gr4vy);
+  const res = await apiKeyPairsList(gr4vy);
   if (res.ok) {
     const { value: result } = res;
     for await (const page of result) {
     console.log(page);
   }
   } else {
-    console.log("merchantAccountsList failed:", res.error);
+    console.log("apiKeyPairsList failed:", res.error);
   }
 }
 
@@ -74,15 +75,14 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `cursor`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A pointer to the page of results to return.                                                                                                                                    | ZXhhbXBsZTE                                                                                                                                                                    |
-| `limit`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The maximum number of items that are at returned.                                                                                                                              | 20                                                                                                                                                                             |
-| `search`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The search term to filter merchant accounts by.                                                                                                                                | merchant-12345                                                                                                                                                                 |
+| `limit`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The maximum number of items that are returned.                                                                                                                                 | 20                                                                                                                                                                             |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
-**Promise\<[operations.ListMerchantAccountsResponse](../../models/operations/listmerchantaccountsresponse.md)\>**
+**Promise\<[operations.ListApiKeyPairsResponse](../../models/operations/listapikeypairsresponse.md)\>**
 
 ### Errors
 
@@ -104,11 +104,11 @@ run();
 
 ## create
 
-Create a new merchant account in an instance.
+Create a new API key pair.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="create_merchant_account" method="post" path="/merchant-accounts" -->
+<!-- UsageSnippet language="typescript" operationID="create_api_key_pair" method="post" path="/api-key-pairs" -->
 ```typescript
 import { Gr4vy, withToken } from "@gr4vy/sdk";
 import fs from "fs";
@@ -123,11 +123,11 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.merchantAccounts.create({
-    accountUpdaterEnabled: true,
-    asyncNetworkTokensEnabled: true,
-    id: "merchant-12345",
-    displayName: "Example",
+  const result = await gr4vy.apiKeyPairs.create({
+    displayName: "Production key",
+    roleIds: [
+      "8f4b8c1a-1b2c-4d3e-9f5a-6b7c8d9e0f1a",
+    ],
   });
 
   console.log(result);
@@ -142,7 +142,7 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { merchantAccountsCreate } from "@gr4vy/sdk/funcs/merchantAccountsCreate.js";
+import { apiKeyPairsCreate } from "@gr4vy/sdk/funcs/apiKeyPairsCreate.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -151,17 +151,17 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await merchantAccountsCreate(gr4vy, {
-    accountUpdaterEnabled: true,
-    asyncNetworkTokensEnabled: true,
-    id: "merchant-12345",
-    displayName: "Example",
+  const res = await apiKeyPairsCreate(gr4vy, {
+    displayName: "Production key",
+    roleIds: [
+      "8f4b8c1a-1b2c-4d3e-9f5a-6b7c8d9e0f1a",
+    ],
   });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("merchantAccountsCreate failed:", res.error);
+    console.log("apiKeyPairsCreate failed:", res.error);
   }
 }
 
@@ -172,14 +172,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.MerchantAccountCreate](../../models/components/merchantaccountcreate.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [components.APIKeyPairCreate](../../models/components/apikeypaircreate.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[components.ApiRoutersMerchantAccountsSchemasMerchantAccount](../../models/components/apiroutersmerchantaccountsschemasmerchantaccount.md)\>**
+**Promise\<[components.APIKeyPair](../../models/components/apikeypair.md)\>**
 
 ### Errors
 
@@ -201,11 +201,11 @@ run();
 
 ## get
 
-Get info about a merchant account in an instance.
+Fetches an API key pair by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="get_merchant_account" method="get" path="/merchant-accounts/{merchant_account_id}" -->
+<!-- UsageSnippet language="typescript" operationID="get_api_key_pair" method="get" path="/api-key-pairs/{api_key_pair_id}" -->
 ```typescript
 import { Gr4vy, withToken } from "@gr4vy/sdk";
 import fs from "fs";
@@ -220,7 +220,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.merchantAccounts.get("merchant-12345");
+  const result = await gr4vy.apiKeyPairs.get("fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   console.log(result);
 }
@@ -234,7 +234,7 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { merchantAccountsGet } from "@gr4vy/sdk/funcs/merchantAccountsGet.js";
+import { apiKeyPairsGet } from "@gr4vy/sdk/funcs/apiKeyPairsGet.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -243,12 +243,12 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await merchantAccountsGet(gr4vy, "merchant-12345");
+  const res = await apiKeyPairsGet(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("merchantAccountsGet failed:", res.error);
+    console.log("apiKeyPairsGet failed:", res.error);
   }
 }
 
@@ -259,14 +259,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `merchantAccountId`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the merchant account.                                                                                                                                                | merchant-12345                                                                                                                                                                 |
+| `apiKeyPairId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the API key pair.                                                                                                                                                    | fe26475d-ec3e-4884-9553-f7356683f7f9                                                                                                                                           |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
-**Promise\<[components.ApiRoutersMerchantAccountsSchemasMerchantAccount](../../models/components/apiroutersmerchantaccountsschemasmerchantaccount.md)\>**
+**Promise\<[components.APIKeyPair](../../models/components/apikeypair.md)\>**
 
 ### Errors
 
@@ -288,11 +288,11 @@ run();
 
 ## update
 
-Update info for a merchant account in an instance.
+Updates an API key pair.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="update_merchant_account" method="put" path="/merchant-accounts/{merchant_account_id}" -->
+<!-- UsageSnippet language="typescript" operationID="update_api_key_pair" method="put" path="/api-key-pairs/{api_key_pair_id}" -->
 ```typescript
 import { Gr4vy, withToken } from "@gr4vy/sdk";
 import fs from "fs";
@@ -307,10 +307,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.merchantAccounts.update({
-    accountUpdaterEnabled: true,
-    asyncNetworkTokensEnabled: true,
-  }, "merchant-12345");
+  const result = await gr4vy.apiKeyPairs.update({}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
 
   console.log(result);
 }
@@ -324,7 +321,7 @@ The standalone function version of this method:
 
 ```typescript
 import { Gr4vyCore } from "@gr4vy/sdk/core.js";
-import { merchantAccountsUpdate } from "@gr4vy/sdk/funcs/merchantAccountsUpdate.js";
+import { apiKeyPairsUpdate } from "@gr4vy/sdk/funcs/apiKeyPairsUpdate.js";
 
 // Use `Gr4vyCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -333,15 +330,12 @@ const gr4vy = new Gr4vyCore({
 });
 
 async function run() {
-  const res = await merchantAccountsUpdate(gr4vy, {
-    accountUpdaterEnabled: true,
-    asyncNetworkTokensEnabled: true,
-  }, "merchant-12345");
+  const res = await apiKeyPairsUpdate(gr4vy, {}, "fe26475d-ec3e-4884-9553-f7356683f7f9");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("merchantAccountsUpdate failed:", res.error);
+    console.log("apiKeyPairsUpdate failed:", res.error);
   }
 }
 
@@ -352,15 +346,102 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `merchantAccountId`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the merchant account.                                                                                                                                                | merchant-12345                                                                                                                                                                 |
-| `merchantAccountUpdate`                                                                                                                                                        | [components.MerchantAccountUpdate](../../models/components/merchantaccountupdate.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `apiKeyPairId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the API key pair.                                                                                                                                                    | fe26475d-ec3e-4884-9553-f7356683f7f9                                                                                                                                           |
+| `apiKeyPairUpdate`                                                                                                                                                             | [components.APIKeyPairUpdate](../../models/components/apikeypairupdate.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
-**Promise\<[components.ApiRoutersMerchantAccountsSchemasMerchantAccount](../../models/components/apiroutersmerchantaccountsschemasmerchantaccount.md)\>**
+**Promise\<[components.APIKeyPair](../../models/components/apikeypair.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## delete
+
+Permanently removes an API key pair.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="delete_api_key_pair" method="delete" path="/api-key-pairs/{api_key_pair_id}" -->
+```typescript
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
+
+const gr4vy = new Gr4vy({
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});
+
+async function run() {
+  await gr4vy.apiKeyPairs.delete("fe26475d-ec3e-4884-9553-f7356683f7f9");
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { apiKeyPairsDelete } from "@gr4vy/sdk/funcs/apiKeyPairsDelete.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await apiKeyPairsDelete(gr4vy, "fe26475d-ec3e-4884-9553-f7356683f7f9");
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("apiKeyPairsDelete failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `apiKeyPairId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the API key pair.                                                                                                                                                    | fe26475d-ec3e-4884-9553-f7356683f7f9                                                                                                                                           |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<void\>**
 
 ### Errors
 
