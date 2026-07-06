@@ -3,7 +3,7 @@
  */
 
 import { Gr4vyCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeFormQuery } from "../lib/encodings.js";
 import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -11,7 +11,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import { Gr4vyError } from "../models/errors/gr4vyerror.js";
 import {
   ConnectionError,
@@ -23,59 +22,31 @@ import {
 import * as errors from "../models/errors/index.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
- * Create a merchant account
+ * List all API key pairs
  *
  * @remarks
- * Create a new merchant account in an instance.
+ * List all API key pairs.
  */
-export function merchantAccountsCreate(
+export function apiKeyPairsList(
   client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
+  cursor?: string | null | undefined,
+  limit?: number | undefined,
   options?: RequestOptions,
 ): APIPromise<
-  Result<
-    components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
-    | errors.Error400
-    | errors.Error401
-    | errors.Error403
-    | errors.Error404
-    | errors.Error405
-    | errors.Error409
-    | errors.HTTPValidationError
-    | errors.Error425
-    | errors.Error429
-    | errors.Error500
-    | errors.Error502
-    | errors.Error504
-    | Gr4vyError
-    | ResponseValidationError
-    | ConnectionError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | InvalidRequestError
-    | UnexpectedClientError
-    | SDKValidationError
-  >
-> {
-  return new APIPromise($do(
-    client,
-    request,
-    options,
-  ));
-}
-
-async function $do(
-  client: Gr4vyCore,
-  request: components.MerchantAccountCreate,
-  options?: RequestOptions,
-): Promise<
-  [
+  PageIterator<
     Result<
-      components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+      operations.ListApiKeyPairsResponse,
       | errors.Error400
       | errors.Error401
       | errors.Error403
@@ -97,24 +68,78 @@ async function $do(
       | UnexpectedClientError
       | SDKValidationError
     >,
+    { cursor: string }
+  >
+> {
+  return new APIPromise($do(
+    client,
+    cursor,
+    limit,
+    options,
+  ));
+}
+
+async function $do(
+  client: Gr4vyCore,
+  cursor?: string | null | undefined,
+  limit?: number | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    PageIterator<
+      Result<
+        operations.ListApiKeyPairsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.Error403
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
+        | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
+        | Gr4vyError
+        | ResponseValidationError
+        | ConnectionError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | InvalidRequestError
+        | UnexpectedClientError
+        | SDKValidationError
+      >,
+      { cursor: string }
+    >,
     APICall,
   ]
 > {
+  const input: operations.ListApiKeyPairsRequest | undefined = {
+    cursor: cursor,
+    limit: limit,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => components.MerchantAccountCreate$outboundSchema.parse(value),
+    input,
+    (value) =>
+      operations.ListApiKeyPairsRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return [parsed, { status: "invalid" }];
+    return [haltIterator(parsed), { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = null;
 
-  const path = pathToFunc("/merchant-accounts")();
+  const path = pathToFunc("/api-key-pairs")();
+
+  const query = encodeFormQuery({
+    "cursor": payload?.cursor,
+    "limit": payload?.limit,
+  });
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
@@ -125,7 +150,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "create_merchant_account",
+    operationID: "list_api_key_pairs",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -133,22 +158,33 @@ async function $do(
     securitySource: client._options.bearerAuth,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 200,
+          maxInterval: 200,
+          exponent: 1,
+          maxElapsedTime: 1000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["5XX"],
   };
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "POST",
+    method: "GET",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return [requestRes, { status: "invalid" }];
+    return [haltIterator(requestRes), { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -160,7 +196,7 @@ async function $do(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return [doResult, { status: "request-error", request: req }];
+    return [haltIterator(doResult), { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -168,8 +204,8 @@ async function $do(
     HttpMeta: { Response: response, Request: req },
   };
 
-  const [result] = await M.match<
-    components.ApiRoutersMerchantAccountsSchemasMerchantAccount,
+  const [result, raw] = await M.match<
+    operations.ListApiKeyPairsResponse,
     | errors.Error400
     | errors.Error401
     | errors.Error403
@@ -191,10 +227,9 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(
-      201,
-      components.ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema,
-    ),
+    M.json(200, operations.ListApiKeyPairsResponse$inboundSchema, {
+      key: "Result",
+    }),
     M.jsonErr(400, errors.Error400$inboundSchema),
     M.jsonErr(401, errors.Error401$inboundSchema),
     M.jsonErr(403, errors.Error403$inboundSchema),
@@ -211,8 +246,67 @@ async function $do(
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return [result, { status: "complete", request: req, response }];
+    return [haltIterator(result), {
+      status: "complete",
+      request: req,
+      response,
+    }];
   }
 
-  return [result, { status: "complete", request: req, response }];
+  const nextFunc = (
+    responseData: unknown,
+  ): {
+    next: Paginator<
+      Result<
+        operations.ListApiKeyPairsResponse,
+        | errors.Error400
+        | errors.Error401
+        | errors.Error403
+        | errors.Error404
+        | errors.Error405
+        | errors.Error409
+        | errors.HTTPValidationError
+        | errors.Error425
+        | errors.Error429
+        | errors.Error500
+        | errors.Error502
+        | errors.Error504
+        | Gr4vyError
+        | ResponseValidationError
+        | ConnectionError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | InvalidRequestError
+        | UnexpectedClientError
+        | SDKValidationError
+      >
+    >;
+    "~next"?: { cursor: string };
+  } => {
+    const nextCursor =
+      (responseData as { next_cursor?: unknown | null }).next_cursor;
+    if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
+      return { next: () => null };
+    }
+
+    const nextVal = () =>
+      apiKeyPairsList(
+        client,
+        nextCursor,
+        limit,
+        options,
+      );
+
+    return { next: nextVal, "~next": { cursor: nextCursor } };
+  };
+
+  const page = { ...result, ...nextFunc(raw) };
+  return [{ ...page, ...createPageIterator(page, (v) => !v.ok) }, {
+    status: "complete",
+    request: req,
+    response,
+  }];
 }

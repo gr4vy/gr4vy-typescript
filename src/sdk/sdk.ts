@@ -4,6 +4,7 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { AccountUpdater } from "./accountupdater.js";
+import { ApiKeyPairs } from "./apikeypairs.js";
 import { AuditLogs } from "./auditlogs.js";
 import { Buyers } from "./buyers.js";
 import { CardSchemeDefinitions } from "./cardschemedefinitions.js";
@@ -27,6 +28,11 @@ export class Gr4vy extends ClientSDK {
   private _accountUpdater?: AccountUpdater;
   get accountUpdater(): AccountUpdater {
     return (this._accountUpdater ??= new AccountUpdater(this._options));
+  }
+
+  private _apiKeyPairs?: ApiKeyPairs;
+  get apiKeyPairs(): ApiKeyPairs {
+    return (this._apiKeyPairs ??= new ApiKeyPairs(this._options));
   }
 
   private _buyers?: Buyers;

@@ -278,6 +278,14 @@ try {
 
 * [create](docs/sdks/jobs/README.md#create) - Create account updater job
 
+### [ApiKeyPairs](docs/sdks/apikeypairs/README.md)
+
+* [list](docs/sdks/apikeypairs/README.md#list) - List all API key pairs
+* [create](docs/sdks/apikeypairs/README.md#create) - Create an API key pair
+* [get](docs/sdks/apikeypairs/README.md#get) - Get an API key pair
+* [update](docs/sdks/apikeypairs/README.md#update) - Update an API key pair
+* [delete](docs/sdks/apikeypairs/README.md#delete) - Delete an API key pair
+
 ### [AuditLogs](docs/sdks/auditlogs/README.md)
 
 * [list](docs/sdks/auditlogs/README.md#list) - List audit log entries
@@ -857,7 +865,7 @@ const gr4vy = new Gr4vy({
 });
 
 async function run() {
-  const result = await gr4vy.buyers.list();
+  const result = await gr4vy.apiKeyPairs.list();
 
   for await (const page of result) {
     console.log(page);
@@ -998,6 +1006,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`accountUpdaterJobsCreate`](docs/sdks/jobs/README.md#create) - Create account updater job
+- [`apiKeyPairsCreate`](docs/sdks/apikeypairs/README.md#create) - Create an API key pair
+- [`apiKeyPairsDelete`](docs/sdks/apikeypairs/README.md#delete) - Delete an API key pair
+- [`apiKeyPairsGet`](docs/sdks/apikeypairs/README.md#get) - Get an API key pair
+- [`apiKeyPairsList`](docs/sdks/apikeypairs/README.md#list) - List all API key pairs
+- [`apiKeyPairsUpdate`](docs/sdks/apikeypairs/README.md#update) - Update an API key pair
 - [`auditLogsList`](docs/sdks/auditlogs/README.md#list) - List audit log entries
 - [`buyersCreate`](docs/sdks/buyers/README.md#create) - Add a buyer
 - [`buyersDelete`](docs/sdks/buyers/README.md#delete) - Delete a buyer
