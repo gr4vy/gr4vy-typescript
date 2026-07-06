@@ -39,6 +39,10 @@ export type TransactionCaptureCreate = {
    * An external identifier that can be used to match the capture against your own records.
    */
   externalIdentifier?: string | null | undefined;
+  /**
+   * Whether this capture request should re-authorize the transaction if it has expired.
+   */
+  reauthorizeIfAuthorizationExpired?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -48,6 +52,7 @@ export type TransactionCaptureCreate$Outbound = {
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   final: boolean;
   external_identifier?: string | null | undefined;
+  reauthorize_if_authorization_expired?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -61,10 +66,12 @@ export const TransactionCaptureCreate$outboundSchema: z.ZodType<
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
   final: z.boolean().default(true),
   externalIdentifier: z.nullable(z.string()).optional(),
+  reauthorizeIfAuthorizationExpired: z.nullable(z.boolean()).optional(),
 }).transform((v) => {
   return remap$(v, {
     cartItems: "cart_items",
     externalIdentifier: "external_identifier",
+    reauthorizeIfAuthorizationExpired: "reauthorize_if_authorization_expired",
   });
 });
 
