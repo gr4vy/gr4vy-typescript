@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type ApiCommonSchemasMerchantAccount = {
+export type MerchantAccountSummary = {
   type: "merchant-account";
   id: string;
   displayName: string;
@@ -19,8 +19,8 @@ export type ApiCommonSchemasMerchantAccount = {
 };
 
 /** @internal */
-export const ApiCommonSchemasMerchantAccount$inboundSchema: z.ZodType<
-  ApiCommonSchemasMerchantAccount,
+export const MerchantAccountSummary$inboundSchema: z.ZodType<
+  MerchantAccountSummary,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -41,12 +41,12 @@ export const ApiCommonSchemasMerchantAccount$inboundSchema: z.ZodType<
   });
 });
 
-export function apiCommonSchemasMerchantAccountFromJSON(
+export function merchantAccountSummaryFromJSON(
   jsonString: string,
-): SafeParseResult<ApiCommonSchemasMerchantAccount, SDKValidationError> {
+): SafeParseResult<MerchantAccountSummary, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ApiCommonSchemasMerchantAccount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApiCommonSchemasMerchantAccount' from JSON`,
+    (x) => MerchantAccountSummary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MerchantAccountSummary' from JSON`,
   );
 }

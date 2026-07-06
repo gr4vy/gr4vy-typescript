@@ -53,7 +53,7 @@ export class MerchantAccounts extends ClientSDK {
   async create(
     request: components.MerchantAccountCreate,
     options?: RequestOptions,
-  ): Promise<components.ApiRoutersMerchantAccountsSchemasMerchantAccount> {
+  ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsCreate(
       this,
       request,
@@ -70,7 +70,7 @@ export class MerchantAccounts extends ClientSDK {
   async get(
     merchantAccountId: string,
     options?: RequestOptions,
-  ): Promise<components.ApiRoutersMerchantAccountsSchemasMerchantAccount> {
+  ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsGet(
       this,
       merchantAccountId,
@@ -88,7 +88,7 @@ export class MerchantAccounts extends ClientSDK {
     merchantAccountUpdate: components.MerchantAccountUpdate,
     merchantAccountId: string,
     options?: RequestOptions,
-  ): Promise<components.ApiRoutersMerchantAccountsSchemasMerchantAccount> {
+  ): Promise<components.MerchantAccount> {
     return unwrapAsync(merchantAccountsUpdate(
       this,
       merchantAccountUpdate,
