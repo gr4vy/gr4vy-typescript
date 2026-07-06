@@ -13,5 +13,5 @@ let value: GiftCardServiceProvider = "mock-gift-card";
 ## Values
 
 ```typescript
-"mock-gift-card" | "qwikcilver-gift-card" | Unrecognized<string>
+"mock-gift-card" | "qwikcilver-gift-card" | "valuelink-gift-card" | Unrecognized<string>
 ```

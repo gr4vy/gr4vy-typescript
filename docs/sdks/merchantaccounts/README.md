@@ -179,7 +179,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ApiRoutersMerchantAccountsSchemasMerchantAccount](../../models/components/apiroutersmerchantaccountsschemasmerchantaccount.md)\>**
+**Promise\<[components.MerchantAccount](../../models/components/merchantaccount.md)\>**
 
 ### Errors
 
@@ -266,7 +266,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ApiRoutersMerchantAccountsSchemasMerchantAccount](../../models/components/apiroutersmerchantaccountsschemasmerchantaccount.md)\>**
+**Promise\<[components.MerchantAccount](../../models/components/merchantaccount.md)\>**
 
 ### Errors
 
@@ -360,7 +360,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ApiRoutersMerchantAccountsSchemasMerchantAccount](../../models/components/apiroutersmerchantaccountsschemasmerchantaccount.md)\>**
+**Promise\<[components.MerchantAccount](../../models/components/merchantaccount.md)\>**
 
 ### Errors
 

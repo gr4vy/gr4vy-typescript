@@ -12,7 +12,7 @@ let value: GiftCards = {
       merchantAccountId: "default",
       giftCardService: {
         id: "35b60feec-a7c7-4844-b503-f39b09192d81",
-        giftCardServiceDefinitionId: "mock-gift-card",
+        giftCardServiceDefinitionId: "qwikcilver-gift-card",
         displayName: "Qwikcilver USA",
       },
       bin: "412345",

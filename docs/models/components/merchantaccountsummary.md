@@ -1,15 +1,15 @@
-# ApiCommonSchemasMerchantAccount
+# MerchantAccountSummary
 
 ## Example Usage
 
 ```typescript
-import { ApiCommonSchemasMerchantAccount } from "@gr4vy/sdk/models/components";
+import { MerchantAccountSummary } from "@gr4vy/sdk/models/components";
 
-let value: ApiCommonSchemasMerchantAccount = {
+let value: MerchantAccountSummary = {
   id: "<id>",
-  displayName: "Randi.Will",
-  createdAt: new Date("2025-11-27T02:48:27.430Z"),
-  updatedAt: new Date("2026-03-19T10:18:47.009Z"),
+  displayName: "Patricia86",
+  createdAt: new Date("2024-09-22T20:42:29.200Z"),
+  updatedAt: new Date("2024-11-27T02:41:12.764Z"),
 };
 ```
 

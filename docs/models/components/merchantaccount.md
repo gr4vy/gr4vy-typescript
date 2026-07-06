@@ -1,11 +1,11 @@
-# ApiRoutersMerchantAccountsSchemasMerchantAccount
+# MerchantAccount
 
 ## Example Usage
 
 ```typescript
-import { ApiRoutersMerchantAccountsSchemasMerchantAccount } from "@gr4vy/sdk/models/components";
+import { MerchantAccount } from "@gr4vy/sdk/models/components";
 
-let value: ApiRoutersMerchantAccountsSchemasMerchantAccount = {
+let value: MerchantAccount = {
   id: "merchant-12345",
   displayName: "John Doe",
   accountUpdaterEnabled: true,

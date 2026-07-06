@@ -7,7 +7,7 @@ import { GiftCardService } from "@gr4vy/sdk/models/components";
 
 let value: GiftCardService = {
   id: "35b60feec-a7c7-4844-b503-f39b09192d81",
-  giftCardServiceDefinitionId: "qwikcilver-gift-card",
+  giftCardServiceDefinitionId: "valuelink-gift-card",
   displayName: "Qwikcilver USA",
 };
 ```

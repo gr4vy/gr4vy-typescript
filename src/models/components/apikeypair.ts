@@ -8,10 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  ApiCommonSchemasMerchantAccount,
-  ApiCommonSchemasMerchantAccount$inboundSchema,
-} from "./apicommonschemasmerchantaccount.js";
-import {
   ApiRoutersApiKeyPairsSchemasCreator,
   ApiRoutersApiKeyPairsSchemasCreator$inboundSchema,
 } from "./apiroutersapikeypairsschemascreator.js";
@@ -19,6 +15,10 @@ import {
   CertificateAlgorithm,
   CertificateAlgorithm$inboundSchema,
 } from "./certificatealgorithm.js";
+import {
+  MerchantAccountSummary,
+  MerchantAccountSummary$inboundSchema,
+} from "./merchantaccountsummary.js";
 import { Role, Role$inboundSchema } from "./role.js";
 
 export type APIKeyPair = {
@@ -62,7 +62,7 @@ export type APIKeyPair = {
   /**
    * The merchant accounts this API key pair has access to. An empty list means it has access to all merchant accounts.
    */
-  merchantAccounts?: Array<ApiCommonSchemasMerchantAccount> | undefined;
+  merchantAccounts?: Array<MerchantAccountSummary> | undefined;
   /**
    * The roles assigned to this API key pair.
    */
@@ -86,8 +86,7 @@ export const APIKeyPair$inboundSchema: z.ZodType<
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   creator: z.nullable(ApiRoutersApiKeyPairsSchemasCreator$inboundSchema)
     .optional(),
-  merchant_accounts: z.array(ApiCommonSchemasMerchantAccount$inboundSchema)
-    .optional(),
+  merchant_accounts: z.array(MerchantAccountSummary$inboundSchema).optional(),
   roles: z.array(Role$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

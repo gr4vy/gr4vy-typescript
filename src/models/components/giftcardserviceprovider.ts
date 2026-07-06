@@ -9,6 +9,7 @@ import { OpenEnum } from "../../types/enums.js";
 export const GiftCardServiceProvider = {
   MockGiftCard: "mock-gift-card",
   QwikcilverGiftCard: "qwikcilver-gift-card",
+  ValuelinkGiftCard: "valuelink-gift-card",
 } as const;
 export type GiftCardServiceProvider = OpenEnum<typeof GiftCardServiceProvider>;
 

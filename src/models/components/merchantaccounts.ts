@@ -8,15 +8,15 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  ApiRoutersMerchantAccountsSchemasMerchantAccount,
-  ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema,
-} from "./apiroutersmerchantaccountsschemasmerchantaccount.js";
+  MerchantAccount,
+  MerchantAccount$inboundSchema,
+} from "./merchantaccount.js";
 
 export type MerchantAccounts = {
   /**
    * A list of items returned for this request.
    */
-  items: Array<ApiRoutersMerchantAccountsSchemasMerchantAccount>;
+  items: Array<MerchantAccount>;
   /**
    * The number of items for this page.
    */
@@ -37,9 +37,7 @@ export const MerchantAccounts$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  items: z.array(
-    ApiRoutersMerchantAccountsSchemasMerchantAccount$inboundSchema,
-  ),
+  items: z.array(MerchantAccount$inboundSchema),
   limit: z.number().int().default(20),
   next_cursor: z.nullable(z.string()).optional(),
   previous_cursor: z.nullable(z.string()).optional(),
