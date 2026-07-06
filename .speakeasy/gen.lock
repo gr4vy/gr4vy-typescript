@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 4eed672eb0ed6a08675378b8442fca4d
+  docChecksum: 0e0b183f1efd906b734066b8b01042fe
   docVersion: 1.0.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 2.3.16
-  configChecksum: dd41e1121ddf2898d3b0f92b474f4258
+  releaseVersion: 2.3.17
+  configChecksum: 810a0661bd57bfd9d295d2161aaafe6e
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 597f17d5-119a-4ed3-a647-4f4b37942ef6
-  pristine_commit_hash: deda7ec63f7eeebca7f7f53e744b3446e1f08bd2
-  pristine_tree_hash: c52cbc150433d554eda9d4ed9014228f86a18457
+  generation_id: 42cd8ae2-97ab-4e88-b929-8c890ae27a44
+  pristine_commit_hash: ef84f5d3244cb405da32f3f16d59b95645bf4ba3
+  pristine_tree_hash: 28edefece0fb8e8e8be906a45e3e2d40f9f64a89
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1455,8 +1455,8 @@ trackedFiles:
     pristine_git_object: 79f69fcdf3ad95abfee425c52278496178e87c27
   docs/models/components/transactioncapturecreate.md:
     id: f1fb39b47632
-    last_write_checksum: sha1:5f824f66fe20ec793526c0171e93cb6362b811ff
-    pristine_git_object: 02aecaea3af0179f7b19e3780880a605d20fa4e5
+    last_write_checksum: sha1:529caa93fb51ffe750d1750cc2c7ff4b3349b5a6
+    pristine_git_object: 003743e737a57f28ef48b1f2af96cbcffdbf68b9
   docs/models/components/transactionconnectionoptions.md:
     id: a4843e535547
     last_write_checksum: sha1:444a63969cc8d3afb9f5999df7583c928a0d23d3
@@ -2767,12 +2767,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:4c988f8deef23a84f6885b9a4d3d45b6748536b4
-    pristine_git_object: a4820a4f41c55bc625e59ab34396cacfa8a73fc9
+    last_write_checksum: sha1:9b792815e492472c5e88208af5707a8b891bd2d4
+    pristine_git_object: 214b9fa4bbadedc20184e77eb5ae4d6421005953
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:f4029fa0c8a428d4fa61bcb22e68bc9dde7d9bd6
-    pristine_git_object: 5344f0bafe97e164c246317283c0f30df9fd816c
+    last_write_checksum: sha1:942e6908b438cf369945d4dae3bedad53ce5fa68
+    pristine_git_object: b9bf5915f2ff10b9a415e4d286f4b1d46f59faa0
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3251,8 +3251,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4050deb7ef2165e172b8dc665449f3d42d3a0ebd
-    pristine_git_object: 597bfddbd5ceec863f9e83bd4b1fd5d9075eae2d
+    last_write_checksum: sha1:f6d5237654461e1f109732d779686e0124defd91
+    pristine_git_object: 1feb099580eb1a51e34840fff3ffc13c4deb5000
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -4539,8 +4539,8 @@ trackedFiles:
     pristine_git_object: 15df967f063a9510147cb8b26cff63a6d02e0854
   src/models/components/transactioncapturecreate.ts:
     id: da95f52c14de
-    last_write_checksum: sha1:03808e802b722e99340ea4dbdf9ef509e3f5535c
-    pristine_git_object: 2e98f9ecaf1e9b93196e19cbe403d192b5fd0b42
+    last_write_checksum: sha1:05c49512503e18f8c68434960aad5b278df99193
+    pristine_git_object: a38732fe332309af3908d61c6658fa31b324b23a
   src/models/components/transactionconnectionoptions.ts:
     id: 3f42998a2d5b
     last_write_checksum: sha1:bd82c04ca8f44db9fd7ade884e15f60a47169da3
@@ -9438,19 +9438,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `gr4vy.giftCards.get()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.giftCards.create()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.giftCards.list()`:  `response.items[].giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.list()`:  `response.items[].giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.create()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.get()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.update()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.capture()`:  `response.union(Transaction).giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.void()`:  `response.union(Transaction).giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.cancel()`:  `response.transaction.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.sync()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.capture()`: \n  *  `request.transactionCaptureCreate.reauthorizeIfAuthorizationExpired` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
