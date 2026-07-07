@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 0e0b183f1efd906b734066b8b01042fe
+  docChecksum: 3a79f04042680a6a2a2812613f5bb27a
   docVersion: 1.0.0
-  speakeasyVersion: 1.788.1
-  generationVersion: 2.915.1
-  releaseVersion: 2.3.17
-  configChecksum: 810a0661bd57bfd9d295d2161aaafe6e
+  speakeasyVersion: 1.789.0
+  generationVersion: 2.916.2
+  releaseVersion: 2.3.18
+  configChecksum: 88c6b61fc85f36849e3299a6fb249be5
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 42cd8ae2-97ab-4e88-b929-8c890ae27a44
-  pristine_commit_hash: ef84f5d3244cb405da32f3f16d59b95645bf4ba3
-  pristine_tree_hash: 28edefece0fb8e8e8be906a45e3e2d40f9f64a89
+  generation_id: 54775c16-c6d0-4032-99cd-121c8e564000
+  pristine_commit_hash: ac49896040d116458bf9385ad0c7c6ace0f4349d
+  pristine_tree_hash: 54d381e0bab6b713109de35b1fb0a2be38fcbbb4
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1451,8 +1451,8 @@ trackedFiles:
     pristine_git_object: 90cb827a3c336fa04b91bf05654b6ec7a35e853a
   docs/models/components/transactioncapture.md:
     id: 6234f4354db0
-    last_write_checksum: sha1:39b0c78ae9c31867814d3e1599a232f7f14209fd
-    pristine_git_object: 79f69fcdf3ad95abfee425c52278496178e87c27
+    last_write_checksum: sha1:96db900f8ff41d44c8e0884c3827d43fbdc5507e
+    pristine_git_object: a3cd59abbcab5d3d466aa6c1318c9aa64b5a7c7c
   docs/models/components/transactioncapturecreate.md:
     id: f1fb39b47632
     last_write_checksum: sha1:529caa93fb51ffe750d1750cc2c7ff4b3349b5a6
@@ -2767,12 +2767,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:9b792815e492472c5e88208af5707a8b891bd2d4
-    pristine_git_object: 214b9fa4bbadedc20184e77eb5ae4d6421005953
+    last_write_checksum: sha1:1f3b281eff414b14a55c5bf9b5de09b96e95b6ff
+    pristine_git_object: 93a6bc469da3050c4506d056e7fca0792b48a816
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:942e6908b438cf369945d4dae3bedad53ce5fa68
-    pristine_git_object: b9bf5915f2ff10b9a415e4d286f4b1d46f59faa0
+    last_write_checksum: sha1:8b6def9cd9cedd41feee084e3476f91de24e1ae7
+    pristine_git_object: a5b9375bc4adce27732b19c07bc3b479ec93019d
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3251,8 +3251,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:f6d5237654461e1f109732d779686e0124defd91
-    pristine_git_object: 1feb099580eb1a51e34840fff3ffc13c4deb5000
+    last_write_checksum: sha1:aff206adcab5bf2e3ad849103080cb6cba827da2
+    pristine_git_object: 60f66859cd904f856bfd926a1b61db62957e0fcd
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -4535,8 +4535,8 @@ trackedFiles:
     pristine_git_object: 516355afbf14f2f608b47eca95d36260bd0d9e20
   src/models/components/transactioncapture.ts:
     id: 387980a8eff0
-    last_write_checksum: sha1:f0d60ead332d2f84ab1ec2aa63e1c1bf1541c354
-    pristine_git_object: 15df967f063a9510147cb8b26cff63a6d02e0854
+    last_write_checksum: sha1:78c689d7f2a1e65b77030241f8e7988593bbaa88
+    pristine_git_object: 6e8215d35d71cfd2f428f89550cc6e9684eb8538
   src/models/components/transactioncapturecreate.ts:
     id: da95f52c14de
     last_write_checksum: sha1:05c49512503e18f8c68434960aad5b278df99193
@@ -9438,7 +9438,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.capture()`: \n  *  `request.transactionCaptureCreate.reauthorizeIfAuthorizationExpired` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `gr4vy.transactions.capture()`:  `response.union(TransactionCapture)` **Changed**
 generatedFiles:
   - .gitattributes
   - .npmignore
