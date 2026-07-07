@@ -7,7 +7,15 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  BillingDetails,
+  BillingDetails$inboundSchema,
+} from "./billingdetails.js";
 import { CaptureStatus, CaptureStatus$inboundSchema } from "./capturestatus.js";
+import {
+  ShippingDetails,
+  ShippingDetails$inboundSchema,
+} from "./shippingdetails.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
 export type TransactionCapture = {
@@ -44,6 +52,14 @@ export type TransactionCapture = {
    * The external identifier for the capture.
    */
   externalIdentifier?: string | null | undefined;
+  /**
+   * The billing details associated with the capture.
+   */
+  billingDetails?: BillingDetails | null | undefined;
+  /**
+   * The shipping details associated with the catpure.
+   */
+  shippingDetails?: ShippingDetails | null | undefined;
 };
 
 /** @internal */
@@ -61,6 +77,8 @@ export const TransactionCapture$inboundSchema: z.ZodType<
   capture_id: z.nullable(z.string()).optional(),
   payment_service_capture_id: z.nullable(z.string()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
+  billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
+  shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",
@@ -68,6 +86,8 @@ export const TransactionCapture$inboundSchema: z.ZodType<
     "capture_id": "captureId",
     "payment_service_capture_id": "paymentServiceCaptureId",
     "external_identifier": "externalIdentifier",
+    "billing_details": "billingDetails",
+    "shipping_details": "shippingDetails",
   });
 });
 
