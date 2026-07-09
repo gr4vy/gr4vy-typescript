@@ -146,6 +146,8 @@ export * from "./googlepaysessionrequest.js";
 export * from "./guestbuyer.js";
 export * from "./instrumenttype.js";
 export * from "./integrationclient.js";
+export * from "./klarnaoptions.js";
+export * from "./klarnasubscriptionoptions.js";
 export * from "./latitudeoptions.js";
 export * from "./mattildatapioptions.js";
 export * from "./merchantaccount.js";
