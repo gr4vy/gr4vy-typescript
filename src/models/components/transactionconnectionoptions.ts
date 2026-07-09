@@ -95,6 +95,11 @@ import {
   GoCardlessOptions$outboundSchema,
 } from "./gocardlessoptions.js";
 import {
+  KlarnaOptions,
+  KlarnaOptions$Outbound,
+  KlarnaOptions$outboundSchema,
+} from "./klarnaoptions.js";
+import {
   LatitudeOptions,
   LatitudeOptions$Outbound,
   LatitudeOptions$outboundSchema,
@@ -311,6 +316,10 @@ export type TransactionConnectionOptions = {
    */
   ecommpayCard?: EcommpayOptions | null | undefined;
   /**
+   * Custom options to be passed to the `klarna-klarna` connector.
+   */
+  klarnaKlarna?: KlarnaOptions | null | undefined;
+  /**
    * Custom options to be passed to the `fiserv-card` connector.
    */
   fiservCard?: FiservOptions | null | undefined;
@@ -472,6 +481,7 @@ export type TransactionConnectionOptions$Outbound = {
   "dlocal-pix"?: DlocalPIXOptions$Outbound | null | undefined;
   "dlocal-gcash"?: DlocalOptions$Outbound | null | undefined;
   "ecommpay-card"?: EcommpayOptions$Outbound | null | undefined;
+  "klarna-klarna"?: KlarnaOptions$Outbound | null | undefined;
   "fiserv-card"?: FiservOptions$Outbound | null | undefined;
   "forter-anti-fraud"?: ForterAntiFraudOptions$Outbound | null | undefined;
   "gem-gem"?: LatitudeOptions$Outbound | null | undefined;
@@ -546,6 +556,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   dlocalPix: z.nullable(DlocalPIXOptions$outboundSchema).optional(),
   dlocalGcash: z.nullable(DlocalOptions$outboundSchema).optional(),
   ecommpayCard: z.nullable(EcommpayOptions$outboundSchema).optional(),
+  klarnaKlarna: z.nullable(KlarnaOptions$outboundSchema).optional(),
   fiservCard: z.nullable(FiservOptions$outboundSchema).optional(),
   forterAntiFraud: z.nullable(ForterAntiFraudOptions$outboundSchema).optional(),
   gemGem: z.nullable(LatitudeOptions$outboundSchema).optional(),
@@ -613,6 +624,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     dlocalPix: "dlocal-pix",
     dlocalGcash: "dlocal-gcash",
     ecommpayCard: "ecommpay-card",
+    klarnaKlarna: "klarna-klarna",
     fiservCard: "fiserv-card",
     forterAntiFraud: "forter-anti-fraud",
     gemGem: "gem-gem",
