@@ -35,6 +35,10 @@ export type MerchantAccount = {
    */
   loonAcceptedSchemes?: Array<CardScheme> | null | undefined;
   /**
+   * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+   */
+  loonMerchantAccountId?: string | null | undefined;
+  /**
    * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
    */
   accountUpdaterRequestEncryptionKey?: string | null | undefined;
@@ -121,6 +125,7 @@ export const MerchantAccount$inboundSchema: z.ZodType<
   loon_secret_key: z.nullable(z.string()).optional(),
   loon_accepted_schemes: z.nullable(z.array(CardScheme$inboundSchema))
     .optional(),
+  loon_merchant_account_id: z.nullable(z.string()).optional(),
   account_updater_request_encryption_key: z.nullable(z.string()).optional(),
   account_updater_request_encryption_key_id: z.nullable(z.string()).optional(),
   account_updater_response_decryption_key: z.nullable(z.string()).optional(),
@@ -145,6 +150,7 @@ export const MerchantAccount$inboundSchema: z.ZodType<
     "loon_client_key": "loonClientKey",
     "loon_secret_key": "loonSecretKey",
     "loon_accepted_schemes": "loonAcceptedSchemes",
+    "loon_merchant_account_id": "loonMerchantAccountId",
     "account_updater_request_encryption_key":
       "accountUpdaterRequestEncryptionKey",
     "account_updater_request_encryption_key_id":
