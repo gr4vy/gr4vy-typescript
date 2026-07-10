@@ -48,6 +48,10 @@ export type MerchantAccountUpdate = {
    */
   loonAcceptedSchemes?: Array<CardScheme> | null | undefined;
   /**
+   * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+   */
+  loonMerchantAccountId?: string | null | undefined;
+  /**
    * Requestor ID provided for Visa after onboarding to use Network Tokens.
    */
   visaNetworkTokensRequestorId?: string | null | undefined;
@@ -101,6 +105,7 @@ export type MerchantAccountUpdate$Outbound = {
   loon_client_key?: string | null | undefined;
   loon_secret_key?: string | null | undefined;
   loon_accepted_schemes?: Array<string> | null | undefined;
+  loon_merchant_account_id?: string | null | undefined;
   visa_network_tokens_requestor_id?: string | null | undefined;
   visa_network_tokens_app_id?: string | null | undefined;
   amex_network_tokens_requestor_id?: string | null | undefined;
@@ -130,6 +135,7 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
   loonSecretKey: z.nullable(z.string()).optional(),
   loonAcceptedSchemes: z.nullable(z.array(CardScheme$outboundSchema))
     .optional(),
+  loonMerchantAccountId: z.nullable(z.string()).optional(),
   visaNetworkTokensRequestorId: z.nullable(z.string()).optional(),
   visaNetworkTokensAppId: z.nullable(z.string()).optional(),
   amexNetworkTokensRequestorId: z.nullable(z.string()).optional(),
@@ -156,6 +162,7 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
     loonClientKey: "loon_client_key",
     loonSecretKey: "loon_secret_key",
     loonAcceptedSchemes: "loon_accepted_schemes",
+    loonMerchantAccountId: "loon_merchant_account_id",
     visaNetworkTokensRequestorId: "visa_network_tokens_requestor_id",
     visaNetworkTokensAppId: "visa_network_tokens_app_id",
     amexNetworkTokensRequestorId: "amex_network_tokens_requestor_id",
