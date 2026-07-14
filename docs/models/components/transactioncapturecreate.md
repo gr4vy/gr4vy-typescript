@@ -7,7 +7,9 @@ Request body for capturing an authorized transaction.
 ```typescript
 import { TransactionCaptureCreate } from "@gr4vy/sdk/models/components";
 
-let value: TransactionCaptureCreate = {};
+let value: TransactionCaptureCreate = {
+  reauthorizeIfAuthorizationExpired: true,
+};
 ```
 
 ## Fields
