@@ -21,5 +21,5 @@ let value: GiftCardErrorCode = "incorrect_currency";
 ## Values
 
 ```typescript
-"invalid_gift_card" | "expired_card" | "inactive_card" | "invalid_service_credentials" | "invalid_amount" | "incorrect_currency" | "insufficient_funds" | "invalid_service_configuration" | "operation_canceled" | "service_error" | "service_network_error" | "unknown_error" | "max_gift_cards_reached" | Unrecognized<string>
+"invalid_gift_card" | "expired_card" | "inactive_card" | "invalid_service_credentials" | "invalid_amount" | "incorrect_currency" | "insufficient_funds" | "invalid_service_configuration" | "operation_canceled" | "service_error" | "service_network_error" | "unknown_error" | "max_gift_cards_reached" | "suspected_fraud" | "canceled_payment_method" | "duplicate_transaction" | "unexpected_state" | Unrecognized<string>
 ```

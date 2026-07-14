@@ -414,7 +414,9 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.transactions.capture({
     transactionId: "7099948d-7286-47e4-aad8-b68f7eb44591",
-    transactionCaptureCreate: {},
+    transactionCaptureCreate: {
+      reauthorizeIfAuthorizationExpired: true,
+    },
   });
 
   console.log(result);
@@ -441,7 +443,9 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await transactionsCapture(gr4vy, {
     transactionId: "7099948d-7286-47e4-aad8-b68f7eb44591",
-    transactionCaptureCreate: {},
+    transactionCaptureCreate: {
+      reauthorizeIfAuthorizationExpired: true,
+    },
   });
   if (res.ok) {
     const { value: result } = res;

@@ -31,6 +31,10 @@ export const GiftCardErrorCode = {
   ServiceNetworkError: "service_network_error",
   UnknownError: "unknown_error",
   MaxGiftCardsReached: "max_gift_cards_reached",
+  SuspectedFraud: "suspected_fraud",
+  CanceledPaymentMethod: "canceled_payment_method",
+  DuplicateTransaction: "duplicate_transaction",
+  UnexpectedState: "unexpected_state",
 } as const;
 /**
  * Gift card error codes.

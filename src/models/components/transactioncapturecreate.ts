@@ -42,7 +42,7 @@ export type TransactionCaptureCreate = {
   /**
    * Whether this capture request should re-authorize the transaction if it has expired.
    */
-  reauthorizeIfAuthorizationExpired?: boolean | null | undefined;
+  reauthorizeIfAuthorizationExpired?: boolean | undefined;
 };
 
 /** @internal */
@@ -52,7 +52,7 @@ export type TransactionCaptureCreate$Outbound = {
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   final: boolean;
   external_identifier?: string | null | undefined;
-  reauthorize_if_authorization_expired?: boolean | null | undefined;
+  reauthorize_if_authorization_expired: boolean;
 };
 
 /** @internal */
@@ -66,7 +66,7 @@ export const TransactionCaptureCreate$outboundSchema: z.ZodType<
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
   final: z.boolean().default(true),
   externalIdentifier: z.nullable(z.string()).optional(),
-  reauthorizeIfAuthorizationExpired: z.nullable(z.boolean()).optional(),
+  reauthorizeIfAuthorizationExpired: z.boolean().default(false),
 }).transform((v) => {
   return remap$(v, {
     cartItems: "cart_items",

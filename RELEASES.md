@@ -2525,3 +2525,13 @@ Based on:
 - [typescript v2.3.20] .
 ### Releases
 - [NPM v2.3.20] https://www.npmjs.com/package/@gr4vy/sdk/v/2.3.20 - .
+
+## 2026-07-14 08:41:45
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.790.0 (2.917.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v2.3.21] .
+### Releases
+- [NPM v2.3.21] https://www.npmjs.com/package/@gr4vy/sdk/v/2.3.21 - .
