@@ -21,7 +21,7 @@ import {
   WalletPaymentOptionContext$inboundSchema,
 } from "./walletpaymentoptioncontext.js";
 
-export type Context =
+export type PaymentOptionContextContext =
   | GooglePayPaymentOptionContext
   | WalletPaymentOptionContext
   | PaymentOptionContext;
@@ -43,20 +43,23 @@ export type PaymentOption = {
 };
 
 /** @internal */
-export const Context$inboundSchema: z.ZodType<Context, z.ZodTypeDef, unknown> =
-  z.union([
-    GooglePayPaymentOptionContext$inboundSchema,
-    WalletPaymentOptionContext$inboundSchema,
-    PaymentOptionContext$inboundSchema,
-  ]);
+export const PaymentOptionContextContext$inboundSchema: z.ZodType<
+  PaymentOptionContextContext,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  GooglePayPaymentOptionContext$inboundSchema,
+  WalletPaymentOptionContext$inboundSchema,
+  PaymentOptionContext$inboundSchema,
+]);
 
-export function contextFromJSON(
+export function paymentOptionContextContextFromJSON(
   jsonString: string,
-): SafeParseResult<Context, SDKValidationError> {
+): SafeParseResult<PaymentOptionContextContext, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Context$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Context' from JSON`,
+    (x) => PaymentOptionContextContext$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentOptionContextContext' from JSON`,
   );
 }
 
