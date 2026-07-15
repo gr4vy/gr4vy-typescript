@@ -484,6 +484,11 @@ try {
 
 * [list](docs/sdks/events/README.md#list) - List transaction events
 
+#### [Transactions.RefundSettlements](docs/sdks/refundsettlements/README.md)
+
+* [get](docs/sdks/refundsettlements/README.md#get) - Get transaction refund settlement
+* [list](docs/sdks/refundsettlements/README.md#list) - List transaction refund settlements
+
 #### [Transactions.Refunds](docs/sdks/gr4vyrefunds/README.md)
 
 * [list](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
@@ -1112,6 +1117,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transactionsList`](docs/sdks/transactions/README.md#list) - List transactions
 - [`transactionsRefundsAllCreate`](docs/sdks/all/README.md#create) - Create batch transaction refund
 - [`transactionsRefundsCreate`](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
+- [`transactionsRefundSettlementsGet`](docs/sdks/refundsettlements/README.md#get) - Get transaction refund settlement
+- [`transactionsRefundSettlementsList`](docs/sdks/refundsettlements/README.md#list) - List transaction refund settlements
 - [`transactionsRefundsGet`](docs/sdks/gr4vyrefunds/README.md#get) - Get transaction refund
 - [`transactionsRefundsList`](docs/sdks/gr4vyrefunds/README.md#list) - List transaction refunds
 - [`transactionsSettlementsGet`](docs/sdks/settlements/README.md#get) - Get transaction settlement

@@ -19,6 +19,7 @@ import { Actions } from "./actions.js";
 import { Captures } from "./captures.js";
 import { Events } from "./events.js";
 import { Gr4vyRefunds } from "./gr4vyrefunds.js";
+import { RefundSettlements } from "./refundsettlements.js";
 import { Settlements } from "./settlements.js";
 
 export class Transactions extends ClientSDK {
@@ -40,6 +41,11 @@ export class Transactions extends ClientSDK {
   private _settlements?: Settlements;
   get settlements(): Settlements {
     return (this._settlements ??= new Settlements(this._options));
+  }
+
+  private _refundSettlements?: RefundSettlements;
+  get refundSettlements(): RefundSettlements {
+    return (this._refundSettlements ??= new RefundSettlements(this._options));
   }
 
   private _captures?: Captures;
