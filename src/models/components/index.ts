@@ -254,6 +254,8 @@ export * from "./recipient.js";
 export * from "./redirectpaymentmethodcreate.js";
 export * from "./refund.js";
 export * from "./refunds.js";
+export * from "./refundsettlement.js";
+export * from "./refundsettlements.js";
 export * from "./refundstatus.js";
 export * from "./refundtargettype.js";
 export * from "./report.js";
