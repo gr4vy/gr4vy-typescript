@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 9c343f80a790408d258e2821c036621f
+  docChecksum: f3a9f030ea384aaf8880a55329b7c6e2
   docVersion: 1.0.0
   speakeasyVersion: 1.790.1
   generationVersion: 2.918.1
-  releaseVersion: 2.3.22
-  configChecksum: 8cd701de97e7d31c15d4894537de387f
+  releaseVersion: 2.3.23
+  configChecksum: 09d1654bc313e4e3066c775874ba7796
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: a795527c-a06c-4987-8a19-c8b71e6920e1
-  pristine_commit_hash: 0f49cd48701e3c2fd5867de73c9a7a512c0b7e44
-  pristine_tree_hash: 4f7ad4d7bb67bb875aff0c80b1e8ac25889e6619
+  generation_id: b9cd0346-6b29-451c-9785-be06b99458c5
+  pristine_commit_hash: e1d4ed7d7ee34d614f5ae09bb792e50e3ce5c157
+  pristine_tree_hash: 5090169ea940c11b955eb49c40e7333b596c1007
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -189,10 +189,6 @@ trackedFiles:
     id: "398447050044"
     last_write_checksum: sha1:a71731655f2a766056590ec7720fc3c7203bd748
     pristine_git_object: 3bd5ab819118d6bf73c5564fd35b787be4ee7294
-  docs/models/components/apitypesdigitalwalletaddress.md:
-    id: e64a06ef1306
-    last_write_checksum: sha1:39683054e951936fc34c94307a1640ce8388dd52
-    pristine_git_object: 17bc8da336197f2e8809ff90e2f850ac199d7815
   docs/models/components/applepaypaymentmethodcreate.md:
     id: 0312ae6b8d37
     last_write_checksum: sha1:995161d8fcfeac2d8662ec8f32783a7f371a5dc2
@@ -439,8 +435,8 @@ trackedFiles:
     pristine_git_object: b5cf021367e40d4e875ed4280e3973e95cd952ae
   docs/models/components/digitalwallet.md:
     id: 857177c2dea3
-    last_write_checksum: sha1:3de9292c1c4e4016d04278f1b14a8ca1048e8801
-    pristine_git_object: b145cce6ffacd696c216e52a64a377cf6fb9fa5d
+    last_write_checksum: sha1:e253d97c46d9b97dd5cb0a2b688ad56a32706077
+    pristine_git_object: d8a144f85a1045cc6bb771000d806aa2a1db6d04
   docs/models/components/digitalwalletaddress.md:
     id: 9ae7757026ea
     last_write_checksum: sha1:c2a77bf3f099a3c93d4fab00e7491eecb9c9cbe1
@@ -2807,12 +2803,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:05c36501f3466a966c811af355fe4ead751d4b30
-    pristine_git_object: 6eb4ad4a0359ac1563c873e457501f6306c4ab6c
+    last_write_checksum: sha1:d54f0e180c3b929e5494e21e2df0e05276b30dc7
+    pristine_git_object: 132a4d615efd3cf3e616de1c330632741847db64
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:f9db2f6b97a78635e0acebe974e7887d13f40a80
-    pristine_git_object: 89862d50413b98d64e1b28f44feb36c2d6586f29
+    last_write_checksum: sha1:e95e8387301dfab245c41d1e6ed5a1c4076a34d0
+    pristine_git_object: 1d223d7a674609902485138dfe9b623104121ee9
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3299,8 +3295,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:3a0f4187fd6cd604989a81c6f83c79fe86e05e78
-    pristine_git_object: a04964672f528f49740f31d2bab8c77291bfe9c0
+    last_write_checksum: sha1:68f586a5d31d939ac958c233fd455ebbcc3ba040
+    pristine_git_object: 6420e4177c6595bcb9b712cdf0c9195504082bd7
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -3461,10 +3457,6 @@ trackedFiles:
     id: f46a0d0716af
     last_write_checksum: sha1:5463d8bb0bff66f4f81d03ce1c3b8c48f4ccd036
     pristine_git_object: dcc4f789bb22a9e44d790c868c4c293e449e5b44
-  src/models/components/apitypesdigitalwalletaddress.ts:
-    id: 91a33168aa5d
-    last_write_checksum: sha1:ebc5e2f14ba14b2f85787b8eeb0ad6d2b0b96347
-    pristine_git_object: c76570dba572c069a74f8079e6178365c4a58210
   src/models/components/applepaypaymentmethodcreate.ts:
     id: a715fa09a2e2
     last_write_checksum: sha1:8ec2416494a0721d205a1e3d202ca7bc79c6f27d
@@ -3687,12 +3679,12 @@ trackedFiles:
     pristine_git_object: 8498da4b49e3c1833e3baa5c9e0eefdf3870d67d
   src/models/components/digitalwallet.ts:
     id: 2d38a7e4164b
-    last_write_checksum: sha1:f190f6fafd638eec6faec7234e05fa181b995487
-    pristine_git_object: 4e600c32131bd957bd6d931e86ed88f383c108a3
+    last_write_checksum: sha1:addc708fe45dae4de336fad4f178dbd8be066959
+    pristine_git_object: 78fb691196854e4b468bf8d511dfb98b4120f563
   src/models/components/digitalwalletaddress.ts:
     id: a3e17f82dc83
-    last_write_checksum: sha1:9f459b9eea3b2379c2389e44b2da4c5ce7856ca7
-    pristine_git_object: 352388cbf1bb5c0bba142aff4a54dcb876e0f28d
+    last_write_checksum: sha1:e49946974e1a62459eed4b8b4b56e57c100bf6c0
+    pristine_git_object: 8c94ebcd886b55ccceb79b864d8395af23ea9278
   src/models/components/digitalwalletcreate.ts:
     id: f1ddf02f1d7b
     last_write_checksum: sha1:4f4886ef1eaed79721f9236daadee4721386cb08
@@ -3919,8 +3911,8 @@ trackedFiles:
     pristine_git_object: 69087ec944a2c1c9708600957b19a242916e9fda
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:ff02dde7cda8e4748edb22109ffc32192e93895c
-    pristine_git_object: 2fc31c7d25a345ca20e830c5dd211b7531b3d93b
+    last_write_checksum: sha1:3e78bfe5862355c6306bbb9ffd8e4def90f034eb
+    pristine_git_object: 51d5ba62a2f505c5d58f63531d03c7b32b4d0b88
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:b015e998608879b86fe6021f202742235f0f3036
@@ -9585,8 +9577,10 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Typescript SDK Changes:
-  * `gr4vy.transactions.refundSettlements.get()`: **Added**
-  * `gr4vy.transactions.refundSettlements.list()`: **Added**
+  * `gr4vy.digitalWallets.create()`:  `response.address.line2` **Changed**
+  * `gr4vy.digitalWallets.list()`:  `response.items[].address.line2` **Changed**
+  * `gr4vy.digitalWallets.get()`:  `response.address.line2` **Changed**
+  * `gr4vy.digitalWallets.update()`:  `response.address.line2` **Changed**
 generatedFiles:
   - .gitattributes
   - .npmignore

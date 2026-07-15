@@ -30,7 +30,6 @@ export * from "./apikeypair.js";
 export * from "./apikeypaircreate.js";
 export * from "./apikeypairupdate.js";
 export * from "./apiroutersapikeypairsschemascreator.js";
-export * from "./apitypesdigitalwalletaddress.js";
 export * from "./applepaypaymentmethodcreate.js";
 export * from "./applepaysessionrequest.js";
 export * from "./approvaltarget.js";
