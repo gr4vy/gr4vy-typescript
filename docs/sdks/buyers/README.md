@@ -18,16 +18,16 @@ List all buyers or search for a specific buyer.
 
 <!-- UsageSnippet language="typescript" operationID="list_buyers" method="get" path="/buyers" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -110,16 +110,16 @@ Create a new buyer record.
 
 <!-- UsageSnippet language="typescript" operationID="add_buyer" method="post" path="/buyers" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -199,16 +199,16 @@ Fetches a buyer by its ID.
 
 <!-- UsageSnippet language="typescript" operationID="get_buyer" method="get" path="/buyers/{buyer_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -288,16 +288,16 @@ Updates a buyer record.
 
 <!-- UsageSnippet language="typescript" operationID="update_buyer" method="put" path="/buyers/{buyer_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -378,16 +378,16 @@ Permanently removes a buyer record.
 
 <!-- UsageSnippet language="typescript" operationID="delete_buyer" method="delete" path="/buyers/{buyer_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

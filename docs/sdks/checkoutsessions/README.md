@@ -17,16 +17,16 @@ Create a new checkout session.
 
 <!-- UsageSnippet language="typescript" operationID="create_checkout_session" method="post" path="/checkout/sessions" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -106,16 +106,16 @@ Update the information stored on a checkout session.
 
 <!-- UsageSnippet language="typescript" operationID="update_checkout_session" method="put" path="/checkout/sessions/{session_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -196,16 +196,16 @@ Retrieve the information stored on a checkout session.
 
 <!-- UsageSnippet language="typescript" operationID="get_checkout_session" method="get" path="/checkout/sessions/{session_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -284,16 +284,16 @@ Delete a checkout session and all of its (PCI) data.
 
 <!-- UsageSnippet language="typescript" operationID="delete_checkout_session" method="delete" path="/checkout/sessions/{session_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

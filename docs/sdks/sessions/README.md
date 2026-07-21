@@ -20,16 +20,16 @@ Create a session for use with Google Pay.
 
 <!-- UsageSnippet language="typescript" operationID="create_google_pay_digital_wallet_session" method="post" path="/digital-wallets/google/session" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -113,16 +113,16 @@ Create a session for use with Apple Pay.
 
 <!-- UsageSnippet language="typescript" operationID="create_apple_pay_digital_wallet_session" method="post" path="/digital-wallets/apple/session" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -208,16 +208,16 @@ Create a mobile session for use with Paze.
 
 <!-- UsageSnippet language="typescript" operationID="create_paze_mobile_session" method="post" path="/digital-wallets/paze/session/create" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -313,16 +313,16 @@ Create a session for use with Paze.
 
 <!-- UsageSnippet language="typescript" operationID="create_paze_digital_wallet_session" method="post" path="/digital-wallets/paze/session" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -402,16 +402,16 @@ Review a Paze checkout session and retrieve the selected card, consumer, and shi
 
 <!-- UsageSnippet language="typescript" operationID="review_paze_mobile_session" method="post" path="/digital-wallets/paze/session/review" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -499,16 +499,16 @@ Complete a Paze checkout session and retrieve the secure payload required to set
 
 <!-- UsageSnippet language="typescript" operationID="complete_paze_mobile_session" method="post" path="/digital-wallets/paze/session/complete" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -598,16 +598,16 @@ Create a session for use with Click to Pay.
 
 <!-- UsageSnippet language="typescript" operationID="create_click_to_pay_digital_wallet_session" method="post" path="/digital-wallets/click-to-pay/session" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

@@ -14,16 +14,16 @@ Schedule one or more stored cards for an account update.
 
 <!-- UsageSnippet language="typescript" operationID="create_account_updater_job" method="post" path="/account-updater/jobs" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

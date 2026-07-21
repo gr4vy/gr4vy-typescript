@@ -15,16 +15,16 @@ Retrieve a specific refund settlement for a transaction by its unique identifier
 
 <!-- UsageSnippet language="typescript" operationID="get_transaction_refund_settlement" method="get" path="/transactions/{transaction_id}/refund-settlements/{settlement_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -105,16 +105,16 @@ List all refund settlements for a specific transaction.
 
 <!-- UsageSnippet language="typescript" operationID="list_transaction_refund_settlements" method="get" path="/transactions/{transaction_id}/refund-settlements" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

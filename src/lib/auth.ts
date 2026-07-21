@@ -10,30 +10,6 @@ import { getKeyId } from "./helpers";
 import type { Gr4vy } from "../sdk/sdk";
 
 /**
- * Helper method for generating a bearer token for use with the SDK
- */
-export const withToken = (options: {
-  privateKey: string;
-  scopes?: JWTScope[] | string[];
-  expiresIn?: StringValue;
-}): (() => Promise<string>) => {
-  const {
-    privateKey,
-    scopes = [JWTScope.ReadAll, JWTScope.WriteAll],
-    expiresIn = "30s",
-  } = options;
-
-  if (!privateKey) {
-    throw new Error("Private key is null, undefined or empty");
-  }
-
-  return async (): Promise<string> => {
-    const bearerAuth = await getToken({ privateKey, scopes, expiresIn });
-    return bearerAuth;
-  };
-};
-
-/**
  * Helper method for generating a bearer token for use with and without the SDK
  */
 export const getToken = async (options: {

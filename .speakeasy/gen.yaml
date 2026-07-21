@@ -99,14 +99,11 @@ typescript:
         id: "example",
         server: "sandbox",
         merchantAccountId: "default",
-        bearerAuth: withToken({
+        bearerAuth: {
           privateKey: fs.readFileSync("private_key.pem", "utf8"),
-        }),
+        },
     })
   usageSDKInitImports:
-    - import: withToken
-      package: '@gr4vy/sdk'
-      type: typeImport
     - import: fs
       package: fs
       type: packageImport

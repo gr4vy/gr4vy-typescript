@@ -15,16 +15,16 @@ List all captures for a specific transaction.
 
 <!-- UsageSnippet language="typescript" operationID="list_transaction_captures" method="get" path="/transactions/{transaction_id}/captures" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -104,16 +104,16 @@ Retrieve a specific capture for a transaction by its unique identifier.
 
 <!-- UsageSnippet language="typescript" operationID="get_transaction_capture" method="get" path="/transactions/{transaction_id}/captures/{capture_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

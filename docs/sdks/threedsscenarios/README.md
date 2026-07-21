@@ -17,16 +17,16 @@ Create a new 3DS scenario for a merchant account. Only available in sandbox envi
 
 <!-- UsageSnippet language="typescript" operationID="create_three_ds_scenario" method="post" path="/three-ds-scenarios" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -120,16 +120,16 @@ List all 3DS scenarios for a merchant account. Only available in sandbox environ
 
 <!-- UsageSnippet language="typescript" operationID="get_three_ds_scenario" method="get" path="/three-ds-scenarios" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -214,16 +214,16 @@ Update a 3DS scenario. Only available in sandbox environments.
 
 <!-- UsageSnippet language="typescript" operationID="update_three_ds_scenario" method="put" path="/three-ds-scenarios/{three_ds_scenario_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {
@@ -304,16 +304,16 @@ Removes a 3DS scenario from our system. Only available in sandbox environments.
 
 <!-- UsageSnippet language="typescript" operationID="delete_three_ds_scenario" method="delete" path="/three-ds-scenarios/{three_ds_scenario_id}" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

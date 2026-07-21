@@ -1,0 +1,51 @@
+overlay: 1.0.0
+info:
+  title: Replace bearerAuth with a custom (JWT) security scheme
+  version: 0.0.1
+# PROTOTYPE overlay. Swap this in for `security.yaml` in workflow.yaml to make the
+# private key a first-class, spec-declared SDK constructor input. The actual JWT is
+# minted per request by the `TokenHook` beforeRequest hook (src/hooks/tokenHook.ts),
+# so Speakeasy generates native `security: { privateKey }` usage examples with no
+# hand-maintained `withToken` callout.
+actions:
+  # Drop the upstream OAuth2 password scheme (same as the current security.yaml).
+  - target: "$.components.securitySchemes.OAuth2PasswordBearer"
+    remove: true
+
+  # Strip per-operation security so the global requirement below applies everywhere.
+  - target: "$.paths.*.*.security"
+    remove: true
+
+  # Define bearerAuth as a Speakeasy custom security scheme. `scheme: custom` tells
+  # the generator to expose the JSON Schema below as the constructor input instead of
+  # a plain bearer string, and to hand those values to SDK hooks at request time.
+  - target: "$.components.securitySchemes"
+    update:
+      bearerAuth:
+        type: http
+        scheme: custom
+        x-speakeasy-custom-security-scheme:
+          schema:
+            type: object
+            properties:
+              privateKey:
+                type: string
+                description: >-
+                  PEM-encoded ES512 private key used to sign a short-lived JWT for
+                  every request.
+              scopes:
+                type: array
+                items:
+                  type: string
+                description: 'Optional JWT scopes. Defaults to ["*.read", "*.write"].'
+              expiresIn:
+                type: string
+                description: 'Optional token lifetime (e.g. "30s"). Defaults to "30s".'
+            required:
+              - privateKey
+
+  # Apply bearerAuth globally.
+  - target: "$"
+    update:
+      security:
+        - bearerAuth: []

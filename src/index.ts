@@ -10,8 +10,7 @@ export {
     getEmbedTokenWithCheckoutSession,
     getToken,
     JWTScope,
-    updateToken,
-    withToken
+    updateToken
 } from "./lib/auth";
 export type { EmbedParams } from "./lib/auth";
 export { verifyWebhook } from "./lib/webhooks";

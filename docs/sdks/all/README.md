@@ -14,16 +14,16 @@ Create a refund for all instruments on a transaction.
 
 <!-- UsageSnippet language="typescript" operationID="create_full_transaction_refund" method="post" path="/transactions/{transaction_id}/refunds/all" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

@@ -14,16 +14,16 @@ List all the stored gift cards for a specific buyer.
 
 <!-- UsageSnippet language="typescript" operationID="list_buyer_gift_cards" method="get" path="/buyers/gift-cards" -->
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
     id: "example",
     server: "sandbox",
     merchantAccountId: "default",
-    bearerAuth: withToken({
+    bearerAuth: {
       privateKey: fs.readFileSync("private_key.pem", "utf8"),
-    }),
+    },
 });
 
 async function run() {

@@ -91,15 +91,15 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 
 ```typescript
 import fs from "fs";
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 
 async function run() {
     const gr4vy = new Gr4vy({
         server: "sandbox",
         id: "example",
-        bearerAuth: withToken({
+        bearerAuth: {
           privateKey: fs.readFileSync("private_key.pem", "utf8"),
-        }),
+        },
     });
 
     const result = await gr4vy.transactions.list({});
@@ -112,9 +112,31 @@ run();
 
 ```
 
+### Authentication
+
+Gr4vy authenticates every request with a short-lived ES512 JWT signed from your private key.
+Pass the key to the SDK once, as the `bearerAuth` security option:
+
+```js
+const gr4vy = new Gr4vy({
+    server: "sandbox",
+    id: "example",
+    bearerAuth: {
+        privateKey: fs.readFileSync("private_key.pem", "utf8"),
+        // Optional: override the default scopes (["*.read", "*.write"]) and 30s lifetime.
+        // scopes: ["transactions.read"],
+        // expiresIn: "30s",
+    },
+});
+```
+
+The SDK signs a fresh token for every request automatically — you do not need to generate or
+refresh tokens yourself. If you need a token outside the SDK (for example to pass to a frontend),
+use the standalone `getToken` helper below.
+
 ## Bearer token generation
 
-Alternatively, you can create a token for use with the SDK or with your own client library.
+You can also create a standalone token for use with your own client library or a frontend.
 
 ```js
 import { getToken } from "@gr4vy/sdk";
@@ -129,8 +151,8 @@ async function run() {
 run();
 ```
 
-> **Note:** This will only create a token once. Use `withToken` to dynamically generate a token
-> for every request.
+> **Note:** This creates a single, standalone token. When you initialize the SDK with
+> `bearerAuth: { privateKey }`, a fresh token is signed automatically for every request.
 
 
 ## Embed token generation
@@ -146,7 +168,7 @@ async function run() {
     const gr4vy = new Gr4vy({
         server: "sandbox",
         id: "example",
-        bearerAuth: withToken({ privateKey }),
+        bearerAuth: { privateKey },
     });
 
     const checkoutSession = await gr4vy.checkoutSessions.create()
@@ -167,8 +189,8 @@ async function run() {
 run();
 ```
 
-> **Note:** This will only create a token once. Use `withToken` to dynamically generate a token
-> for every request.
+> **Note:** This creates a single, standalone token. When you initialize the SDK with
+> `bearerAuth: { privateKey }`, a fresh token is signed automatically for every request.
 
 ### Attaching a checkout session automatically
 
@@ -178,7 +200,7 @@ returns an Embed token with the resulting `checkout_session_id` already pinned, 
 
 ```js
 import fs from "node:fs";
-import { Gr4vy, getEmbedTokenWithCheckoutSession, withToken } from "@gr4vy/sdk";
+import { Gr4vy, getEmbedTokenWithCheckoutSession } from "@gr4vy/sdk";
 
 async function run() {
     const privateKey = fs.readFileSync("private_key.pem", "utf8")
@@ -186,7 +208,7 @@ async function run() {
     const gr4vy = new Gr4vy({
         server: "sandbox",
         id: "example",
-        bearerAuth: withToken({ privateKey }),
+        bearerAuth: { privateKey },
     });
 
     const token = await getEmbedTokenWithCheckoutSession({
@@ -227,7 +249,7 @@ const gr4vy = new Gr4vy({
     server: "sandbox",
     id: "example",
     merchantAccountId: 'merchant-12345',
-    bearerAuth: withToken({ privateKey }),
+    bearerAuth: { privateKey },
 });
 ```
 
@@ -523,7 +545,7 @@ try {
 
 ### Example
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import * as errors from "@gr4vy/sdk/models/errors";
 import fs from "fs";
 
@@ -531,9 +553,9 @@ const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
@@ -627,16 +649,16 @@ If the selected server has variables, you may override its default values throug
 #### Example
 
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
@@ -658,16 +680,16 @@ run();
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
@@ -752,16 +774,16 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
@@ -816,16 +838,16 @@ yarn add @gr4vy/sdk
 ### Example
 
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
@@ -857,16 +879,16 @@ syntax.
 Here's an example of one such pagination call:
 
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
@@ -889,16 +911,16 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
@@ -933,16 +955,16 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { Gr4vy, withToken } from "@gr4vy/sdk";
+import { Gr4vy } from "@gr4vy/sdk";
 import fs from "fs";
 
 const gr4vy = new Gr4vy({
   id: "example",
   server: "sandbox",
   merchantAccountId: "default",
-  bearerAuth: withToken({
+  bearerAuth: {
     privateKey: fs.readFileSync("private_key.pem", "utf8"),
-  }),
+  },
 });
 
 async function run() {
