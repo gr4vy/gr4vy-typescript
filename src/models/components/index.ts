@@ -343,6 +343,7 @@ export * from "./verifycredentials.js";
 export * from "./voidablefield.js";
 export * from "./voidstatus.js";
 export * from "./walletpaymentoptioncontext.js";
+export * from "./worldpayvapoptions.js";
 export * from "./wpayeverdaypayoptions.js";
 export * from "./wpaypaytooptions.js";
 export * from "./wpaypaytoresourceoptions.js";
