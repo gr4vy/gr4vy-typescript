@@ -180,6 +180,11 @@ import {
   TrustlyOptions$outboundSchema,
 } from "./trustlyoptions.js";
 import {
+  WorldpayVapOptions,
+  WorldpayVapOptions$Outbound,
+  WorldpayVapOptions$outboundSchema,
+} from "./worldpayvapoptions.js";
+import {
   WpayEverdaypayOptions,
   WpayEverdaypayOptions$Outbound,
   WpayEverdaypayOptions$outboundSchema,
@@ -436,6 +441,10 @@ export type TransactionConnectionOptions = {
    */
   trustlyTrustly?: TrustlyOptions | null | undefined;
   /**
+   * Custom options to be passed to the `worldpayvap-card` connector.
+   */
+  worldpayvapCard?: WorldpayVapOptions | null | undefined;
+  /**
    * Custom options to be passed to the `wpay-everydaypay` connector.
    */
   wpayEverydaypay?: WpayEverdaypayOptions | null | undefined;
@@ -514,6 +523,7 @@ export type TransactionConnectionOptions$Outbound = {
   "stripe-stripe"?: StripeOptions$Outbound | null | undefined;
   "travelhub-card"?: TravelhubOptions$Outbound | null | undefined;
   "trustly-trustly"?: TrustlyOptions$Outbound | null | undefined;
+  "worldpayvap-card"?: WorldpayVapOptions$Outbound | null | undefined;
   "wpay-everydaypay"?: WpayEverdaypayOptions$Outbound | null | undefined;
   "wpay-payto"?: WpayPaytoOptions$Outbound | null | undefined;
 };
@@ -589,6 +599,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   stripeStripe: z.nullable(StripeOptions$outboundSchema).optional(),
   travelhubCard: z.nullable(TravelhubOptions$outboundSchema).optional(),
   trustlyTrustly: z.nullable(TrustlyOptions$outboundSchema).optional(),
+  worldpayvapCard: z.nullable(WorldpayVapOptions$outboundSchema).optional(),
   wpayEverydaypay: z.nullable(WpayEverdaypayOptions$outboundSchema).optional(),
   wpayPayto: z.nullable(WpayPaytoOptions$outboundSchema).optional(),
 }).transform((v) => {
@@ -654,6 +665,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     stripeStripe: "stripe-stripe",
     travelhubCard: "travelhub-card",
     trustlyTrustly: "trustly-trustly",
+    worldpayvapCard: "worldpayvap-card",
     wpayEverydaypay: "wpay-everydaypay",
     wpayPayto: "wpay-payto",
   });
