@@ -355,6 +355,10 @@ try {
 * [create](docs/sdks/giftcards/README.md#create) - Create gift card
 * [list](docs/sdks/giftcards/README.md#list) - List gift cards
 
+#### [GiftCards.Activations](docs/sdks/activations/README.md)
+
+* [create](docs/sdks/activations/README.md#create) - Activate a gift card
+
 #### [GiftCards.Balances](docs/sdks/balances/README.md)
 
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
@@ -1048,6 +1052,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`digitalWalletsSessionsPazeMobileSessionCreate`](docs/sdks/sessions/README.md#pazemobilesessioncreate) - Create a Paze mobile session
 - [`digitalWalletsSessionsPazeMobileSessionReview`](docs/sdks/sessions/README.md#pazemobilesessionreview) - Review a Paze session
 - [`digitalWalletsUpdate`](docs/sdks/digitalwallets/README.md#update) - Update digital wallet
+- [`giftCardsActivationsCreate`](docs/sdks/activations/README.md#create) - Activate a gift card
 - [`giftCardsBalancesList`](docs/sdks/balances/README.md#list) - List gift card balances
 - [`giftCardsCreate`](docs/sdks/giftcards/README.md#create) - Create gift card
 - [`giftCardsDelete`](docs/sdks/giftcards/README.md#delete) - Delete a gift card

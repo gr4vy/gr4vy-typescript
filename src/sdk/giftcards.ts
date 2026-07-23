@@ -11,12 +11,18 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
+import { Activations } from "./activations.js";
 import { Balances } from "./balances.js";
 
 export class GiftCards extends ClientSDK {
   private _balances?: Balances;
   get balances(): Balances {
     return (this._balances ??= new Balances(this._options));
+  }
+
+  private _activations?: Activations;
+  get activations(): Activations {
+    return (this._activations ??= new Activations(this._options));
   }
 
   /**
