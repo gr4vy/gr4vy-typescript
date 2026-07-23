@@ -20,7 +20,7 @@ export type Buyer = {
   /**
    * The ID for the buyer.
    */
-  id?: string | null | undefined;
+  id: string;
   /**
    * The ID of the merchant account this buyer belongs to.
    */
@@ -55,7 +55,7 @@ export type Buyer = {
 export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
   .object({
     type: z.literal("buyer").default("buyer"),
-    id: z.nullable(z.string()).optional(),
+    id: z.string(),
     merchant_account_id: z.string(),
     display_name: z.nullable(z.string()).optional(),
     external_identifier: z.nullable(z.string()).optional(),

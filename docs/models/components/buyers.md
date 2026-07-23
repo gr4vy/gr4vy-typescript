@@ -8,6 +8,7 @@ import { Buyers } from "@gr4vy/sdk/models/components";
 let value: Buyers = {
   items: [
     {
+      id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
       merchantAccountId: "default",
       createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
       updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),
