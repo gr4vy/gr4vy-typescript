@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 77fd647d60bf5f580d3e38677a9343c9
+  docChecksum: dc000089a43747ca3b3d40380012db42
   docVersion: 1.0.0
   speakeasyVersion: 1.790.3
   generationVersion: 2.918.4
-  releaseVersion: 2.3.27
-  configChecksum: 12d7e0355389a3abbb65214a51ecc01e
+  releaseVersion: 2.3.28
+  configChecksum: bfa04d144016a64b1bc219321e366727
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 927731dc-ff16-49f1-a2a8-b1e80edbe624
-  pristine_commit_hash: e8a686bb51a80fdac2c45c33ffc02efa5ad910dd
-  pristine_tree_hash: c6baacc89c1eee97f8fb30c004cf2143579f3719
+  generation_id: 471313b7-7c75-4ca2-8a67-b9cd7c03edfc
+  pristine_commit_hash: 136e57b3cb6b3589e1bc678b43e4aa9eaed135c7
+  pristine_tree_hash: 5a7a35382ca8f4385ff3da3a3417b1a8cdaa3779
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -259,16 +259,16 @@ trackedFiles:
     pristine_git_object: d1e9be54c050894ed400b8b4ec5c4dde9eb628e0
   docs/models/components/buyer.md:
     id: cf15f201c8e8
-    last_write_checksum: sha1:a6f11d444aa8a0d2a618607d6be07cfde7868463
-    pristine_git_object: a679f57b2a1cf51009daae66129f430fb9216b34
+    last_write_checksum: sha1:644c0087e72e0b6ce9b128c63ec9f6545d8ab489
+    pristine_git_object: 15e0a891c59ac73bbb6d3c67c113b1d0a89a891a
   docs/models/components/buyercreate.md:
     id: 78ac0d4f9d10
     last_write_checksum: sha1:7fefeade012377d499d35df3d98e324892bb6833
     pristine_git_object: e6ef959edda52f5d69457cb92de7222e8cad95d1
   docs/models/components/buyers.md:
     id: 166cf84b7be5
-    last_write_checksum: sha1:84dd19b2e5dc4199ec1804dcf6f769bba4796b4d
-    pristine_git_object: 06d8e66a6a5e5149067a84c179593c8e6e624113
+    last_write_checksum: sha1:7503439a737c5e503d6381e5b9dfe27c8ca13e52
+    pristine_git_object: 54d3ebec785b5f4b160ee044dddc4d5db99c98e6
   docs/models/components/buyerupdate.md:
     id: f766c9ece7a5
     last_write_checksum: sha1:0e7864ce167ee0b08c4ef034c88b2474e564c60c
@@ -585,6 +585,10 @@ trackedFiles:
     id: bcbf8debffcf
     last_write_checksum: sha1:ed26cda22a5a561f15d56c2d9d2f379ffc21e179
     pristine_git_object: 7d2d6761d0a24c5f72da74f03179e85609665306
+  docs/models/components/giftcardactivationcreate.md:
+    id: 99eec86bd755
+    last_write_checksum: sha1:5d4df1b367fc832b85e5b9900a087013fed060d7
+    pristine_git_object: 8b115445a216d7759d4f3cf94ed096982df6de25
   docs/models/components/giftcardbalancerequest.md:
     id: ffbd76009b16
     last_write_checksum: sha1:70a416697a405b79ebf0b5e6df115952ddb7a140
@@ -1463,8 +1467,8 @@ trackedFiles:
     pristine_git_object: c94e0431a20cc35f4cfaa54b8b5d5302271dd483
   docs/models/components/transactionbuyer.md:
     id: bc134c62012d
-    last_write_checksum: sha1:42404be01fd1e209500a64df23619adc092101e0
-    pristine_git_object: 5defca0e09bcaba180a628ecfb4af109d66c7dec
+    last_write_checksum: sha1:9c693675e8c1040b461a1099bc6a51e3da7d061c
+    pristine_git_object: 2d6678ccb85cb6441f816052827d1835c4c5eb8d
   docs/models/components/transactioncancel.md:
     id: 5d09298f9ce9
     last_write_checksum: sha1:fc34792fd773df153f6fc0127d5a8bfa11618892
@@ -1689,6 +1693,14 @@ trackedFiles:
     id: 9365601abbd7
     last_write_checksum: sha1:1aed8e9716fa1b4078a76988a0b930fbac8fcce8
     pristine_git_object: 53b072ec4390c62ea0998e9c7935dd8f6c8fec79
+  docs/models/operations/activategiftcardglobals.md:
+    id: 40f0c039d770
+    last_write_checksum: sha1:c2771aaec893650cf638d11fc35b15b3381e87c1
+    pristine_git_object: d6dd17d34271593ee707815443f1dc37002a21f3
+  docs/models/operations/activategiftcardrequest.md:
+    id: 44033fe4303d
+    last_write_checksum: sha1:1ec738f7bd1ab5c715ddaaacc66ebfa86d1ae30f
+    pristine_git_object: 8ce96cc9eddbdf26c6a489fe788d9d33e7e22252
   docs/models/operations/addbuyerglobals.md:
     id: 58d872f2def8
     last_write_checksum: sha1:67c00fb8555e6441d51af7789d05a4d6bc470b6d
@@ -2637,6 +2649,10 @@ trackedFiles:
     id: e229cf99e666
     last_write_checksum: sha1:f8221fc14a6c8432ecc8ff7853ed8332bf036701
     pristine_git_object: f7f4fd53c7c8316f8c18c32bcef2a11ec74392bb
+  docs/sdks/activations/README.md:
+    id: 5e6a3a8cf62a
+    last_write_checksum: sha1:540e72bda99b66597c6a0636964c10d519a5e655
+    pristine_git_object: 12d8ec99eb04390542a403eabd526296e51faf18
   docs/sdks/all/README.md:
     id: 936653be5c4b
     last_write_checksum: sha1:152736784aa24324990dda550a130b6c00e8604d
@@ -2811,12 +2827,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d9caad94b5d923f2da44cb403cfc893c98e869fa
-    pristine_git_object: 9fdefaa8867b0feba62c256398d3bd1944301ae1
+    last_write_checksum: sha1:d5fa71dcb9785cc313e86035bffccb260ccd1717
+    pristine_git_object: 95e88d0969c01b302ce83fa67bb53a806388f499
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:c38392e3da9c33d8df42e96b784ec30185e3799b
-    pristine_git_object: ca2706025ae78c1a074286409762c81402eaaa39
+    last_write_checksum: sha1:23b109162e1398a7105679d2dcffd9315f87f0de
+    pristine_git_object: 1e8021b904fd4bceebde5b4c9b8e00bdeff8c7e4
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -2973,6 +2989,10 @@ trackedFiles:
     id: 508c1f40f429
     last_write_checksum: sha1:2ebd8b0dcac9870d80a1a4677fa03829f1e222f0
     pristine_git_object: 04f6eed54c32dbc0aee6262ff91bcf28a6c87c04
+  src/funcs/giftCardsActivationsCreate.ts:
+    id: 1e7e52f2ed29
+    last_write_checksum: sha1:92881e7c16c40fca5bc187bce078bf642a579b7a
+    pristine_git_object: be7d59777fae2643b4125518b84d3c4b7705f488
   src/funcs/giftCardsBalancesList.ts:
     id: 6b69e75107af
     last_write_checksum: sha1:474e666b04941cc9e69fb7f85202c05627facb51
@@ -3303,8 +3323,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:cad043879bdec5b2733c073d1eff70eb4ca23337
-    pristine_git_object: 4d66ba50a25342273fdf1d8d6d3c7ed697c2b2a2
+    last_write_checksum: sha1:8fe0d87792d3fee61777321be6be3dc4abeaa9ec
+    pristine_git_object: 034b99cb4f20e866e31ae204d6c515c934d42114
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -3531,8 +3551,8 @@ trackedFiles:
     pristine_git_object: 75c0ee9413e9d7b4aba6e28ca44894dec32a7379
   src/models/components/buyer.ts:
     id: b905ea8d5735
-    last_write_checksum: sha1:a57ee5c4a4d552affbe8efaff235ccb51b4bb245
-    pristine_git_object: b4abedb7e8711bfccc028362f332a231c6a8fadb
+    last_write_checksum: sha1:017182f915d5917f865a3beff4b59d224fd0c58b
+    pristine_git_object: 6ef69d0eb4c1c4b9ef3ab6d155a8e9b5c9dfcea9
   src/models/components/buyercreate.ts:
     id: 973c1f6250f9
     last_write_checksum: sha1:20a23d06cdd1cac1752e26ab8b33b8d150776655
@@ -3825,6 +3845,10 @@ trackedFiles:
     id: 621f5551cf48
     last_write_checksum: sha1:2c426fd98ddf175e88f5d842f263d2340f6f61b2
     pristine_git_object: 23e42c272b499873687890f507bd0def2ad28a6d
+  src/models/components/giftcardactivationcreate.ts:
+    id: b29087f2b8ea
+    last_write_checksum: sha1:2751a5b88778e572b5e4fa2f82c1439fc3d2b2f7
+    pristine_git_object: eb1a8529332bce9e5b24f0d05328092b623f97bf
   src/models/components/giftcardbalancerequest.ts:
     id: 520785b87b06
     last_write_checksum: sha1:58e205fb8c8451ec0891d98f4849a92f10303490
@@ -3919,8 +3943,8 @@ trackedFiles:
     pristine_git_object: 69087ec944a2c1c9708600957b19a242916e9fda
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:d20edf57e10558c6fd8e9a49c2657a05daeedad6
-    pristine_git_object: 105e45def8af8646b061273e8c317d0df7260fb8
+    last_write_checksum: sha1:58a4442c5cf0f6d532912e829059c5cd91897e4b
+    pristine_git_object: 417a5c1d0f4e0ad339415caf9be46dad4ca48069
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:b015e998608879b86fe6021f202742235f0f3036
@@ -4591,8 +4615,8 @@ trackedFiles:
     pristine_git_object: 7609ae970e4d44d78c388320c3989574ce2f8075
   src/models/components/transactionbuyer.ts:
     id: f98c583e6a65
-    last_write_checksum: sha1:a221920701834439d1f7ff14de09abc9366eddc2
-    pristine_git_object: 4f9316fc9da6d0e079c553adcc555f4be1cd097f
+    last_write_checksum: sha1:69aa52dcd99ebc6632f7055f81d7a6a24ff9ff57
+    pristine_git_object: 7ff0cc1dbfb7f6e67b2763afd25467d4b16c3d1a
   src/models/components/transactioncancel.ts:
     id: 2f181fcc20b7
     last_write_checksum: sha1:2c8587a6a833c82abe9bb02d6802450edaa9337d
@@ -4813,6 +4837,10 @@ trackedFiles:
     id: fb6b2b49c445
     last_write_checksum: sha1:a69da17627bcc32b820544608f3400423ea53f26
     pristine_git_object: 6826e1208a5d7b7d310535d18909646522bf0fbd
+  src/models/operations/activategiftcard.ts:
+    id: 86f2a4218c32
+    last_write_checksum: sha1:c2f18657bc193cd849039ac99f0d8c28a6907c46
+    pristine_git_object: 8e11df995734767c4c2139d800f10d27ce935db2
   src/models/operations/addbuyer.ts:
     id: 0c9e462b4912
     last_write_checksum: sha1:1d528ee96e16287072dfe4ec5b5861d15dfcc988
@@ -5071,8 +5099,8 @@ trackedFiles:
     pristine_git_object: ab0e6ba680e244dee50dcfa67e1d780e18d1acdb
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:e39866c40d099dfeed8d85fd7d925c663aa188b8
-    pristine_git_object: 36bd6288b66f37af58c8ea77119657c28244bd1f
+    last_write_checksum: sha1:fa89c83cab7dbf788e7b99d2b5c57911f58b7c0a
+    pristine_git_object: 2a1b74d8d9185975a1ebf986044bca127a9e8e9b
   src/models/operations/listallreportexecutions.ts:
     id: f30c1a3628ed
     last_write_checksum: sha1:e17d6663809664a6a93851f32464e6a2f340451f
@@ -5277,6 +5305,10 @@ trackedFiles:
     id: 8282e00fbe23
     last_write_checksum: sha1:5b97b477dbef51a508ec4136f89e563459ddf806
     pristine_git_object: 879c1a17bcacdcdf109069f1fc2e590656500d87
+  src/sdk/activations.ts:
+    id: 8ed0ca15849b
+    last_write_checksum: sha1:49d34c8545a5038e56f9aa4c8742548dbd17cc34
+    pristine_git_object: f1b6b229855d495355032958bd3fa3e1e3914b94
   src/sdk/all.ts:
     id: f5965bae13e4
     last_write_checksum: sha1:e4e672a3bb42e8025ad9ea6dc9300af12b2f9f7c
@@ -5331,8 +5363,8 @@ trackedFiles:
     pristine_git_object: 35e5f3f1c3bd43c3bd5f81e12b2a3db5f885db48
   src/sdk/giftcards.ts:
     id: f3bbb5feec11
-    last_write_checksum: sha1:2ae23ff2309e258c5717630a7737adaef9f3f923
-    pristine_git_object: 652716df40b2aa1f9fb18797c2c545bc3c215f5b
+    last_write_checksum: sha1:f18c7d393f1a30ecb72c874c1cff82b111345e4d
+    pristine_git_object: 749af84ab6c31b8f2fb1b82be8c90f46eeabf526
   src/sdk/gr4vygiftcards.ts:
     id: d5427f850b4a
     last_write_checksum: sha1:f1c0fe841faeb8ddaf7ead3955b9a04af11b1716
@@ -5530,7 +5562,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"items": [{"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20}
+          application/json: {"items": [{"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -5566,7 +5598,7 @@ examples:
         application/json: {}
       responses:
         "201":
-          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -5601,7 +5633,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -5639,7 +5671,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -9585,9 +9617,67 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  activate_gift_card:
+    speakeasy-default-activate-gift-card:
+      requestBody:
+        application/json: {"number": "4123455541234561234"}
+      responses:
+        "201":
+          application/json: {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "valuelink-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "cit_usage_count": 50}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.buyers.list()`:  `response.items[].id` **Changed** (Breaking ⚠️)\n* `gr4vy.buyers.create()`:  `response.id` **Changed** (Breaking ⚠️)\n* `gr4vy.buyers.get()`:  `response.id` **Changed** (Breaking ⚠️)\n* `gr4vy.buyers.update()`:  `response.id` **Changed** (Breaking ⚠️)\n* `gr4vy.paymentMethods.list()`:  `response.items[].buyer.id` **Changed** (Breaking ⚠️)\n* `gr4vy.paymentMethods.create()`:  `response.buyer.id` **Changed** (Breaking ⚠️)\n* `gr4vy.paymentMethods.get()`:  `response.buyer.id` **Changed** (Breaking ⚠️)\n* `gr4vy.paymentMethods.update()`:  `response.buyer.id` **Changed** (Breaking ⚠️)\n* `gr4vy.giftCards.get()`:  `response.buyer.id` **Changed** (Breaking ⚠️)\n* `gr4vy.giftCards.create()`:  `response.buyer.id` **Changed** (Breaking ⚠️)\n* `gr4vy.giftCards.list()`:  `response.items[].buyer.id` **Changed** (Breaking ⚠️)\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.description` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `gr4vy.giftCards.activations.create()`: **Added**
+  * `gr4vy.buyers.list()`:  `response.items[].reconciliationId` **Added**
+  * `gr4vy.buyers.create()`:  `response.reconciliationId` **Added**
+  * `gr4vy.buyers.get()`:  `response.reconciliationId` **Added**
+  * `gr4vy.buyers.update()`:  `response.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.update()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.giftCards.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.giftCards.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.giftCards.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.update()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.capture()`:  `response.union(TransactionCapture).transaction.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.void()`:  `response.union(Transaction).buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.cancel()`:  `response.transaction.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.sync()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.payouts.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.payouts.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.payouts.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentLinks.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentLinks.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.paymentLinks.get()`:  `response.buyer.reconciliationId` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore

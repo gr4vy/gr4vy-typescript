@@ -1,0 +1,23 @@
+# GiftCardActivationCreate
+
+The details used to activate a physical gift card.
+
+## Example Usage
+
+```typescript
+import { GiftCardActivationCreate } from "@gr4vy/sdk/models/components";
+
+let value: GiftCardActivationCreate = {
+  number: "4123455541234561234",
+};
+```
+
+## Fields
+
+| Field                                                                                                                     | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               | Example                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `number`                                                                                                                  | *string*                                                                                                                  | :heavy_check_mark:                                                                                                        | The 16-19 digit number for the gift card.                                                                                 | 4123455541234561234                                                                                                       |
+| `pin`                                                                                                                     | *string*                                                                                                                  | :heavy_minus_sign:                                                                                                        | The PIN for this gift card.                                                                                               | 1234                                                                                                                      |
+| `amount`                                                                                                                  | *number*                                                                                                                  | :heavy_minus_sign:                                                                                                        | The amount to load onto the gift card, in the smallest denomination for the currency. Required if `currency` is provided. | 5000                                                                                                                      |
+| `currency`                                                                                                                | *string*                                                                                                                  | :heavy_minus_sign:                                                                                                        | The ISO-4217 currency code for the `amount`. Required if `amount` is provided.                                            | USD                                                                                                                       |
+| `externalIdentifier`                                                                                                      | *string*                                                                                                                  | :heavy_minus_sign:                                                                                                        | An optional external identifier for this activation.                                                                      | order-12345                                                                                                               |

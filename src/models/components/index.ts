@@ -120,6 +120,7 @@ export * from "./forterantifraudoptionscartitemdeliverydetails.js";
 export * from "./forterantifraudoptionsdiscount.js";
 export * from "./forterantifraudoptionsdiscountcoupondiscountamount.js";
 export * from "./giftcard.js";
+export * from "./giftcardactivationcreate.js";
 export * from "./giftcardbalancerequest.js";
 export * from "./giftcardcreate.js";
 export * from "./giftcarderrorcode.js";
