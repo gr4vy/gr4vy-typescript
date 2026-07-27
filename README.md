@@ -363,6 +363,10 @@ try {
 
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
 
+#### [GiftCards.Issuances](docs/sdks/issuances/README.md)
+
+* [create](docs/sdks/issuances/README.md#create) - Issue a gift card
+
 ### [MerchantAccounts](docs/sdks/merchantaccounts/README.md)
 
 * [list](docs/sdks/merchantaccounts/README.md#list) - List all merchant accounts
@@ -1057,6 +1061,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`giftCardsCreate`](docs/sdks/giftcards/README.md#create) - Create gift card
 - [`giftCardsDelete`](docs/sdks/giftcards/README.md#delete) - Delete a gift card
 - [`giftCardsGet`](docs/sdks/giftcards/README.md#get) - Get gift card
+- [`giftCardsIssuancesCreate`](docs/sdks/issuances/README.md#create) - Issue a gift card
 - [`giftCardsList`](docs/sdks/giftcards/README.md#list) - List gift cards
 - [`merchantAccountsCreate`](docs/sdks/merchantaccounts/README.md#create) - Create a merchant account
 - [`merchantAccountsGet`](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account

@@ -13,6 +13,7 @@ import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Activations } from "./activations.js";
 import { Balances } from "./balances.js";
+import { Issuances } from "./issuances.js";
 
 export class GiftCards extends ClientSDK {
   private _balances?: Balances;
@@ -23,6 +24,11 @@ export class GiftCards extends ClientSDK {
   private _activations?: Activations;
   get activations(): Activations {
     return (this._activations ??= new Activations(this._options));
+  }
+
+  private _issuances?: Issuances;
+  get issuances(): Issuances {
+    return (this._issuances ??= new Issuances(this._options));
   }
 
   /**

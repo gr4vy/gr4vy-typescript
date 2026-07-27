@@ -124,6 +124,8 @@ export * from "./giftcardactivationcreate.js";
 export * from "./giftcardbalancerequest.js";
 export * from "./giftcardcreate.js";
 export * from "./giftcarderrorcode.js";
+export * from "./giftcardissuance.js";
+export * from "./giftcardissuancecreate.js";
 export * from "./giftcardredemption.js";
 export * from "./giftcardredemptionstatus.js";
 export * from "./giftcardrequest.js";
