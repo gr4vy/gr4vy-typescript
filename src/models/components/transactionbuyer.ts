@@ -22,6 +22,10 @@ export type TransactionBuyer = {
    */
   id?: string | null | undefined;
   /**
+   * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's buyer against our system.
+   */
+  reconciliationId?: string | null | undefined;
+  /**
    * The display name for the buyer.
    */
   displayName?: string | null | undefined;
@@ -47,12 +51,14 @@ export const TransactionBuyer$inboundSchema: z.ZodType<
 > = z.object({
   type: z.literal("buyer").default("buyer"),
   id: z.nullable(z.string()).optional(),
+  reconciliation_id: z.nullable(z.string()).optional(),
   display_name: z.nullable(z.string()).optional(),
   external_identifier: z.nullable(z.string()).optional(),
   billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
   account_number: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "reconciliation_id": "reconciliationId",
     "display_name": "displayName",
     "external_identifier": "externalIdentifier",
     "billing_details": "billingDetails",

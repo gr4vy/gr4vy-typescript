@@ -275,6 +275,10 @@ export type TransactionCreate = {
    */
   airline?: Airline | null | undefined;
   /**
+   * An optional description for the transaction. Forwarded to the payment processor where supported. Unlike `statement_descriptor`, this field has no character limit and does not appear on the buyer's bank statement.
+   */
+  description?: string | null | undefined;
+  /**
    * An array of cart items that represents the line items of a transaction.
    */
   cartItems?: Array<CartItem> | null | undefined;
@@ -520,6 +524,7 @@ export type TransactionCreate$Outbound = {
   merchant_initiated: boolean;
   payment_source?: string | undefined;
   airline?: Airline$Outbound | null | undefined;
+  description?: string | null | undefined;
   cart_items?: Array<CartItem$Outbound> | null | undefined;
   statement_descriptor?: StatementDescriptor$Outbound | null | undefined;
   previous_scheme_transaction_id?: string | null | undefined;
@@ -598,6 +603,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   merchantInitiated: z.boolean().default(false),
   paymentSource: TransactionPaymentSource$outboundSchema.optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
+  description: z.nullable(z.string()).optional(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
   statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
     .optional(),

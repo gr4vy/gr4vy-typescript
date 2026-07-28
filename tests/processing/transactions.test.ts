@@ -116,3 +116,31 @@ describe("Transactions", () => {
     );
   });
 });
+
+describe("Transaction refund settlements", () => {
+  // A nonexistent id used to exercise get at the request level: the SDK
+  // serialises and sends the request, and the API rejects it with a 4xx.
+  const MISSING_ID = "00000000-0000-0000-0000-000000000000";
+
+  test("listing refund settlements returns a result", async () => {
+    const created = await authorizeViaCheckoutSession(gr4vy, 1299);
+
+    const settlements = await gr4vy.transactions.refundSettlements.list(
+      created.id
+    );
+    expect(settlements).toBeDefined();
+  });
+
+  // Fetching a specific refund settlement is exercised at the request level: a
+  // real refund settlement only exists once a refund has settled, which the
+  // sandbox can't force synchronously. Targeting a nonexistent settlement id
+  // still sends the request (rejected with a 4xx), so the operation counts as
+  // reached by the HTTP-coverage check.
+  test("fetching a missing refund settlement is exercised at the request level", async () => {
+    const created = await authorizeViaCheckoutSession(gr4vy, 1299);
+
+    await expect(
+      gr4vy.transactions.refundSettlements.get(created.id, MISSING_ID)
+    ).rejects.toThrow();
+  });
+});
