@@ -40,6 +40,8 @@ export const Name = {
   GiftCardRefundSucceeded: "gift-card-refund-succeeded",
   GiftCardRefundFailed: "gift-card-refund-failed",
   GiftCardReversalSucceeded: "gift-card-reversal-succeeded",
+  ReauthorizationAttempted: "reauthorization-attempted",
+  ReauthorizationCreated: "reauthorization-created",
   PaymentConnectorResponseTransactionAuthorizationSucceeded:
     "payment-connector-response-transaction-authorization-succeeded",
   PaymentConnectorResponseTransactionCaptureSucceeded:
