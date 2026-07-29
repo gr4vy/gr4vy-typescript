@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 1150a398b609785e5aa64ea3f16cccb8
+  docChecksum: 57bff7b3113898886542ccac9c513e7c
   docVersion: 1.0.0
   speakeasyVersion: 1.791.0
   generationVersion: 2.924.0
-  releaseVersion: 2.4.0
-  configChecksum: 597af0225ff0d1d942cd3ad27866064c
+  releaseVersion: 2.4.1
+  configChecksum: f9873847f2592169de86a31b6a555674
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 0db972ee-6781-4492-b12e-219215d7a539
-  pristine_commit_hash: 004a29f989666f6487d4e5bf0f693e8293fb42c2
-  pristine_tree_hash: d71d555e5a9193b1a15fc91df0d82b5314998582
+  generation_id: 4af2d491-ab3d-4f5c-8f8c-0f1d358ca2e1
+  pristine_commit_hash: 726c880670e5fa450bb79f3ca29a493218ed2d0b
+  pristine_tree_hash: ad80a88339d8a883e88f9b21dbfe4ca84f6b9d33
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -588,8 +588,8 @@ trackedFiles:
     pristine_git_object: 7d2d6761d0a24c5f72da74f03179e85609665306
   docs/models/components/giftcardactivationcreate.md:
     id: 99eec86bd755
-    last_write_checksum: sha1:5d4df1b367fc832b85e5b9900a087013fed060d7
-    pristine_git_object: 8b115445a216d7759d4f3cf94ed096982df6de25
+    last_write_checksum: sha1:6dc1f4aba8ac161777aa7080122e2feb3a8fcfda
+    pristine_git_object: 882ac0af3e422696f8fecc6a1a97980ed04e2b1e
   docs/models/components/giftcardbalancerequest.md:
     id: ffbd76009b16
     last_write_checksum: sha1:70a416697a405b79ebf0b5e6df115952ddb7a140
@@ -2668,8 +2668,8 @@ trackedFiles:
     pristine_git_object: f7f4fd53c7c8316f8c18c32bcef2a11ec74392bb
   docs/sdks/activations/README.md:
     id: 5e6a3a8cf62a
-    last_write_checksum: sha1:540e72bda99b66597c6a0636964c10d519a5e655
-    pristine_git_object: 12d8ec99eb04390542a403eabd526296e51faf18
+    last_write_checksum: sha1:b5d796600227cd1e18981400cba3289ab43bef0b
+    pristine_git_object: 0d18c97f5d2c8df82af2957febc67426f4ebb564
   docs/sdks/all/README.md:
     id: 936653be5c4b
     last_write_checksum: sha1:152736784aa24324990dda550a130b6c00e8604d
@@ -2848,12 +2848,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:210c843084fa5e0871c57f6dd69e8c1fc4bf50dc
-    pristine_git_object: 977264e5141869cc2756afd23b8a8c8b471e39ab
+    last_write_checksum: sha1:d536e10b57dad59cb6ec0a8c57f02921b64efaa1
+    pristine_git_object: 129e872e42a37c6056f7f8cddfef2aaf78d7764f
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:80121d67b9b5d91ea601873432155da44220aa32
-    pristine_git_object: 4be7e885ad4047eea7fbdd7dd299bac8f9f7dc98
+    last_write_checksum: sha1:587204812adfcda0a53f4cf6524b774e03b91cfb
+    pristine_git_object: a4948fcf5134572c304070afcc2ace21598824e6
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3012,8 +3012,8 @@ trackedFiles:
     pristine_git_object: 04f6eed54c32dbc0aee6262ff91bcf28a6c87c04
   src/funcs/giftCardsActivationsCreate.ts:
     id: 1e7e52f2ed29
-    last_write_checksum: sha1:92881e7c16c40fca5bc187bce078bf642a579b7a
-    pristine_git_object: be7d59777fae2643b4125518b84d3c4b7705f488
+    last_write_checksum: sha1:d1b18945da7418345c99980b26544a904350abde
+    pristine_git_object: 85c8ca5170d45230863f7b41b7b96734f397a189
   src/funcs/giftCardsBalancesList.ts:
     id: 6b69e75107af
     last_write_checksum: sha1:474e666b04941cc9e69fb7f85202c05627facb51
@@ -3348,8 +3348,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:6066cf84074adb7581d2f7a653d5fce9edc8f1cf
-    pristine_git_object: 4e6038f26fc4d80c0cc44ce21ad7adedca1fc005
+    last_write_checksum: sha1:e08a56829474304eb18eec8b6c0e8dca8f5738bf
+    pristine_git_object: 5bf424dfeeef107b8a94003c1bacdc621f09fc15
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -3872,8 +3872,8 @@ trackedFiles:
     pristine_git_object: 23e42c272b499873687890f507bd0def2ad28a6d
   src/models/components/giftcardactivationcreate.ts:
     id: b29087f2b8ea
-    last_write_checksum: sha1:2751a5b88778e572b5e4fa2f82c1439fc3d2b2f7
-    pristine_git_object: eb1a8529332bce9e5b24f0d05328092b623f97bf
+    last_write_checksum: sha1:842cddf682c332ef7f184292324277b039f51eea
+    pristine_git_object: c283b45937d8980cb27367fa48de61cff886b244
   src/models/components/giftcardbalancerequest.ts:
     id: 520785b87b06
     last_write_checksum: sha1:58e205fb8c8451ec0891d98f4849a92f10303490
@@ -5344,8 +5344,8 @@ trackedFiles:
     pristine_git_object: 879c1a17bcacdcdf109069f1fc2e590656500d87
   src/sdk/activations.ts:
     id: 8ed0ca15849b
-    last_write_checksum: sha1:49d34c8545a5038e56f9aa4c8742548dbd17cc34
-    pristine_git_object: f1b6b229855d495355032958bd3fa3e1e3914b94
+    last_write_checksum: sha1:5bd535bb4f14a2f14d01b8d2cc506e6dbff46914
+    pristine_git_object: c12397e6e7a810d5f1172b31372ceceed9c58345
   src/sdk/all.ts:
     id: f5965bae13e4
     last_write_checksum: sha1:e4e672a3bb42e8025ad9ea6dc9300af12b2f9f7c
@@ -9661,7 +9661,7 @@ examples:
   activate_gift_card:
     speakeasy-default-activate-gift-card:
       requestBody:
-        application/json: {"number": "4123455541234561234"}
+        application/json: {"number": "4123455541234561234", "store": false}
       responses:
         "201":
           application/json: {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "valuelink-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "cit_usage_count": 50}
@@ -9724,7 +9724,7 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Typescript SDK Changes:
-  * `gr4vy.transactions.events.list()`:  `response.items[].name` **Changed**
+  * `gr4vy.giftCards.activations.create()`:  `request.giftCardActivationCreate` **Changed**
 generatedFiles:
   - .gitattributes
   - .npmignore
