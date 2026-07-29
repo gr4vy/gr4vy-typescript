@@ -29,6 +29,18 @@ export type GiftCardActivationCreate = {
    * An optional external identifier for this activation.
    */
   externalIdentifier?: string | null | undefined;
+  /**
+   * Whether to store the activated gift card in the vault. When `true`, a `pin` is required.
+   */
+  store?: boolean | undefined;
+  /**
+   * The ID of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+   */
+  buyerId?: string | null | undefined;
+  /**
+   * The `external_identifier` of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this field is provided then the `buyer_id` field needs to be unset.
+   */
+  buyerExternalIdentifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -38,6 +50,9 @@ export type GiftCardActivationCreate$Outbound = {
   amount?: number | null | undefined;
   currency?: string | null | undefined;
   external_identifier?: string | null | undefined;
+  store: boolean;
+  buyer_id?: string | null | undefined;
+  buyer_external_identifier?: string | null | undefined;
 };
 
 /** @internal */
@@ -51,9 +66,14 @@ export const GiftCardActivationCreate$outboundSchema: z.ZodType<
   amount: z.nullable(z.number().int()).optional(),
   currency: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
+  store: z.boolean().default(false),
+  buyerId: z.nullable(z.string()).optional(),
+  buyerExternalIdentifier: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     externalIdentifier: "external_identifier",
+    buyerId: "buyer_id",
+    buyerExternalIdentifier: "buyer_external_identifier",
   });
 });
 

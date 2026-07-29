@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
  * Activate a gift card
  *
  * @remarks
- * Activate a physical gift card through the primary gift card service.
+ * Activate a physical gift card through the primary gift card service. Set `store` to `true` to also store the activated gift card.
  */
 export function giftCardsActivationsCreate(
   client: Gr4vyCore,

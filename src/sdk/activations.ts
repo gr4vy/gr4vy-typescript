@@ -12,7 +12,7 @@ export class Activations extends ClientSDK {
    * Activate a gift card
    *
    * @remarks
-   * Activate a physical gift card through the primary gift card service.
+   * Activate a physical gift card through the primary gift card service. Set `store` to `true` to also store the activated gift card.
    */
   async create(
     giftCardActivationCreate: components.GiftCardActivationCreate,
