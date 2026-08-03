@@ -55,6 +55,11 @@ import {
   CybersourceOptions$outboundSchema,
 } from "./cybersourceoptions.js";
 import {
+  DlocalCardOptions,
+  DlocalCardOptions$Outbound,
+  DlocalCardOptions$outboundSchema,
+} from "./dlocalcardoptions.js";
+import {
   DlocalOptions,
   DlocalOptions$Outbound,
   DlocalOptions$outboundSchema,
@@ -301,6 +306,10 @@ export type TransactionConnectionOptions = {
    */
   cybersourceKcp?: CybersourceOptions | null | undefined;
   /**
+   * Custom options to be passed to the `dlocal-card` connector.
+   */
+  dlocalCard?: DlocalCardOptions | null | undefined;
+  /**
    * Custom options to be passed to the `dlocal-nequi` connector.
    */
   dlocalNequi?: DlocalOptions | null | undefined;
@@ -485,6 +494,7 @@ export type TransactionConnectionOptions$Outbound = {
   "cybersource-card"?: CybersourceOptions$Outbound | null | undefined;
   "cybersource-ideal"?: CybersourceOptions$Outbound | null | undefined;
   "cybersource-kcp"?: CybersourceOptions$Outbound | null | undefined;
+  "dlocal-card"?: DlocalCardOptions$Outbound | null | undefined;
   "dlocal-nequi"?: DlocalOptions$Outbound | null | undefined;
   "dlocal-upi"?: DlocalUPIOptions$Outbound | null | undefined;
   "dlocal-pix"?: DlocalPIXOptions$Outbound | null | undefined;
@@ -561,6 +571,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   cybersourceCard: z.nullable(CybersourceOptions$outboundSchema).optional(),
   cybersourceIdeal: z.nullable(CybersourceOptions$outboundSchema).optional(),
   cybersourceKcp: z.nullable(CybersourceOptions$outboundSchema).optional(),
+  dlocalCard: z.nullable(DlocalCardOptions$outboundSchema).optional(),
   dlocalNequi: z.nullable(DlocalOptions$outboundSchema).optional(),
   dlocalUpi: z.nullable(DlocalUPIOptions$outboundSchema).optional(),
   dlocalPix: z.nullable(DlocalPIXOptions$outboundSchema).optional(),
@@ -630,6 +641,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     cybersourceCard: "cybersource-card",
     cybersourceIdeal: "cybersource-ideal",
     cybersourceKcp: "cybersource-kcp",
+    dlocalCard: "dlocal-card",
     dlocalNequi: "dlocal-nequi",
     dlocalUpi: "dlocal-upi",
     dlocalPix: "dlocal-pix",

@@ -92,6 +92,7 @@ export * from "./digitalwalletdomain.js";
 export * from "./digitalwalletprovider.js";
 export * from "./digitalwallets.js";
 export * from "./digitalwalletupdate.js";
+export * from "./dlocalcardoptions.js";
 export * from "./dlocaloptions.js";
 export * from "./dlocalpixoptions.js";
 export * from "./dlocalpixsubscriptionamountoptions.js";
