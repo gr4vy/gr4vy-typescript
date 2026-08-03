@@ -56,6 +56,10 @@ export type APIKeyPair = {
    */
   updatedAt: Date;
   /**
+   * The date and time when this API key pair was last used to authenticate, or `null` if it has never been used.
+   */
+  lastUsedAt?: Date | null | undefined;
+  /**
    * The user or API key pair that created this API key pair.
    */
   creator?: ApiRoutersApiKeyPairsSchemasCreator | null | undefined;
@@ -84,6 +88,9 @@ export const APIKeyPair$inboundSchema: z.ZodType<
   private_key: z.nullable(z.string()).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  last_used_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
   creator: z.nullable(ApiRoutersApiKeyPairsSchemasCreator$inboundSchema)
     .optional(),
   merchant_accounts: z.array(MerchantAccountSummary$inboundSchema).optional(),
@@ -94,6 +101,7 @@ export const APIKeyPair$inboundSchema: z.ZodType<
     "private_key": "privateKey",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
+    "last_used_at": "lastUsedAt",
     "merchant_accounts": "merchantAccounts",
   });
 });

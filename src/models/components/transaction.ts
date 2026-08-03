@@ -203,6 +203,10 @@ export type Transaction = {
    */
   disputed: boolean;
   /**
+   * The identifier of the transaction from which this transaction was reauthorized.
+   */
+  reauthorizedFromTransactionId?: string | null | undefined;
+  /**
    * Contains information about an airline travel, if applicable.
    */
   airline?: Airline | null | undefined;
@@ -392,6 +396,7 @@ export const Transaction$inboundSchema: z.ZodType<
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   disputed: z.boolean(),
+  reauthorized_from_transaction_id: z.nullable(z.string()).optional(),
   airline: z.nullable(Airline$inboundSchema).optional(),
   auth_response_code: z.nullable(z.string()).optional(),
   avs_response_code: z.nullable(AVSResponseCode$inboundSchema).optional(),
@@ -467,6 +472,7 @@ export const Transaction$inboundSchema: z.ZodType<
     "gift_card_service": "giftCardService",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
+    "reauthorized_from_transaction_id": "reauthorizedFromTransactionId",
     "auth_response_code": "authResponseCode",
     "avs_response_code": "avsResponseCode",
     "cvv_response_code": "cvvResponseCode",

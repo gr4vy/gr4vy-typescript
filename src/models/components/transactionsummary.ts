@@ -171,6 +171,10 @@ export type TransactionSummary = {
    * Indicates whether this transaction has been disputed.
    */
   disputed: boolean;
+  /**
+   * The identifier of the transaction from which this transaction was reauthorized.
+   */
+  reauthorizedFromTransactionId?: string | null | undefined;
 };
 
 /** @internal */
@@ -212,6 +216,7 @@ export const TransactionSummary$inboundSchema: z.ZodType<
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   disputed: z.boolean(),
+  reauthorized_from_transaction_id: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "reconciliation_id": "reconciliationId",
@@ -235,6 +240,7 @@ export const TransactionSummary$inboundSchema: z.ZodType<
     "gift_card_service": "giftCardService",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
+    "reauthorized_from_transaction_id": "reauthorizedFromTransactionId",
   });
 });
 
