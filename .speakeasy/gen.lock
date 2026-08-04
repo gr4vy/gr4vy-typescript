@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: eb80d376bd87555fc332c244429360fd
+  docChecksum: a5c0781808a124016d134d6cfd24d571
   docVersion: 1.0.0
   speakeasyVersion: 1.791.1
   generationVersion: 2.926.2
-  releaseVersion: 2.4.3
-  configChecksum: 083deb23eb0271d2c9d6583ca13da772
+  releaseVersion: 2.4.4
+  configChecksum: 0f4f7388d98cd7f42d1fdd6ce189f6e0
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 849daad2-42d9-4b04-a06a-af5d9467868f
-  pristine_commit_hash: be392cd55cf85f25b5e9adac6b6a3aa9af9b1e3a
-  pristine_tree_hash: 39d1ba1a7ce8a89ed42aca23dc81cd33c0618f05
+  generation_id: 108a3902-910a-4ca1-b2d5-2cf0bf7669ad
+  pristine_commit_hash: 4ee23e4596d0138d6333e79d06e887a673b2a307
+  pristine_tree_hash: b48a35dae8552aba1602c5b1599f8b8d320e639b
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -694,6 +694,10 @@ trackedFiles:
     id: 9bc07c58994e
     last_write_checksum: sha1:21c0eb56423caa5148a86610f32c1622aa51a806
     pristine_git_object: 63848b2ff70a9d3967847bd25796b17016fe2109
+  docs/models/components/incrementalauthorizationstatus.md:
+    id: da98cd078e7c
+    last_write_checksum: sha1:77633bf72e55337b19376cc3bbd501214b2b2e7a
+    pristine_git_object: 305f7b68febab0db669df7583cdca5eb0c02d4e5
   docs/models/components/instrumenttype.md:
     id: 761eb620eb28
     last_write_checksum: sha1:bd03094bd6a84d0f7e6a315920bb9d0f8e19128e
@@ -1478,6 +1482,14 @@ trackedFiles:
     id: 88250a9d6015
     last_write_checksum: sha1:80cdd9c4ea198b65aae69b2ffd091d4e1e1b49d3
     pristine_git_object: c94e0431a20cc35f4cfaa54b8b5d5302271dd483
+  docs/models/components/transactionauthorizationincrement.md:
+    id: 2c87355c2d73
+    last_write_checksum: sha1:0111d9d6ea12b71d5adebe150d90c008c6c2bfb8
+    pristine_git_object: 0ef4d3776f0f50afe9c02e7a29600b54b8dc7c72
+  docs/models/components/transactionauthorizationincrementcreate.md:
+    id: 245b48351281
+    last_write_checksum: sha1:d7cf8b8b4fcca296d2772a88871e3dec2c6f478b
+    pristine_git_object: b1b08189388929668ee3d2882a6be0f6ff55b74c
   docs/models/components/transactionbuyer.md:
     id: bc134c62012d
     last_write_checksum: sha1:9c693675e8c1040b461a1099bc6a51e3da7d061c
@@ -2210,6 +2222,14 @@ trackedFiles:
     id: 199ffc97f0ce
     last_write_checksum: sha1:fb47c6dccc18bc5ec34d1474e9f6f780cddf5671
     pristine_git_object: 94d4802f752244efeab72aeeeb3c6a8a97e6cb6e
+  docs/models/operations/incrementtransactionauthorizationglobals.md:
+    id: a381d536b185
+    last_write_checksum: sha1:e4a9af7898c2fa16a2a4a3172e7f3859002d4dd7
+    pristine_git_object: 7bd59c02ce82aacbb7b628c26bb09f041392f0c8
+  docs/models/operations/incrementtransactionauthorizationrequest.md:
+    id: 9fef9093058e
+    last_write_checksum: sha1:49029ec73272268c5de7f3408d8c3cc453790e4a
+    pristine_git_object: a33ac9ca5fd35c87ef04ff37b8092f3d2a1f138e
   docs/models/operations/issuegiftcardglobals.md:
     id: df3607b7c5a0
     last_write_checksum: sha1:b954fa0d317e2d0c40d0fe1b7579d3442244e31f
@@ -2824,8 +2844,8 @@ trackedFiles:
     pristine_git_object: 6ba01aa8ce14d5bb68f53d01bde052cfae9da510
   docs/sdks/transactions/README.md:
     id: 85592abe3c6b
-    last_write_checksum: sha1:c58e7f02593d4efcdb6594dcddfecaa26cc08d27
-    pristine_git_object: 845c810a7d307be07a647d75dc26c34c331cac2d
+    last_write_checksum: sha1:759f03665c5a79986e3380027cf8888905377b24
+    pristine_git_object: b5feec1fb2afdaa3e0260ecae655290515152b85
   docs/types/rfcdate.md:
     id: 5f9756408fae
     last_write_checksum: sha1:57b4b3cec635cbd12767ed8672f96e257ef88845
@@ -2852,12 +2872,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:e608604e1061448a007a7edc0847d2df58e26e6b
-    pristine_git_object: 493e5680023fc2d3355b6937d6066351d6d66245
+    last_write_checksum: sha1:585e50e5eff406e0d352cc19a9ee78ecb309dc8a
+    pristine_git_object: b9ae86c76169972e7628e208120e40c4448a134f
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:e61cd45054f96ab15a633822d9eeffd0225b7b4b
-    pristine_git_object: 4b8e3a55d779d17d3b0464d7f2f12e75e733e9dc
+    last_write_checksum: sha1:55211d8cccf7579995c725fbdc524f4445e4d95b
+    pristine_git_object: e82f3c44bf977bdd0535e8a1861619b57665414e
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3286,6 +3306,10 @@ trackedFiles:
     id: 22628bbeff2c
     last_write_checksum: sha1:d3b659a0ea26314aadc98bfc47b31c95958fe0bd
     pristine_git_object: f73e23cd79217af10e8afab95ac2d0d982535ad0
+  src/funcs/transactionsIncrementAuthorization.ts:
+    id: 3ddc30b6f859
+    last_write_checksum: sha1:9c67921f47812785192accfe2d1148ef9f291566
+    pristine_git_object: bbf3646a742e0777bf489ffbcba43133499cbf2f
   src/funcs/transactionsList.ts:
     id: 4876c16785b7
     last_write_checksum: sha1:457f98e80d72f73949e6f2a5782cae04f3fbb87c
@@ -3352,8 +3376,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:2fb70c088686cad6a8187c57af521f027cd475a1
-    pristine_git_object: c67d17074a4876c1cda4edf0c410dd1a0a5816a3
+    last_write_checksum: sha1:16709280855dc14416767de4a3687df0ba9031dc
+    pristine_git_object: a9c411fa656d9bb884a067b9323465488309d655
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -3982,10 +4006,14 @@ trackedFiles:
     id: e0744f95d52d
     last_write_checksum: sha1:df7d95c7235f6eade45938eea4cf18f6b9d0dadf
     pristine_git_object: 69087ec944a2c1c9708600957b19a242916e9fda
+  src/models/components/incrementalauthorizationstatus.ts:
+    id: 75c322e6b78d
+    last_write_checksum: sha1:e3e6f0d7cb8bd8619fbf870a9e22e8f76bb69a3b
+    pristine_git_object: 1ce770d2ed5fa71e918450928ad535faf0231ed3
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:f7f34612271e617db373b8d0a791a4884d6a9d5c
-    pristine_git_object: 994cc36ff14238a1bb605e68cbe257cce3183a08
+    last_write_checksum: sha1:ccb61da0706081ab3247d935518324458437dc1e
+    pristine_git_object: 1207c850a259138f853b81a2d324dc13b1618c20
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:b015e998608879b86fe6021f202742235f0f3036
@@ -4654,6 +4682,14 @@ trackedFiles:
     id: 3cb69a6aad3b
     last_write_checksum: sha1:d932392ebfed43d3567a941b029318309f8f9872
     pristine_git_object: 7609ae970e4d44d78c388320c3989574ce2f8075
+  src/models/components/transactionauthorizationincrement.ts:
+    id: 88d4d93ca643
+    last_write_checksum: sha1:c3f2d98bfdec9ac72e30111c27d3537f9a74d039
+    pristine_git_object: b46229161b16d8216a312362b6daee78ec12e486
+  src/models/components/transactionauthorizationincrementcreate.ts:
+    id: 3423dd5fb828
+    last_write_checksum: sha1:2cd04d6a597557782b674cf5be59d6f91ab20d4c
+    pristine_git_object: d0442c8621d325ed2a367039fe301003e9a4cecd
   src/models/components/transactionbuyer.ts:
     id: f98c583e6a65
     last_write_checksum: sha1:69aa52dcd99ebc6632f7055f81d7a6a24ff9ff57
@@ -5138,10 +5174,14 @@ trackedFiles:
     id: 52c2a22bb6f4
     last_write_checksum: sha1:d5a33bd058c8ae56db98b940630bdf9172c75cfc
     pristine_git_object: ab0e6ba680e244dee50dcfa67e1d780e18d1acdb
+  src/models/operations/incrementtransactionauthorization.ts:
+    id: 67a6da6103a4
+    last_write_checksum: sha1:0479ce4b98c57798aa82f0a3a9910e6b231c593c
+    pristine_git_object: 6c2ef4e5233e7fb278890d106faaf282b83ca6f0
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:b46e82f484ce2748d6704e7395af876f25c3166e
-    pristine_git_object: 7bd6ad19e86d40b9d08936342ca2d3cbafbbd4bd
+    last_write_checksum: sha1:c7ad1bcc664b4d8939a3331ce5fbc69d90e5b212
+    pristine_git_object: 5dad9a96e2c042fb4b9cae2c1768cebf9fdef37f
   src/models/operations/issuegiftcard.ts:
     id: 2a10b08296a9
     last_write_checksum: sha1:93259e3e7e987d4760dfb9adcb75a01c077a2d81
@@ -5512,8 +5552,8 @@ trackedFiles:
     pristine_git_object: 69ecb897293f13a0cb08d31e168ca4ec727b5d21
   src/sdk/transactions.ts:
     id: bcd7a9b32ed7
-    last_write_checksum: sha1:8ed61ce806ced6dab6ec103cd391a627f9a8b09c
-    pristine_git_object: d0f0519b04e1bf963b698071169a4c6fe36e2823
+    last_write_checksum: sha1:23dbc57b83ffbb02c67f8a4dfd2c1fba91244dbb
+    pristine_git_object: a48ecd21007d71e15d1eecd772241d3eae4d87cf
   src/types/async.ts:
     id: fac8da972f86
     last_write_checksum: sha1:675d04bb4b4081dc3482f18de98674f9b446e7b4
@@ -9728,22 +9768,45 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  increment_transaction_authorization:
+    speakeasy-default-increment-transaction-authorization:
+      parameters:
+        path:
+          transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
+      requestBody:
+        application/json: {"amount": 1299}
+      responses:
+        "200":
+          application/json: {"type": "transaction-authorization-increment", "status": "succeeded", "code": "service_error", "raw_response_code": "E104", "raw_response_description": "Internal error", "transaction": {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "EUR", "amount": 1299, "status": "authorization_declined", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_amount": 1100, "settled": true, "intent": "authorize", "pending_review": false, "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "skipped", "amount": 100, "refunded_amount": 50, "gift_card": {"type": "gift-card", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "disputed": true, "payment_source": "moto", "merchant_initiated": true, "is_subsequent_payment": false, "intent_outcome": "pending", "multi_tender": true, "account_funding_transaction": true}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Typescript SDK Changes:
-  * `gr4vy.apiKeyPairs.list()`:  `response.items[].lastUsedAt` **Added**
-  * `gr4vy.apiKeyPairs.create()`:  `response.lastUsedAt` **Added**
-  * `gr4vy.apiKeyPairs.get()`:  `response.lastUsedAt` **Added**
-  * `gr4vy.apiKeyPairs.update()`:  `response.lastUsedAt` **Added**
-  * `gr4vy.transactions.list()`:  `response.items[].reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.create()`:  `response.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.get()`:  `response.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.update()`:  `response.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.capture()`:  `response.union(Transaction).reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.void()`:  `response.union(Transaction).reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.cancel()`:  `response.transaction.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.sync()`:  `response.reauthorizedFromTransactionId` **Added**
+  * `gr4vy.transactions.incrementAuthorization()`: **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore

@@ -6,6 +6,7 @@ import { transactionsCancel } from "../funcs/transactionsCancel.js";
 import { transactionsCapture } from "../funcs/transactionsCapture.js";
 import { transactionsCreate } from "../funcs/transactionsCreate.js";
 import { transactionsGet } from "../funcs/transactionsGet.js";
+import { transactionsIncrementAuthorization } from "../funcs/transactionsIncrementAuthorization.js";
 import { transactionsList } from "../funcs/transactionsList.js";
 import { transactionsSync } from "../funcs/transactionsSync.js";
 import { transactionsUpdate } from "../funcs/transactionsUpdate.js";
@@ -209,6 +210,30 @@ export class Transactions extends ClientSDK {
       this,
       transactionId,
       merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Increment transaction authorization
+   *
+   * @remarks
+   * Increment the transaction authorization amount of a given transaction_id.
+   */
+  async incrementAuthorization(
+    transactionAuthorizationIncrementCreate:
+      components.TransactionAuthorizationIncrementCreate,
+    transactionId: string,
+    merchantAccountId?: string | null | undefined,
+    idempotencyKey?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.TransactionAuthorizationIncrement> {
+    return unwrapAsync(transactionsIncrementAuthorization(
+      this,
+      transactionAuthorizationIncrementCreate,
+      transactionId,
+      merchantAccountId,
+      idempotencyKey,
       options,
     ));
   }
