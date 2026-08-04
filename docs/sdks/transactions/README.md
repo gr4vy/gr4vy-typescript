@@ -12,6 +12,7 @@
 * [void](#void) - Void transaction
 * [cancel](#cancel) - Cancel transaction
 * [sync](#sync) - Sync transaction
+* [incrementAuthorization](#incrementauthorization) - Increment transaction authorization
 
 ## list
 
@@ -739,6 +740,101 @@ run();
 ### Response
 
 **Promise\<[components.Transaction](../../models/components/transaction.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.Error400            | 400                        | application/json           |
+| errors.Error401            | 401                        | application/json           |
+| errors.Error403            | 403                        | application/json           |
+| errors.Error404            | 404                        | application/json           |
+| errors.Error405            | 405                        | application/json           |
+| errors.Error409            | 409                        | application/json           |
+| errors.HTTPValidationError | 422                        | application/json           |
+| errors.Error425            | 425                        | application/json           |
+| errors.Error429            | 429                        | application/json           |
+| errors.Error500            | 500                        | application/json           |
+| errors.Error502            | 502                        | application/json           |
+| errors.Error504            | 504                        | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## incrementAuthorization
+
+Increment the transaction authorization amount of a given transaction_id.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="increment_transaction_authorization" method="post" path="/transactions/{transaction_id}/authorization/increment" -->
+```typescript
+import { Gr4vy, withToken } from "@gr4vy/sdk";
+import fs from "fs";
+
+const gr4vy = new Gr4vy({
+    id: "example",
+    server: "sandbox",
+    merchantAccountId: "default",
+    bearerAuth: withToken({
+      privateKey: fs.readFileSync("private_key.pem", "utf8"),
+    }),
+});
+
+async function run() {
+  const result = await gr4vy.transactions.incrementAuthorization({
+    amount: 1299,
+  }, "7099948d-7286-47e4-aad8-b68f7eb44591");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { Gr4vyCore } from "@gr4vy/sdk/core.js";
+import { transactionsIncrementAuthorization } from "@gr4vy/sdk/funcs/transactionsIncrementAuthorization.js";
+
+// Use `Gr4vyCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const gr4vy = new Gr4vyCore({
+  merchantAccountId: "<id>",
+  bearerAuth: process.env["GR4VY_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await transactionsIncrementAuthorization(gr4vy, {
+    amount: 1299,
+  }, "7099948d-7286-47e4-aad8-b68f7eb44591");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsIncrementAuthorization failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                             | Type                                                                                                                                                                                                  | Required                                                                                                                                                                                              | Description                                                                                                                                                                                           | Example                                                                                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `transactionId`                                                                                                                                                                                       | *string*                                                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                    | The unique identifier of the transaction.                                                                                                                                                             | 7099948d-7286-47e4-aad8-b68f7eb44591                                                                                                                                                                  |
+| `transactionAuthorizationIncrementCreate`                                                                                                                                                             | [components.TransactionAuthorizationIncrementCreate](../../models/components/transactionauthorizationincrementcreate.md)                                                                              | :heavy_check_mark:                                                                                                                                                                                    | N/A                                                                                                                                                                                                   |                                                                                                                                                                                                       |
+| `merchantAccountId`                                                                                                                                                                                   | *string*                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                    | The ID of the merchant account to use for this request.                                                                                                                                               |                                                                                                                                                                                                       |
+| `idempotencyKey`                                                                                                                                                                                      | *string*                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                    | A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. | request-12345                                                                                                                                                                                         |
+| `options`                                                                                                                                                                                             | RequestOptions                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                    | Used to set various options for making HTTP requests.                                                                                                                                                 |                                                                                                                                                                                                       |
+| `options.fetchOptions`                                                                                                                                                                                | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                    | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                        |                                                                                                                                                                                                       |
+| `options.retries`                                                                                                                                                                                     | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                    | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                      |                                                                                                                                                                                                       |
+
+### Response
+
+**Promise\<[components.TransactionAuthorizationIncrement](../../models/components/transactionauthorizationincrement.md)\>**
 
 ### Errors
 

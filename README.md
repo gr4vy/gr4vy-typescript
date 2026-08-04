@@ -478,6 +478,7 @@ try {
 * [void](docs/sdks/transactions/README.md#void) - Void transaction
 * [cancel](docs/sdks/transactions/README.md#cancel) - Cancel transaction
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
+* [incrementAuthorization](docs/sdks/transactions/README.md#incrementauthorization) - Increment transaction authorization
 
 #### [Transactions.Actions](docs/sdks/actions/README.md)
 
@@ -1124,6 +1125,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create transaction
 - [`transactionsEventsList`](docs/sdks/events/README.md#list) - List transaction events
 - [`transactionsGet`](docs/sdks/transactions/README.md#get) - Get transaction
+- [`transactionsIncrementAuthorization`](docs/sdks/transactions/README.md#incrementauthorization) - Increment transaction authorization
 - [`transactionsList`](docs/sdks/transactions/README.md#list) - List transactions
 - [`transactionsRefundsAllCreate`](docs/sdks/all/README.md#create) - Create batch transaction refund
 - [`transactionsRefundsCreate`](docs/sdks/gr4vyrefunds/README.md#create) - Create transaction refund
