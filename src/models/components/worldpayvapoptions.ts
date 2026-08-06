@@ -9,11 +9,16 @@ export type WorldpayVapOptions = {
    * Overrides the default report group to pass to the Worldpay VAP API.
    */
   reportGroup?: string | null | undefined;
+  /**
+   * Overrides the `orderId` passed to the Worldpay VAP API, which defaults to the Gr4vy transaction ID.
+   */
+  orderId?: string | null | undefined;
 };
 
 /** @internal */
 export type WorldpayVapOptions$Outbound = {
   reportGroup?: string | null | undefined;
+  orderId?: string | null | undefined;
 };
 
 /** @internal */
@@ -23,6 +28,7 @@ export const WorldpayVapOptions$outboundSchema: z.ZodType<
   WorldpayVapOptions
 > = z.object({
   reportGroup: z.nullable(z.string()).optional(),
+  orderId: z.nullable(z.string()).optional(),
 });
 
 export function worldpayVapOptionsToJSON(
