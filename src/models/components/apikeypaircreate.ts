@@ -20,7 +20,7 @@ export type APIKeyPairCreate = {
    */
   active?: boolean | undefined;
   /**
-   * The ID of the role to assign to the API key pair. Exactly one role is supported. The caller can only assign a role whose scopes are a subset of its own.
+   * The IDs of the roles to assign to the API key pair. The caller can only assign roles whose scopes are a subset of its own.
    */
   roleIds: Array<string>;
   /**
