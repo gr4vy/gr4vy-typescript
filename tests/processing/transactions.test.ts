@@ -3,6 +3,7 @@ import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { amount, currency, fcParams, metadata } from "../utils/arbitraries";
 import { buyer, cardPaymentMethod, uniqueId } from "../utils/fixtures";
+import { reaches } from "../utils/reach";
 import { authorizeViaCheckoutSession } from "../utils/transactions";
 import { setupMerchant } from "../utils/setup";
 
@@ -142,5 +143,19 @@ describe("Transaction refund settlements", () => {
     await expect(
       gr4vy.transactions.refundSettlements.get(created.id, MISSING_ID)
     ).rejects.toThrow();
+  });
+});
+
+// Incremental authorization is a PSP capability the mock connector does not
+// offer. We authorize for real first so the increment is attempted against a
+// genuinely authorized transaction, then accept a clean rejection.
+describe("Transaction authorization increment", () => {
+  test("incrementing an authorization is exercised at the request level", async () => {
+    const created = await authorizeViaCheckoutSession(gr4vy, 1299);
+
+    await reaches(
+      () => gr4vy.transactions.incrementAuthorization({ amount: 500 }, created.id),
+      "transactions.incrementAuthorization"
+    );
   });
 });
