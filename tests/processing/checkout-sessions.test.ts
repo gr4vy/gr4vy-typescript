@@ -10,6 +10,7 @@ import {
   putCheckoutSessionCard,
   putCheckoutSessionStoredMethod,
 } from "../utils/fields";
+import { rejectsClientError } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -94,6 +95,9 @@ describe("Checkout Sessions", () => {
     expect(updated.metadata?.["source"]).toBe("updated");
 
     await gr4vy.checkoutSessions.delete(created.id);
-    await expect(() => gr4vy.checkoutSessions.get(created.id)).rejects.toThrow();
+    await rejectsClientError(
+      () => gr4vy.checkoutSessions.get(created.id),
+      "checkoutSessions.get after delete"
+    );
   });
 });

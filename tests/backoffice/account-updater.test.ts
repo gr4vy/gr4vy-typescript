@@ -1,6 +1,7 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { beforeAll, describe, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { cardPaymentMethod } from "../utils/fixtures";
+import { reaches } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -17,8 +18,9 @@ describe("Account Updater", () => {
   test("creating a job is exercised at the request level", async () => {
     const method = await gr4vy.paymentMethods.create(cardPaymentMethod());
 
-    await expect(
-      gr4vy.accountUpdater.jobs.create({ paymentMethodIds: [method.id] })
-    ).rejects.toThrow();
+    await reaches(
+      () => gr4vy.accountUpdater.jobs.create({ paymentMethodIds: [method.id] }),
+      "accountUpdater.jobs.create"
+    );
   });
 });

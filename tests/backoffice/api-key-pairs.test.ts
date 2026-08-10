@@ -1,5 +1,6 @@
 import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
+import { reaches } from "../utils/reach";
 import { createGr4vyClient, setupMerchant } from "../utils/setup";
 
 let admin: Gr4vy;
@@ -27,26 +28,32 @@ describe("API Key Pairs", () => {
   // still serialises the payload and reaches the server (which rejects it with a
   // 4xx), so the operation counts as reached by the HTTP-coverage check.
   test("create is exercised at the request level", async () => {
-    await expect(
-      admin.apiKeyPairs.create({
-        displayName: "E2E API key pair",
-        roleIds: [MISSING_ID],
-      })
-    ).rejects.toThrow();
+    await reaches(
+      () =>
+        admin.apiKeyPairs.create({
+          displayName: "E2E API key pair",
+          roleIds: [MISSING_ID],
+        }),
+      "apiKeyPairs.create"
+    );
   });
 
   test("fetching a missing API key pair is exercised at the request level", async () => {
-    await expect(admin.apiKeyPairs.get(MISSING_ID)).rejects.toThrow();
+    await reaches(() => admin.apiKeyPairs.get(MISSING_ID), "apiKeyPairs.get");
   });
 
   test("updating a missing API key pair is exercised at the request level", async () => {
     // Note the argument order: the update body comes first, then the id.
-    await expect(
-      admin.apiKeyPairs.update({ displayName: "Renamed" }, MISSING_ID)
-    ).rejects.toThrow();
+    await reaches(
+      () => admin.apiKeyPairs.update({ displayName: "Renamed" }, MISSING_ID),
+      "apiKeyPairs.update"
+    );
   });
 
   test("deleting a missing API key pair is exercised at the request level", async () => {
-    await expect(admin.apiKeyPairs.delete(MISSING_ID)).rejects.toThrow();
+    await reaches(
+      () => admin.apiKeyPairs.delete(MISSING_ID),
+      "apiKeyPairs.delete"
+    );
   });
 });

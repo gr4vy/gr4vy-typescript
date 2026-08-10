@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { APPROVING_CARD } from "../utils/fixtures";
+import { reaches } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -27,23 +28,26 @@ describe("Payouts", () => {
       fields: [{ key: "merchant_id", value: "test" }],
     });
 
-    await expect(
-      gr4vy.payouts.create({
-        amount: 1299,
-        currency: "USD",
-        paymentServiceId: service.id,
-        paymentMethod: {
-          method: "card",
-          number: APPROVING_CARD.number,
-          expirationDate: APPROVING_CARD.expiration_date,
-        },
-      })
-    ).rejects.toThrow();
+    await reaches(
+      () =>
+        gr4vy.payouts.create({
+          amount: 1299,
+          currency: "USD",
+          paymentServiceId: service.id,
+          paymentMethod: {
+            method: "card",
+            number: APPROVING_CARD.number,
+            expirationDate: APPROVING_CARD.expiration_date,
+          },
+        }),
+      "payouts.create"
+    );
   });
 
   test("fetching a missing payout is exercised at the request level", async () => {
-    await expect(
-      gr4vy.payouts.get("00000000-0000-0000-0000-000000000000")
-    ).rejects.toThrow();
+    await reaches(
+      () => gr4vy.payouts.get("00000000-0000-0000-0000-000000000000"),
+      "payouts.get"
+    );
   });
 });

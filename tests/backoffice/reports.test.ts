@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { ReportCreate } from "../../src/models/components";
 import { uniqueId } from "../utils/fixtures";
+import { reaches } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -61,9 +62,13 @@ describe("Reports", () => {
     const created = await gr4vy.reports.create(reportCreate());
     const bogus = "00000000-0000-0000-0000-000000000000";
 
-    await expect(gr4vy.reports.executions.get(bogus)).rejects.toThrow();
-    await expect(
-      gr4vy.reports.executions.url(created.id, bogus)
-    ).rejects.toThrow();
+    await reaches(
+      () => gr4vy.reports.executions.get(bogus),
+      "reports.executions.get"
+    );
+    await reaches(
+      () => gr4vy.reports.executions.url(created.id, bogus),
+      "reports.executions.url"
+    );
   });
 });

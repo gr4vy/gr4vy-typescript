@@ -140,9 +140,10 @@ describe("Transaction refund settlements", () => {
   test("fetching a missing refund settlement is exercised at the request level", async () => {
     const created = await authorizeViaCheckoutSession(gr4vy, 1299);
 
-    await expect(
-      gr4vy.transactions.refundSettlements.get(created.id, MISSING_ID)
-    ).rejects.toThrow();
+    await reaches(
+      () => gr4vy.transactions.refundSettlements.get(created.id, MISSING_ID),
+      "transactions.refundSettlements.get"
+    );
   });
 });
 

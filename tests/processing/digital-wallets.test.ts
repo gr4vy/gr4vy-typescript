@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { DigitalWallet } from "../../src/models/components";
 import { uniqueId } from "../utils/fixtures";
+import { reaches, rejectsClientError } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -51,7 +52,10 @@ describe("Digital Wallets", () => {
     expect(updated.merchantDisplayName).toBe("Renamed Display");
 
     await gr4vy.digitalWallets.delete(created.id);
-    await expect(() => gr4vy.digitalWallets.get(created.id)).rejects.toThrow();
+    await rejectsClientError(
+      () => gr4vy.digitalWallets.get(created.id),
+      "digitalWallets.get after delete"
+    );
   });
 
   // A Google Pay session can be minted server-side from an origin domain; assert
@@ -69,58 +73,71 @@ describe("Digital Wallets", () => {
   // shape is covered and the API rejects it for a real reason.
   describe("sessions exercised at the request level", () => {
     test("apple pay session", async () => {
-      await expect(
-        gr4vy.digitalWallets.sessions.applePay({
-          validationUrl: "https://apple-pay-gateway.apple.com/paymentservices",
-          domainName: "not-a-registered-domain.example.com",
-        })
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.digitalWallets.sessions.applePay({
+            validationUrl:
+              "https://apple-pay-gateway.apple.com/paymentservices",
+            domainName: "not-a-registered-domain.example.com",
+          }),
+        "digitalWallets.sessions.applePay"
+      );
     });
 
     test("click to pay session", async () => {
-      await expect(
-        gr4vy.digitalWallets.sessions.clickToPay({
-          checkoutSessionId: "00000000-0000-0000-0000-000000000000",
-        })
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.digitalWallets.sessions.clickToPay({
+            checkoutSessionId: "00000000-0000-0000-0000-000000000000",
+          }),
+        "digitalWallets.sessions.clickToPay"
+      );
     });
 
     test("paze session", async () => {
-      await expect(
-        gr4vy.digitalWallets.sessions.paze({
-          source: "web",
-          domainName: "not-a-registered-domain.example.com",
-        })
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.digitalWallets.sessions.paze({
+            source: "web",
+            domainName: "not-a-registered-domain.example.com",
+          }),
+        "digitalWallets.sessions.paze"
+      );
     });
 
     test("paze mobile session create / review / complete", async () => {
-      await expect(
-        gr4vy.digitalWallets.sessions.pazeMobileSessionCreate({
-          client: { id: "client-id" },
-          sessionId: "session-id",
-          accessToken: "access-token",
-          callbackURLScheme: "gr4vy",
-          intent: "EXPRESS_CHECKOUT",
-        })
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.digitalWallets.sessions.pazeMobileSessionCreate({
+            client: { id: "client-id" },
+            sessionId: "session-id",
+            accessToken: "access-token",
+            callbackURLScheme: "gr4vy",
+            intent: "EXPRESS_CHECKOUT",
+          }),
+        "digitalWallets.sessions.pazeMobileSessionCreate"
+      );
 
-      await expect(
-        gr4vy.digitalWallets.sessions.pazeMobileSessionReview({
-          sessionId: "session-id",
-          code: "code",
-          accessToken: "access-token",
-        })
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.digitalWallets.sessions.pazeMobileSessionReview({
+            sessionId: "session-id",
+            code: "code",
+            accessToken: "access-token",
+          }),
+        "digitalWallets.sessions.pazeMobileSessionReview"
+      );
 
-      await expect(
-        gr4vy.digitalWallets.sessions.pazeMobileSessionComplete({
-          sessionId: "session-id",
-          code: "code",
-          accessToken: "access-token",
-          transactionType: "PURCHASE",
-        })
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.digitalWallets.sessions.pazeMobileSessionComplete({
+            sessionId: "session-id",
+            code: "code",
+            accessToken: "access-token",
+            transactionType: "PURCHASE",
+          }),
+        "digitalWallets.sessions.pazeMobileSessionComplete"
+      );
     });
   });
 
@@ -130,12 +147,14 @@ describe("Digital Wallets", () => {
   describe("domains exercised at the request level", () => {
     test("domain registration is rejected", async () => {
       await withWallet(async (wallet) => {
-        await expect(
-          gr4vy.digitalWallets.domains.create(
-            { domainName: "example.com" },
-            wallet.id
-          )
-        ).rejects.toThrow();
+        await reaches(
+          () =>
+            gr4vy.digitalWallets.domains.create(
+              { domainName: "example.com" },
+              wallet.id
+            ),
+          "digitalWallets.domains.create"
+        );
       });
     });
 
