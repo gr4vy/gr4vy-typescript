@@ -1,5 +1,6 @@
 import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
+import { reaches } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -41,5 +42,32 @@ describe("Gift Cards", () => {
     const bogus = "00000000-0000-0000-0000-000000000000";
     await expect(gr4vy.giftCards.get(bogus)).rejects.toThrow();
     await expect(gr4vy.giftCards.delete(bogus)).rejects.toThrow();
+  });
+
+  // Activation and issuance both need a configured gift-card service, so they
+  // are asserted via `reaches` — a 2xx or a clean 4xx passes, a 5xx fails.
+  test("activation is exercised at the request level", async () => {
+    await reaches(
+      () =>
+        gr4vy.giftCards.activations.create({
+          number: "4111111111111111",
+          pin: "1234",
+          amount: 1299,
+          currency: "USD",
+        }),
+      "giftCards.activations.create"
+    );
+  });
+
+  test("issuance is exercised at the request level", async () => {
+    await reaches(
+      () =>
+        gr4vy.giftCards.issuances.create({
+          theme: "default",
+          amount: 1299,
+          currency: "USD",
+        }),
+      "giftCards.issuances.create"
+    );
   });
 });
