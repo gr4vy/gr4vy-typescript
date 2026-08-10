@@ -5,15 +5,15 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.792.0
   generationVersion: 2.927.0
-  releaseVersion: 2.4.6
-  configChecksum: 3a0be5f62c2700739c6fe2000eb8fe57
+  releaseVersion: 2.4.7
+  configChecksum: 48f133db7be0c4e756a20c5de154e6f4
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 8010de16-efe0-49c6-b63c-9245f3b50a1d
-  pristine_commit_hash: f793a7d4665a5f971a3e48dc4e78115a372e1756
-  pristine_tree_hash: a0da95eb35e6f8010ad116ad4ff1d1e6ae1877d7
+  generation_id: e0e88433-46b9-46cb-b443-7dcdcd8584ea
+  pristine_commit_hash: 356c11b3a17d2a28a6eea24374741cf95727c979
+  pristine_tree_hash: 10c458aa97ec89ad82f06c8737e01f1b74983561
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2872,12 +2872,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:bdc291682c8783e411dd6418fb0799d7d47495f5
-    pristine_git_object: 760928fac4bbefe2265b30853f03f256f0e6a186
+    last_write_checksum: sha1:1eecc916419f61deadf2287fc93dff11450e0d37
+    pristine_git_object: 28c7a3815da4a96a237fb4d018966713519e6106
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:1a9749756e9a500e56ed0da02480f13aacc0b845
-    pristine_git_object: 68a6d8cd4b804c19d8f85eb1171c27c1f3777df7
+    last_write_checksum: sha1:cf6c0c112fba05eb90e90953e012751cf12b9380
+    pristine_git_object: 0b0d230dc0754161c86205a12652fcd233f7f0e0
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3376,8 +3376,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:3a6730ad595ab466cc3030b641235d6960b5ee52
-    pristine_git_object: 6bbd1318a3b50aeac9e46e66d5912beeb2c43bfe
+    last_write_checksum: sha1:695478df96b6bb578b275bb2e713db0bf6fca76b
+    pristine_git_object: 61c194782a09fe8228e664e9f5f8af07752e8fdc
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
