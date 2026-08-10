@@ -7,6 +7,7 @@ import {
   cardPaymentMethod,
   uniqueId,
 } from "../utils/fixtures";
+import { rejectsClientError } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -69,6 +70,9 @@ describe("Buyer lifecycle", () => {
     expect(created.billingDetails?.firstName).toBe("Grace");
 
     await gr4vy.buyers.delete(created.id!);
-    await expect(() => gr4vy.buyers.get(created.id!)).rejects.toThrow();
+    await rejectsClientError(
+      () => gr4vy.buyers.get(created.id!),
+      "buyers.get after delete"
+    );
   });
 });

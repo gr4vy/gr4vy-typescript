@@ -9,6 +9,7 @@ import {
 } from "../utils/fixtures";
 import { putCheckoutSessionCard } from "../utils/fields";
 import { pollUntil } from "../utils/poll";
+import { reaches } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -140,7 +141,10 @@ describe("Transaction lifecycle", () => {
   // rejects it with a clear "not supported" error.
   test("authorize → cancel is exercised at the request level", async () => {
     const transaction = await authorize(1500);
-    await expect(gr4vy.transactions.cancel(transaction.id)).rejects.toThrow();
+    await reaches(
+      () => gr4vy.transactions.cancel(transaction.id),
+      "transactions.cancel"
+    );
   });
 
   test("intent=capture authorizes and captures in one step", async () => {
@@ -164,18 +168,23 @@ describe("Transaction lifecycle", () => {
 
     // No settlement exists yet for a freshly captured transaction in the mock
     // env, so fetching one by id is exercised at the request level.
-    await expect(
-      gr4vy.transactions.settlements.get(
-        transaction.id,
-        "00000000-0000-0000-0000-000000000000"
-      )
-    ).rejects.toThrow();
+    await reaches(
+      () =>
+        gr4vy.transactions.settlements.get(
+          transaction.id,
+          "00000000-0000-0000-0000-000000000000"
+        ),
+      "transactions.settlements.get"
+    );
   });
 
   // `sync` is not supported by the mock-card connector; exercise the call shape
   // and assert the API rejects it rather than skipping the endpoint.
   test("sync is exercised at the request level", async () => {
     const transaction = await authorize(1700);
-    await expect(gr4vy.transactions.sync(transaction.id)).rejects.toThrow();
+    await reaches(
+      () => gr4vy.transactions.sync(transaction.id),
+      "transactions.sync"
+    );
   });
 });

@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { PaymentServiceCreate } from "../../src/models/components";
+import { reaches, rejectsClientError } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -39,26 +40,32 @@ describe("Payment Services", () => {
     expect(updated.displayName).toBe("Renamed service");
 
     await gr4vy.paymentServices.delete(created.id!);
-    await expect(() => gr4vy.paymentServices.get(created.id!)).rejects.toThrow();
+    await rejectsClientError(
+      () => gr4vy.paymentServices.get(created.id!),
+      "paymentServices.get after delete"
+    );
   });
 
   // Credential verification and session creation are not meaningfully supported
   // by the mock-card connector (verify returns a non-JSON body; session is
   // explicitly unsupported), so both are exercised at the request level.
   test("verify is exercised at the request level", async () => {
-    await expect(
-      gr4vy.paymentServices.verify({
-        paymentServiceDefinitionId: "mock-card",
-        fields: [{ key: "merchant_id", value: "test" }],
-      })
-    ).rejects.toThrow();
+    await reaches(
+      () =>
+        gr4vy.paymentServices.verify({
+          paymentServiceDefinitionId: "mock-card",
+          fields: [{ key: "merchant_id", value: "test" }],
+        }),
+      "paymentServices.verify"
+    );
   });
 
   test("create a session is exercised at the request level", async () => {
     const created = await gr4vy.paymentServices.create(mockCardService());
-    await expect(
-      gr4vy.paymentServices.session({}, created.id!)
-    ).rejects.toThrow();
+    await reaches(
+      () => gr4vy.paymentServices.session({}, created.id!),
+      "paymentServices.session"
+    );
   });
 
   describe("definitions, options and card schemes", () => {
@@ -73,9 +80,10 @@ describe("Payment Services", () => {
 
     test("create a session for a definition is exercised at the request level", async () => {
       // Session creation is not supported for the mock-card definition.
-      await expect(
-        gr4vy.paymentServiceDefinitions.session({}, "mock-card")
-      ).rejects.toThrow();
+      await reaches(
+        () => gr4vy.paymentServiceDefinitions.session({}, "mock-card"),
+        "paymentServiceDefinitions.session"
+      );
     });
 
     test("list payment options for a cart", async () => {

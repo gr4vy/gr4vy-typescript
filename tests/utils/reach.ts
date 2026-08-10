@@ -39,3 +39,44 @@ export const reaches = async (
     );
   }
 };
+
+/**
+ * Assert that an operation reached the server and the server *rejected* it with
+ * a client error (4xx).
+ *
+ * Use this where the rejection is the behaviour under test rather than an
+ * accepted side effect — "after delete, reading it back must 404", "this
+ * payload must be refused". Unlike {@link reaches}, a **2xx fails**: if a
+ * deleted resource is still readable, that is exactly the bug the test exists
+ * to catch, and it must not pass.
+ *
+ * Like {@link reaches}, this also fails on a 5xx and on any failure that never
+ * hit the wire — the gap in a plain `rejects.toThrow()`, which passes on a
+ * local serialization error and so can go green without the API ever being
+ * asked.
+ */
+export const rejectsClientError = async (
+  action: () => Promise<unknown>,
+  description: string
+): Promise<void> => {
+  try {
+    await action();
+  } catch (error) {
+    if (error instanceof Gr4vyError) {
+      const { statusCode } = error;
+      if (statusCode >= 400 && statusCode < 500) {
+        return; // reached + cleanly rejected, as expected
+      }
+      throw new Error(
+        `[reject] ${description}: expected a 4xx, got ${statusCode}: ${error.message}`
+      );
+    }
+    throw new Error(
+      `[reject] ${description}: the call failed before reaching the server: ` +
+        `${(error as Error)?.name} — ${(error as Error)?.message}`
+    );
+  }
+  throw new Error(
+    `[reject] ${description}: expected the API to reject this, but it succeeded.`
+  );
+};

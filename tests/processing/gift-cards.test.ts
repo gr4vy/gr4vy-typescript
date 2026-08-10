@@ -20,28 +20,32 @@ describe("Gift Cards", () => {
   // is provisioned only with `mock-card`, so these calls are exercised at the
   // request level and the API is expected to reject them for a real reason.
   test("create is exercised at the request level", async () => {
-    await expect(
-      gr4vy.giftCards.create({
-        number: "4111111111111111",
-        pin: "1234",
-      })
-    ).rejects.toThrow();
+    await reaches(
+      () =>
+        gr4vy.giftCards.create({
+          number: "4111111111111111",
+          pin: "1234",
+        }),
+      "giftCards.create"
+    );
   });
 
   test("balance lookup is exercised at the request level", async () => {
-    await expect(
-      gr4vy.giftCards.balances.list({
-        items: [{ number: "4111111111111111", pin: "1234" }],
-      })
-    ).rejects.toThrow();
+    await reaches(
+      () =>
+        gr4vy.giftCards.balances.list({
+          items: [{ number: "4111111111111111", pin: "1234" }],
+        }),
+      "giftCards.balances.list"
+    );
   });
 
   // No gift card exists to fetch/delete on the mock merchant, so get/delete are
   // exercised against a non-existent id and expected to be rejected.
   test("get and delete are exercised at the request level", async () => {
     const bogus = "00000000-0000-0000-0000-000000000000";
-    await expect(gr4vy.giftCards.get(bogus)).rejects.toThrow();
-    await expect(gr4vy.giftCards.delete(bogus)).rejects.toThrow();
+    await reaches(() => gr4vy.giftCards.get(bogus), "giftCards.get");
+    await reaches(() => gr4vy.giftCards.delete(bogus), "giftCards.delete");
   });
 
   // Activation and issuance both need a configured gift-card service, so they

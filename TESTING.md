@@ -94,6 +94,27 @@ request level** — the SDK serialises the request and we assert the API rejects
 it for a real reason — and each is clearly commented. They are never silently
 skipped, so they still count toward endpoint reach.
 
+### `reaches` vs `rejectsClientError`
+
+Endpoint reach is measured from **HTTP requests actually sent**, so a
+request-level test is only worth something if a well-formed request left the
+process. `tests/utils/reach.ts` provides the two assertions to use — pick by
+whether the rejection is incidental or is the thing under test:
+
+| Helper | Use when | 2xx | 4xx | 5xx | Never reached the wire |
+| --- | --- | --- | --- | --- | --- |
+| `reaches` | The op can't reach a happy path here; you only need it reached | pass | pass | **fail** | **fail** |
+| `rejectsClientError` | The rejection *is* the assertion ("after delete, reading it back must 404") | **fail** | pass | **fail** | **fail** |
+
+Prefer these over a bare `rejects.toThrow()`. That assertion also passes when
+the SDK throws locally — a bad argument, a serialisation error — before anything
+is sent, so it can go green while the endpoint is never reached and the coverage
+report still counts it as untested. Both helpers fail that case explicitly.
+
+The one place a raw `expect(...).rejects` is still right is when you assert a
+*specific* error, e.g. the checkout-session validation message in
+`tests/processing/checkout-sessions.test.ts`.
+
 ## Coverage
 
 ```sh

@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { buyer, cardPaymentMethod } from "../utils/fixtures";
+import { reaches, rejectsClientError } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -24,7 +25,10 @@ describe("Payment Methods", () => {
     expect(page).toBeDefined();
 
     await gr4vy.paymentMethods.delete(created.id);
-    await expect(() => gr4vy.paymentMethods.get(created.id)).rejects.toThrow();
+    await rejectsClientError(
+      () => gr4vy.paymentMethods.get(created.id),
+      "paymentMethods.get after delete"
+    );
   });
 
   test("update changes only the expiration date (partial)", async () => {
@@ -62,29 +66,36 @@ describe("Payment Methods", () => {
       const card = await storeCard();
       const bogusToken = "00000000-0000-0000-0000-000000000000";
 
-      await expect(
-        gr4vy.paymentMethods.networkTokens.create(
-          { merchantInitiated: true, isSubsequentPayment: false },
-          card.id
-        )
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.paymentMethods.networkTokens.create(
+            { merchantInitiated: true, isSubsequentPayment: false },
+            card.id
+          ),
+        "paymentMethods.networkTokens.create"
+      );
 
-      await expect(
-        gr4vy.paymentMethods.networkTokens.suspend(card.id, bogusToken)
-      ).rejects.toThrow();
-      await expect(
-        gr4vy.paymentMethods.networkTokens.resume(card.id, bogusToken)
-      ).rejects.toThrow();
-      await expect(
-        gr4vy.paymentMethods.networkTokens.delete(card.id, bogusToken)
-      ).rejects.toThrow();
-      await expect(
-        gr4vy.paymentMethods.networkTokens.cryptogram.create(
-          { merchantInitiated: true },
-          card.id,
-          bogusToken
-        )
-      ).rejects.toThrow();
+      await reaches(
+        () => gr4vy.paymentMethods.networkTokens.suspend(card.id, bogusToken),
+        "paymentMethods.networkTokens.suspend"
+      );
+      await reaches(
+        () => gr4vy.paymentMethods.networkTokens.resume(card.id, bogusToken),
+        "paymentMethods.networkTokens.resume"
+      );
+      await reaches(
+        () => gr4vy.paymentMethods.networkTokens.delete(card.id, bogusToken),
+        "paymentMethods.networkTokens.delete"
+      );
+      await reaches(
+        () =>
+          gr4vy.paymentMethods.networkTokens.cryptogram.create(
+            { merchantInitiated: true },
+            card.id,
+            bogusToken
+          ),
+        "paymentMethods.networkTokens.cryptogram.create"
+      );
     });
   });
 
@@ -101,21 +112,25 @@ describe("Payment Methods", () => {
     // which mock-card is not; exercise the call shape at the request level.
     test("create and delete are exercised at the request level", async () => {
       const card = await storeCard();
-      await expect(
-        gr4vy.paymentMethods.paymentServiceTokens.create(
-          {
-            paymentServiceId: "00000000-0000-0000-0000-000000000000",
-            redirectUrl: "https://example.com/return",
-          },
-          card.id
-        )
-      ).rejects.toThrow();
-      await expect(
-        gr4vy.paymentMethods.paymentServiceTokens.delete(
-          card.id,
-          "00000000-0000-0000-0000-000000000000"
-        )
-      ).rejects.toThrow();
+      await reaches(
+        () =>
+          gr4vy.paymentMethods.paymentServiceTokens.create(
+            {
+              paymentServiceId: "00000000-0000-0000-0000-000000000000",
+              redirectUrl: "https://example.com/return",
+            },
+            card.id
+          ),
+        "paymentMethods.paymentServiceTokens.create"
+      );
+      await reaches(
+        () =>
+          gr4vy.paymentMethods.paymentServiceTokens.delete(
+            card.id,
+            "00000000-0000-0000-0000-000000000000"
+          ),
+        "paymentMethods.paymentServiceTokens.delete"
+      );
     });
   });
 });

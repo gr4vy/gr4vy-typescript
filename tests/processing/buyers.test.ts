@@ -3,6 +3,7 @@ import { beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { address, billingDetails, buyer, uniqueId } from "../utils/fixtures";
 import { fcParams, name } from "../utils/arbitraries";
+import { rejectsClientError } from "../utils/reach";
 import { setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
@@ -23,7 +24,10 @@ describe("Buyers", () => {
     expect(page).toBeDefined();
 
     await gr4vy.buyers.delete(created.id!);
-    await expect(() => gr4vy.buyers.get(created.id!)).rejects.toThrow();
+    await rejectsClientError(
+      () => gr4vy.buyers.get(created.id!),
+      "buyers.get after delete"
+    );
   });
 
   test("can be looked up by external identifier", async () => {
