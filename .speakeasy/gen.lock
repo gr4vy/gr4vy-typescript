@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 28b450dd7797cabb997e171adf525e0c
+  docChecksum: dbaa0489b3b4bde953b19689e82fd18b
   docVersion: 1.0.0
-  speakeasyVersion: 1.793.0
+  speakeasyVersion: 1.793.1
   generationVersion: 2.928.0
-  releaseVersion: 2.4.8
-  configChecksum: eca0dde5e7e344c95913310bc5de51ec
+  releaseVersion: 2.4.9
+  configChecksum: 527006a65e999199f61b65c2501f8ddd
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 80b7ed69-e612-4d0d-a53d-ca94a49bd71f
-  pristine_commit_hash: a54e515d1dfd43cce8187d50a2fe1d2dd893d7f5
-  pristine_tree_hash: eb47a3b6f17475156918c05c5dbb01d22c52e8d5
+  generation_id: 66fecfb5-d3c7-4fc8-a761-933f86f6112d
+  pristine_commit_hash: 2e4c3eede9ea6af716b6853029304816883787f3
+  pristine_tree_hash: 100536a9d8b30113eb7e3934f15ae0c8f1c1802c
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1308,8 +1308,12 @@ trackedFiles:
     pristine_git_object: 8eeb50b8a610b0817bb2d72b6684c8902dfd4462
   docs/models/components/role.md:
     id: ab26d0e394ad
-    last_write_checksum: sha1:ad045b711901185117fa0c9ce4d05d4f7b6646ed
-    pristine_git_object: f376d880198db4f8c7536a173a81a7127624d785
+    last_write_checksum: sha1:ebe9961043c4c45e9b5be0f1ce9121bb8b89c8f6
+    pristine_git_object: 8ea90b1b3e9d73600c7d9649fb5e1e6e717935b7
+  docs/models/components/roleassigneetype.md:
+    id: 4ab3134b3427
+    last_write_checksum: sha1:a61d70cc19c02cf072b7d66389bacc8fc7af13ec
+    pristine_git_object: 2c18a10c2dfd46a1068342d2f585024b875b72c7
   docs/models/components/routetype.md:
     id: 7a4db37548b8
     last_write_checksum: sha1:e9d3cc8be65a80261bfd0cf60799cd24eb493832
@@ -2872,12 +2876,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:1db2ba1c0747037e34c5c07fc8cf0ebf7b9c0bde
-    pristine_git_object: c824a308967a488ea065cd167dc808c036dbb395
+    last_write_checksum: sha1:e2293f426c30805f693f0dacf9aabb099b148ae2
+    pristine_git_object: cc7603fa2e1d9106e3788f0e282bcdd69bf5b0d6
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:4db261c695e19fea40774db35bf4824242abd9fa
-    pristine_git_object: e25d826bb49d5b01dc1526241c0697129b84168b
+    last_write_checksum: sha1:6ad0bcf4079fc7e3126fe33a32a9c77d8cc7e58b
+    pristine_git_object: 85c4d140bc43c92a1e5c5841cd2fe0a8c5a2954e
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3376,8 +3380,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:3df1dc84ff593c276bfc062a7ffccc7e6b407e89
-    pristine_git_object: a30d3cfb2ba81554771af5e6dd26a6ed31386f37
+    last_write_checksum: sha1:1de3484ae5886c548ffd0f488f99706b5b274777
+    pristine_git_object: 7e0978d255fafbc567d2968d3a1519fac49d9769
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -4012,8 +4016,8 @@ trackedFiles:
     pristine_git_object: 1ce770d2ed5fa71e918450928ad535faf0231ed3
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:ccb61da0706081ab3247d935518324458437dc1e
-    pristine_git_object: 1207c850a259138f853b81a2d324dc13b1618c20
+    last_write_checksum: sha1:1a174fbb41a1ff8022e0439abb6da85b7aa97841
+    pristine_git_object: 801465e4938075dc629d99036f794bd99562a382
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:b015e998608879b86fe6021f202742235f0f3036
@@ -4548,8 +4552,12 @@ trackedFiles:
     pristine_git_object: 3de77d9951efeb9ab15d8ab6e568bf82838a5660
   src/models/components/role.ts:
     id: c1a91949efeb
-    last_write_checksum: sha1:b67410b5787c56d88414c32aa30c64c59ba4cc5d
-    pristine_git_object: 0e2b228cdfdcc7ae88efb0304cf17c2828fabd7d
+    last_write_checksum: sha1:adb12c0b7953f28cb545d4485a935bd440f98425
+    pristine_git_object: ef8e1bc7e0a1f68b41bc6818a100ba2cf970d0b7
+  src/models/components/roleassigneetype.ts:
+    id: 0d97143e2f44
+    last_write_checksum: sha1:bd0c4a2d0f282242a11e686048871aacdda194d4
+    pristine_git_object: b86ced9ca297d82cd36ed0fb774ed612e9c5ceb8
   src/models/components/security.ts:
     id: 472dde81bb1c
     last_write_checksum: sha1:14f08712e7ae6c9786e015c415b290acda66bcef
@@ -9804,6 +9812,12 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `gr4vy.apiKeyPairs.list()`:  `response.items[].roles[]` **Changed**
+  * `gr4vy.apiKeyPairs.create()`:  `response.roles[]` **Changed**
+  * `gr4vy.apiKeyPairs.get()`:  `response.roles[]` **Changed**
+  * `gr4vy.apiKeyPairs.update()`:  `response.roles[]` **Changed**
 generatedFiles:
   - .gitattributes
   - .npmignore

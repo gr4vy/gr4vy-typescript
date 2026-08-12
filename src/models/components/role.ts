@@ -3,17 +3,38 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { PermissionSet, PermissionSet$inboundSchema } from "./permissionset.js";
+import {
+  RoleAssigneeType,
+  RoleAssigneeType$inboundSchema,
+} from "./roleassigneetype.js";
 
 export type Role = {
   type: "role";
   id: string;
   name: string;
+  /**
+   * The unique, human-readable identifier for the role.
+   */
+  slug: string;
   description: string;
   permissions: PermissionSet;
+  /**
+   * The types of resource this role can be assigned to.
+   */
+  assignableTo: Array<RoleAssigneeType>;
+  /**
+   * The slugs of the roles this role is an add-on of. Empty when this role is not an add-on.
+   */
+  appliesTo: Array<string>;
+  /**
+   * Whether this role can be assigned on its own, without being combined with another role.
+   */
+  isStandaloneAssignable: boolean;
 };
 
 /** @internal */
@@ -22,8 +43,18 @@ export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
     type: z.literal("role").default("role"),
     id: z.string(),
     name: z.string(),
+    slug: z.string(),
     description: z.string(),
     permissions: PermissionSet$inboundSchema,
+    assignable_to: z.array(RoleAssigneeType$inboundSchema),
+    applies_to: z.array(z.string()),
+    is_standalone_assignable: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      "assignable_to": "assignableTo",
+      "applies_to": "appliesTo",
+      "is_standalone_assignable": "isStandaloneAssignable",
+    });
   });
 
 export function roleFromJSON(
