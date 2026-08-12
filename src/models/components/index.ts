@@ -282,6 +282,7 @@ export * from "./requiredcheckoutfields.js";
 export * from "./riskifiedantifraudoptions.js";
 export * from "./riskifiedantifraudoptionslineitem.js";
 export * from "./role.js";
+export * from "./roleassigneetype.js";
 export * from "./security.js";
 export * from "./sepabankpaymentmethodcreate.js";
 export * from "./settlement.js";
