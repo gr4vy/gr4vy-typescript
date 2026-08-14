@@ -75,6 +75,7 @@ export * from "./clicktopaypaymentmethodcreate.js";
 export * from "./clicktopaysession.js";
 export * from "./clicktopaysessionrequest.js";
 export * from "./collectionapikeypair.js";
+export * from "./collectionrole.js";
 export * from "./createsession.js";
 export * from "./createsessionstatus.js";
 export * from "./cryptogram.js";

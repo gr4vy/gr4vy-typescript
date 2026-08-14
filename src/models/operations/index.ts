@@ -91,6 +91,7 @@ export * from "./listpaymentservices.js";
 export * from "./listpayouts.js";
 export * from "./listreportexecutions.js";
 export * from "./listreports.js";
+export * from "./listroles.js";
 export * from "./listthreedsconfigurations.js";
 export * from "./listtransactionactions.js";
 export * from "./listtransactioncaptures.js";
