@@ -21,6 +21,7 @@ import { Payouts } from "./payouts.js";
 import { Refunds } from "./refunds.js";
 import { ReportExecutions } from "./reportexecutions.js";
 import { Reports } from "./reports.js";
+import { Roles } from "./roles.js";
 import { ThreeDsScenarios } from "./threedsscenarios.js";
 import { Transactions } from "./transactions.js";
 
@@ -107,6 +108,11 @@ export class Gr4vy extends ClientSDK {
   private _checkoutSessions?: CheckoutSessions;
   get checkoutSessions(): CheckoutSessions {
     return (this._checkoutSessions ??= new CheckoutSessions(this._options));
+  }
+
+  private _roles?: Roles;
+  get roles(): Roles {
+    return (this._roles ??= new Roles(this._options));
   }
 
   private _merchantAccounts?: MerchantAccounts;

@@ -7,7 +7,13 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The permissions granted by a role.
+ */
 export type PermissionSet = {
+  /**
+   * The scopes granted by this role.
+   */
   allow: Array<string>;
 };
 

@@ -461,6 +461,10 @@ try {
 * [url](docs/sdks/executions/README.md#url) - Create URL for executed report
 * [get](docs/sdks/executions/README.md#get) - Get executed report
 
+### [Roles](docs/sdks/roles/README.md)
+
+* [list](docs/sdks/roles/README.md#list) - List all roles
+
 ### [ThreeDsScenarios](docs/sdks/threedsscenarios/README.md)
 
 * [create](docs/sdks/threedsscenarios/README.md#create) - Create a 3DS scenario
@@ -1113,6 +1117,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`reportsGet`](docs/sdks/reports/README.md#get) - Get a report
 - [`reportsList`](docs/sdks/reports/README.md#list) - List configured reports
 - [`reportsPut`](docs/sdks/reports/README.md#put) - Update a report
+- [`rolesList`](docs/sdks/roles/README.md#list) - List all roles
 - [`threeDsScenariosCreate`](docs/sdks/threedsscenarios/README.md#create) - Create a 3DS scenario
 - [`threeDsScenariosDelete`](docs/sdks/threedsscenarios/README.md#delete) - Delete a 3DS scenario
 - [`threeDsScenariosList`](docs/sdks/threedsscenarios/README.md#list) - List 3DS scenario

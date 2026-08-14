@@ -14,14 +14,29 @@ import {
 } from "./roleassigneetype.js";
 
 export type Role = {
+  /**
+   * Always `role`.
+   */
   type: "role";
+  /**
+   * The unique ID for the role.
+   */
   id: string;
+  /**
+   * The human-readable name of the role.
+   */
   name: string;
   /**
    * The unique, human-readable identifier for the role.
    */
   slug: string;
+  /**
+   * A description of the access this role grants.
+   */
   description: string;
+  /**
+   * The permissions granted by a role.
+   */
   permissions: PermissionSet;
   /**
    * The types of resource this role can be assigned to.
