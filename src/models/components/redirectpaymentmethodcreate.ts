@@ -37,6 +37,7 @@ export const RedirectPaymentMethodCreateMethod = {
   Dana: "dana",
   Dcb: "dcb",
   Dlocal: "dlocal",
+  Duitnow: "duitnow",
   Ebanx: "ebanx",
   Eckoh: "eckoh",
   Efecty: "efecty",
