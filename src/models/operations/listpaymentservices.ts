@@ -31,6 +31,10 @@ export type ListPaymentServicesRequest = {
    */
   deleted?: boolean | null | undefined;
   /**
+   * Include the non-secret credential and reporting fields for each payment service. Disable this to reduce response time if you don't need them.
+   */
+  includeFields?: boolean | undefined;
+  /**
    * The ID of the merchant account to use for this request.
    */
   merchantAccountId?: string | null | undefined;
@@ -46,6 +50,7 @@ export type ListPaymentServicesRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
   deleted?: boolean | null | undefined;
+  include_fields: boolean;
   merchantAccountId?: string | null | undefined;
 };
 
@@ -59,7 +64,12 @@ export const ListPaymentServicesRequest$outboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   deleted: z.nullable(z.boolean()).optional(),
+  includeFields: z.boolean().default(true),
   merchantAccountId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    includeFields: "include_fields",
+  });
 });
 
 export function listPaymentServicesRequestToJSON(

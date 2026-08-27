@@ -131,6 +131,7 @@ async function $do(
   const query = encodeFormQuery({
     "cursor": payload?.cursor,
     "deleted": payload?.deleted,
+    "include_fields": payload?.include_fields,
     "limit": payload?.limit,
     "method": payload?.method,
   });
