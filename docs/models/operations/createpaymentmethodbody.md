@@ -46,7 +46,6 @@ const value: components.ACHBankPaymentMethodCreate = {
   accountHolder: {},
   accountNumber: "123456789",
   routingNumber: "000000111",
-  accountType: "checking",
 };
 ```
 

@@ -13,14 +13,14 @@ import {
 } from "./bankaccountholder.js";
 
 /**
- * Specify whether this is a `checking` or `savings` account
+ * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
  */
 export const AccountType = {
   Checking: "checking",
   Savings: "savings",
 } as const;
 /**
- * Specify whether this is a `checking` or `savings` account
+ * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
  */
 export type AccountType = OpenEnum<typeof AccountType>;
 
@@ -66,9 +66,9 @@ export type ACHBankPaymentMethodCreate = {
    */
   isTokenized?: boolean | undefined;
   /**
-   * Specify whether this is a `checking` or `savings` account
+   * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
    */
-  accountType: AccountType;
+  accountType?: AccountType | undefined;
 };
 
 /** @internal */
@@ -107,7 +107,7 @@ export const ACHBankPaymentMethodCreate$outboundSchema: z.ZodType<
   accountNumber: z.string(),
   routingNumber: z.string(),
   isTokenized: z.boolean().default(false),
-  accountType: AccountType$outboundSchema,
+  accountType: AccountType$outboundSchema.default("checking"),
 }).transform((v) => {
   return remap$(v, {
     accountHolder: "account_holder",
