@@ -56,12 +56,17 @@ jobs:
         node-version: ${{ fromJSON(needs.setup.outputs.node-versions) }}
         # The E2E suite is split into shards that run in parallel. Each test file
         # provisions its own merchant account, so vitest can safely distribute the
-        # files across shards. Bump `shard-total` (and this list) to add capacity.
+        # files across shards.
+        #
+        # Kept at 2 (not 4) deliberately: every shard is a live-API job that
+        # authenticates against the shared e2e sandbox, and this matrix is the
+        # widest of the six SDKs (shards x Node versions). Concurrent cold-cache
+        # auth calls are what tip core-api's Envelope /decrypt over its 3s timeout
+        # and 500 the whole suite. If you add shards here, bump the `--shard=N/M`
+        # denominator in the run step to match.
         shard:
           - 1
           - 2
-          - 3
-          - 4
 
     permissions:
       contents: write
@@ -92,7 +97,7 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          npx vitest run --testTimeout=30000 --hookTimeout=30000 --shard=${{ matrix.shard }}/4
+          npx vitest run --testTimeout=30000 --hookTimeout=30000 --shard=${{ matrix.shard }}/2
 
   # Single, stable status check that gates merge. The `test` job fans out across a
   # node × shard matrix, so its per-job names ("test (20.x, 1)" …) change whenever
