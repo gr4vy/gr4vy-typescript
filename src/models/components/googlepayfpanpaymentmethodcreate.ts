@@ -46,6 +46,10 @@ export type GooglePayFPANPaymentMethodCreate = {
    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
    */
   securityCode?: any | null | undefined;
+  /**
+   * Expiry of the Google Pay token the PAN was decrypted from, as milliseconds since the epoch.
+   */
+  messageExpiration?: string | null | undefined;
 };
 
 /** @internal */
@@ -59,6 +63,7 @@ export type GooglePayFPANPaymentMethodCreate$Outbound = {
   method: "googlepay_pan_only";
   redirect_url?: string | null | undefined;
   security_code?: any | null | undefined;
+  message_expiration?: string | null | undefined;
 };
 
 /** @internal */
@@ -76,6 +81,7 @@ export const GooglePayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
   method: z.literal("googlepay_pan_only"),
   redirectUrl: z.nullable(z.string()).optional(),
   securityCode: z.nullable(z.any()).optional(),
+  messageExpiration: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     expirationDate: "expiration_date",
@@ -85,6 +91,7 @@ export const GooglePayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
     cardType: "card_type",
     redirectUrl: "redirect_url",
     securityCode: "security_code",
+    messageExpiration: "message_expiration",
   });
 });
 
