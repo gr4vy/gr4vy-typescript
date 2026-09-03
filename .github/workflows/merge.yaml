@@ -1,0 +1,36 @@
+name: Merge
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+
+jobs:
+  merge:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request_target' &&
+      github.event.workflow_run.pull_requests[0].number
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@7961b8b5eec56cc088c140b56d864285eabd3f67" # v0.16.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+          MERGE_LABELS: ''
+          MERGE_FILTER_AUTHOR: github-actions[bot]
+          MERGE_REQUIRED_APPROVALS: 0
+          MERGE_METHOD: squash
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_ERROR_FAIL: true
+          MERGE_DELETE_BRANCH: true
+          MERGE_FORKS: false
+          UPDATE_METHOD: rebase
+          PULL_REQUEST: ${{ github.event.workflow_run.pull_requests[0].number }}
