@@ -108,6 +108,7 @@ export const Method = {
   Sepa: "sepa",
   Servipag: "servipag",
   Seveneleven: "seveneleven",
+  Sezzle: "sezzle",
   Shopeepay: "shopeepay",
   Singteldash: "singteldash",
   Smartpay: "smartpay",
