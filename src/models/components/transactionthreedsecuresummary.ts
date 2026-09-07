@@ -51,7 +51,7 @@ export type TransactionThreeDSecureSummary = {
    */
   responseData?: ThreeDSecureDataV1 | ThreeDSecureV2 | null | undefined;
   /**
-   * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
+   * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`. To see full details about the 3DS calls in those situations please use our transaction events API.
    */
   errorData?: ThreeDSecureError | null | undefined;
   /**
