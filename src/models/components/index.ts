@@ -220,6 +220,7 @@ export * from "./payoutpaymentservice.js";
 export * from "./payoutstatus.js";
 export * from "./payoutsummaries.js";
 export * from "./payoutsummary.js";
+export * from "./paypaldirectorderoptions.js";
 export * from "./paypaloptions.js";
 export * from "./paypalorderupdatecallbackconfig.js";
 export * from "./paypalshippingoptions.js";

@@ -91,6 +91,7 @@ export const Method = {
   Paymaya: "paymaya",
   Paysquad: "paysquad",
   Paypal: "paypal",
+  Paypaldirectorder: "paypaldirectorder",
   Paypalpaylater: "paypalpaylater",
   Paypay: "paypay",
   Payto: "payto",
