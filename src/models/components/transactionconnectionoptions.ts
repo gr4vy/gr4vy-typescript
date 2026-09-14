@@ -150,6 +150,11 @@ import {
   OxxoOptions$outboundSchema,
 } from "./oxxooptions.js";
 import {
+  PaypalDirectOrderOptions,
+  PaypalDirectOrderOptions$Outbound,
+  PaypalDirectOrderOptions$outboundSchema,
+} from "./paypaldirectorderoptions.js";
+import {
   PaypalOptions,
   PaypalOptions$Outbound,
   PaypalOptions$outboundSchema,
@@ -410,6 +415,10 @@ export type TransactionConnectionOptions = {
    */
   paypalPaypal?: PaypalOptions | null | undefined;
   /**
+   * Custom options to be passed to the `paypal-paypaldirectorder` connector.
+   */
+  paypalPaypaldirectorder?: PaypalDirectOrderOptions | null | undefined;
+  /**
    * Custom options to be passed to the `paypal-paypalpaylater` connector.
    */
   paypalPaypalpaylater?: PaypalOptions | null | undefined;
@@ -520,6 +529,10 @@ export type TransactionConnectionOptions$Outbound = {
   "nuvei-pse"?: NuveiPSEOptions$Outbound | null | undefined;
   "oxxo-oxxo"?: OxxoOptions$Outbound | null | undefined;
   "paypal-paypal"?: PaypalOptions$Outbound | null | undefined;
+  "paypal-paypaldirectorder"?:
+    | PaypalDirectOrderOptions$Outbound
+    | null
+    | undefined;
   "paypal-paypalpaylater"?: PaypalOptions$Outbound | null | undefined;
   "powertranz-card"?: PowertranzOptions$Outbound | null | undefined;
   "riskified-anti-fraud"?:
@@ -599,6 +612,8 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   nuveiPse: z.nullable(NuveiPSEOptions$outboundSchema).optional(),
   oxxoOxxo: z.nullable(OxxoOptions$outboundSchema).optional(),
   paypalPaypal: z.nullable(PaypalOptions$outboundSchema).optional(),
+  paypalPaypaldirectorder: z.nullable(PaypalDirectOrderOptions$outboundSchema)
+    .optional(),
   paypalPaypalpaylater: z.nullable(PaypalOptions$outboundSchema).optional(),
   powertranzCard: z.nullable(PowertranzOptions$outboundSchema).optional(),
   riskifiedAntiFraud: z.nullable(RiskifiedAntiFraudOptions$outboundSchema)
@@ -667,6 +682,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     nuveiPse: "nuvei-pse",
     oxxoOxxo: "oxxo-oxxo",
     paypalPaypal: "paypal-paypal",
+    paypalPaypaldirectorder: "paypal-paypaldirectorder",
     paypalPaypalpaylater: "paypal-paypalpaylater",
     powertranzCard: "powertranz-card",
     riskifiedAntiFraud: "riskified-anti-fraud",
