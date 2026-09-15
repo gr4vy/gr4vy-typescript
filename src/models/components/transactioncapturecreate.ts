@@ -14,6 +14,11 @@ import {
   CartItem$Outbound,
   CartItem$outboundSchema,
 } from "./cartitem.js";
+import {
+  Tracking,
+  Tracking$Outbound,
+  Tracking$outboundSchema,
+} from "./tracking.js";
 
 /**
  * Request body for capturing an authorized transaction.
@@ -31,6 +36,10 @@ export type TransactionCaptureCreate = {
    * An array of cart items that represents the line items of this capture.
    */
   cartItems?: Array<CartItem> | null | undefined;
+  /**
+   * An array of shipment tracking details for this capture.
+   */
+  tracking?: Array<Tracking> | null | undefined;
   /**
    * Whether this is marked as the final capture for the associated transaction. Must be `true` or omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is available on the connection.
    */
@@ -50,6 +59,7 @@ export type TransactionCaptureCreate$Outbound = {
   amount?: number | null | undefined;
   airline?: Airline$Outbound | null | undefined;
   cart_items?: Array<CartItem$Outbound> | null | undefined;
+  tracking?: Array<Tracking$Outbound> | null | undefined;
   final: boolean;
   external_identifier?: string | null | undefined;
   reauthorize_if_authorization_expired: boolean;
@@ -64,6 +74,7 @@ export const TransactionCaptureCreate$outboundSchema: z.ZodType<
   amount: z.nullable(z.number().int()).optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+  tracking: z.nullable(z.array(Tracking$outboundSchema)).optional(),
   final: z.boolean().default(true),
   externalIdentifier: z.nullable(z.string()).optional(),
   reauthorizeIfAuthorizationExpired: z.boolean().default(false),
