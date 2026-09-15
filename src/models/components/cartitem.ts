@@ -59,6 +59,14 @@ export type CartItem = {
    */
   categories?: Array<string> | null | undefined;
   /**
+   * A list of strings containing product subcategories for the item.
+   */
+  subcategories?: Array<string> | null | undefined;
+  /**
+   * The brand of the item.
+   */
+  brand?: string | null | undefined;
+  /**
    * The product type of the cart item.
    */
   productType?: ProductType | null | undefined;
@@ -109,6 +117,8 @@ export const CartItem$inboundSchema: z.ZodType<
   product_url: z.nullable(z.string()).optional(),
   image_url: z.nullable(z.string()).optional(),
   categories: z.nullable(z.array(z.string())).optional(),
+  subcategories: z.nullable(z.array(z.string())).optional(),
+  brand: z.nullable(z.string()).optional(),
   product_type: z.nullable(ProductType$inboundSchema).optional(),
   seller_country: z.nullable(z.string()).optional(),
   tax_exempt: z.nullable(z.boolean()).optional(),
@@ -147,6 +157,8 @@ export type CartItem$Outbound = {
   product_url?: string | null | undefined;
   image_url?: string | null | undefined;
   categories?: Array<string> | null | undefined;
+  subcategories?: Array<string> | null | undefined;
+  brand?: string | null | undefined;
   product_type?: string | null | undefined;
   seller_country?: string | null | undefined;
   tax_exempt?: boolean | null | undefined;
@@ -174,6 +186,8 @@ export const CartItem$outboundSchema: z.ZodType<
   productUrl: z.nullable(z.string()).optional(),
   imageUrl: z.nullable(z.string()).optional(),
   categories: z.nullable(z.array(z.string())).optional(),
+  subcategories: z.nullable(z.array(z.string())).optional(),
+  brand: z.nullable(z.string()).optional(),
   productType: z.nullable(ProductType$outboundSchema).optional(),
   sellerCountry: z.nullable(z.string()).optional(),
   taxExempt: z.nullable(z.boolean()).optional(),
