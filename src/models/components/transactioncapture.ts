@@ -16,6 +16,7 @@ import {
   ShippingDetails,
   ShippingDetails$inboundSchema,
 } from "./shippingdetails.js";
+import { Tracking, Tracking$inboundSchema } from "./tracking.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
 export type TransactionCapture = {
@@ -60,6 +61,10 @@ export type TransactionCapture = {
    * The shipping details associated with the catpure.
    */
   shippingDetails?: ShippingDetails | null | undefined;
+  /**
+   * The shipment tracking details associated with the capture.
+   */
+  tracking?: Array<Tracking> | null | undefined;
 };
 
 /** @internal */
@@ -79,6 +84,7 @@ export const TransactionCapture$inboundSchema: z.ZodType<
   external_identifier: z.nullable(z.string()).optional(),
   billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
   shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
+  tracking: z.nullable(z.array(Tracking$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "raw_response_code": "rawResponseCode",

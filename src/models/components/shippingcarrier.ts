@@ -35,6 +35,12 @@ export const ShippingCarrier = {
 export type ShippingCarrier = OpenEnum<typeof ShippingCarrier>;
 
 /** @internal */
+export const ShippingCarrier$inboundSchema: z.ZodType<
+  ShippingCarrier,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ShippingCarrier);
+/** @internal */
 export const ShippingCarrier$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,

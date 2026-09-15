@@ -3,8 +3,12 @@
  */
 
 import * as z from "zod/v3";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ShippingCarrier,
+  ShippingCarrier$inboundSchema,
   ShippingCarrier$outboundSchema,
 } from "./shippingcarrier.js";
 
@@ -20,6 +24,16 @@ export type Tracking = {
   url?: string | null | undefined;
 };
 
+/** @internal */
+export const Tracking$inboundSchema: z.ZodType<
+  Tracking,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  number: z.string(),
+  carrier: ShippingCarrier$inboundSchema,
+  url: z.nullable(z.string()).optional(),
+});
 /** @internal */
 export type Tracking$Outbound = {
   number: string;
@@ -40,4 +54,13 @@ export const Tracking$outboundSchema: z.ZodType<
 
 export function trackingToJSON(tracking: Tracking): string {
   return JSON.stringify(Tracking$outboundSchema.parse(tracking));
+}
+export function trackingFromJSON(
+  jsonString: string,
+): SafeParseResult<Tracking, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Tracking$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Tracking' from JSON`,
+  );
 }
