@@ -165,6 +165,11 @@ import {
   PowertranzOptions$outboundSchema,
 } from "./powertranzoptions.js";
 import {
+  RepayBankOptions,
+  RepayBankOptions$Outbound,
+  RepayBankOptions$outboundSchema,
+} from "./repaybankoptions.js";
+import {
   RiskifiedAntiFraudOptions,
   RiskifiedAntiFraudOptions$Outbound,
   RiskifiedAntiFraudOptions$outboundSchema,
@@ -427,6 +432,10 @@ export type TransactionConnectionOptions = {
    */
   powertranzCard?: PowertranzOptions | null | undefined;
   /**
+   * Custom options to be passed to the `repay-bank` connector.
+   */
+  repayBank?: RepayBankOptions | null | undefined;
+  /**
    * Custom options to be passed to the `riskified-anti-fraud` connector.
    */
   riskifiedAntiFraud?: RiskifiedAntiFraudOptions | null | undefined;
@@ -535,6 +544,7 @@ export type TransactionConnectionOptions$Outbound = {
     | undefined;
   "paypal-paypalpaylater"?: PaypalOptions$Outbound | null | undefined;
   "powertranz-card"?: PowertranzOptions$Outbound | null | undefined;
+  "repay-bank"?: RepayBankOptions$Outbound | null | undefined;
   "riskified-anti-fraud"?:
     | RiskifiedAntiFraudOptions$Outbound
     | null
@@ -616,6 +626,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     .optional(),
   paypalPaypalpaylater: z.nullable(PaypalOptions$outboundSchema).optional(),
   powertranzCard: z.nullable(PowertranzOptions$outboundSchema).optional(),
+  repayBank: z.nullable(RepayBankOptions$outboundSchema).optional(),
   riskifiedAntiFraud: z.nullable(RiskifiedAntiFraudOptions$outboundSchema)
     .optional(),
   stripeAffirm: z.nullable(StripeOptions$outboundSchema).optional(),
@@ -685,6 +696,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     paypalPaypaldirectorder: "paypal-paypaldirectorder",
     paypalPaypalpaylater: "paypal-paypalpaylater",
     powertranzCard: "powertranz-card",
+    repayBank: "repay-bank",
     riskifiedAntiFraud: "riskified-anti-fraud",
     stripeAffirm: "stripe-affirm",
     stripeCard: "stripe-card",
