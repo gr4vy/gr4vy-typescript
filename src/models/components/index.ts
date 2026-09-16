@@ -264,6 +264,7 @@ export * from "./refundsettlement.js";
 export * from "./refundsettlements.js";
 export * from "./refundstatus.js";
 export * from "./refundtargettype.js";
+export * from "./repaybankoptions.js";
 export * from "./report.js";
 export * from "./reportcreate.js";
 export * from "./reportcreatortype.js";
