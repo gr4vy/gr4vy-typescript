@@ -9,6 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CaptureStatus, CaptureStatus$inboundSchema } from "./capturestatus.js";
 import { CartItem, CartItem$inboundSchema } from "./cartitem.js";
+import { Tracking, Tracking$inboundSchema } from "./tracking.js";
 
 export type Capture = {
   /**
@@ -84,6 +85,10 @@ export type Capture = {
    * An array of cart items that represents the line items of this capture.
    */
   cartItems?: Array<CartItem> | null | undefined;
+  /**
+   * The shipment tracking details associated with the capture.
+   */
+  tracking?: Array<Tracking> | null | undefined;
 };
 
 /** @internal */
@@ -114,6 +119,7 @@ export const Capture$inboundSchema: z.ZodType<Capture, z.ZodTypeDef, unknown> =
     raw_response_description: z.nullable(z.string()).optional(),
     transaction_external_identifier: z.nullable(z.string()).optional(),
     cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
+    tracking: z.nullable(z.array(Tracking$inboundSchema)).optional(),
   }).transform((v) => {
     return remap$(v, {
       "merchant_account_id": "merchantAccountId",

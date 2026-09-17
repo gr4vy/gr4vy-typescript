@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: faccc22c75487a5bdf67f315e8b660ea
+  docChecksum: cac1ae0ead466991be937c1264350879
   docVersion: 1.0.0
   speakeasyVersion: 1.797.0
   generationVersion: 2.937.18
-  releaseVersion: 2.4.24
-  configChecksum: c3046707922958ea3777cae468dd9976
+  releaseVersion: 2.4.25
+  configChecksum: b4406469897333c9866cc33852bd1c4a
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: b513f552-baad-41d3-aeb0-cf1497ee939c
-  pristine_commit_hash: 7a3b6ae9339943713c115f3fa29ebe7e6cb2b7ee
-  pristine_tree_hash: e355f2023d9bb1b3040677481e8a15957bddb6fd
+  generation_id: 7751f4d1-374a-47cc-b80d-04815b38e73e
+  pristine_commit_hash: ea6bf23f0e6f397c77fbaa844e5e9731347b722c
+  pristine_tree_hash: 733aaf0cb3f16dfda629fc9acaa4f6f165b14343
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -284,8 +284,8 @@ trackedFiles:
     pristine_git_object: adbfdc233032a3228364d8afe076ca47a4416d96
   docs/models/components/capture.md:
     id: 44f24df59d96
-    last_write_checksum: sha1:f8d7ca10ed1be31e473d5e113d2104f8ef601c16
-    pristine_git_object: f022281f9360c44db53e2c5af20c7e10ce1a7c61
+    last_write_checksum: sha1:60457777958c5575902af823782997894fce8920
+    pristine_git_object: 6dbaa6600b22a86da9e93fb1b0b42a6cf63a1bea
   docs/models/components/capturecollection.md:
     id: f51fc7c3a4f9
     last_write_checksum: sha1:df2999ca54a8ee3e08a39a819bf4e91f92295887
@@ -2912,12 +2912,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:843b303af56aba56753b08e697e36533f59ed54a
-    pristine_git_object: 3fb0292ba05a39fd06e7820e1d9b46ae067f8bf8
+    last_write_checksum: sha1:321ce8762fe19f0512f889f16e78e35e04095040
+    pristine_git_object: fcc9e88d73893e5180901ea0cef9748ec1559a7d
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:dda05c9e85d354318082c3145467e304f66ac204
-    pristine_git_object: def1b8525bd01d5a2960cd3d231eed3dedfdf9ba
+    last_write_checksum: sha1:d791ba5847710e09cc939722ec8cd8d9f793d9fa
+    pristine_git_object: 20f13a45bce6bf7cc7ceff36bd9f8b0c244f41ed
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3420,8 +3420,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:7a891356b0d03b6d32c57d9eee65f78c538b67ab
-    pristine_git_object: 204109271dbb0777f3e11c1ed361e219fe53dafc
+    last_write_checksum: sha1:4d22050276d572cd5fb83b2ccb65d6079e50149a
+    pristine_git_object: 00457adba6cdb510ab0a20081c3318893f62d42d
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -3668,8 +3668,8 @@ trackedFiles:
     pristine_git_object: f457f12aa11d53c02498090793f5a38716d4330e
   src/models/components/capture.ts:
     id: 95f855d661d0
-    last_write_checksum: sha1:c78300cb0e5dd47b390975545853b6fece779211
-    pristine_git_object: 231edb1cc8e580bfd2abcca2ee504b9c807a9987
+    last_write_checksum: sha1:655add0018315abd0d4da58590711636f1361c12
+    pristine_git_object: aad458997a7e4d5100110afc6fc76283136228c1
   src/models/components/capturecollection.ts:
     id: e404e17356a6
     last_write_checksum: sha1:d978930a1e0bac783cae15c988d4a9e994892ef1
@@ -9913,7 +9913,10 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.repayBank` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.repayBank` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.repayBank` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `gr4vy.transactions.captures.list()`:  `response.items[].tracking` **Added**
+  * `gr4vy.transactions.captures.get()`:  `response.tracking` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
