@@ -18,6 +18,10 @@ export type RiskifiedAntiFraudOptionsLineItem = {
    * Indicates whether the item will be shipped or picked up.
    */
   deliveredTo?: DeliveredTo | null | undefined;
+  /**
+   * The shipping address this item is delivered to. Must be `base-shipping-address` for the address derived from the transaction, or the `id` of an `additional_shipping_addresses` entry. Must not be provided when `additional_shipping_addresses` is empty.
+   */
+  shippingAddressId?: string | null | undefined;
 };
 
 /** @internal */
@@ -30,6 +34,7 @@ export const DeliveredTo$outboundSchema: z.ZodType<
 /** @internal */
 export type RiskifiedAntiFraudOptionsLineItem$Outbound = {
   delivered_to?: string | null | undefined;
+  shipping_address_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -39,9 +44,11 @@ export const RiskifiedAntiFraudOptionsLineItem$outboundSchema: z.ZodType<
   RiskifiedAntiFraudOptionsLineItem
 > = z.object({
   deliveredTo: z.nullable(DeliveredTo$outboundSchema).optional(),
+  shippingAddressId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     deliveredTo: "delivered_to",
+    shippingAddressId: "shipping_address_id",
   });
 });
 

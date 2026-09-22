@@ -284,6 +284,8 @@ export * from "./reportupdate.js";
 export * from "./requiredcheckoutfields.js";
 export * from "./riskifiedantifraudoptions.js";
 export * from "./riskifiedantifraudoptionslineitem.js";
+export * from "./riskifiedantifraudoptionsshippingaddress.js";
+export * from "./riskifiedantifraudoptionsshippingline.js";
 export * from "./role.js";
 export * from "./roleassigneetype.js";
 export * from "./security.js";

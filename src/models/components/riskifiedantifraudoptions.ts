@@ -9,18 +9,50 @@ import {
   RiskifiedAntiFraudOptionsLineItem$Outbound,
   RiskifiedAntiFraudOptionsLineItem$outboundSchema,
 } from "./riskifiedantifraudoptionslineitem.js";
+import {
+  RiskifiedAntiFraudOptionsShippingAddress,
+  RiskifiedAntiFraudOptionsShippingAddress$Outbound,
+  RiskifiedAntiFraudOptionsShippingAddress$outboundSchema,
+} from "./riskifiedantifraudoptionsshippingaddress.js";
+import {
+  RiskifiedAntiFraudOptionsShippingLine,
+  RiskifiedAntiFraudOptionsShippingLine$Outbound,
+  RiskifiedAntiFraudOptionsShippingLine$outboundSchema,
+} from "./riskifiedantifraudoptionsshippingline.js";
 
 export type RiskifiedAntiFraudOptions = {
   /**
-   * A list of line items details to override when passing to the Riskified API.
+   * A list of line items details to override when passing to the Riskified API. Entries are matched by position against the cart items sent to Riskified, which excludes `discount`, `shipping_fee`, `sales_tax` and `store_credit` items.
    */
   lineItems?: Array<RiskifiedAntiFraudOptionsLineItem> | null | undefined;
+  /**
+   * A list of shipping lines details to override when passing to the Riskified API. Entries are matched by position against the `shipping_fee` cart items.
+   */
+  shippingLines?:
+    | Array<RiskifiedAntiFraudOptionsShippingLine>
+    | null
+    | undefined;
+  /**
+   * Additional destinations for orders shipped to more than one address. The address derived from the transaction is always sent first; these are appended after it and may not use the reserved `base-shipping-address` id.
+   */
+  additionalShippingAddresses?:
+    | Array<RiskifiedAntiFraudOptionsShippingAddress>
+    | null
+    | undefined;
 };
 
 /** @internal */
 export type RiskifiedAntiFraudOptions$Outbound = {
   line_items?:
     | Array<RiskifiedAntiFraudOptionsLineItem$Outbound>
+    | null
+    | undefined;
+  shipping_lines?:
+    | Array<RiskifiedAntiFraudOptionsShippingLine$Outbound>
+    | null
+    | undefined;
+  additional_shipping_addresses?:
+    | Array<RiskifiedAntiFraudOptionsShippingAddress$Outbound>
     | null
     | undefined;
 };
@@ -34,9 +66,17 @@ export const RiskifiedAntiFraudOptions$outboundSchema: z.ZodType<
   lineItems: z.nullable(
     z.array(RiskifiedAntiFraudOptionsLineItem$outboundSchema),
   ).optional(),
+  shippingLines: z.nullable(
+    z.array(RiskifiedAntiFraudOptionsShippingLine$outboundSchema),
+  ).optional(),
+  additionalShippingAddresses: z.nullable(
+    z.array(RiskifiedAntiFraudOptionsShippingAddress$outboundSchema),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     lineItems: "line_items",
+    shippingLines: "shipping_lines",
+    additionalShippingAddresses: "additional_shipping_addresses",
   });
 });
 
