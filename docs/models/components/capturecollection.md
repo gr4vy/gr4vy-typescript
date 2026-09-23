@@ -13,7 +13,7 @@ let value: CaptureCollection = {
       transactionId: "7099948d-7286-47e4-aad8-b68f7eb44591",
       currency: "USD",
       amount: 1299,
-      status: "succeeded",
+      status: "pending",
       final: true,
       createdAt: new Date("2013-07-16T19:23:00.000+00:00"),
       updatedAt: new Date("2013-07-16T19:23:00.000+00:00"),

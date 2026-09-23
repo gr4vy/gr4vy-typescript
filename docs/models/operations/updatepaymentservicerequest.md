@@ -9,6 +9,7 @@ let value: UpdatePaymentServiceRequest = {
   paymentServiceId: "fffd152a-9532-4087-9a4f-de58754210f0",
   paymentServiceUpdate: {
     settlementReportingEnabled: true,
+    refundIngestionEnabled: true,
   },
 };
 ```

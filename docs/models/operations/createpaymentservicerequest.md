@@ -22,6 +22,7 @@ let value: CreatePaymentServiceRequest = {
     ],
     threeDSecureEnabled: true,
     settlementReportingEnabled: true,
+    refundIngestionEnabled: true,
   },
 };
 ```

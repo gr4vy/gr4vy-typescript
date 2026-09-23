@@ -5,7 +5,7 @@
 ```typescript
 import { CaptureStatus } from "@gr4vy/sdk/models/components";
 
-let value: CaptureStatus = "failed";
+let value: CaptureStatus = "canceled";
 
 // Open enum: unrecognized values are captured as Unrecognized<string>
 ```
@@ -13,5 +13,5 @@ let value: CaptureStatus = "failed";
 ## Values
 
 ```typescript
-"succeeded" | "pending" | "declined" | "failed" | Unrecognized<string>
+"succeeded" | "pending" | "declined" | "failed" | "canceled" | Unrecognized<string>
 ```

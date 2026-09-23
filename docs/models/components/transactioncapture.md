@@ -6,7 +6,7 @@
 import { TransactionCapture } from "@gr4vy/sdk/models/components";
 
 let value: TransactionCapture = {
-  status: "succeeded",
+  status: "pending",
   code: "service_error",
   rawResponseCode: "E104",
   rawResponseDescription: "Internal error",

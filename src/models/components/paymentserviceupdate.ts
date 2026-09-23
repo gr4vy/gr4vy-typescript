@@ -74,6 +74,10 @@ export type PaymentServiceUpdate = {
    * Defines if this payment service has settlement reporting enabled.
    */
   settlementReportingEnabled?: boolean | undefined;
+  /**
+   * Defines if this payment service has refund ingestion enabled.
+   */
+  refundIngestionEnabled?: boolean | undefined;
 };
 
 /** @internal */
@@ -94,6 +98,7 @@ export type PaymentServiceUpdate$Outbound = {
   network_tokens_enabled?: boolean | null | undefined;
   open_loop?: boolean | null | undefined;
   settlement_reporting_enabled: boolean;
+  refund_ingestion_enabled: boolean;
 };
 
 /** @internal */
@@ -117,6 +122,7 @@ export const PaymentServiceUpdate$outboundSchema: z.ZodType<
   networkTokensEnabled: z.nullable(z.boolean()).optional(),
   openLoop: z.nullable(z.boolean()).optional(),
   settlementReportingEnabled: z.boolean().default(false),
+  refundIngestionEnabled: z.boolean().default(false),
 }).transform((v) => {
   return remap$(v, {
     displayName: "display_name",
@@ -129,6 +135,7 @@ export const PaymentServiceUpdate$outboundSchema: z.ZodType<
     networkTokensEnabled: "network_tokens_enabled",
     openLoop: "open_loop",
     settlementReportingEnabled: "settlement_reporting_enabled",
+    refundIngestionEnabled: "refund_ingestion_enabled",
   });
 });
 
