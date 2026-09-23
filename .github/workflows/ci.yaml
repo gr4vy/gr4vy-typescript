@@ -165,7 +165,12 @@ jobs:
       - name: Install dependencies
         run: npm i
 
+      # continue-on-error so a broken suite still refreshes the comment (flagged
+      # as incomplete below) instead of leaving the previous run's report up.
+      # The last step turns the job red again.
       - name: Run tests with coverage
+        id: suite
+        continue-on-error: true
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           # Record outgoing HTTP calls so endpoint reach is measured from real
@@ -176,11 +181,29 @@ jobs:
       - name: Build endpoint coverage report
         run: node scripts/endpoint-coverage.mjs
 
+      - name: Flag the report as incomplete
+        if: steps.suite.outcome != 'success'
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          report=coverage/endpoint-coverage.md
+          {
+            head -n 2 "$report"
+            echo "> ⚠️ **The test suite failed in [this run]($RUN_URL), so the reach below is incomplete.** It refreshes when CI is re-run."
+            echo
+            tail -n +3 "$report"
+          } > "$report.tmp"
+          mv "$report.tmp" "$report"
+
       - name: Comment coverage on the PR
         uses: marocchino/sticky-pull-request-comment@d2ad0de260ae8b0235ce059e63f2949ba9e05943 # v2.9.3
         with:
           header: test-coverage
           path: coverage/endpoint-coverage.md
+
+      - name: Fail if the test suite failed
+        if: steps.suite.outcome != 'success'
+        run: exit 1
 
   notify:
     needs: test
