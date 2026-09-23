@@ -71,6 +71,10 @@ export type PaymentService = {
    */
   settlementReportingEnabled: boolean;
   /**
+   * Defines if this payment service has refund ingestion enabled.
+   */
+  refundIngestionEnabled: boolean;
+  /**
    * Defines if this payment service has 3DS enabled.
    */
   threeDSecureEnabled?: boolean | null | undefined;
@@ -128,6 +132,7 @@ export const PaymentService$inboundSchema: z.ZodType<
   network_tokens_enabled: z.boolean(),
   open_loop: z.boolean(),
   settlement_reporting_enabled: z.boolean(),
+  refund_ingestion_enabled: z.boolean(),
   three_d_secure_enabled: z.nullable(z.boolean()).optional(),
   merchant_profile: z.nullable(
     z.record(z.nullable(MerchantProfileSchemeSummary$inboundSchema)),
@@ -149,6 +154,7 @@ export const PaymentService$inboundSchema: z.ZodType<
     "network_tokens_enabled": "networkTokensEnabled",
     "open_loop": "openLoop",
     "settlement_reporting_enabled": "settlementReportingEnabled",
+    "refund_ingestion_enabled": "refundIngestionEnabled",
     "three_d_secure_enabled": "threeDSecureEnabled",
     "merchant_profile": "merchantProfile",
     "webhook_url": "webhookUrl",

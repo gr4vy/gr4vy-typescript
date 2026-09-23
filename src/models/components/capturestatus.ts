@@ -11,6 +11,7 @@ export const CaptureStatus = {
   Pending: "pending",
   Declined: "declined",
   Failed: "failed",
+  Canceled: "canceled",
 } as const;
 export type CaptureStatus = OpenEnum<typeof CaptureStatus>;
 

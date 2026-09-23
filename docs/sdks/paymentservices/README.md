@@ -146,6 +146,7 @@ async function run() {
     ],
     threeDSecureEnabled: true,
     settlementReportingEnabled: true,
+    refundIngestionEnabled: true,
   });
 
   console.log(result);
@@ -191,6 +192,7 @@ async function run() {
     ],
     threeDSecureEnabled: true,
     settlementReportingEnabled: true,
+    refundIngestionEnabled: true,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -347,6 +349,7 @@ const gr4vy = new Gr4vy({
 async function run() {
   const result = await gr4vy.paymentServices.update({
     settlementReportingEnabled: true,
+    refundIngestionEnabled: true,
   }, "fffd152a-9532-4087-9a4f-de58754210f0");
 
   console.log(result);
@@ -373,6 +376,7 @@ const gr4vy = new Gr4vyCore({
 async function run() {
   const res = await paymentServicesUpdate(gr4vy, {
     settlementReportingEnabled: true,
+    refundIngestionEnabled: true,
   }, "fffd152a-9532-4087-9a4f-de58754210f0");
   if (res.ok) {
     const { value: result } = res;

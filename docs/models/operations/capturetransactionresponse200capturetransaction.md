@@ -38,7 +38,7 @@ const value: components.Transaction = {
 
 ```typescript
 const value: components.TransactionCapture = {
-  status: "succeeded",
+  status: "pending",
   code: "service_error",
   rawResponseCode: "E104",
   rawResponseDescription: "Internal error",

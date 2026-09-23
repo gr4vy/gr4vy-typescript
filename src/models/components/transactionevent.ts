@@ -70,6 +70,14 @@ export const Name = {
     "payment-connector-response-transaction-void-declined",
   PaymentConnectorResponseTransactionVoidFailed:
     "payment-connector-response-transaction-void-failed",
+  PaymentConnectorResponseTransactionCaptureReversalSucceeded:
+    "payment-connector-response-transaction-capture-reversal-succeeded",
+  PaymentConnectorResponseTransactionCaptureReversalDeclined:
+    "payment-connector-response-transaction-capture-reversal-declined",
+  PaymentConnectorResponseTransactionCaptureReversalFailed:
+    "payment-connector-response-transaction-capture-reversal-failed",
+  PaymentConnectorResponseTransactionCaptureReversalDelayed:
+    "payment-connector-response-transaction-capture-reversal-delayed",
   PaymentConnectorExternalTransactionRequest:
     "payment-connector-external-transaction-request",
   PaymentConnectorReportTransactionSettled:
