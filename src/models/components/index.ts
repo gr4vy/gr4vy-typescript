@@ -288,6 +288,7 @@ export * from "./riskifiedantifraudoptionsshippingaddress.js";
 export * from "./riskifiedantifraudoptionsshippingline.js";
 export * from "./role.js";
 export * from "./roleassigneetype.js";
+export * from "./ryftcardoptions.js";
 export * from "./security.js";
 export * from "./sepabankpaymentmethodcreate.js";
 export * from "./settlement.js";
