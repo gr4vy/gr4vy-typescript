@@ -175,6 +175,11 @@ import {
   RiskifiedAntiFraudOptions$outboundSchema,
 } from "./riskifiedantifraudoptions.js";
 import {
+  RyftCardOptions,
+  RyftCardOptions$Outbound,
+  RyftCardOptions$outboundSchema,
+} from "./ryftcardoptions.js";
+import {
   StripeCardOptions,
   StripeCardOptions$Outbound,
   StripeCardOptions$outboundSchema,
@@ -440,6 +445,10 @@ export type TransactionConnectionOptions = {
    */
   riskifiedAntiFraud?: RiskifiedAntiFraudOptions | null | undefined;
   /**
+   * Custom options to be passed to the `ryft-card` connector.
+   */
+  ryftCard?: RyftCardOptions | null | undefined;
+  /**
    * Custom options to be passed to the `stripe-affirm` connector.
    */
   stripeAffirm?: StripeOptions | null | undefined;
@@ -549,6 +558,7 @@ export type TransactionConnectionOptions$Outbound = {
     | RiskifiedAntiFraudOptions$Outbound
     | null
     | undefined;
+  "ryft-card"?: RyftCardOptions$Outbound | null | undefined;
   "stripe-affirm"?: StripeOptions$Outbound | null | undefined;
   "stripe-card"?: StripeCardOptions$Outbound | null | undefined;
   "stripe-klarna"?: StripeOptions$Outbound | null | undefined;
@@ -629,6 +639,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
   repayBank: z.nullable(RepayBankOptions$outboundSchema).optional(),
   riskifiedAntiFraud: z.nullable(RiskifiedAntiFraudOptions$outboundSchema)
     .optional(),
+  ryftCard: z.nullable(RyftCardOptions$outboundSchema).optional(),
   stripeAffirm: z.nullable(StripeOptions$outboundSchema).optional(),
   stripeCard: z.nullable(StripeCardOptions$outboundSchema).optional(),
   stripeKlarna: z.nullable(StripeOptions$outboundSchema).optional(),
@@ -698,6 +709,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     powertranzCard: "powertranz-card",
     repayBank: "repay-bank",
     riskifiedAntiFraud: "riskified-anti-fraud",
+    ryftCard: "ryft-card",
     stripeAffirm: "stripe-affirm",
     stripeCard: "stripe-card",
     stripeKlarna: "stripe-klarna",
