@@ -384,6 +384,10 @@ export type TransactionCreate = {
    * The date and time when the buyer's approval window for this transaction expires. If not provided, this is automatically computed from the connector's default expiration time. The value cannot exceed the connector's maximum approval window.
    */
   approvalExpiresAt?: Date | null | undefined;
+  /**
+   * Whether the authorization amount is expected to be modified in the future or not.
+   */
+  isAmountEstimated?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -549,6 +553,7 @@ export type TransactionCreate$Outbound = {
   shipping_amount?: number | null | undefined;
   integration_client?: string | null | undefined;
   approval_expires_at?: string | null | undefined;
+  is_amount_estimated?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -631,6 +636,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   integrationClient: z.nullable(IntegrationClient$outboundSchema).optional(),
   approvalExpiresAt: z.nullable(z.date().transform(v => v.toISOString()))
     .optional(),
+  isAmountEstimated: z.nullable(z.boolean()).optional(),
 }).transform((v) => {
   return remap$(v, {
     paymentMethod: "payment_method",
@@ -666,6 +672,7 @@ export const TransactionCreate$outboundSchema: z.ZodType<
     shippingAmount: "shipping_amount",
     integrationClient: "integration_client",
     approvalExpiresAt: "approval_expires_at",
+    isAmountEstimated: "is_amount_estimated",
   });
 });
 
