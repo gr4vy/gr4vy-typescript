@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: c74fb1ba061ac848b9280e8fecd619ea
+  docChecksum: 78bd4e73e6e30d0874d90eb1d10a941e
   docVersion: 1.0.0
   speakeasyVersion: 1.799.0
   generationVersion: 2.941.0
-  releaseVersion: 2.4.29
-  configChecksum: 6cb6b1918ce32ac3624810c09d01cde1
+  releaseVersion: 2.4.30
+  configChecksum: 2ab23e9c261d7fd1bd3f95cb1bcdd347
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: c4af7f56-eed7-44bb-ad3a-5bd6d62e9891
-  pristine_commit_hash: c6c3bc36d7fec6dfa0569bbb9b7c92b150b0872c
-  pristine_tree_hash: a433f83471a7236bce606d7479d92b348cba4a2c
+  generation_id: 4c6af250-1485-44d4-a8f2-19fe83fceb2b
+  pristine_commit_hash: cf67bf669bad5bf2d8e3ecee3ed845b44919dcd0
+  pristine_tree_hash: 6bfeaae1bdbc06f07cd9365def250133161523af
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1552,8 +1552,8 @@ trackedFiles:
     pristine_git_object: 52c026c578ff8e8464a88f555acc6a09de037319
   docs/models/components/transactioncreate.md:
     id: 652e84478e51
-    last_write_checksum: sha1:1b0f0154cabb6ee0d02257c59e0308648f7b9a33
-    pristine_git_object: 82ab9ac61df48cd4b5fff6d968524ec4f6fb8589
+    last_write_checksum: sha1:6e8038a70d73007c38cb55bd5a3fabdc1a7ee4d3
+    pristine_git_object: bb5dc8aca951434a8c05410771dd8e18d11e62a5
   docs/models/components/transactioncreategiftcards.md:
     id: 53eb007d1212
     last_write_checksum: sha1:47ef12ab0715804ef6953ec86e020e85f8609044
@@ -2924,12 +2924,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:ef2376dfc80787ce815a18c7b91b3ee53a544b8f
-    pristine_git_object: 781962f984fe3cc10da6e523cb86ba1c49e4d1d3
+    last_write_checksum: sha1:39ea27db029eec85e1f7338152c05ff8e6d1e2e7
+    pristine_git_object: f8bc756864fa16018677a93174a9370773df97e9
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:3bda1b549d728bfa99adcd0886b86b933983028e
-    pristine_git_object: 7bc895da1e36ff98a5aa3b72ae238c546b663bc0
+    last_write_checksum: sha1:68db3efe60a924bbc27d7d608cc1faa459eebd58
+    pristine_git_object: af4222ad8a2f9d52c2356ecfb068081ee745f256
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3432,8 +3432,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:50cfcd90f564dd420e70b9e56b6b39ae0119d37b
-    pristine_git_object: 917d28f4abf4fac79eb5292e90f78fdcd1e44d63
+    last_write_checksum: sha1:043f623c3f492e42379ddaf0b5f6220a18f4c854
+    pristine_git_object: e82a5cbf6ef5bbee4b013c6888e46862c6cf790a
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -4804,8 +4804,8 @@ trackedFiles:
     pristine_git_object: 608701adf6fad89fd070ba14a88df3ca23e4d75b
   src/models/components/transactioncreate.ts:
     id: 6ba6f0cd74e3
-    last_write_checksum: sha1:676e55f741f4532048a787f3a9e3c7c352cf345d
-    pristine_git_object: e2aed1615fca9c87f7fde78cb975a74259dab9f8
+    last_write_checksum: sha1:4c9aada3b50a346eabaf85858844573ee7003dda
+    pristine_git_object: 7c052a7c35ba29f96360342b90e0e6699e243059
   src/models/components/transactionevent.ts:
     id: 0292335c036a
     last_write_checksum: sha1:91266ed7b448f9df5b6457afdb7de315be2c854b
@@ -9937,6 +9937,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.isAmountEstimated` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
