@@ -41,6 +41,11 @@ export type ListTransactionsRequest = {
   search?: string | null | undefined;
   buyerExternalIdentifier?: string | null | undefined;
   buyerId?: string | null | undefined;
+  /**
+   * Deprecated. Filters the results to only the items for which the `buyer` has an `email_address` that matches this value. This filter can be slow and is not recommended for use in automated systems. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead.
+   *
+   * @deprecated field: This filter can be slow. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead..
+   */
   buyerEmailAddress?: string | null | undefined;
   ipAddress?: string | null | undefined;
   /**
@@ -55,23 +60,23 @@ export type ListTransactionsRequest = {
    */
   metadata?: Array<string> | null | undefined;
   /**
-   * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
+   * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   amountEq?: number | null | undefined;
   /**
-   * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
+   * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   amountLte?: number | null | undefined;
   /**
-   * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
+   * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   amountGte?: number | null | undefined;
   /**
-   * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
+   * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   currency?: Array<string> | null | undefined;
   /**
-   * Filters for transactions that have matching `country` values.
+   * Filters for transactions that have matching `country` values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   country?: Array<string> | null | undefined;
   /**
@@ -81,16 +86,16 @@ export type ListTransactionsRequest = {
   paymentMethodId?: string | null | undefined;
   paymentMethodLabel?: string | null | undefined;
   /**
-   * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
+   * Filters for transactions where the `payment_method_scheme` matches one of the provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   paymentMethodScheme?: Array<string> | null | undefined;
   /**
-   * Filters for transactions that have a payment method with a country that matches with the provided value.
+   * Filters for transactions that have a payment method with a country that matches with the provided value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   paymentMethodCountry?: string | null | undefined;
   paymentMethodFingerprint?: string | null | undefined;
   /**
-   * Filters for transactions that have matching `method` values.
+   * Filters for transactions that have matching `method` values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   method?: Array<components.Method> | null | undefined;
   /**
@@ -126,11 +131,13 @@ export type ListTransactionsRequest = {
    */
   giftCardId?: string | null | undefined;
   /**
-   * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
+   * Deprecated. Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value. This filter can be slow and is not recommended for use in automated systems. Use `gift_card_id` instead.
+   *
+   * @deprecated field: This filter can be slow. Use `gift_card_id` instead..
    */
   giftCardLast4?: string | null | undefined;
   /**
-   * Filters for transactions that have at least one associated settlement record.
+   * Filters for transactions that have at least one associated settlement record. When filtering on `false`, combine it with `created_at_gte` and `created_at_lte` for best performance.
    */
   hasSettlements?: boolean | null | undefined;
   /**
@@ -138,19 +145,19 @@ export type ListTransactionsRequest = {
    */
   paymentMethodBin?: string | null | undefined;
   /**
-   * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
+   * Filters the results to only the transactions that have a payment source that matches with any of the provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   paymentSource?: Array<components.TransactionPaymentSource> | null | undefined;
   /**
-   * Filters for transactions where the `is_subsequent_payment` matches the provided value.
+   * Filters for transactions where the `is_subsequent_payment` matches the provided value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   isSubsequentPayment?: boolean | null | undefined;
   /**
-   * Filters for transactions where the `merchant_initiated` matches the provided value.
+   * Filters for transactions where the `merchant_initiated` matches the provided value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   merchantInitiated?: boolean | null | undefined;
   /**
-   * Filters for transactions that attempted 3DS authentication or not.
+   * Filters for transactions that attempted 3DS authentication or not. For best performance, combine it with `created_at_gte` and `created_at_lte`.
    */
   used3ds?: boolean | null | undefined;
   /**
