@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 78bd4e73e6e30d0874d90eb1d10a941e
+  docChecksum: 7528dd85c5db70e7013fa458682701fa
   docVersion: 1.0.0
-  speakeasyVersion: 1.799.0
-  generationVersion: 2.941.0
-  releaseVersion: 2.4.30
-  configChecksum: 2ab23e9c261d7fd1bd3f95cb1bcdd347
+  speakeasyVersion: 1.800.0
+  generationVersion: 2.943.0
+  releaseVersion: 2.4.31
+  configChecksum: 4a911f6da4ba28bba456d0a16bc2692e
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 4c6af250-1485-44d4-a8f2-19fe83fceb2b
-  pristine_commit_hash: cf67bf669bad5bf2d8e3ecee3ed845b44919dcd0
-  pristine_tree_hash: 6bfeaae1bdbc06f07cd9365def250133161523af
+  generation_id: bebcf5e0-6cab-401a-acc4-c86907cdcc0c
+  pristine_commit_hash: 4f1857d253eb1d2f48c860c2d7e2785b101d6494
+  pristine_tree_hash: 325af40f19b718632962938163cb52db08bc3f88
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -40,7 +40,7 @@ features:
     retries: 2.83.2
     sdkHooks: 0.4.0
     serverIDs: 2.81.2
-    unions: 2.86.5
+    unions: 2.86.7
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -2564,8 +2564,8 @@ trackedFiles:
     pristine_git_object: 235b0fc807dbd238dc65e2320c62a0139dcbfa86
   docs/models/operations/listtransactionsrequest.md:
     id: fff2b83cdbd0
-    last_write_checksum: sha1:e66bf2e8979ee5956f8308ad4f17018afe1e4731
-    pristine_git_object: 3c14e9865da22a620d95aa58fd05f766baf221c5
+    last_write_checksum: sha1:c98f9cad2ed304f45f9bf64df16af3a70bd03664
+    pristine_git_object: c70703604e82a52c2d3ac98d35e28ae1ab1aaed9
   docs/models/operations/listtransactionsresponse.md:
     id: 51bfe5620e37
     last_write_checksum: sha1:3ee11cd108715a9e0990b6c203318946e5412f78
@@ -2924,12 +2924,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:39ea27db029eec85e1f7338152c05ff8e6d1e2e7
-    pristine_git_object: f8bc756864fa16018677a93174a9370773df97e9
+    last_write_checksum: sha1:b99b557395a9832704b28f9033ae725d60cb2831
+    pristine_git_object: 0eff3f2b8c35c038ccdd94377d8d077b1d4637a6
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:68db3efe60a924bbc27d7d608cc1faa459eebd58
-    pristine_git_object: af4222ad8a2f9d52c2356ecfb068081ee745f256
+    last_write_checksum: sha1:f6c74e7dfdf859d1ed9adadf9d5e0e6f78c3edd0
+    pristine_git_object: f8574b181864963b887852a9d585a9bffdc6b58a
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3432,8 +3432,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:043f623c3f492e42379ddaf0b5f6220a18f4c854
-    pristine_git_object: e82a5cbf6ef5bbee4b013c6888e46862c6cf790a
+    last_write_checksum: sha1:e90dbe7cccd6b71e037d2ffe9342bfeade885b91
+    pristine_git_object: 9a4cae494a6ecec5ee461c946cee55e29d7f4c20
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -5396,8 +5396,8 @@ trackedFiles:
     pristine_git_object: 762a28c8811c2f2a1801da72e35a829cf5ac0017
   src/models/operations/listtransactions.ts:
     id: b08aad97cf23
-    last_write_checksum: sha1:4e8804e36e51911a100b13f20336645b2504293e
-    pristine_git_object: 89c70df3df21c7a46f76036d046e416c5892fb19
+    last_write_checksum: sha1:01b779b8ded7d8000c610d911eab45569c976626
+    pristine_git_object: 9d3ccb8686a0efb7aef428818a1126cff92c6715
   src/models/operations/listtransactionsettlements.ts:
     id: d7d4d8423bfe
     last_write_checksum: sha1:e9ccbcec7c638a3a26e4bf50284993398372bcba
@@ -9937,7 +9937,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.isAmountEstimated` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
