@@ -9,6 +9,7 @@ import { OpenEnum } from "../../types/enums.js";
 export const IncrementalAuthorizationStatus = {
   Succeeded: "succeeded",
   Failed: "failed",
+  Pending: "pending",
 } as const;
 export type IncrementalAuthorizationStatus = OpenEnum<
   typeof IncrementalAuthorizationStatus

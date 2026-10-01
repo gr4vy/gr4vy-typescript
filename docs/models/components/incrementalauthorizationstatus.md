@@ -5,7 +5,7 @@
 ```typescript
 import { IncrementalAuthorizationStatus } from "@gr4vy/sdk/models/components";
 
-let value: IncrementalAuthorizationStatus = "failed";
+let value: IncrementalAuthorizationStatus = "pending";
 
 // Open enum: unrecognized values are captured as Unrecognized<string>
 ```
@@ -13,5 +13,5 @@ let value: IncrementalAuthorizationStatus = "failed";
 ## Values
 
 ```typescript
-"succeeded" | "failed" | Unrecognized<string>
+"succeeded" | "failed" | "pending" | Unrecognized<string>
 ```
