@@ -17,6 +17,7 @@ export const Name = {
   TransactionUpdatedStatus: "transaction-updated-status",
   TransactionSyncEvent: "transaction-sync-event",
   TransactionSyncFailedEvent: "transaction-sync-failed-event",
+  NetworkTokenSkipped: "network-token-skipped",
   TransactionModifiedEvent: "transaction-modified-event",
   TransactionApiRequest: "transaction-api-request",
   TransactionApiResponse: "transaction-api-response",
