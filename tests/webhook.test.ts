@@ -117,4 +117,24 @@ describe(".verifyWebook()", () => {
       );
     }).toThrow("Missing header values");
   });
+
+  test("should accept a valid signature in any position", async () => {
+    const secret =
+      "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
+    const signatureHeader =
+      "other,78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d013";
+
+    verifyWebhook("payload", secret, signatureHeader, "1744018920", 0);
+  });
+
+  test("should reject a nearly matching signature", async () => {
+    const secret =
+      "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
+    const signatureHeader =
+      "78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d014";
+
+    expect(() => {
+      verifyWebhook("payload", secret, signatureHeader, "1744018920", 0);
+    }).toThrow("No matching signature found");
+  });
 });

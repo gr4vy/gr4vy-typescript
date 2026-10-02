@@ -31,7 +31,13 @@ export const verifyWebhook = (
     .update(`${timestamp}.${payload}`)
     .digest("hex")
 
-  if (!signatures.includes(expectedSignature)) {
+  // Compare in constant time, so the check doesn't leak how much of one matched.
+  const expected = Buffer.from(expectedSignature)
+  const matches = (signature: string) => {
+    const candidate = Buffer.from(signature)
+    return candidate.length === expected.length && crypto.timingSafeEqual(candidate, expected)
+  }
+  if (!signatures.some(matches)) {
     throw new Error("No matching signature found")
   }
 
