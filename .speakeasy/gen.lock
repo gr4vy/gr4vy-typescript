@@ -3,17 +3,17 @@ id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
   docChecksum: ab68bf8d50aa8459658ddd74c67113e0
   docVersion: 1.0.0
-  speakeasyVersion: 1.800.0
+  speakeasyVersion: 1.800.1
   generationVersion: 2.943.0
-  releaseVersion: 2.4.33
-  configChecksum: 63c0b4cdbd67f60e545a0bc7a7ab7327
+  releaseVersion: 2.4.34
+  configChecksum: 6595d3b926798a43062292c9920ef235
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: bfec0236-016b-4ee1-ba06-4a5a6687b30f
-  pristine_commit_hash: bc72ec078de05ac570fef8d7331e5f6144b42b69
-  pristine_tree_hash: 7ca47a743c45d3ebbd53fdd5de9295636205d77b
+  generation_id: c4e2df57-7f7c-4213-82f2-167b3267ef07
+  pristine_commit_hash: 6572991c937c573c2a12d351e31047c24e8b7981
+  pristine_tree_hash: c141aa5c3dbe98d7d6b906090e4cb5725cfaf125
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2924,12 +2924,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:62333d7e9483ba5fa83157bff7ebd075a866fbbd
-    pristine_git_object: a75b7683d59cf1d96a66d9fae78ddf1759bcb0ae
+    last_write_checksum: sha1:b65c5ae73d44be4704adb41ffc56c826e04ecfe9
+    pristine_git_object: 9ba7ec67613291e3a698cb73420d332f131749e2
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:0266f7d9271089f8be37543193f42ccca7c43a81
-    pristine_git_object: 100da9ffbec57496619fc259fe1ded26dfedcf29
+    last_write_checksum: sha1:b613462a67574be72079c350c5db84ae524d31b3
+    pristine_git_object: 67fac846be0afaa5140d0d3aabed52ae1a5f6f4a
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3432,8 +3432,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:8b56329413a7a1aa6f4f750607b3e990354d6992
-    pristine_git_object: 3c8b674778714d7d321b6d880de99a821191dd67
+    last_write_checksum: sha1:fe2ff59be72ac18ca00672f62b27c69af2f5d8f8
+    pristine_git_object: 68c0d00307bd92e4ad44f6b8779a507b8ea28768
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -9937,9 +9937,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `gr4vy.transactions.events.list()`:  `response.items[].name.enum(networkTokenSkipped)` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
