@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 2.4.35
+  version: 2.4.36
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies:
@@ -84,6 +84,7 @@ typescript:
   modelPropertyCasing: camel
   moduleFormat: commonjs
   multipartArrayFormat: legacy
+  numericEnumMemberNames: legacy
   outputModelSuffix: output
   packageName: '@gr4vy/sdk'
   preApplyUnionDiscriminators: true

@@ -91,6 +91,7 @@ export const Name = {
     "payment-connector-report-chargeback-reversal-posted",
   PaymentConnectorTransactionWebhookProcessed:
     "payment-connector-transaction-webhook-processed",
+  RefundIngested: "refund-ingested",
   DigitalWalletApplePayTokenDecrypted:
     "digital-wallet-apple-pay-token-decrypted",
   DigitalWalletGooglePayTokenDecrypted:
