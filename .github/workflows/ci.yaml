@@ -129,6 +129,7 @@ jobs:
   # continue-on-error keeps a failed report from failing the CI run, which is
   # what the publish workflow waits for.
   coverage:
+    needs: test
     if: github.event_name != 'pull_request'
     continue-on-error: true
     runs-on: ubuntu-latest

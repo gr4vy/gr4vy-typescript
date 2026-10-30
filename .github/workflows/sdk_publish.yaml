@@ -64,9 +64,9 @@ jobs:
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
   
   notify:
-    needs: publish
+    needs: [gate, publish]
     runs-on: ubuntu-latest
-    if: always() && needs.publish.result != 'skipped'
+    if: always() && (needs.gate.result == 'failure' || needs.publish.result != 'skipped')
     steps:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
