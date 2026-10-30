@@ -1,8 +1,4 @@
 name: Merge SDK
-# After CI goes green on a PR, the gr4vy-sdk-release App approves and merges it if it
-# is a Speakeasy regeneration within the path guards (gr4vy/sdk-release), or
-# labels it needs-human. workflow_run always runs this file from main, never
-# from the PR, and the App key lives in the `sdk-release` Environment.
 on:
   workflow_run: # zizmor: ignore[dangerous-triggers] never checks out or runs PR code
     workflows:

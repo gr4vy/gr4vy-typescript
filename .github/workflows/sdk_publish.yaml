@@ -1,7 +1,4 @@
 name: Publish SDK
-# Publishes only after the live suite passes on main. A version made entirely of
-# gr4vy-sdk-release merges publishes unattended; anything else (a human merge, a
-# direct push) waits for a reviewer in the `release-manual` Environment.
 "on":
   workflow_run: # zizmor: ignore[dangerous-triggers] never checks out or runs PR code
     workflows:
