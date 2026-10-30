@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 5
     outputs:
       publish: ${{ steps.gate.outputs.publish }}
-      mode: ${{ steps.gate.outputs.mode }}
+      mode: ${{ github.event_name == 'workflow_dispatch' && 'manual' || steps.gate.outputs.mode }}
     steps:
       - id: gate
         uses: gr4vy/sdk-release/publish-gate@a1bb7c931b633cf11d109cd42b00ece79c9bcde2
