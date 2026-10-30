@@ -1,19 +1,60 @@
 name: Publish SDK
-permissions:
-  checks: write
-  contents: write
-  pull-requests: write
-  statuses: write
-  id-token: write
+# Publishes only after the live suite passes on main. A version made entirely of
+# gr4vy-sdk-release merges publishes unattended; anything else (a human merge, a
+# direct push) waits for a reviewer in the `release-manual` Environment.
 "on":
-  push:
+  workflow_run: # zizmor: ignore[dangerous-triggers] never checks out or runs PR code
+    workflows:
+      - CI
+    types:
+      - completed
     branches:
       - main
-    paths:
-      - .speakeasy/gen.lock
   workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
 jobs:
+  gate:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.event == 'push' && github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      publish: ${{ steps.gate.outputs.publish }}
+      mode: ${{ steps.gate.outputs.mode }}
+    steps:
+      - id: gate
+        uses: gr4vy/sdk-release/publish-gate@a1bb7c931b633cf11d109cd42b00ece79c9bcde2
+        with:
+          head-sha: ${{ github.event.workflow_run.head_sha || github.sha }}
+          bot-login: gr4vy-sdk-release[bot]
+
+  approve:
+    needs: gate
+    if: needs.gate.outputs.publish == 'true' && needs.gate.outputs.mode == 'manual'
+    runs-on: ubuntu-latest
+    environment: release-manual
+    steps:
+      - run: echo "Release approved."
+
   publish:
+    needs: [gate, approve]
+    if: >-
+      always() && needs.gate.outputs.publish == 'true' &&
+      (needs.gate.outputs.mode == 'auto' || needs.approve.result == 'success')
+    permissions:
+      checks: write
+      contents: write
+      pull-requests: write
+      statuses: write
+      id-token: write
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@fe37b336cd1948f1e2e60383fd94bfb884318cf2 # v15
     with:
       target: typescript
@@ -21,25 +62,24 @@ jobs:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-  
+
   notify:
     needs: publish
     runs-on: ubuntu-latest
-    if: always()
+    if: always() && needs.publish.result != 'skipped'
     steps:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
-        if: github.ref == 'refs/heads/main'
         env:
-            SLACK_USERNAME: TypeScript SDK 
+            SLACK_USERNAME: TypeScript SDK
             SLACK_TITLE: TypeScript SDK
             SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
             SLACK_CHANNEL: sdk-updates
             SLACK_MSG_AUTHOR: gr4vy-code
             SLACK_ICON_EMOJI: ":gr4vy:"
             SLACK_COLOR: "${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}"
-            SLACK_MESSAGE_ON_SUCCESS: "SDK publishing succeeded - `${{ github.event.head_commit.message }}`"
-            SLACK_MESSAGE_ON_FAILURE: "SDK publishing failed - `${{ github.event.head_commit.message }}`"
+            SLACK_MESSAGE_ON_SUCCESS: "SDK publishing succeeded - `${{ github.event.workflow_run.head_commit.message }}`"
+            SLACK_MESSAGE_ON_FAILURE: "SDK publishing failed - `${{ github.event.workflow_run.head_commit.message }}`"
             SLACK_FOOTER: ""
 
   dispatch:
