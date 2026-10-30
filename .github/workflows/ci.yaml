@@ -126,9 +126,11 @@ jobs:
   # Endpoint reach of the live suite, written to the run summary. Generated SDK
   # PRs add new `src/funcs/*` operations but no E2E tests; this lists every
   # operation the suite does not yet reach, so we can add tests over time.
-  # Not a dependency of ci-complete, so it never blocks a release.
+  # continue-on-error keeps a failed report from failing the CI run, which is
+  # what the publish workflow waits for.
   coverage:
     if: github.event_name != 'pull_request'
+    continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment: e2e
