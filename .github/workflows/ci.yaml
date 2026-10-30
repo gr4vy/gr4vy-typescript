@@ -130,7 +130,7 @@ jobs:
   # what the publish workflow waits for.
   coverage:
     needs: test
-    if: github.event_name != 'pull_request'
+    if: ${{ !cancelled() && github.event_name != 'pull_request' }}
     continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
