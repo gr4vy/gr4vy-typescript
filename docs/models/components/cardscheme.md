@@ -13,5 +13,5 @@ let value: CardScheme = "visa";
 ## Values
 
 ```typescript
-"accel" | "amex" | "bancontact" | "carte-bancaire" | "cirrus" | "culiance" | "dankort" | "diners-club" | "discover" | "eftpos-australia" | "elo" | "hipercard" | "jcb" | "maestro" | "mastercard" | "mir" | "nyce" | "other" | "pulse" | "qcard" | "rupay" | "star" | "uatp" | "unionpay" | "visa" | Unrecognized<string>
+"accel" | "amex" | "bancontact" | "carte-bancaire" | "cirrus" | "culiance" | "dankort" | "dinacard" | "diners-club" | "discover" | "eftpos-australia" | "elo" | "hipercard" | "jcb" | "maestro" | "mastercard" | "mir" | "nyce" | "other" | "pulse" | "qcard" | "rupay" | "star" | "uatp" | "unionpay" | "visa" | Unrecognized<string>
 ```
