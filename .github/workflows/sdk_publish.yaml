@@ -32,7 +32,7 @@ jobs:
       version: ${{ steps.gate.outputs.version }}
     steps:
       - id: gate
-        uses: gr4vy/sdk-release/publish-gate@0d6218b18c2c2f495a206efebea008ba96b174bb
+        uses: gr4vy/sdk-release/publish-gate@4f4eab50a2383f36617ae04705d5317126801c44
         with:
           head-sha: ${{ github.event.workflow_run.head_sha || github.sha }}
           bot-login: gr4vy-sdk-release[bot]
@@ -126,7 +126,7 @@ jobs:
           {
             echo "[@gr4vy/sdk $VERSION](https://www.npmjs.com/package/@gr4vy/sdk/v/$VERSION)"
             echo
-            yq -r '.releaseNotes' .speakeasy/gen.lock
+            yq -r '.releaseNotes // ""' .speakeasy/gen.lock
           } > release-notes.md
           gh release create "v$VERSION" --repo "$GITHUB_REPOSITORY" --target "$SHA" \
             --title "typescript - v$VERSION" --notes-file release-notes.md
