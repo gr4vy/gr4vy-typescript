@@ -5,6 +5,11 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
+  Airline,
+  Airline$Outbound,
+  Airline$outboundSchema,
+} from "./airline.js";
+import {
   CartItem,
   CartItem$Outbound,
   CartItem$outboundSchema,
@@ -108,6 +113,10 @@ export type PaymentLinkCreate = {
    */
   cartItems?: Array<CartItem> | null | undefined;
   /**
+   * The airline addendum data which describes the airline booking associated with this payment link.
+   */
+  airline?: Airline | null | undefined;
+  /**
    * Arbitrary metadata for the payment link.
    */
   metadata?: { [k: string]: any } | null | undefined;
@@ -150,6 +159,7 @@ export type PaymentLinkCreate$Outbound = {
   intent?: string | undefined;
   return_url?: string | null | undefined;
   cart_items?: Array<CartItem$Outbound> | null | undefined;
+  airline?: Airline$Outbound | null | undefined;
   metadata?: { [k: string]: any } | null | undefined;
   payment_source?: string | undefined;
   store: boolean;
@@ -184,6 +194,7 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
   intent: TransactionIntent$outboundSchema.optional(),
   returnUrl: z.nullable(z.string()).optional(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+  airline: z.nullable(Airline$outboundSchema).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
   paymentSource: TransactionPaymentSource$outboundSchema.optional(),
   store: z.boolean().default(false),
