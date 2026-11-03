@@ -32,7 +32,7 @@ jobs:
       version: ${{ steps.gate.outputs.version }}
     steps:
       - id: gate
-        uses: gr4vy/sdk-release/publish-gate@a1bb7c931b633cf11d109cd42b00ece79c9bcde2
+        uses: gr4vy/sdk-release/publish-gate@7ce0c37e74daa6f9396d664b59a51a79cf8fd2f4
         with:
           head-sha: ${{ github.event.workflow_run.head_sha || github.sha }}
           bot-login: gr4vy-sdk-release[bot]
@@ -68,20 +68,69 @@ jobs:
     if: >-
       always() && needs.gate.outputs.publish == 'true' &&
       (needs.gate.outputs.mode == 'auto' || needs.approve.result == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: sdk-release
     permissions:
-      checks: write
-      contents: write
-      pull-requests: write
-      statuses: write
+      contents: read
       id-token: write
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@fe37b336cd1948f1e2e60383fd94bfb884318cf2 # v15
-    with:
-      target: typescript
-    secrets:
-      github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      npm_token: ${{ secrets.NPM_TOKEN }}
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-  
+    steps:
+      - name: Mint a gr4vy-sdk-release token
+        id: app
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ secrets.SDK_RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SDK_RELEASE_APP_PRIVATE_KEY }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+
+      - name: Check out the release commit
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
+
+      - name: Use Node.js 24.x
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 24.x
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm install --ignore-scripts
+
+      - name: Publish to npm
+        env:
+          VERSION: ${{ needs.gate.outputs.version }}
+        run: |
+          PACKAGE_VERSION=$(npm pkg get version | tr -d '"')
+          if [ "$PACKAGE_VERSION" != "$VERSION" ]; then
+            echo "::error::package.json is $PACKAGE_VERSION but gen.lock is $VERSION"
+            exit 1
+          fi
+          if npm view "@gr4vy/sdk@$VERSION" version >/dev/null 2>&1; then
+            echo "@gr4vy/sdk@$VERSION is already on npm"
+          elif [[ "$VERSION" == *-* ]]; then
+            PRERELEASE=${VERSION#*-}
+            npm publish --access public --tag "${PRERELEASE%%.*}"
+          else
+            npm publish --access public
+          fi
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          VERSION: ${{ needs.gate.outputs.version }}
+          SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: |
+          {
+            echo "[@gr4vy/sdk $VERSION](https://www.npmjs.com/package/@gr4vy/sdk/v/$VERSION)"
+            echo
+            yq -r '.releaseNotes' .speakeasy/gen.lock
+          } > release-notes.md
+          gh release create "v$VERSION" --repo "$GITHUB_REPOSITORY" --target "$SHA" \
+            --title "typescript - v$VERSION" --notes-file release-notes.md
+
   notify:
     needs: [gate, publish]
     runs-on: ubuntu-latest
