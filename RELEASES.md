@@ -2975,3 +2975,33 @@ Based on:
 - [typescript v2.4.35] .
 ### Releases
 - [NPM v2.4.35] https://www.npmjs.com/package/@gr4vy/sdk/v/2.4.35 - .
+
+## 2026-10-08 08:55:57
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.801.0 (2.946.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v2.4.36] .
+### Releases
+- [NPM v2.4.36] https://www.npmjs.com/package/@gr4vy/sdk/v/2.4.36 - .
+
+## 2026-10-08 11:04:50
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.801.0 (2.946.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v2.4.37] .
+### Releases
+- [NPM v2.4.37] https://www.npmjs.com/package/@gr4vy/sdk/v/2.4.37 - .
+
+## 2026-11-03 09:36:10
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.805.0 (2.954.8) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v2.4.38] .
+### Releases
+- [NPM v2.4.38] https://www.npmjs.com/package/@gr4vy/sdk/v/2.4.38 - .

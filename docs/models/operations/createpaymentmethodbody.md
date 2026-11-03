@@ -64,7 +64,7 @@ const value: components.BACSBankPaymentMethodCreate = {
 ```typescript
 const value: components.SEPABankPaymentMethodCreate = {
   accountHolder: {},
-  accountNumber: "ES1234567891234",
+  accountNumber: "NL91ABNA0417164300",
 };
 ```
 

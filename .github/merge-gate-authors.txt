@@ -1,0 +1,4 @@
+# Who the merge gate (gr4vy/merge-gate) may approve: one GitHub username a line.
+# It reads this from main, so a pull request can't add its own author, and it
+# never approves a change to this file or anything else under .github/.
+cbetta

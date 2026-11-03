@@ -13,5 +13,5 @@ let value: UserStatus = "active";
 ## Values
 
 ```typescript
-"active" | "pending" | "deleted" | Unrecognized<string>
+"active" | "pending" | "deleted" | "reset" | Unrecognized<string>
 ```

@@ -3,7 +3,9 @@ on:
   push:
     branches:
       - main
-  pull_request_target:
+  # Plain pull_request: PR code never runs with a secret. The live suite runs
+  # after merge, on main, and gates the release instead of the merge.
+  pull_request:
     branches:
       - main
   workflow_dispatch: {}
@@ -17,72 +19,69 @@ on:
     # -> every endpoint 500s (Sentry CORE-API-1N0). Keep these apart.
     - cron: 55 8 * * 1-5
 
-jobs:
-  # Compute the Node matrix per event. Every shard hits the real E2E sandbox, so
-  # each extra Node version multiplies the number of live-API jobs (and the odds
-  # that a transient upstream 5xx reddens the merge gate). PRs therefore run a
-  # single current LTS (24.x) for fast, low-flake signal, while push / schedule /
-  # dispatch run the broader matrix so version-specific regressions are still
-  # caught daily. Node 20 is dropped everywhere (EOL 2026-04-30).
-  setup:
-    runs-on: ubuntu-latest
-    # The suite runs against the real E2E sandbox with PRIVATE_KEY. On
-    # pull_request_target the workflow runs with repo secrets, so restrict the
-    # secret-backed matrix to same-repo PRs (e.g. the generated SDK PRs) plus
-    # push/schedule/dispatch. This stops forked PRs from spinning up a matrix of
-    # secret-backed sandbox calls (a cost / DoS vector), while the secret itself
-    # was never exposed to fork code (the PR head isn't checked out).
-    if: >-
-      github.event_name != 'pull_request_target' ||
-      github.event.pull_request.head.repo.full_name == github.repository
-    outputs:
-      node-versions: ${{ steps.matrix.outputs.node-versions }}
-    steps:
-      - id: matrix
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request_target" ]; then
-            echo 'node-versions=["24.x"]' >> "$GITHUB_OUTPUT"
-          else
-            echo 'node-versions=["22.x","24.x"]' >> "$GITHUB_OUTPUT"
-          fi
+permissions:
+  contents: read
 
-  test:
-    needs: setup
+jobs:
+  # Everything that needs no secret: lint, type-check, and the offline auth and
+  # webhook tests. This is all a PR gets before merge.
+  checks:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js 24.x
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 24.x
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Run offline tests
+        run: npx vitest run tests/auth.test.js tests/webhook.test.ts
+
+  # The live suite against the e2e sandbox. Runs on main only (push, schedule,
+  # dispatch). The key lives in the `e2e` Environment, which only main can use,
+  # so a branch workflow can't read it.
+  test:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: e2e
     strategy:
       fail-fast: false
       matrix:
-        node-version: ${{ fromJSON(needs.setup.outputs.node-versions) }}
-        # The E2E suite is split into shards that run in parallel. Each test file
-        # provisions its own merchant account, so vitest can safely distribute the
-        # files across shards.
+        node-version:
+          - 22.x
+          - 24.x
+        # Each test file provisions its own merchant account, so vitest can
+        # safely distribute the files across shards.
         #
         # Kept at 2 (not 4) deliberately: every shard is a live-API job that
-        # authenticates against the shared e2e sandbox, and this matrix is the
-        # widest of the six SDKs (shards x Node versions). Concurrent cold-cache
-        # auth calls are what tip core-api's Envelope /decrypt over its 3s timeout
-        # and 500 the whole suite. If you add shards here, bump the `--shard=N/M`
-        # denominator in the run step to match.
+        # authenticates against the shared e2e sandbox. Concurrent cold-cache
+        # auth calls are what tip core-api's Envelope /decrypt over its 3s
+        # timeout and 500 the whole suite. If you add shards here, bump the
+        # `--shard=N/M` denominator in the run step to match.
         shard:
           - 1
           - 2
 
-    permissions:
-      contents: write
-      pull-requests: write
-
     steps:
-      # Under pull_request_target the workflow defaults to the base ref, which
-      # would mean the auto-merge gate never runs the PR's own code. For trusted
-      # same-repo PRs (e.g. the generated SDK update PRs) check out the PR head so
-      # `merge` (which needs this job) actually validates the generated code.
-      # Fork PRs fall back to the base ref so untrusted code never runs with the
-      # repo secret.
       - name: Check out the repo
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
         with:
-          ref: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name == github.repository) && github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
@@ -90,8 +89,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: |
-         npm i
+        run: npm i
 
       - name: Run tests
         env:
@@ -99,63 +97,50 @@ jobs:
         run: |
           npx vitest run --testTimeout=30000 --hookTimeout=30000 --shard=${{ matrix.shard }}/2
 
-  # Single, stable status check that gates merge. The `test` job fans out across a
-  # node × shard matrix, so its per-job names ("test (20.x, 1)" …) change whenever
-  # the matrix changes — which silently breaks any branch ruleset that requires
-  # the old names. This job gives the ruleset one fixed context ("ci-complete") to
-  # require, and it only succeeds when every shard passed. It also performs the
-  # auto-approve once, after all shards are green, rather than prematurely per
-  # shard.
+  # Single, stable status check for the branch ruleset to require. On a PR it
+  # means the offline checks passed; on main it also means the live suite
+  # passed, which is what the publish workflow waits for.
   ci-complete:
-    needs: test
+    needs: [checks, test]
     if: always()
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
     steps:
-      - name: Verify all test shards passed
+      - name: Verify all jobs passed
+        env:
+          CHECKS: ${{ needs.checks.result }}
+          TEST: ${{ needs.test.result }}
+          EVENT: ${{ github.event_name }}
         run: |
-          if [ "${{ needs.test.result }}" != "success" ]; then
-            echo "test matrix result: ${{ needs.test.result }}"
+          if [ "$CHECKS" != "success" ]; then
+            echo "checks result: $CHECKS"
             exit 1
           fi
-      - name: Auto-approve generated SDK PRs
-        if: ${{ github.event.pull_request.user.login == 'github-actions[bot]' }}
-        uses: hmarr/auto-approve-action@8f929096a962e83ccdfa8afcf855f39f12d4dac7 # v4
-        with:
-          github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+          if [ "$EVENT" = "pull_request" ] && [ "$TEST" = "skipped" ]; then
+            exit 0
+          fi
+          if [ "$TEST" != "success" ]; then
+            echo "test matrix result: $TEST"
+            exit 1
+          fi
 
-  # Reports code coverage and endpoint reach as a sticky PR comment. Runs the
-  # full suite once (un-sharded) so a single coverage report is produced. This
-  # job is intentionally NOT a dependency of `merge`, so it never blocks the
-  # auto-merge of generated SDK PRs.
-  #
-  # Purpose: generated SDK PRs (new OpenAPI spec -> Speakeasy regen) add new
-  # `src/funcs/*` operations but no E2E tests. This comment surfaces every
-  # operation the suite does not yet reach, so newly generated endpoints show up
-  # as "not reached" and we can add tests for them over time.
-  #
-  # Gated to same-repo PRs: it checks out the PR head (so the report reflects the
-  # PR's code, including newly generated endpoints) and uses PRIVATE_KEY, which
-  # must not run untrusted fork code. SDK-regen PRs are opened by
-  # github-actions[bot] within this repo, so they qualify.
+  # Endpoint reach of the live suite, written to the run summary. Generated SDK
+  # PRs add new `src/funcs/*` operations but no E2E tests; this lists every
+  # operation the suite does not yet reach, so we can add tests over time.
+  # continue-on-error keeps a failed report from failing the CI run, which is
+  # what the publish workflow waits for.
   coverage:
+    needs: test
+    if: ${{ !cancelled() && github.event_name != 'pull_request' }}
+    continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: >-
-      github.event_name == 'pull_request_target' &&
-      github.event.pull_request.head.repo.full_name == github.repository
-
-    permissions:
-      contents: read
-      pull-requests: write
+    environment: e2e
 
     steps:
-      - name: Check out the PR head
+      - name: Check out the repo
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
 
       - name: Use Node.js 22.x
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
@@ -165,9 +150,8 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      # continue-on-error so a broken suite still refreshes the comment (flagged
-      # as incomplete below) instead of leaving the previous run's report up.
-      # The last step turns the job red again.
+      # continue-on-error so a broken suite still writes the report (flagged as
+      # incomplete below). The last step turns the job red again.
       - name: Run tests with coverage
         id: suite
         continue-on-error: true
@@ -181,32 +165,22 @@ jobs:
       - name: Build endpoint coverage report
         run: node scripts/endpoint-coverage.mjs
 
-      - name: Flag the report as incomplete
-        if: steps.suite.outcome != 'success'
+      - name: Write the report to the run summary
         env:
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SUITE: ${{ steps.suite.outcome }}
         run: |
-          report=coverage/endpoint-coverage.md
-          {
-            head -n 2 "$report"
-            echo "> ⚠️ **The test suite failed in [this run]($RUN_URL), so the reach below is incomplete.** It refreshes when CI is re-run."
-            echo
-            tail -n +3 "$report"
-          } > "$report.tmp"
-          mv "$report.tmp" "$report"
-
-      - name: Comment coverage on the PR
-        uses: marocchino/sticky-pull-request-comment@d2ad0de260ae8b0235ce059e63f2949ba9e05943 # v2.9.3
-        with:
-          header: test-coverage
-          path: coverage/endpoint-coverage.md
+          if [ "$SUITE" != "success" ]; then
+            echo "> ⚠️ **The test suite failed in this run, so the reach below is incomplete.**" >> "$GITHUB_STEP_SUMMARY"
+            echo >> "$GITHUB_STEP_SUMMARY"
+          fi
+          cat coverage/endpoint-coverage.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Fail if the test suite failed
         if: steps.suite.outcome != 'success'
         run: exit 1
 
   notify:
-    needs: test
+    needs: [checks, test]
     runs-on: ubuntu-latest
     if: ${{ contains(needs.*.result, 'failure') }}
     steps:
@@ -214,7 +188,7 @@ jobs:
         uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
         if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'github-actions[bot]')
         env:
-            SLACK_USERNAME: TypeScript SDK 
+            SLACK_USERNAME: TypeScript SDK
             SLACK_TITLE: TypeScript SDK
             SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
             SLACK_CHANNEL: sdk-updates
