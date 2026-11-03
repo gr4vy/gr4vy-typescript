@@ -40,11 +40,11 @@ export type BACSBankPaymentMethodCreate = {
    */
   scheme?: "bacs" | undefined;
   /**
-   * The account number for this BACS bank account
+   * The account number for this BACS bank account, made up of 8 digits. A 6 or 7 digit number is padded with leading zeros. Spaces and dashes are ignored.
    */
   accountNumber: string;
   /**
-   * The sort code for this BACS bank account
+   * The sort code for this BACS bank account, made up of 6 digits. Spaces and dashes are ignored.
    */
   routingNumber: string;
 };

@@ -54,17 +54,17 @@ export type ACHBankPaymentMethodCreate = {
    */
   scheme?: "ach" | undefined;
   /**
-   * The account number for this ACH bank account
-   */
-  accountNumber: string;
-  /**
-   * The routing number for this ACH bank account
-   */
-  routingNumber: string;
-  /**
    * Whether the account number is tokenized
    */
   isTokenized?: boolean | undefined;
+  /**
+   * The account number for this ACH bank account, made up of at most 17 digits. Spaces and dashes are ignored. Any format is accepted when `is_tokenized` is `true`.
+   */
+  accountNumber: string;
+  /**
+   * The routing number for this ACH bank account, made up of 9 digits. Spaces and dashes are ignored.
+   */
+  routingNumber: string;
   /**
    * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
    */
@@ -86,9 +86,9 @@ export type ACHBankPaymentMethodCreate$Outbound = {
   buyer_external_identifier?: string | null | undefined;
   external_identifier?: string | null | undefined;
   scheme: "ach";
+  is_tokenized: boolean;
   account_number: string;
   routing_number: string;
-  is_tokenized: boolean;
   account_type: string;
 };
 
@@ -104,9 +104,9 @@ export const ACHBankPaymentMethodCreate$outboundSchema: z.ZodType<
   buyerExternalIdentifier: z.nullable(z.string()).optional(),
   externalIdentifier: z.nullable(z.string()).optional(),
   scheme: z.literal("ach").default("ach" as const),
+  isTokenized: z.boolean().default(false),
   accountNumber: z.string(),
   routingNumber: z.string(),
-  isTokenized: z.boolean().default(false),
   accountType: AccountType$outboundSchema.default("checking"),
 }).transform((v) => {
   return remap$(v, {
@@ -114,9 +114,9 @@ export const ACHBankPaymentMethodCreate$outboundSchema: z.ZodType<
     buyerId: "buyer_id",
     buyerExternalIdentifier: "buyer_external_identifier",
     externalIdentifier: "external_identifier",
+    isTokenized: "is_tokenized",
     accountNumber: "account_number",
     routingNumber: "routing_number",
-    isTokenized: "is_tokenized",
     accountType: "account_type",
   });
 });

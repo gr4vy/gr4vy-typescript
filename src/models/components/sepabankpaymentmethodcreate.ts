@@ -40,11 +40,11 @@ export type SEPABankPaymentMethodCreate = {
    */
   scheme?: "sepa" | undefined;
   /**
-   * The IBAN for this SEPA bank account
+   * The IBAN for this SEPA bank account. Spaces are ignored and it is not case sensitive.
    */
   accountNumber: string;
   /**
-   * The BIC for this SEPA bank account
+   * The BIC for this SEPA bank account, of 8 or 11 characters. Spaces are ignored and it is not case sensitive.
    */
   routingNumber?: string | null | undefined;
 };
