@@ -141,26 +141,18 @@ node scripts/endpoint-coverage.mjs
 CI (`.github/workflows/ci.yaml`) runs on every PR and push to `main`, plus a
 weekday schedule:
 
-- **`test`** — a `node-version × shard` matrix (Node 20/22/24 × 4 shards) runs
-  `vitest run --shard=$i/4`. Sharding keeps each job fast while every PR stays
-  fully covered. `PRIVATE_KEY` comes from a repo secret.
-- **`coverage`** — runs the full suite once with `--coverage` and posts a sticky
-  PR comment with the report above. It is **not** a dependency of `merge`, so it
-  never blocks shipping.
+- **`checks`** — lint and build, everywhere, including PRs.
+- **`test`** — the live suite, a `node-version × shard` matrix, runs on `main`
+  only: `PRIVATE_KEY` lives in the `e2e` Environment, which only `main` can use,
+  so PR code never runs with it.
+- **`ci-complete`** — the single stable check the branch ruleset requires. On a
+  PR it means `checks` passed; on `main` it also means every live shard
+  passed, which is what the publish workflow waits for.
+- **`coverage`** — on the daily (or a manual) run, runs the full suite once with
+  `--coverage`, writes the report above to the run summary, and posts any "no
+  E2E test" operations to Slack. New Speakeasy endpoints show up there, so each
+  spec change is a prompt to backfill tests. It never gates anything.
 
-  This is the mechanism for keeping tests in step with the API. A new feature
-  produces a new OpenAPI spec, which Speakeasy regenerates into a bot PR that
-  adds new `src/funcs/*` operations **but no E2E tests**. Those new operations
-  appear in the comment's "no E2E test" list, so each regen PR is a standing
-  prompt to backfill tests. For the report to reflect the PR's newly generated
-  endpoints, the job checks out the **PR head** and is therefore gated to
-  **same-repo PRs** (the regen bot qualifies) so untrusted fork code never runs
-  with `PRIVATE_KEY`.
-
-  Note: because CI here uses `pull_request_target`, the workflow that runs on any
-  PR is the one on `main` — changes to this job only take effect once merged.
-- **`merge`** — for generated SDK update PRs (opened by `github-actions[bot]`),
-  a green `test` job auto-approves and squash-merges the PR, cutting the next
-  release. Keeping the suite fast (via sharding) is what keeps this pipeline
-  flowing; keeping `coverage` off the critical path means a reporting hiccup
-  never holds up a release.
+Speakeasy regen PRs are merged by the release bot (`sdk_merge.yaml`), and
+`sdk_publish.yaml` releases once `main` is green. See
+[gr4vy/sdk-release](https://github.com/gr4vy/sdk-release).
