@@ -8,7 +8,7 @@ import { TransactionPaymentService } from "@gr4vy/sdk/models/components";
 let value: TransactionPaymentService = {
   id: "824ff064-7f4b-430b-9801-59aff90d013e",
   paymentServiceDefinitionId: "stripe-card",
-  method: "wechat",
+  method: "webpay",
   displayName: "Stripe USA",
 };
 ```

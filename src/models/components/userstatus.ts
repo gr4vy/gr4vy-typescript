@@ -10,6 +10,7 @@ export const UserStatus = {
   Active: "active",
   Pending: "pending",
   Deleted: "deleted",
+  Reset: "reset",
 } as const;
 export type UserStatus = OpenEnum<typeof UserStatus>;
 

@@ -29,12 +29,31 @@ jobs:
     outputs:
       publish: ${{ steps.gate.outputs.publish }}
       mode: ${{ github.event_name == 'workflow_dispatch' && 'manual' || steps.gate.outputs.mode }}
+      version: ${{ steps.gate.outputs.version }}
     steps:
       - id: gate
         uses: gr4vy/sdk-release/publish-gate@a1bb7c931b633cf11d109cd42b00ece79c9bcde2
         with:
           head-sha: ${{ github.event.workflow_run.head_sha || github.sha }}
           bot-login: gr4vy-sdk-release[bot]
+
+  request-approval:
+    needs: gate
+    if: needs.gate.outputs.publish == 'true' && needs.gate.outputs.mode == 'manual'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
+        env:
+            SLACK_USERNAME: TypeScript SDK
+            SLACK_TITLE: TypeScript SDK
+            SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
+            SLACK_CHANNEL: sdk-updates
+            SLACK_MSG_AUTHOR: gr4vy-code
+            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_COLOR: "#F3AB0E"
+            SLACK_MESSAGE: "v${{ needs.gate.outputs.version }} is waiting for release approval: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            SLACK_FOOTER: ""
 
   approve:
     needs: gate

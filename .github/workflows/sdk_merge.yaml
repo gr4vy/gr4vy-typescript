@@ -19,7 +19,7 @@ jobs:
     environment: sdk-release
     steps:
       - id: bot
-        uses: gr4vy/sdk-release/release-bot@a1bb7c931b633cf11d109cd42b00ece79c9bcde2
+        uses: gr4vy/sdk-release/release-bot@fdfbdb0e2d909585e9ef7e02a5e5c973306b132c
         with:
           sdk: typescript
           run-id: ${{ github.event.workflow_run.id }}
