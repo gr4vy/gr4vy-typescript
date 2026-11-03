@@ -7,6 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { Airline, Airline$inboundSchema } from "./airline.js";
 import { CartItem, CartItem$inboundSchema } from "./cartitem.js";
 import {
   PaymentLinkStatus,
@@ -112,6 +113,10 @@ export type PaymentLink = {
    */
   cartItems: Array<CartItem> | null;
   /**
+   * The airline addendum data which describes the airline booking associated with this payment link.
+   */
+  airline: Airline | null;
+  /**
    * Arbitrary metadata for the payment link.
    */
   metadata?: { [k: string]: any } | null | undefined;
@@ -183,6 +188,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
   intent: TransactionIntent$inboundSchema,
   return_url: z.nullable(z.string()).optional(),
   cart_items: z.nullable(z.array(CartItem$inboundSchema)),
+  airline: z.nullable(Airline$inboundSchema),
   metadata: z.nullable(z.record(z.any())).optional(),
   payment_source: TransactionPaymentSource$inboundSchema,
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),

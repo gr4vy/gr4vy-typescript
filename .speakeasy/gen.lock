@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 54082990502a85f09305150b5935c7ce
+  docChecksum: aae1ebc9319aa6c44c24c02439160ed0
   docVersion: 1.0.0
-  speakeasyVersion: 1.805.0
-  generationVersion: 2.954.8
-  releaseVersion: 2.4.41
-  configChecksum: 8d8c2fe920af2e5be0100e31d1be4777
+  speakeasyVersion: 1.806.0
+  generationVersion: 2.956.1
+  releaseVersion: 2.4.42
+  configChecksum: d52e16ed6686c818172c9006cd059712
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 64d75b7a-5e6b-4e8f-a728-c6446a20e7db
-  pristine_commit_hash: b37dfc369a62ed2898d7565c396ec5e806f4c53b
-  pristine_tree_hash: 2a62c9afd1dadd94b95e97b20ee2ccb67cf550bf
+  generation_id: 029c9196-b33a-45d5-a129-3bc48773a814
+  pristine_commit_hash: 2887e56f4a654df67048515cdc7b36eea218d22d
+  pristine_tree_hash: f977c7ace94e76868715d40a6e3db1968a411566
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -872,12 +872,12 @@ trackedFiles:
     pristine_git_object: d1fe2aa382e35bd3da77c00407cfc20a3b032e13
   docs/models/components/paymentlink.md:
     id: 3701ae6243d3
-    last_write_checksum: sha1:014aa9827e0c3683b60d3879a748d723b4bccbd8
-    pristine_git_object: 48371a638609d6d7b32d7500426ab65b85998c12
+    last_write_checksum: sha1:b07023eb108b04fd227fa058d2c0296895dc9b91
+    pristine_git_object: 84942d181fa44e49378137c459b76f9d9be47faf
   docs/models/components/paymentlinkcreate.md:
     id: 4f1e0f614f61
-    last_write_checksum: sha1:cfc91c5c00789e6319e77478489c4744db83f45c
-    pristine_git_object: 38e0ab92ccfd39a5b36a818dd4bde2c74019ecfa
+    last_write_checksum: sha1:4296bfd1aa43518c09da58298b82f165ec613222
+    pristine_git_object: 9b048893ca619eae0c5bca0932e91be9c6e028ef
   docs/models/components/paymentlinks.md:
     id: 32d54aa0d505
     last_write_checksum: sha1:d03a8b52fa25051f370d6cd165b45640af752ed0
@@ -2400,8 +2400,8 @@ trackedFiles:
     pristine_git_object: 3d59f4d890a62ccebd62807e4d5607b9b31b14a2
   docs/models/operations/listpaymentlinksresponse.md:
     id: a8a28fec4105
-    last_write_checksum: sha1:00ee398b35f4e0f75037e6b7d7c18c771c7134c9
-    pristine_git_object: 90ff3411f84124c5e30e159abe8b2f45eab9e16b
+    last_write_checksum: sha1:d527252c7d907db688635c523c0ebb164195739d
+    pristine_git_object: 3dd0390d051791091f55c4c06f6a91c41d9ce5da
   docs/models/operations/listpaymentmethodnetworktokensglobals.md:
     id: d587c5fd57e3
     last_write_checksum: sha1:305693f7a7d1379684c1a77213467614f47e58ac
@@ -2924,12 +2924,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:3bc309177e0325810075393bf9b02110464474d3
-    pristine_git_object: 0b62a8e4bd9e6e962ddb32d532aad323e5834a5c
+    last_write_checksum: sha1:b678aea23618dbdad030768a642c4c91a4f97867
+    pristine_git_object: 573dacba157916aa4cf1317c5a188af4353e6504
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:19323e5556d8b323ab85a8ab2c0b9ffe09d07862
-    pristine_git_object: b5871eaf66f017945fb9881c79b92634613e86e9
+    last_write_checksum: sha1:fe75d95be5ca4116a061218416ac31824dd8e2f7
+    pristine_git_object: 1b958b8a9831ef2c9b1ad045b5e25b7a330d21a4
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3432,8 +3432,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:f91739f92d5199469c49cce601b2e1c5920362cc
-    pristine_git_object: 9d50f81a934e111e4c883e83e7ffac5341624520
+    last_write_checksum: sha1:d54a4a3e2cc5e394f11e78a908ff96412477e552
+    pristine_git_object: 1eda72f48cc002d6c6a64d14a9b9c17c7ce755f8
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -4208,12 +4208,12 @@ trackedFiles:
     pristine_git_object: a9f6d331c95eb815314eae22814228ba7dbc137f
   src/models/components/paymentlink.ts:
     id: 60f38fae0a77
-    last_write_checksum: sha1:0cdbd5b5198b77e8b9ba7ff506a3498fbbeec734
-    pristine_git_object: 5b74772d3ca5b90b1c0aa6a5469a3c5413dcfa0d
+    last_write_checksum: sha1:a4d87600f55a836e27446c77849ae2a97576359c
+    pristine_git_object: a537c5b5270dd50e10bb2f6218bec838e360b603
   src/models/components/paymentlinkcreate.ts:
     id: f7279d7f4e06
-    last_write_checksum: sha1:484f4edc9727b540ae0693ecd43a9fb63e05b800
-    pristine_git_object: bd68c8efdd6cb573cc57d9d586e5ad454a82a133
+    last_write_checksum: sha1:107b8df70a84519043221471035b07bca976fab0
+    pristine_git_object: 5f136d60f885a31aba944a21d2277a612c4f01e1
   src/models/components/paymentlinks.ts:
     id: d0380fcd31da
     last_write_checksum: sha1:4490529a5c828a77802a61d75af42eaf7a35bf58
@@ -8812,7 +8812,7 @@ examples:
         application/json: {"amount": 1299, "country": "DE", "currency": "EUR", "store": true}
       responses:
         "201":
-          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "capture", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "completed", "store": false}
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "capture", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "airline": {}, "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "completed", "store": false}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -8906,7 +8906,7 @@ examples:
           payment_link_id: "a1b2c3d4-5678-90ab-cdef-1234567890ab"
       responses:
         "200":
-          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "authorize", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "active", "store": false}
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "authorize", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "airline": null, "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "active", "store": false}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -9937,6 +9937,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.airline` **Added**\n  *  `response.airline` **Added**\n* `gr4vy.paymentLinks.list()`:  `response.items[].airline` **Added**\n* `gr4vy.paymentLinks.get()`:  `response.airline` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
