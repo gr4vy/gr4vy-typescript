@@ -103,6 +103,11 @@ jobs:
         env:
           VERSION: ${{ needs.gate.outputs.version }}
         run: |
+          PACKAGE_VERSION=$(npm pkg get version | tr -d '"')
+          if [ "$PACKAGE_VERSION" != "$VERSION" ]; then
+            echo "::error::package.json is $PACKAGE_VERSION but gen.lock is $VERSION"
+            exit 1
+          fi
           if npm view "@gr4vy/sdk@$VERSION" version >/dev/null 2>&1; then
             echo "@gr4vy/sdk@$VERSION is already on npm"
           elif [[ "$VERSION" == *-* ]]; then
