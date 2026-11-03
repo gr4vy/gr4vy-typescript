@@ -1,4 +1,4 @@
-// Summarises test coverage for the PR comment.
+// Summarises test coverage for the CI run summary and Slack report.
 //
 // Endpoint reach is computed from *observed HTTP calls*, not statement coverage:
 // the test fetcher (tests/utils/setup.ts, gated on GR4VY_TRACK_HTTP) logs the
@@ -10,7 +10,7 @@
 // Code-coverage percentages (for the instrumented SDK surface) are read from the
 // vitest v8 coverage-summary.json as a secondary signal.
 //
-// Writes coverage/endpoint-coverage.md (for the PR comment) and prints it.
+// Writes coverage/endpoint-coverage.md (for the CI run summary and Slack report) and prints it.
 // Exits 0 always — this is a report, not a gate.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
