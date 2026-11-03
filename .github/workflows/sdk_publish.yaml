@@ -152,6 +152,7 @@ jobs:
 
   dispatch:
     needs: publish
+    if: always() && needs.publish.result == 'success'
     strategy:
       matrix:
         repo:
