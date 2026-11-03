@@ -19,7 +19,7 @@ targets:
         sourceRevisionDigest: sha256:a138f23433742a654fe46261def4db115f98bf48b1c8223ee790834aa8b88251
         sourceBlobDigest: sha256:1f4f9b213e9c22823e05ae864ec4faf981b1183a5ecf01a2401baa682b6b95c0
         codeSamplesNamespace: openapi-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:4f729ce4e1a73ad19b22419a0b21da209bea3b89781ebea27b2dec2e8085f59a
+        codeSamplesRevisionDigest: sha256:4a4f5b20e8af401ac549ee84d372dbaf840b9dd431f09b381d79294acc3be3be
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
