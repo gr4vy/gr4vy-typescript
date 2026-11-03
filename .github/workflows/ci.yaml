@@ -19,6 +19,12 @@ on:
     # -> every endpoint 500s (Sentry CORE-API-1N0). Keep these apart.
     - cron: 55 8 * * 1-5
 
+# A new push to a PR cancels the previous in-flight run. Runs on main are never
+# cancelled: the publish workflow waits for each one to finish.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 
@@ -130,7 +136,7 @@ jobs:
   # what the publish workflow waits for.
   coverage:
     needs: test
-    if: ${{ !cancelled() && github.event_name != 'pull_request' }}
+    if: ${{ !cancelled() && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
     continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -175,6 +181,30 @@ jobs:
           fi
           cat coverage/endpoint-coverage.md >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Read unreached endpoints
+        id: report
+        run: |
+          {
+            echo "summary=$(grep -o '[0-9]* / [0-9]*' coverage/endpoint-coverage.md | head -1)"
+            echo "missing<<EOF"
+            grep '^- `' coverage/endpoint-coverage.md || true
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Post unreached endpoints to Slack
+        if: steps.report.outputs.missing != ''
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
+        env:
+            SLACK_USERNAME: TypeScript SDK
+            SLACK_TITLE: TypeScript SDK
+            SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
+            SLACK_CHANNEL: sdk-updates
+            SLACK_MSG_AUTHOR: gr4vy
+            SLACK_ICON_EMOJI: ":gr4vy-sdk:"
+            SLACK_COLOR: "warning"
+            SLACK_MESSAGE: "Endpoint coverage ${{ steps.report.outputs.summary }}. No live test reached:\n${{ steps.report.outputs.missing }}"
+            SLACK_FOOTER: ""
+
       - name: Fail if the test suite failed
         if: steps.suite.outcome != 'success'
         run: exit 1
@@ -182,18 +212,18 @@ jobs:
   notify:
     needs: [checks, test]
     runs-on: ubuntu-latest
-    if: ${{ contains(needs.*.result, 'failure') }}
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
     steps:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
-        if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'github-actions[bot]')
+        if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'gr4vy-sdk-generate[bot]')
         env:
             SLACK_USERNAME: TypeScript SDK
             SLACK_TITLE: TypeScript SDK
             SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
             SLACK_CHANNEL: sdk-updates
-            SLACK_MSG_AUTHOR: gr4vy-code
-            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_MSG_AUTHOR: gr4vy
+            SLACK_ICON_EMOJI: ":gr4vy-sdk:"
             SLACK_COLOR: "failure"
             SLACK_MESSAGE_ON_FAILURE: "CI failed"
             SLACK_FOOTER: ""
