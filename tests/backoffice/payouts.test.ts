@@ -1,14 +1,16 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { APPROVING_CARD } from "../utils/fixtures";
 import { reaches } from "../utils/reach";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 describe("Payouts", () => {
   test("listing payouts returns a page", async () => {

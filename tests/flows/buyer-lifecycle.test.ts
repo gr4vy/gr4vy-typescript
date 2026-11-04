@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import {
   address,
@@ -8,13 +8,15 @@ import {
   uniqueId,
 } from "../utils/fixtures";
 import { rejectsClientError } from "../utils/reach";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 describe("Buyer lifecycle", () => {
   test("create buyer, store a card against them, transact, and read it back", async () => {

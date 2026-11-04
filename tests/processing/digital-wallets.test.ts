@@ -1,15 +1,17 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { DigitalWallet } from "../../src/models/components";
 import { uniqueId } from "../utils/fixtures";
 import { reaches, rejectsClientError } from "../utils/reach";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 const registerGoogleWallet = () =>
   gr4vy.digitalWallets.create({

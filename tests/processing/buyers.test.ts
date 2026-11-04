@@ -1,16 +1,18 @@
 import fc from "fast-check";
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { address, billingDetails, buyer, uniqueId } from "../utils/fixtures";
 import { fcParams, name } from "../utils/arbitraries";
 import { rejectsClientError } from "../utils/reach";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 describe("Buyers", () => {
   test("create → get → list → delete", async () => {

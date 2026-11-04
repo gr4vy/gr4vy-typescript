@@ -60,6 +60,10 @@ merchant-scoped client. Because files never share a merchant account, vitest can
 run them concurrently across worker threads, and CI can split them across shards
 without any coordination. Within a file, tests run sequentially.
 
+Each file also registers `afterAll(cleanupEnvironment)`, which deletes the
+merchant accounts the file created (including any registered with
+`trackMerchantAccount`). Add both hooks to every new test file.
+
 ### Shared helpers (`tests/utils/`)
 
 | File | Purpose |

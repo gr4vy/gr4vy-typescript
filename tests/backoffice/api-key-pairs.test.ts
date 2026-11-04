@@ -1,7 +1,7 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { reaches } from "../utils/reach";
-import { createGr4vyClient, setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, createGr4vyClient, setupMerchant } from "../utils/setup";
 
 let admin: Gr4vy;
 
@@ -15,6 +15,8 @@ beforeAll(async () => {
   const { privateKey } = await setupMerchant();
   admin = createGr4vyClient(privateKey);
 });
+
+afterAll(cleanupEnvironment);
 
 describe("API Key Pairs", () => {
   test("listing API key pairs returns a page", async () => {

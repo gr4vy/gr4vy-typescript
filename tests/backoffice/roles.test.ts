@@ -1,6 +1,6 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
-import { createGr4vyClient, setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, createGr4vyClient, setupMerchant } from "../utils/setup";
 
 let admin: Gr4vy;
 
@@ -10,6 +10,8 @@ beforeAll(async () => {
   const { privateKey } = await setupMerchant();
   admin = createGr4vyClient(privateKey);
 });
+
+afterAll(cleanupEnvironment);
 
 describe("Roles", () => {
   test("listing roles returns a page of roles", async () => {
