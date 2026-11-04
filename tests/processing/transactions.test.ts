@@ -1,17 +1,19 @@
 import fc from "fast-check";
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { amount, currency, fcParams, metadata } from "../utils/arbitraries";
 import { buyer, cardPaymentMethod, uniqueId } from "../utils/fixtures";
 import { reaches } from "../utils/reach";
 import { authorizeViaCheckoutSession } from "../utils/transactions";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 // There are two ways to start processing a payment:
 //   1. via a checkout session (covered throughout — see the lifecycle flow and

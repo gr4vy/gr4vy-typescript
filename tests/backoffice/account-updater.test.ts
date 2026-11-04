@@ -1,14 +1,16 @@
-import { beforeAll, describe, test } from "vitest";
+import { afterAll, beforeAll, describe, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { cardPaymentMethod } from "../utils/fixtures";
 import { reaches } from "../utils/reach";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 describe("Account Updater", () => {
   // The Real-Time Account Updater (Loon) is not configured on the mock merchant,

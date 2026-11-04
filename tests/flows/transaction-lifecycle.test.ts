@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { Transaction } from "../../src/models/components";
 import {
@@ -10,13 +10,15 @@ import {
 import { putCheckoutSessionCard } from "../utils/fields";
 import { pollUntil } from "../utils/poll";
 import { reaches } from "../utils/reach";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 /**
  * Authorises a transaction the way a real integration does: open a checkout

@@ -1,7 +1,12 @@
 import crypto from "crypto";
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
-import { createGr4vyClient, setupMerchant } from "../utils/setup";
+import {
+  cleanupEnvironment,
+  createGr4vyClient,
+  setupMerchant,
+  trackMerchantAccount,
+} from "../utils/setup";
 
 let admin: Gr4vy;
 let privateKey: string;
@@ -12,11 +17,14 @@ beforeAll(async () => {
   admin = createGr4vyClient(privateKey);
 });
 
+afterAll(cleanupEnvironment);
+
 const newMerchantId = () => crypto.randomBytes(8).toString("hex");
 
 describe("Merchant Accounts", () => {
   test("create → get → list → update (partial)", async () => {
     const id = newMerchantId();
+    trackMerchantAccount(id, privateKey);
     const created = await admin.merchantAccounts.create({
       id,
       displayName: "Original Display",
@@ -42,6 +50,7 @@ describe("Merchant Accounts", () => {
     // 3DS configuration is keyed per scheme/currency on the merchant account.
     test("create → list → update (partial) → delete", async () => {
       const id = newMerchantId();
+      trackMerchantAccount(id, privateKey);
       await admin.merchantAccounts.create({ id, displayName: id });
 
       const created =

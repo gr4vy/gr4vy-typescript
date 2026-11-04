@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { Gr4vy } from "../../src";
 import { CardPaymentMethodCreate } from "../../src/models/components";
 import {
@@ -11,13 +11,15 @@ import {
   putCheckoutSessionStoredMethod,
 } from "../utils/fields";
 import { rejectsClientError } from "../utils/reach";
-import { setupMerchant } from "../utils/setup";
+import { cleanupEnvironment, setupMerchant } from "../utils/setup";
 
 let gr4vy: Gr4vy;
 
 beforeAll(async () => {
   ({ client: gr4vy } = await setupMerchant());
 });
+
+afterAll(cleanupEnvironment);
 
 describe("Checkout Sessions", () => {
   test("should process a payment with a checkout session", async () => {

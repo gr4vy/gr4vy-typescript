@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
-import { Gr4vy, withToken } from "../../src";
+import { Gr4vy, getToken, withToken } from "../../src";
 import { HTTPClient } from "../../src/lib/http";
 
 const loadPrivateKey = (): string => {
@@ -42,6 +42,17 @@ const recordHttpCall = (method: string, url: string): void => {
   } catch {
     // best-effort instrumentation; never fail a test because of it
   }
+};
+
+const API_BASE_URL = "https://api.sandbox.e2e.gr4vy.app";
+
+const createdMerchantAccounts: { id: string; privateKey: string }[] = [];
+
+/**
+ * Records a merchant account created by a suite so `cleanupEnvironment` deletes it.
+ */
+export const trackMerchantAccount = (id: string, privateKey: string): void => {
+  createdMerchantAccounts.push({ id, privateKey });
 };
 
 const httpClient = new HTTPClient({
@@ -114,6 +125,7 @@ export const setupMerchant = async (): Promise<TestMerchant> => {
   const privateKey = loadPrivateKey();
   const adminClient = createGr4vyClient(privateKey);
   const merchantAccountId = crypto.randomBytes(8).toString("hex");
+  trackMerchantAccount(merchantAccountId, privateKey);
   const merchantAccount = await adminClient.merchantAccounts.create({
     id: merchantAccountId,
     displayName: merchantAccountId,
@@ -140,7 +152,33 @@ export const setupEnvironment = async (): Promise<Gr4vy> => {
   return client;
 };
 
+/**
+ * Deletes every merchant account this test file created. The delete endpoint is
+ * not in the public spec, so it is called directly. Each request is capped at
+ * 10s so a hung delete cannot trip `hookTimeout`; failures are logged and never
+ * fail the run. Call from `afterAll`.
+ */
 export const cleanupEnvironment = async (): Promise<void> => {
-  // Merchant accounts in the sandbox are disposable and left in place; there is
-  // no public delete endpoint for them, so cleanup is intentionally a no-op.
+  await Promise.all(
+    createdMerchantAccounts.splice(0).map(async ({ id, privateKey }) => {
+      try {
+        const token = await getToken({ privateKey });
+        const response = await fetch(
+          `${API_BASE_URL}/merchant-accounts/${encodeURIComponent(id)}`,
+          {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+            signal: AbortSignal.timeout(10_000),
+          }
+        );
+        if (!response.ok && response.status !== 404) {
+          console.warn(
+            `Failed to delete merchant account ${id}: HTTP ${response.status}`
+          );
+        }
+      } catch (error) {
+        console.warn(`Failed to delete merchant account ${id}:`, error);
+      }
+    })
+  );
 };
