@@ -125,11 +125,11 @@ export const setupMerchant = async (): Promise<TestMerchant> => {
   const privateKey = loadPrivateKey();
   const adminClient = createGr4vyClient(privateKey);
   const merchantAccountId = crypto.randomBytes(8).toString("hex");
+  trackMerchantAccount(merchantAccountId, privateKey);
   const merchantAccount = await adminClient.merchantAccounts.create({
     id: merchantAccountId,
     displayName: merchantAccountId,
   });
-  trackMerchantAccount(merchantAccount.id, privateKey);
   const client = createGr4vyClient(privateKey, merchantAccount.id);
   await client.paymentServices.create({
     acceptedCountries: ["US"],
@@ -154,24 +154,31 @@ export const setupEnvironment = async (): Promise<Gr4vy> => {
 
 /**
  * Deletes every merchant account this test file created. The delete endpoint is
- * not in the public spec, so it is called directly. Failures are logged and
- * never fail the run. Call from `afterAll`.
+ * not in the public spec, so it is called directly. Each request is capped at
+ * 10s so a hung delete cannot trip `hookTimeout`; failures are logged and never
+ * fail the run. Call from `afterAll`.
  */
 export const cleanupEnvironment = async (): Promise<void> => {
-  for (const { id, privateKey } of createdMerchantAccounts.splice(0)) {
-    try {
-      const token = await getToken({ privateKey });
-      const response = await fetch(
-        `${API_BASE_URL}/merchant-accounts/${encodeURIComponent(id)}`,
-        { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
-      );
-      if (!response.ok && response.status !== 404) {
-        console.warn(
-          `Failed to delete merchant account ${id}: HTTP ${response.status}`
+  await Promise.all(
+    createdMerchantAccounts.splice(0).map(async ({ id, privateKey }) => {
+      try {
+        const token = await getToken({ privateKey });
+        const response = await fetch(
+          `${API_BASE_URL}/merchant-accounts/${encodeURIComponent(id)}`,
+          {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+            signal: AbortSignal.timeout(10_000),
+          }
         );
+        if (!response.ok && response.status !== 404) {
+          console.warn(
+            `Failed to delete merchant account ${id}: HTTP ${response.status}`
+          );
+        }
+      } catch (error) {
+        console.warn(`Failed to delete merchant account ${id}:`, error);
       }
-    } catch (error) {
-      console.warn(`Failed to delete merchant account ${id}:`, error);
-    }
-  }
+    })
+  );
 };

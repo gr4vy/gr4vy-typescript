@@ -24,11 +24,11 @@ const newMerchantId = () => crypto.randomBytes(8).toString("hex");
 describe("Merchant Accounts", () => {
   test("create → get → list → update (partial)", async () => {
     const id = newMerchantId();
+    trackMerchantAccount(id, privateKey);
     const created = await admin.merchantAccounts.create({
       id,
       displayName: "Original Display",
     });
-    trackMerchantAccount(id, privateKey);
     expect(created.id).toBe(id);
 
     const fetched = await admin.merchantAccounts.get(id);
@@ -50,8 +50,8 @@ describe("Merchant Accounts", () => {
     // 3DS configuration is keyed per scheme/currency on the merchant account.
     test("create → list → update (partial) → delete", async () => {
       const id = newMerchantId();
-      await admin.merchantAccounts.create({ id, displayName: id });
       trackMerchantAccount(id, privateKey);
+      await admin.merchantAccounts.create({ id, displayName: id });
 
       const created =
         await admin.merchantAccounts.threeDsConfiguration.create(
