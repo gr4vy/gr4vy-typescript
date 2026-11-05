@@ -4,7 +4,19 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { CardType, CardType$outboundSchema } from "./cardtype.js";
+
+export const PreferredScheme = {
+  Bancontact: "bancontact",
+  CarteBancaire: "carte-bancaire",
+  Dankort: "dankort",
+  Mastercard: "mastercard",
+  Visa: "visa",
+  EftposAustralia: "eftpos-australia",
+} as const;
+export type PreferredScheme = OpenEnum<typeof PreferredScheme>;
 
 export type CardPaymentMethodCreate = {
   /**
@@ -39,7 +51,18 @@ export type CardPaymentMethodCreate = {
    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
    */
   securityCode?: string | null | undefined;
+  /**
+   * The preferred card scheme to use when processing a co-badged card.
+   */
+  preferredScheme?: PreferredScheme | null | undefined;
 };
+
+/** @internal */
+export const PreferredScheme$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PreferredScheme
+> = openEnums.outboundSchema(PreferredScheme);
 
 /** @internal */
 export type CardPaymentMethodCreate$Outbound = {
@@ -51,6 +74,7 @@ export type CardPaymentMethodCreate$Outbound = {
   card_type?: string | null | undefined;
   method: "card";
   security_code?: string | null | undefined;
+  preferred_scheme?: string | null | undefined;
 };
 
 /** @internal */
@@ -67,6 +91,7 @@ export const CardPaymentMethodCreate$outboundSchema: z.ZodType<
   cardType: z.nullable(CardType$outboundSchema).optional(),
   method: z.literal("card").default("card" as const),
   securityCode: z.nullable(z.string()).optional(),
+  preferredScheme: z.nullable(PreferredScheme$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     expirationDate: "expiration_date",
@@ -75,6 +100,7 @@ export const CardPaymentMethodCreate$outboundSchema: z.ZodType<
     externalIdentifier: "external_identifier",
     cardType: "card_type",
     securityCode: "security_code",
+    preferredScheme: "preferred_scheme",
   });
 });
 
