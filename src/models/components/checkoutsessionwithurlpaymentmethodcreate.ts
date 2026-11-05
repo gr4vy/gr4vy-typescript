@@ -4,6 +4,20 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
+
+export const CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme = {
+  Bancontact: "bancontact",
+  CarteBancaire: "carte-bancaire",
+  Dankort: "dankort",
+  Mastercard: "mastercard",
+  Visa: "visa",
+  EftposAustralia: "eftpos-australia",
+} as const;
+export type CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme = OpenEnum<
+  typeof CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme
+>;
 
 /**
  * Create a payment with a checkout session ID (and an optional URL for 3DS).
@@ -33,7 +47,24 @@ export type CheckoutSessionWithUrlPaymentMethodCreate = {
    * The URL to redirect a user back to after the complete 3DS in browser.
    */
   redirectUrl?: string | null | undefined;
+  /**
+   * The preferred card scheme to use when processing a co-badged card.
+   */
+  preferredScheme?:
+    | CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme
+    | null
+    | undefined;
 };
+
+/** @internal */
+export const CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme$outboundSchema:
+  z.ZodType<
+    string,
+    z.ZodTypeDef,
+    CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme
+  > = openEnums.outboundSchema(
+    CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme,
+  );
 
 /** @internal */
 export type CheckoutSessionWithUrlPaymentMethodCreate$Outbound = {
@@ -43,6 +74,7 @@ export type CheckoutSessionWithUrlPaymentMethodCreate$Outbound = {
   buyer_id?: string | null | undefined;
   buyer_external_identifier?: string | null | undefined;
   redirect_url?: string | null | undefined;
+  preferred_scheme?: string | null | undefined;
 };
 
 /** @internal */
@@ -58,12 +90,16 @@ export const CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema:
     buyerId: z.nullable(z.string()).optional(),
     buyerExternalIdentifier: z.nullable(z.string()).optional(),
     redirectUrl: z.nullable(z.string()).optional(),
+    preferredScheme: z.nullable(
+      CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme$outboundSchema,
+    ).optional(),
   }).transform((v) => {
     return remap$(v, {
       externalIdentifier: "external_identifier",
       buyerId: "buyer_id",
       buyerExternalIdentifier: "buyer_external_identifier",
       redirectUrl: "redirect_url",
+      preferredScheme: "preferred_scheme",
     });
   });
 

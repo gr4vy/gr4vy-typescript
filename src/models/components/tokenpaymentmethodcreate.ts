@@ -4,6 +4,20 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
+
+export const TokenPaymentMethodCreatePreferredScheme = {
+  Bancontact: "bancontact",
+  CarteBancaire: "carte-bancaire",
+  Dankort: "dankort",
+  Mastercard: "mastercard",
+  Visa: "visa",
+  EftposAustralia: "eftpos-australia",
+} as const;
+export type TokenPaymentMethodCreatePreferredScheme = OpenEnum<
+  typeof TokenPaymentMethodCreatePreferredScheme
+>;
 
 /**
  * Create a transaction with the ID (token) of a stored payment method (and an optional URL for approval)
@@ -22,16 +36,28 @@ export type TokenPaymentMethodCreate = {
    */
   securityCode?: string | null | undefined;
   /**
+   * The preferred card scheme to use when processing a co-badged card.
+   */
+  preferredScheme?: TokenPaymentMethodCreatePreferredScheme | null | undefined;
+  /**
    * The URL to redirect a user back to after they approve the transaction in the browser.
    */
   redirectUrl?: string | null | undefined;
 };
 
 /** @internal */
+export const TokenPaymentMethodCreatePreferredScheme$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  TokenPaymentMethodCreatePreferredScheme
+> = openEnums.outboundSchema(TokenPaymentMethodCreatePreferredScheme);
+
+/** @internal */
 export type TokenPaymentMethodCreate$Outbound = {
   id: string;
   method: "id";
   security_code?: string | null | undefined;
+  preferred_scheme?: string | null | undefined;
   redirect_url?: string | null | undefined;
 };
 
@@ -44,10 +70,14 @@ export const TokenPaymentMethodCreate$outboundSchema: z.ZodType<
   id: z.string(),
   method: z.literal("id").default("id" as const),
   securityCode: z.nullable(z.string()).optional(),
+  preferredScheme: z.nullable(
+    TokenPaymentMethodCreatePreferredScheme$outboundSchema,
+  ).optional(),
   redirectUrl: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     securityCode: "security_code",
+    preferredScheme: "preferred_scheme",
     redirectUrl: "redirect_url",
   });
 });

@@ -4,7 +4,21 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { CardType, CardType$outboundSchema } from "./cardtype.js";
+
+export const CardWithUrlPaymentMethodCreatePreferredScheme = {
+  Bancontact: "bancontact",
+  CarteBancaire: "carte-bancaire",
+  Dankort: "dankort",
+  Mastercard: "mastercard",
+  Visa: "visa",
+  EftposAustralia: "eftpos-australia",
+} as const;
+export type CardWithUrlPaymentMethodCreatePreferredScheme = OpenEnum<
+  typeof CardWithUrlPaymentMethodCreatePreferredScheme
+>;
 
 /**
  * Create a transaction with raw card details
@@ -43,10 +57,25 @@ export type CardWithUrlPaymentMethodCreate = {
    */
   securityCode?: string | null | undefined;
   /**
+   * The preferred card scheme to use when processing a co-badged card.
+   */
+  preferredScheme?:
+    | CardWithUrlPaymentMethodCreatePreferredScheme
+    | null
+    | undefined;
+  /**
    * The URL to redirect a user back to after the complete 3DS in browser.
    */
   redirectUrl?: string | null | undefined;
 };
+
+/** @internal */
+export const CardWithUrlPaymentMethodCreatePreferredScheme$outboundSchema:
+  z.ZodType<
+    string,
+    z.ZodTypeDef,
+    CardWithUrlPaymentMethodCreatePreferredScheme
+  > = openEnums.outboundSchema(CardWithUrlPaymentMethodCreatePreferredScheme);
 
 /** @internal */
 export type CardWithUrlPaymentMethodCreate$Outbound = {
@@ -58,6 +87,7 @@ export type CardWithUrlPaymentMethodCreate$Outbound = {
   card_type?: string | null | undefined;
   method: "card";
   security_code?: string | null | undefined;
+  preferred_scheme?: string | null | undefined;
   redirect_url?: string | null | undefined;
 };
 
@@ -75,6 +105,9 @@ export const CardWithUrlPaymentMethodCreate$outboundSchema: z.ZodType<
   cardType: z.nullable(CardType$outboundSchema).optional(),
   method: z.literal("card").default("card" as const),
   securityCode: z.nullable(z.string()).optional(),
+  preferredScheme: z.nullable(
+    CardWithUrlPaymentMethodCreatePreferredScheme$outboundSchema,
+  ).optional(),
   redirectUrl: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -84,6 +117,7 @@ export const CardWithUrlPaymentMethodCreate$outboundSchema: z.ZodType<
     externalIdentifier: "external_identifier",
     cardType: "card_type",
     securityCode: "security_code",
+    preferredScheme: "preferred_scheme",
     redirectUrl: "redirect_url",
   });
 });
