@@ -29,9 +29,9 @@ export type PaymentOptionContextContext =
 export type PaymentOption = {
   type: "payment-option";
   method: string;
-  iconUrl?: string | null | undefined;
+  iconUrl: string;
   mode: Mode;
-  label?: string | null | undefined;
+  label: string;
   canStorePaymentMethod: boolean;
   canDelayCapture: boolean;
   context?:
@@ -71,9 +71,9 @@ export const PaymentOption$inboundSchema: z.ZodType<
 > = z.object({
   type: z.literal("payment-option").default("payment-option"),
   method: z.string(),
-  icon_url: z.nullable(z.string()).optional(),
+  icon_url: z.string(),
   mode: Mode$inboundSchema,
-  label: z.nullable(z.string()).optional(),
+  label: z.string(),
   can_store_payment_method: z.boolean(),
   can_delay_capture: z.boolean(),
   context: z.nullable(

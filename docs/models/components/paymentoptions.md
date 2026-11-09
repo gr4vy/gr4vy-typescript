@@ -9,8 +9,10 @@ let value: PaymentOptions = {
   items: [
     {
       method: "<value>",
+      iconUrl: "https://authorized-information.biz",
       mode: "card",
-      canStorePaymentMethod: false,
+      label: "<value>",
+      canStorePaymentMethod: true,
       canDelayCapture: true,
     },
   ],

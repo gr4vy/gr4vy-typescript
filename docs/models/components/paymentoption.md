@@ -7,8 +7,10 @@ import { PaymentOption } from "@gr4vy/sdk/models/components";
 
 let value: PaymentOption = {
   method: "<value>",
+  iconUrl: "https://bouncy-passport.name",
   mode: "card",
-  canStorePaymentMethod: false,
+  label: "<value>",
+  canStorePaymentMethod: true,
   canDelayCapture: true,
 };
 ```
@@ -19,9 +21,9 @@ let value: PaymentOption = {
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | `type`                                             | *"payment-option"*                                 | :heavy_minus_sign:                                 | N/A                                                |                                                    |
 | `method`                                           | *string*                                           | :heavy_check_mark:                                 | N/A                                                |                                                    |
-| `iconUrl`                                          | *string*                                           | :heavy_minus_sign:                                 | N/A                                                |                                                    |
+| `iconUrl`                                          | *string*                                           | :heavy_check_mark:                                 | N/A                                                |                                                    |
 | `mode`                                             | [components.Mode](../../models/components/mode.md) | :heavy_check_mark:                                 | N/A                                                | card                                               |
-| `label`                                            | *string*                                           | :heavy_minus_sign:                                 | N/A                                                |                                                    |
+| `label`                                            | *string*                                           | :heavy_check_mark:                                 | N/A                                                |                                                    |
 | `canStorePaymentMethod`                            | *boolean*                                          | :heavy_check_mark:                                 | N/A                                                |                                                    |
 | `canDelayCapture`                                  | *boolean*                                          | :heavy_check_mark:                                 | N/A                                                |                                                    |
 | `context`                                          | *components.PaymentOptionContextContext*           | :heavy_minus_sign:                                 | N/A                                                |                                                    |
