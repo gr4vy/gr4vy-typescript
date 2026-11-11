@@ -10,6 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Airline, Airline$inboundSchema } from "./airline.js";
 import { CartItem, CartItem$inboundSchema } from "./cartitem.js";
 import {
+  PaymentLinkIntent,
+  PaymentLinkIntent$inboundSchema,
+} from "./paymentlinkintent.js";
+import {
   PaymentLinkStatus,
   PaymentLinkStatus$inboundSchema,
 } from "./paymentlinkstatus.js";
@@ -25,10 +29,6 @@ import {
   TransactionBuyer,
   TransactionBuyer$inboundSchema,
 } from "./transactionbuyer.js";
-import {
-  TransactionIntent,
-  TransactionIntent$inboundSchema,
-} from "./transactionintent.js";
 import {
   TransactionPaymentSource,
   TransactionPaymentSource$inboundSchema,
@@ -103,7 +103,7 @@ export type PaymentLink = {
    * The currency code for the payment link.
    */
   currency: string;
-  intent: TransactionIntent;
+  intent: PaymentLinkIntent;
   /**
    * The return URL after payment completion.
    */
@@ -185,7 +185,7 @@ export const PaymentLink$inboundSchema: z.ZodType<
   amount: z.number().int(),
   country: z.string(),
   currency: z.string(),
-  intent: TransactionIntent$inboundSchema,
+  intent: PaymentLinkIntent$inboundSchema,
   return_url: z.nullable(z.string()).optional(),
   cart_items: z.nullable(z.array(CartItem$inboundSchema)),
   airline: z.nullable(Airline$inboundSchema),

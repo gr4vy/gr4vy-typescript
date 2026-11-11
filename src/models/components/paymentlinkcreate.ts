@@ -20,6 +20,10 @@ import {
   GuestBuyer$outboundSchema,
 } from "./guestbuyer.js";
 import {
+  PaymentLinkIntent,
+  PaymentLinkIntent$outboundSchema,
+} from "./paymentlinkintent.js";
+import {
   StatementDescriptor,
   StatementDescriptor$Outbound,
   StatementDescriptor$outboundSchema,
@@ -29,10 +33,6 @@ import {
   TransactionConnectionOptions$Outbound,
   TransactionConnectionOptions$outboundSchema,
 } from "./transactionconnectionoptions.js";
-import {
-  TransactionIntent,
-  TransactionIntent$outboundSchema,
-} from "./transactionintent.js";
 import {
   TransactionPaymentSource,
   TransactionPaymentSource$outboundSchema,
@@ -103,7 +103,7 @@ export type PaymentLinkCreate = {
    * The currency code for the payment link.
    */
   currency: string;
-  intent?: TransactionIntent | undefined;
+  intent?: PaymentLinkIntent | undefined;
   /**
    * The return URL after payment completion.
    */
@@ -191,7 +191,7 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
   amount: z.number().int(),
   country: z.string(),
   currency: z.string(),
-  intent: TransactionIntent$outboundSchema.optional(),
+  intent: PaymentLinkIntent$outboundSchema.optional(),
   returnUrl: z.nullable(z.string()).optional(),
   cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
   airline: z.nullable(Airline$outboundSchema).optional(),
