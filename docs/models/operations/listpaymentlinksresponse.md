@@ -14,7 +14,7 @@ let value: ListPaymentLinksResponse = {
         amount: 1299,
         country: "DE",
         currency: "EUR",
-        intent: "capture",
+        intent: "prefer_authorize",
         cartItems: [
           {
             name: "Widget",

@@ -184,6 +184,7 @@ export * from "./nuveipseoptions.js";
 export * from "./oxxooptions.js";
 export * from "./paymentlink.js";
 export * from "./paymentlinkcreate.js";
+export * from "./paymentlinkintent.js";
 export * from "./paymentlinks.js";
 export * from "./paymentlinkstatus.js";
 export * from "./paymentmethod.js";
