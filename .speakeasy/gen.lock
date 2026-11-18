@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: a7d2cc6eaed695425d169ea6bc55574c
+  docChecksum: 8ca149a6da0602ed65b53d3bf40de622
   docVersion: 1.0.0
-  speakeasyVersion: 1.808.1
-  generationVersion: 2.960.8
-  releaseVersion: 2.4.47
-  configChecksum: 107f7b7323e33904eb5f56a497a0109c
+  speakeasyVersion: 1.810.0
+  generationVersion: 2.961.1
+  releaseVersion: 2.4.48
+  configChecksum: 70bcf020cf4b129c54cc92b9c23dfe9c
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 7a3eab80-f77c-419c-9680-2b7c5f825d4f
-  pristine_commit_hash: 4e9d37e7579628faaf53130cc1b96d900332b13a
-  pristine_tree_hash: fa24bc1df64228428d7fd781ae52b9434e804dc5
+  generation_id: be232bdf-c61d-41df-81d3-23dae7e6a0b2
+  pristine_commit_hash: 54d8c12e80f4528429a77d4abb31e9050b06d55c
+  pristine_tree_hash: 413c34b3b9c0035d8c8b3ae372d182c02a462fc7
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -196,8 +196,8 @@ trackedFiles:
     pristine_git_object: f0e8bd570e772f0e16b23abcee434aab600b13a8
   docs/models/components/applepaysessionrequest.md:
     id: 4c3c64d4ab59
-    last_write_checksum: sha1:149421b286e19f05cc118e728a5c09556e90b6f3
-    pristine_git_object: a52f93c8bd9f73b8d15c830d6b5f1046d3d4ba2c
+    last_write_checksum: sha1:571a26dc13d27b9b0281c17fd5afb8ceb337309e
+    pristine_git_object: 99d073d367abbfd98b8dc2bfdacdbff5c65670ce
   docs/models/components/approvaltarget.md:
     id: 29bebec461e8
     last_write_checksum: sha1:d26d9a8f14799bbba055c76ec8ec758df4daed1b
@@ -1868,8 +1868,8 @@ trackedFiles:
     pristine_git_object: 5f16228298554567cd13b8f25efb79bc1ecf6fee
   docs/models/operations/createapplepaydigitalwalletsessionrequest.md:
     id: 9bcb7b8b1d65
-    last_write_checksum: sha1:b3f6e36e54c6182f5cf918c514f5a6882e51bc0b
-    pristine_git_object: f5c61aa55422606cf6f67075569ce33d43b7b6c4
+    last_write_checksum: sha1:ea650622ad79be95642551811605eca008178ff1
+    pristine_git_object: 33b8527695ad15dd0d48f88772c0e6173858adf4
   docs/models/operations/createcheckoutsessionglobals.md:
     id: c2f2c5b47099
     last_write_checksum: sha1:8587f5049e0a492baee364529335ff81165f9f5e
@@ -2944,12 +2944,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:e120aef852c16917d0927a2b1c727936d58ef368
-    pristine_git_object: 5fb66a45141437310d3da663be0a44eb69b4724f
+    last_write_checksum: sha1:1494b3e9620a48dccb6d788d1ca2d46879d25802
+    pristine_git_object: 9dd65873dd5dab89b48b3480d862a117b7a8d020
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:58aafe9a2f4ea4d0e8ac4c538080e9f753e17d2f
-    pristine_git_object: c726268adb26f121feaaec731e806647c25f2e21
+    last_write_checksum: sha1:d22195c96be7f657606d9bf8953ee9335ce5d4f8
+    pristine_git_object: 49569b046b7d1d161d450dd3a14c890632d51f3b
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3452,8 +3452,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:a29cd9d861e9c0dbccfbf965745a7ddea07abc62
-    pristine_git_object: 2b6ec2ff5e774d12ba51e351ef22f94b0a9fddfb
+    last_write_checksum: sha1:cd04ac70d94919ff78259de6b28735bde1f5c6f6
+    pristine_git_object: e48bd4305c39fb5c47f95ff23e77b30011803b0a
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -9961,7 +9961,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.intent.enum(preferAuthorize)` **Added**\n  *  `response.intent.enum(preferAuthorize)` **Added**\n* `gr4vy.paymentLinks.list()`:  `response.items[].intent.enum(preferAuthorize)` **Added**\n* `gr4vy.paymentLinks.get()`:  `response.intent.enum(preferAuthorize)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

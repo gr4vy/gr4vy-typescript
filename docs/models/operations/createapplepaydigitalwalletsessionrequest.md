@@ -7,7 +7,8 @@ import { CreateApplePayDigitalWalletSessionRequest } from "@gr4vy/sdk/models/ope
 
 let value: CreateApplePayDigitalWalletSessionRequest = {
   applePaySessionRequest: {
-    validationUrl: "https://apple-pay-gateway-cert.apple.com",
+    validationUrl:
+      "https://apple-pay-gateway-cert.apple.com/paymentservices/startSession",
     domainName: "example.com",
   },
 };
