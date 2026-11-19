@@ -8,7 +8,7 @@ import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { CardType, CardType$outboundSchema } from "./cardtype.js";
 
-export const PreferredScheme = {
+export const CardPaymentMethodCreatePreferredScheme = {
   Bancontact: "bancontact",
   CarteBancaire: "carte-bancaire",
   Dankort: "dankort",
@@ -16,7 +16,9 @@ export const PreferredScheme = {
   Visa: "visa",
   EftposAustralia: "eftpos-australia",
 } as const;
-export type PreferredScheme = OpenEnum<typeof PreferredScheme>;
+export type CardPaymentMethodCreatePreferredScheme = OpenEnum<
+  typeof CardPaymentMethodCreatePreferredScheme
+>;
 
 export type CardPaymentMethodCreate = {
   /**
@@ -54,15 +56,15 @@ export type CardPaymentMethodCreate = {
   /**
    * The preferred card scheme to use when processing a co-badged card.
    */
-  preferredScheme?: PreferredScheme | null | undefined;
+  preferredScheme?: CardPaymentMethodCreatePreferredScheme | null | undefined;
 };
 
 /** @internal */
-export const PreferredScheme$outboundSchema: z.ZodType<
+export const CardPaymentMethodCreatePreferredScheme$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
-  PreferredScheme
-> = openEnums.outboundSchema(PreferredScheme);
+  CardPaymentMethodCreatePreferredScheme
+> = openEnums.outboundSchema(CardPaymentMethodCreatePreferredScheme);
 
 /** @internal */
 export type CardPaymentMethodCreate$Outbound = {
@@ -91,7 +93,9 @@ export const CardPaymentMethodCreate$outboundSchema: z.ZodType<
   cardType: z.nullable(CardType$outboundSchema).optional(),
   method: z.literal("card").default("card" as const),
   securityCode: z.nullable(z.string()).optional(),
-  preferredScheme: z.nullable(PreferredScheme$outboundSchema).optional(),
+  preferredScheme: z.nullable(
+    CardPaymentMethodCreatePreferredScheme$outboundSchema,
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     expirationDate: "expiration_date",
