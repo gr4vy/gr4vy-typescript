@@ -4,7 +4,21 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
+
+export const PaymentMethodUpdatePreferredScheme = {
+  Bancontact: "bancontact",
+  CarteBancaire: "carte-bancaire",
+  Dankort: "dankort",
+  Mastercard: "mastercard",
+  Visa: "visa",
+  EftposAustralia: "eftpos-australia",
+} as const;
+export type PaymentMethodUpdatePreferredScheme = OpenEnum<
+  typeof PaymentMethodUpdatePreferredScheme
+>;
 
 /**
  * Request body for updating a stored payment method.
@@ -26,7 +40,18 @@ export type PaymentMethodUpdate = {
    * A transaction link identifier to associate with this payment method.
    */
   transactionLinkId?: string | null | undefined;
+  /**
+   * The preferred card scheme to use when processing a co-badged card.
+   */
+  preferredScheme?: PaymentMethodUpdatePreferredScheme | null | undefined;
 };
+
+/** @internal */
+export const PaymentMethodUpdatePreferredScheme$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PaymentMethodUpdatePreferredScheme
+> = openEnums.outboundSchema(PaymentMethodUpdatePreferredScheme);
 
 /** @internal */
 export type PaymentMethodUpdate$Outbound = {
@@ -34,6 +59,7 @@ export type PaymentMethodUpdate$Outbound = {
   scheme_transaction_id?: string | null | undefined;
   scheme_transaction_id_scheme?: string | null | undefined;
   transaction_link_id?: string | null | undefined;
+  preferred_scheme?: string | null | undefined;
 };
 
 /** @internal */
@@ -46,12 +72,15 @@ export const PaymentMethodUpdate$outboundSchema: z.ZodType<
   schemeTransactionId: z.nullable(z.string()).optional(),
   schemeTransactionIdScheme: z.nullable(CardScheme$outboundSchema).optional(),
   transactionLinkId: z.nullable(z.string()).optional(),
+  preferredScheme: z.nullable(PaymentMethodUpdatePreferredScheme$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     expirationDate: "expiration_date",
     schemeTransactionId: "scheme_transaction_id",
     schemeTransactionIdScheme: "scheme_transaction_id_scheme",
     transactionLinkId: "transaction_link_id",
+    preferredScheme: "preferred_scheme",
   });
 });
 

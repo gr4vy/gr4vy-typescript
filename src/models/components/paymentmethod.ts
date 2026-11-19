@@ -5,6 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Buyer, Buyer$inboundSchema } from "./buyer.js";
@@ -19,6 +21,18 @@ import {
   PaymentMethodStatus,
   PaymentMethodStatus$inboundSchema,
 } from "./paymentmethodstatus.js";
+
+export const PaymentMethodPreferredScheme = {
+  Bancontact: "bancontact",
+  CarteBancaire: "carte-bancaire",
+  Dankort: "dankort",
+  Mastercard: "mastercard",
+  Visa: "visa",
+  EftposAustralia: "eftpos-australia",
+} as const;
+export type PaymentMethodPreferredScheme = OpenEnum<
+  typeof PaymentMethodPreferredScheme
+>;
 
 /**
  * Payment Method
@@ -86,6 +100,10 @@ export type PaymentMethod = {
    */
   additionalSchemes?: Array<CardScheme> | null | undefined;
   /**
+   * The preferred card scheme to use when processing a co-badged card.
+   */
+  preferredScheme?: PaymentMethodPreferredScheme | null | undefined;
+  /**
    * The timestamp when this payment method was last used in a transaction for client initiated transactions.
    */
   citLastUsedAt?: Date | null | undefined;
@@ -137,6 +155,13 @@ export type PaymentMethod = {
 };
 
 /** @internal */
+export const PaymentMethodPreferredScheme$inboundSchema: z.ZodType<
+  PaymentMethodPreferredScheme,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PaymentMethodPreferredScheme);
+
+/** @internal */
 export const PaymentMethod$inboundSchema: z.ZodType<
   PaymentMethod,
   z.ZodTypeDef,
@@ -159,6 +184,8 @@ export const PaymentMethod$inboundSchema: z.ZodType<
   id: z.string(),
   merchant_account_id: z.string(),
   additional_schemes: z.nullable(z.array(CardScheme$inboundSchema)).optional(),
+  preferred_scheme: z.nullable(PaymentMethodPreferredScheme$inboundSchema)
+    .optional(),
   cit_last_used_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
@@ -183,6 +210,7 @@ export const PaymentMethod$inboundSchema: z.ZodType<
     "last_replaced_at": "lastReplacedAt",
     "merchant_account_id": "merchantAccountId",
     "additional_schemes": "additionalSchemes",
+    "preferred_scheme": "preferredScheme",
     "cit_last_used_at": "citLastUsedAt",
     "cit_usage_count": "citUsageCount",
     "has_replacement": "hasReplacement",
