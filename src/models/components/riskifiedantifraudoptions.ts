@@ -6,6 +6,10 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
+  RiskifiedAccountType,
+  RiskifiedAccountType$outboundSchema,
+} from "./riskifiedaccounttype.js";
+import {
   RiskifiedAntiFraudOptionsLineItem,
   RiskifiedAntiFraudOptionsLineItem$Outbound,
   RiskifiedAntiFraudOptionsLineItem$outboundSchema,
@@ -40,6 +44,10 @@ export type RiskifiedAntiFraudOptions = {
     | Array<RiskifiedAntiFraudOptionsShippingAddress>
     | null
     | undefined;
+  /**
+   * Overrides the customer account type sent to Riskified. When not set, the customer is sent as `registered` if the transaction has a buyer, and as `guest` otherwise. When the account type is `guest`, the customer `id` and `created_at` are not sent to Riskified, even if the transaction has a buyer.
+   */
+  accountType?: RiskifiedAccountType | null | undefined;
 };
 
 /** @internal */
@@ -56,6 +64,7 @@ export type RiskifiedAntiFraudOptions$Outbound = {
     | Array<RiskifiedAntiFraudOptionsShippingAddress$Outbound>
     | null
     | undefined;
+  account_type?: string | null | undefined;
 };
 
 /** @internal */
@@ -74,11 +83,13 @@ export const RiskifiedAntiFraudOptions$outboundSchema: z.ZodType<
     additionalShippingAddresses: z.nullable(
       z.array(RiskifiedAntiFraudOptionsShippingAddress$outboundSchema),
     ).optional(),
+    accountType: z.nullable(RiskifiedAccountType$outboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
       lineItems: "line_items",
       shippingLines: "shipping_lines",
       additionalShippingAddresses: "additional_shipping_addresses",
+      accountType: "account_type",
     });
   })
 );
