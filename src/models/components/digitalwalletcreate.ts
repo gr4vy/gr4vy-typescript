@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DigitalWalletAddress,
   DigitalWalletAddress$Outbound,
@@ -49,29 +50,31 @@ export const DigitalWalletCreate$outboundSchema: z.ZodType<
   DigitalWalletCreate$Outbound,
   z.ZodTypeDef,
   DigitalWalletCreate
-> = z.object({
-  provider: DigitalWalletProvider$outboundSchema,
-  merchantName: z.string(),
-  merchantDisplayName: z.nullable(z.string()).optional(),
-  merchantUrl: z.nullable(z.string()).optional(),
-  merchantCountryCode: z.nullable(z.string()).optional(),
-  merchantCategoryCode: z.nullable(z.string()).optional(),
-  address: z.nullable(DigitalWalletAddress$outboundSchema).optional(),
-  extraConfiguration: z.nullable(z.record(z.any())).optional(),
-  domainNames: z.array(z.string()).optional(),
-  acceptTermsAndConditions: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantName: "merchant_name",
-    merchantDisplayName: "merchant_display_name",
-    merchantUrl: "merchant_url",
-    merchantCountryCode: "merchant_country_code",
-    merchantCategoryCode: "merchant_category_code",
-    extraConfiguration: "extra_configuration",
-    domainNames: "domain_names",
-    acceptTermsAndConditions: "accept_terms_and_conditions",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    provider: DigitalWalletProvider$outboundSchema,
+    merchantName: z.string(),
+    merchantDisplayName: z.nullable(z.string()).optional(),
+    merchantUrl: z.nullable(z.string()).optional(),
+    merchantCountryCode: z.nullable(z.string()).optional(),
+    merchantCategoryCode: z.nullable(z.string()).optional(),
+    address: z.nullable(DigitalWalletAddress$outboundSchema).optional(),
+    extraConfiguration: z.nullable(z.record(z.any())).optional(),
+    domainNames: z.array(z.string()).optional(),
+    acceptTermsAndConditions: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantName: "merchant_name",
+      merchantDisplayName: "merchant_display_name",
+      merchantUrl: "merchant_url",
+      merchantCountryCode: "merchant_country_code",
+      merchantCategoryCode: "merchant_category_code",
+      extraConfiguration: "extra_configuration",
+      domainNames: "domain_names",
+      acceptTermsAndConditions: "accept_terms_and_conditions",
+    });
+  })
+);
 
 export function digitalWalletCreateToJSON(
   digitalWalletCreate: DigitalWalletCreate,

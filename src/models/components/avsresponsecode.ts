@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -21,4 +22,4 @@ export const AVSResponseCode$inboundSchema: z.ZodType<
   AVSResponseCode,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AVSResponseCode);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(AVSResponseCode));

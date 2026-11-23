@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type UpdateBuyerGlobals = {
@@ -34,16 +35,18 @@ export const UpdateBuyerRequest$outboundSchema: z.ZodType<
   UpdateBuyerRequest$Outbound,
   z.ZodTypeDef,
   UpdateBuyerRequest
-> = z.object({
-  buyerId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  buyerUpdate: components.BuyerUpdate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    buyerId: "buyer_id",
-    buyerUpdate: "BuyerUpdate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    buyerUpdate: components.BuyerUpdate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      buyerId: "buyer_id",
+      buyerUpdate: "BuyerUpdate",
+    });
+  })
+);
 
 export function updateBuyerRequestToJSON(
   updateBuyerRequest: UpdateBuyerRequest,

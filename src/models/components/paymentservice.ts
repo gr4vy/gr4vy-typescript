@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Field, Field$inboundSchema } from "./field.js";
@@ -116,54 +116,60 @@ export const PaymentService$inboundSchema: z.ZodType<
   PaymentService,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-service").default("payment-service"),
-  id: z.string().default("The ID of the payment service"),
-  merchant_account_id: z.string(),
-  payment_service_definition_id: z.string(),
-  active: z.boolean().default(true),
-  method: Method$inboundSchema,
-  display_name: z.string(),
-  position: z.number().int(),
-  status: PaymentServiceStatus$inboundSchema.optional(),
-  accepted_currencies: z.array(z.string()),
-  accepted_countries: z.array(z.string()),
-  payment_method_tokenization_enabled: z.boolean(),
-  network_tokens_enabled: z.boolean(),
-  open_loop: z.boolean(),
-  settlement_reporting_enabled: z.boolean(),
-  refund_ingestion_enabled: z.boolean(),
-  three_d_secure_enabled: z.nullable(z.boolean()).optional(),
-  merchant_profile: z.nullable(
-    z.record(z.nullable(MerchantProfileSchemeSummary$inboundSchema)),
-  ).optional(),
-  webhook_url: z.nullable(z.string()).optional(),
-  fields: z.nullable(z.array(Field$inboundSchema)).optional(),
-  reporting_fields: z.nullable(z.array(Field$inboundSchema)).optional(),
-  is_deleted: z.boolean().default(false),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "payment_service_definition_id": "paymentServiceDefinitionId",
-    "display_name": "displayName",
-    "accepted_currencies": "acceptedCurrencies",
-    "accepted_countries": "acceptedCountries",
-    "payment_method_tokenization_enabled": "paymentMethodTokenizationEnabled",
-    "network_tokens_enabled": "networkTokensEnabled",
-    "open_loop": "openLoop",
-    "settlement_reporting_enabled": "settlementReportingEnabled",
-    "refund_ingestion_enabled": "refundIngestionEnabled",
-    "three_d_secure_enabled": "threeDSecureEnabled",
-    "merchant_profile": "merchantProfile",
-    "webhook_url": "webhookUrl",
-    "reporting_fields": "reportingFields",
-    "is_deleted": "isDeleted",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-service").default("payment-service"),
+    id: z.string().default("The ID of the payment service"),
+    merchant_account_id: z.string(),
+    payment_service_definition_id: z.string(),
+    active: z.boolean().default(true),
+    method: Method$inboundSchema,
+    display_name: z.string(),
+    position: z.number().int(),
+    status: PaymentServiceStatus$inboundSchema.optional(),
+    accepted_currencies: z.array(z.string()),
+    accepted_countries: z.array(z.string()),
+    payment_method_tokenization_enabled: z.boolean(),
+    network_tokens_enabled: z.boolean(),
+    open_loop: z.boolean(),
+    settlement_reporting_enabled: z.boolean(),
+    refund_ingestion_enabled: z.boolean(),
+    three_d_secure_enabled: z.nullable(z.boolean()).optional(),
+    merchant_profile: z.nullable(
+      z.record(z.nullable(MerchantProfileSchemeSummary$inboundSchema)),
+    ).optional(),
+    webhook_url: z.nullable(z.string()).optional(),
+    fields: z.nullable(z.array(Field$inboundSchema)).optional(),
+    reporting_fields: z.nullable(z.array(Field$inboundSchema)).optional(),
+    is_deleted: z.boolean().default(false),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "payment_service_definition_id": "paymentServiceDefinitionId",
+      "display_name": "displayName",
+      "accepted_currencies": "acceptedCurrencies",
+      "accepted_countries": "acceptedCountries",
+      "payment_method_tokenization_enabled": "paymentMethodTokenizationEnabled",
+      "network_tokens_enabled": "networkTokensEnabled",
+      "open_loop": "openLoop",
+      "settlement_reporting_enabled": "settlementReportingEnabled",
+      "refund_ingestion_enabled": "refundIngestionEnabled",
+      "three_d_secure_enabled": "threeDSecureEnabled",
+      "merchant_profile": "merchantProfile",
+      "webhook_url": "webhookUrl",
+      "reporting_fields": "reportingFields",
+      "is_deleted": "isDeleted",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function paymentServiceFromJSON(
   jsonString: string,

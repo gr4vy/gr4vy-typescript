@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type ActivateGiftCardGlobals = {
@@ -34,16 +35,19 @@ export const ActivateGiftCardRequest$outboundSchema: z.ZodType<
   ActivateGiftCardRequest$Outbound,
   z.ZodTypeDef,
   ActivateGiftCardRequest
-> = z.object({
-  idempotencyKey: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  giftCardActivationCreate: components.GiftCardActivationCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    giftCardActivationCreate: "GiftCardActivationCreate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    idempotencyKey: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    giftCardActivationCreate:
+      components.GiftCardActivationCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      giftCardActivationCreate: "GiftCardActivationCreate",
+    });
+  })
+);
 
 export function activateGiftCardRequestToJSON(
   activateGiftCardRequest: ActivateGiftCardRequest,

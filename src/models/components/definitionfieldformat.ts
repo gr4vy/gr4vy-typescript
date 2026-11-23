@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -21,4 +22,6 @@ export const DefinitionFieldFormat$inboundSchema: z.ZodType<
   DefinitionFieldFormat,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(DefinitionFieldFormat);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(DefinitionFieldFormat)
+);

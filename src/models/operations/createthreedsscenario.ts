@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreateThreeDsScenarioGlobals = {
@@ -29,15 +30,17 @@ export const CreateThreeDsScenarioRequest$outboundSchema: z.ZodType<
   CreateThreeDsScenarioRequest$Outbound,
   z.ZodTypeDef,
   CreateThreeDsScenarioRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  threeDSecureScenarioCreate:
-    components.ThreeDSecureScenarioCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    threeDSecureScenarioCreate: "ThreeDSecureScenarioCreate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    threeDSecureScenarioCreate:
+      components.ThreeDSecureScenarioCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      threeDSecureScenarioCreate: "ThreeDSecureScenarioCreate",
+    });
+  })
+);
 
 export function createThreeDsScenarioRequestToJSON(
   createThreeDsScenarioRequest: CreateThreeDsScenarioRequest,

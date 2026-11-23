@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AdyenPixRecurringAmount,
   AdyenPixRecurringAmount$Outbound,
@@ -46,13 +47,15 @@ export const AdyenPixRecurringOptions$outboundSchema: z.ZodType<
   AdyenPixRecurringOptions$Outbound,
   z.ZodTypeDef,
   AdyenPixRecurringOptions
-> = z.object({
-  frequency: z.nullable(z.string()).optional(),
-  recurringAmount: z.nullable(AdyenPixRecurringAmount$outboundSchema),
-  startsAt: z.nullable(z.string()).optional(),
-  endsAt: z.nullable(z.string()).optional(),
-  recurringStatement: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    frequency: z.nullable(z.string()).optional(),
+    recurringAmount: z.nullable(AdyenPixRecurringAmount$outboundSchema),
+    startsAt: z.nullable(z.string()).optional(),
+    endsAt: z.nullable(z.string()).optional(),
+    recurringStatement: z.nullable(z.string()).optional(),
+  })
+);
 
 export function adyenPixRecurringOptionsToJSON(
   adyenPixRecurringOptions: AdyenPixRecurringOptions,

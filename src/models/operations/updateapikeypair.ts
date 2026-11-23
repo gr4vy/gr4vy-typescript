@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type UpdateApiKeyPairRequest = {
@@ -25,15 +26,17 @@ export const UpdateApiKeyPairRequest$outboundSchema: z.ZodType<
   UpdateApiKeyPairRequest$Outbound,
   z.ZodTypeDef,
   UpdateApiKeyPairRequest
-> = z.object({
-  apiKeyPairId: z.string(),
-  apiKeyPairUpdate: components.APIKeyPairUpdate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    apiKeyPairId: "api_key_pair_id",
-    apiKeyPairUpdate: "APIKeyPairUpdate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    apiKeyPairId: z.string(),
+    apiKeyPairUpdate: components.APIKeyPairUpdate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      apiKeyPairId: "api_key_pair_id",
+      apiKeyPairUpdate: "APIKeyPairUpdate",
+    });
+  })
+);
 
 export function updateApiKeyPairRequestToJSON(
   updateApiKeyPairRequest: UpdateApiKeyPairRequest,

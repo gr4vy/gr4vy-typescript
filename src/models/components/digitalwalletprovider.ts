@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -19,10 +20,14 @@ export const DigitalWalletProvider$inboundSchema: z.ZodType<
   DigitalWalletProvider,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(DigitalWalletProvider);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(DigitalWalletProvider)
+);
 /** @internal */
 export const DigitalWalletProvider$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   DigitalWalletProvider
-> = openEnums.outboundSchema(DigitalWalletProvider);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(DigitalWalletProvider)
+);

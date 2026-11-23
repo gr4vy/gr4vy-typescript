@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -35,7 +36,7 @@ export const PurposeCode$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PurposeCode
-> = openEnums.outboundSchema(PurposeCode);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(PurposeCode));
 
 /** @internal */
 export type GoCardlessOptions$Outbound = {
@@ -47,13 +48,15 @@ export const GoCardlessOptions$outboundSchema: z.ZodType<
   GoCardlessOptions$Outbound,
   z.ZodTypeDef,
   GoCardlessOptions
-> = z.object({
-  purposeCode: z.nullable(PurposeCode$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    purposeCode: "purpose_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    purposeCode: z.nullable(PurposeCode$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      purposeCode: "purpose_code",
+    });
+  })
+);
 
 export function goCardlessOptionsToJSON(
   goCardlessOptions: GoCardlessOptions,

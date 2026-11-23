@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type NetworkTokenCreate = {
   /**
@@ -32,17 +33,19 @@ export const NetworkTokenCreate$outboundSchema: z.ZodType<
   NetworkTokenCreate$Outbound,
   z.ZodTypeDef,
   NetworkTokenCreate
-> = z.object({
-  securityCode: z.nullable(z.string()).optional(),
-  merchantInitiated: z.boolean(),
-  isSubsequentPayment: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    securityCode: "security_code",
-    merchantInitiated: "merchant_initiated",
-    isSubsequentPayment: "is_subsequent_payment",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    securityCode: z.nullable(z.string()).optional(),
+    merchantInitiated: z.boolean(),
+    isSubsequentPayment: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      securityCode: "security_code",
+      merchantInitiated: "merchant_initiated",
+      isSubsequentPayment: "is_subsequent_payment",
+    });
+  })
+);
 
 export function networkTokenCreateToJSON(
   networkTokenCreate: NetworkTokenCreate,

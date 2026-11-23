@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -50,16 +50,20 @@ export const PazeShippingAddress$inboundSchema: z.ZodType<
   PazeShippingAddress,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  line1: z.string(),
-  line2: z.nullable(z.string()).optional(),
-  line3: z.nullable(z.string()).optional(),
-  city: z.string(),
-  state: z.string(),
-  zip: z.string(),
-  countryCode: z.string(),
-  deliveryContactDetails: z.nullable(PazeDeliveryContactDetails$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    line1: z.string(),
+    line2: z.nullable(z.string()).optional(),
+    line3: z.nullable(z.string()).optional(),
+    city: z.string(),
+    state: z.string(),
+    zip: z.string(),
+    countryCode: z.string(),
+    deliveryContactDetails: z.nullable(
+      PazeDeliveryContactDetails$inboundSchema,
+    ),
+  })
+);
 /** @internal */
 export type PazeShippingAddress$Outbound = {
   line1: string;
@@ -77,16 +81,20 @@ export const PazeShippingAddress$outboundSchema: z.ZodType<
   PazeShippingAddress$Outbound,
   z.ZodTypeDef,
   PazeShippingAddress
-> = z.object({
-  line1: z.string(),
-  line2: z.nullable(z.string()).optional(),
-  line3: z.nullable(z.string()).optional(),
-  city: z.string(),
-  state: z.string(),
-  zip: z.string(),
-  countryCode: z.string(),
-  deliveryContactDetails: z.nullable(PazeDeliveryContactDetails$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    line1: z.string(),
+    line2: z.nullable(z.string()).optional(),
+    line3: z.nullable(z.string()).optional(),
+    city: z.string(),
+    state: z.string(),
+    zip: z.string(),
+    countryCode: z.string(),
+    deliveryContactDetails: z.nullable(
+      PazeDeliveryContactDetails$outboundSchema,
+    ),
+  })
+);
 
 export function pazeShippingAddressToJSON(
   pazeShippingAddress: PazeShippingAddress,

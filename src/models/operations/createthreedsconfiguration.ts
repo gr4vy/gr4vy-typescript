@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreateThreeDsConfigurationRequest = {
@@ -27,17 +28,19 @@ export const CreateThreeDsConfigurationRequest$outboundSchema: z.ZodType<
   CreateThreeDsConfigurationRequest$Outbound,
   z.ZodTypeDef,
   CreateThreeDsConfigurationRequest
-> = z.object({
-  merchantAccountId: z.string(),
-  merchantAccountThreeDSConfigurationCreate:
-    components.MerchantAccountThreeDSConfigurationCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.string(),
     merchantAccountThreeDSConfigurationCreate:
-      "MerchantAccountThreeDSConfigurationCreate",
-  });
-});
+      components.MerchantAccountThreeDSConfigurationCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      merchantAccountId: "merchant_account_id",
+      merchantAccountThreeDSConfigurationCreate:
+        "MerchantAccountThreeDSConfigurationCreate",
+    });
+  })
+);
 
 export function createThreeDsConfigurationRequestToJSON(
   createThreeDsConfigurationRequest: CreateThreeDsConfigurationRequest,

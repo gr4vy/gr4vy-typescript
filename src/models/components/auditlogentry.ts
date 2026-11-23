@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,19 +47,23 @@ export const AuditLogEntry$inboundSchema: z.ZodType<
   AuditLogEntry,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("audit-log").default("audit-log"),
-  id: z.nullable(z.string()).optional(),
-  merchant_account_id: z.nullable(z.string()).optional(),
-  resource: AuditLogEntryResource$inboundSchema,
-  action: AuditLogAction$inboundSchema,
-  user: AuditLogEntryUser$inboundSchema,
-  timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("audit-log").default("audit-log"),
+    id: z.nullable(z.string()).optional(),
+    merchant_account_id: z.nullable(z.string()).optional(),
+    resource: AuditLogEntryResource$inboundSchema,
+    action: AuditLogAction$inboundSchema,
+    user: AuditLogEntryUser$inboundSchema,
+    timestamp: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+    });
+  })
+);
 
 export function auditLogEntryFromJSON(
   jsonString: string,

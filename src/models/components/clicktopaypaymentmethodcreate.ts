@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Create a Click to Pay payment with a decrypted token and cryptogram. This
@@ -64,24 +65,26 @@ export const ClickToPayPaymentMethodCreate$outboundSchema: z.ZodType<
   ClickToPayPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   ClickToPayPaymentMethodCreate
-> = z.object({
-  method: z.literal("click-to-pay"),
-  token: z.string(),
-  cryptogram: z.string(),
-  expirationDate: z.string(),
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  redirectUrl: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    externalIdentifier: "external_identifier",
-    redirectUrl: "redirect_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("click-to-pay"),
+    token: z.string(),
+    cryptogram: z.string(),
+    expirationDate: z.string(),
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    redirectUrl: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expirationDate: "expiration_date",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      externalIdentifier: "external_identifier",
+      redirectUrl: "redirect_url",
+    });
+  })
+);
 
 export function clickToPayPaymentMethodCreateToJSON(
   clickToPayPaymentMethodCreate: ClickToPayPaymentMethodCreate,

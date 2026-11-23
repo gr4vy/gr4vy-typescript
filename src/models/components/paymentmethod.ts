@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -159,71 +159,80 @@ export const PaymentMethodPreferredScheme$inboundSchema: z.ZodType<
   PaymentMethodPreferredScheme,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(PaymentMethodPreferredScheme);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(PaymentMethodPreferredScheme)
+);
 
 /** @internal */
 export const PaymentMethod$inboundSchema: z.ZodType<
   PaymentMethod,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-method").default("payment-method"),
-  approval_url: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  details: z.nullable(PaymentMethodDetailsCard$inboundSchema).optional(),
-  expiration_date: z.nullable(z.string()).optional(),
-  fingerprint: z.nullable(z.string()).optional(),
-  label: z.nullable(z.string()).optional(),
-  last_replaced_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  method: Method$inboundSchema,
-  mode: z.nullable(Mode$inboundSchema).optional(),
-  scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  additional_schemes: z.nullable(z.array(CardScheme$inboundSchema)).optional(),
-  preferred_scheme: z.nullable(PaymentMethodPreferredScheme$inboundSchema)
-    .optional(),
-  cit_last_used_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  cit_usage_count: z.number().int(),
-  has_replacement: z.boolean(),
-  last_used_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  usage_count: z.number().int(),
-  scheme_transaction_id: z.nullable(z.string()),
-  scheme_transaction_id_scheme: z.nullable(CardScheme$inboundSchema),
-  transaction_link_id: z.nullable(z.string()).optional(),
-  buyer: z.nullable(Buyer$inboundSchema).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  status: PaymentMethodStatus$inboundSchema,
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "approval_url": "approvalUrl",
-    "expiration_date": "expirationDate",
-    "last_replaced_at": "lastReplacedAt",
-    "merchant_account_id": "merchantAccountId",
-    "additional_schemes": "additionalSchemes",
-    "preferred_scheme": "preferredScheme",
-    "cit_last_used_at": "citLastUsedAt",
-    "cit_usage_count": "citUsageCount",
-    "has_replacement": "hasReplacement",
-    "last_used_at": "lastUsedAt",
-    "usage_count": "usageCount",
-    "scheme_transaction_id": "schemeTransactionId",
-    "scheme_transaction_id_scheme": "schemeTransactionIdScheme",
-    "transaction_link_id": "transactionLinkId",
-    "external_identifier": "externalIdentifier",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-method").default("payment-method"),
+    approval_url: z.nullable(z.string()).optional(),
+    country: z.nullable(z.string()).optional(),
+    currency: z.nullable(z.string()).optional(),
+    details: z.nullable(PaymentMethodDetailsCard$inboundSchema).optional(),
+    expiration_date: z.nullable(z.string()).optional(),
+    fingerprint: z.nullable(z.string()).optional(),
+    label: z.nullable(z.string()).optional(),
+    last_replaced_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    method: Method$inboundSchema,
+    mode: z.nullable(Mode$inboundSchema).optional(),
+    scheme: z.nullable(CardScheme$inboundSchema).optional(),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    additional_schemes: z.nullable(z.array(CardScheme$inboundSchema))
+      .optional(),
+    preferred_scheme: z.nullable(PaymentMethodPreferredScheme$inboundSchema)
+      .optional(),
+    cit_last_used_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    cit_usage_count: z.number().int(),
+    has_replacement: z.boolean(),
+    last_used_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    usage_count: z.number().int(),
+    scheme_transaction_id: z.nullable(z.string()),
+    scheme_transaction_id_scheme: z.nullable(CardScheme$inboundSchema),
+    transaction_link_id: z.nullable(z.string()).optional(),
+    buyer: z.nullable(Buyer$inboundSchema).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    status: PaymentMethodStatus$inboundSchema,
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "approval_url": "approvalUrl",
+      "expiration_date": "expirationDate",
+      "last_replaced_at": "lastReplacedAt",
+      "merchant_account_id": "merchantAccountId",
+      "additional_schemes": "additionalSchemes",
+      "preferred_scheme": "preferredScheme",
+      "cit_last_used_at": "citLastUsedAt",
+      "cit_usage_count": "citUsageCount",
+      "has_replacement": "hasReplacement",
+      "last_used_at": "lastUsedAt",
+      "usage_count": "usageCount",
+      "scheme_transaction_id": "schemeTransactionId",
+      "scheme_transaction_id_scheme": "schemeTransactionIdScheme",
+      "transaction_link_id": "transactionLinkId",
+      "external_identifier": "externalIdentifier",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function paymentMethodFromJSON(
   jsonString: string,

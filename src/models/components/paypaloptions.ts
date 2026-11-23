@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PaypalOrderUpdateCallbackConfig,
   PaypalOrderUpdateCallbackConfig$Outbound,
@@ -73,27 +74,29 @@ export const PaypalOptions$outboundSchema: z.ZodType<
   PaypalOptions$Outbound,
   z.ZodTypeDef,
   PaypalOptions
-> = z.object({
-  orderUpdateCallbackConfig: z.nullable(
-    PaypalOrderUpdateCallbackConfig$outboundSchema,
-  ).optional(),
-  additionalData: z.nullable(z.array(z.record(z.string()))).optional(),
-  shipping: z.nullable(PaypalShippingOptions$outboundSchema).optional(),
-  userAction: z.nullable(z.string()).optional(),
-  shippingPreference: z.nullable(z.string()).optional(),
-  brandName: z.nullable(z.string()).optional(),
-  landingPage: z.nullable(z.string()).optional(),
-  locale: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    orderUpdateCallbackConfig: "order_update_callback_config",
-    additionalData: "additional_data",
-    userAction: "user_action",
-    shippingPreference: "shipping_preference",
-    brandName: "brand_name",
-    landingPage: "landing_page",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    orderUpdateCallbackConfig: z.nullable(
+      PaypalOrderUpdateCallbackConfig$outboundSchema,
+    ).optional(),
+    additionalData: z.nullable(z.array(z.record(z.string()))).optional(),
+    shipping: z.nullable(PaypalShippingOptions$outboundSchema).optional(),
+    userAction: z.nullable(z.string()).optional(),
+    shippingPreference: z.nullable(z.string()).optional(),
+    brandName: z.nullable(z.string()).optional(),
+    landingPage: z.nullable(z.string()).optional(),
+    locale: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      orderUpdateCallbackConfig: "order_update_callback_config",
+      additionalData: "additional_data",
+      userAction: "user_action",
+      shippingPreference: "shipping_preference",
+      brandName: "brand_name",
+      landingPage: "landing_page",
+    });
+  })
+);
 
 export function paypalOptionsToJSON(paypalOptions: PaypalOptions): string {
   return JSON.stringify(PaypalOptions$outboundSchema.parse(paypalOptions));

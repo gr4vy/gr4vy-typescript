@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -54,17 +54,19 @@ export const ListBuyersRequest$outboundSchema: z.ZodType<
   ListBuyersRequest$Outbound,
   z.ZodTypeDef,
   ListBuyersRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  search: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    search: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function listBuyersRequestToJSON(
   listBuyersRequest: ListBuyersRequest,
@@ -79,13 +81,15 @@ export const ListBuyersResponse$inboundSchema: z.ZodType<
   ListBuyersResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.Buyers$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.Buyers$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listBuyersResponseFromJSON(
   jsonString: string,

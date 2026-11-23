@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -42,19 +42,25 @@ export const ReportExecutionSummary$inboundSchema: z.ZodType<
   ReportExecutionSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("report-execution").default("report-execution"),
-  id: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  status: ReportExecutionStatus$inboundSchema,
-  context: ReportExecutionContext$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("report-execution").default("report-execution"),
+    id: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    status: ReportExecutionStatus$inboundSchema,
+    context: ReportExecutionContext$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function reportExecutionSummaryFromJSON(
   jsonString: string,

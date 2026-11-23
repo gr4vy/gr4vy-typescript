@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  matchesPattern as matchesPattern$,
+  remap as remap$,
+} from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListThreeDsConfigurationsRequest = {
   /**
@@ -27,14 +31,20 @@ export const ListThreeDsConfigurationsRequest$outboundSchema: z.ZodType<
   ListThreeDsConfigurationsRequest$Outbound,
   z.ZodTypeDef,
   ListThreeDsConfigurationsRequest
-> = z.object({
-  merchantAccountId: z.string(),
-  currency: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.string(),
+    currency: z.nullable(
+      z.string().refine(matchesPattern$("^[A-Z]{3}$"), {
+        message: "Value must match pattern ^[A-Z]{3}$",
+      }),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantAccountId: "merchant_account_id",
+    });
+  })
+);
 
 export function listThreeDsConfigurationsRequestToJSON(
   listThreeDsConfigurationsRequest: ListThreeDsConfigurationsRequest,

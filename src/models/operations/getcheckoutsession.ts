@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetCheckoutSessionGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const GetCheckoutSessionRequest$outboundSchema: z.ZodType<
   GetCheckoutSessionRequest$Outbound,
   z.ZodTypeDef,
   GetCheckoutSessionRequest
-> = z.object({
-  sessionId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    sessionId: "session_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    sessionId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      sessionId: "session_id",
+    });
+  })
+);
 
 export function getCheckoutSessionRequestToJSON(
   getCheckoutSessionRequest: GetCheckoutSessionRequest,

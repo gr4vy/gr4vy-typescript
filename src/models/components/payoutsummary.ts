@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -95,33 +95,39 @@ export const PayoutSummary$inboundSchema: z.ZodType<
   PayoutSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payout").default("payout"),
-  id: z.nullable(z.string()).optional(),
-  amount: z.number().int(),
-  buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
-  category: z.nullable(PayoutCategory$inboundSchema).optional(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  currency: z.string(),
-  external_identifier: z.nullable(z.string()).optional(),
-  merchant: z.nullable(PayoutMerchantSummary$inboundSchema).optional(),
-  merchant_account_id: z.nullable(z.string()).optional(),
-  payment_method: TransactionPaymentMethod$inboundSchema,
-  payment_service: PayoutPaymentService$inboundSchema,
-  payment_service_payout_id: z.nullable(z.string()).optional(),
-  status: PayoutStatus$inboundSchema,
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "created_at": "createdAt",
-    "external_identifier": "externalIdentifier",
-    "merchant_account_id": "merchantAccountId",
-    "payment_method": "paymentMethod",
-    "payment_service": "paymentService",
-    "payment_service_payout_id": "paymentServicePayoutId",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payout").default("payout"),
+    id: z.nullable(z.string()).optional(),
+    amount: z.number().int(),
+    buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
+    category: z.nullable(PayoutCategory$inboundSchema).optional(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    currency: z.string(),
+    external_identifier: z.nullable(z.string()).optional(),
+    merchant: z.nullable(PayoutMerchantSummary$inboundSchema).optional(),
+    merchant_account_id: z.nullable(z.string()).optional(),
+    payment_method: TransactionPaymentMethod$inboundSchema,
+    payment_service: PayoutPaymentService$inboundSchema,
+    payment_service_payout_id: z.nullable(z.string()).optional(),
+    status: PayoutStatus$inboundSchema,
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "created_at": "createdAt",
+      "external_identifier": "externalIdentifier",
+      "merchant_account_id": "merchantAccountId",
+      "payment_method": "paymentMethod",
+      "payment_service": "paymentService",
+      "payment_service_payout_id": "paymentServicePayoutId",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function payoutSummaryFromJSON(
   jsonString: string,

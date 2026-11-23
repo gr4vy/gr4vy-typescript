@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetMerchantAccountRequest = {
   /**
@@ -22,13 +23,15 @@ export const GetMerchantAccountRequest$outboundSchema: z.ZodType<
   GetMerchantAccountRequest$Outbound,
   z.ZodTypeDef,
   GetMerchantAccountRequest
-> = z.object({
-  merchantAccountId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantAccountId: "merchant_account_id",
+    });
+  })
+);
 
 export function getMerchantAccountRequestToJSON(
   getMerchantAccountRequest: GetMerchantAccountRequest,

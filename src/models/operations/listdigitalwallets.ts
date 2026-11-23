@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListDigitalWalletsGlobals = {
   merchantAccountId?: string | undefined;
@@ -25,9 +26,11 @@ export const ListDigitalWalletsRequest$outboundSchema: z.ZodType<
   ListDigitalWalletsRequest$Outbound,
   z.ZodTypeDef,
   ListDigitalWalletsRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+  })
+);
 
 export function listDigitalWalletsRequestToJSON(
   listDigitalWalletsRequest: ListDigitalWalletsRequest,

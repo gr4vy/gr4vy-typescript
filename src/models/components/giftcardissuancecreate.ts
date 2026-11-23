@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * The details used to issue a new virtual gift card.
@@ -40,16 +41,18 @@ export const GiftCardIssuanceCreate$outboundSchema: z.ZodType<
   GiftCardIssuanceCreate$Outbound,
   z.ZodTypeDef,
   GiftCardIssuanceCreate
-> = z.object({
-  theme: z.string(),
-  amount: z.number().int(),
-  currency: z.string(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    theme: z.string(),
+    amount: z.number().int(),
+    currency: z.string(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function giftCardIssuanceCreateToJSON(
   giftCardIssuanceCreate: GiftCardIssuanceCreate,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -69,46 +69,48 @@ export const AgeGroup$inboundSchema: z.ZodType<
   AgeGroup,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AgeGroup);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(AgeGroup));
 /** @internal */
 export const AgeGroup$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AgeGroup
-> = openEnums.outboundSchema(AgeGroup);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(AgeGroup));
 
 /** @internal */
 export const AirlinePassenger$inboundSchema: z.ZodType<
   AirlinePassenger,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  age_group: z.nullable(AgeGroup$inboundSchema).optional(),
-  date_of_birth: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-  email_address: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  frequent_flyer_number: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  passport_number: z.nullable(z.string()).optional(),
-  phone_number: z.nullable(z.string()).optional(),
-  ticket_number: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  country_code: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "age_group": "ageGroup",
-    "date_of_birth": "dateOfBirth",
-    "email_address": "emailAddress",
-    "first_name": "firstName",
-    "frequent_flyer_number": "frequentFlyerNumber",
-    "last_name": "lastName",
-    "passport_number": "passportNumber",
-    "phone_number": "phoneNumber",
-    "ticket_number": "ticketNumber",
-    "country_code": "countryCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    age_group: z.nullable(AgeGroup$inboundSchema).optional(),
+    date_of_birth: z.nullable(z.string().transform(v => new RFCDate(v)))
+      .optional(),
+    email_address: z.nullable(z.string()).optional(),
+    first_name: z.nullable(z.string()).optional(),
+    frequent_flyer_number: z.nullable(z.string()).optional(),
+    last_name: z.nullable(z.string()).optional(),
+    passport_number: z.nullable(z.string()).optional(),
+    phone_number: z.nullable(z.string()).optional(),
+    ticket_number: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    country_code: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "age_group": "ageGroup",
+      "date_of_birth": "dateOfBirth",
+      "email_address": "emailAddress",
+      "first_name": "firstName",
+      "frequent_flyer_number": "frequentFlyerNumber",
+      "last_name": "lastName",
+      "passport_number": "passportNumber",
+      "phone_number": "phoneNumber",
+      "ticket_number": "ticketNumber",
+      "country_code": "countryCode",
+    });
+  })
+);
 /** @internal */
 export type AirlinePassenger$Outbound = {
   age_group?: string | null | undefined;
@@ -129,33 +131,35 @@ export const AirlinePassenger$outboundSchema: z.ZodType<
   AirlinePassenger$Outbound,
   z.ZodTypeDef,
   AirlinePassenger
-> = z.object({
-  ageGroup: z.nullable(AgeGroup$outboundSchema).optional(),
-  dateOfBirth: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  frequentFlyerNumber: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  passportNumber: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  ticketNumber: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  countryCode: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ageGroup: "age_group",
-    dateOfBirth: "date_of_birth",
-    emailAddress: "email_address",
-    firstName: "first_name",
-    frequentFlyerNumber: "frequent_flyer_number",
-    lastName: "last_name",
-    passportNumber: "passport_number",
-    phoneNumber: "phone_number",
-    ticketNumber: "ticket_number",
-    countryCode: "country_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ageGroup: z.nullable(AgeGroup$outboundSchema).optional(),
+    dateOfBirth: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+      .optional(),
+    emailAddress: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    frequentFlyerNumber: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    passportNumber: z.nullable(z.string()).optional(),
+    phoneNumber: z.nullable(z.string()).optional(),
+    ticketNumber: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    countryCode: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      ageGroup: "age_group",
+      dateOfBirth: "date_of_birth",
+      emailAddress: "email_address",
+      firstName: "first_name",
+      frequentFlyerNumber: "frequent_flyer_number",
+      lastName: "last_name",
+      passportNumber: "passport_number",
+      phoneNumber: "phone_number",
+      ticketNumber: "ticket_number",
+      countryCode: "country_code",
+    });
+  })
+);
 
 export function airlinePassengerToJSON(
   airlinePassenger: AirlinePassenger,

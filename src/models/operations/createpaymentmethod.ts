@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreatePaymentMethodGlobals = {
@@ -49,15 +50,17 @@ export const CreatePaymentMethodBody$outboundSchema: z.ZodType<
   CreatePaymentMethodBody$Outbound,
   z.ZodTypeDef,
   CreatePaymentMethodBody
-> = z.union([
-  components.RedirectPaymentMethodCreate$outboundSchema,
-  components.ACHBankPaymentMethodCreate$outboundSchema,
-  components.BACSBankPaymentMethodCreate$outboundSchema,
-  components.CardPaymentMethodCreate$outboundSchema,
-  components.SEPABankPaymentMethodCreate$outboundSchema,
-  components.CheckoutSessionPaymentMethodCreate$outboundSchema,
-  components.PlaidPaymentMethodCreate$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    components.RedirectPaymentMethodCreate$outboundSchema,
+    components.ACHBankPaymentMethodCreate$outboundSchema,
+    components.BACSBankPaymentMethodCreate$outboundSchema,
+    components.CardPaymentMethodCreate$outboundSchema,
+    components.SEPABankPaymentMethodCreate$outboundSchema,
+    components.CheckoutSessionPaymentMethodCreate$outboundSchema,
+    components.PlaidPaymentMethodCreate$outboundSchema,
+  ])
+);
 
 export function createPaymentMethodBodyToJSON(
   createPaymentMethodBody: CreatePaymentMethodBody,
@@ -85,22 +88,24 @@ export const CreatePaymentMethodRequest$outboundSchema: z.ZodType<
   CreatePaymentMethodRequest$Outbound,
   z.ZodTypeDef,
   CreatePaymentMethodRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  requestBody: z.union([
-    components.RedirectPaymentMethodCreate$outboundSchema,
-    components.ACHBankPaymentMethodCreate$outboundSchema,
-    components.BACSBankPaymentMethodCreate$outboundSchema,
-    components.CardPaymentMethodCreate$outboundSchema,
-    components.SEPABankPaymentMethodCreate$outboundSchema,
-    components.CheckoutSessionPaymentMethodCreate$outboundSchema,
-    components.PlaidPaymentMethodCreate$outboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    requestBody: z.union([
+      components.RedirectPaymentMethodCreate$outboundSchema,
+      components.ACHBankPaymentMethodCreate$outboundSchema,
+      components.BACSBankPaymentMethodCreate$outboundSchema,
+      components.CardPaymentMethodCreate$outboundSchema,
+      components.SEPABankPaymentMethodCreate$outboundSchema,
+      components.CheckoutSessionPaymentMethodCreate$outboundSchema,
+      components.PlaidPaymentMethodCreate$outboundSchema,
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createPaymentMethodRequestToJSON(
   createPaymentMethodRequest: CreatePaymentMethodRequest,

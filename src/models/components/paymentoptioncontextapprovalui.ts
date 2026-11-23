@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -17,10 +17,12 @@ export const PaymentOptionContextApprovalUI$inboundSchema: z.ZodType<
   PaymentOptionContextApprovalUI,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  height: z.nullable(z.string()).optional(),
-  width: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    height: z.nullable(z.string()).optional(),
+    width: z.nullable(z.string()).optional(),
+  })
+);
 
 export function paymentOptionContextApprovalUIFromJSON(
   jsonString: string,

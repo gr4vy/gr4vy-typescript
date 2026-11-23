@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -59,19 +59,21 @@ export const ListAuditLogsRequest$outboundSchema: z.ZodType<
   ListAuditLogsRequest$Outbound,
   z.ZodTypeDef,
   ListAuditLogsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  action: z.nullable(components.AuditLogAction$outboundSchema).optional(),
-  userId: z.nullable(z.string()).optional(),
-  resourceType: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    userId: "user_id",
-    resourceType: "resource_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    action: z.nullable(components.AuditLogAction$outboundSchema).optional(),
+    userId: z.nullable(z.string()).optional(),
+    resourceType: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      userId: "user_id",
+      resourceType: "resource_type",
+    });
+  })
+);
 
 export function listAuditLogsRequestToJSON(
   listAuditLogsRequest: ListAuditLogsRequest,
@@ -86,13 +88,15 @@ export const ListAuditLogsResponse$inboundSchema: z.ZodType<
   ListAuditLogsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.AuditLogEntries$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.AuditLogEntries$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listAuditLogsResponseFromJSON(
   jsonString: string,

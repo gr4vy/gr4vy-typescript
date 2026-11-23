@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PazeTransactionValue = {
   /**
@@ -26,10 +27,12 @@ export const PazeTransactionValue$outboundSchema: z.ZodType<
   PazeTransactionValue$Outbound,
   z.ZodTypeDef,
   PazeTransactionValue
-> = z.object({
-  transactionCurrency: z.string(),
-  transactionAmount: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactionCurrency: z.string(),
+    transactionAmount: z.string(),
+  })
+);
 
 export function pazeTransactionValueToJSON(
   pazeTransactionValue: PazeTransactionValue,

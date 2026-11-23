@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -61,22 +61,24 @@ export const ListPaymentMethodsRequest$outboundSchema: z.ZodType<
   ListPaymentMethodsRequest$Outbound,
   z.ZodTypeDef,
   ListPaymentMethodsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  status: z.nullable(z.array(components.PaymentMethodStatus$outboundSchema))
-    .optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    status: z.nullable(z.array(components.PaymentMethodStatus$outboundSchema))
+      .optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function listPaymentMethodsRequestToJSON(
   listPaymentMethodsRequest: ListPaymentMethodsRequest,
@@ -91,13 +93,15 @@ export const ListPaymentMethodsResponse$inboundSchema: z.ZodType<
   ListPaymentMethodsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.PaymentMethods$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.PaymentMethods$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listPaymentMethodsResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -93,42 +93,48 @@ export const DigitalWallet$inboundSchema: z.ZodType<
   DigitalWallet,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("digital-wallet").default("digital-wallet"),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  provider: DigitalWalletProvider$inboundSchema,
-  merchant_name: z.string(),
-  merchant_display_name: z.nullable(z.string()).optional(),
-  merchant_url: z.nullable(z.string()).optional(),
-  merchant_country_code: z.nullable(z.string()).optional(),
-  merchant_category_code: z.nullable(z.string()).optional(),
-  address: z.nullable(DigitalWalletAddress$inboundSchema).optional(),
-  extra_configuration: z.nullable(z.record(z.any())).optional(),
-  domain_names: z.array(z.string()),
-  active_certificate_count: z.number().int().default(0),
-  pending_certificate_count: z.number().int().default(0),
-  expired_certificate_count: z.number().int().default(0),
-  fields: z.nullable(z.record(z.any())).optional(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "merchant_name": "merchantName",
-    "merchant_display_name": "merchantDisplayName",
-    "merchant_url": "merchantUrl",
-    "merchant_country_code": "merchantCountryCode",
-    "merchant_category_code": "merchantCategoryCode",
-    "extra_configuration": "extraConfiguration",
-    "domain_names": "domainNames",
-    "active_certificate_count": "activeCertificateCount",
-    "pending_certificate_count": "pendingCertificateCount",
-    "expired_certificate_count": "expiredCertificateCount",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("digital-wallet").default("digital-wallet"),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    provider: DigitalWalletProvider$inboundSchema,
+    merchant_name: z.string(),
+    merchant_display_name: z.nullable(z.string()).optional(),
+    merchant_url: z.nullable(z.string()).optional(),
+    merchant_country_code: z.nullable(z.string()).optional(),
+    merchant_category_code: z.nullable(z.string()).optional(),
+    address: z.nullable(DigitalWalletAddress$inboundSchema).optional(),
+    extra_configuration: z.nullable(z.record(z.any())).optional(),
+    domain_names: z.array(z.string()),
+    active_certificate_count: z.number().int().default(0),
+    pending_certificate_count: z.number().int().default(0),
+    expired_certificate_count: z.number().int().default(0),
+    fields: z.nullable(z.record(z.any())).optional(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "merchant_name": "merchantName",
+      "merchant_display_name": "merchantDisplayName",
+      "merchant_url": "merchantUrl",
+      "merchant_country_code": "merchantCountryCode",
+      "merchant_category_code": "merchantCategoryCode",
+      "extra_configuration": "extraConfiguration",
+      "domain_names": "domainNames",
+      "active_certificate_count": "activeCertificateCount",
+      "pending_certificate_count": "pendingCertificateCount",
+      "expired_certificate_count": "expiredCertificateCount",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function digitalWalletFromJSON(
   jsonString: string,

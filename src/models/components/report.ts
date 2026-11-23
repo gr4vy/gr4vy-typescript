@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -83,45 +83,47 @@ export type Report = {
 };
 
 /** @internal */
-export const Report$inboundSchema: z.ZodType<Report, z.ZodTypeDef, unknown> = z
-  .object({
-    type: z.literal("report").default("report"),
-    id: z.string(),
-    merchant_account_id: z.string(),
-    name: z.string(),
-    creator_id: z.nullable(z.string()).optional(),
-    creator_display_name: z.nullable(z.string()).optional(),
-    creator_type: z.nullable(ReportCreatorType$inboundSchema).optional(),
-    created_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    updated_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    next_execution_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    description: z.nullable(z.string()).optional(),
-    schedule: ReportSchedule$inboundSchema,
-    schedule_enabled: z.boolean(),
-    schedule_timezone: z.string(),
-    spec: ReportSpec$inboundSchema,
-    latest_execution: z.nullable(ReportExecutionSummary$inboundSchema)
-      .optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "merchant_account_id": "merchantAccountId",
-      "creator_id": "creatorId",
-      "creator_display_name": "creatorDisplayName",
-      "creator_type": "creatorType",
-      "created_at": "createdAt",
-      "updated_at": "updatedAt",
-      "next_execution_at": "nextExecutionAt",
-      "schedule_enabled": "scheduleEnabled",
-      "schedule_timezone": "scheduleTimezone",
-      "latest_execution": "latestExecution",
-    });
-  });
+export const Report$inboundSchema: z.ZodType<Report, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.literal("report").default("report"),
+      id: z.string(),
+      merchant_account_id: z.string(),
+      name: z.string(),
+      creator_id: z.nullable(z.string()).optional(),
+      creator_display_name: z.nullable(z.string()).optional(),
+      creator_type: z.nullable(ReportCreatorType$inboundSchema).optional(),
+      created_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      updated_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      next_execution_at: z.nullable(
+        z.string().datetime({ offset: true }).transform(v => new Date(v)),
+      ).optional(),
+      description: z.nullable(z.string()).optional(),
+      schedule: ReportSchedule$inboundSchema,
+      schedule_enabled: z.boolean(),
+      schedule_timezone: z.string(),
+      spec: ReportSpec$inboundSchema,
+      latest_execution: z.nullable(ReportExecutionSummary$inboundSchema)
+        .optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "merchant_account_id": "merchantAccountId",
+        "creator_id": "creatorId",
+        "creator_display_name": "creatorDisplayName",
+        "creator_type": "creatorType",
+        "created_at": "createdAt",
+        "updated_at": "updatedAt",
+        "next_execution_at": "nextExecutionAt",
+        "schedule_enabled": "scheduleEnabled",
+        "schedule_timezone": "scheduleTimezone",
+        "latest_execution": "latestExecution",
+      });
+    })
+  );
 
 export function reportFromJSON(
   jsonString: string,

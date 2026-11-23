@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -44,20 +44,26 @@ export const AccountUpdaterJob$inboundSchema: z.ZodType<
   AccountUpdaterJob,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("account-updater-job").default("account-updater-job"),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  inquiries: z.array(AccountUpdaterInquirySummary$inboundSchema),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("account-updater-job").default("account-updater-job"),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    inquiries: z.array(AccountUpdaterInquirySummary$inboundSchema),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function accountUpdaterJobFromJSON(
   jsonString: string,

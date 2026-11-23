@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -51,7 +52,7 @@ export const Frequency$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   Frequency
-> = openEnums.outboundSchema(Frequency);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Frequency));
 
 /** @internal */
 export type DlocalPIXSubscriptionOptions$Outbound = {
@@ -66,18 +67,20 @@ export const DlocalPIXSubscriptionOptions$outboundSchema: z.ZodType<
   DlocalPIXSubscriptionOptions$Outbound,
   z.ZodTypeDef,
   DlocalPIXSubscriptionOptions
-> = z.object({
-  amount: z.nullable(DlocalPIXSubscriptionAmountOptions$outboundSchema)
-    .optional(),
-  frequency: Frequency$outboundSchema,
-  startDate: z.nullable(z.string()).optional(),
-  endDate: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.nullable(DlocalPIXSubscriptionAmountOptions$outboundSchema)
+      .optional(),
+    frequency: Frequency$outboundSchema,
+    startDate: z.nullable(z.string()).optional(),
+    endDate: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      startDate: "start_date",
+      endDate: "end_date",
+    });
+  })
+);
 
 export function dlocalPIXSubscriptionOptionsToJSON(
   dlocalPIXSubscriptionOptions: DlocalPIXSubscriptionOptions,

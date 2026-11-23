@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeleteBuyerShippingDetailsGlobals = {
   merchantAccountId?: string | undefined;
@@ -36,16 +37,18 @@ export const DeleteBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   DeleteBuyerShippingDetailsRequest$Outbound,
   z.ZodTypeDef,
   DeleteBuyerShippingDetailsRequest
-> = z.object({
-  buyerId: z.string(),
-  shippingDetailsId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerId: "buyer_id",
-    shippingDetailsId: "shipping_details_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerId: z.string(),
+    shippingDetailsId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerId: "buyer_id",
+      shippingDetailsId: "shipping_details_id",
+    });
+  })
+);
 
 export function deleteBuyerShippingDetailsRequestToJSON(
   deleteBuyerShippingDetailsRequest: DeleteBuyerShippingDetailsRequest,

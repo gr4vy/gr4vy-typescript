@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -56,34 +56,36 @@ export type Buyer = {
 };
 
 /** @internal */
-export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> = z
-  .object({
-    type: z.literal("buyer").default("buyer"),
-    id: z.string(),
-    reconciliation_id: z.string(),
-    merchant_account_id: z.string(),
-    display_name: z.nullable(z.string()).optional(),
-    external_identifier: z.nullable(z.string()).optional(),
-    billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
-    account_number: z.nullable(z.string()).optional(),
-    created_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    updated_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "reconciliation_id": "reconciliationId",
-      "merchant_account_id": "merchantAccountId",
-      "display_name": "displayName",
-      "external_identifier": "externalIdentifier",
-      "billing_details": "billingDetails",
-      "account_number": "accountNumber",
-      "created_at": "createdAt",
-      "updated_at": "updatedAt",
-    });
-  });
+export const Buyer$inboundSchema: z.ZodType<Buyer, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.literal("buyer").default("buyer"),
+      id: z.string(),
+      reconciliation_id: z.string(),
+      merchant_account_id: z.string(),
+      display_name: z.nullable(z.string()).optional(),
+      external_identifier: z.nullable(z.string()).optional(),
+      billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
+      account_number: z.nullable(z.string()).optional(),
+      created_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      updated_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        "reconciliation_id": "reconciliationId",
+        "merchant_account_id": "merchantAccountId",
+        "display_name": "displayName",
+        "external_identifier": "externalIdentifier",
+        "billing_details": "billingDetails",
+        "account_number": "accountNumber",
+        "created_at": "createdAt",
+        "updated_at": "updatedAt",
+      });
+    })
+  );
 
 export function buyerFromJSON(
   jsonString: string,

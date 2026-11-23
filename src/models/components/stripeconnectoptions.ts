@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type StripeConnectOptions = {
   /**
@@ -42,21 +43,23 @@ export const StripeConnectOptions$outboundSchema: z.ZodType<
   StripeConnectOptions$Outbound,
   z.ZodTypeDef,
   StripeConnectOptions
-> = z.object({
-  stripeAccount: z.nullable(z.string()).optional(),
-  applicationFeeAmount: z.nullable(z.number().int()).optional(),
-  onBehalfOf: z.nullable(z.string()).optional(),
-  transferDataDestination: z.nullable(z.string()).optional(),
-  transferGroup: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    stripeAccount: "stripe_account",
-    applicationFeeAmount: "application_fee_amount",
-    onBehalfOf: "on_behalf_of",
-    transferDataDestination: "transfer_data_destination",
-    transferGroup: "transfer_group",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    stripeAccount: z.nullable(z.string()).optional(),
+    applicationFeeAmount: z.nullable(z.number().int()).optional(),
+    onBehalfOf: z.nullable(z.string()).optional(),
+    transferDataDestination: z.nullable(z.string()).optional(),
+    transferGroup: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      stripeAccount: "stripe_account",
+      applicationFeeAmount: "application_fee_amount",
+      onBehalfOf: "on_behalf_of",
+      transferDataDestination: "transfer_data_destination",
+      transferGroup: "transfer_group",
+    });
+  })
+);
 
 export function stripeConnectOptionsToJSON(
   stripeConnectOptions: StripeConnectOptions,

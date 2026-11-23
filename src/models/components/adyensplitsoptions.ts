@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AdyenSplitsOptions = {
   /**
@@ -31,11 +32,13 @@ export const AdyenSplitsOptions$outboundSchema: z.ZodType<
   AdyenSplitsOptions$Outbound,
   z.ZodTypeDef,
   AdyenSplitsOptions
-> = z.object({
-  authorization: z.nullable(z.array(z.record(z.any()))).optional(),
-  capture: z.nullable(z.array(z.record(z.any()))).optional(),
-  refund: z.nullable(z.array(z.record(z.any()))).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    authorization: z.nullable(z.array(z.record(z.any()))).optional(),
+    capture: z.nullable(z.array(z.record(z.any()))).optional(),
+    refund: z.nullable(z.array(z.record(z.any()))).optional(),
+  })
+);
 
 export function adyenSplitsOptionsToJSON(
   adyenSplitsOptions: AdyenSplitsOptions,

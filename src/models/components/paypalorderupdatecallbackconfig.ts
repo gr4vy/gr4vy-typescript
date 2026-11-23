@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -29,7 +30,7 @@ export const CallbackEvents$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CallbackEvents
-> = openEnums.outboundSchema(CallbackEvents);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(CallbackEvents));
 
 /** @internal */
 export type PaypalOrderUpdateCallbackConfig$Outbound = {
@@ -42,15 +43,18 @@ export const PaypalOrderUpdateCallbackConfig$outboundSchema: z.ZodType<
   PaypalOrderUpdateCallbackConfig$Outbound,
   z.ZodTypeDef,
   PaypalOrderUpdateCallbackConfig
-> = z.object({
-  callbackUrl: z.nullable(z.string()).optional(),
-  callbackEvents: z.nullable(z.array(CallbackEvents$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    callbackUrl: "callback_url",
-    callbackEvents: "callback_events",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    callbackUrl: z.nullable(z.string()).optional(),
+    callbackEvents: z.nullable(z.array(CallbackEvents$outboundSchema))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      callbackUrl: "callback_url",
+      callbackEvents: "callback_events",
+    });
+  })
+);
 
 export function paypalOrderUpdateCallbackConfigToJSON(
   paypalOrderUpdateCallbackConfig: PaypalOrderUpdateCallbackConfig,

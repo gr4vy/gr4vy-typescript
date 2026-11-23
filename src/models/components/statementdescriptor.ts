@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -47,20 +47,22 @@ export const StatementDescriptor$inboundSchema: z.ZodType<
   StatementDescriptor,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  city: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  phone_number: z.nullable(z.string()).optional(),
-  url: z.nullable(z.string()).optional(),
-  postal_code: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "phone_number": "phoneNumber",
-    "postal_code": "postalCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    city: z.nullable(z.string()).optional(),
+    country: z.nullable(z.string()).optional(),
+    phone_number: z.nullable(z.string()).optional(),
+    url: z.nullable(z.string()).optional(),
+    postal_code: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "phone_number": "phoneNumber",
+      "postal_code": "postalCode",
+    });
+  })
+);
 /** @internal */
 export type StatementDescriptor$Outbound = {
   name?: string | null | undefined;
@@ -77,20 +79,22 @@ export const StatementDescriptor$outboundSchema: z.ZodType<
   StatementDescriptor$Outbound,
   z.ZodTypeDef,
   StatementDescriptor
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  city: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  url: z.nullable(z.string()).optional(),
-  postalCode: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    phoneNumber: "phone_number",
-    postalCode: "postal_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    city: z.nullable(z.string()).optional(),
+    country: z.nullable(z.string()).optional(),
+    phoneNumber: z.nullable(z.string()).optional(),
+    url: z.nullable(z.string()).optional(),
+    postalCode: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      phoneNumber: "phone_number",
+      postalCode: "postal_code",
+    });
+  })
+);
 
 export function statementDescriptorToJSON(
   statementDescriptor: StatementDescriptor,

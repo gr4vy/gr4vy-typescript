@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -36,12 +36,14 @@ export const ThreeDSecureScenarioOutcome$inboundSchema: z.ZodType<
   ThreeDSecureScenarioOutcome,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  version: z.nullable(z.string()).optional(),
-  authentication: ThreeDSecureScenarioOutcomeAuthentication$inboundSchema,
-  result: z.nullable(ThreeDSecureScenarioOutcomeResult$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    version: z.nullable(z.string()).optional(),
+    authentication: ThreeDSecureScenarioOutcomeAuthentication$inboundSchema,
+    result: z.nullable(ThreeDSecureScenarioOutcomeResult$inboundSchema)
+      .optional(),
+  })
+);
 /** @internal */
 export type ThreeDSecureScenarioOutcome$Outbound = {
   version?: string | null | undefined;
@@ -54,12 +56,14 @@ export const ThreeDSecureScenarioOutcome$outboundSchema: z.ZodType<
   ThreeDSecureScenarioOutcome$Outbound,
   z.ZodTypeDef,
   ThreeDSecureScenarioOutcome
-> = z.object({
-  version: z.nullable(z.string()).optional(),
-  authentication: ThreeDSecureScenarioOutcomeAuthentication$outboundSchema,
-  result: z.nullable(ThreeDSecureScenarioOutcomeResult$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    version: z.nullable(z.string()).optional(),
+    authentication: ThreeDSecureScenarioOutcomeAuthentication$outboundSchema,
+    result: z.nullable(ThreeDSecureScenarioOutcomeResult$outboundSchema)
+      .optional(),
+  })
+);
 
 export function threeDSecureScenarioOutcomeToJSON(
   threeDSecureScenarioOutcome: ThreeDSecureScenarioOutcome,

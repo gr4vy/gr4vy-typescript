@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CheckoutPayoutOptions = {
   /**
@@ -27,15 +28,17 @@ export const CheckoutPayoutOptions$outboundSchema: z.ZodType<
   CheckoutPayoutOptions$Outbound,
   z.ZodTypeDef,
   CheckoutPayoutOptions
-> = z.object({
-  processingChannelId: z.string(),
-  sourceId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    processingChannelId: "processing_channel_id",
-    sourceId: "source_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    processingChannelId: z.string(),
+    sourceId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      processingChannelId: "processing_channel_id",
+      sourceId: "source_id",
+    });
+  })
+);
 
 export function checkoutPayoutOptionsToJSON(
   checkoutPayoutOptions: CheckoutPayoutOptions,

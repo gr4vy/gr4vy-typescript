@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
@@ -39,19 +39,21 @@ export const TransactionVoid$inboundSchema: z.ZodType<
   TransactionVoid,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("transaction-void").default("transaction-void"),
-  status: VoidStatus$inboundSchema,
-  code: z.nullable(z.string()),
-  raw_response_code: z.nullable(z.string()),
-  raw_response_description: z.nullable(z.string()),
-  transaction: Transaction$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "raw_response_code": "rawResponseCode",
-    "raw_response_description": "rawResponseDescription",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("transaction-void").default("transaction-void"),
+    status: VoidStatus$inboundSchema,
+    code: z.nullable(z.string()),
+    raw_response_code: z.nullable(z.string()),
+    raw_response_description: z.nullable(z.string()),
+    transaction: Transaction$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "raw_response_code": "rawResponseCode",
+      "raw_response_description": "rawResponseDescription",
+    });
+  })
+);
 
 export function transactionVoidFromJSON(
   jsonString: string,

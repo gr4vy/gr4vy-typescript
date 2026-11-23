@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type VoidableField = {
   key: string;
@@ -20,10 +21,12 @@ export const VoidableField$outboundSchema: z.ZodType<
   VoidableField$Outbound,
   z.ZodTypeDef,
   VoidableField
-> = z.object({
-  key: z.string(),
-  value: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    key: z.string(),
+    value: z.string(),
+  })
+);
 
 export function voidableFieldToJSON(voidableField: VoidableField): string {
   return JSON.stringify(VoidableField$outboundSchema.parse(voidableField));

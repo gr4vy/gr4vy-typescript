@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type RiskifiedAntiFraudOptionsShippingLine = {
   /**
@@ -22,13 +23,15 @@ export const RiskifiedAntiFraudOptionsShippingLine$outboundSchema: z.ZodType<
   RiskifiedAntiFraudOptionsShippingLine$Outbound,
   z.ZodTypeDef,
   RiskifiedAntiFraudOptionsShippingLine
-> = z.object({
-  shippingAddressId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    shippingAddressId: "shipping_address_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    shippingAddressId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      shippingAddressId: "shipping_address_id",
+    });
+  })
+);
 
 export function riskifiedAntiFraudOptionsShippingLineToJSON(
   riskifiedAntiFraudOptionsShippingLine: RiskifiedAntiFraudOptionsShippingLine,

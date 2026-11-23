@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -24,15 +24,17 @@ export const PazeSessionReviewLinks$inboundSchema: z.ZodType<
   PazeSessionReviewLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  CHANGE_CARD: z.nullable(z.string()),
-  CHANGE_SHIPPING_ADDRESS: z.nullable(z.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "CHANGE_CARD": "changeCard",
-    "CHANGE_SHIPPING_ADDRESS": "changeShippingAddress",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    CHANGE_CARD: z.nullable(z.string()),
+    CHANGE_SHIPPING_ADDRESS: z.nullable(z.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "CHANGE_CARD": "changeCard",
+      "CHANGE_SHIPPING_ADDRESS": "changeShippingAddress",
+    });
+  })
+);
 
 export function pazeSessionReviewLinksFromJSON(
   jsonString: string,

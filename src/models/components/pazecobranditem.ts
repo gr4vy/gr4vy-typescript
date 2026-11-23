@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PazeCobrandItem = {
   /**
@@ -26,10 +27,12 @@ export const PazeCobrandItem$outboundSchema: z.ZodType<
   PazeCobrandItem$Outbound,
   z.ZodTypeDef,
   PazeCobrandItem
-> = z.object({
-  name: z.string(),
-  benefitsOffered: z.nullable(z.boolean()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    benefitsOffered: z.nullable(z.boolean()).optional(),
+  })
+);
 
 export function pazeCobrandItemToJSON(
   pazeCobrandItem: PazeCobrandItem,

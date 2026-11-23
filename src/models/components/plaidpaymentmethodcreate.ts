@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Plaid Payment Method
@@ -59,23 +60,25 @@ export const PlaidPaymentMethodCreate$outboundSchema: z.ZodType<
   PlaidPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   PlaidPaymentMethodCreate
-> = z.object({
-  method: z.literal("plaid").default("plaid" as const),
-  token: z.string(),
-  accountId: z.nullable(z.string()).optional(),
-  paymentServiceId: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accountId: "account_id",
-    paymentServiceId: "payment_service_id",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("plaid").default("plaid" as const),
+    token: z.string(),
+    accountId: z.nullable(z.string()).optional(),
+    paymentServiceId: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      accountId: "account_id",
+      paymentServiceId: "payment_service_id",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function plaidPaymentMethodCreateToJSON(
   plaidPaymentMethodCreate: PlaidPaymentMethodCreate,

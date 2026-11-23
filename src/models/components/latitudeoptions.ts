@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type LatitudeOptions = {
   /**
@@ -22,13 +23,15 @@ export const LatitudeOptions$outboundSchema: z.ZodType<
   LatitudeOptions$Outbound,
   z.ZodTypeDef,
   LatitudeOptions
-> = z.object({
-  promotionReference: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    promotionReference: "promotion_reference",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    promotionReference: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      promotionReference: "promotion_reference",
+    });
+  })
+);
 
 export function latitudeOptionsToJSON(
   latitudeOptions: LatitudeOptions,

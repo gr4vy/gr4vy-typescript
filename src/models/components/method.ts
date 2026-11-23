@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -152,7 +153,7 @@ export type Method = OpenEnum<typeof Method>;
 
 /** @internal */
 export const Method$inboundSchema: z.ZodType<Method, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Method);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Method));
 /** @internal */
 export const Method$outboundSchema: z.ZodType<string, z.ZodTypeDef, Method> =
-  openEnums.outboundSchema(Method);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Method));

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails = {
   /**
@@ -34,16 +35,18 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$outboundSc
     ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails$Outbound,
     z.ZodTypeDef,
     ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails
-  > = z.object({
-    firstName: z.nullable(z.string()).optional(),
-    lastName: z.nullable(z.string()).optional(),
-    email: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      firstName: "first_name",
-      lastName: "last_name",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      firstName: z.nullable(z.string()).optional(),
+      lastName: z.nullable(z.string()).optional(),
+      email: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        firstName: "first_name",
+        lastName: "last_name",
+      });
+    })
+  );
 
 export function forterAntiFraudOptionsCartItemBeneficiaryPersonalDetailsToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryPersonalDetails:

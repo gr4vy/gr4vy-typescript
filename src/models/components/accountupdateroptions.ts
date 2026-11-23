@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AccountUpdaterOptions = {
   /**
@@ -42,21 +43,23 @@ export const AccountUpdaterOptions$outboundSchema: z.ZodType<
   AccountUpdaterOptions$Outbound,
   z.ZodTypeDef,
   AccountUpdaterOptions
-> = z.object({
-  responseCode: z.nullable(z.literal("updated")).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  expirationMonth: z.nullable(z.string()).optional(),
-  expirationYear: z.nullable(z.string()).optional(),
-  errorCode: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    responseCode: "response_code",
-    accountNumber: "account_number",
-    expirationMonth: "expiration_month",
-    expirationYear: "expiration_year",
-    errorCode: "error_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    responseCode: z.nullable(z.literal("updated")).optional(),
+    accountNumber: z.nullable(z.string()).optional(),
+    expirationMonth: z.nullable(z.string()).optional(),
+    expirationYear: z.nullable(z.string()).optional(),
+    errorCode: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      responseCode: "response_code",
+      accountNumber: "account_number",
+      expirationMonth: "expiration_month",
+      expirationYear: "expiration_year",
+      errorCode: "error_code",
+    });
+  })
+);
 
 export function accountUpdaterOptionsToJSON(
   accountUpdaterOptions: AccountUpdaterOptions,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DlocalUPIWalletOptions,
   DlocalUPIWalletOptions$Outbound,
@@ -26,9 +27,11 @@ export const DlocalUPIOptions$outboundSchema: z.ZodType<
   DlocalUPIOptions$Outbound,
   z.ZodTypeDef,
   DlocalUPIOptions
-> = z.object({
-  wallet: z.nullable(DlocalUPIWalletOptions$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    wallet: z.nullable(DlocalUPIWalletOptions$outboundSchema).optional(),
+  })
+);
 
 export function dlocalUPIOptionsToJSON(
   dlocalUPIOptions: DlocalUPIOptions,

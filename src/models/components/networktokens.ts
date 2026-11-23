@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { NetworkToken, NetworkToken$inboundSchema } from "./networktoken.js";
@@ -20,9 +20,11 @@ export const NetworkTokens$inboundSchema: z.ZodType<
   NetworkTokens,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  items: z.array(NetworkToken$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(NetworkToken$inboundSchema),
+  })
+);
 
 export function networkTokensFromJSON(
   jsonString: string,

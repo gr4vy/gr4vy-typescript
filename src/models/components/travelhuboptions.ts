@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   TravelHubCustomData,
   TravelHubCustomData$Outbound,
@@ -31,11 +32,13 @@ export const TravelhubOptions$outboundSchema: z.ZodType<
   TravelhubOptions$Outbound,
   z.ZodTypeDef,
   TravelhubOptions
-> = z.object({
-  customData: z.nullable(z.array(TravelHubCustomData$outboundSchema))
-    .optional(),
-  companyName: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customData: z.nullable(z.array(TravelHubCustomData$outboundSchema))
+      .optional(),
+    companyName: z.nullable(z.string()).optional(),
+  })
+);
 
 export function travelhubOptionsToJSON(
   travelhubOptions: TravelhubOptions,

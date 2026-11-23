@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -54,19 +54,22 @@ export const CaptureTransactionRequest$outboundSchema: z.ZodType<
   CaptureTransactionRequest$Outbound,
   z.ZodTypeDef,
   CaptureTransactionRequest
-> = z.object({
-  transactionId: z.string(),
-  prefer: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  idempotencyKey: z.nullable(z.string()).optional(),
-  transactionCaptureCreate: components.TransactionCaptureCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    transactionId: "transaction_id",
-    idempotencyKey: "idempotency-key",
-    transactionCaptureCreate: "TransactionCaptureCreate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactionId: z.string(),
+    prefer: z.nullable(z.array(z.string())).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    idempotencyKey: z.nullable(z.string()).optional(),
+    transactionCaptureCreate:
+      components.TransactionCaptureCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      transactionId: "transaction_id",
+      idempotencyKey: "idempotency-key",
+      transactionCaptureCreate: "TransactionCaptureCreate",
+    });
+  })
+);
 
 export function captureTransactionRequestToJSON(
   captureTransactionRequest: CaptureTransactionRequest,
@@ -82,10 +85,12 @@ export const CaptureTransactionResponse200CaptureTransaction$inboundSchema:
     CaptureTransactionResponse200CaptureTransaction,
     z.ZodTypeDef,
     unknown
-  > = z.union([
-    components.Transaction$inboundSchema,
-    components.TransactionCapture$inboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      components.Transaction$inboundSchema,
+      components.TransactionCapture$inboundSchema,
+    ])
+  );
 
 export function captureTransactionResponse200CaptureTransactionFromJSON(
   jsonString: string,

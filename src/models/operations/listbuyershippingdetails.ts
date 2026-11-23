@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListBuyerShippingDetailsGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const ListBuyerShippingDetailsRequest$outboundSchema: z.ZodType<
   ListBuyerShippingDetailsRequest$Outbound,
   z.ZodTypeDef,
   ListBuyerShippingDetailsRequest
-> = z.object({
-  buyerId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerId: "buyer_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerId: "buyer_id",
+    });
+  })
+);
 
 export function listBuyerShippingDetailsRequestToJSON(
   listBuyerShippingDetailsRequest: ListBuyerShippingDetailsRequest,

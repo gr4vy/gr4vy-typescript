@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -35,7 +36,9 @@ export const VaultPaymentMethodCriteria$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   VaultPaymentMethodCriteria
-> = openEnums.outboundSchema(VaultPaymentMethodCriteria);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(VaultPaymentMethodCriteria)
+);
 
 /** @internal */
 export type BraintreeDynamicDataFieldsOptions$Outbound = {
@@ -49,19 +52,21 @@ export const BraintreeDynamicDataFieldsOptions$outboundSchema: z.ZodType<
   BraintreeDynamicDataFieldsOptions$Outbound,
   z.ZodTypeDef,
   BraintreeDynamicDataFieldsOptions
-> = z.object({
-  threeDsAuthStatus: z.nullable(z.string()).optional(),
-  purchaseOrderNumber: z.nullable(z.string()).optional(),
-  vaultPaymentMethodCriteria: z.nullable(
-    VaultPaymentMethodCriteria$outboundSchema,
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    threeDsAuthStatus: "three_ds_auth_status",
-    purchaseOrderNumber: "purchase_order_number",
-    vaultPaymentMethodCriteria: "vault_payment_method_criteria",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    threeDsAuthStatus: z.nullable(z.string()).optional(),
+    purchaseOrderNumber: z.nullable(z.string()).optional(),
+    vaultPaymentMethodCriteria: z.nullable(
+      VaultPaymentMethodCriteria$outboundSchema,
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      threeDsAuthStatus: "three_ds_auth_status",
+      purchaseOrderNumber: "purchase_order_number",
+      vaultPaymentMethodCriteria: "vault_payment_method_criteria",
+    });
+  })
+);
 
 export function braintreeDynamicDataFieldsOptionsToJSON(
   braintreeDynamicDataFieldsOptions: BraintreeDynamicDataFieldsOptions,

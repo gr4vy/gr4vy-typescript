@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ApplePaySessionRequest = {
   /**
@@ -27,15 +28,17 @@ export const ApplePaySessionRequest$outboundSchema: z.ZodType<
   ApplePaySessionRequest$Outbound,
   z.ZodTypeDef,
   ApplePaySessionRequest
-> = z.object({
-  validationUrl: z.string(),
-  domainName: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    validationUrl: "validation_url",
-    domainName: "domain_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    validationUrl: z.string(),
+    domainName: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      validationUrl: "validation_url",
+      domainName: "domain_name",
+    });
+  })
+);
 
 export function applePaySessionRequestToJSON(
   applePaySessionRequest: ApplePaySessionRequest,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   BankAccountHolder,
   BankAccountHolder$Outbound,
@@ -66,25 +67,27 @@ export const BACSBankPaymentMethodCreate$outboundSchema: z.ZodType<
   BACSBankPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   BACSBankPaymentMethodCreate
-> = z.object({
-  method: z.literal("bank").default("bank" as const),
-  accountHolder: BankAccountHolder$outboundSchema,
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  scheme: z.literal("bacs").default("bacs" as const),
-  accountNumber: z.string(),
-  routingNumber: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    accountHolder: "account_holder",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    externalIdentifier: "external_identifier",
-    accountNumber: "account_number",
-    routingNumber: "routing_number",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("bank").default("bank" as const),
+    accountHolder: BankAccountHolder$outboundSchema,
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    scheme: z.literal("bacs").default("bacs" as const),
+    accountNumber: z.string(),
+    routingNumber: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      accountHolder: "account_holder",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      externalIdentifier: "external_identifier",
+      accountNumber: "account_number",
+      routingNumber: "routing_number",
+    });
+  })
+);
 
 export function bacsBankPaymentMethodCreateToJSON(
   bacsBankPaymentMethodCreate: BACSBankPaymentMethodCreate,

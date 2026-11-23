@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeletePaymentServiceGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const DeletePaymentServiceRequest$outboundSchema: z.ZodType<
   DeletePaymentServiceRequest$Outbound,
   z.ZodTypeDef,
   DeletePaymentServiceRequest
-> = z.object({
-  paymentServiceId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentServiceId: "payment_service_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentServiceId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentServiceId: "payment_service_id",
+    });
+  })
+);
 
 export function deletePaymentServiceRequestToJSON(
   deletePaymentServiceRequest: DeletePaymentServiceRequest,

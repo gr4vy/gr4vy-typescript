@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PazeSessionReviewRequest = {
   /**
@@ -31,11 +32,13 @@ export const PazeSessionReviewRequest$outboundSchema: z.ZodType<
   PazeSessionReviewRequest$Outbound,
   z.ZodTypeDef,
   PazeSessionReviewRequest
-> = z.object({
-  sessionId: z.string(),
-  code: z.string(),
-  accessToken: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    sessionId: z.string(),
+    code: z.string(),
+    accessToken: z.string(),
+  })
+);
 
 export function pazeSessionReviewRequestToJSON(
   pazeSessionReviewRequest: PazeSessionReviewRequest,

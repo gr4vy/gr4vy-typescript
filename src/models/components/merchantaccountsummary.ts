@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,23 +23,29 @@ export const MerchantAccountSummary$inboundSchema: z.ZodType<
   MerchantAccountSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("merchant-account").default("merchant-account"),
-  id: z.string(),
-  display_name: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  over_capture_amount: z.nullable(z.number().int()).optional(),
-  over_capture_percentage: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "over_capture_amount": "overCaptureAmount",
-    "over_capture_percentage": "overCapturePercentage",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("merchant-account").default("merchant-account"),
+    id: z.string(),
+    display_name: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    over_capture_amount: z.nullable(z.number().int()).optional(),
+    over_capture_percentage: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_name": "displayName",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "over_capture_amount": "overCaptureAmount",
+      "over_capture_percentage": "overCapturePercentage",
+    });
+  })
+);
 
 export function merchantAccountSummaryFromJSON(
   jsonString: string,

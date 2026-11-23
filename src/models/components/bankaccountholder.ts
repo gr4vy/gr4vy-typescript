@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type BankAccountHolder = {
   /**
@@ -32,17 +33,19 @@ export const BankAccountHolder$outboundSchema: z.ZodType<
   BankAccountHolder$Outbound,
   z.ZodTypeDef,
   BankAccountHolder
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    companyName: "company_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    companyName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      companyName: "company_name",
+    });
+  })
+);
 
 export function bankAccountHolderToJSON(
   bankAccountHolder: BankAccountHolder,

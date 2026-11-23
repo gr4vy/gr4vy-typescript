@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type ConfigureDigitalWalletGlobals = {
@@ -29,14 +30,16 @@ export const ConfigureDigitalWalletRequest$outboundSchema: z.ZodType<
   ConfigureDigitalWalletRequest$Outbound,
   z.ZodTypeDef,
   ConfigureDigitalWalletRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  digitalWalletCreate: components.DigitalWalletCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    digitalWalletCreate: "DigitalWalletCreate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    digitalWalletCreate: components.DigitalWalletCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      digitalWalletCreate: "DigitalWalletCreate",
+    });
+  })
+);
 
 export function configureDigitalWalletRequestToJSON(
   configureDigitalWalletRequest: ConfigureDigitalWalletRequest,

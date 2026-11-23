@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -59,19 +59,21 @@ export const ListReportsRequest$outboundSchema: z.ZodType<
   ListReportsRequest$Outbound,
   z.ZodTypeDef,
   ListReportsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  schedule: z.nullable(z.array(components.ReportSchedule$outboundSchema))
-    .optional(),
-  scheduleEnabled: z.nullable(z.boolean()).optional(),
-  name: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    scheduleEnabled: "schedule_enabled",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    schedule: z.nullable(z.array(components.ReportSchedule$outboundSchema))
+      .optional(),
+    scheduleEnabled: z.nullable(z.boolean()).optional(),
+    name: z.nullable(z.string()).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      scheduleEnabled: "schedule_enabled",
+    });
+  })
+);
 
 export function listReportsRequestToJSON(
   listReportsRequest: ListReportsRequest,
@@ -86,13 +88,15 @@ export const ListReportsResponse$inboundSchema: z.ZodType<
   ListReportsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.Reports$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.Reports$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listReportsResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type IncrementTransactionAuthorizationGlobals = {
@@ -41,20 +42,22 @@ export const IncrementTransactionAuthorizationRequest$outboundSchema: z.ZodType<
   IncrementTransactionAuthorizationRequest$Outbound,
   z.ZodTypeDef,
   IncrementTransactionAuthorizationRequest
-> = z.object({
-  transactionId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  idempotencyKey: z.nullable(z.string()).optional(),
-  transactionAuthorizationIncrementCreate:
-    components.TransactionAuthorizationIncrementCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    transactionId: "transaction_id",
-    idempotencyKey: "idempotency-key",
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactionId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    idempotencyKey: z.nullable(z.string()).optional(),
     transactionAuthorizationIncrementCreate:
-      "TransactionAuthorizationIncrementCreate",
-  });
-});
+      components.TransactionAuthorizationIncrementCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      transactionId: "transaction_id",
+      idempotencyKey: "idempotency-key",
+      transactionAuthorizationIncrementCreate:
+        "TransactionAuthorizationIncrementCreate",
+    });
+  })
+);
 
 export function incrementTransactionAuthorizationRequestToJSON(
   incrementTransactionAuthorizationRequest:

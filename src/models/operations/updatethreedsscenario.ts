@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type UpdateThreeDsScenarioGlobals = {
@@ -34,17 +35,19 @@ export const UpdateThreeDsScenarioRequest$outboundSchema: z.ZodType<
   UpdateThreeDsScenarioRequest$Outbound,
   z.ZodTypeDef,
   UpdateThreeDsScenarioRequest
-> = z.object({
-  threeDsScenarioId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  threeDSecureScenarioUpdate:
-    components.ThreeDSecureScenarioUpdate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    threeDsScenarioId: "three_ds_scenario_id",
-    threeDSecureScenarioUpdate: "ThreeDSecureScenarioUpdate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    threeDsScenarioId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    threeDSecureScenarioUpdate:
+      components.ThreeDSecureScenarioUpdate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      threeDsScenarioId: "three_ds_scenario_id",
+      threeDSecureScenarioUpdate: "ThreeDSecureScenarioUpdate",
+    });
+  })
+);
 
 export function updateThreeDsScenarioRequestToJSON(
   updateThreeDsScenarioRequest: UpdateThreeDsScenarioRequest,

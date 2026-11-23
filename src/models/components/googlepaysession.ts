@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -24,14 +24,16 @@ export const GooglePaySession$inboundSchema: z.ZodType<
   GooglePaySession,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  gateway_merchant_id: z.string(),
-  token: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "gateway_merchant_id": "gatewayMerchantId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    gateway_merchant_id: z.string(),
+    token: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "gateway_merchant_id": "gatewayMerchantId",
+    });
+  })
+);
 
 export function googlePaySessionFromJSON(
   jsonString: string,

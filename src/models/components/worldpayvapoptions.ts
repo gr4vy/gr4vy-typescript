@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type WorldpayVapOptions = {
   /**
@@ -26,10 +27,12 @@ export const WorldpayVapOptions$outboundSchema: z.ZodType<
   WorldpayVapOptions$Outbound,
   z.ZodTypeDef,
   WorldpayVapOptions
-> = z.object({
-  reportGroup: z.nullable(z.string()).optional(),
-  orderId: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reportGroup: z.nullable(z.string()).optional(),
+    orderId: z.nullable(z.string()).optional(),
+  })
+);
 
 export function worldpayVapOptionsToJSON(
   worldpayVapOptions: WorldpayVapOptions,

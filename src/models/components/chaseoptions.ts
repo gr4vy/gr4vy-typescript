@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ChaseOptions = {
   /**
@@ -21,9 +22,11 @@ export const ChaseOptions$outboundSchema: z.ZodType<
   ChaseOptions$Outbound,
   z.ZodTypeDef,
   ChaseOptions
-> = z.object({
-  comments: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    comments: z.nullable(z.string()).optional(),
+  })
+);
 
 export function chaseOptionsToJSON(chaseOptions: ChaseOptions): string {
   return JSON.stringify(ChaseOptions$outboundSchema.parse(chaseOptions));

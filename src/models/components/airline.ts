@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -115,60 +115,67 @@ export const TicketDeliveryMethod$inboundSchema: z.ZodType<
   TicketDeliveryMethod,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TicketDeliveryMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(TicketDeliveryMethod)
+);
 /** @internal */
 export const TicketDeliveryMethod$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TicketDeliveryMethod
-> = openEnums.outboundSchema(TicketDeliveryMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TicketDeliveryMethod)
+);
 
 /** @internal */
 export const Airline$inboundSchema: z.ZodType<Airline, z.ZodTypeDef, unknown> =
-  z.object({
-    booking_code: z.nullable(z.string()).optional(),
-    is_cardholder_traveling: z.nullable(z.boolean()).optional(),
-    issued_address: z.nullable(z.string()).optional(),
-    issued_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    issuing_carrier_code: z.nullable(z.string()).optional(),
-    issuing_carrier_name: z.nullable(z.string()).optional(),
-    issuing_iata_designator: z.nullable(z.string()).optional(),
-    issuing_icao_code: z.nullable(z.string()).optional(),
-    legs: z.nullable(z.array(AirlineLeg$inboundSchema)).optional(),
-    passenger_name_record: z.nullable(z.string()).optional(),
-    passengers: z.nullable(z.array(AirlinePassenger$inboundSchema)).optional(),
-    reservation_system: z.nullable(z.string()).optional(),
-    restricted_ticket: z.nullable(z.boolean()).optional(),
-    ticket_delivery_method: z.nullable(TicketDeliveryMethod$inboundSchema)
-      .optional(),
-    ticket_number: z.nullable(z.string()).optional(),
-    travel_agency_code: z.nullable(z.string()).optional(),
-    travel_agency_invoice_number: z.nullable(z.string()).optional(),
-    travel_agency_name: z.nullable(z.string()).optional(),
-    travel_agency_plan_name: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "booking_code": "bookingCode",
-      "is_cardholder_traveling": "isCardholderTraveling",
-      "issued_address": "issuedAddress",
-      "issued_at": "issuedAt",
-      "issuing_carrier_code": "issuingCarrierCode",
-      "issuing_carrier_name": "issuingCarrierName",
-      "issuing_iata_designator": "issuingIataDesignator",
-      "issuing_icao_code": "issuingIcaoCode",
-      "passenger_name_record": "passengerNameRecord",
-      "reservation_system": "reservationSystem",
-      "restricted_ticket": "restrictedTicket",
-      "ticket_delivery_method": "ticketDeliveryMethod",
-      "ticket_number": "ticketNumber",
-      "travel_agency_code": "travelAgencyCode",
-      "travel_agency_invoice_number": "travelAgencyInvoiceNumber",
-      "travel_agency_name": "travelAgencyName",
-      "travel_agency_plan_name": "travelAgencyPlanName",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      booking_code: z.nullable(z.string()).optional(),
+      is_cardholder_traveling: z.nullable(z.boolean()).optional(),
+      issued_address: z.nullable(z.string()).optional(),
+      issued_at: z.nullable(
+        z.string().datetime({ offset: true }).transform(v => new Date(v)),
+      ).optional(),
+      issuing_carrier_code: z.nullable(z.string()).optional(),
+      issuing_carrier_name: z.nullable(z.string()).optional(),
+      issuing_iata_designator: z.nullable(z.string()).optional(),
+      issuing_icao_code: z.nullable(z.string()).optional(),
+      legs: z.nullable(z.array(AirlineLeg$inboundSchema)).optional(),
+      passenger_name_record: z.nullable(z.string()).optional(),
+      passengers: z.nullable(z.array(AirlinePassenger$inboundSchema))
+        .optional(),
+      reservation_system: z.nullable(z.string()).optional(),
+      restricted_ticket: z.nullable(z.boolean()).optional(),
+      ticket_delivery_method: z.nullable(TicketDeliveryMethod$inboundSchema)
+        .optional(),
+      ticket_number: z.nullable(z.string()).optional(),
+      travel_agency_code: z.nullable(z.string()).optional(),
+      travel_agency_invoice_number: z.nullable(z.string()).optional(),
+      travel_agency_name: z.nullable(z.string()).optional(),
+      travel_agency_plan_name: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "booking_code": "bookingCode",
+        "is_cardholder_traveling": "isCardholderTraveling",
+        "issued_address": "issuedAddress",
+        "issued_at": "issuedAt",
+        "issuing_carrier_code": "issuingCarrierCode",
+        "issuing_carrier_name": "issuingCarrierName",
+        "issuing_iata_designator": "issuingIataDesignator",
+        "issuing_icao_code": "issuingIcaoCode",
+        "passenger_name_record": "passengerNameRecord",
+        "reservation_system": "reservationSystem",
+        "restricted_ticket": "restrictedTicket",
+        "ticket_delivery_method": "ticketDeliveryMethod",
+        "ticket_number": "ticketNumber",
+        "travel_agency_code": "travelAgencyCode",
+        "travel_agency_invoice_number": "travelAgencyInvoiceNumber",
+        "travel_agency_name": "travelAgencyName",
+        "travel_agency_plan_name": "travelAgencyPlanName",
+      });
+    })
+  );
 /** @internal */
 export type Airline$Outbound = {
   booking_code?: string | null | undefined;
@@ -197,48 +204,50 @@ export const Airline$outboundSchema: z.ZodType<
   Airline$Outbound,
   z.ZodTypeDef,
   Airline
-> = z.object({
-  bookingCode: z.nullable(z.string()).optional(),
-  isCardholderTraveling: z.nullable(z.boolean()).optional(),
-  issuedAddress: z.nullable(z.string()).optional(),
-  issuedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  issuingCarrierCode: z.nullable(z.string()).optional(),
-  issuingCarrierName: z.nullable(z.string()).optional(),
-  issuingIataDesignator: z.nullable(z.string()).optional(),
-  issuingIcaoCode: z.nullable(z.string()).optional(),
-  legs: z.nullable(z.array(AirlineLeg$outboundSchema)).optional(),
-  passengerNameRecord: z.nullable(z.string()).optional(),
-  passengers: z.nullable(z.array(AirlinePassenger$outboundSchema)).optional(),
-  reservationSystem: z.nullable(z.string()).optional(),
-  restrictedTicket: z.nullable(z.boolean()).optional(),
-  ticketDeliveryMethod: z.nullable(TicketDeliveryMethod$outboundSchema)
-    .optional(),
-  ticketNumber: z.nullable(z.string()).optional(),
-  travelAgencyCode: z.nullable(z.string()).optional(),
-  travelAgencyInvoiceNumber: z.nullable(z.string()).optional(),
-  travelAgencyName: z.nullable(z.string()).optional(),
-  travelAgencyPlanName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bookingCode: "booking_code",
-    isCardholderTraveling: "is_cardholder_traveling",
-    issuedAddress: "issued_address",
-    issuedAt: "issued_at",
-    issuingCarrierCode: "issuing_carrier_code",
-    issuingCarrierName: "issuing_carrier_name",
-    issuingIataDesignator: "issuing_iata_designator",
-    issuingIcaoCode: "issuing_icao_code",
-    passengerNameRecord: "passenger_name_record",
-    reservationSystem: "reservation_system",
-    restrictedTicket: "restricted_ticket",
-    ticketDeliveryMethod: "ticket_delivery_method",
-    ticketNumber: "ticket_number",
-    travelAgencyCode: "travel_agency_code",
-    travelAgencyInvoiceNumber: "travel_agency_invoice_number",
-    travelAgencyName: "travel_agency_name",
-    travelAgencyPlanName: "travel_agency_plan_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bookingCode: z.nullable(z.string()).optional(),
+    isCardholderTraveling: z.nullable(z.boolean()).optional(),
+    issuedAddress: z.nullable(z.string()).optional(),
+    issuedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    issuingCarrierCode: z.nullable(z.string()).optional(),
+    issuingCarrierName: z.nullable(z.string()).optional(),
+    issuingIataDesignator: z.nullable(z.string()).optional(),
+    issuingIcaoCode: z.nullable(z.string()).optional(),
+    legs: z.nullable(z.array(AirlineLeg$outboundSchema)).optional(),
+    passengerNameRecord: z.nullable(z.string()).optional(),
+    passengers: z.nullable(z.array(AirlinePassenger$outboundSchema)).optional(),
+    reservationSystem: z.nullable(z.string()).optional(),
+    restrictedTicket: z.nullable(z.boolean()).optional(),
+    ticketDeliveryMethod: z.nullable(TicketDeliveryMethod$outboundSchema)
+      .optional(),
+    ticketNumber: z.nullable(z.string()).optional(),
+    travelAgencyCode: z.nullable(z.string()).optional(),
+    travelAgencyInvoiceNumber: z.nullable(z.string()).optional(),
+    travelAgencyName: z.nullable(z.string()).optional(),
+    travelAgencyPlanName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      bookingCode: "booking_code",
+      isCardholderTraveling: "is_cardholder_traveling",
+      issuedAddress: "issued_address",
+      issuedAt: "issued_at",
+      issuingCarrierCode: "issuing_carrier_code",
+      issuingCarrierName: "issuing_carrier_name",
+      issuingIataDesignator: "issuing_iata_designator",
+      issuingIcaoCode: "issuing_icao_code",
+      passengerNameRecord: "passenger_name_record",
+      reservationSystem: "reservation_system",
+      restrictedTicket: "restricted_ticket",
+      ticketDeliveryMethod: "ticket_delivery_method",
+      ticketNumber: "ticket_number",
+      travelAgencyCode: "travel_agency_code",
+      travelAgencyInvoiceNumber: "travel_agency_invoice_number",
+      travelAgencyName: "travel_agency_name",
+      travelAgencyPlanName: "travel_agency_plan_name",
+    });
+  })
+);
 
 export function airlineToJSON(airline: Airline): string {
   return JSON.stringify(Airline$outboundSchema.parse(airline));

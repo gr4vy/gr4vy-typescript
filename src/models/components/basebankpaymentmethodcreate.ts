@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   BankAccountHolder,
   BankAccountHolder$Outbound,
@@ -47,20 +48,22 @@ export const BaseBankPaymentMethodCreate$outboundSchema: z.ZodType<
   BaseBankPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   BaseBankPaymentMethodCreate
-> = z.object({
-  method: z.literal("bank").default("bank" as const),
-  accountHolder: BankAccountHolder$outboundSchema,
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accountHolder: "account_holder",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("bank").default("bank" as const),
+    accountHolder: BankAccountHolder$outboundSchema,
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      accountHolder: "account_holder",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function baseBankPaymentMethodCreateToJSON(
   baseBankPaymentMethodCreate: BaseBankPaymentMethodCreate,

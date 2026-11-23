@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { CardType, CardType$outboundSchema } from "./cardtype.js";
 
 /**
@@ -66,27 +67,29 @@ export const ClickToPayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
   ClickToPayFPANPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   ClickToPayFPANPaymentMethodCreate
-> = z.object({
-  expirationDate: z.string(),
-  number: z.string(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  cardType: z.nullable(CardType$outboundSchema).optional(),
-  method: z.literal("click-to-pay"),
-  redirectUrl: z.nullable(z.string()).optional(),
-  securityCode: z.nullable(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    externalIdentifier: "external_identifier",
-    cardType: "card_type",
-    redirectUrl: "redirect_url",
-    securityCode: "security_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    expirationDate: z.string(),
+    number: z.string(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    cardType: z.nullable(CardType$outboundSchema).optional(),
+    method: z.literal("click-to-pay"),
+    redirectUrl: z.nullable(z.string()).optional(),
+    securityCode: z.nullable(z.any()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expirationDate: "expiration_date",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      externalIdentifier: "external_identifier",
+      cardType: "card_type",
+      redirectUrl: "redirect_url",
+      securityCode: "security_code",
+    });
+  })
+);
 
 export function clickToPayFPANPaymentMethodCreateToJSON(
   clickToPayFPANPaymentMethodCreate: ClickToPayFPANPaymentMethodCreate,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AdyenOptions = {
   /**
@@ -21,9 +22,11 @@ export const AdyenOptions$outboundSchema: z.ZodType<
   AdyenOptions$Outbound,
   z.ZodTypeDef,
   AdyenOptions
-> = z.object({
-  additionalData: z.nullable(z.record(z.string())).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    additionalData: z.nullable(z.record(z.string())).optional(),
+  })
+);
 
 export function adyenOptionsToJSON(adyenOptions: AdyenOptions): string {
   return JSON.stringify(AdyenOptions$outboundSchema.parse(adyenOptions));

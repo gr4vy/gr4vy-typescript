@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryAddress = {
   /**
@@ -52,15 +53,17 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryAddress$outboundSchema:
     ForterAntiFraudOptionsCartItemBeneficiaryAddress$Outbound,
     z.ZodTypeDef,
     ForterAntiFraudOptionsCartItemBeneficiaryAddress
-  > = z.object({
-    country: z.string(),
-    address1: z.nullable(z.string()).optional(),
-    address2: z.nullable(z.string()).optional(),
-    zip: z.nullable(z.string()).optional(),
-    region: z.nullable(z.string()).optional(),
-    company: z.nullable(z.string()).optional(),
-    city: z.nullable(z.string()).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      country: z.string(),
+      address1: z.nullable(z.string()).optional(),
+      address2: z.nullable(z.string()).optional(),
+      zip: z.nullable(z.string()).optional(),
+      region: z.nullable(z.string()).optional(),
+      company: z.nullable(z.string()).optional(),
+      city: z.nullable(z.string()).optional(),
+    })
+  );
 
 export function forterAntiFraudOptionsCartItemBeneficiaryAddressToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryAddress:

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Address,
   Address$Outbound,
@@ -57,22 +58,24 @@ export const PayoutMerchant$outboundSchema: z.ZodType<
   PayoutMerchant$Outbound,
   z.ZodTypeDef,
   PayoutMerchant
-> = z.object({
-  name: z.string(),
-  identificationNumber: z.string(),
-  phoneNumber: z.string(),
-  url: z.string(),
-  statementDescriptor: z.string(),
-  merchantCategoryCode: z.string(),
-  address: z.nullable(Address$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    identificationNumber: "identification_number",
-    phoneNumber: "phone_number",
-    statementDescriptor: "statement_descriptor",
-    merchantCategoryCode: "merchant_category_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    identificationNumber: z.string(),
+    phoneNumber: z.string(),
+    url: z.string(),
+    statementDescriptor: z.string(),
+    merchantCategoryCode: z.string(),
+    address: z.nullable(Address$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      identificationNumber: "identification_number",
+      phoneNumber: "phone_number",
+      statementDescriptor: "statement_descriptor",
+      merchantCategoryCode: "merchant_category_code",
+    });
+  })
+);
 
 export function payoutMerchantToJSON(payoutMerchant: PayoutMerchant): string {
   return JSON.stringify(PayoutMerchant$outboundSchema.parse(payoutMerchant));

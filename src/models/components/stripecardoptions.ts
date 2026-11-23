@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   StripeConnectOptions,
   StripeConnectOptions$Outbound,
@@ -37,17 +38,19 @@ export const StripeCardOptions$outboundSchema: z.ZodType<
   StripeCardOptions$Outbound,
   z.ZodTypeDef,
   StripeCardOptions
-> = z.object({
-  stripeConnect: z.nullable(StripeConnectOptions$outboundSchema).optional(),
-  customerId: z.nullable(z.string()).optional(),
-  errorOnRequiresAction: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    stripeConnect: "stripe_connect",
-    customerId: "customer_id",
-    errorOnRequiresAction: "error_on_requires_action",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    stripeConnect: z.nullable(StripeConnectOptions$outboundSchema).optional(),
+    customerId: z.nullable(z.string()).optional(),
+    errorOnRequiresAction: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      stripeConnect: "stripe_connect",
+      customerId: "customer_id",
+      errorOnRequiresAction: "error_on_requires_action",
+    });
+  })
+);
 
 export function stripeCardOptionsToJSON(
   stripeCardOptions: StripeCardOptions,

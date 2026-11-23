@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type MerchantProfileScheme = {
   /**
@@ -44,23 +45,25 @@ export const MerchantProfileScheme$outboundSchema: z.ZodType<
   MerchantProfileScheme$Outbound,
   z.ZodTypeDef,
   MerchantProfileScheme
-> = z.object({
-  merchantAcquirerBin: z.string(),
-  merchantAcquirerId: z.string(),
-  merchantName: z.string(),
-  merchantCountryCode: z.string(),
-  merchantCategoryCode: z.string(),
-  merchantUrl: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAcquirerBin: "merchant_acquirer_bin",
-    merchantAcquirerId: "merchant_acquirer_id",
-    merchantName: "merchant_name",
-    merchantCountryCode: "merchant_country_code",
-    merchantCategoryCode: "merchant_category_code",
-    merchantUrl: "merchant_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAcquirerBin: z.string(),
+    merchantAcquirerId: z.string(),
+    merchantName: z.string(),
+    merchantCountryCode: z.string(),
+    merchantCategoryCode: z.string(),
+    merchantUrl: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantAcquirerBin: "merchant_acquirer_bin",
+      merchantAcquirerId: "merchant_acquirer_id",
+      merchantName: "merchant_name",
+      merchantCountryCode: "merchant_country_code",
+      merchantCategoryCode: "merchant_category_code",
+      merchantUrl: "merchant_url",
+    });
+  })
+);
 
 export function merchantProfileSchemeToJSON(
   merchantProfileScheme: MerchantProfileScheme,

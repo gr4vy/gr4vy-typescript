@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -97,39 +97,45 @@ export const Paymentcardtype$inboundSchema: z.ZodType<
   Paymentcardtype,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(Paymentcardtype);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Paymentcardtype));
 
 /** @internal */
 export const Paymentcardbrand$inboundSchema: z.ZodType<
   Paymentcardbrand,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(Paymentcardbrand);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(Paymentcardbrand)
+);
 
 /** @internal */
 export const Paymentcardnetwork$inboundSchema: z.ZodType<
   Paymentcardnetwork,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(Paymentcardnetwork);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(Paymentcardnetwork)
+);
 
 /** @internal */
 export const PazeMaskedCard$inboundSchema: z.ZodType<
   PazeMaskedCard,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  panLastFour: z.string(),
-  paymentAccountReference: z.string(),
-  panExpirationMonth: z.nullable(z.string()),
-  panExpirationYear: z.nullable(z.string()),
-  paymentCardDescriptor: z.string(),
-  paymentCardType: Paymentcardtype$inboundSchema,
-  paymentCardBrand: Paymentcardbrand$inboundSchema,
-  paymentCardNetwork: Paymentcardnetwork$inboundSchema,
-  digitalCardData: PazeDigitalCardData$inboundSchema,
-  billingAddress: z.nullable(PazeBillingAddress$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    panLastFour: z.string(),
+    paymentAccountReference: z.string(),
+    panExpirationMonth: z.nullable(z.string()),
+    panExpirationYear: z.nullable(z.string()),
+    paymentCardDescriptor: z.string(),
+    paymentCardType: Paymentcardtype$inboundSchema,
+    paymentCardBrand: Paymentcardbrand$inboundSchema,
+    paymentCardNetwork: Paymentcardnetwork$inboundSchema,
+    digitalCardData: PazeDigitalCardData$inboundSchema,
+    billingAddress: z.nullable(PazeBillingAddress$inboundSchema),
+  })
+);
 
 export function pazeMaskedCardFromJSON(
   jsonString: string,

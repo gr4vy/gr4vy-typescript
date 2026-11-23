@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -32,7 +33,7 @@ export type PazeSessionRequest = {
 
 /** @internal */
 export const Source$outboundSchema: z.ZodType<string, z.ZodTypeDef, Source> =
-  openEnums.outboundSchema(Source);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Source));
 
 /** @internal */
 export type PazeSessionRequest$Outbound = {
@@ -45,14 +46,16 @@ export const PazeSessionRequest$outboundSchema: z.ZodType<
   PazeSessionRequest$Outbound,
   z.ZodTypeDef,
   PazeSessionRequest
-> = z.object({
-  source: Source$outboundSchema.default("web"),
-  domainName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    domainName: "domain_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    source: Source$outboundSchema.default("web"),
+    domainName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      domainName: "domain_name",
+    });
+  })
+);
 
 export function pazeSessionRequestToJSON(
   pazeSessionRequest: PazeSessionRequest,

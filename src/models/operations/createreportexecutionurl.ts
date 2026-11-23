@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreateReportExecutionUrlGlobals = {
@@ -43,19 +44,21 @@ export const CreateReportExecutionUrlRequest$outboundSchema: z.ZodType<
   CreateReportExecutionUrlRequest$Outbound,
   z.ZodTypeDef,
   CreateReportExecutionUrlRequest
-> = z.object({
-  reportId: z.string(),
-  reportExecutionId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  reportExecutionUrlGenerate: components
-    .ReportExecutionUrlGenerate$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reportId: "report_id",
-    reportExecutionId: "report_execution_id",
-    reportExecutionUrlGenerate: "ReportExecutionUrlGenerate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reportId: z.string(),
+    reportExecutionId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    reportExecutionUrlGenerate: components
+      .ReportExecutionUrlGenerate$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      reportId: "report_id",
+      reportExecutionId: "report_execution_id",
+      reportExecutionUrlGenerate: "ReportExecutionUrlGenerate",
+    });
+  })
+);
 
 export function createReportExecutionUrlRequestToJSON(
   createReportExecutionUrlRequest: CreateReportExecutionUrlRequest,

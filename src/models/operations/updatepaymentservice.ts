@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type UpdatePaymentServiceGlobals = {
@@ -34,16 +35,18 @@ export const UpdatePaymentServiceRequest$outboundSchema: z.ZodType<
   UpdatePaymentServiceRequest$Outbound,
   z.ZodTypeDef,
   UpdatePaymentServiceRequest
-> = z.object({
-  paymentServiceId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  paymentServiceUpdate: components.PaymentServiceUpdate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    paymentServiceId: "payment_service_id",
-    paymentServiceUpdate: "PaymentServiceUpdate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentServiceId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    paymentServiceUpdate: components.PaymentServiceUpdate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      paymentServiceId: "payment_service_id",
+      paymentServiceUpdate: "PaymentServiceUpdate",
+    });
+  })
+);
 
 export function updatePaymentServiceRequestToJSON(
   updatePaymentServiceRequest: UpdatePaymentServiceRequest,

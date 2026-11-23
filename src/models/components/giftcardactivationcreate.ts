@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * The details used to activate a physical gift card.
@@ -60,22 +61,24 @@ export const GiftCardActivationCreate$outboundSchema: z.ZodType<
   GiftCardActivationCreate$Outbound,
   z.ZodTypeDef,
   GiftCardActivationCreate
-> = z.object({
-  number: z.string(),
-  pin: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  store: z.boolean().default(false),
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    externalIdentifier: "external_identifier",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    number: z.string(),
+    pin: z.nullable(z.string()).optional(),
+    amount: z.nullable(z.number().int()).optional(),
+    currency: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    store: z.boolean().default(false),
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      externalIdentifier: "external_identifier",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+    });
+  })
+);
 
 export function giftCardActivationCreateToJSON(
   giftCardActivationCreate: GiftCardActivationCreate,

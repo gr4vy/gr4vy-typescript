@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -33,17 +33,19 @@ export const GiftCardService$inboundSchema: z.ZodType<
   GiftCardService,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("gift-card-service").default("gift-card-service"),
-  id: z.string(),
-  gift_card_service_definition_id: GiftCardServiceProvider$inboundSchema,
-  display_name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "gift_card_service_definition_id": "giftCardServiceDefinitionId",
-    "display_name": "displayName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("gift-card-service").default("gift-card-service"),
+    id: z.string(),
+    gift_card_service_definition_id: GiftCardServiceProvider$inboundSchema,
+    display_name: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "gift_card_service_definition_id": "giftCardServiceDefinitionId",
+      "display_name": "displayName",
+    });
+  })
+);
 
 export function giftCardServiceFromJSON(
   jsonString: string,

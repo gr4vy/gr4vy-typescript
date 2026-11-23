@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -53,25 +53,31 @@ export const PaymentServiceToken$inboundSchema: z.ZodType<
   PaymentServiceToken,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-service-token").default("payment-service-token"),
-  id: z.string(),
-  approval_url: z.nullable(z.string()).optional(),
-  payment_method_id: z.string(),
-  payment_service_id: z.string(),
-  status: PaymentMethodStatus$inboundSchema,
-  token: z.nullable(z.string()).optional(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "approval_url": "approvalUrl",
-    "payment_method_id": "paymentMethodId",
-    "payment_service_id": "paymentServiceId",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-service-token").default("payment-service-token"),
+    id: z.string(),
+    approval_url: z.nullable(z.string()).optional(),
+    payment_method_id: z.string(),
+    payment_service_id: z.string(),
+    status: PaymentMethodStatus$inboundSchema,
+    token: z.nullable(z.string()).optional(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "approval_url": "approvalUrl",
+      "payment_method_id": "paymentMethodId",
+      "payment_service_id": "paymentServiceId",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function paymentServiceTokenFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -187,7 +188,9 @@ export const RedirectPaymentMethodCreateMethod$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   RedirectPaymentMethodCreateMethod
-> = openEnums.outboundSchema(RedirectPaymentMethodCreateMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(RedirectPaymentMethodCreateMethod)
+);
 
 /** @internal */
 export type RedirectPaymentMethodCreate$Outbound = {
@@ -205,22 +208,24 @@ export const RedirectPaymentMethodCreate$outboundSchema: z.ZodType<
   RedirectPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   RedirectPaymentMethodCreate
-> = z.object({
-  method: RedirectPaymentMethodCreateMethod$outboundSchema,
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  country: z.string(),
-  currency: z.string(),
-  redirectUrl: z.string(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    redirectUrl: "redirect_url",
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: RedirectPaymentMethodCreateMethod$outboundSchema,
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    country: z.string(),
+    currency: z.string(),
+    redirectUrl: z.string(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      redirectUrl: "redirect_url",
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function redirectPaymentMethodCreateToJSON(
   redirectPaymentMethodCreate: RedirectPaymentMethodCreate,

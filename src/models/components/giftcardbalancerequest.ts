@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   GiftCardRequest,
   GiftCardRequest$Outbound,
@@ -33,10 +34,12 @@ export const Items$outboundSchema: z.ZodType<
   Items$Outbound,
   z.ZodTypeDef,
   Items
-> = z.union([
-  GiftCardRequest$outboundSchema,
-  GiftCardStoredRequest$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    GiftCardRequest$outboundSchema,
+    GiftCardStoredRequest$outboundSchema,
+  ])
+);
 
 export function itemsToJSON(items: Items): string {
   return JSON.stringify(Items$outboundSchema.parse(items));
@@ -52,14 +55,16 @@ export const GiftCardBalanceRequest$outboundSchema: z.ZodType<
   GiftCardBalanceRequest$Outbound,
   z.ZodTypeDef,
   GiftCardBalanceRequest
-> = z.object({
-  items: z.array(
-    z.union([
-      GiftCardRequest$outboundSchema,
-      GiftCardStoredRequest$outboundSchema,
-    ]),
-  ),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(
+      z.union([
+        GiftCardRequest$outboundSchema,
+        GiftCardStoredRequest$outboundSchema,
+      ]),
+    ),
+  })
+);
 
 export function giftCardBalanceRequestToJSON(
   giftCardBalanceRequest: GiftCardBalanceRequest,

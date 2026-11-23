@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -39,14 +39,16 @@ export const CreatePazeDigitalWalletSessionRequest$outboundSchema: z.ZodType<
   CreatePazeDigitalWalletSessionRequest$Outbound,
   z.ZodTypeDef,
   CreatePazeDigitalWalletSessionRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  pazeSessionRequest: components.PazeSessionRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    pazeSessionRequest: "PazeSessionRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    pazeSessionRequest: components.PazeSessionRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      pazeSessionRequest: "PazeSessionRequest",
+    });
+  })
+);
 
 export function createPazeDigitalWalletSessionRequestToJSON(
   createPazeDigitalWalletSessionRequest: CreatePazeDigitalWalletSessionRequest,
@@ -64,10 +66,12 @@ export const CreatePazeDigitalWalletSessionResponseCreatePazeDigitalWalletSessio
     CreatePazeDigitalWalletSessionResponseCreatePazeDigitalWalletSession,
     z.ZodTypeDef,
     unknown
-  > = z.union([
-    components.PazeMobileSession$inboundSchema,
-    components.PazeWebSession$inboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      components.PazeMobileSession$inboundSchema,
+      components.PazeWebSession$inboundSchema,
+    ])
+  );
 
 export function createPazeDigitalWalletSessionResponseCreatePazeDigitalWalletSessionFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -21,7 +22,7 @@ export type ForterAntiFraudOptionsCartItemBasicItemData = {
 
 /** @internal */
 export const Type$outboundSchema: z.ZodType<string, z.ZodTypeDef, Type> =
-  openEnums.outboundSchema(Type);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Type));
 
 /** @internal */
 export type ForterAntiFraudOptionsCartItemBasicItemData$Outbound = {
@@ -34,9 +35,11 @@ export const ForterAntiFraudOptionsCartItemBasicItemData$outboundSchema:
     ForterAntiFraudOptionsCartItemBasicItemData$Outbound,
     z.ZodTypeDef,
     ForterAntiFraudOptionsCartItemBasicItemData
-  > = z.object({
-    type: z.nullable(Type$outboundSchema).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.nullable(Type$outboundSchema).optional(),
+    })
+  );
 
 export function forterAntiFraudOptionsCartItemBasicItemDataToJSON(
   forterAntiFraudOptionsCartItemBasicItemData:

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -238,97 +238,103 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   ListTransactionsRequest$Outbound,
   z.ZodTypeDef,
   ListTransactionsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  createdAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  search: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  buyerEmailAddress: z.nullable(z.string()).optional(),
-  ipAddress: z.nullable(z.string()).optional(),
-  status: z.nullable(z.array(components.TransactionStatus$outboundSchema))
-    .optional(),
-  id: z.nullable(z.string()).optional(),
-  paymentServiceTransactionId: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  metadata: z.nullable(z.array(z.string())).optional(),
-  amountEq: z.nullable(z.number().int()).optional(),
-  amountLte: z.nullable(z.number().int()).optional(),
-  amountGte: z.nullable(z.number().int()).optional(),
-  currency: z.nullable(z.array(z.string())).optional(),
-  country: z.nullable(z.array(z.string())).optional(),
-  paymentServiceId: z.nullable(z.array(z.string())).optional(),
-  paymentMethodId: z.nullable(z.string()).optional(),
-  paymentMethodLabel: z.nullable(z.string()).optional(),
-  paymentMethodScheme: z.nullable(z.array(z.string())).optional(),
-  paymentMethodCountry: z.nullable(z.string()).optional(),
-  paymentMethodFingerprint: z.nullable(z.string()).optional(),
-  method: z.nullable(z.array(components.Method$outboundSchema)).optional(),
-  errorCode: z.nullable(z.array(z.string())).optional(),
-  hasRefunds: z.nullable(z.boolean()).optional(),
-  pendingReview: z.nullable(z.boolean()).optional(),
-  checkoutSessionId: z.nullable(z.string()).optional(),
-  paymentLinkId: z.nullable(z.string()).optional(),
-  reconciliationId: z.nullable(z.string()).optional(),
-  hasGiftCardRedemptions: z.nullable(z.boolean()).optional(),
-  giftCardId: z.nullable(z.string()).optional(),
-  giftCardLast4: z.nullable(z.string()).optional(),
-  hasSettlements: z.nullable(z.boolean()).optional(),
-  paymentMethodBin: z.nullable(z.string()).optional(),
-  paymentSource: z.nullable(
-    z.array(components.TransactionPaymentSource$outboundSchema),
-  ).optional(),
-  isSubsequentPayment: z.nullable(z.boolean()).optional(),
-  merchantInitiated: z.nullable(z.boolean()).optional(),
-  used3ds: z.nullable(z.boolean()).optional(),
-  disputed: z.nullable(z.boolean()).optional(),
-  reauthorizedFromTransactionId: z.nullable(z.string()).optional(),
-  buyerSearch: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createdAtLte: "created_at_lte",
-    createdAtGte: "created_at_gte",
-    updatedAtLte: "updated_at_lte",
-    updatedAtGte: "updated_at_gte",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    buyerEmailAddress: "buyer_email_address",
-    ipAddress: "ip_address",
-    paymentServiceTransactionId: "payment_service_transaction_id",
-    externalIdentifier: "external_identifier",
-    amountEq: "amount_eq",
-    amountLte: "amount_lte",
-    amountGte: "amount_gte",
-    paymentServiceId: "payment_service_id",
-    paymentMethodId: "payment_method_id",
-    paymentMethodLabel: "payment_method_label",
-    paymentMethodScheme: "payment_method_scheme",
-    paymentMethodCountry: "payment_method_country",
-    paymentMethodFingerprint: "payment_method_fingerprint",
-    errorCode: "error_code",
-    hasRefunds: "has_refunds",
-    pendingReview: "pending_review",
-    checkoutSessionId: "checkout_session_id",
-    paymentLinkId: "payment_link_id",
-    reconciliationId: "reconciliation_id",
-    hasGiftCardRedemptions: "has_gift_card_redemptions",
-    giftCardId: "gift_card_id",
-    giftCardLast4: "gift_card_last4",
-    hasSettlements: "has_settlements",
-    paymentMethodBin: "payment_method_bin",
-    paymentSource: "payment_source",
-    isSubsequentPayment: "is_subsequent_payment",
-    merchantInitiated: "merchant_initiated",
-    used3ds: "used_3ds",
-    reauthorizedFromTransactionId: "reauthorized_from_transaction_id",
-    buyerSearch: "buyer_search",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    createdAtLte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    createdAtGte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    updatedAtLte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    updatedAtGte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    search: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    buyerEmailAddress: z.nullable(z.string()).optional(),
+    ipAddress: z.nullable(z.string()).optional(),
+    status: z.nullable(z.array(components.TransactionStatus$outboundSchema))
+      .optional(),
+    id: z.nullable(z.string()).optional(),
+    paymentServiceTransactionId: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    metadata: z.nullable(z.array(z.string())).optional(),
+    amountEq: z.nullable(z.number().int()).optional(),
+    amountLte: z.nullable(z.number().int()).optional(),
+    amountGte: z.nullable(z.number().int()).optional(),
+    currency: z.nullable(z.array(z.string())).optional(),
+    country: z.nullable(z.array(z.string())).optional(),
+    paymentServiceId: z.nullable(z.array(z.string())).optional(),
+    paymentMethodId: z.nullable(z.string()).optional(),
+    paymentMethodLabel: z.nullable(z.string()).optional(),
+    paymentMethodScheme: z.nullable(z.array(z.string())).optional(),
+    paymentMethodCountry: z.nullable(z.string()).optional(),
+    paymentMethodFingerprint: z.nullable(z.string()).optional(),
+    method: z.nullable(z.array(components.Method$outboundSchema)).optional(),
+    errorCode: z.nullable(z.array(z.string())).optional(),
+    hasRefunds: z.nullable(z.boolean()).optional(),
+    pendingReview: z.nullable(z.boolean()).optional(),
+    checkoutSessionId: z.nullable(z.string()).optional(),
+    paymentLinkId: z.nullable(z.string()).optional(),
+    reconciliationId: z.nullable(z.string()).optional(),
+    hasGiftCardRedemptions: z.nullable(z.boolean()).optional(),
+    giftCardId: z.nullable(z.string()).optional(),
+    giftCardLast4: z.nullable(z.string()).optional(),
+    hasSettlements: z.nullable(z.boolean()).optional(),
+    paymentMethodBin: z.nullable(z.string()).optional(),
+    paymentSource: z.nullable(
+      z.array(components.TransactionPaymentSource$outboundSchema),
+    ).optional(),
+    isSubsequentPayment: z.nullable(z.boolean()).optional(),
+    merchantInitiated: z.nullable(z.boolean()).optional(),
+    used3ds: z.nullable(z.boolean()).optional(),
+    disputed: z.nullable(z.boolean()).optional(),
+    reauthorizedFromTransactionId: z.nullable(z.string()).optional(),
+    buyerSearch: z.nullable(z.array(z.string())).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      createdAtLte: "created_at_lte",
+      createdAtGte: "created_at_gte",
+      updatedAtLte: "updated_at_lte",
+      updatedAtGte: "updated_at_gte",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      buyerEmailAddress: "buyer_email_address",
+      ipAddress: "ip_address",
+      paymentServiceTransactionId: "payment_service_transaction_id",
+      externalIdentifier: "external_identifier",
+      amountEq: "amount_eq",
+      amountLte: "amount_lte",
+      amountGte: "amount_gte",
+      paymentServiceId: "payment_service_id",
+      paymentMethodId: "payment_method_id",
+      paymentMethodLabel: "payment_method_label",
+      paymentMethodScheme: "payment_method_scheme",
+      paymentMethodCountry: "payment_method_country",
+      paymentMethodFingerprint: "payment_method_fingerprint",
+      errorCode: "error_code",
+      hasRefunds: "has_refunds",
+      pendingReview: "pending_review",
+      checkoutSessionId: "checkout_session_id",
+      paymentLinkId: "payment_link_id",
+      reconciliationId: "reconciliation_id",
+      hasGiftCardRedemptions: "has_gift_card_redemptions",
+      giftCardId: "gift_card_id",
+      giftCardLast4: "gift_card_last4",
+      hasSettlements: "has_settlements",
+      paymentMethodBin: "payment_method_bin",
+      paymentSource: "payment_source",
+      isSubsequentPayment: "is_subsequent_payment",
+      merchantInitiated: "merchant_initiated",
+      used3ds: "used_3ds",
+      reauthorizedFromTransactionId: "reauthorized_from_transaction_id",
+      buyerSearch: "buyer_search",
+    });
+  })
+);
 
 export function listTransactionsRequestToJSON(
   listTransactionsRequest: ListTransactionsRequest,
@@ -343,13 +349,15 @@ export const ListTransactionsResponse$inboundSchema: z.ZodType<
   ListTransactionsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.TransactionSummaries$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.TransactionSummaries$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listTransactionsResponseFromJSON(
   jsonString: string,

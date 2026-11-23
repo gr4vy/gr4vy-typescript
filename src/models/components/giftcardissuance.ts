@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -61,28 +61,35 @@ export const GiftCardIssuance$inboundSchema: z.ZodType<
   GiftCardIssuance,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("gift-card-issuance").default("gift-card-issuance"),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  gift_card_service: GiftCardService$inboundSchema,
-  gift_card_service_payment_issuance_id: z.string(),
-  url: z.string(),
-  amount: z.number().int(),
-  currency: z.string(),
-  external_identifier: z.nullable(z.string()).optional(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "gift_card_service": "giftCardService",
-    "gift_card_service_payment_issuance_id": "giftCardServicePaymentIssuanceId",
-    "external_identifier": "externalIdentifier",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("gift-card-issuance").default("gift-card-issuance"),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    gift_card_service: GiftCardService$inboundSchema,
+    gift_card_service_payment_issuance_id: z.string(),
+    url: z.string(),
+    amount: z.number().int(),
+    currency: z.string(),
+    external_identifier: z.nullable(z.string()).optional(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "gift_card_service": "giftCardService",
+      "gift_card_service_payment_issuance_id":
+        "giftCardServicePaymentIssuanceId",
+      "external_identifier": "externalIdentifier",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function giftCardIssuanceFromJSON(
   jsonString: string,

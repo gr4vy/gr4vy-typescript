@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -52,22 +52,24 @@ export const BillingDetails$inboundSchema: z.ZodType<
   BillingDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  email_address: z.nullable(z.string()).optional(),
-  phone_number: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$inboundSchema).optional(),
-  tax_id: z.nullable(TaxId$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "phone_number": "phoneNumber",
-    "tax_id": "taxId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    first_name: z.nullable(z.string()).optional(),
+    last_name: z.nullable(z.string()).optional(),
+    email_address: z.nullable(z.string()).optional(),
+    phone_number: z.nullable(z.string()).optional(),
+    address: z.nullable(Address$inboundSchema).optional(),
+    tax_id: z.nullable(TaxId$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "email_address": "emailAddress",
+      "phone_number": "phoneNumber",
+      "tax_id": "taxId",
+    });
+  })
+);
 /** @internal */
 export type BillingDetails$Outbound = {
   first_name?: string | null | undefined;
@@ -83,22 +85,24 @@ export const BillingDetails$outboundSchema: z.ZodType<
   BillingDetails$Outbound,
   z.ZodTypeDef,
   BillingDetails
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$outboundSchema).optional(),
-  taxId: z.nullable(TaxId$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    phoneNumber: "phone_number",
-    taxId: "tax_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    emailAddress: z.nullable(z.string()).optional(),
+    phoneNumber: z.nullable(z.string()).optional(),
+    address: z.nullable(Address$outboundSchema).optional(),
+    taxId: z.nullable(TaxId$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      emailAddress: "email_address",
+      phoneNumber: "phone_number",
+      taxId: "tax_id",
+    });
+  })
+);
 
 export function billingDetailsToJSON(billingDetails: BillingDetails): string {
   return JSON.stringify(BillingDetails$outboundSchema.parse(billingDetails));

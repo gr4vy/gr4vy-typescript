@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Airline,
   Airline$Outbound,
@@ -172,54 +173,56 @@ export const PaymentLinkCreate$outboundSchema: z.ZodType<
   PaymentLinkCreate$Outbound,
   z.ZodTypeDef,
   PaymentLinkCreate
-> = z.object({
-  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
-  expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
-    .optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
-    .optional(),
-  locale: z.nullable(z.string()).optional(),
-  merchantName: z.nullable(z.string()).optional(),
-  merchantUrl: z.nullable(z.string()).optional(),
-  merchantBannerUrl: z.nullable(z.string()).optional(),
-  merchantColor: z.nullable(z.string()).optional(),
-  merchantMessage: z.nullable(z.string()).optional(),
-  merchantTermsAndConditionsUrl: z.nullable(z.string()).optional(),
-  merchantFaviconUrl: z.nullable(z.string()).optional(),
-  amount: z.number().int(),
-  country: z.string(),
-  currency: z.string(),
-  intent: PaymentLinkIntent$outboundSchema.optional(),
-  returnUrl: z.nullable(z.string()).optional(),
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
-  airline: z.nullable(Airline$outboundSchema).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  paymentSource: TransactionPaymentSource$outboundSchema.optional(),
-  store: z.boolean().default(false),
-  buyerId: z.nullable(z.string()).optional(),
-  installmentCount: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expiresAt: "expires_at",
-    connectionOptions: "connection_options",
-    externalIdentifier: "external_identifier",
-    statementDescriptor: "statement_descriptor",
-    merchantName: "merchant_name",
-    merchantUrl: "merchant_url",
-    merchantBannerUrl: "merchant_banner_url",
-    merchantColor: "merchant_color",
-    merchantMessage: "merchant_message",
-    merchantTermsAndConditionsUrl: "merchant_terms_and_conditions_url",
-    merchantFaviconUrl: "merchant_favicon_url",
-    returnUrl: "return_url",
-    cartItems: "cart_items",
-    paymentSource: "payment_source",
-    buyerId: "buyer_id",
-    installmentCount: "installment_count",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
+    expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
+      .optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
+      .optional(),
+    locale: z.nullable(z.string()).optional(),
+    merchantName: z.nullable(z.string()).optional(),
+    merchantUrl: z.nullable(z.string()).optional(),
+    merchantBannerUrl: z.nullable(z.string()).optional(),
+    merchantColor: z.nullable(z.string()).optional(),
+    merchantMessage: z.nullable(z.string()).optional(),
+    merchantTermsAndConditionsUrl: z.nullable(z.string()).optional(),
+    merchantFaviconUrl: z.nullable(z.string()).optional(),
+    amount: z.number().int(),
+    country: z.string(),
+    currency: z.string(),
+    intent: PaymentLinkIntent$outboundSchema.optional(),
+    returnUrl: z.nullable(z.string()).optional(),
+    cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+    airline: z.nullable(Airline$outboundSchema).optional(),
+    metadata: z.nullable(z.record(z.any())).optional(),
+    paymentSource: TransactionPaymentSource$outboundSchema.optional(),
+    store: z.boolean().default(false),
+    buyerId: z.nullable(z.string()).optional(),
+    installmentCount: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expiresAt: "expires_at",
+      connectionOptions: "connection_options",
+      externalIdentifier: "external_identifier",
+      statementDescriptor: "statement_descriptor",
+      merchantName: "merchant_name",
+      merchantUrl: "merchant_url",
+      merchantBannerUrl: "merchant_banner_url",
+      merchantColor: "merchant_color",
+      merchantMessage: "merchant_message",
+      merchantTermsAndConditionsUrl: "merchant_terms_and_conditions_url",
+      merchantFaviconUrl: "merchant_favicon_url",
+      returnUrl: "return_url",
+      cartItems: "cart_items",
+      paymentSource: "payment_source",
+      buyerId: "buyer_id",
+      installmentCount: "installment_count",
+    });
+  })
+);
 
 export function paymentLinkCreateToJSON(
   paymentLinkCreate: PaymentLinkCreate,

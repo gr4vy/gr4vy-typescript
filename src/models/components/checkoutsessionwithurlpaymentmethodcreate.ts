@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -62,8 +63,10 @@ export const CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme$outboundSc
     string,
     z.ZodTypeDef,
     CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme
-  > = openEnums.outboundSchema(
-    CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.outboundSchema(
+      CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme,
+    )
   );
 
 /** @internal */
@@ -83,25 +86,29 @@ export const CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema:
     CheckoutSessionWithUrlPaymentMethodCreate$Outbound,
     z.ZodTypeDef,
     CheckoutSessionWithUrlPaymentMethodCreate
-  > = z.object({
-    method: z.literal("checkout-session").default("checkout-session" as const),
-    id: z.string(),
-    externalIdentifier: z.nullable(z.string()).optional(),
-    buyerId: z.nullable(z.string()).optional(),
-    buyerExternalIdentifier: z.nullable(z.string()).optional(),
-    redirectUrl: z.nullable(z.string()).optional(),
-    preferredScheme: z.nullable(
-      CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme$outboundSchema,
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      externalIdentifier: "external_identifier",
-      buyerId: "buyer_id",
-      buyerExternalIdentifier: "buyer_external_identifier",
-      redirectUrl: "redirect_url",
-      preferredScheme: "preferred_scheme",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      method: z.literal("checkout-session").default(
+        "checkout-session" as const,
+      ),
+      id: z.string(),
+      externalIdentifier: z.nullable(z.string()).optional(),
+      buyerId: z.nullable(z.string()).optional(),
+      buyerExternalIdentifier: z.nullable(z.string()).optional(),
+      redirectUrl: z.nullable(z.string()).optional(),
+      preferredScheme: z.nullable(
+        CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme$outboundSchema,
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        externalIdentifier: "external_identifier",
+        buyerId: "buyer_id",
+        buyerExternalIdentifier: "buyer_external_identifier",
+        redirectUrl: "redirect_url",
+        preferredScheme: "preferred_scheme",
+      });
+    })
+  );
 
 export function checkoutSessionWithUrlPaymentMethodCreateToJSON(
   checkoutSessionWithUrlPaymentMethodCreate:

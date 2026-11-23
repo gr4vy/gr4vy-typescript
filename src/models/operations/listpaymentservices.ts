@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -59,18 +59,20 @@ export const ListPaymentServicesRequest$outboundSchema: z.ZodType<
   ListPaymentServicesRequest$Outbound,
   z.ZodTypeDef,
   ListPaymentServicesRequest
-> = z.object({
-  method: z.nullable(components.Method$outboundSchema).optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  deleted: z.nullable(z.boolean()).optional(),
-  includeFields: z.boolean().default(true),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    includeFields: "include_fields",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.nullable(components.Method$outboundSchema).optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    deleted: z.nullable(z.boolean()).optional(),
+    includeFields: z.boolean().default(true),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      includeFields: "include_fields",
+    });
+  })
+);
 
 export function listPaymentServicesRequestToJSON(
   listPaymentServicesRequest: ListPaymentServicesRequest,
@@ -85,13 +87,15 @@ export const ListPaymentServicesResponse$inboundSchema: z.ZodType<
   ListPaymentServicesResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.PaymentServices$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.PaymentServices$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listPaymentServicesResponseFromJSON(
   jsonString: string,

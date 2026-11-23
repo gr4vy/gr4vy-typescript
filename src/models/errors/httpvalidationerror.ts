@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 import { Gr4vyError } from "./gr4vyerror.js";
 
@@ -36,16 +37,18 @@ export const HTTPValidationError$inboundSchema: z.ZodType<
   HTTPValidationError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  detail: z.array(components.ValidationError$inboundSchema).optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new HTTPValidationError(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    detail: z.array(components.ValidationError$inboundSchema).optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new HTTPValidationError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

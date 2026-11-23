@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreatePaymentServiceDefinitionSessionRequest = {
   paymentServiceDefinitionId: string;
@@ -22,15 +23,17 @@ export const CreatePaymentServiceDefinitionSessionRequest$outboundSchema:
     CreatePaymentServiceDefinitionSessionRequest$Outbound,
     z.ZodTypeDef,
     CreatePaymentServiceDefinitionSessionRequest
-  > = z.object({
-    paymentServiceDefinitionId: z.string(),
-    requestBody: z.record(z.any()),
-  }).transform((v) => {
-    return remap$(v, {
-      paymentServiceDefinitionId: "payment_service_definition_id",
-      requestBody: "RequestBody",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      paymentServiceDefinitionId: z.string(),
+      requestBody: z.record(z.any()),
+    }).transform((v) => {
+      return remap$(v, {
+        paymentServiceDefinitionId: "payment_service_definition_id",
+        requestBody: "RequestBody",
+      });
+    })
+  );
 
 export function createPaymentServiceDefinitionSessionRequestToJSON(
   createPaymentServiceDefinitionSessionRequest:

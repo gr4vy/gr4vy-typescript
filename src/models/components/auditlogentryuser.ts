@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { UserStatus, UserStatus$inboundSchema } from "./userstatus.js";
@@ -38,19 +38,21 @@ export const AuditLogEntryUser$inboundSchema: z.ZodType<
   AuditLogEntryUser,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("user").default("user"),
-  id: z.nullable(z.string()).optional(),
-  name: z.string(),
-  email_address: z.nullable(z.string()).optional(),
-  is_staff: z.boolean(),
-  status: UserStatus$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "email_address": "emailAddress",
-    "is_staff": "isStaff",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("user").default("user"),
+    id: z.nullable(z.string()).optional(),
+    name: z.string(),
+    email_address: z.nullable(z.string()).optional(),
+    is_staff: z.boolean(),
+    status: UserStatus$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "email_address": "emailAddress",
+      "is_staff": "isStaff",
+    });
+  })
+);
 
 export function auditLogEntryUserFromJSON(
   jsonString: string,

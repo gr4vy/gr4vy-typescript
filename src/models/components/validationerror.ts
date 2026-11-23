@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,9 +20,8 @@ export type ValidationError = {
 };
 
 /** @internal */
-export const Loc$inboundSchema: z.ZodType<Loc, z.ZodTypeDef, unknown> = z.union(
-  [z.string(), z.number().int()],
-);
+export const Loc$inboundSchema: z.ZodType<Loc, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.union([z.string(), z.number().int()]));
 
 export function locFromJSON(
   jsonString: string,
@@ -36,7 +35,7 @@ export function locFromJSON(
 
 /** @internal */
 export const Context$inboundSchema: z.ZodType<Context, z.ZodTypeDef, unknown> =
-  z.object({});
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function contextFromJSON(
   jsonString: string,
@@ -53,13 +52,15 @@ export const ValidationError$inboundSchema: z.ZodType<
   ValidationError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  loc: z.array(z.union([z.string(), z.number().int()])),
-  msg: z.string(),
-  type: z.string(),
-  input: z.any().optional(),
-  ctx: z.lazy(() => Context$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    loc: z.array(z.union([z.string(), z.number().int()])),
+    msg: z.string(),
+    type: z.string(),
+    input: z.any().optional(),
+    ctx: z.lazy(() => Context$inboundSchema).optional(),
+  })
+);
 
 export function validationErrorFromJSON(
   jsonString: string,

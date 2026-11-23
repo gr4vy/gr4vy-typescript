@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -50,7 +51,9 @@ export const TokenPaymentMethodCreatePreferredScheme$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TokenPaymentMethodCreatePreferredScheme
-> = openEnums.outboundSchema(TokenPaymentMethodCreatePreferredScheme);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TokenPaymentMethodCreatePreferredScheme)
+);
 
 /** @internal */
 export type TokenPaymentMethodCreate$Outbound = {
@@ -66,21 +69,23 @@ export const TokenPaymentMethodCreate$outboundSchema: z.ZodType<
   TokenPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   TokenPaymentMethodCreate
-> = z.object({
-  id: z.string(),
-  method: z.literal("id").default("id" as const),
-  securityCode: z.nullable(z.string()).optional(),
-  preferredScheme: z.nullable(
-    TokenPaymentMethodCreatePreferredScheme$outboundSchema,
-  ).optional(),
-  redirectUrl: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    securityCode: "security_code",
-    preferredScheme: "preferred_scheme",
-    redirectUrl: "redirect_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    method: z.literal("id").default("id" as const),
+    securityCode: z.nullable(z.string()).optional(),
+    preferredScheme: z.nullable(
+      TokenPaymentMethodCreatePreferredScheme$outboundSchema,
+    ).optional(),
+    redirectUrl: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      securityCode: "security_code",
+      preferredScheme: "preferred_scheme",
+      redirectUrl: "redirect_url",
+    });
+  })
+);
 
 export function tokenPaymentMethodCreateToJSON(
   tokenPaymentMethodCreate: TokenPaymentMethodCreate,

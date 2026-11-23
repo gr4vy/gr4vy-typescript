@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Address,
   Address$Outbound,
@@ -47,20 +48,22 @@ export const ShippingDetailsUpdate$outboundSchema: z.ZodType<
   ShippingDetailsUpdate$Outbound,
   z.ZodTypeDef,
   ShippingDetailsUpdate
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    phoneNumber: "phone_number",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    emailAddress: z.nullable(z.string()).optional(),
+    phoneNumber: z.nullable(z.string()).optional(),
+    address: z.nullable(Address$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      emailAddress: "email_address",
+      phoneNumber: "phone_number",
+    });
+  })
+);
 
 export function shippingDetailsUpdateToJSON(
   shippingDetailsUpdate: ShippingDetailsUpdate,

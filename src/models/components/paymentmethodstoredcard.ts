@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PaymentMethodStoredCard = {
   /**
@@ -26,10 +27,12 @@ export const PaymentMethodStoredCard$outboundSchema: z.ZodType<
   PaymentMethodStoredCard$Outbound,
   z.ZodTypeDef,
   PaymentMethodStoredCard
-> = z.object({
-  method: z.literal("id").default("id" as const),
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("id").default("id" as const),
+    id: z.string(),
+  })
+);
 
 export function paymentMethodStoredCardToJSON(
   paymentMethodStoredCard: PaymentMethodStoredCard,

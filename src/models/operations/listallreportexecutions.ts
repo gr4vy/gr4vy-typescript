@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -69,24 +69,28 @@ export const ListAllReportExecutionsRequest$outboundSchema: z.ZodType<
   ListAllReportExecutionsRequest$Outbound,
   z.ZodTypeDef,
   ListAllReportExecutionsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  reportName: z.nullable(z.string()).optional(),
-  createdAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  status: z.nullable(z.array(components.ReportExecutionStatus$outboundSchema))
-    .optional(),
-  creatorId: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reportName: "report_name",
-    createdAtLte: "created_at_lte",
-    createdAtGte: "created_at_gte",
-    creatorId: "creator_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    reportName: z.nullable(z.string()).optional(),
+    createdAtLte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    createdAtGte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    status: z.nullable(z.array(components.ReportExecutionStatus$outboundSchema))
+      .optional(),
+    creatorId: z.nullable(z.array(z.string())).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      reportName: "report_name",
+      createdAtLte: "created_at_lte",
+      createdAtGte: "created_at_gte",
+      creatorId: "creator_id",
+    });
+  })
+);
 
 export function listAllReportExecutionsRequestToJSON(
   listAllReportExecutionsRequest: ListAllReportExecutionsRequest,
@@ -103,13 +107,15 @@ export const ListAllReportExecutionsResponse$inboundSchema: z.ZodType<
   ListAllReportExecutionsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.ReportExecutions$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.ReportExecutions$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listAllReportExecutionsResponseFromJSON(
   jsonString: string,

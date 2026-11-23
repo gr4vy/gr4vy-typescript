@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetPaymentServiceDefinitionRequest = {
   paymentServiceDefinitionId: string;
@@ -19,13 +20,15 @@ export const GetPaymentServiceDefinitionRequest$outboundSchema: z.ZodType<
   GetPaymentServiceDefinitionRequest$Outbound,
   z.ZodTypeDef,
   GetPaymentServiceDefinitionRequest
-> = z.object({
-  paymentServiceDefinitionId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentServiceDefinitionId: "payment_service_definition_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentServiceDefinitionId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentServiceDefinitionId: "payment_service_definition_id",
+    });
+  })
+);
 
 export function getPaymentServiceDefinitionRequestToJSON(
   getPaymentServiceDefinitionRequest: GetPaymentServiceDefinitionRequest,

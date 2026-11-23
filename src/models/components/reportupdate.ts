@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ReportUpdate = {
   /**
@@ -32,15 +33,17 @@ export const ReportUpdate$outboundSchema: z.ZodType<
   ReportUpdate$Outbound,
   z.ZodTypeDef,
   ReportUpdate
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  scheduleEnabled: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    scheduleEnabled: "schedule_enabled",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    scheduleEnabled: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      scheduleEnabled: "schedule_enabled",
+    });
+  })
+);
 
 export function reportUpdateToJSON(reportUpdate: ReportUpdate): string {
   return JSON.stringify(ReportUpdate$outboundSchema.parse(reportUpdate));

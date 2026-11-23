@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Field, Field$Outbound, Field$outboundSchema } from "./field.js";
 
 export type VerifyCredentials = {
@@ -33,16 +34,18 @@ export const VerifyCredentials$outboundSchema: z.ZodType<
   VerifyCredentials$Outbound,
   z.ZodTypeDef,
   VerifyCredentials
-> = z.object({
-  paymentServiceDefinitionId: z.string(),
-  paymentServiceId: z.nullable(z.string()).optional(),
-  fields: z.array(Field$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    paymentServiceDefinitionId: "payment_service_definition_id",
-    paymentServiceId: "payment_service_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentServiceDefinitionId: z.string(),
+    paymentServiceId: z.nullable(z.string()).optional(),
+    fields: z.array(Field$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentServiceDefinitionId: "payment_service_definition_id",
+      paymentServiceId: "payment_service_id",
+    });
+  })
+);
 
 export function verifyCredentialsToJSON(
   verifyCredentials: VerifyCredentials,

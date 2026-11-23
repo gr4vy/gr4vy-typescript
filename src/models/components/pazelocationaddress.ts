@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PazeLocationAddress = {
   /**
@@ -56,16 +57,18 @@ export const PazeLocationAddress$outboundSchema: z.ZodType<
   PazeLocationAddress$Outbound,
   z.ZodTypeDef,
   PazeLocationAddress
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  line1: z.string(),
-  line2: z.nullable(z.string()).optional(),
-  line3: z.nullable(z.string()).optional(),
-  city: z.string(),
-  state: z.string(),
-  zip: z.string(),
-  countryCode: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    line1: z.string(),
+    line2: z.nullable(z.string()).optional(),
+    line3: z.nullable(z.string()).optional(),
+    city: z.string(),
+    state: z.string(),
+    zip: z.string(),
+    countryCode: z.string(),
+  })
+);
 
 export function pazeLocationAddressToJSON(
   pazeLocationAddress: PazeLocationAddress,

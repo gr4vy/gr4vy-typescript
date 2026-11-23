@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,10 +35,12 @@ export const ListPaymentServiceDefinitionsRequest$outboundSchema: z.ZodType<
   ListPaymentServiceDefinitionsRequest$Outbound,
   z.ZodTypeDef,
   ListPaymentServiceDefinitionsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+  })
+);
 
 export function listPaymentServiceDefinitionsRequestToJSON(
   listPaymentServiceDefinitionsRequest: ListPaymentServiceDefinitionsRequest,
@@ -55,13 +57,15 @@ export const ListPaymentServiceDefinitionsResponse$inboundSchema: z.ZodType<
   ListPaymentServiceDefinitionsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.PaymentServiceDefinitions$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.PaymentServiceDefinitions$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listPaymentServiceDefinitionsResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Address, Address$inboundSchema } from "./address.js";
@@ -49,24 +49,26 @@ export const ShippingDetails$inboundSchema: z.ZodType<
   ShippingDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  email_address: z.nullable(z.string()).optional(),
-  phone_number: z.nullable(z.string()).optional(),
-  address: z.nullable(Address$inboundSchema).optional(),
-  id: z.nullable(z.string()).optional(),
-  buyer_id: z.nullable(z.string()).optional(),
-  type: z.literal("shipping-details").default("shipping-details"),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "phone_number": "phoneNumber",
-    "buyer_id": "buyerId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    first_name: z.nullable(z.string()).optional(),
+    last_name: z.nullable(z.string()).optional(),
+    email_address: z.nullable(z.string()).optional(),
+    phone_number: z.nullable(z.string()).optional(),
+    address: z.nullable(Address$inboundSchema).optional(),
+    id: z.nullable(z.string()).optional(),
+    buyer_id: z.nullable(z.string()).optional(),
+    type: z.literal("shipping-details").default("shipping-details"),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "email_address": "emailAddress",
+      "phone_number": "phoneNumber",
+      "buyer_id": "buyerId",
+    });
+  })
+);
 
 export function shippingDetailsFromJSON(
   jsonString: string,

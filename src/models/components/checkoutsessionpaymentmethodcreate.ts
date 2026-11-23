@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CheckoutSessionPaymentMethodCreate = {
   /**
@@ -42,19 +43,21 @@ export const CheckoutSessionPaymentMethodCreate$outboundSchema: z.ZodType<
   CheckoutSessionPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   CheckoutSessionPaymentMethodCreate
-> = z.object({
-  method: z.literal("checkout-session").default("checkout-session" as const),
-  id: z.string(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    externalIdentifier: "external_identifier",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("checkout-session").default("checkout-session" as const),
+    id: z.string(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      externalIdentifier: "external_identifier",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+    });
+  })
+);
 
 export function checkoutSessionPaymentMethodCreateToJSON(
   checkoutSessionPaymentMethodCreate: CheckoutSessionPaymentMethodCreate,

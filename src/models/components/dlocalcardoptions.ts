@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DlocalCardOptions = {
   /**
@@ -22,13 +23,15 @@ export const DlocalCardOptions$outboundSchema: z.ZodType<
   DlocalCardOptions$Outbound,
   z.ZodTypeDef,
   DlocalCardOptions
-> = z.object({
-  threeDsecureForce: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    threeDsecureForce: "three_dsecure_force",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    threeDsecureForce: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      threeDsecureForce: "three_dsecure_force",
+    });
+  })
+);
 
 export function dlocalCardOptionsToJSON(
   dlocalCardOptions: DlocalCardOptions,

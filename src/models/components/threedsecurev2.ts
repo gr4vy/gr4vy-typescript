@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -24,24 +24,26 @@ export const ThreeDSecureV2$inboundSchema: z.ZodType<
   ThreeDSecureV2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  version: z.string(),
-  authentication_response: z.nullable(z.string()).optional(),
-  directory_response: z.nullable(z.string()).optional(),
-  directory_transaction_id: z.nullable(z.string()).optional(),
-  transaction_reason: z.nullable(z.string()).optional(),
-  cavv: z.nullable(z.string()).optional(),
-  eci: z.nullable(z.string()).optional(),
-  cardholder_info: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "authentication_response": "authenticationResponse",
-    "directory_response": "directoryResponse",
-    "directory_transaction_id": "directoryTransactionId",
-    "transaction_reason": "transactionReason",
-    "cardholder_info": "cardholderInfo",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    version: z.string(),
+    authentication_response: z.nullable(z.string()).optional(),
+    directory_response: z.nullable(z.string()).optional(),
+    directory_transaction_id: z.nullable(z.string()).optional(),
+    transaction_reason: z.nullable(z.string()).optional(),
+    cavv: z.nullable(z.string()).optional(),
+    eci: z.nullable(z.string()).optional(),
+    cardholder_info: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "authentication_response": "authenticationResponse",
+      "directory_response": "directoryResponse",
+      "directory_transaction_id": "directoryTransactionId",
+      "transaction_reason": "transactionReason",
+      "cardholder_info": "cardholderInfo",
+    });
+  })
+);
 
 export function threeDSecureV2FromJSON(
   jsonString: string,

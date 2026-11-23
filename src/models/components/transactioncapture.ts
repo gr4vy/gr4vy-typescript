@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -72,30 +72,32 @@ export const TransactionCapture$inboundSchema: z.ZodType<
   TransactionCapture,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("transaction-capture").default("transaction-capture"),
-  status: CaptureStatus$inboundSchema,
-  code: z.nullable(z.string()),
-  raw_response_code: z.nullable(z.string()),
-  raw_response_description: z.nullable(z.string()),
-  transaction: Transaction$inboundSchema,
-  capture_id: z.nullable(z.string()).optional(),
-  payment_service_capture_id: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
-  shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
-  tracking: z.nullable(z.array(Tracking$inboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "raw_response_code": "rawResponseCode",
-    "raw_response_description": "rawResponseDescription",
-    "capture_id": "captureId",
-    "payment_service_capture_id": "paymentServiceCaptureId",
-    "external_identifier": "externalIdentifier",
-    "billing_details": "billingDetails",
-    "shipping_details": "shippingDetails",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("transaction-capture").default("transaction-capture"),
+    status: CaptureStatus$inboundSchema,
+    code: z.nullable(z.string()),
+    raw_response_code: z.nullable(z.string()),
+    raw_response_description: z.nullable(z.string()),
+    transaction: Transaction$inboundSchema,
+    capture_id: z.nullable(z.string()).optional(),
+    payment_service_capture_id: z.nullable(z.string()).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
+    shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
+    tracking: z.nullable(z.array(Tracking$inboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "raw_response_code": "rawResponseCode",
+      "raw_response_description": "rawResponseDescription",
+      "capture_id": "captureId",
+      "payment_service_capture_id": "paymentServiceCaptureId",
+      "external_identifier": "externalIdentifier",
+      "billing_details": "billingDetails",
+      "shipping_details": "shippingDetails",
+    });
+  })
+);
 
 export function transactionCaptureFromJSON(
   jsonString: string,

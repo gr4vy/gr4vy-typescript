@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -127,35 +128,43 @@ export type PazeMobileSessionCreateRequest = {
 
 /** @internal */
 export const Intent$outboundSchema: z.ZodType<string, z.ZodTypeDef, Intent> =
-  openEnums.outboundSchema(Intent);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Intent));
 
 /** @internal */
 export const TransactionType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TransactionType
-> = openEnums.outboundSchema(TransactionType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TransactionType)
+);
 
 /** @internal */
 export const ShippingPreference$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ShippingPreference
-> = openEnums.outboundSchema(ShippingPreference);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ShippingPreference)
+);
 
 /** @internal */
 export const BillingPreference$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BillingPreference
-> = openEnums.outboundSchema(BillingPreference);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BillingPreference)
+);
 
 /** @internal */
 export const AcceptedPaymentCardNetworks$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AcceptedPaymentCardNetworks
-> = openEnums.outboundSchema(AcceptedPaymentCardNetworks);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(AcceptedPaymentCardNetworks)
+);
 
 /** @internal */
 export type PazeMobileSessionCreateRequest$Outbound = {
@@ -181,25 +190,29 @@ export const PazeMobileSessionCreateRequest$outboundSchema: z.ZodType<
   PazeMobileSessionCreateRequest$Outbound,
   z.ZodTypeDef,
   PazeMobileSessionCreateRequest
-> = z.object({
-  client: PazeClient$outboundSchema,
-  sessionId: z.string(),
-  accessToken: z.string(),
-  callbackURLScheme: z.string(),
-  intent: Intent$outboundSchema,
-  transactionValue: z.nullable(PazeTransactionValue$outboundSchema).optional(),
-  transactionType: z.nullable(TransactionType$outboundSchema).optional(),
-  shippingPreference: z.nullable(ShippingPreference$outboundSchema).optional(),
-  billingPreference: z.nullable(BillingPreference$outboundSchema).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  cobrand: z.nullable(z.array(PazeCobrandItem$outboundSchema)).optional(),
-  acceptedShippingCountries: z.nullable(z.array(z.string())).optional(),
-  acceptedPaymentCardNetworks: z.nullable(
-    z.array(AcceptedPaymentCardNetworks$outboundSchema),
-  ).optional(),
-  alwaysEnableCheckout: z.boolean().default(false),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    client: PazeClient$outboundSchema,
+    sessionId: z.string(),
+    accessToken: z.string(),
+    callbackURLScheme: z.string(),
+    intent: Intent$outboundSchema,
+    transactionValue: z.nullable(PazeTransactionValue$outboundSchema)
+      .optional(),
+    transactionType: z.nullable(TransactionType$outboundSchema).optional(),
+    shippingPreference: z.nullable(ShippingPreference$outboundSchema)
+      .optional(),
+    billingPreference: z.nullable(BillingPreference$outboundSchema).optional(),
+    emailAddress: z.nullable(z.string()).optional(),
+    phoneNumber: z.nullable(z.string()).optional(),
+    cobrand: z.nullable(z.array(PazeCobrandItem$outboundSchema)).optional(),
+    acceptedShippingCountries: z.nullable(z.array(z.string())).optional(),
+    acceptedPaymentCardNetworks: z.nullable(
+      z.array(AcceptedPaymentCardNetworks$outboundSchema),
+    ).optional(),
+    alwaysEnableCheckout: z.boolean().default(false),
+  })
+);
 
 export function pazeMobileSessionCreateRequestToJSON(
   pazeMobileSessionCreateRequest: PazeMobileSessionCreateRequest,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CryptogramCreate = {
   /**
@@ -22,13 +23,15 @@ export const CryptogramCreate$outboundSchema: z.ZodType<
   CryptogramCreate$Outbound,
   z.ZodTypeDef,
   CryptogramCreate
-> = z.object({
-  merchantInitiated: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantInitiated: "merchant_initiated",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantInitiated: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantInitiated: "merchant_initiated",
+    });
+  })
+);
 
 export function cryptogramCreateToJSON(
   cryptogramCreate: CryptogramCreate,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -79,28 +79,34 @@ export const ListPayoutsRequest$outboundSchema: z.ZodType<
   ListPayoutsRequest$Outbound,
   z.ZodTypeDef,
   ListPayoutsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  createdAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  paymentServicePayoutId: z.nullable(z.string()).optional(),
-  status: z.nullable(z.array(components.PayoutStatus$outboundSchema))
-    .optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createdAtLte: "created_at_lte",
-    createdAtGte: "created_at_gte",
-    updatedAtLte: "updated_at_lte",
-    updatedAtGte: "updated_at_gte",
-    externalIdentifier: "external_identifier",
-    paymentServicePayoutId: "payment_service_payout_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    createdAtLte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    createdAtGte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    updatedAtLte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    updatedAtGte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    paymentServicePayoutId: z.nullable(z.string()).optional(),
+    status: z.nullable(z.array(components.PayoutStatus$outboundSchema))
+      .optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      createdAtLte: "created_at_lte",
+      createdAtGte: "created_at_gte",
+      updatedAtLte: "updated_at_lte",
+      updatedAtGte: "updated_at_gte",
+      externalIdentifier: "external_identifier",
+      paymentServicePayoutId: "payment_service_payout_id",
+    });
+  })
+);
 
 export function listPayoutsRequestToJSON(
   listPayoutsRequest: ListPayoutsRequest,
@@ -115,13 +121,15 @@ export const ListPayoutsResponse$inboundSchema: z.ZodType<
   ListPayoutsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.PayoutSummaries$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.PayoutSummaries$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listPayoutsResponseFromJSON(
   jsonString: string,

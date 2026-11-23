@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
@@ -51,7 +52,9 @@ export const PaymentMethodUpdatePreferredScheme$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PaymentMethodUpdatePreferredScheme
-> = openEnums.outboundSchema(PaymentMethodUpdatePreferredScheme);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(PaymentMethodUpdatePreferredScheme)
+);
 
 /** @internal */
 export type PaymentMethodUpdate$Outbound = {
@@ -67,22 +70,25 @@ export const PaymentMethodUpdate$outboundSchema: z.ZodType<
   PaymentMethodUpdate$Outbound,
   z.ZodTypeDef,
   PaymentMethodUpdate
-> = z.object({
-  expirationDate: z.nullable(z.string()).optional(),
-  schemeTransactionId: z.nullable(z.string()).optional(),
-  schemeTransactionIdScheme: z.nullable(CardScheme$outboundSchema).optional(),
-  transactionLinkId: z.nullable(z.string()).optional(),
-  preferredScheme: z.nullable(PaymentMethodUpdatePreferredScheme$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    schemeTransactionId: "scheme_transaction_id",
-    schemeTransactionIdScheme: "scheme_transaction_id_scheme",
-    transactionLinkId: "transaction_link_id",
-    preferredScheme: "preferred_scheme",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    expirationDate: z.nullable(z.string()).optional(),
+    schemeTransactionId: z.nullable(z.string()).optional(),
+    schemeTransactionIdScheme: z.nullable(CardScheme$outboundSchema).optional(),
+    transactionLinkId: z.nullable(z.string()).optional(),
+    preferredScheme: z.nullable(
+      PaymentMethodUpdatePreferredScheme$outboundSchema,
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expirationDate: "expiration_date",
+      schemeTransactionId: "scheme_transaction_id",
+      schemeTransactionIdScheme: "scheme_transaction_id_scheme",
+      transactionLinkId: "transaction_link_id",
+      preferredScheme: "preferred_scheme",
+    });
+  })
+);
 
 export function paymentMethodUpdateToJSON(
   paymentMethodUpdate: PaymentMethodUpdate,

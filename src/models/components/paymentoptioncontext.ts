@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -27,9 +27,8 @@ export type PaymentOptionContext = {
 };
 
 /** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z.union(
-  [z.boolean(), z.any()],
-);
+export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.union([z.boolean(), z.any()]));
 
 export function twoFromJSON(
   jsonString: string,
@@ -46,7 +45,9 @@ export const RequiredFields$inboundSchema: z.ZodType<
   RequiredFields,
   z.ZodTypeDef,
   unknown
-> = z.union([z.boolean(), z.record(z.union([z.boolean(), z.any()]))]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.boolean(), z.record(z.union([z.boolean(), z.any()]))])
+);
 
 export function requiredFieldsFromJSON(
   jsonString: string,
@@ -63,22 +64,26 @@ export const PaymentOptionContext$inboundSchema: z.ZodType<
   PaymentOptionContext,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  approval_ui: z.nullable(PaymentOptionContextApprovalUI$inboundSchema)
-    .optional(),
-  required_fields: z.nullable(
-    z.record(z.union([z.boolean(), z.record(z.union([z.boolean(), z.any()]))])),
-  ).optional(),
-  redirect_requires_popup: z.boolean(),
-  requires_tokenized_redirect_popup: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    "approval_ui": "approvalUi",
-    "required_fields": "requiredFields",
-    "redirect_requires_popup": "redirectRequiresPopup",
-    "requires_tokenized_redirect_popup": "requiresTokenizedRedirectPopup",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    approval_ui: z.nullable(PaymentOptionContextApprovalUI$inboundSchema)
+      .optional(),
+    required_fields: z.nullable(
+      z.record(
+        z.union([z.boolean(), z.record(z.union([z.boolean(), z.any()]))]),
+      ),
+    ).optional(),
+    redirect_requires_popup: z.boolean(),
+    requires_tokenized_redirect_popup: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      "approval_ui": "approvalUi",
+      "required_fields": "requiredFields",
+      "redirect_requires_popup": "redirectRequiresPopup",
+      "requires_tokenized_redirect_popup": "requiresTokenizedRedirectPopup",
+    });
+  })
+);
 
 export function paymentOptionContextFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   MockCardMerchantAdviceCodeOptions,
   MockCardMerchantAdviceCodeOptions$Outbound,
@@ -35,17 +36,19 @@ export const MockCardOptions$outboundSchema: z.ZodType<
   MockCardOptions$Outbound,
   z.ZodTypeDef,
   MockCardOptions
-> = z.object({
-  merchantAdviceCode: z.nullable(
-    MockCardMerchantAdviceCodeOptions$outboundSchema,
-  ).optional(),
-  skipRetry: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAdviceCode: "merchant_advice_code",
-    skipRetry: "skip_retry",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAdviceCode: z.nullable(
+      MockCardMerchantAdviceCodeOptions$outboundSchema,
+    ).optional(),
+    skipRetry: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantAdviceCode: "merchant_advice_code",
+      skipRetry: "skip_retry",
+    });
+  })
+);
 
 export function mockCardOptionsToJSON(
   mockCardOptions: MockCardOptions,

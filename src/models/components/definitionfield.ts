@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -44,18 +44,20 @@ export const DefinitionField$inboundSchema: z.ZodType<
   DefinitionField,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  key: z.string(),
-  display_name: z.string(),
-  required: z.boolean(),
-  format: DefinitionFieldFormat$inboundSchema,
-  secret: z.boolean(),
-  verifiable: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    key: z.string(),
+    display_name: z.string(),
+    required: z.boolean(),
+    format: DefinitionFieldFormat$inboundSchema,
+    secret: z.boolean(),
+    verifiable: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_name": "displayName",
+    });
+  })
+);
 
 export function definitionFieldFromJSON(
   jsonString: string,

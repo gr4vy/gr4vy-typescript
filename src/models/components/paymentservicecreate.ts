@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Field, Field$Outbound, Field$outboundSchema } from "./field.js";
 import {
   MerchantProfileScheme,
@@ -107,40 +108,42 @@ export const PaymentServiceCreate$outboundSchema: z.ZodType<
   PaymentServiceCreate$Outbound,
   z.ZodTypeDef,
   PaymentServiceCreate
-> = z.object({
-  displayName: z.string(),
-  paymentServiceDefinitionId: z.string(),
-  fields: z.array(Field$outboundSchema),
-  reportingFields: z.nullable(z.array(Field$outboundSchema)).optional(),
-  position: z.nullable(z.number().int()).optional(),
-  acceptedCurrencies: z.array(z.string()),
-  acceptedCountries: z.array(z.string()),
-  active: z.nullable(z.boolean()).optional(),
-  threeDSecureEnabled: z.boolean().default(false),
-  merchantProfile: z.nullable(
-    z.record(z.nullable(MerchantProfileScheme$outboundSchema)),
-  ).optional(),
-  paymentMethodTokenizationEnabled: z.nullable(z.boolean()).optional(),
-  networkTokensEnabled: z.nullable(z.boolean()).optional(),
-  openLoop: z.nullable(z.boolean()).optional(),
-  settlementReportingEnabled: z.boolean().default(false),
-  refundIngestionEnabled: z.boolean().default(false),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    paymentServiceDefinitionId: "payment_service_definition_id",
-    reportingFields: "reporting_fields",
-    acceptedCurrencies: "accepted_currencies",
-    acceptedCountries: "accepted_countries",
-    threeDSecureEnabled: "three_d_secure_enabled",
-    merchantProfile: "merchant_profile",
-    paymentMethodTokenizationEnabled: "payment_method_tokenization_enabled",
-    networkTokensEnabled: "network_tokens_enabled",
-    openLoop: "open_loop",
-    settlementReportingEnabled: "settlement_reporting_enabled",
-    refundIngestionEnabled: "refund_ingestion_enabled",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayName: z.string(),
+    paymentServiceDefinitionId: z.string(),
+    fields: z.array(Field$outboundSchema),
+    reportingFields: z.nullable(z.array(Field$outboundSchema)).optional(),
+    position: z.nullable(z.number().int()).optional(),
+    acceptedCurrencies: z.array(z.string()),
+    acceptedCountries: z.array(z.string()),
+    active: z.nullable(z.boolean()).optional(),
+    threeDSecureEnabled: z.boolean().default(false),
+    merchantProfile: z.nullable(
+      z.record(z.nullable(MerchantProfileScheme$outboundSchema)),
+    ).optional(),
+    paymentMethodTokenizationEnabled: z.nullable(z.boolean()).optional(),
+    networkTokensEnabled: z.nullable(z.boolean()).optional(),
+    openLoop: z.nullable(z.boolean()).optional(),
+    settlementReportingEnabled: z.boolean().default(false),
+    refundIngestionEnabled: z.boolean().default(false),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+      paymentServiceDefinitionId: "payment_service_definition_id",
+      reportingFields: "reporting_fields",
+      acceptedCurrencies: "accepted_currencies",
+      acceptedCountries: "accepted_countries",
+      threeDSecureEnabled: "three_d_secure_enabled",
+      merchantProfile: "merchant_profile",
+      paymentMethodTokenizationEnabled: "payment_method_tokenization_enabled",
+      networkTokensEnabled: "network_tokens_enabled",
+      openLoop: "open_loop",
+      settlementReportingEnabled: "settlement_reporting_enabled",
+      refundIngestionEnabled: "refund_ingestion_enabled",
+    });
+  })
+);
 
 export function paymentServiceCreateToJSON(
   paymentServiceCreate: PaymentServiceCreate,

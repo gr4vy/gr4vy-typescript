@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CardScheme, CardScheme$inboundSchema } from "./cardscheme.js";
@@ -48,16 +48,18 @@ export const CheckoutSessionPaymentMethod$inboundSchema: z.ZodType<
   CheckoutSessionPaymentMethod,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-method").default("payment-method"),
-  id: z.nullable(z.string()).optional(),
-  details: z.nullable(CheckoutSessionPaymentMethodDetails$inboundSchema)
-    .optional(),
-  label: z.nullable(z.string()).optional(),
-  method: z.literal("card").default("card"),
-  scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  fingerprint: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-method").default("payment-method"),
+    id: z.nullable(z.string()).optional(),
+    details: z.nullable(CheckoutSessionPaymentMethodDetails$inboundSchema)
+      .optional(),
+    label: z.nullable(z.string()).optional(),
+    method: z.literal("card").default("card"),
+    scheme: z.nullable(CardScheme$inboundSchema).optional(),
+    fingerprint: z.nullable(z.string()).optional(),
+  })
+);
 
 export function checkoutSessionPaymentMethodFromJSON(
   jsonString: string,

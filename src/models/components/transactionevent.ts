@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -137,24 +137,28 @@ export type TransactionEvent = {
 
 /** @internal */
 export const Name$inboundSchema: z.ZodType<Name, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Name);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Name));
 
 /** @internal */
 export const TransactionEvent$inboundSchema: z.ZodType<
   TransactionEvent,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("transaction-event").default("transaction-event"),
-  id: z.string(),
-  name: Name$inboundSchema,
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  context: z.record(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("transaction-event").default("transaction-event"),
+    id: z.string(),
+    name: Name$inboundSchema,
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    context: z.record(z.any()),
+  }).transform((v) => {
+    return remap$(v, {
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function transactionEventFromJSON(
   jsonString: string,

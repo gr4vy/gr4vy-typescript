@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { PermissionSet, PermissionSet$inboundSchema } from "./permissionset.js";
@@ -53,24 +53,26 @@ export type Role = {
 };
 
 /** @internal */
-export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
-  .object({
-    type: z.literal("role").default("role"),
-    id: z.string(),
-    name: z.string(),
-    slug: z.string(),
-    description: z.string(),
-    permissions: PermissionSet$inboundSchema,
-    assignable_to: z.array(RoleAssigneeType$inboundSchema),
-    applies_to: z.array(z.string()),
-    is_standalone_assignable: z.boolean(),
-  }).transform((v) => {
-    return remap$(v, {
-      "assignable_to": "assignableTo",
-      "applies_to": "appliesTo",
-      "is_standalone_assignable": "isStandaloneAssignable",
-    });
-  });
+export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.literal("role").default("role"),
+      id: z.string(),
+      name: z.string(),
+      slug: z.string(),
+      description: z.string(),
+      permissions: PermissionSet$inboundSchema,
+      assignable_to: z.array(RoleAssigneeType$inboundSchema),
+      applies_to: z.array(z.string()),
+      is_standalone_assignable: z.boolean(),
+    }).transform((v) => {
+      return remap$(v, {
+        "assignable_to": "assignableTo",
+        "applies_to": "appliesTo",
+        "is_standalone_assignable": "isStandaloneAssignable",
+      });
+    })
+  );
 
 export function roleFromJSON(
   jsonString: string,

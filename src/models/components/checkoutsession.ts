@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Airline, Airline$inboundSchema } from "./airline.js";
@@ -67,27 +67,31 @@ export const CheckoutSession$inboundSchema: z.ZodType<
   CheckoutSession,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  buyer: z.nullable(GuestBuyer$inboundSchema).optional(),
-  airline: z.nullable(Airline$inboundSchema).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  payment_service_id: z.nullable(z.string()).optional(),
-  type: z.literal("checkout-session").default("checkout-session"),
-  id: z.string(),
-  expires_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  payment_method: z.nullable(CheckoutSessionPaymentMethod$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "cart_items": "cartItems",
-    "payment_service_id": "paymentServiceId",
-    "expires_at": "expiresAt",
-    "payment_method": "paymentMethod",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
+    metadata: z.nullable(z.record(z.string())).optional(),
+    buyer: z.nullable(GuestBuyer$inboundSchema).optional(),
+    airline: z.nullable(Airline$inboundSchema).optional(),
+    amount: z.nullable(z.number().int()).optional(),
+    currency: z.nullable(z.string()).optional(),
+    payment_service_id: z.nullable(z.string()).optional(),
+    type: z.literal("checkout-session").default("checkout-session"),
+    id: z.string(),
+    expires_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    payment_method: z.nullable(CheckoutSessionPaymentMethod$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "cart_items": "cartItems",
+      "payment_service_id": "paymentServiceId",
+      "expires_at": "expiresAt",
+      "payment_method": "paymentMethod",
+    });
+  })
+);
 
 export function checkoutSessionFromJSON(
   jsonString: string,

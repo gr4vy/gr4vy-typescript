@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AIInsightsReportSpec = {
   /**
@@ -26,10 +27,12 @@ export const AIInsightsReportSpec$outboundSchema: z.ZodType<
   AIInsightsReportSpec$Outbound,
   z.ZodTypeDef,
   AIInsightsReportSpec
-> = z.object({
-  model: z.literal("ai_insights"),
-  params: z.record(z.any()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    model: z.literal("ai_insights"),
+    params: z.record(z.any()),
+  })
+);
 
 export function aiInsightsReportSpecToJSON(
   aiInsightsReportSpec: AIInsightsReportSpec,

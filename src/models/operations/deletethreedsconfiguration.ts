@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeleteThreeDsConfigurationRequest = {
   /**
@@ -27,15 +28,17 @@ export const DeleteThreeDsConfigurationRequest$outboundSchema: z.ZodType<
   DeleteThreeDsConfigurationRequest$Outbound,
   z.ZodTypeDef,
   DeleteThreeDsConfigurationRequest
-> = z.object({
-  merchantAccountId: z.string(),
-  threeDsConfigurationId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    threeDsConfigurationId: "three_ds_configuration_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.string(),
+    threeDsConfigurationId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantAccountId: "merchant_account_id",
+      threeDsConfigurationId: "three_ds_configuration_id",
+    });
+  })
+);
 
 export function deleteThreeDsConfigurationRequestToJSON(
   deleteThreeDsConfigurationRequest: DeleteThreeDsConfigurationRequest,

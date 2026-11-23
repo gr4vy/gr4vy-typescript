@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetPayoutGlobals = {
   merchantAccountId?: string | undefined;
@@ -28,14 +29,16 @@ export const GetPayoutRequest$outboundSchema: z.ZodType<
   GetPayoutRequest$Outbound,
   z.ZodTypeDef,
   GetPayoutRequest
-> = z.object({
-  payoutId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    payoutId: "payout_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    payoutId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      payoutId: "payout_id",
+    });
+  })
+);
 
 export function getPayoutRequestToJSON(
   getPayoutRequest: GetPayoutRequest,

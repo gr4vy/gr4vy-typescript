@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Create a charge against a gift card
@@ -34,11 +35,13 @@ export const GiftCardTransactionCreate$outboundSchema: z.ZodType<
   GiftCardTransactionCreate$Outbound,
   z.ZodTypeDef,
   GiftCardTransactionCreate
-> = z.object({
-  number: z.string(),
-  pin: z.string(),
-  amount: z.number().int(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    number: z.string(),
+    pin: z.string(),
+    amount: z.number().int(),
+  })
+);
 
 export function giftCardTransactionCreateToJSON(
   giftCardTransactionCreate: GiftCardTransactionCreate,

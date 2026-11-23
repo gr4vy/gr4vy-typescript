@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type AddReportGlobals = {
@@ -29,14 +30,16 @@ export const AddReportRequest$outboundSchema: z.ZodType<
   AddReportRequest$Outbound,
   z.ZodTypeDef,
   AddReportRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  reportCreate: components.ReportCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    reportCreate: "ReportCreate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    reportCreate: components.ReportCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      reportCreate: "ReportCreate",
+    });
+  })
+);
 
 export function addReportRequestToJSON(
   addReportRequest: AddReportRequest,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -19,4 +20,4 @@ export const FlowAction$inboundSchema: z.ZodType<
   FlowAction,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(FlowAction);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(FlowAction));

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   FiservInstallmentOptions,
   FiservInstallmentOptions$Outbound,
@@ -26,10 +27,12 @@ export const FiservOptions$outboundSchema: z.ZodType<
   FiservOptions$Outbound,
   z.ZodTypeDef,
   FiservOptions
-> = z.object({
-  installmentOptions: z.nullable(FiservInstallmentOptions$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    installmentOptions: z.nullable(FiservInstallmentOptions$outboundSchema)
+      .optional(),
+  })
+);
 
 export function fiservOptionsToJSON(fiservOptions: FiservOptions): string {
   return JSON.stringify(FiservOptions$outboundSchema.parse(fiservOptions));

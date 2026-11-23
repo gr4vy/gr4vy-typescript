@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -81,37 +81,39 @@ export const PaymentServiceDefinition$inboundSchema: z.ZodType<
   PaymentServiceDefinition,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  type: z.literal("payment-service-definition").default(
-    "payment-service-definition",
-  ),
-  display_name: z.string(),
-  method: Method$inboundSchema,
-  fields: z.array(DefinitionField$inboundSchema),
-  reporting_fields: z.array(DefinitionField$inboundSchema),
-  supported_currencies: z.array(z.string()),
-  supported_countries: z.array(z.string()),
-  mode: Mode$inboundSchema,
-  icon_url: z.nullable(z.string()).optional(),
-  supported_features: z.record(z.boolean()),
-  required_checkout_fields: z.array(RequiredCheckoutFields$inboundSchema),
-  configuration: PaymentServiceConfiguration$inboundSchema,
-  supported_integration_clients: z.nullable(
-    z.array(IntegrationClient$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "reporting_fields": "reportingFields",
-    "supported_currencies": "supportedCurrencies",
-    "supported_countries": "supportedCountries",
-    "icon_url": "iconUrl",
-    "supported_features": "supportedFeatures",
-    "required_checkout_fields": "requiredCheckoutFields",
-    "supported_integration_clients": "supportedIntegrationClients",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    type: z.literal("payment-service-definition").default(
+      "payment-service-definition",
+    ),
+    display_name: z.string(),
+    method: Method$inboundSchema,
+    fields: z.array(DefinitionField$inboundSchema),
+    reporting_fields: z.array(DefinitionField$inboundSchema),
+    supported_currencies: z.array(z.string()),
+    supported_countries: z.array(z.string()),
+    mode: Mode$inboundSchema,
+    icon_url: z.nullable(z.string()).optional(),
+    supported_features: z.record(z.boolean()),
+    required_checkout_fields: z.array(RequiredCheckoutFields$inboundSchema),
+    configuration: PaymentServiceConfiguration$inboundSchema,
+    supported_integration_clients: z.nullable(
+      z.array(IntegrationClient$inboundSchema),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_name": "displayName",
+      "reporting_fields": "reportingFields",
+      "supported_currencies": "supportedCurrencies",
+      "supported_countries": "supportedCountries",
+      "icon_url": "iconUrl",
+      "supported_features": "supportedFeatures",
+      "required_checkout_fields": "requiredCheckoutFields",
+      "supported_integration_clients": "supportedIntegrationClients",
+    });
+  })
+);
 
 export function paymentServiceDefinitionFromJSON(
   jsonString: string,

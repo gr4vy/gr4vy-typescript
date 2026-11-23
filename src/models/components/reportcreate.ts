@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AccountsReceivablesReportSpec,
   AccountsReceivablesReportSpec$Outbound,
@@ -83,13 +84,15 @@ export type Spec$Outbound =
 
 /** @internal */
 export const Spec$outboundSchema: z.ZodType<Spec$Outbound, z.ZodTypeDef, Spec> =
-  z.union([
-    AccountsReceivablesReportSpec$outboundSchema,
-    AIInsightsReportSpec$outboundSchema,
-    DetailedSettlementReportSpec$outboundSchema,
-    TransactionRetriesReportSpec$outboundSchema,
-    TransactionsReportSpec$outboundSchema,
-  ]);
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      AccountsReceivablesReportSpec$outboundSchema,
+      AIInsightsReportSpec$outboundSchema,
+      DetailedSettlementReportSpec$outboundSchema,
+      TransactionRetriesReportSpec$outboundSchema,
+      TransactionsReportSpec$outboundSchema,
+    ])
+  );
 
 export function specToJSON(spec: Spec): string {
   return JSON.stringify(Spec$outboundSchema.parse(spec));
@@ -115,25 +118,27 @@ export const ReportCreate$outboundSchema: z.ZodType<
   ReportCreate$Outbound,
   z.ZodTypeDef,
   ReportCreate
-> = z.object({
-  name: z.string(),
-  description: z.nullable(z.string()).optional(),
-  schedule: ReportSchedule$outboundSchema,
-  scheduleEnabled: z.boolean(),
-  scheduleTimezone: z.string().default("Etc/UTC"),
-  spec: z.union([
-    AccountsReceivablesReportSpec$outboundSchema,
-    AIInsightsReportSpec$outboundSchema,
-    DetailedSettlementReportSpec$outboundSchema,
-    TransactionRetriesReportSpec$outboundSchema,
-    TransactionsReportSpec$outboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    scheduleEnabled: "schedule_enabled",
-    scheduleTimezone: "schedule_timezone",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    description: z.nullable(z.string()).optional(),
+    schedule: ReportSchedule$outboundSchema,
+    scheduleEnabled: z.boolean(),
+    scheduleTimezone: z.string().default("Etc/UTC"),
+    spec: z.union([
+      AccountsReceivablesReportSpec$outboundSchema,
+      AIInsightsReportSpec$outboundSchema,
+      DetailedSettlementReportSpec$outboundSchema,
+      TransactionRetriesReportSpec$outboundSchema,
+      TransactionsReportSpec$outboundSchema,
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      scheduleEnabled: "schedule_enabled",
+      scheduleTimezone: "schedule_timezone",
+    });
+  })
+);
 
 export function reportCreateToJSON(reportCreate: ReportCreate): string {
   return JSON.stringify(ReportCreate$outboundSchema.parse(reportCreate));

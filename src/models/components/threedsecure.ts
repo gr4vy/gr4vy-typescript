@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ThreeDSecure = {
   /**
@@ -21,9 +22,11 @@ export const ThreeDSecure$outboundSchema: z.ZodType<
   ThreeDSecure$Outbound,
   z.ZodTypeDef,
   ThreeDSecure
-> = z.object({
-  amount: z.nullable(z.number().int()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.nullable(z.number().int()).optional(),
+  })
+);
 
 export function threeDSecureToJSON(threeDSecure: ThreeDSecure): string {
   return JSON.stringify(ThreeDSecure$outboundSchema.parse(threeDSecure));

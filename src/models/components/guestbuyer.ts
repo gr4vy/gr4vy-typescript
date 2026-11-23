@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -48,21 +48,24 @@ export const GuestBuyer$inboundSchema: z.ZodType<
   GuestBuyer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  display_name: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  shipping_details: z.nullable(ShippingDetailsCreate$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "external_identifier": "externalIdentifier",
-    "billing_details": "billingDetails",
-    "account_number": "accountNumber",
-    "shipping_details": "shippingDetails",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    display_name: z.nullable(z.string()).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    billing_details: z.nullable(BillingDetails$inboundSchema).optional(),
+    account_number: z.nullable(z.string()).optional(),
+    shipping_details: z.nullable(ShippingDetailsCreate$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_name": "displayName",
+      "external_identifier": "externalIdentifier",
+      "billing_details": "billingDetails",
+      "account_number": "accountNumber",
+      "shipping_details": "shippingDetails",
+    });
+  })
+);
 /** @internal */
 export type GuestBuyer$Outbound = {
   display_name?: string | null | undefined;
@@ -77,21 +80,24 @@ export const GuestBuyer$outboundSchema: z.ZodType<
   GuestBuyer$Outbound,
   z.ZodTypeDef,
   GuestBuyer
-> = z.object({
-  displayName: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  billingDetails: z.nullable(BillingDetails$outboundSchema).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  shippingDetails: z.nullable(ShippingDetailsCreate$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    externalIdentifier: "external_identifier",
-    billingDetails: "billing_details",
-    accountNumber: "account_number",
-    shippingDetails: "shipping_details",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayName: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    billingDetails: z.nullable(BillingDetails$outboundSchema).optional(),
+    accountNumber: z.nullable(z.string()).optional(),
+    shippingDetails: z.nullable(ShippingDetailsCreate$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+      externalIdentifier: "external_identifier",
+      billingDetails: "billing_details",
+      accountNumber: "account_number",
+      shippingDetails: "shipping_details",
+    });
+  })
+);
 
 export function guestBuyerToJSON(guestBuyer: GuestBuyer): string {
   return JSON.stringify(GuestBuyer$outboundSchema.parse(guestBuyer));

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type NuveiAirlineDataOptions = {
   /**
@@ -26,10 +27,12 @@ export const NuveiAirlineDataOptions$outboundSchema: z.ZodType<
   NuveiAirlineDataOptions$Outbound,
   z.ZodTypeDef,
   NuveiAirlineDataOptions
-> = z.object({
-  seatClass: z.nullable(z.string()).optional(),
-  isCardholderTraveling: z.nullable(z.boolean()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    seatClass: z.nullable(z.string()).optional(),
+    isCardholderTraveling: z.nullable(z.boolean()).optional(),
+  })
+);
 
 export function nuveiAirlineDataOptionsToJSON(
   nuveiAirlineDataOptions: NuveiAirlineDataOptions,

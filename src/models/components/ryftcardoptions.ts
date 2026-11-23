@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type RyftCardOptions = {
   /**
@@ -27,15 +28,17 @@ export const RyftCardOptions$outboundSchema: z.ZodType<
   RyftCardOptions$Outbound,
   z.ZodTypeDef,
   RyftCardOptions
-> = z.object({
-  subAccountId: z.nullable(z.string()).optional(),
-  platformFee: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    subAccountId: "sub_account_id",
-    platformFee: "platform_fee",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subAccountId: z.nullable(z.string()).optional(),
+    platformFee: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      subAccountId: "sub_account_id",
+      platformFee: "platform_fee",
+    });
+  })
+);
 
 export function ryftCardOptionsToJSON(
   ryftCardOptions: RyftCardOptions,

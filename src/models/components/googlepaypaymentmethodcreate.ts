@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   GooglePayAssuranceDetails,
   GooglePayAssuranceDetails$Outbound,
@@ -69,7 +70,7 @@ export const Token$outboundSchema: z.ZodType<
   Token$Outbound,
   z.ZodTypeDef,
   Token
-> = z.union([z.string(), z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() => z.union([z.string(), z.record(z.any())]));
 
 export function tokenToJSON(token: Token): string {
   return JSON.stringify(Token$outboundSchema.parse(token));
@@ -94,30 +95,32 @@ export const GooglePayPaymentMethodCreate$outboundSchema: z.ZodType<
   GooglePayPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   GooglePayPaymentMethodCreate
-> = z.object({
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  cardholderName: z.nullable(z.string()).optional(),
-  redirectUrl: z.nullable(z.string()).optional(),
-  cardSuffix: z.nullable(z.string()).optional(),
-  cardScheme: z.nullable(z.string()).optional(),
-  cardType: z.nullable(z.string()).optional(),
-  method: z.literal("googlepay"),
-  token: z.union([z.string(), z.record(z.any())]),
-  assuranceDetails: z.nullable(GooglePayAssuranceDetails$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    cardholderName: "cardholder_name",
-    redirectUrl: "redirect_url",
-    cardSuffix: "card_suffix",
-    cardScheme: "card_scheme",
-    cardType: "card_type",
-    assuranceDetails: "assurance_details",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    cardholderName: z.nullable(z.string()).optional(),
+    redirectUrl: z.nullable(z.string()).optional(),
+    cardSuffix: z.nullable(z.string()).optional(),
+    cardScheme: z.nullable(z.string()).optional(),
+    cardType: z.nullable(z.string()).optional(),
+    method: z.literal("googlepay"),
+    token: z.union([z.string(), z.record(z.any())]),
+    assuranceDetails: z.nullable(GooglePayAssuranceDetails$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      cardholderName: "cardholder_name",
+      redirectUrl: "redirect_url",
+      cardSuffix: "card_suffix",
+      cardScheme: "card_scheme",
+      cardType: "card_type",
+      assuranceDetails: "assurance_details",
+    });
+  })
+);
 
 export function googlePayPaymentMethodCreateToJSON(
   googlePayPaymentMethodCreate: GooglePayPaymentMethodCreate,

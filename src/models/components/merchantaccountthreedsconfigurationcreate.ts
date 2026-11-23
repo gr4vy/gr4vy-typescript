@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type MerchantAccountThreeDSConfigurationCreate = {
@@ -58,26 +59,28 @@ export const MerchantAccountThreeDSConfigurationCreate$outboundSchema:
     MerchantAccountThreeDSConfigurationCreate$Outbound,
     z.ZodTypeDef,
     MerchantAccountThreeDSConfigurationCreate
-  > = z.object({
-    merchantAcquirerBin: z.string(),
-    merchantAcquirerId: z.string(),
-    merchantName: z.string(),
-    merchantCountryCode: z.string(),
-    merchantCategoryCode: z.string(),
-    merchantUrl: z.string(),
-    scheme: CardScheme$outboundSchema,
-    currency: z.nullable(z.string()).optional(),
-    metadata: z.record(z.string()),
-  }).transform((v) => {
-    return remap$(v, {
-      merchantAcquirerBin: "merchant_acquirer_bin",
-      merchantAcquirerId: "merchant_acquirer_id",
-      merchantName: "merchant_name",
-      merchantCountryCode: "merchant_country_code",
-      merchantCategoryCode: "merchant_category_code",
-      merchantUrl: "merchant_url",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      merchantAcquirerBin: z.string(),
+      merchantAcquirerId: z.string(),
+      merchantName: z.string(),
+      merchantCountryCode: z.string(),
+      merchantCategoryCode: z.string(),
+      merchantUrl: z.string(),
+      scheme: CardScheme$outboundSchema,
+      currency: z.nullable(z.string()).optional(),
+      metadata: z.record(z.string()),
+    }).transform((v) => {
+      return remap$(v, {
+        merchantAcquirerBin: "merchant_acquirer_bin",
+        merchantAcquirerId: "merchant_acquirer_id",
+        merchantName: "merchant_name",
+        merchantCountryCode: "merchant_country_code",
+        merchantCategoryCode: "merchant_category_code",
+        merchantUrl: "merchant_url",
+      });
+    })
+  );
 
 export function merchantAccountThreeDSConfigurationCreateToJSON(
   merchantAccountThreeDSConfigurationCreate:

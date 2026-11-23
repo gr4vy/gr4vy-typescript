@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type EcommpayOptions = {
   /**
@@ -27,15 +28,17 @@ export const EcommpayOptions$outboundSchema: z.ZodType<
   EcommpayOptions$Outbound,
   z.ZodTypeDef,
   EcommpayOptions
-> = z.object({
-  bookingStartDate: z.nullable(z.string()).optional(),
-  bookingEndDate: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bookingStartDate: "booking_start_date",
-    bookingEndDate: "booking_end_date",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bookingStartDate: z.nullable(z.string()).optional(),
+    bookingEndDate: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      bookingStartDate: "booking_start_date",
+      bookingEndDate: "booking_end_date",
+    });
+  })
+);
 
 export function ecommpayOptionsToJSON(
   ecommpayOptions: EcommpayOptions,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -49,7 +50,7 @@ export const UserDevice$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   UserDevice
-> = openEnums.outboundSchema(UserDevice);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(UserDevice));
 
 /** @internal */
 export type BrowserInfo$Outbound = {
@@ -70,30 +71,32 @@ export const BrowserInfo$outboundSchema: z.ZodType<
   BrowserInfo$Outbound,
   z.ZodTypeDef,
   BrowserInfo
-> = z.object({
-  javascriptEnabled: z.boolean(),
-  javaEnabled: z.boolean(),
-  language: z.string(),
-  colorDepth: z.number().int(),
-  screenHeight: z.number().int(),
-  screenWidth: z.number().int(),
-  timeZoneOffset: z.number().int(),
-  userAgent: z.string(),
-  userDevice: UserDevice$outboundSchema,
-  acceptHeader: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    javascriptEnabled: "javascript_enabled",
-    javaEnabled: "java_enabled",
-    colorDepth: "color_depth",
-    screenHeight: "screen_height",
-    screenWidth: "screen_width",
-    timeZoneOffset: "time_zone_offset",
-    userAgent: "user_agent",
-    userDevice: "user_device",
-    acceptHeader: "accept_header",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    javascriptEnabled: z.boolean(),
+    javaEnabled: z.boolean(),
+    language: z.string(),
+    colorDepth: z.number().int(),
+    screenHeight: z.number().int(),
+    screenWidth: z.number().int(),
+    timeZoneOffset: z.number().int(),
+    userAgent: z.string(),
+    userDevice: UserDevice$outboundSchema,
+    acceptHeader: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      javascriptEnabled: "javascript_enabled",
+      javaEnabled: "java_enabled",
+      colorDepth: "color_depth",
+      screenHeight: "screen_height",
+      screenWidth: "screen_width",
+      timeZoneOffset: "time_zone_offset",
+      userAgent: "user_agent",
+      userDevice: "user_device",
+      acceptHeader: "accept_header",
+    });
+  })
+);
 
 export function browserInfoToJSON(browserInfo: BrowserInfo): string {
   return JSON.stringify(BrowserInfo$outboundSchema.parse(browserInfo));

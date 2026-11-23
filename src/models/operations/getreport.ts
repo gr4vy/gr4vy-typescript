@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetReportGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const GetReportRequest$outboundSchema: z.ZodType<
   GetReportRequest$Outbound,
   z.ZodTypeDef,
   GetReportRequest
-> = z.object({
-  reportId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reportId: "report_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reportId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      reportId: "report_id",
+    });
+  })
+);
 
 export function getReportRequestToJSON(
   getReportRequest: GetReportRequest,
