@@ -2,7 +2,7 @@
 
 {
   "name": "@gr4vy/sdk",
-  "version": "2.4.50",
+  "version": "2.4.51",
   "exports": {
     ".": "./src/index.ts",
     "./node": "./src/node.ts",
