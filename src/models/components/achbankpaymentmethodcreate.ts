@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -76,7 +77,7 @@ export const AccountType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AccountType
-> = openEnums.outboundSchema(AccountType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(AccountType));
 
 /** @internal */
 export type ACHBankPaymentMethodCreate$Outbound = {
@@ -97,29 +98,31 @@ export const ACHBankPaymentMethodCreate$outboundSchema: z.ZodType<
   ACHBankPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   ACHBankPaymentMethodCreate
-> = z.object({
-  method: z.literal("bank").default("bank" as const),
-  accountHolder: BankAccountHolder$outboundSchema,
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  scheme: z.literal("ach").default("ach" as const),
-  isTokenized: z.boolean().default(false),
-  accountNumber: z.string(),
-  routingNumber: z.string(),
-  accountType: AccountType$outboundSchema.default("checking"),
-}).transform((v) => {
-  return remap$(v, {
-    accountHolder: "account_holder",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    externalIdentifier: "external_identifier",
-    isTokenized: "is_tokenized",
-    accountNumber: "account_number",
-    routingNumber: "routing_number",
-    accountType: "account_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("bank").default("bank" as const),
+    accountHolder: BankAccountHolder$outboundSchema,
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    scheme: z.literal("ach").default("ach" as const),
+    isTokenized: z.boolean().default(false),
+    accountNumber: z.string(),
+    routingNumber: z.string(),
+    accountType: AccountType$outboundSchema.default("checking"),
+  }).transform((v) => {
+    return remap$(v, {
+      accountHolder: "account_holder",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      externalIdentifier: "external_identifier",
+      isTokenized: "is_tokenized",
+      accountNumber: "account_number",
+      routingNumber: "routing_number",
+      accountType: "account_type",
+    });
+  })
+);
 
 export function achBankPaymentMethodCreateToJSON(
   achBankPaymentMethodCreate: ACHBankPaymentMethodCreate,

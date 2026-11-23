@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PazeShippingAddress,
   PazeShippingAddress$Outbound,
@@ -46,14 +47,16 @@ export const PazeEcomData$outboundSchema: z.ZodType<
   PazeEcomData$Outbound,
   z.ZodTypeDef,
   PazeEcomData
-> = z.object({
-  cartContainsGiftCard: z.nullable(z.boolean()).optional(),
-  orderForPickup: z.nullable(z.boolean()).optional(),
-  orderHighestCost: z.nullable(z.string()).optional(),
-  orderQuantity: z.nullable(z.string()).optional(),
-  finalShippingAddress: z.nullable(PazeShippingAddress$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cartContainsGiftCard: z.nullable(z.boolean()).optional(),
+    orderForPickup: z.nullable(z.boolean()).optional(),
+    orderHighestCost: z.nullable(z.string()).optional(),
+    orderQuantity: z.nullable(z.string()).optional(),
+    finalShippingAddress: z.nullable(PazeShippingAddress$outboundSchema)
+      .optional(),
+  })
+);
 
 export function pazeEcomDataToJSON(pazeEcomData: PazeEcomData): string {
   return JSON.stringify(PazeEcomData$outboundSchema.parse(pazeEcomData));

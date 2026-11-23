@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -52,17 +52,19 @@ export const VoidTransactionRequest$outboundSchema: z.ZodType<
   VoidTransactionRequest$Outbound,
   z.ZodTypeDef,
   VoidTransactionRequest
-> = z.object({
-  transactionId: z.string(),
-  prefer: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  idempotencyKey: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionId: "transaction_id",
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactionId: z.string(),
+    prefer: z.nullable(z.array(z.string())).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    idempotencyKey: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      transactionId: "transaction_id",
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function voidTransactionRequestToJSON(
   voidTransactionRequest: VoidTransactionRequest,
@@ -77,10 +79,12 @@ export const VoidTransactionResponse200VoidTransaction$inboundSchema: z.ZodType<
   VoidTransactionResponse200VoidTransaction,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.Transaction$inboundSchema,
-  components.TransactionVoid$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    components.Transaction$inboundSchema,
+    components.TransactionVoid$inboundSchema,
+  ])
+);
 
 export function voidTransactionResponse200VoidTransactionFromJSON(
   jsonString: string,

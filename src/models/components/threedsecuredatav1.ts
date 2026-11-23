@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -53,22 +53,24 @@ export const ThreeDSecureDataV1$inboundSchema: z.ZodType<
   ThreeDSecureDataV1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  cavv: z.string(),
-  eci: z.string(),
-  version: z.string(),
-  directory_response: z.string(),
-  scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  authentication_response: z.string(),
-  cavv_algorithm: z.string(),
-  xid: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "directory_response": "directoryResponse",
-    "authentication_response": "authenticationResponse",
-    "cavv_algorithm": "cavvAlgorithm",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cavv: z.string(),
+    eci: z.string(),
+    version: z.string(),
+    directory_response: z.string(),
+    scheme: z.nullable(CardScheme$inboundSchema).optional(),
+    authentication_response: z.string(),
+    cavv_algorithm: z.string(),
+    xid: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "directory_response": "directoryResponse",
+      "authentication_response": "authenticationResponse",
+      "cavv_algorithm": "cavvAlgorithm",
+    });
+  })
+);
 /** @internal */
 export type ThreeDSecureDataV1$Outbound = {
   cavv: string;
@@ -86,22 +88,24 @@ export const ThreeDSecureDataV1$outboundSchema: z.ZodType<
   ThreeDSecureDataV1$Outbound,
   z.ZodTypeDef,
   ThreeDSecureDataV1
-> = z.object({
-  cavv: z.string(),
-  eci: z.string(),
-  version: z.string(),
-  directoryResponse: z.string(),
-  scheme: z.nullable(CardScheme$outboundSchema).optional(),
-  authenticationResponse: z.string(),
-  cavvAlgorithm: z.string(),
-  xid: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    directoryResponse: "directory_response",
-    authenticationResponse: "authentication_response",
-    cavvAlgorithm: "cavv_algorithm",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cavv: z.string(),
+    eci: z.string(),
+    version: z.string(),
+    directoryResponse: z.string(),
+    scheme: z.nullable(CardScheme$outboundSchema).optional(),
+    authenticationResponse: z.string(),
+    cavvAlgorithm: z.string(),
+    xid: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      directoryResponse: "directory_response",
+      authenticationResponse: "authentication_response",
+      cavvAlgorithm: "cavv_algorithm",
+    });
+  })
+);
 
 export function threeDSecureDataV1ToJSON(
   threeDSecureDataV1: ThreeDSecureDataV1,

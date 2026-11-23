@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { PazeConsumer, PazeConsumer$inboundSchema } from "./pazeconsumer.js";
@@ -36,13 +36,15 @@ export const PazeSessionReview$inboundSchema: z.ZodType<
   PazeSessionReview,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  consumer: PazeConsumer$inboundSchema,
-  shippingAddress: z.nullable(PazeShippingAddress$inboundSchema),
-  maskedCard: PazeMaskedCard$inboundSchema,
-  links: PazeSessionReviewLinks$inboundSchema,
-  code: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumer: PazeConsumer$inboundSchema,
+    shippingAddress: z.nullable(PazeShippingAddress$inboundSchema),
+    maskedCard: PazeMaskedCard$inboundSchema,
+    links: PazeSessionReviewLinks$inboundSchema,
+    code: z.string(),
+  })
+);
 
 export function pazeSessionReviewFromJSON(
   jsonString: string,

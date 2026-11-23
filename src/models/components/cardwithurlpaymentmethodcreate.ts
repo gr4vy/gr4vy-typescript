@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { CardType, CardType$outboundSchema } from "./cardtype.js";
@@ -75,7 +76,9 @@ export const CardWithUrlPaymentMethodCreatePreferredScheme$outboundSchema:
     string,
     z.ZodTypeDef,
     CardWithUrlPaymentMethodCreatePreferredScheme
-  > = openEnums.outboundSchema(CardWithUrlPaymentMethodCreatePreferredScheme);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.outboundSchema(CardWithUrlPaymentMethodCreatePreferredScheme)
+  );
 
 /** @internal */
 export type CardWithUrlPaymentMethodCreate$Outbound = {
@@ -96,31 +99,33 @@ export const CardWithUrlPaymentMethodCreate$outboundSchema: z.ZodType<
   CardWithUrlPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   CardWithUrlPaymentMethodCreate
-> = z.object({
-  expirationDate: z.string(),
-  number: z.string(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  cardType: z.nullable(CardType$outboundSchema).optional(),
-  method: z.literal("card").default("card" as const),
-  securityCode: z.nullable(z.string()).optional(),
-  preferredScheme: z.nullable(
-    CardWithUrlPaymentMethodCreatePreferredScheme$outboundSchema,
-  ).optional(),
-  redirectUrl: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    externalIdentifier: "external_identifier",
-    cardType: "card_type",
-    securityCode: "security_code",
-    preferredScheme: "preferred_scheme",
-    redirectUrl: "redirect_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    expirationDate: z.string(),
+    number: z.string(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    cardType: z.nullable(CardType$outboundSchema).optional(),
+    method: z.literal("card").default("card" as const),
+    securityCode: z.nullable(z.string()).optional(),
+    preferredScheme: z.nullable(
+      CardWithUrlPaymentMethodCreatePreferredScheme$outboundSchema,
+    ).optional(),
+    redirectUrl: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expirationDate: "expiration_date",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      externalIdentifier: "external_identifier",
+      cardType: "card_type",
+      securityCode: "security_code",
+      preferredScheme: "preferred_scheme",
+      redirectUrl: "redirect_url",
+    });
+  })
+);
 
 export function cardWithUrlPaymentMethodCreateToJSON(
   cardWithUrlPaymentMethodCreate: CardWithUrlPaymentMethodCreate,

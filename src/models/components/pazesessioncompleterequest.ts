@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -81,14 +82,18 @@ export type PazeSessionCompleteRequest = {
 /** @internal */
 export const PazeSessionCompleteRequestTransactiontype$outboundSchema:
   z.ZodType<string, z.ZodTypeDef, PazeSessionCompleteRequestTransactiontype> =
-    openEnums.outboundSchema(PazeSessionCompleteRequestTransactiontype);
+    /* @__PURE__ */ lazySchema$(() =>
+      openEnums.outboundSchema(PazeSessionCompleteRequestTransactiontype)
+    );
 
 /** @internal */
 export const ProcessingNetwork$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProcessingNetwork
-> = openEnums.outboundSchema(ProcessingNetwork);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProcessingNetwork)
+);
 
 /** @internal */
 export type PazeSessionCompleteRequest$Outbound = {
@@ -110,19 +115,22 @@ export const PazeSessionCompleteRequest$outboundSchema: z.ZodType<
   PazeSessionCompleteRequest$Outbound,
   z.ZodTypeDef,
   PazeSessionCompleteRequest
-> = z.object({
-  sessionId: z.string(),
-  code: z.string(),
-  accessToken: z.string(),
-  transactionType: PazeSessionCompleteRequestTransactiontype$outboundSchema,
-  transactionOptions: z.nullable(PazeTransactionOptions$outboundSchema)
-    .optional(),
-  transactionValue: z.nullable(PazeTransactionValue$outboundSchema).optional(),
-  processingNetwork: z.nullable(ProcessingNetwork$outboundSchema).optional(),
-  enhancedTransactionData: z.nullable(
-    PazeEnhancedTransactionData$outboundSchema,
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    sessionId: z.string(),
+    code: z.string(),
+    accessToken: z.string(),
+    transactionType: PazeSessionCompleteRequestTransactiontype$outboundSchema,
+    transactionOptions: z.nullable(PazeTransactionOptions$outboundSchema)
+      .optional(),
+    transactionValue: z.nullable(PazeTransactionValue$outboundSchema)
+      .optional(),
+    processingNetwork: z.nullable(ProcessingNetwork$outboundSchema).optional(),
+    enhancedTransactionData: z.nullable(
+      PazeEnhancedTransactionData$outboundSchema,
+    ).optional(),
+  })
+);
 
 export function pazeSessionCompleteRequestToJSON(
   pazeSessionCompleteRequest: PazeSessionCompleteRequest,

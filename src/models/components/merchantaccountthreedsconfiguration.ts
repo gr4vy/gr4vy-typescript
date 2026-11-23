@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CardScheme, CardScheme$inboundSchema } from "./cardscheme.js";
@@ -67,36 +67,42 @@ export const MerchantAccountThreeDSConfiguration$inboundSchema: z.ZodType<
   MerchantAccountThreeDSConfiguration,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  merchant_acquirer_bin: z.string(),
-  merchant_acquirer_id: z.string(),
-  merchant_name: z.string(),
-  merchant_country_code: z.string(),
-  merchant_category_code: z.string(),
-  merchant_url: z.string(),
-  type: z.literal("merchant-account.three-ds-configuration").default(
-    "merchant-account.three-ds-configuration",
-  ),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  scheme: CardScheme$inboundSchema,
-  currency: z.nullable(z.string()),
-  metadata: z.record(z.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_acquirer_bin": "merchantAcquirerBin",
-    "merchant_acquirer_id": "merchantAcquirerId",
-    "merchant_name": "merchantName",
-    "merchant_country_code": "merchantCountryCode",
-    "merchant_category_code": "merchantCategoryCode",
-    "merchant_url": "merchantUrl",
-    "merchant_account_id": "merchantAccountId",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchant_acquirer_bin: z.string(),
+    merchant_acquirer_id: z.string(),
+    merchant_name: z.string(),
+    merchant_country_code: z.string(),
+    merchant_category_code: z.string(),
+    merchant_url: z.string(),
+    type: z.literal("merchant-account.three-ds-configuration").default(
+      "merchant-account.three-ds-configuration",
+    ),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    scheme: CardScheme$inboundSchema,
+    currency: z.nullable(z.string()),
+    metadata: z.record(z.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_acquirer_bin": "merchantAcquirerBin",
+      "merchant_acquirer_id": "merchantAcquirerId",
+      "merchant_name": "merchantName",
+      "merchant_country_code": "merchantCountryCode",
+      "merchant_category_code": "merchantCategoryCode",
+      "merchant_url": "merchantUrl",
+      "merchant_account_id": "merchantAccountId",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function merchantAccountThreeDSConfigurationFromJSON(
   jsonString: string,

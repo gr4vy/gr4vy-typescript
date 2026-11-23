@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AdyenAutoRescueSepaScenariosEnum,
   AdyenAutoRescueSepaScenariosEnum$outboundSchema,
@@ -45,15 +46,17 @@ export const AdyenSepaOptions$outboundSchema: z.ZodType<
   AdyenSepaOptions$Outbound,
   z.ZodTypeDef,
   AdyenSepaOptions
-> = z.object({
-  autoRescue: z.nullable(z.boolean()).optional(),
-  maxDaysToRescue: z.nullable(z.number().int()).optional(),
-  additionalData: z.nullable(z.record(z.string())).optional(),
-  autoRescueSepaScenario: z.nullable(
-    AdyenAutoRescueSepaScenariosEnum$outboundSchema,
-  ).optional(),
-  ownerName: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    autoRescue: z.nullable(z.boolean()).optional(),
+    maxDaysToRescue: z.nullable(z.number().int()).optional(),
+    additionalData: z.nullable(z.record(z.string())).optional(),
+    autoRescueSepaScenario: z.nullable(
+      AdyenAutoRescueSepaScenariosEnum$outboundSchema,
+    ).optional(),
+    ownerName: z.nullable(z.string()).optional(),
+  })
+);
 
 export function adyenSepaOptionsToJSON(
   adyenSepaOptions: AdyenSepaOptions,

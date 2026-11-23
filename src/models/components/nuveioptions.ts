@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   NuveiAirlineDataOptions,
   NuveiAirlineDataOptions$Outbound,
@@ -31,10 +32,12 @@ export const NuveiOptions$outboundSchema: z.ZodType<
   NuveiOptions$Outbound,
   z.ZodTypeDef,
   NuveiOptions
-> = z.object({
-  customData: z.nullable(z.string()).optional(),
-  airlineData: z.nullable(NuveiAirlineDataOptions$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customData: z.nullable(z.string()).optional(),
+    airlineData: z.nullable(NuveiAirlineDataOptions$outboundSchema).optional(),
+  })
+);
 
 export function nuveiOptionsToJSON(nuveiOptions: NuveiOptions): string {
   return JSON.stringify(NuveiOptions$outboundSchema.parse(nuveiOptions));

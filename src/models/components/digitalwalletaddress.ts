@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -36,18 +36,20 @@ export const DigitalWalletAddress$inboundSchema: z.ZodType<
   DigitalWalletAddress,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  line1: z.string(),
-  line2: z.nullable(z.string()).optional(),
-  city: z.string(),
-  state_code: z.string(),
-  postal_code: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "state_code": "stateCode",
-    "postal_code": "postalCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    line1: z.string(),
+    line2: z.nullable(z.string()).optional(),
+    city: z.string(),
+    state_code: z.string(),
+    postal_code: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "state_code": "stateCode",
+      "postal_code": "postalCode",
+    });
+  })
+);
 /** @internal */
 export type DigitalWalletAddress$Outbound = {
   line1: string;
@@ -62,18 +64,20 @@ export const DigitalWalletAddress$outboundSchema: z.ZodType<
   DigitalWalletAddress$Outbound,
   z.ZodTypeDef,
   DigitalWalletAddress
-> = z.object({
-  line1: z.string(),
-  line2: z.nullable(z.string()).optional(),
-  city: z.string(),
-  stateCode: z.string(),
-  postalCode: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    stateCode: "state_code",
-    postalCode: "postal_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    line1: z.string(),
+    line2: z.nullable(z.string()).optional(),
+    city: z.string(),
+    stateCode: z.string(),
+    postalCode: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      stateCode: "state_code",
+      postalCode: "postal_code",
+    });
+  })
+);
 
 export function digitalWalletAddressToJSON(
   digitalWalletAddress: DigitalWalletAddress,

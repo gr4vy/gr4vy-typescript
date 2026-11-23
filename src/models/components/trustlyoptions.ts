@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type TrustlyOptions = {
   /**
@@ -21,9 +22,11 @@ export const TrustlyOptions$outboundSchema: z.ZodType<
   TrustlyOptions$Outbound,
   z.ZodTypeDef,
   TrustlyOptions
-> = z.object({
-  refreshSplitToken: z.nullable(z.boolean()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    refreshSplitToken: z.nullable(z.boolean()).optional(),
+  })
+);
 
 export function trustlyOptionsToJSON(trustlyOptions: TrustlyOptions): string {
   return JSON.stringify(TrustlyOptions$outboundSchema.parse(trustlyOptions));

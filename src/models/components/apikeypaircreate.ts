@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CertificateAlgorithm,
   CertificateAlgorithm$outboundSchema,
@@ -48,21 +49,23 @@ export const APIKeyPairCreate$outboundSchema: z.ZodType<
   APIKeyPairCreate$Outbound,
   z.ZodTypeDef,
   APIKeyPairCreate
-> = z.object({
-  displayName: z.string(),
-  algorithm: CertificateAlgorithm$outboundSchema.optional(),
-  active: z.boolean().default(true),
-  roleIds: z.array(z.string()),
-  merchantAccountIds: z.array(z.string()).optional(),
-  publicKey: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    roleIds: "role_ids",
-    merchantAccountIds: "merchant_account_ids",
-    publicKey: "public_key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayName: z.string(),
+    algorithm: CertificateAlgorithm$outboundSchema.optional(),
+    active: z.boolean().default(true),
+    roleIds: z.array(z.string()),
+    merchantAccountIds: z.array(z.string()).optional(),
+    publicKey: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+      roleIds: "role_ids",
+      merchantAccountIds: "merchant_account_ids",
+      publicKey: "public_key",
+    });
+  })
+);
 
 export function apiKeyPairCreateToJSON(
   apiKeyPairCreate: APIKeyPairCreate,

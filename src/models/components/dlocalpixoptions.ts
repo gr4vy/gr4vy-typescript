@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DlocalPIXSubscriptionOptions,
   DlocalPIXSubscriptionOptions$Outbound,
@@ -32,15 +33,17 @@ export const DlocalPIXOptions$outboundSchema: z.ZodType<
   DlocalPIXOptions$Outbound,
   z.ZodTypeDef,
   DlocalPIXOptions
-> = z.object({
-  subscription: z.nullable(DlocalPIXSubscriptionOptions$outboundSchema)
-    .optional(),
-  scheduledDate: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    scheduledDate: "scheduled_date",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscription: z.nullable(DlocalPIXSubscriptionOptions$outboundSchema)
+      .optional(),
+    scheduledDate: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      scheduledDate: "scheduled_date",
+    });
+  })
+);
 
 export function dlocalPIXOptionsToJSON(
   dlocalPIXOptions: DlocalPIXOptions,

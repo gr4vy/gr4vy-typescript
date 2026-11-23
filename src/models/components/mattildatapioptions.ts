@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type MattildaTapiOptions = {
   /**
@@ -22,13 +23,15 @@ export const MattildaTapiOptions$outboundSchema: z.ZodType<
   MattildaTapiOptions$Outbound,
   z.ZodTypeDef,
   MattildaTapiOptions
-> = z.object({
-  paymentMethodExpiresAt: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentMethodExpiresAt: "payment_method_expires_at",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentMethodExpiresAt: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentMethodExpiresAt: "payment_method_expires_at",
+    });
+  })
+);
 
 export function mattildaTapiOptionsToJSON(
   mattildaTapiOptions: MattildaTapiOptions,

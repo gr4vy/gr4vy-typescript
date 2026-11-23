@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListTransactionCapturesGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const ListTransactionCapturesRequest$outboundSchema: z.ZodType<
   ListTransactionCapturesRequest$Outbound,
   z.ZodTypeDef,
   ListTransactionCapturesRequest
-> = z.object({
-  transactionId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionId: "transaction_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactionId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      transactionId: "transaction_id",
+    });
+  })
+);
 
 export function listTransactionCapturesRequestToJSON(
   listTransactionCapturesRequest: ListTransactionCapturesRequest,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Buyer, Buyer$inboundSchema } from "./buyer.js";
@@ -78,42 +78,48 @@ export const GiftCard$inboundSchema: z.ZodType<
   GiftCard,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("gift-card").default("gift-card"),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  gift_card_service: GiftCardService$inboundSchema,
-  bin: z.string(),
-  sub_bin: z.string(),
-  last4: z.string(),
-  expiration_date: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  buyer: z.nullable(Buyer$inboundSchema).optional(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  last_used_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  usage_count: z.number().int(),
-  cit_last_used_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  cit_usage_count: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "gift_card_service": "giftCardService",
-    "sub_bin": "subBin",
-    "expiration_date": "expirationDate",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "last_used_at": "lastUsedAt",
-    "usage_count": "usageCount",
-    "cit_last_used_at": "citLastUsedAt",
-    "cit_usage_count": "citUsageCount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("gift-card").default("gift-card"),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    gift_card_service: GiftCardService$inboundSchema,
+    bin: z.string(),
+    sub_bin: z.string(),
+    last4: z.string(),
+    expiration_date: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    buyer: z.nullable(Buyer$inboundSchema).optional(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    last_used_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    usage_count: z.number().int(),
+    cit_last_used_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    cit_usage_count: z.number().int(),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "gift_card_service": "giftCardService",
+      "sub_bin": "subBin",
+      "expiration_date": "expirationDate",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "last_used_at": "lastUsedAt",
+      "usage_count": "usageCount",
+      "cit_last_used_at": "citLastUsedAt",
+      "cit_usage_count": "citUsageCount",
+    });
+  })
+);
 
 export function giftCardFromJSON(
   jsonString: string,

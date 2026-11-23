@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ForterAntiFraudOptionsCartItemBasicItemData,
   ForterAntiFraudOptionsCartItemBasicItemData$Outbound,
@@ -65,22 +66,24 @@ export const ForterAntiFraudOptionsCartItem$outboundSchema: z.ZodType<
   ForterAntiFraudOptionsCartItem$Outbound,
   z.ZodTypeDef,
   ForterAntiFraudOptionsCartItem
-> = z.object({
-  basicItemData: z.nullable(
-    ForterAntiFraudOptionsCartItemBasicItemData$outboundSchema,
-  ).optional(),
-  deliveryDetails: z.nullable(
-    ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema,
-  ).optional(),
-  beneficiaries: z.nullable(
-    z.array(ForterAntiFraudOptionsCartItemBeneficiary$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    basicItemData: "basic_item_data",
-    deliveryDetails: "delivery_details",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    basicItemData: z.nullable(
+      ForterAntiFraudOptionsCartItemBasicItemData$outboundSchema,
+    ).optional(),
+    deliveryDetails: z.nullable(
+      ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema,
+    ).optional(),
+    beneficiaries: z.nullable(
+      z.array(ForterAntiFraudOptionsCartItemBeneficiary$outboundSchema),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      basicItemData: "basic_item_data",
+      deliveryDetails: "delivery_details",
+    });
+  })
+);
 
 export function forterAntiFraudOptionsCartItemToJSON(
   forterAntiFraudOptionsCartItem: ForterAntiFraudOptionsCartItem,

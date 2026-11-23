@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   KlarnaSubscriptionOptions,
   KlarnaSubscriptionOptions$Outbound,
@@ -37,16 +38,19 @@ export const KlarnaOptions$outboundSchema: z.ZodType<
   KlarnaOptions$Outbound,
   z.ZodTypeDef,
   KlarnaOptions
-> = z.object({
-  subscription: z.nullable(KlarnaSubscriptionOptions$outboundSchema).optional(),
-  tokenOnlyMode: z.nullable(z.boolean()).optional(),
-  authorizationToken: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    tokenOnlyMode: "token_only_mode",
-    authorizationToken: "authorization_token",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscription: z.nullable(KlarnaSubscriptionOptions$outboundSchema)
+      .optional(),
+    tokenOnlyMode: z.nullable(z.boolean()).optional(),
+    authorizationToken: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      tokenOnlyMode: "token_only_mode",
+      authorizationToken: "authorization_token",
+    });
+  })
+);
 
 export function klarnaOptionsToJSON(klarnaOptions: KlarnaOptions): string {
   return JSON.stringify(KlarnaOptions$outboundSchema.parse(klarnaOptions));

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * The assurance details provided by Google Pay
@@ -30,15 +31,17 @@ export const GooglePayAssuranceDetails$outboundSchema: z.ZodType<
   GooglePayAssuranceDetails$Outbound,
   z.ZodTypeDef,
   GooglePayAssuranceDetails
-> = z.object({
-  accountVerified: z.nullable(z.boolean()).optional(),
-  cardHolderAuthenticated: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accountVerified: "account_verified",
-    cardHolderAuthenticated: "card_holder_authenticated",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    accountVerified: z.nullable(z.boolean()).optional(),
+    cardHolderAuthenticated: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      accountVerified: "account_verified",
+      cardHolderAuthenticated: "card_holder_authenticated",
+    });
+  })
+);
 
 export function googlePayAssuranceDetailsToJSON(
   googlePayAssuranceDetails: GooglePayAssuranceDetails,

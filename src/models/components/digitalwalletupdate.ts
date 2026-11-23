@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DigitalWalletAddress,
   DigitalWalletAddress$Outbound,
@@ -41,26 +42,28 @@ export const DigitalWalletUpdate$outboundSchema: z.ZodType<
   DigitalWalletUpdate$Outbound,
   z.ZodTypeDef,
   DigitalWalletUpdate
-> = z.object({
-  merchantName: z.nullable(z.string()).optional(),
-  domainNames: z.nullable(z.array(z.string())).optional(),
-  merchantDisplayName: z.nullable(z.string()).optional(),
-  merchantUrl: z.nullable(z.string()).optional(),
-  merchantCountryCode: z.nullable(z.string()).optional(),
-  merchantCategoryCode: z.nullable(z.string()).optional(),
-  address: z.nullable(DigitalWalletAddress$outboundSchema).optional(),
-  extraConfiguration: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantName: "merchant_name",
-    domainNames: "domain_names",
-    merchantDisplayName: "merchant_display_name",
-    merchantUrl: "merchant_url",
-    merchantCountryCode: "merchant_country_code",
-    merchantCategoryCode: "merchant_category_code",
-    extraConfiguration: "extra_configuration",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantName: z.nullable(z.string()).optional(),
+    domainNames: z.nullable(z.array(z.string())).optional(),
+    merchantDisplayName: z.nullable(z.string()).optional(),
+    merchantUrl: z.nullable(z.string()).optional(),
+    merchantCountryCode: z.nullable(z.string()).optional(),
+    merchantCategoryCode: z.nullable(z.string()).optional(),
+    address: z.nullable(DigitalWalletAddress$outboundSchema).optional(),
+    extraConfiguration: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantName: "merchant_name",
+      domainNames: "domain_names",
+      merchantDisplayName: "merchant_display_name",
+      merchantUrl: "merchant_url",
+      merchantCountryCode: "merchant_country_code",
+      merchantCategoryCode: "merchant_category_code",
+      extraConfiguration: "extra_configuration",
+    });
+  })
+);
 
 export function digitalWalletUpdateToJSON(
   digitalWalletUpdate: DigitalWalletUpdate,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DlocalUPIRecurringInfoOptions,
   DlocalUPIRecurringInfoOptions$Outbound,
@@ -52,19 +53,21 @@ export const DlocalUPIWalletOptions$outboundSchema: z.ZodType<
   DlocalUPIWalletOptions$Outbound,
   z.ZodTypeDef,
   DlocalUPIWalletOptions
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  token: z.nullable(z.string()).optional(),
-  username: z.nullable(z.string()).optional(),
-  verify: z.nullable(z.boolean()).optional(),
-  recurringInfo: z.nullable(DlocalUPIRecurringInfoOptions$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    recurringInfo: "recurring_info",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+    token: z.nullable(z.string()).optional(),
+    username: z.nullable(z.string()).optional(),
+    verify: z.nullable(z.boolean()).optional(),
+    recurringInfo: z.nullable(DlocalUPIRecurringInfoOptions$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      recurringInfo: "recurring_info",
+    });
+  })
+);
 
 export function dlocalUPIWalletOptionsToJSON(
   dlocalUPIWalletOptions: DlocalUPIWalletOptions,

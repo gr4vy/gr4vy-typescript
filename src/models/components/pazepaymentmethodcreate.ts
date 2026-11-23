@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Create a Paze transaction with a device token.
@@ -70,29 +71,31 @@ export const PazePaymentMethodCreate$outboundSchema: z.ZodType<
   PazePaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   PazePaymentMethodCreate
-> = z.object({
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  cardholderName: z.nullable(z.string()).optional(),
-  redirectUrl: z.nullable(z.string()).optional(),
-  cardSuffix: z.nullable(z.string()).optional(),
-  cardScheme: z.nullable(z.string()).optional(),
-  cardType: z.nullable(z.string()).optional(),
-  method: z.literal("paze"),
-  token: z.string(),
-  checkoutToken: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    cardholderName: "cardholder_name",
-    redirectUrl: "redirect_url",
-    cardSuffix: "card_suffix",
-    cardScheme: "card_scheme",
-    cardType: "card_type",
-    checkoutToken: "checkout_token",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    cardholderName: z.nullable(z.string()).optional(),
+    redirectUrl: z.nullable(z.string()).optional(),
+    cardSuffix: z.nullable(z.string()).optional(),
+    cardScheme: z.nullable(z.string()).optional(),
+    cardType: z.nullable(z.string()).optional(),
+    method: z.literal("paze"),
+    token: z.string(),
+    checkoutToken: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      cardholderName: "cardholder_name",
+      redirectUrl: "redirect_url",
+      cardSuffix: "card_suffix",
+      cardScheme: "card_scheme",
+      cardType: "card_type",
+      checkoutToken: "checkout_token",
+    });
+  })
+);
 
 export function pazePaymentMethodCreateToJSON(
   pazePaymentMethodCreate: PazePaymentMethodCreate,

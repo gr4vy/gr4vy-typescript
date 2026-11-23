@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Create an Apple Pay transaction with a device or merchant token.
@@ -65,27 +66,29 @@ export const ApplePayPaymentMethodCreate$outboundSchema: z.ZodType<
   ApplePayPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   ApplePayPaymentMethodCreate
-> = z.object({
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  cardholderName: z.nullable(z.string()).optional(),
-  redirectUrl: z.nullable(z.string()).optional(),
-  cardSuffix: z.nullable(z.string()).optional(),
-  cardScheme: z.nullable(z.string()).optional(),
-  cardType: z.nullable(z.string()).optional(),
-  method: z.literal("applepay"),
-  token: z.record(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    cardholderName: "cardholder_name",
-    redirectUrl: "redirect_url",
-    cardSuffix: "card_suffix",
-    cardScheme: "card_scheme",
-    cardType: "card_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    cardholderName: z.nullable(z.string()).optional(),
+    redirectUrl: z.nullable(z.string()).optional(),
+    cardSuffix: z.nullable(z.string()).optional(),
+    cardScheme: z.nullable(z.string()).optional(),
+    cardType: z.nullable(z.string()).optional(),
+    method: z.literal("applepay"),
+    token: z.record(z.any()),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      cardholderName: "cardholder_name",
+      redirectUrl: "redirect_url",
+      cardSuffix: "card_suffix",
+      cardScheme: "card_scheme",
+      cardType: "card_type",
+    });
+  })
+);
 
 export function applePayPaymentMethodCreateToJSON(
   applePayPaymentMethodCreate: ApplePayPaymentMethodCreate,

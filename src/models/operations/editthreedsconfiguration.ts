@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type EditThreeDsConfigurationRequest = {
@@ -32,19 +33,21 @@ export const EditThreeDsConfigurationRequest$outboundSchema: z.ZodType<
   EditThreeDsConfigurationRequest$Outbound,
   z.ZodTypeDef,
   EditThreeDsConfigurationRequest
-> = z.object({
-  merchantAccountId: z.string(),
-  threeDsConfigurationId: z.string(),
-  merchantAccountThreeDSConfigurationUpdate:
-    components.MerchantAccountThreeDSConfigurationUpdate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    merchantAccountId: "merchant_account_id",
-    threeDsConfigurationId: "three_ds_configuration_id",
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.string(),
+    threeDsConfigurationId: z.string(),
     merchantAccountThreeDSConfigurationUpdate:
-      "MerchantAccountThreeDSConfigurationUpdate",
-  });
-});
+      components.MerchantAccountThreeDSConfigurationUpdate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      merchantAccountId: "merchant_account_id",
+      threeDsConfigurationId: "three_ds_configuration_id",
+      merchantAccountThreeDSConfigurationUpdate:
+        "MerchantAccountThreeDSConfigurationUpdate",
+    });
+  })
+);
 
 export function editThreeDsConfigurationRequestToJSON(
   editThreeDsConfigurationRequest: EditThreeDsConfigurationRequest,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -23,9 +23,11 @@ export const PaymentServiceTokens$inboundSchema: z.ZodType<
   PaymentServiceTokens,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  items: z.array(PaymentServiceToken$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(PaymentServiceToken$inboundSchema),
+  })
+);
 
 export function paymentServiceTokensFromJSON(
   jsonString: string,

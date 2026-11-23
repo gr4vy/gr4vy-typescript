@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ThreeDSecureScenarioConditions,
   ThreeDSecureScenarioConditions$Outbound,
@@ -30,10 +31,12 @@ export const ThreeDSecureScenarioCreate$outboundSchema: z.ZodType<
   ThreeDSecureScenarioCreate$Outbound,
   z.ZodTypeDef,
   ThreeDSecureScenarioCreate
-> = z.object({
-  conditions: ThreeDSecureScenarioConditions$outboundSchema,
-  outcome: ThreeDSecureScenarioOutcome$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    conditions: ThreeDSecureScenarioConditions$outboundSchema,
+    outcome: ThreeDSecureScenarioOutcome$outboundSchema,
+  })
+);
 
 export function threeDSecureScenarioCreateToJSON(
   threeDSecureScenarioCreate: ThreeDSecureScenarioCreate,

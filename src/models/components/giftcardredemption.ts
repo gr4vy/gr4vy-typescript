@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -62,27 +62,29 @@ export const GiftCardRedemption$inboundSchema: z.ZodType<
   GiftCardRedemption,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("gift-card-redemption").default("gift-card-redemption"),
-  id: z.string(),
-  status: GiftCardRedemptionStatus$inboundSchema,
-  amount: z.number().int(),
-  refunded_amount: z.number().int(),
-  gift_card_service_redemption_id: z.nullable(z.string()).optional(),
-  error_code: z.nullable(GiftCardErrorCode$inboundSchema).optional(),
-  raw_error_code: z.nullable(z.string()).optional(),
-  raw_error_message: z.nullable(z.string()).optional(),
-  gift_card: TransactionGiftCard$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "refunded_amount": "refundedAmount",
-    "gift_card_service_redemption_id": "giftCardServiceRedemptionId",
-    "error_code": "errorCode",
-    "raw_error_code": "rawErrorCode",
-    "raw_error_message": "rawErrorMessage",
-    "gift_card": "giftCard",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("gift-card-redemption").default("gift-card-redemption"),
+    id: z.string(),
+    status: GiftCardRedemptionStatus$inboundSchema,
+    amount: z.number().int(),
+    refunded_amount: z.number().int(),
+    gift_card_service_redemption_id: z.nullable(z.string()).optional(),
+    error_code: z.nullable(GiftCardErrorCode$inboundSchema).optional(),
+    raw_error_code: z.nullable(z.string()).optional(),
+    raw_error_message: z.nullable(z.string()).optional(),
+    gift_card: TransactionGiftCard$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "refunded_amount": "refundedAmount",
+      "gift_card_service_redemption_id": "giftCardServiceRedemptionId",
+      "error_code": "errorCode",
+      "raw_error_code": "rawErrorCode",
+      "raw_error_message": "rawErrorMessage",
+      "gift_card": "giftCard",
+    });
+  })
+);
 
 export function giftCardRedemptionFromJSON(
   jsonString: string,

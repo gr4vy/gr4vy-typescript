@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type PaymentMethodCard = {
@@ -43,19 +44,21 @@ export const PaymentMethodCard$outboundSchema: z.ZodType<
   PaymentMethodCard$Outbound,
   z.ZodTypeDef,
   PaymentMethodCard
-> = z.object({
-  method: z.literal("card").default("card" as const),
-  number: z.string(),
-  expirationDate: z.string(),
-  cardScheme: z.nullable(CardScheme$outboundSchema).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    cardScheme: "card_scheme",
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("card").default("card" as const),
+    number: z.string(),
+    expirationDate: z.string(),
+    cardScheme: z.nullable(CardScheme$outboundSchema).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expirationDate: "expiration_date",
+      cardScheme: "card_scheme",
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function paymentMethodCardToJSON(
   paymentMethodCard: PaymentMethodCard,

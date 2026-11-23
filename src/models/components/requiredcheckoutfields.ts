@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,14 +27,16 @@ export const RequiredCheckoutFields$inboundSchema: z.ZodType<
   RequiredCheckoutFields,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  required_fields: z.array(z.string()),
-  conditions: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "required_fields": "requiredFields",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    required_fields: z.array(z.string()),
+    conditions: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "required_fields": "requiredFields",
+    });
+  })
+);
 
 export function requiredCheckoutFieldsFromJSON(
   jsonString: string,

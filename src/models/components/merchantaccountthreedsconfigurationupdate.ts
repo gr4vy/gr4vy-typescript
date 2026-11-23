@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type MerchantAccountThreeDSConfigurationUpdate = {
@@ -61,26 +62,28 @@ export const MerchantAccountThreeDSConfigurationUpdate$outboundSchema:
     MerchantAccountThreeDSConfigurationUpdate$Outbound,
     z.ZodTypeDef,
     MerchantAccountThreeDSConfigurationUpdate
-  > = z.object({
-    merchantAcquirerBin: z.nullable(z.string()).optional(),
-    merchantAcquirerId: z.nullable(z.string()).optional(),
-    merchantName: z.nullable(z.string()).optional(),
-    merchantCountryCode: z.nullable(z.string()).optional(),
-    merchantCategoryCode: z.nullable(z.string()).optional(),
-    merchantUrl: z.nullable(z.string()).optional(),
-    scheme: z.nullable(CardScheme$outboundSchema).optional(),
-    currency: z.nullable(z.string()).optional(),
-    metadata: z.nullable(z.record(z.string())).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      merchantAcquirerBin: "merchant_acquirer_bin",
-      merchantAcquirerId: "merchant_acquirer_id",
-      merchantName: "merchant_name",
-      merchantCountryCode: "merchant_country_code",
-      merchantCategoryCode: "merchant_category_code",
-      merchantUrl: "merchant_url",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      merchantAcquirerBin: z.nullable(z.string()).optional(),
+      merchantAcquirerId: z.nullable(z.string()).optional(),
+      merchantName: z.nullable(z.string()).optional(),
+      merchantCountryCode: z.nullable(z.string()).optional(),
+      merchantCategoryCode: z.nullable(z.string()).optional(),
+      merchantUrl: z.nullable(z.string()).optional(),
+      scheme: z.nullable(CardScheme$outboundSchema).optional(),
+      currency: z.nullable(z.string()).optional(),
+      metadata: z.nullable(z.record(z.string())).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        merchantAcquirerBin: "merchant_acquirer_bin",
+        merchantAcquirerId: "merchant_acquirer_id",
+        merchantName: "merchant_name",
+        merchantCountryCode: "merchant_country_code",
+        merchantCategoryCode: "merchant_category_code",
+        merchantUrl: "merchant_url",
+      });
+    })
+  );
 
 export function merchantAccountThreeDSConfigurationUpdateToJSON(
   merchantAccountThreeDSConfigurationUpdate:

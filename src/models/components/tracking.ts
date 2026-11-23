@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -29,11 +29,13 @@ export const Tracking$inboundSchema: z.ZodType<
   Tracking,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  number: z.string(),
-  carrier: ShippingCarrier$inboundSchema,
-  url: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    number: z.string(),
+    carrier: ShippingCarrier$inboundSchema,
+    url: z.nullable(z.string()).optional(),
+  })
+);
 /** @internal */
 export type Tracking$Outbound = {
   number: string;
@@ -46,11 +48,13 @@ export const Tracking$outboundSchema: z.ZodType<
   Tracking$Outbound,
   z.ZodTypeDef,
   Tracking
-> = z.object({
-  number: z.string(),
-  carrier: ShippingCarrier$outboundSchema,
-  url: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    number: z.string(),
+    carrier: ShippingCarrier$outboundSchema,
+    url: z.nullable(z.string()).optional(),
+  })
+);
 
 export function trackingToJSON(tracking: Tracking): string {
   return JSON.stringify(Tracking$outboundSchema.parse(tracking));

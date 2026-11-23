@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -41,25 +41,29 @@ export const MerchantProfileSchemeSummary$inboundSchema: z.ZodType<
   MerchantProfileSchemeSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  merchant_acquirer_bin: z.string(),
-  merchant_acquirer_id: z.string(),
-  merchant_name: z.string(),
-  merchant_country_code: z.string(),
-  merchant_category_code: z.string(),
-  merchant_url: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_acquirer_bin": "merchantAcquirerBin",
-    "merchant_acquirer_id": "merchantAcquirerId",
-    "merchant_name": "merchantName",
-    "merchant_country_code": "merchantCountryCode",
-    "merchant_category_code": "merchantCategoryCode",
-    "merchant_url": "merchantUrl",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchant_acquirer_bin: z.string(),
+    merchant_acquirer_id: z.string(),
+    merchant_name: z.string(),
+    merchant_country_code: z.string(),
+    merchant_category_code: z.string(),
+    merchant_url: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_acquirer_bin": "merchantAcquirerBin",
+      "merchant_acquirer_id": "merchantAcquirerId",
+      "merchant_name": "merchantName",
+      "merchant_country_code": "merchantCountryCode",
+      "merchant_category_code": "merchantCategoryCode",
+      "merchant_url": "merchantUrl",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function merchantProfileSchemeSummaryFromJSON(
   jsonString: string,

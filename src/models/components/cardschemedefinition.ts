@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -32,17 +32,19 @@ export const CardSchemeDefinition$inboundSchema: z.ZodType<
   CardSchemeDefinition,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("card-scheme-definition").default("card-scheme-definition"),
-  id: z.string(),
-  icon_url: z.string(),
-  display_name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "icon_url": "iconUrl",
-    "display_name": "displayName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("card-scheme-definition").default("card-scheme-definition"),
+    id: z.string(),
+    icon_url: z.string(),
+    display_name: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "icon_url": "iconUrl",
+      "display_name": "displayName",
+    });
+  })
+);
 
 export function cardSchemeDefinitionFromJSON(
   jsonString: string,

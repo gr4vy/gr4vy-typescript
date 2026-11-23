@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -105,45 +105,47 @@ export const CartItem$inboundSchema: z.ZodType<
   CartItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.string(),
-  quantity: z.number().int(),
-  unit_amount: z.number().int(),
-  discount_amount: z.nullable(z.number().int()).optional(),
-  tax_amount: z.nullable(z.number().int()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  sku: z.nullable(z.string()).optional(),
-  upc: z.nullable(z.string()).optional(),
-  product_url: z.nullable(z.string()).optional(),
-  image_url: z.nullable(z.string()).optional(),
-  categories: z.nullable(z.array(z.string())).optional(),
-  subcategories: z.nullable(z.array(z.string())).optional(),
-  brand: z.nullable(z.string()).optional(),
-  product_type: z.nullable(ProductType$inboundSchema).optional(),
-  seller_country: z.nullable(z.string()).optional(),
-  tax_exempt: z.nullable(z.boolean()).optional(),
-  unit_of_measure: z.nullable(z.string()).optional(),
-  commodity_code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  duty_amount: z.nullable(z.number().int()).optional(),
-  shipping_amount: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "unit_amount": "unitAmount",
-    "discount_amount": "discountAmount",
-    "tax_amount": "taxAmount",
-    "external_identifier": "externalIdentifier",
-    "product_url": "productUrl",
-    "image_url": "imageUrl",
-    "product_type": "productType",
-    "seller_country": "sellerCountry",
-    "tax_exempt": "taxExempt",
-    "unit_of_measure": "unitOfMeasure",
-    "commodity_code": "commodityCode",
-    "duty_amount": "dutyAmount",
-    "shipping_amount": "shippingAmount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    quantity: z.number().int(),
+    unit_amount: z.number().int(),
+    discount_amount: z.nullable(z.number().int()).optional(),
+    tax_amount: z.nullable(z.number().int()).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    sku: z.nullable(z.string()).optional(),
+    upc: z.nullable(z.string()).optional(),
+    product_url: z.nullable(z.string()).optional(),
+    image_url: z.nullable(z.string()).optional(),
+    categories: z.nullable(z.array(z.string())).optional(),
+    subcategories: z.nullable(z.array(z.string())).optional(),
+    brand: z.nullable(z.string()).optional(),
+    product_type: z.nullable(ProductType$inboundSchema).optional(),
+    seller_country: z.nullable(z.string()).optional(),
+    tax_exempt: z.nullable(z.boolean()).optional(),
+    unit_of_measure: z.nullable(z.string()).optional(),
+    commodity_code: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    duty_amount: z.nullable(z.number().int()).optional(),
+    shipping_amount: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "unit_amount": "unitAmount",
+      "discount_amount": "discountAmount",
+      "tax_amount": "taxAmount",
+      "external_identifier": "externalIdentifier",
+      "product_url": "productUrl",
+      "image_url": "imageUrl",
+      "product_type": "productType",
+      "seller_country": "sellerCountry",
+      "tax_exempt": "taxExempt",
+      "unit_of_measure": "unitOfMeasure",
+      "commodity_code": "commodityCode",
+      "duty_amount": "dutyAmount",
+      "shipping_amount": "shippingAmount",
+    });
+  })
+);
 /** @internal */
 export type CartItem$Outbound = {
   name: string;
@@ -174,45 +176,47 @@ export const CartItem$outboundSchema: z.ZodType<
   CartItem$Outbound,
   z.ZodTypeDef,
   CartItem
-> = z.object({
-  name: z.string(),
-  quantity: z.number().int(),
-  unitAmount: z.number().int(),
-  discountAmount: z.nullable(z.number().int()).optional(),
-  taxAmount: z.nullable(z.number().int()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  sku: z.nullable(z.string()).optional(),
-  upc: z.nullable(z.string()).optional(),
-  productUrl: z.nullable(z.string()).optional(),
-  imageUrl: z.nullable(z.string()).optional(),
-  categories: z.nullable(z.array(z.string())).optional(),
-  subcategories: z.nullable(z.array(z.string())).optional(),
-  brand: z.nullable(z.string()).optional(),
-  productType: z.nullable(ProductType$outboundSchema).optional(),
-  sellerCountry: z.nullable(z.string()).optional(),
-  taxExempt: z.nullable(z.boolean()).optional(),
-  unitOfMeasure: z.nullable(z.string()).optional(),
-  commodityCode: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  dutyAmount: z.nullable(z.number().int()).optional(),
-  shippingAmount: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    unitAmount: "unit_amount",
-    discountAmount: "discount_amount",
-    taxAmount: "tax_amount",
-    externalIdentifier: "external_identifier",
-    productUrl: "product_url",
-    imageUrl: "image_url",
-    productType: "product_type",
-    sellerCountry: "seller_country",
-    taxExempt: "tax_exempt",
-    unitOfMeasure: "unit_of_measure",
-    commodityCode: "commodity_code",
-    dutyAmount: "duty_amount",
-    shippingAmount: "shipping_amount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    quantity: z.number().int(),
+    unitAmount: z.number().int(),
+    discountAmount: z.nullable(z.number().int()).optional(),
+    taxAmount: z.nullable(z.number().int()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    sku: z.nullable(z.string()).optional(),
+    upc: z.nullable(z.string()).optional(),
+    productUrl: z.nullable(z.string()).optional(),
+    imageUrl: z.nullable(z.string()).optional(),
+    categories: z.nullable(z.array(z.string())).optional(),
+    subcategories: z.nullable(z.array(z.string())).optional(),
+    brand: z.nullable(z.string()).optional(),
+    productType: z.nullable(ProductType$outboundSchema).optional(),
+    sellerCountry: z.nullable(z.string()).optional(),
+    taxExempt: z.nullable(z.boolean()).optional(),
+    unitOfMeasure: z.nullable(z.string()).optional(),
+    commodityCode: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    dutyAmount: z.nullable(z.number().int()).optional(),
+    shippingAmount: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      unitAmount: "unit_amount",
+      discountAmount: "discount_amount",
+      taxAmount: "tax_amount",
+      externalIdentifier: "external_identifier",
+      productUrl: "product_url",
+      imageUrl: "image_url",
+      productType: "product_type",
+      sellerCountry: "seller_country",
+      taxExempt: "tax_exempt",
+      unitOfMeasure: "unit_of_measure",
+      commodityCode: "commodity_code",
+      dutyAmount: "duty_amount",
+      shippingAmount: "shipping_amount",
+    });
+  })
+);
 
 export function cartItemToJSON(cartItem: CartItem): string {
   return JSON.stringify(CartItem$outboundSchema.parse(cartItem));

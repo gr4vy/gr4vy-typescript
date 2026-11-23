@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -94,33 +94,39 @@ export const ListPaymentLinksRequest$outboundSchema: z.ZodType<
   ListPaymentLinksRequest$Outbound,
   z.ZodTypeDef,
   ListPaymentLinksRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  createdAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAtLte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAtGte: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  currency: z.nullable(z.array(z.string())).optional(),
-  amountEq: z.nullable(z.number().int()).optional(),
-  amountGte: z.nullable(z.number().int()).optional(),
-  amountLte: z.nullable(z.number().int()).optional(),
-  status: z.nullable(z.array(components.PaymentLinkStatus$outboundSchema))
-    .optional(),
-  buyerSearch: z.nullable(z.array(z.string())).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createdAtLte: "created_at_lte",
-    createdAtGte: "created_at_gte",
-    updatedAtLte: "updated_at_lte",
-    updatedAtGte: "updated_at_gte",
-    amountEq: "amount_eq",
-    amountGte: "amount_gte",
-    amountLte: "amount_lte",
-    buyerSearch: "buyer_search",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    createdAtLte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    createdAtGte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    updatedAtLte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    updatedAtGte: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    currency: z.nullable(z.array(z.string())).optional(),
+    amountEq: z.nullable(z.number().int()).optional(),
+    amountGte: z.nullable(z.number().int()).optional(),
+    amountLte: z.nullable(z.number().int()).optional(),
+    status: z.nullable(z.array(components.PaymentLinkStatus$outboundSchema))
+      .optional(),
+    buyerSearch: z.nullable(z.array(z.string())).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      createdAtLte: "created_at_lte",
+      createdAtGte: "created_at_gte",
+      updatedAtLte: "updated_at_lte",
+      updatedAtGte: "updated_at_gte",
+      amountEq: "amount_eq",
+      amountGte: "amount_gte",
+      amountLte: "amount_lte",
+      buyerSearch: "buyer_search",
+    });
+  })
+);
 
 export function listPaymentLinksRequestToJSON(
   listPaymentLinksRequest: ListPaymentLinksRequest,
@@ -135,13 +141,15 @@ export const ListPaymentLinksResponse$inboundSchema: z.ZodType<
   ListPaymentLinksResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.PaymentLinks$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.PaymentLinks$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listPaymentLinksResponseFromJSON(
   jsonString: string,

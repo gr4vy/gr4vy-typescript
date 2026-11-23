@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -51,7 +52,9 @@ export const SubscriptionFrequencyUnit$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   SubscriptionFrequencyUnit
-> = openEnums.outboundSchema(SubscriptionFrequencyUnit);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(SubscriptionFrequencyUnit)
+);
 
 /** @internal */
 export type DlocalUPIRecurringInfoOptions$Outbound = {
@@ -66,19 +69,21 @@ export const DlocalUPIRecurringInfoOptions$outboundSchema: z.ZodType<
   DlocalUPIRecurringInfoOptions$Outbound,
   z.ZodTypeDef,
   DlocalUPIRecurringInfoOptions
-> = z.object({
-  subscriptionFrequencyUnit: SubscriptionFrequencyUnit$outboundSchema,
-  subscriptionFrequency: z.number().int(),
-  subscriptionStartAt: z.string(),
-  subscriptionEndAt: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    subscriptionFrequencyUnit: "subscription_frequency_unit",
-    subscriptionFrequency: "subscription_frequency",
-    subscriptionStartAt: "subscription_start_at",
-    subscriptionEndAt: "subscription_end_at",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriptionFrequencyUnit: SubscriptionFrequencyUnit$outboundSchema,
+    subscriptionFrequency: z.number().int(),
+    subscriptionStartAt: z.string(),
+    subscriptionEndAt: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      subscriptionFrequencyUnit: "subscription_frequency_unit",
+      subscriptionFrequency: "subscription_frequency",
+      subscriptionStartAt: "subscription_start_at",
+      subscriptionEndAt: "subscription_end_at",
+    });
+  })
+);
 
 export function dlocalUPIRecurringInfoOptionsToJSON(
   dlocalUPIRecurringInfoOptions: DlocalUPIRecurringInfoOptions,

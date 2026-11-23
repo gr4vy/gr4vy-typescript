@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -49,16 +49,18 @@ export const ListReportExecutionsRequest$outboundSchema: z.ZodType<
   ListReportExecutionsRequest$Outbound,
   z.ZodTypeDef,
   ListReportExecutionsRequest
-> = z.object({
-  reportId: z.string(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reportId: "report_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reportId: z.string(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      reportId: "report_id",
+    });
+  })
+);
 
 export function listReportExecutionsRequestToJSON(
   listReportExecutionsRequest: ListReportExecutionsRequest,
@@ -75,13 +77,15 @@ export const ListReportExecutionsResponse$inboundSchema: z.ZodType<
   ListReportExecutionsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.ReportExecutions$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.ReportExecutions$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listReportExecutionsResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -48,22 +48,24 @@ export const ReportSummary$inboundSchema: z.ZodType<
   ReportSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("report").default("report"),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  name: z.string(),
-  creator_id: z.nullable(z.string()).optional(),
-  creator_display_name: z.nullable(z.string()).optional(),
-  creator_type: z.nullable(ReportCreatorType$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "creator_id": "creatorId",
-    "creator_display_name": "creatorDisplayName",
-    "creator_type": "creatorType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("report").default("report"),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    name: z.string(),
+    creator_id: z.nullable(z.string()).optional(),
+    creator_display_name: z.nullable(z.string()).optional(),
+    creator_type: z.nullable(ReportCreatorType$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "creator_id": "creatorId",
+      "creator_display_name": "creatorDisplayName",
+      "creator_type": "creatorType",
+    });
+  })
+);
 
 export function reportSummaryFromJSON(
   jsonString: string,

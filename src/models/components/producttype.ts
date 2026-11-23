@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -23,10 +24,10 @@ export const ProductType$inboundSchema: z.ZodType<
   ProductType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ProductType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ProductType));
 /** @internal */
 export const ProductType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProductType
-> = openEnums.outboundSchema(ProductType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(ProductType));

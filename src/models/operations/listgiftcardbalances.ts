@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type ListGiftCardBalancesGlobals = {
@@ -29,14 +30,16 @@ export const ListGiftCardBalancesRequest$outboundSchema: z.ZodType<
   ListGiftCardBalancesRequest$Outbound,
   z.ZodTypeDef,
   ListGiftCardBalancesRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  giftCardBalanceRequest: components.GiftCardBalanceRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    giftCardBalanceRequest: "GiftCardBalanceRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    giftCardBalanceRequest: components.GiftCardBalanceRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      giftCardBalanceRequest: "GiftCardBalanceRequest",
+    });
+  })
+);
 
 export function listGiftCardBalancesRequestToJSON(
   listGiftCardBalancesRequest: ListGiftCardBalancesRequest,

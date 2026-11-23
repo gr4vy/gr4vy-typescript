@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -46,21 +46,23 @@ export const Recipient$inboundSchema: z.ZodType<
   Recipient,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  first_name: z.string(),
-  last_name: z.string(),
-  address: z.nullable(Address$inboundSchema).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  date_of_birth: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "account_number": "accountNumber",
-    "date_of_birth": "dateOfBirth",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    first_name: z.string(),
+    last_name: z.string(),
+    address: z.nullable(Address$inboundSchema).optional(),
+    account_number: z.nullable(z.string()).optional(),
+    date_of_birth: z.nullable(z.string().transform(v => new RFCDate(v)))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "account_number": "accountNumber",
+      "date_of_birth": "dateOfBirth",
+    });
+  })
+);
 /** @internal */
 export type Recipient$Outbound = {
   first_name: string;
@@ -75,21 +77,23 @@ export const Recipient$outboundSchema: z.ZodType<
   Recipient$Outbound,
   z.ZodTypeDef,
   Recipient
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  address: z.nullable(Address$outboundSchema).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  dateOfBirth: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    accountNumber: "account_number",
-    dateOfBirth: "date_of_birth",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    address: z.nullable(Address$outboundSchema).optional(),
+    accountNumber: z.nullable(z.string()).optional(),
+    dateOfBirth: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      accountNumber: "account_number",
+      dateOfBirth: "date_of_birth",
+    });
+  })
+);
 
 export function recipientToJSON(recipient: Recipient): string {
   return JSON.stringify(Recipient$outboundSchema.parse(recipient));

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Airline,
   Airline$Outbound,
@@ -70,21 +71,23 @@ export const TransactionCaptureCreate$outboundSchema: z.ZodType<
   TransactionCaptureCreate$Outbound,
   z.ZodTypeDef,
   TransactionCaptureCreate
-> = z.object({
-  amount: z.nullable(z.number().int()).optional(),
-  airline: z.nullable(Airline$outboundSchema).optional(),
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
-  tracking: z.nullable(z.array(Tracking$outboundSchema)).optional(),
-  final: z.boolean().default(true),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  reauthorizeIfAuthorizationExpired: z.boolean().default(false),
-}).transform((v) => {
-  return remap$(v, {
-    cartItems: "cart_items",
-    externalIdentifier: "external_identifier",
-    reauthorizeIfAuthorizationExpired: "reauthorize_if_authorization_expired",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.nullable(z.number().int()).optional(),
+    airline: z.nullable(Airline$outboundSchema).optional(),
+    cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+    tracking: z.nullable(z.array(Tracking$outboundSchema)).optional(),
+    final: z.boolean().default(true),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    reauthorizeIfAuthorizationExpired: z.boolean().default(false),
+  }).transform((v) => {
+    return remap$(v, {
+      cartItems: "cart_items",
+      externalIdentifier: "external_identifier",
+      reauthorizeIfAuthorizationExpired: "reauthorize_if_authorization_expired",
+    });
+  })
+);
 
 export function transactionCaptureCreateToJSON(
   transactionCaptureCreate: TransactionCaptureCreate,

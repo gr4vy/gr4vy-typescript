@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -52,7 +53,7 @@ export const DeliveryType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   DeliveryType
-> = openEnums.outboundSchema(DeliveryType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(DeliveryType));
 
 /** @internal */
 export type ForterAntiFraudOptions$Outbound = {
@@ -71,23 +72,26 @@ export const ForterAntiFraudOptions$outboundSchema: z.ZodType<
   ForterAntiFraudOptions$Outbound,
   z.ZodTypeDef,
   ForterAntiFraudOptions
-> = z.object({
-  deliveryType: z.nullable(DeliveryType$outboundSchema).optional(),
-  deliveryMethod: z.nullable(z.string()).optional(),
-  isGuestBuyer: z.nullable(z.boolean()).optional(),
-  cartItems: z.nullable(z.array(ForterAntiFraudOptionsCartItem$outboundSchema))
-    .optional(),
-  totalDiscount: z.nullable(ForterAntiFraudOptionsDiscount$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    deliveryType: "delivery_type",
-    deliveryMethod: "delivery_method",
-    isGuestBuyer: "is_guest_buyer",
-    cartItems: "cart_items",
-    totalDiscount: "total_discount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    deliveryType: z.nullable(DeliveryType$outboundSchema).optional(),
+    deliveryMethod: z.nullable(z.string()).optional(),
+    isGuestBuyer: z.nullable(z.boolean()).optional(),
+    cartItems: z.nullable(
+      z.array(ForterAntiFraudOptionsCartItem$outboundSchema),
+    ).optional(),
+    totalDiscount: z.nullable(ForterAntiFraudOptionsDiscount$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      deliveryType: "delivery_type",
+      deliveryMethod: "delivery_method",
+      isGuestBuyer: "is_guest_buyer",
+      cartItems: "cart_items",
+      totalDiscount: "total_discount",
+    });
+  })
+);
 
 export function forterAntiFraudOptionsToJSON(
   forterAntiFraudOptions: ForterAntiFraudOptions,

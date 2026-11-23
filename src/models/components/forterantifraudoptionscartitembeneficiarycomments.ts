@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryComments = {
   /**
@@ -33,17 +34,19 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryComments$outboundSchema:
     ForterAntiFraudOptionsCartItemBeneficiaryComments$Outbound,
     z.ZodTypeDef,
     ForterAntiFraudOptionsCartItemBeneficiaryComments
-  > = z.object({
-    userCommentsToMerchant: z.nullable(z.string()).optional(),
-    messageToBeneficiary: z.nullable(z.string()).optional(),
-    merchantComments: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      userCommentsToMerchant: "user_comments_to_merchant",
-      messageToBeneficiary: "message_to_beneficiary",
-      merchantComments: "merchant_comments",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      userCommentsToMerchant: z.nullable(z.string()).optional(),
+      messageToBeneficiary: z.nullable(z.string()).optional(),
+      merchantComments: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        userCommentsToMerchant: "user_comments_to_merchant",
+        messageToBeneficiary: "message_to_beneficiary",
+        merchantComments: "merchant_comments",
+      });
+    })
+  );
 
 export function forterAntiFraudOptionsCartItemBeneficiaryCommentsToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryComments:

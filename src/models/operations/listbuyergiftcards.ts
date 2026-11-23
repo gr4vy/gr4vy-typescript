@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { ClosedEnum, OpenEnum } from "../../types/enums.js";
 
@@ -57,14 +58,16 @@ export type ListBuyerGiftCardsRequest = {
 /** @internal */
 export const QueryParamSortBy$outboundSchema: z.ZodNativeEnum<
   typeof QueryParamSortBy
-> = z.nativeEnum(QueryParamSortBy);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(QueryParamSortBy));
 
 /** @internal */
 export const QueryParamOrderBy$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   QueryParamOrderBy
-> = openEnums.outboundSchema(QueryParamOrderBy);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(QueryParamOrderBy)
+);
 
 /** @internal */
 export type ListBuyerGiftCardsRequest$Outbound = {
@@ -80,20 +83,22 @@ export const ListBuyerGiftCardsRequest$outboundSchema: z.ZodType<
   ListBuyerGiftCardsRequest$Outbound,
   z.ZodTypeDef,
   ListBuyerGiftCardsRequest
-> = z.object({
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  sortBy: z.nullable(QueryParamSortBy$outboundSchema).optional(),
-  orderBy: QueryParamOrderBy$outboundSchema.default("desc"),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    sortBy: "sort_by",
-    orderBy: "order_by",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    sortBy: z.nullable(QueryParamSortBy$outboundSchema).optional(),
+    orderBy: QueryParamOrderBy$outboundSchema.default("desc"),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      sortBy: "sort_by",
+      orderBy: "order_by",
+    });
+  })
+);
 
 export function listBuyerGiftCardsRequestToJSON(
   listBuyerGiftCardsRequest: ListBuyerGiftCardsRequest,

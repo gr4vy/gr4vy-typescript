@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -47,16 +47,18 @@ export const PazeBillingAddress$inboundSchema: z.ZodType<
   PazeBillingAddress,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  line1: z.string(),
-  line2: z.nullable(z.string()).optional(),
-  line3: z.nullable(z.string()).optional(),
-  city: z.string(),
-  state: z.string(),
-  zip: z.string(),
-  countryCode: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    line1: z.string(),
+    line2: z.nullable(z.string()).optional(),
+    line3: z.nullable(z.string()).optional(),
+    city: z.string(),
+    state: z.string(),
+    zip: z.string(),
+    countryCode: z.nullable(z.string()).optional(),
+  })
+);
 
 export function pazeBillingAddressFromJSON(
   jsonString: string,

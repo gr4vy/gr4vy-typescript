@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -26,10 +26,12 @@ export const PazeDeliveryContactDetails$inboundSchema: z.ZodType<
   PazeDeliveryContactDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  contactFullName: z.nullable(z.string()),
-  contactPhoneNumber: z.nullable(PazeMobileNumber$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    contactFullName: z.nullable(z.string()),
+    contactPhoneNumber: z.nullable(PazeMobileNumber$inboundSchema),
+  })
+);
 /** @internal */
 export type PazeDeliveryContactDetails$Outbound = {
   contactFullName: string | null;
@@ -41,10 +43,12 @@ export const PazeDeliveryContactDetails$outboundSchema: z.ZodType<
   PazeDeliveryContactDetails$Outbound,
   z.ZodTypeDef,
   PazeDeliveryContactDetails
-> = z.object({
-  contactFullName: z.nullable(z.string()),
-  contactPhoneNumber: z.nullable(PazeMobileNumber$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    contactFullName: z.nullable(z.string()),
+    contactPhoneNumber: z.nullable(PazeMobileNumber$outboundSchema),
+  })
+);
 
 export function pazeDeliveryContactDetailsToJSON(
   pazeDeliveryContactDetails: PazeDeliveryContactDetails,

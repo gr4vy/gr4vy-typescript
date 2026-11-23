@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CaptureStatus, CaptureStatus$inboundSchema } from "./capturestatus.js";
@@ -93,49 +93,51 @@ export type Capture = {
 
 /** @internal */
 export const Capture$inboundSchema: z.ZodType<Capture, z.ZodTypeDef, unknown> =
-  z.object({
-    type: z.literal("capture").default("capture"),
-    id: z.string(),
-    merchant_account_id: z.string(),
-    transaction_id: z.string(),
-    xid: z.nullable(z.string()).optional(),
-    currency: z.string(),
-    amount: z.number().int(),
-    status: CaptureStatus$inboundSchema,
-    final: z.boolean(),
-    created_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    updated_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    captured_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    external_identifier: z.nullable(z.string()).optional(),
-    error_code: z.nullable(z.string()).optional(),
-    iso_response_code: z.nullable(z.string()).optional(),
-    raw_response_code: z.nullable(z.string()).optional(),
-    raw_response_description: z.nullable(z.string()).optional(),
-    transaction_external_identifier: z.nullable(z.string()).optional(),
-    cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
-    tracking: z.nullable(z.array(Tracking$inboundSchema)).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "merchant_account_id": "merchantAccountId",
-      "transaction_id": "transactionId",
-      "created_at": "createdAt",
-      "updated_at": "updatedAt",
-      "captured_at": "capturedAt",
-      "external_identifier": "externalIdentifier",
-      "error_code": "errorCode",
-      "iso_response_code": "isoResponseCode",
-      "raw_response_code": "rawResponseCode",
-      "raw_response_description": "rawResponseDescription",
-      "transaction_external_identifier": "transactionExternalIdentifier",
-      "cart_items": "cartItems",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.literal("capture").default("capture"),
+      id: z.string(),
+      merchant_account_id: z.string(),
+      transaction_id: z.string(),
+      xid: z.nullable(z.string()).optional(),
+      currency: z.string(),
+      amount: z.number().int(),
+      status: CaptureStatus$inboundSchema,
+      final: z.boolean(),
+      created_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      updated_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      captured_at: z.nullable(
+        z.string().datetime({ offset: true }).transform(v => new Date(v)),
+      ).optional(),
+      external_identifier: z.nullable(z.string()).optional(),
+      error_code: z.nullable(z.string()).optional(),
+      iso_response_code: z.nullable(z.string()).optional(),
+      raw_response_code: z.nullable(z.string()).optional(),
+      raw_response_description: z.nullable(z.string()).optional(),
+      transaction_external_identifier: z.nullable(z.string()).optional(),
+      cart_items: z.nullable(z.array(CartItem$inboundSchema)).optional(),
+      tracking: z.nullable(z.array(Tracking$inboundSchema)).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "merchant_account_id": "merchantAccountId",
+        "transaction_id": "transactionId",
+        "created_at": "createdAt",
+        "updated_at": "updatedAt",
+        "captured_at": "capturedAt",
+        "external_identifier": "externalIdentifier",
+        "error_code": "errorCode",
+        "iso_response_code": "isoResponseCode",
+        "raw_response_code": "rawResponseCode",
+        "raw_response_description": "rawResponseDescription",
+        "transaction_external_identifier": "transactionExternalIdentifier",
+        "cart_items": "cartItems",
+      });
+    })
+  );
 
 export function captureFromJSON(
   jsonString: string,

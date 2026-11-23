@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -49,7 +50,9 @@ export const PaypalShippingOptionsItemType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PaypalShippingOptionsItemType
-> = openEnums.outboundSchema(PaypalShippingOptionsItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(PaypalShippingOptionsItemType)
+);
 
 /** @internal */
 export type PaypalShippingOptionsItem$Outbound = {
@@ -65,13 +68,16 @@ export const PaypalShippingOptionsItem$outboundSchema: z.ZodType<
   PaypalShippingOptionsItem$Outbound,
   z.ZodTypeDef,
   PaypalShippingOptionsItem
-> = z.object({
-  id: z.string(),
-  label: z.string(),
-  selected: z.boolean(),
-  type: z.nullable(PaypalShippingOptionsItemType$outboundSchema).optional(),
-  amount: z.nullable(PaypalShippingOptionsItemAmount$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    label: z.string(),
+    selected: z.boolean(),
+    type: z.nullable(PaypalShippingOptionsItemType$outboundSchema).optional(),
+    amount: z.nullable(PaypalShippingOptionsItemAmount$outboundSchema)
+      .optional(),
+  })
+);
 
 export function paypalShippingOptionsItemToJSON(
   paypalShippingOptionsItem: PaypalShippingOptionsItem,

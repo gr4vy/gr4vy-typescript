@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type TransactionRefundAllCreate = {
   /**
@@ -27,14 +28,16 @@ export const TransactionRefundAllCreate$outboundSchema: z.ZodType<
   TransactionRefundAllCreate$Outbound,
   z.ZodTypeDef,
   TransactionRefundAllCreate
-> = z.object({
-  reason: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reason: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function transactionRefundAllCreateToJSON(
   transactionRefundAllCreate: TransactionRefundAllCreate,

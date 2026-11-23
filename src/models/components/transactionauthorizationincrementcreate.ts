@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type TransactionAuthorizationIncrementCreate = {
   /**
@@ -21,9 +22,11 @@ export const TransactionAuthorizationIncrementCreate$outboundSchema: z.ZodType<
   TransactionAuthorizationIncrementCreate$Outbound,
   z.ZodTypeDef,
   TransactionAuthorizationIncrementCreate
-> = z.object({
-  amount: z.number().int(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number().int(),
+  })
+);
 
 export function transactionAuthorizationIncrementCreateToJSON(
   transactionAuthorizationIncrementCreate:

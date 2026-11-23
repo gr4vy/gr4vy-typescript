@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CybersourceOptions = {
   /**
@@ -37,18 +38,20 @@ export const CybersourceOptions$outboundSchema: z.ZodType<
   CybersourceOptions$Outbound,
   z.ZodTypeDef,
   CybersourceOptions
-> = z.object({
-  metaKeyMerchantId: z.nullable(z.string()).optional(),
-  merchantDefinedInformation: z.nullable(z.record(z.string())).optional(),
-  shipToMethod: z.nullable(z.string()).optional(),
-  comments: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    metaKeyMerchantId: "meta_key_merchant_id",
-    merchantDefinedInformation: "merchant_defined_information",
-    shipToMethod: "ship_to_method",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    metaKeyMerchantId: z.nullable(z.string()).optional(),
+    merchantDefinedInformation: z.nullable(z.record(z.string())).optional(),
+    shipToMethod: z.nullable(z.string()).optional(),
+    comments: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      metaKeyMerchantId: "meta_key_merchant_id",
+      merchantDefinedInformation: "merchant_defined_information",
+      shipToMethod: "ship_to_method",
+    });
+  })
+);
 
 export function cybersourceOptionsToJSON(
   cybersourceOptions: CybersourceOptions,

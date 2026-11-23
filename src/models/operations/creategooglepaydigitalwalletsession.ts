@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreateGooglePayDigitalWalletSessionGlobals = {
@@ -30,14 +31,17 @@ export const CreateGooglePayDigitalWalletSessionRequest$outboundSchema:
     CreateGooglePayDigitalWalletSessionRequest$Outbound,
     z.ZodTypeDef,
     CreateGooglePayDigitalWalletSessionRequest
-  > = z.object({
-    merchantAccountId: z.nullable(z.string()).optional(),
-    googlePaySessionRequest: components.GooglePaySessionRequest$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      googlePaySessionRequest: "GooglePaySessionRequest",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      merchantAccountId: z.nullable(z.string()).optional(),
+      googlePaySessionRequest:
+        components.GooglePaySessionRequest$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        googlePaySessionRequest: "GooglePaySessionRequest",
+      });
+    })
+  );
 
 export function createGooglePayDigitalWalletSessionRequestToJSON(
   createGooglePayDigitalWalletSessionRequest:

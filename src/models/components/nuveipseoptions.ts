@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type NuveiPSEOptions = {
   /**
@@ -36,12 +37,14 @@ export const NuveiPSEOptions$outboundSchema: z.ZodType<
   NuveiPSEOptions$Outbound,
   z.ZodTypeDef,
   NuveiPSEOptions
-> = z.object({
-  userType: z.nullable(z.string()).optional(),
-  userFisNumber: z.nullable(z.string()).optional(),
-  fiscalNumber: z.nullable(z.string()).optional(),
-  bankCode: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    userType: z.nullable(z.string()).optional(),
+    userFisNumber: z.nullable(z.string()).optional(),
+    fiscalNumber: z.nullable(z.string()).optional(),
+    bankCode: z.nullable(z.string()).optional(),
+  })
+);
 
 export function nuveiPSEOptionsToJSON(
   nuveiPSEOptions: NuveiPSEOptions,

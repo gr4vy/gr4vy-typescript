@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ForterAntiFraudOptionsDiscountCouponDiscountAmount,
   ForterAntiFraudOptionsDiscountCouponDiscountAmount$Outbound,
@@ -48,21 +49,23 @@ export const ForterAntiFraudOptionsDiscount$outboundSchema: z.ZodType<
   ForterAntiFraudOptionsDiscount$Outbound,
   z.ZodTypeDef,
   ForterAntiFraudOptionsDiscount
-> = z.object({
-  couponCodeUsed: z.string(),
-  discountType: z.string(),
-  couponDiscountAmount: z.nullable(
-    ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema,
-  ).optional(),
-  couponDiscountPercent: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    couponCodeUsed: "coupon_code_used",
-    discountType: "discount_type",
-    couponDiscountAmount: "coupon_discount_amount",
-    couponDiscountPercent: "coupon_discount_percent",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    couponCodeUsed: z.string(),
+    discountType: z.string(),
+    couponDiscountAmount: z.nullable(
+      ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema,
+    ).optional(),
+    couponDiscountPercent: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      couponCodeUsed: "coupon_code_used",
+      discountType: "discount_type",
+      couponDiscountAmount: "coupon_discount_amount",
+      couponDiscountPercent: "coupon_discount_percent",
+    });
+  })
+);
 
 export function forterAntiFraudOptionsDiscountToJSON(
   forterAntiFraudOptionsDiscount: ForterAntiFraudOptionsDiscount,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type UpdateReportGlobals = {
@@ -34,16 +35,18 @@ export const UpdateReportRequest$outboundSchema: z.ZodType<
   UpdateReportRequest$Outbound,
   z.ZodTypeDef,
   UpdateReportRequest
-> = z.object({
-  reportId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-  reportUpdate: components.ReportUpdate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    reportId: "report_id",
-    reportUpdate: "ReportUpdate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reportId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+    reportUpdate: components.ReportUpdate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      reportId: "report_id",
+      reportUpdate: "ReportUpdate",
+    });
+  })
+);
 
 export function updateReportRequestToJSON(
   updateReportRequest: UpdateReportRequest,

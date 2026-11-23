@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AuditLogEntry, AuditLogEntry$inboundSchema } from "./auditlogentry.js";
@@ -33,17 +33,19 @@ export const AuditLogEntries$inboundSchema: z.ZodType<
   AuditLogEntries,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  items: z.array(AuditLogEntry$inboundSchema),
-  limit: z.number().int().default(20),
-  next_cursor: z.nullable(z.string()).optional(),
-  previous_cursor: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "next_cursor": "nextCursor",
-    "previous_cursor": "previousCursor",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(AuditLogEntry$inboundSchema),
+    limit: z.number().int().default(20),
+    next_cursor: z.nullable(z.string()).optional(),
+    previous_cursor: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "next_cursor": "nextCursor",
+      "previous_cursor": "previousCursor",
+    });
+  })
+);
 
 export function auditLogEntriesFromJSON(
   jsonString: string,

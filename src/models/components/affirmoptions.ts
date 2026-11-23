@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AffirmItineraryOptions,
   AffirmItineraryOptions$Outbound,
@@ -31,10 +32,12 @@ export const AffirmOptions$outboundSchema: z.ZodType<
   AffirmOptions$Outbound,
   z.ZodTypeDef,
   AffirmOptions
-> = z.object({
-  discounts: z.nullable(z.record(z.record(z.any()))).optional(),
-  itinerary: z.nullable(AffirmItineraryOptions$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    discounts: z.nullable(z.record(z.record(z.any()))).optional(),
+    itinerary: z.nullable(AffirmItineraryOptions$outboundSchema).optional(),
+  })
+);
 
 export function affirmOptionsToJSON(affirmOptions: AffirmOptions): string {
   return JSON.stringify(AffirmOptions$outboundSchema.parse(affirmOptions));

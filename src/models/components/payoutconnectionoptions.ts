@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CheckoutPayoutOptions,
   CheckoutPayoutOptions$Outbound,
@@ -27,13 +28,15 @@ export const PayoutConnectionOptions$outboundSchema: z.ZodType<
   PayoutConnectionOptions$Outbound,
   z.ZodTypeDef,
   PayoutConnectionOptions
-> = z.object({
-  checkoutCard: z.nullable(CheckoutPayoutOptions$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    checkoutCard: "checkout-card",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    checkoutCard: z.nullable(CheckoutPayoutOptions$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      checkoutCard: "checkout-card",
+    });
+  })
+);
 
 export function payoutConnectionOptionsToJSON(
   payoutConnectionOptions: PayoutConnectionOptions,

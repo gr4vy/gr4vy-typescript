@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   BraintreeDynamicDataFieldsOptions,
   BraintreeDynamicDataFieldsOptions$Outbound,
@@ -40,19 +41,21 @@ export const BraintreeOptions$outboundSchema: z.ZodType<
   BraintreeOptions$Outbound,
   z.ZodTypeDef,
   BraintreeOptions
-> = z.object({
-  discountAmount: z.nullable(z.number().int()).optional(),
-  customFields: z.nullable(z.record(z.string())).optional(),
-  dynamicDataFields: z.nullable(
-    BraintreeDynamicDataFieldsOptions$outboundSchema,
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    discountAmount: "discount_amount",
-    customFields: "custom_fields",
-    dynamicDataFields: "dynamic_data_fields",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    discountAmount: z.nullable(z.number().int()).optional(),
+    customFields: z.nullable(z.record(z.string())).optional(),
+    dynamicDataFields: z.nullable(
+      BraintreeDynamicDataFieldsOptions$outboundSchema,
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      discountAmount: "discount_amount",
+      customFields: "custom_fields",
+      dynamicDataFields: "dynamic_data_fields",
+    });
+  })
+);
 
 export function braintreeOptionsToJSON(
   braintreeOptions: BraintreeOptions,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AdyenCardAutoRescueScenariosEnum,
   AdyenCardAutoRescueScenariosEnum$outboundSchema,
@@ -81,25 +82,27 @@ export const AdyenCardOptions$outboundSchema: z.ZodType<
   AdyenCardOptions$Outbound,
   z.ZodTypeDef,
   AdyenCardOptions
-> = z.object({
-  autoRescue: z.nullable(z.boolean()).optional(),
-  maxDaysToRescue: z.nullable(z.number().int()).optional(),
-  additionalData: z.nullable(z.record(z.string())).optional(),
-  autoRescueScenario: z.nullable(
-    AdyenCardAutoRescueScenariosEnum$outboundSchema,
-  ).optional(),
-  windowOrigin: z.nullable(z.string()).optional(),
-  splits: z.nullable(AdyenSplitsOptions$outboundSchema).optional(),
-  merchantRiskIndicator: z.nullable(z.record(z.any())).optional(),
-  accountInfo: z.nullable(z.record(z.any())).optional(),
-  riskData: z.nullable(z.record(z.any())).optional(),
-  threeDSRequestorChallengeInd: z.nullable(z.string()).optional(),
-  attemptAuthentication: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    windowOrigin: "window_origin",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    autoRescue: z.nullable(z.boolean()).optional(),
+    maxDaysToRescue: z.nullable(z.number().int()).optional(),
+    additionalData: z.nullable(z.record(z.string())).optional(),
+    autoRescueScenario: z.nullable(
+      AdyenCardAutoRescueScenariosEnum$outboundSchema,
+    ).optional(),
+    windowOrigin: z.nullable(z.string()).optional(),
+    splits: z.nullable(AdyenSplitsOptions$outboundSchema).optional(),
+    merchantRiskIndicator: z.nullable(z.record(z.any())).optional(),
+    accountInfo: z.nullable(z.record(z.any())).optional(),
+    riskData: z.nullable(z.record(z.any())).optional(),
+    threeDSRequestorChallengeInd: z.nullable(z.string()).optional(),
+    attemptAuthentication: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      windowOrigin: "window_origin",
+    });
+  })
+);
 
 export function adyenCardOptionsToJSON(
   adyenCardOptions: AdyenCardOptions,

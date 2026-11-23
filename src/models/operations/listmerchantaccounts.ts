@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,11 +40,13 @@ export const ListMerchantAccountsRequest$outboundSchema: z.ZodType<
   ListMerchantAccountsRequest$Outbound,
   z.ZodTypeDef,
   ListMerchantAccountsRequest
-> = z.object({
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  search: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    search: z.nullable(z.string()).optional(),
+  })
+);
 
 export function listMerchantAccountsRequestToJSON(
   listMerchantAccountsRequest: ListMerchantAccountsRequest,
@@ -61,13 +63,15 @@ export const ListMerchantAccountsResponse$inboundSchema: z.ZodType<
   ListMerchantAccountsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.MerchantAccounts$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.MerchantAccounts$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listMerchantAccountsResponseFromJSON(
   jsonString: string,

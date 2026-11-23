@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CartItem,
   CartItem$Outbound,
@@ -52,18 +53,20 @@ export const PaymentOptionRequest$outboundSchema: z.ZodType<
   PaymentOptionRequest$Outbound,
   z.ZodTypeDef,
   PaymentOptionRequest
-> = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
-  country: z.nullable(z.string()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  locale: z.string().default("en"),
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cartItems: "cart_items",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    metadata: z.nullable(z.record(z.string())).optional(),
+    country: z.nullable(z.string()).optional(),
+    currency: z.nullable(z.string()).optional(),
+    amount: z.nullable(z.number().int()).optional(),
+    locale: z.string().default("en"),
+    cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      cartItems: "cart_items",
+    });
+  })
+);
 
 export function paymentOptionRequestToJSON(
   paymentOptionRequest: PaymentOptionRequest,

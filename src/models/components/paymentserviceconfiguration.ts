@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -41,23 +41,25 @@ export const PaymentServiceConfiguration$inboundSchema: z.ZodType<
   PaymentServiceConfiguration,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  approval_ui_target: ApprovalTarget$inboundSchema,
-  approval_ui_height: z.string(),
-  approval_ui_width: z.string(),
-  cart_items_limit: z.number().int(),
-  cart_items_required: z.boolean(),
-  cart_items_should_match_amount: z.boolean(),
-}).transform((v) => {
-  return remap$(v, {
-    "approval_ui_target": "approvalUiTarget",
-    "approval_ui_height": "approvalUiHeight",
-    "approval_ui_width": "approvalUiWidth",
-    "cart_items_limit": "cartItemsLimit",
-    "cart_items_required": "cartItemsRequired",
-    "cart_items_should_match_amount": "cartItemsShouldMatchAmount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    approval_ui_target: ApprovalTarget$inboundSchema,
+    approval_ui_height: z.string(),
+    approval_ui_width: z.string(),
+    cart_items_limit: z.number().int(),
+    cart_items_required: z.boolean(),
+    cart_items_should_match_amount: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      "approval_ui_target": "approvalUiTarget",
+      "approval_ui_height": "approvalUiHeight",
+      "approval_ui_width": "approvalUiWidth",
+      "cart_items_limit": "cartItemsLimit",
+      "cart_items_required": "cartItemsRequired",
+      "cart_items_should_match_amount": "cartItemsShouldMatchAmount",
+    });
+  })
+);
 
 export function paymentServiceConfigurationFromJSON(
   jsonString: string,

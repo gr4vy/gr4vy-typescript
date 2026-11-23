@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type MerchantAccountUpdate = {
@@ -135,59 +136,61 @@ export const MerchantAccountUpdate$outboundSchema: z.ZodType<
   MerchantAccountUpdate$Outbound,
   z.ZodTypeDef,
   MerchantAccountUpdate
-> = z.object({
-  accountUpdaterEnabled: z.boolean().default(false),
-  accountUpdaterRequestEncryptionKey: z.nullable(z.string()).optional(),
-  accountUpdaterRequestEncryptionKeyId: z.nullable(z.string()).optional(),
-  accountUpdaterResponseDecryptionKey: z.nullable(z.string()).optional(),
-  accountUpdaterResponseDecryptionKeyId: z.nullable(z.string()).optional(),
-  overCaptureAmount: z.nullable(z.number().int()).optional(),
-  overCapturePercentage: z.nullable(z.number().int()).optional(),
-  loonClientKey: z.nullable(z.string()).optional(),
-  loonSecretKey: z.nullable(z.string()).optional(),
-  loonAcceptedSchemes: z.nullable(z.array(CardScheme$outboundSchema))
-    .optional(),
-  loonMerchantAccountId: z.nullable(z.string()).optional(),
-  visaNetworkTokensRequestorId: z.nullable(z.string()).optional(),
-  visaNetworkTokensAppId: z.nullable(z.string()).optional(),
-  amexNetworkTokensRequestorId: z.nullable(z.string()).optional(),
-  amexNetworkTokensAppId: z.nullable(z.string()).optional(),
-  mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
-  mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
-  discoverNetworkTokensRequestorId: z.nullable(z.string()).optional(),
-  discoverNetworkTokensAppId: z.nullable(z.string()).optional(),
-  asyncNetworkTokensEnabled: z.boolean().default(false),
-  displayName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accountUpdaterEnabled: "account_updater_enabled",
-    accountUpdaterRequestEncryptionKey:
-      "account_updater_request_encryption_key",
-    accountUpdaterRequestEncryptionKeyId:
-      "account_updater_request_encryption_key_id",
-    accountUpdaterResponseDecryptionKey:
-      "account_updater_response_decryption_key",
-    accountUpdaterResponseDecryptionKeyId:
-      "account_updater_response_decryption_key_id",
-    overCaptureAmount: "over_capture_amount",
-    overCapturePercentage: "over_capture_percentage",
-    loonClientKey: "loon_client_key",
-    loonSecretKey: "loon_secret_key",
-    loonAcceptedSchemes: "loon_accepted_schemes",
-    loonMerchantAccountId: "loon_merchant_account_id",
-    visaNetworkTokensRequestorId: "visa_network_tokens_requestor_id",
-    visaNetworkTokensAppId: "visa_network_tokens_app_id",
-    amexNetworkTokensRequestorId: "amex_network_tokens_requestor_id",
-    amexNetworkTokensAppId: "amex_network_tokens_app_id",
-    mastercardNetworkTokensRequestorId:
-      "mastercard_network_tokens_requestor_id",
-    mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
-    discoverNetworkTokensRequestorId: "discover_network_tokens_requestor_id",
-    discoverNetworkTokensAppId: "discover_network_tokens_app_id",
-    asyncNetworkTokensEnabled: "async_network_tokens_enabled",
-    displayName: "display_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    accountUpdaterEnabled: z.boolean().default(false),
+    accountUpdaterRequestEncryptionKey: z.nullable(z.string()).optional(),
+    accountUpdaterRequestEncryptionKeyId: z.nullable(z.string()).optional(),
+    accountUpdaterResponseDecryptionKey: z.nullable(z.string()).optional(),
+    accountUpdaterResponseDecryptionKeyId: z.nullable(z.string()).optional(),
+    overCaptureAmount: z.nullable(z.number().int()).optional(),
+    overCapturePercentage: z.nullable(z.number().int()).optional(),
+    loonClientKey: z.nullable(z.string()).optional(),
+    loonSecretKey: z.nullable(z.string()).optional(),
+    loonAcceptedSchemes: z.nullable(z.array(CardScheme$outboundSchema))
+      .optional(),
+    loonMerchantAccountId: z.nullable(z.string()).optional(),
+    visaNetworkTokensRequestorId: z.nullable(z.string()).optional(),
+    visaNetworkTokensAppId: z.nullable(z.string()).optional(),
+    amexNetworkTokensRequestorId: z.nullable(z.string()).optional(),
+    amexNetworkTokensAppId: z.nullable(z.string()).optional(),
+    mastercardNetworkTokensRequestorId: z.nullable(z.string()).optional(),
+    mastercardNetworkTokensAppId: z.nullable(z.string()).optional(),
+    discoverNetworkTokensRequestorId: z.nullable(z.string()).optional(),
+    discoverNetworkTokensAppId: z.nullable(z.string()).optional(),
+    asyncNetworkTokensEnabled: z.boolean().default(false),
+    displayName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      accountUpdaterEnabled: "account_updater_enabled",
+      accountUpdaterRequestEncryptionKey:
+        "account_updater_request_encryption_key",
+      accountUpdaterRequestEncryptionKeyId:
+        "account_updater_request_encryption_key_id",
+      accountUpdaterResponseDecryptionKey:
+        "account_updater_response_decryption_key",
+      accountUpdaterResponseDecryptionKeyId:
+        "account_updater_response_decryption_key_id",
+      overCaptureAmount: "over_capture_amount",
+      overCapturePercentage: "over_capture_percentage",
+      loonClientKey: "loon_client_key",
+      loonSecretKey: "loon_secret_key",
+      loonAcceptedSchemes: "loon_accepted_schemes",
+      loonMerchantAccountId: "loon_merchant_account_id",
+      visaNetworkTokensRequestorId: "visa_network_tokens_requestor_id",
+      visaNetworkTokensAppId: "visa_network_tokens_app_id",
+      amexNetworkTokensRequestorId: "amex_network_tokens_requestor_id",
+      amexNetworkTokensAppId: "amex_network_tokens_app_id",
+      mastercardNetworkTokensRequestorId:
+        "mastercard_network_tokens_requestor_id",
+      mastercardNetworkTokensAppId: "mastercard_network_tokens_app_id",
+      discoverNetworkTokensRequestorId: "discover_network_tokens_requestor_id",
+      discoverNetworkTokensAppId: "discover_network_tokens_app_id",
+      asyncNetworkTokensEnabled: "async_network_tokens_enabled",
+      displayName: "display_name",
+    });
+  })
+);
 
 export function merchantAccountUpdateToJSON(
   merchantAccountUpdate: MerchantAccountUpdate,

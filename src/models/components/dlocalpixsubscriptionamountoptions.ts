@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -41,7 +42,9 @@ export const DlocalPIXSubscriptionAmountOptionsType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   DlocalPIXSubscriptionAmountOptionsType
-> = openEnums.outboundSchema(DlocalPIXSubscriptionAmountOptionsType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(DlocalPIXSubscriptionAmountOptionsType)
+);
 
 /** @internal */
 export type DlocalPIXSubscriptionAmountOptions$Outbound = {
@@ -55,15 +58,17 @@ export const DlocalPIXSubscriptionAmountOptions$outboundSchema: z.ZodType<
   DlocalPIXSubscriptionAmountOptions$Outbound,
   z.ZodTypeDef,
   DlocalPIXSubscriptionAmountOptions
-> = z.object({
-  type: DlocalPIXSubscriptionAmountOptionsType$outboundSchema,
-  value: z.nullable(z.string()).optional(),
-  minValue: z.nullable(z.string()),
-}).transform((v) => {
-  return remap$(v, {
-    minValue: "min_value",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: DlocalPIXSubscriptionAmountOptionsType$outboundSchema,
+    value: z.nullable(z.string()).optional(),
+    minValue: z.nullable(z.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      minValue: "min_value",
+    });
+  })
+);
 
 export function dlocalPIXSubscriptionAmountOptionsToJSON(
   dlocalPIXSubscriptionAmountOptions: DlocalPIXSubscriptionAmountOptions,

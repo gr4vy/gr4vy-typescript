@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -84,43 +84,45 @@ export const GiftCardSummary$inboundSchema: z.ZodType<
   GiftCardSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("gift-card").default("gift-card"),
-  id: z.nullable(z.string()).optional(),
-  merchant_account_id: z.string(),
-  bin: z.string(),
-  sub_bin: z.string(),
-  last4: z.string(),
-  currency: z.nullable(z.string()).optional(),
-  expiration_date: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  balance: z.nullable(z.number().int()).optional(),
-  balance_error_code: z.nullable(GiftCardErrorCode$inboundSchema).optional(),
-  balance_raw_error_code: z.nullable(z.string()).optional(),
-  balance_raw_error_message: z.nullable(z.string()).optional(),
-  last_used_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  usage_count: z.number().int(),
-  cit_last_used_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  cit_usage_count: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "sub_bin": "subBin",
-    "expiration_date": "expirationDate",
-    "balance_error_code": "balanceErrorCode",
-    "balance_raw_error_code": "balanceRawErrorCode",
-    "balance_raw_error_message": "balanceRawErrorMessage",
-    "last_used_at": "lastUsedAt",
-    "usage_count": "usageCount",
-    "cit_last_used_at": "citLastUsedAt",
-    "cit_usage_count": "citUsageCount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("gift-card").default("gift-card"),
+    id: z.nullable(z.string()).optional(),
+    merchant_account_id: z.string(),
+    bin: z.string(),
+    sub_bin: z.string(),
+    last4: z.string(),
+    currency: z.nullable(z.string()).optional(),
+    expiration_date: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    balance: z.nullable(z.number().int()).optional(),
+    balance_error_code: z.nullable(GiftCardErrorCode$inboundSchema).optional(),
+    balance_raw_error_code: z.nullable(z.string()).optional(),
+    balance_raw_error_message: z.nullable(z.string()).optional(),
+    last_used_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    usage_count: z.number().int(),
+    cit_last_used_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    cit_usage_count: z.number().int(),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "sub_bin": "subBin",
+      "expiration_date": "expirationDate",
+      "balance_error_code": "balanceErrorCode",
+      "balance_raw_error_code": "balanceRawErrorCode",
+      "balance_raw_error_message": "balanceRawErrorMessage",
+      "last_used_at": "lastUsedAt",
+      "usage_count": "usageCount",
+      "cit_last_used_at": "citLastUsedAt",
+      "cit_usage_count": "citUsageCount",
+    });
+  })
+);
 
 export function giftCardSummaryFromJSON(
   jsonString: string,

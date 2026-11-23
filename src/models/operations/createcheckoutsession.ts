@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreateCheckoutSessionGlobals = {
@@ -29,15 +30,17 @@ export const CreateCheckoutSessionRequest$outboundSchema: z.ZodType<
   CreateCheckoutSessionRequest$Outbound,
   z.ZodTypeDef,
   CreateCheckoutSessionRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  checkoutSessionCreate: components.CheckoutSessionCreate$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    checkoutSessionCreate: "CheckoutSessionCreate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    checkoutSessionCreate: components.CheckoutSessionCreate$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      checkoutSessionCreate: "CheckoutSessionCreate",
+    });
+  })
+);
 
 export function createCheckoutSessionRequestToJSON(
   createCheckoutSessionRequest: CreateCheckoutSessionRequest,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const PazeMobileNumber$inboundSchema: z.ZodType<
   PazeMobileNumber,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  countryCode: z.string(),
-  phoneNumber: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    countryCode: z.string(),
+    phoneNumber: z.string(),
+  })
+);
 /** @internal */
 export type PazeMobileNumber$Outbound = {
   countryCode: string;
@@ -38,10 +40,12 @@ export const PazeMobileNumber$outboundSchema: z.ZodType<
   PazeMobileNumber$Outbound,
   z.ZodTypeDef,
   PazeMobileNumber
-> = z.object({
-  countryCode: z.string(),
-  phoneNumber: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    countryCode: z.string(),
+    phoneNumber: z.string(),
+  })
+);
 
 export function pazeMobileNumberToJSON(
   pazeMobileNumber: PazeMobileNumber,

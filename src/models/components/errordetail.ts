@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ErrorLocation, ErrorLocation$inboundSchema } from "./errorlocation.js";
@@ -29,12 +29,14 @@ export const ErrorDetail$inboundSchema: z.ZodType<
   ErrorDetail,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  location: ErrorLocation$inboundSchema,
-  pointer: z.string(),
-  message: z.string(),
-  type: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    location: ErrorLocation$inboundSchema,
+    pointer: z.string(),
+    message: z.string(),
+    type: z.string(),
+  })
+);
 
 export function errorDetailFromJSON(
   jsonString: string,

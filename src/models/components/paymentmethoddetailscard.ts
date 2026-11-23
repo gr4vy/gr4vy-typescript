@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { CardType, CardType$inboundSchema } from "./cardtype.js";
@@ -20,16 +20,18 @@ export const PaymentMethodDetailsCard$inboundSchema: z.ZodType<
   PaymentMethodDetailsCard,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  bin: z.nullable(z.string()).optional(),
-  card_type: z.nullable(CardType$inboundSchema).optional(),
-  card_issuer_name: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "card_type": "cardType",
-    "card_issuer_name": "cardIssuerName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bin: z.nullable(z.string()).optional(),
+    card_type: z.nullable(CardType$inboundSchema).optional(),
+    card_issuer_name: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "card_type": "cardType",
+      "card_issuer_name": "cardIssuerName",
+    });
+  })
+);
 
 export function paymentMethodDetailsCardFromJSON(
   jsonString: string,

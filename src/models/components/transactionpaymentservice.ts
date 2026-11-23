@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Method, Method$inboundSchema } from "./method.js";
@@ -34,18 +34,20 @@ export const TransactionPaymentService$inboundSchema: z.ZodType<
   TransactionPaymentService,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-service").default("payment-service"),
-  id: z.string(),
-  payment_service_definition_id: z.string(),
-  method: Method$inboundSchema,
-  display_name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_service_definition_id": "paymentServiceDefinitionId",
-    "display_name": "displayName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-service").default("payment-service"),
+    id: z.string(),
+    payment_service_definition_id: z.string(),
+    method: Method$inboundSchema,
+    display_name: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "payment_service_definition_id": "paymentServiceDefinitionId",
+      "display_name": "displayName",
+    });
+  })
+);
 
 export function transactionPaymentServiceFromJSON(
   jsonString: string,

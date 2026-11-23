@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -88,35 +88,37 @@ export const TransactionPaymentMethod$inboundSchema: z.ZodType<
   TransactionPaymentMethod,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-method").default("payment-method"),
-  approval_url: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  details: z.nullable(PaymentMethodDetailsCard$inboundSchema).optional(),
-  expiration_date: z.nullable(z.string()).optional(),
-  fingerprint: z.nullable(z.string()).optional(),
-  label: z.nullable(z.string()).optional(),
-  last_replaced_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  method: Method$inboundSchema,
-  mode: z.nullable(Mode$inboundSchema).optional(),
-  scheme: z.nullable(CardScheme$inboundSchema).optional(),
-  id: z.nullable(z.string()).optional(),
-  approval_target: z.nullable(ApprovalTarget$inboundSchema).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  payment_account_reference: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "approval_url": "approvalUrl",
-    "expiration_date": "expirationDate",
-    "last_replaced_at": "lastReplacedAt",
-    "approval_target": "approvalTarget",
-    "external_identifier": "externalIdentifier",
-    "payment_account_reference": "paymentAccountReference",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-method").default("payment-method"),
+    approval_url: z.nullable(z.string()).optional(),
+    country: z.nullable(z.string()).optional(),
+    currency: z.nullable(z.string()).optional(),
+    details: z.nullable(PaymentMethodDetailsCard$inboundSchema).optional(),
+    expiration_date: z.nullable(z.string()).optional(),
+    fingerprint: z.nullable(z.string()).optional(),
+    label: z.nullable(z.string()).optional(),
+    last_replaced_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    method: Method$inboundSchema,
+    mode: z.nullable(Mode$inboundSchema).optional(),
+    scheme: z.nullable(CardScheme$inboundSchema).optional(),
+    id: z.nullable(z.string()).optional(),
+    approval_target: z.nullable(ApprovalTarget$inboundSchema).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    payment_account_reference: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "approval_url": "approvalUrl",
+      "expiration_date": "expirationDate",
+      "last_replaced_at": "lastReplacedAt",
+      "approval_target": "approvalTarget",
+      "external_identifier": "externalIdentifier",
+      "payment_account_reference": "paymentAccountReference",
+    });
+  })
+);
 
 export function transactionPaymentMethodFromJSON(
   jsonString: string,

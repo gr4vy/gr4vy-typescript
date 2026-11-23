@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AffirmItineraryOptions = {
   /**
@@ -52,20 +53,22 @@ export const AffirmItineraryOptions$outboundSchema: z.ZodType<
   AffirmItineraryOptions$Outbound,
   z.ZodTypeDef,
   AffirmItineraryOptions
-> = z.object({
-  type: z.nullable(z.string()).optional(),
-  sku: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  venue: z.nullable(z.string()).optional(),
-  location: z.nullable(z.string()).optional(),
-  dateStart: z.nullable(z.string()).optional(),
-  management: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    dateStart: "date_start",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.nullable(z.string()).optional(),
+    sku: z.nullable(z.string()).optional(),
+    displayName: z.nullable(z.string()).optional(),
+    venue: z.nullable(z.string()).optional(),
+    location: z.nullable(z.string()).optional(),
+    dateStart: z.nullable(z.string()).optional(),
+    management: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+      dateStart: "date_start",
+    });
+  })
+);
 
 export function affirmItineraryOptionsToJSON(
   affirmItineraryOptions: AffirmItineraryOptions,

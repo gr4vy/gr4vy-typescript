@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type MonatoSpeiOptions = {
   /**
@@ -22,13 +23,15 @@ export const MonatoSpeiOptions$outboundSchema: z.ZodType<
   MonatoSpeiOptions$Outbound,
   z.ZodTypeDef,
   MonatoSpeiOptions
-> = z.object({
-  approvalUrl: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    approvalUrl: "approval_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    approvalUrl: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      approvalUrl: "approval_url",
+    });
+  })
+);
 
 export function monatoSpeiOptionsToJSON(
   monatoSpeiOptions: MonatoSpeiOptions,

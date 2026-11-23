@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Airline,
   Airline$Outbound,
@@ -72,22 +73,24 @@ export const CheckoutSessionCreate$outboundSchema: z.ZodType<
   CheckoutSessionCreate$Outbound,
   z.ZodTypeDef,
   CheckoutSessionCreate
-> = z.object({
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
-  airline: z.nullable(Airline$outboundSchema).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  paymentServiceId: z.nullable(z.string()).optional(),
-  expiresIn: z.number().default(3600),
-}).transform((v) => {
-  return remap$(v, {
-    cartItems: "cart_items",
-    paymentServiceId: "payment_service_id",
-    expiresIn: "expires_in",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+    metadata: z.nullable(z.record(z.string())).optional(),
+    buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
+    airline: z.nullable(Airline$outboundSchema).optional(),
+    amount: z.nullable(z.number().int()).optional(),
+    currency: z.nullable(z.string()).optional(),
+    paymentServiceId: z.nullable(z.string()).optional(),
+    expiresIn: z.number().default(3600),
+  }).transform((v) => {
+    return remap$(v, {
+      cartItems: "cart_items",
+      paymentServiceId: "payment_service_id",
+      expiresIn: "expires_in",
+    });
+  })
+);
 
 export function checkoutSessionCreateToJSON(
   checkoutSessionCreate: CheckoutSessionCreate,

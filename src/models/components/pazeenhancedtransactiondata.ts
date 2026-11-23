@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PazeEcomData,
   PazeEcomData$Outbound,
@@ -36,10 +37,12 @@ export const PazeEnhancedTransactionData$outboundSchema: z.ZodType<
   PazeEnhancedTransactionData$Outbound,
   z.ZodTypeDef,
   PazeEnhancedTransactionData
-> = z.object({
-  ecomData: z.nullable(PazeEcomData$outboundSchema).optional(),
-  travelData: z.nullable(PazeTravelData$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ecomData: z.nullable(PazeEcomData$outboundSchema).optional(),
+    travelData: z.nullable(PazeTravelData$outboundSchema).optional(),
+  })
+);
 
 export function pazeEnhancedTransactionDataToJSON(
   pazeEnhancedTransactionData: PazeEnhancedTransactionData,

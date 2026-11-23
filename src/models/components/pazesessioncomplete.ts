@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -40,18 +40,20 @@ export const PazeSessionComplete$inboundSchema: z.ZodType<
   PazeSessionComplete,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  payloadId: z.string(),
-  completeResponse: z.nullable(z.string()),
-  securePayload: z.nullable(z.string()),
-  clientContext: z.string(),
-  ewSID: z.string(),
-  timestampISO8601: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "timestampISO8601": "timestampIso8601",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    payloadId: z.string(),
+    completeResponse: z.nullable(z.string()),
+    securePayload: z.nullable(z.string()),
+    clientContext: z.string(),
+    ewSID: z.string(),
+    timestampISO8601: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "timestampISO8601": "timestampIso8601",
+    });
+  })
+);
 
 export function pazeSessionCompleteFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ClickToPaySessionRequest = {
   /**
@@ -22,13 +23,15 @@ export const ClickToPaySessionRequest$outboundSchema: z.ZodType<
   ClickToPaySessionRequest$Outbound,
   z.ZodTypeDef,
   ClickToPaySessionRequest
-> = z.object({
-  checkoutSessionId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    checkoutSessionId: "checkout_session_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    checkoutSessionId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      checkoutSessionId: "checkout_session_id",
+    });
+  })
+);
 
 export function clickToPaySessionRequestToJSON(
   clickToPaySessionRequest: ClickToPaySessionRequest,

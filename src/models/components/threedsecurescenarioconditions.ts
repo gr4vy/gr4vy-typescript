@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -40,22 +40,24 @@ export const ThreeDSecureScenarioConditions$inboundSchema: z.ZodType<
   ThreeDSecureScenarioConditions,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  email_address: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  card_number: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "external_identifier": "externalIdentifier",
-    "card_number": "cardNumber",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    first_name: z.nullable(z.string()).optional(),
+    last_name: z.nullable(z.string()).optional(),
+    email_address: z.nullable(z.string()).optional(),
+    amount: z.nullable(z.number().int()).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    card_number: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "email_address": "emailAddress",
+      "external_identifier": "externalIdentifier",
+      "card_number": "cardNumber",
+    });
+  })
+);
 /** @internal */
 export type ThreeDSecureScenarioConditions$Outbound = {
   first_name?: string | null | undefined;
@@ -71,22 +73,24 @@ export const ThreeDSecureScenarioConditions$outboundSchema: z.ZodType<
   ThreeDSecureScenarioConditions$Outbound,
   z.ZodTypeDef,
   ThreeDSecureScenarioConditions
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  cardNumber: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    externalIdentifier: "external_identifier",
-    cardNumber: "card_number",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    emailAddress: z.nullable(z.string()).optional(),
+    amount: z.nullable(z.number().int()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    cardNumber: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      emailAddress: "email_address",
+      externalIdentifier: "external_identifier",
+      cardNumber: "card_number",
+    });
+  })
+);
 
 export function threeDSecureScenarioConditionsToJSON(
   threeDSecureScenarioConditions: ThreeDSecureScenarioConditions,

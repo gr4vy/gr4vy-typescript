@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -87,40 +87,48 @@ export const Settlement$inboundSchema: z.ZodType<
   Settlement,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  merchant_account_id: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  posted_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ingested_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ),
-  currency: z.string(),
-  amount: z.number().int(),
-  exchange_rate: z.nullable(z.number()).optional(),
-  commission: z.number().int(),
-  interchange: z.nullable(z.number().int()).optional(),
-  markup: z.nullable(z.number().int()).optional(),
-  scheme_fee: z.nullable(z.number().int()).optional(),
-  payment_service_report_id: z.string(),
-  payment_service_report_file_ids: z.array(z.string()),
-  transaction_id: z.string(),
-  type: z.literal("settlement").default("settlement"),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "posted_at": "postedAt",
-    "ingested_at": "ingestedAt",
-    "exchange_rate": "exchangeRate",
-    "scheme_fee": "schemeFee",
-    "payment_service_report_id": "paymentServiceReportId",
-    "payment_service_report_file_ids": "paymentServiceReportFileIds",
-    "transaction_id": "transactionId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    merchant_account_id: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    posted_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    ingested_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    currency: z.string(),
+    amount: z.number().int(),
+    exchange_rate: z.nullable(z.number()).optional(),
+    commission: z.number().int(),
+    interchange: z.nullable(z.number().int()).optional(),
+    markup: z.nullable(z.number().int()).optional(),
+    scheme_fee: z.nullable(z.number().int()).optional(),
+    payment_service_report_id: z.string(),
+    payment_service_report_file_ids: z.array(z.string()),
+    transaction_id: z.string(),
+    type: z.literal("settlement").default("settlement"),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "posted_at": "postedAt",
+      "ingested_at": "ingestedAt",
+      "exchange_rate": "exchangeRate",
+      "scheme_fee": "schemeFee",
+      "payment_service_report_id": "paymentServiceReportId",
+      "payment_service_report_file_ids": "paymentServiceReportFileIds",
+      "transaction_id": "transactionId",
+    });
+  })
+);
 
 export function settlementFromJSON(
   jsonString: string,

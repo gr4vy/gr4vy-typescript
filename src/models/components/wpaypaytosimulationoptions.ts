@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type WpayPaytoSimulationOptions = {
   /**
@@ -26,10 +27,12 @@ export const WpayPaytoSimulationOptions$outboundSchema: z.ZodType<
   WpayPaytoSimulationOptions$Outbound,
   z.ZodTypeDef,
   WpayPaytoSimulationOptions
-> = z.object({
-  simulate: z.nullable(z.string()).optional(),
-  delay: z.nullable(z.number().int()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    simulate: z.nullable(z.string()).optional(),
+    delay: z.nullable(z.number().int()).optional(),
+  })
+);
 
 export function wpayPaytoSimulationOptionsToJSON(
   wpayPaytoSimulationOptions: WpayPaytoSimulationOptions,

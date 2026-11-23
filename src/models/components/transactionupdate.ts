@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   TransactionConnectionOptions,
   TransactionConnectionOptions$Outbound,
@@ -37,17 +38,19 @@ export const TransactionUpdate$outboundSchema: z.ZodType<
   TransactionUpdate$Outbound,
   z.ZodTypeDef,
   TransactionUpdate
-> = z.object({
-  externalIdentifier: z.nullable(z.string()).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    externalIdentifier: "external_identifier",
-    connectionOptions: "connection_options",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    externalIdentifier: z.nullable(z.string()).optional(),
+    metadata: z.nullable(z.record(z.string())).optional(),
+    connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      externalIdentifier: "external_identifier",
+      connectionOptions: "connection_options",
+    });
+  })
+);
 
 export function transactionUpdateToJSON(
   transactionUpdate: TransactionUpdate,

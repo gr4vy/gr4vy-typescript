@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -35,8 +36,10 @@ export const ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$outboundS
     string,
     z.ZodTypeDef,
     ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType
-  > = openEnums.outboundSchema(
-    ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.outboundSchema(
+      ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType,
+    )
   );
 
 /** @internal */
@@ -51,17 +54,19 @@ export const ForterAntiFraudOptionsCartItemDeliveryDetails$outboundSchema:
     ForterAntiFraudOptionsCartItemDeliveryDetails$Outbound,
     z.ZodTypeDef,
     ForterAntiFraudOptionsCartItemDeliveryDetails
-  > = z.object({
-    deliveryType: z.nullable(
-      ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$outboundSchema,
-    ).optional(),
-    deliveryMethod: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      deliveryType: "delivery_type",
-      deliveryMethod: "delivery_method",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      deliveryType: z.nullable(
+        ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType$outboundSchema,
+      ).optional(),
+      deliveryMethod: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        deliveryType: "delivery_type",
+        deliveryMethod: "delivery_method",
+      });
+    })
+  );
 
 export function forterAntiFraudOptionsCartItemDeliveryDetailsToJSON(
   forterAntiFraudOptionsCartItemDeliveryDetails:

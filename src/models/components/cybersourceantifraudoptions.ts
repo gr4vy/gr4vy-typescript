@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CybersourceAntiFraudOptions = {
   /**
@@ -32,17 +33,19 @@ export const CybersourceAntiFraudOptions$outboundSchema: z.ZodType<
   CybersourceAntiFraudOptions$Outbound,
   z.ZodTypeDef,
   CybersourceAntiFraudOptions
-> = z.object({
-  merchantDefinedData: z.nullable(z.record(z.string())).optional(),
-  metaKeyMerchantId: z.nullable(z.string()).optional(),
-  shippingMethod: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantDefinedData: "merchant_defined_data",
-    metaKeyMerchantId: "meta_key_merchant_id",
-    shippingMethod: "shipping_method",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantDefinedData: z.nullable(z.record(z.string())).optional(),
+    metaKeyMerchantId: z.nullable(z.string()).optional(),
+    shippingMethod: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantDefinedData: "merchant_defined_data",
+      metaKeyMerchantId: "meta_key_merchant_id",
+      shippingMethod: "shipping_method",
+    });
+  })
+);
 
 export function cybersourceAntiFraudOptionsToJSON(
   cybersourceAntiFraudOptions: CybersourceAntiFraudOptions,

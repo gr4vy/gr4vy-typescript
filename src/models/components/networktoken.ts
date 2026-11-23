@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -49,23 +49,29 @@ export const NetworkToken$inboundSchema: z.ZodType<
   NetworkToken,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("network-token").default("network-token"),
-  id: z.string(),
-  expiration_date: z.string(),
-  payment_method_id: z.string(),
-  status: NetworkTokenStatus$inboundSchema,
-  token: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "expiration_date": "expirationDate",
-    "payment_method_id": "paymentMethodId",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("network-token").default("network-token"),
+    id: z.string(),
+    expiration_date: z.string(),
+    payment_method_id: z.string(),
+    status: NetworkTokenStatus$inboundSchema,
+    token: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "expiration_date": "expirationDate",
+      "payment_method_id": "paymentMethodId",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function networkTokenFromJSON(
   jsonString: string,

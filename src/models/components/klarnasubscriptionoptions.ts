@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -45,7 +46,7 @@ export const Interval$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   Interval
-> = openEnums.outboundSchema(Interval);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Interval));
 
 /** @internal */
 export type KlarnaSubscriptionOptions$Outbound = {
@@ -60,16 +61,18 @@ export const KlarnaSubscriptionOptions$outboundSchema: z.ZodType<
   KlarnaSubscriptionOptions$Outbound,
   z.ZodTypeDef,
   KlarnaSubscriptionOptions
-> = z.object({
-  name: z.string(),
-  interval: Interval$outboundSchema,
-  intervalCount: z.number().int(),
-  reference: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    intervalCount: "interval_count",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    interval: Interval$outboundSchema,
+    intervalCount: z.number().int(),
+    reference: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      intervalCount: "interval_count",
+    });
+  })
+);
 
 export function klarnaSubscriptionOptionsToJSON(
   klarnaSubscriptionOptions: KlarnaSubscriptionOptions,

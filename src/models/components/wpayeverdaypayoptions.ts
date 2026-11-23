@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type WpayEverdaypayOptions = {
   /**
@@ -42,17 +43,19 @@ export const WpayEverdaypayOptions$outboundSchema: z.ZodType<
   WpayEverdaypayOptions$Outbound,
   z.ZodTypeDef,
   WpayEverdaypayOptions
-> = z.object({
-  merchantDefinedData: z.nullable(z.record(z.string())).optional(),
-  customerId: z.nullable(z.string()).optional(),
-  rewardsAccessToken: z.nullable(z.string()).optional(),
-  deviceId: z.nullable(z.string()).optional(),
-  postPaymentRedirect: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    merchantDefinedData: "merchant_defined_data",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantDefinedData: z.nullable(z.record(z.string())).optional(),
+    customerId: z.nullable(z.string()).optional(),
+    rewardsAccessToken: z.nullable(z.string()).optional(),
+    deviceId: z.nullable(z.string()).optional(),
+    postPaymentRedirect: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      merchantDefinedData: "merchant_defined_data",
+    });
+  })
+);
 
 export function wpayEverdaypayOptionsToJSON(
   wpayEverdaypayOptions: WpayEverdaypayOptions,

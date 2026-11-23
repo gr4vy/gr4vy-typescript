@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -42,18 +42,20 @@ export const ListGiftCardsRequest$outboundSchema: z.ZodType<
   ListGiftCardsRequest$Outbound,
   z.ZodTypeDef,
   ListGiftCardsRequest
-> = z.object({
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+    });
+  })
+);
 
 export function listGiftCardsRequestToJSON(
   listGiftCardsRequest: ListGiftCardsRequest,
@@ -68,13 +70,15 @@ export const ListGiftCardsResponse$inboundSchema: z.ZodType<
   ListGiftCardsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: components.GiftCards$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: components.GiftCards$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listGiftCardsResponseFromJSON(
   jsonString: string,

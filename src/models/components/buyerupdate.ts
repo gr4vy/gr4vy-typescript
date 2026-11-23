@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   BillingDetails,
   BillingDetails$Outbound,
@@ -45,19 +46,21 @@ export const BuyerUpdate$outboundSchema: z.ZodType<
   BuyerUpdate$Outbound,
   z.ZodTypeDef,
   BuyerUpdate
-> = z.object({
-  displayName: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  billingDetails: z.nullable(BillingDetails$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    externalIdentifier: "external_identifier",
-    accountNumber: "account_number",
-    billingDetails: "billing_details",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayName: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    accountNumber: z.nullable(z.string()).optional(),
+    billingDetails: z.nullable(BillingDetails$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+      externalIdentifier: "external_identifier",
+      accountNumber: "account_number",
+      billingDetails: "billing_details",
+    });
+  })
+);
 
 export function buyerUpdateToJSON(buyerUpdate: BuyerUpdate): string {
   return JSON.stringify(BuyerUpdate$outboundSchema.parse(buyerUpdate));

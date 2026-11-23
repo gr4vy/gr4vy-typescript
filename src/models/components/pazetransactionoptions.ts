@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -43,14 +44,18 @@ export const PazeTransactionOptionsBillingPreference$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PazeTransactionOptionsBillingPreference
-> = openEnums.outboundSchema(PazeTransactionOptionsBillingPreference);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(PazeTransactionOptionsBillingPreference)
+);
 
 /** @internal */
 export const PayloadTypeIndicator$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PayloadTypeIndicator
-> = openEnums.outboundSchema(PayloadTypeIndicator);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(PayloadTypeIndicator)
+);
 
 /** @internal */
 export type PazeTransactionOptions$Outbound = {
@@ -64,14 +69,16 @@ export const PazeTransactionOptions$outboundSchema: z.ZodType<
   PazeTransactionOptions$Outbound,
   z.ZodTypeDef,
   PazeTransactionOptions
-> = z.object({
-  merchantCategoryCode: z.nullable(z.string()).optional(),
-  billingPreference: z.nullable(
-    PazeTransactionOptionsBillingPreference$outboundSchema,
-  ).optional(),
-  payloadTypeIndicator: z.nullable(PayloadTypeIndicator$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantCategoryCode: z.nullable(z.string()).optional(),
+    billingPreference: z.nullable(
+      PazeTransactionOptionsBillingPreference$outboundSchema,
+    ).optional(),
+    payloadTypeIndicator: z.nullable(PayloadTypeIndicator$outboundSchema)
+      .optional(),
+  })
+);
 
 export function pazeTransactionOptionsToJSON(
   pazeTransactionOptions: PazeTransactionOptions,

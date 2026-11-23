@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   RefundTargetType,
   RefundTargetType$outboundSchema,
@@ -43,19 +44,21 @@ export const TransactionRefundCreate$outboundSchema: z.ZodType<
   TransactionRefundCreate$Outbound,
   z.ZodTypeDef,
   TransactionRefundCreate
-> = z.object({
-  amount: z.nullable(z.number().int()).optional(),
-  targetType: RefundTargetType$outboundSchema.optional(),
-  targetId: z.nullable(z.string()).optional(),
-  reason: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    targetType: "target_type",
-    targetId: "target_id",
-    externalIdentifier: "external_identifier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.nullable(z.number().int()).optional(),
+    targetType: RefundTargetType$outboundSchema.optional(),
+    targetId: z.nullable(z.string()).optional(),
+    reason: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      targetType: "target_type",
+      targetId: "target_id",
+      externalIdentifier: "external_identifier",
+    });
+  })
+);
 
 export function transactionRefundCreateToJSON(
   transactionRefundCreate: TransactionRefundCreate,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PazeLocationAddress,
   PazeLocationAddress$Outbound,
@@ -51,14 +52,17 @@ export const PazeTravelData$outboundSchema: z.ZodType<
   PazeTravelData$Outbound,
   z.ZodTypeDef,
   PazeTravelData
-> = z.object({
-  passengerName: z.nullable(z.string()).optional(),
-  roundTrip: z.nullable(z.boolean()).optional(),
-  departureDate: z.nullable(z.string()).optional(),
-  returnDate: z.nullable(z.string()).optional(),
-  departureLocation: z.nullable(PazeLocationAddress$outboundSchema).optional(),
-  returnLocation: z.nullable(PazeLocationAddress$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    passengerName: z.nullable(z.string()).optional(),
+    roundTrip: z.nullable(z.boolean()).optional(),
+    departureDate: z.nullable(z.string()).optional(),
+    returnDate: z.nullable(z.string()).optional(),
+    departureLocation: z.nullable(PazeLocationAddress$outboundSchema)
+      .optional(),
+    returnLocation: z.nullable(PazeLocationAddress$outboundSchema).optional(),
+  })
+);
 
 export function pazeTravelDataToJSON(pazeTravelData: PazeTravelData): string {
   return JSON.stringify(PazeTravelData$outboundSchema.parse(pazeTravelData));

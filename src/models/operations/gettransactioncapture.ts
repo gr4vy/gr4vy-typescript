@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetTransactionCaptureGlobals = {
   merchantAccountId?: string | undefined;
@@ -36,16 +37,18 @@ export const GetTransactionCaptureRequest$outboundSchema: z.ZodType<
   GetTransactionCaptureRequest$Outbound,
   z.ZodTypeDef,
   GetTransactionCaptureRequest
-> = z.object({
-  transactionId: z.string(),
-  captureId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionId: "transaction_id",
-    captureId: "capture_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactionId: z.string(),
+    captureId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      transactionId: "transaction_id",
+      captureId: "capture_id",
+    });
+  })
+);
 
 export function getTransactionCaptureRequestToJSON(
   getTransactionCaptureRequest: GetTransactionCaptureRequest,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreateTransactionGlobals = {
@@ -43,18 +44,20 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
   CreateTransactionRequest$Outbound,
   z.ZodTypeDef,
   CreateTransactionRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  idempotencyKey: z.nullable(z.string()).optional(),
-  xForwardedFor: z.string().optional(),
-  transactionCreate: components.TransactionCreate$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    xForwardedFor: "X-Forwarded-For",
-    transactionCreate: "TransactionCreate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    idempotencyKey: z.nullable(z.string()).optional(),
+    xForwardedFor: z.string().optional(),
+    transactionCreate: components.TransactionCreate$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      xForwardedFor: "X-Forwarded-For",
+      transactionCreate: "TransactionCreate",
+    });
+  })
+);
 
 export function createTransactionRequestToJSON(
   createTransactionRequest: CreateTransactionRequest,

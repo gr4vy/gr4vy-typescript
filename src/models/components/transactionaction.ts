@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Flow, Flow$inboundSchema } from "./flow.js";
@@ -36,19 +36,23 @@ export const TransactionAction$inboundSchema: z.ZodType<
   TransactionAction,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("action").default("action"),
-  id: FlowAction$inboundSchema,
-  flow: Flow$inboundSchema,
-  rule_id: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  outcome: z.record(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    "rule_id": "ruleId",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("action").default("action"),
+    id: FlowAction$inboundSchema,
+    flow: Flow$inboundSchema,
+    rule_id: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    outcome: z.record(z.any()),
+  }).transform((v) => {
+    return remap$(v, {
+      "rule_id": "ruleId",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function transactionActionFromJSON(
   jsonString: string,

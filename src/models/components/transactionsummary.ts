@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -182,67 +182,74 @@ export const TransactionSummary$inboundSchema: z.ZodType<
   TransactionSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("transaction").default("transaction"),
-  id: z.string(),
-  reconciliation_id: z.string(),
-  merchant_account_id: z.string(),
-  currency: z.string(),
-  amount: z.number().int(),
-  status: TransactionStatus$inboundSchema,
-  authorized_amount: z.number().int(),
-  captured_amount: z.number().int(),
-  refunded_amount: z.number().int(),
-  settled_currency: z.nullable(z.string()).optional(),
-  settled_amount: z.number().int(),
-  settled: z.boolean(),
-  country: z.nullable(z.string()).optional(),
-  external_identifier: z.nullable(z.string()).optional(),
-  intent: TransactionIntent$inboundSchema,
-  payment_method: z.nullable(TransactionPaymentMethod$inboundSchema).optional(),
-  method: z.nullable(Method$inboundSchema).optional(),
-  instrument_type: z.nullable(InstrumentType$inboundSchema).optional(),
-  error_code: z.nullable(z.string()).optional(),
-  payment_service: z.nullable(TransactionPaymentService$inboundSchema)
-    .optional(),
-  pending_review: z.boolean().default(false),
-  buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
-  raw_response_code: z.nullable(z.string()).optional(),
-  raw_response_description: z.nullable(z.string()).optional(),
-  shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
-  checkout_session_id: z.nullable(z.string()).optional(),
-  gift_card_redemptions: z.array(GiftCardRedemption$inboundSchema),
-  gift_card_service: z.nullable(GiftCardService$inboundSchema).optional(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  disputed: z.boolean(),
-  reauthorized_from_transaction_id: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "reconciliation_id": "reconciliationId",
-    "merchant_account_id": "merchantAccountId",
-    "authorized_amount": "authorizedAmount",
-    "captured_amount": "capturedAmount",
-    "refunded_amount": "refundedAmount",
-    "settled_currency": "settledCurrency",
-    "settled_amount": "settledAmount",
-    "external_identifier": "externalIdentifier",
-    "payment_method": "paymentMethod",
-    "instrument_type": "instrumentType",
-    "error_code": "errorCode",
-    "payment_service": "paymentService",
-    "pending_review": "pendingReview",
-    "raw_response_code": "rawResponseCode",
-    "raw_response_description": "rawResponseDescription",
-    "shipping_details": "shippingDetails",
-    "checkout_session_id": "checkoutSessionId",
-    "gift_card_redemptions": "giftCardRedemptions",
-    "gift_card_service": "giftCardService",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "reauthorized_from_transaction_id": "reauthorizedFromTransactionId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("transaction").default("transaction"),
+    id: z.string(),
+    reconciliation_id: z.string(),
+    merchant_account_id: z.string(),
+    currency: z.string(),
+    amount: z.number().int(),
+    status: TransactionStatus$inboundSchema,
+    authorized_amount: z.number().int(),
+    captured_amount: z.number().int(),
+    refunded_amount: z.number().int(),
+    settled_currency: z.nullable(z.string()).optional(),
+    settled_amount: z.number().int(),
+    settled: z.boolean(),
+    country: z.nullable(z.string()).optional(),
+    external_identifier: z.nullable(z.string()).optional(),
+    intent: TransactionIntent$inboundSchema,
+    payment_method: z.nullable(TransactionPaymentMethod$inboundSchema)
+      .optional(),
+    method: z.nullable(Method$inboundSchema).optional(),
+    instrument_type: z.nullable(InstrumentType$inboundSchema).optional(),
+    error_code: z.nullable(z.string()).optional(),
+    payment_service: z.nullable(TransactionPaymentService$inboundSchema)
+      .optional(),
+    pending_review: z.boolean().default(false),
+    buyer: z.nullable(TransactionBuyer$inboundSchema).optional(),
+    raw_response_code: z.nullable(z.string()).optional(),
+    raw_response_description: z.nullable(z.string()).optional(),
+    shipping_details: z.nullable(ShippingDetails$inboundSchema).optional(),
+    checkout_session_id: z.nullable(z.string()).optional(),
+    gift_card_redemptions: z.array(GiftCardRedemption$inboundSchema),
+    gift_card_service: z.nullable(GiftCardService$inboundSchema).optional(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    disputed: z.boolean(),
+    reauthorized_from_transaction_id: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "reconciliation_id": "reconciliationId",
+      "merchant_account_id": "merchantAccountId",
+      "authorized_amount": "authorizedAmount",
+      "captured_amount": "capturedAmount",
+      "refunded_amount": "refundedAmount",
+      "settled_currency": "settledCurrency",
+      "settled_amount": "settledAmount",
+      "external_identifier": "externalIdentifier",
+      "payment_method": "paymentMethod",
+      "instrument_type": "instrumentType",
+      "error_code": "errorCode",
+      "payment_service": "paymentService",
+      "pending_review": "pendingReview",
+      "raw_response_code": "rawResponseCode",
+      "raw_response_description": "rawResponseDescription",
+      "shipping_details": "shippingDetails",
+      "checkout_session_id": "checkoutSessionId",
+      "gift_card_redemptions": "giftCardRedemptions",
+      "gift_card_service": "giftCardService",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "reauthorized_from_transaction_id": "reauthorizedFromTransactionId",
+    });
+  })
+);
 
 export function transactionSummaryFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -32,16 +32,18 @@ export const PazeMobileSessionCreate$inboundSchema: z.ZodType<
   PazeMobileSessionCreate,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  pazeCheckoutUrl: z.string(),
-  clientContext: z.string(),
-  ewSID: z.string(),
-  timestampISO8601: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "timestampISO8601": "timestampIso8601",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    pazeCheckoutUrl: z.string(),
+    clientContext: z.string(),
+    ewSID: z.string(),
+    timestampISO8601: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "timestampISO8601": "timestampIso8601",
+    });
+  })
+);
 
 export function pazeMobileSessionCreateFromJSON(
   jsonString: string,

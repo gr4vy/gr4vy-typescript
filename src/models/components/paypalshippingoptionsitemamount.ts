@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PaypalShippingOptionsItemAmount = {
   /**
@@ -27,14 +28,16 @@ export const PaypalShippingOptionsItemAmount$outboundSchema: z.ZodType<
   PaypalShippingOptionsItemAmount$Outbound,
   z.ZodTypeDef,
   PaypalShippingOptionsItemAmount
-> = z.object({
-  currencyCode: z.string(),
-  value: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    currencyCode: "currency_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    currencyCode: z.string(),
+    value: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      currencyCode: "currency_code",
+    });
+  })
+);
 
 export function paypalShippingOptionsItemAmountToJSON(
   paypalShippingOptionsItemAmount: PaypalShippingOptionsItemAmount,

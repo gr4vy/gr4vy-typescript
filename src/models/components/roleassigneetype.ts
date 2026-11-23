@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -17,4 +18,6 @@ export const RoleAssigneeType$inboundSchema: z.ZodType<
   RoleAssigneeType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(RoleAssigneeType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(RoleAssigneeType)
+);

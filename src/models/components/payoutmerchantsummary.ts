@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Address, Address$inboundSchema } from "./address.js";
@@ -56,23 +56,25 @@ export const PayoutMerchantSummary$inboundSchema: z.ZodType<
   PayoutMerchantSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("merchant").default("merchant"),
-  name: z.string(),
-  identification_number: z.string(),
-  phone_number: z.string(),
-  url: z.string(),
-  statement_descriptor: z.nullable(z.string()).optional(),
-  merchant_category_code: z.string(),
-  address: z.nullable(Address$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "identification_number": "identificationNumber",
-    "phone_number": "phoneNumber",
-    "statement_descriptor": "statementDescriptor",
-    "merchant_category_code": "merchantCategoryCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("merchant").default("merchant"),
+    name: z.string(),
+    identification_number: z.string(),
+    phone_number: z.string(),
+    url: z.string(),
+    statement_descriptor: z.nullable(z.string()).optional(),
+    merchant_category_code: z.string(),
+    address: z.nullable(Address$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "identification_number": "identificationNumber",
+      "phone_number": "phoneNumber",
+      "statement_descriptor": "statementDescriptor",
+      "merchant_category_code": "merchantCategoryCode",
+    });
+  })
+);
 
 export function payoutMerchantSummaryFromJSON(
   jsonString: string,

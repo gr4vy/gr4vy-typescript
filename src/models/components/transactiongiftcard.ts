@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -36,17 +36,19 @@ export const TransactionGiftCard$inboundSchema: z.ZodType<
   TransactionGiftCard,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("gift-card").default("gift-card"),
-  id: z.nullable(z.string()).optional(),
-  bin: z.string(),
-  sub_bin: z.string(),
-  last4: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "sub_bin": "subBin",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("gift-card").default("gift-card"),
+    id: z.nullable(z.string()).optional(),
+    bin: z.string(),
+    sub_bin: z.string(),
+    last4: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "sub_bin": "subBin",
+    });
+  })
+);
 
 export function transactionGiftCardFromJSON(
   jsonString: string,

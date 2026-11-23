@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type OxxoOptions = {
   /**
@@ -27,15 +28,17 @@ export const OxxoOptions$outboundSchema: z.ZodType<
   OxxoOptions$Outbound,
   z.ZodTypeDef,
   OxxoOptions
-> = z.object({
-  paymentMethodExpiresAt: z.nullable(z.number().int()).optional(),
-  approvalUrl: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentMethodExpiresAt: "payment_method_expires_at",
-    approvalUrl: "approval_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentMethodExpiresAt: z.nullable(z.number().int()).optional(),
+    approvalUrl: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentMethodExpiresAt: "payment_method_expires_at",
+      approvalUrl: "approval_url",
+    });
+  })
+);
 
 export function oxxoOptionsToJSON(oxxoOptions: OxxoOptions): string {
   return JSON.stringify(OxxoOptions$outboundSchema.parse(oxxoOptions));

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -41,8 +41,10 @@ export const ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus$inboundS
     ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus,
     z.ZodTypeDef,
     unknown
-  > = openEnums.inboundSchema(
-    ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.inboundSchema(
+      ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus,
+    )
   );
 /** @internal */
 export const ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus$outboundSchema:
@@ -50,8 +52,10 @@ export const ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus$outbound
     string,
     z.ZodTypeDef,
     ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus
-  > = openEnums.outboundSchema(
-    ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.outboundSchema(
+      ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus,
+    )
   );
 
 /** @internal */
@@ -59,14 +63,16 @@ export const ThreeDSecureScenarioOutcomeAuthentication$inboundSchema: z.ZodType<
   ThreeDSecureScenarioOutcomeAuthentication,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  transaction_status:
-    ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_status": "transactionStatus",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transaction_status:
+      ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "transaction_status": "transactionStatus",
+    });
+  })
+);
 /** @internal */
 export type ThreeDSecureScenarioOutcomeAuthentication$Outbound = {
   transaction_status: string;
@@ -78,14 +84,16 @@ export const ThreeDSecureScenarioOutcomeAuthentication$outboundSchema:
     ThreeDSecureScenarioOutcomeAuthentication$Outbound,
     z.ZodTypeDef,
     ThreeDSecureScenarioOutcomeAuthentication
-  > = z.object({
-    transactionStatus:
-      ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      transactionStatus: "transaction_status",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      transactionStatus:
+        ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        transactionStatus: "transaction_status",
+      });
+    })
+  );
 
 export function threeDSecureScenarioOutcomeAuthenticationToJSON(
   threeDSecureScenarioOutcomeAuthentication:

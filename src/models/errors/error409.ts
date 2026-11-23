@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 import { Gr4vyError } from "./gr4vyerror.js";
 
@@ -81,25 +82,27 @@ export const Error409$inboundSchema: z.ZodType<
   Error409,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("error").default("error"),
-  code: z.string().default("duplicate_record"),
-  status: z.number().int().default(409),
-  message: z.string().default("Generic error"),
-  details: z.array(components.ErrorDetail$inboundSchema).optional(),
-  resource_id: z.nullable(z.string()).optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "resource_id": "resourceId",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("error").default("error"),
+    code: z.string().default("duplicate_record"),
+    status: z.number().int().default(409),
+    message: z.string().default("Generic error"),
+    details: z.array(components.ErrorDetail$inboundSchema).optional(),
+    resource_id: z.nullable(z.string()).optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "resource_id": "resourceId",
+      });
 
-    return new Error409(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new Error409(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

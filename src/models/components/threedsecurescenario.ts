@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -46,21 +46,29 @@ export const ThreeDSecureScenario$inboundSchema: z.ZodType<
   ThreeDSecureScenario,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("three-d-secure-scenario").default("three-d-secure-scenario"),
-  id: z.string(),
-  merchant_account_id: z.string(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  conditions: ThreeDSecureScenarioConditions$inboundSchema,
-  outcome: ThreeDSecureScenarioOutcome$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_account_id": "merchantAccountId",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("three-d-secure-scenario").default(
+      "three-d-secure-scenario",
+    ),
+    id: z.string(),
+    merchant_account_id: z.string(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    conditions: ThreeDSecureScenarioConditions$inboundSchema,
+    outcome: ThreeDSecureScenarioOutcome$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_account_id": "merchantAccountId",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function threeDSecureScenarioFromJSON(
   jsonString: string,

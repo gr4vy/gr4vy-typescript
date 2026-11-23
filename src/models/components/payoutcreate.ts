@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   GuestBuyer,
   GuestBuyer$Outbound,
@@ -105,10 +106,12 @@ export const PayoutCreatePaymentMethod$outboundSchema: z.ZodType<
   PayoutCreatePaymentMethod$Outbound,
   z.ZodTypeDef,
   PayoutCreatePaymentMethod
-> = z.union([
-  PaymentMethodCard$outboundSchema,
-  PaymentMethodStoredCard$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    PaymentMethodCard$outboundSchema,
+    PaymentMethodStoredCard$outboundSchema,
+  ])
+);
 
 export function payoutCreatePaymentMethodToJSON(
   payoutCreatePaymentMethod: PayoutCreatePaymentMethod,
@@ -138,32 +141,34 @@ export const PayoutCreate$outboundSchema: z.ZodType<
   PayoutCreate$Outbound,
   z.ZodTypeDef,
   PayoutCreate
-> = z.object({
-  amount: z.number().int(),
-  currency: z.string(),
-  paymentServiceId: z.string(),
-  paymentMethod: z.union([
-    PaymentMethodCard$outboundSchema,
-    PaymentMethodStoredCard$outboundSchema,
-  ]),
-  category: z.nullable(PayoutCategory$outboundSchema).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  merchant: z.nullable(PayoutMerchant$outboundSchema).optional(),
-  connectionOptions: z.nullable(PayoutConnectionOptions$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentServiceId: "payment_service_id",
-    paymentMethod: "payment_method",
-    externalIdentifier: "external_identifier",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    connectionOptions: "connection_options",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number().int(),
+    currency: z.string(),
+    paymentServiceId: z.string(),
+    paymentMethod: z.union([
+      PaymentMethodCard$outboundSchema,
+      PaymentMethodStoredCard$outboundSchema,
+    ]),
+    category: z.nullable(PayoutCategory$outboundSchema).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    merchant: z.nullable(PayoutMerchant$outboundSchema).optional(),
+    connectionOptions: z.nullable(PayoutConnectionOptions$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentServiceId: "payment_service_id",
+      paymentMethod: "payment_method",
+      externalIdentifier: "external_identifier",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      connectionOptions: "connection_options",
+    });
+  })
+);
 
 export function payoutCreateToJSON(payoutCreate: PayoutCreate): string {
   return JSON.stringify(PayoutCreate$outboundSchema.parse(payoutCreate));

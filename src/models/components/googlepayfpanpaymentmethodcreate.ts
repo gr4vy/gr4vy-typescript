@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { CardType, CardType$outboundSchema } from "./cardtype.js";
 
 /**
@@ -71,29 +72,31 @@ export const GooglePayFPANPaymentMethodCreate$outboundSchema: z.ZodType<
   GooglePayFPANPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   GooglePayFPANPaymentMethodCreate
-> = z.object({
-  expirationDate: z.string(),
-  number: z.string(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  cardType: z.nullable(CardType$outboundSchema).optional(),
-  method: z.literal("googlepay_pan_only"),
-  redirectUrl: z.nullable(z.string()).optional(),
-  securityCode: z.nullable(z.any()).optional(),
-  messageExpiration: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    buyerId: "buyer_id",
-    externalIdentifier: "external_identifier",
-    cardType: "card_type",
-    redirectUrl: "redirect_url",
-    securityCode: "security_code",
-    messageExpiration: "message_expiration",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    expirationDate: z.string(),
+    number: z.string(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    cardType: z.nullable(CardType$outboundSchema).optional(),
+    method: z.literal("googlepay_pan_only"),
+    redirectUrl: z.nullable(z.string()).optional(),
+    securityCode: z.nullable(z.any()).optional(),
+    messageExpiration: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expirationDate: "expiration_date",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      buyerId: "buyer_id",
+      externalIdentifier: "external_identifier",
+      cardType: "card_type",
+      redirectUrl: "redirect_url",
+      securityCode: "security_code",
+      messageExpiration: "message_expiration",
+    });
+  })
+);
 
 export function googlePayFPANPaymentMethodCreateToJSON(
   googlePayFPANPaymentMethodCreate: GooglePayFPANPaymentMethodCreate,

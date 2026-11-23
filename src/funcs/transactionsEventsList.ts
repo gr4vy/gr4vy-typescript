@@ -8,9 +8,8 @@ import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
-import { RequestOptions } from "../lib/sdks.js";
+import { encodePath, RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
-import { pathToFunc } from "../lib/url.js";
 import { Gr4vyError } from "../models/errors/gr4vyerror.js";
 import {
   ConnectionError,
@@ -146,7 +145,14 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-  const path = pathToFunc("/transactions/{transaction_id}/events")(pathParams);
+  const pathResult = encodePath(
+    "/transactions/{transaction_id}/events",
+    pathParams,
+  );
+  if (!pathResult.ok) {
+    return [haltIterator(pathResult), { status: "invalid" }];
+  }
+  const path = pathResult.value;
 
   const query = encodeFormQuery({
     "cursor": payload.cursor,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   RiskifiedAntiFraudOptionsLineItem,
   RiskifiedAntiFraudOptionsLineItem$Outbound,
@@ -62,23 +63,25 @@ export const RiskifiedAntiFraudOptions$outboundSchema: z.ZodType<
   RiskifiedAntiFraudOptions$Outbound,
   z.ZodTypeDef,
   RiskifiedAntiFraudOptions
-> = z.object({
-  lineItems: z.nullable(
-    z.array(RiskifiedAntiFraudOptionsLineItem$outboundSchema),
-  ).optional(),
-  shippingLines: z.nullable(
-    z.array(RiskifiedAntiFraudOptionsShippingLine$outboundSchema),
-  ).optional(),
-  additionalShippingAddresses: z.nullable(
-    z.array(RiskifiedAntiFraudOptionsShippingAddress$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    lineItems: "line_items",
-    shippingLines: "shipping_lines",
-    additionalShippingAddresses: "additional_shipping_addresses",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    lineItems: z.nullable(
+      z.array(RiskifiedAntiFraudOptionsLineItem$outboundSchema),
+    ).optional(),
+    shippingLines: z.nullable(
+      z.array(RiskifiedAntiFraudOptionsShippingLine$outboundSchema),
+    ).optional(),
+    additionalShippingAddresses: z.nullable(
+      z.array(RiskifiedAntiFraudOptionsShippingAddress$outboundSchema),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      lineItems: "line_items",
+      shippingLines: "shipping_lines",
+      additionalShippingAddresses: "additional_shipping_addresses",
+    });
+  })
+);
 
 export function riskifiedAntiFraudOptionsToJSON(
   riskifiedAntiFraudOptions: RiskifiedAntiFraudOptions,

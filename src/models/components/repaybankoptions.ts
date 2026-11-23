@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -23,7 +24,7 @@ export type RepayBankOptions = {
 
 /** @internal */
 export const SecCode$outboundSchema: z.ZodType<string, z.ZodTypeDef, SecCode> =
-  openEnums.outboundSchema(SecCode);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(SecCode));
 
 /** @internal */
 export type RepayBankOptions$Outbound = {
@@ -35,13 +36,15 @@ export const RepayBankOptions$outboundSchema: z.ZodType<
   RepayBankOptions$Outbound,
   z.ZodTypeDef,
   RepayBankOptions
-> = z.object({
-  secCode: z.nullable(SecCode$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    secCode: "sec_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    secCode: z.nullable(SecCode$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      secCode: "sec_code",
+    });
+  })
+);
 
 export function repayBankOptionsToJSON(
   repayBankOptions: RepayBankOptions,

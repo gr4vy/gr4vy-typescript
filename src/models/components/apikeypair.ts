@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -78,33 +78,39 @@ export const APIKeyPair$inboundSchema: z.ZodType<
   APIKeyPair,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("api-key-pair").default("api-key-pair"),
-  id: z.string(),
-  thumbprint: z.string(),
-  display_name: z.string(),
-  algorithm: CertificateAlgorithm$inboundSchema,
-  active: z.boolean(),
-  private_key: z.nullable(z.string()).optional(),
-  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  last_used_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  creator: z.nullable(ApiRoutersApiKeyPairsSchemasCreator$inboundSchema)
-    .optional(),
-  merchant_accounts: z.array(MerchantAccountSummary$inboundSchema).optional(),
-  roles: z.array(Role$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "private_key": "privateKey",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "last_used_at": "lastUsedAt",
-    "merchant_accounts": "merchantAccounts",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("api-key-pair").default("api-key-pair"),
+    id: z.string(),
+    thumbprint: z.string(),
+    display_name: z.string(),
+    algorithm: CertificateAlgorithm$inboundSchema,
+    active: z.boolean(),
+    private_key: z.nullable(z.string()).optional(),
+    created_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    updated_at: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    last_used_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    creator: z.nullable(ApiRoutersApiKeyPairsSchemasCreator$inboundSchema)
+      .optional(),
+    merchant_accounts: z.array(MerchantAccountSummary$inboundSchema).optional(),
+    roles: z.array(Role$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_name": "displayName",
+      "private_key": "privateKey",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "last_used_at": "lastUsedAt",
+      "merchant_accounts": "merchantAccounts",
+    });
+  })
+);
 
 export function apiKeyPairFromJSON(
   jsonString: string,

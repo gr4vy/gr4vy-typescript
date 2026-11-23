@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DigitalWalletDomain = {
   /**
@@ -22,13 +23,15 @@ export const DigitalWalletDomain$outboundSchema: z.ZodType<
   DigitalWalletDomain$Outbound,
   z.ZodTypeDef,
   DigitalWalletDomain
-> = z.object({
-  domainName: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    domainName: "domain_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    domainName: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      domainName: "domain_name",
+    });
+  })
+);
 
 export function digitalWalletDomainToJSON(
   digitalWalletDomain: DigitalWalletDomain,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PaypalShippingOptionsItem,
   PaypalShippingOptionsItem$Outbound,
@@ -26,10 +27,12 @@ export const PaypalShippingOptions$outboundSchema: z.ZodType<
   PaypalShippingOptions$Outbound,
   z.ZodTypeDef,
   PaypalShippingOptions
-> = z.object({
-  options: z.nullable(z.array(PaypalShippingOptionsItem$outboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    options: z.nullable(z.array(PaypalShippingOptionsItem$outboundSchema))
+      .optional(),
+  })
+);
 
 export function paypalShippingOptionsToJSON(
   paypalShippingOptions: PaypalShippingOptions,

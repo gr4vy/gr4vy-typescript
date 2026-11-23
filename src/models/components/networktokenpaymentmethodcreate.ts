@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
@@ -62,7 +63,7 @@ export const CardSource$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CardSource
-> = openEnums.outboundSchema(CardSource);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(CardSource));
 
 /** @internal */
 export type NetworkTokenPaymentMethodCreate$Outbound = {
@@ -83,27 +84,29 @@ export const NetworkTokenPaymentMethodCreate$outboundSchema: z.ZodType<
   NetworkTokenPaymentMethodCreate$Outbound,
   z.ZodTypeDef,
   NetworkTokenPaymentMethodCreate
-> = z.object({
-  method: z.literal("network-token"),
-  token: z.string(),
-  expirationDate: z.string(),
-  cryptogram: z.nullable(z.string()).optional(),
-  redirectUrl: z.nullable(z.string()).optional(),
-  cardSource: z.nullable(CardSource$outboundSchema).optional(),
-  cardScheme: z.nullable(CardScheme$outboundSchema).optional(),
-  cardSuffix: z.nullable(z.string()).optional(),
-  cardholderName: z.nullable(z.string()).optional(),
-  eci: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expirationDate: "expiration_date",
-    redirectUrl: "redirect_url",
-    cardSource: "card_source",
-    cardScheme: "card_scheme",
-    cardSuffix: "card_suffix",
-    cardholderName: "cardholder_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: z.literal("network-token"),
+    token: z.string(),
+    expirationDate: z.string(),
+    cryptogram: z.nullable(z.string()).optional(),
+    redirectUrl: z.nullable(z.string()).optional(),
+    cardSource: z.nullable(CardSource$outboundSchema).optional(),
+    cardScheme: z.nullable(CardScheme$outboundSchema).optional(),
+    cardSuffix: z.nullable(z.string()).optional(),
+    cardholderName: z.nullable(z.string()).optional(),
+    eci: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      expirationDate: "expiration_date",
+      redirectUrl: "redirect_url",
+      cardSource: "card_source",
+      cardScheme: "card_scheme",
+      cardSuffix: "card_suffix",
+      cardholderName: "cardholder_name",
+    });
+  })
+);
 
 export function networkTokenPaymentMethodCreateToJSON(
   networkTokenPaymentMethodCreate: NetworkTokenPaymentMethodCreate,

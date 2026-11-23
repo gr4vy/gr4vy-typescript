@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AccountUpdaterJobCreate = {
   /**
@@ -22,13 +23,15 @@ export const AccountUpdaterJobCreate$outboundSchema: z.ZodType<
   AccountUpdaterJobCreate$Outbound,
   z.ZodTypeDef,
   AccountUpdaterJobCreate
-> = z.object({
-  paymentMethodIds: z.array(z.string()),
-}).transform((v) => {
-  return remap$(v, {
-    paymentMethodIds: "payment_method_ids",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentMethodIds: z.array(z.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentMethodIds: "payment_method_ids",
+    });
+  })
+);
 
 export function accountUpdaterJobCreateToJSON(
   accountUpdaterJobCreate: AccountUpdaterJobCreate,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreatePaymentMethodNetworkTokenCryptogramGlobals = {
@@ -40,18 +41,20 @@ export const CreatePaymentMethodNetworkTokenCryptogramRequest$outboundSchema:
     CreatePaymentMethodNetworkTokenCryptogramRequest$Outbound,
     z.ZodTypeDef,
     CreatePaymentMethodNetworkTokenCryptogramRequest
-  > = z.object({
-    paymentMethodId: z.string(),
-    networkTokenId: z.string(),
-    merchantAccountId: z.nullable(z.string()).optional(),
-    cryptogramCreate: components.CryptogramCreate$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      paymentMethodId: "payment_method_id",
-      networkTokenId: "network_token_id",
-      cryptogramCreate: "CryptogramCreate",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      paymentMethodId: z.string(),
+      networkTokenId: z.string(),
+      merchantAccountId: z.nullable(z.string()).optional(),
+      cryptogramCreate: components.CryptogramCreate$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        paymentMethodId: "payment_method_id",
+        networkTokenId: "network_token_id",
+        cryptogramCreate: "CryptogramCreate",
+      });
+    })
+  );
 
 export function createPaymentMethodNetworkTokenCryptogramRequestToJSON(
   createPaymentMethodNetworkTokenCryptogramRequest:

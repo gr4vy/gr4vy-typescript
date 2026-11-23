@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -107,54 +107,56 @@ export type Refund = {
 };
 
 /** @internal */
-export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
-  .object({
-    type: z.literal("refund").default("refund"),
-    id: z.string(),
-    transaction_id: z.string(),
-    payment_service_refund_id: z.nullable(z.string()).optional(),
-    status: RefundStatus$inboundSchema,
-    currency: z.string(),
-    amount: z.number().int(),
-    reason: z.nullable(z.string()).optional(),
-    target_type: RefundTargetType$inboundSchema,
-    target_id: z.nullable(z.string()).optional(),
-    reconciliation_id: z.string(),
-    external_identifier: z.nullable(z.string()).optional(),
-    transaction_reconciliation_id: z.string(),
-    transaction_external_identifier: z.nullable(z.string()).optional(),
-    created_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    updated_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    creator: z.nullable(ApiCommonSchemasCreator$inboundSchema).optional(),
-    error_code: z.nullable(z.string()).optional(),
-    raw_response_code: z.nullable(z.string()).optional(),
-    raw_response_description: z.nullable(z.string()).optional(),
-    settled_currency: z.nullable(z.string()).optional(),
-    settled_amount: z.number().int().default(0),
-    settled: z.boolean(),
-  }).transform((v) => {
-    return remap$(v, {
-      "transaction_id": "transactionId",
-      "payment_service_refund_id": "paymentServiceRefundId",
-      "target_type": "targetType",
-      "target_id": "targetId",
-      "reconciliation_id": "reconciliationId",
-      "external_identifier": "externalIdentifier",
-      "transaction_reconciliation_id": "transactionReconciliationId",
-      "transaction_external_identifier": "transactionExternalIdentifier",
-      "created_at": "createdAt",
-      "updated_at": "updatedAt",
-      "error_code": "errorCode",
-      "raw_response_code": "rawResponseCode",
-      "raw_response_description": "rawResponseDescription",
-      "settled_currency": "settledCurrency",
-      "settled_amount": "settledAmount",
-    });
-  });
+export const Refund$inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.literal("refund").default("refund"),
+      id: z.string(),
+      transaction_id: z.string(),
+      payment_service_refund_id: z.nullable(z.string()).optional(),
+      status: RefundStatus$inboundSchema,
+      currency: z.string(),
+      amount: z.number().int(),
+      reason: z.nullable(z.string()).optional(),
+      target_type: RefundTargetType$inboundSchema,
+      target_id: z.nullable(z.string()).optional(),
+      reconciliation_id: z.string(),
+      external_identifier: z.nullable(z.string()).optional(),
+      transaction_reconciliation_id: z.string(),
+      transaction_external_identifier: z.nullable(z.string()).optional(),
+      created_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      updated_at: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      creator: z.nullable(ApiCommonSchemasCreator$inboundSchema).optional(),
+      error_code: z.nullable(z.string()).optional(),
+      raw_response_code: z.nullable(z.string()).optional(),
+      raw_response_description: z.nullable(z.string()).optional(),
+      settled_currency: z.nullable(z.string()).optional(),
+      settled_amount: z.number().int().default(0),
+      settled: z.boolean(),
+    }).transform((v) => {
+      return remap$(v, {
+        "transaction_id": "transactionId",
+        "payment_service_refund_id": "paymentServiceRefundId",
+        "target_type": "targetType",
+        "target_id": "targetId",
+        "reconciliation_id": "reconciliationId",
+        "external_identifier": "externalIdentifier",
+        "transaction_reconciliation_id": "transactionReconciliationId",
+        "transaction_external_identifier": "transactionExternalIdentifier",
+        "created_at": "createdAt",
+        "updated_at": "updatedAt",
+        "error_code": "errorCode",
+        "raw_response_code": "rawResponseCode",
+        "raw_response_description": "rawResponseDescription",
+        "settled_currency": "settledCurrency",
+        "settled_amount": "settledAmount",
+      });
+    })
+  );
 
 export function refundFromJSON(
   jsonString: string,

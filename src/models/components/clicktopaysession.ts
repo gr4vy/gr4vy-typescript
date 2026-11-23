@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -24,15 +24,17 @@ export const ClickToPaySession$inboundSchema: z.ZodType<
   ClickToPaySession,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  digital_payment_application_id: z.string(),
-  digital_payment_application_name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "digital_payment_application_id": "digitalPaymentApplicationId",
-    "digital_payment_application_name": "digitalPaymentApplicationName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    digital_payment_application_id: z.string(),
+    digital_payment_application_name: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "digital_payment_application_id": "digitalPaymentApplicationId",
+      "digital_payment_application_name": "digitalPaymentApplicationName",
+    });
+  })
+);
 
 export function clickToPaySessionFromJSON(
   jsonString: string,

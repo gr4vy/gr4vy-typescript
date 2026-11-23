@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -29,7 +30,7 @@ export const DeliveredTo$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   DeliveredTo
-> = openEnums.outboundSchema(DeliveredTo);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(DeliveredTo));
 
 /** @internal */
 export type RiskifiedAntiFraudOptionsLineItem$Outbound = {
@@ -42,15 +43,17 @@ export const RiskifiedAntiFraudOptionsLineItem$outboundSchema: z.ZodType<
   RiskifiedAntiFraudOptionsLineItem$Outbound,
   z.ZodTypeDef,
   RiskifiedAntiFraudOptionsLineItem
-> = z.object({
-  deliveredTo: z.nullable(DeliveredTo$outboundSchema).optional(),
-  shippingAddressId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    deliveredTo: "delivered_to",
-    shippingAddressId: "shipping_address_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    deliveredTo: z.nullable(DeliveredTo$outboundSchema).optional(),
+    shippingAddressId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      deliveredTo: "delivered_to",
+      shippingAddressId: "shipping_address_id",
+    });
+  })
+);
 
 export function riskifiedAntiFraudOptionsLineItemToJSON(
   riskifiedAntiFraudOptionsLineItem: RiskifiedAntiFraudOptionsLineItem,

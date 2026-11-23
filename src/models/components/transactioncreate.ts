@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Airline,
   Airline$Outbound,
@@ -411,21 +412,23 @@ export const TransactionCreatePaymentMethod$outboundSchema: z.ZodType<
   TransactionCreatePaymentMethod$Outbound,
   z.ZodTypeDef,
   TransactionCreatePaymentMethod
-> = z.union([
-  RedirectPaymentMethodCreate$outboundSchema,
-  ClickToPayPaymentMethodCreate$outboundSchema,
-  ClickToPayFPANPaymentMethodCreate$outboundSchema,
-  GooglePayFPANPaymentMethodCreate$outboundSchema,
-  NetworkTokenPaymentMethodCreate$outboundSchema,
-  CardWithUrlPaymentMethodCreate$outboundSchema,
-  ApplePayPaymentMethodCreate$outboundSchema,
-  GooglePayPaymentMethodCreate$outboundSchema,
-  PazePaymentMethodCreate$outboundSchema,
-  TokenPaymentMethodCreate$outboundSchema,
-  PlaidPaymentMethodCreate$outboundSchema,
-  BaseBankPaymentMethodCreate$outboundSchema,
-  CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    RedirectPaymentMethodCreate$outboundSchema,
+    ClickToPayPaymentMethodCreate$outboundSchema,
+    ClickToPayFPANPaymentMethodCreate$outboundSchema,
+    GooglePayFPANPaymentMethodCreate$outboundSchema,
+    NetworkTokenPaymentMethodCreate$outboundSchema,
+    CardWithUrlPaymentMethodCreate$outboundSchema,
+    ApplePayPaymentMethodCreate$outboundSchema,
+    GooglePayPaymentMethodCreate$outboundSchema,
+    PazePaymentMethodCreate$outboundSchema,
+    TokenPaymentMethodCreate$outboundSchema,
+    PlaidPaymentMethodCreate$outboundSchema,
+    BaseBankPaymentMethodCreate$outboundSchema,
+    CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
+  ])
+);
 
 export function transactionCreatePaymentMethodToJSON(
   transactionCreatePaymentMethod: TransactionCreatePaymentMethod,
@@ -447,10 +450,12 @@ export const TransactionCreateGiftCards$outboundSchema: z.ZodType<
   TransactionCreateGiftCards$Outbound,
   z.ZodTypeDef,
   TransactionCreateGiftCards
-> = z.union([
-  GiftCardTransactionCreate$outboundSchema,
-  GiftCardTokenTransactionCreate$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    GiftCardTransactionCreate$outboundSchema,
+    GiftCardTokenTransactionCreate$outboundSchema,
+  ])
+);
 
 export function transactionCreateGiftCardsToJSON(
   transactionCreateGiftCards: TransactionCreateGiftCards,
@@ -470,10 +475,12 @@ export const ThreeDSecureData$outboundSchema: z.ZodType<
   ThreeDSecureData$Outbound,
   z.ZodTypeDef,
   ThreeDSecureData
-> = z.union([
-  ThreeDSecureDataV1$outboundSchema,
-  ThreeDSecureDataV2$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    ThreeDSecureDataV1$outboundSchema,
+    ThreeDSecureDataV2$outboundSchema,
+  ])
+);
 
 export function threeDSecureDataToJSON(
   threeDSecureData: ThreeDSecureData,
@@ -561,120 +568,122 @@ export const TransactionCreate$outboundSchema: z.ZodType<
   TransactionCreate$Outbound,
   z.ZodTypeDef,
   TransactionCreate
-> = z.object({
-  amount: z.number().int(),
-  currency: z.string(),
-  country: z.nullable(z.string()).optional(),
-  paymentMethod: z.nullable(
-    z.union([
-      RedirectPaymentMethodCreate$outboundSchema,
-      ClickToPayPaymentMethodCreate$outboundSchema,
-      ClickToPayFPANPaymentMethodCreate$outboundSchema,
-      GooglePayFPANPaymentMethodCreate$outboundSchema,
-      NetworkTokenPaymentMethodCreate$outboundSchema,
-      CardWithUrlPaymentMethodCreate$outboundSchema,
-      ApplePayPaymentMethodCreate$outboundSchema,
-      GooglePayPaymentMethodCreate$outboundSchema,
-      PazePaymentMethodCreate$outboundSchema,
-      TokenPaymentMethodCreate$outboundSchema,
-      PlaidPaymentMethodCreate$outboundSchema,
-      BaseBankPaymentMethodCreate$outboundSchema,
-      CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
-    ]),
-  ).optional(),
-  buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  giftCards: z.nullable(
-    z.array(
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number().int(),
+    currency: z.string(),
+    country: z.nullable(z.string()).optional(),
+    paymentMethod: z.nullable(
       z.union([
-        GiftCardTransactionCreate$outboundSchema,
-        GiftCardTokenTransactionCreate$outboundSchema,
+        RedirectPaymentMethodCreate$outboundSchema,
+        ClickToPayPaymentMethodCreate$outboundSchema,
+        ClickToPayFPANPaymentMethodCreate$outboundSchema,
+        GooglePayFPANPaymentMethodCreate$outboundSchema,
+        NetworkTokenPaymentMethodCreate$outboundSchema,
+        CardWithUrlPaymentMethodCreate$outboundSchema,
+        ApplePayPaymentMethodCreate$outboundSchema,
+        GooglePayPaymentMethodCreate$outboundSchema,
+        PazePaymentMethodCreate$outboundSchema,
+        TokenPaymentMethodCreate$outboundSchema,
+        PlaidPaymentMethodCreate$outboundSchema,
+        BaseBankPaymentMethodCreate$outboundSchema,
+        CheckoutSessionWithUrlPaymentMethodCreate$outboundSchema,
       ]),
-    ),
-  ).optional(),
-  externalIdentifier: z.nullable(z.string()).optional(),
-  intent: TransactionIntent$outboundSchema.optional(),
-  store: z.boolean().default(false),
-  threeDSecureData: z.nullable(
-    z.union([
-      ThreeDSecureDataV1$outboundSchema,
-      ThreeDSecureDataV2$outboundSchema,
-    ]),
-  ).optional(),
-  threeDSecure: z.nullable(ThreeDSecure$outboundSchema).optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
-  isSubsequentPayment: z.boolean().default(false),
-  merchantInitiated: z.boolean().default(false),
-  paymentSource: TransactionPaymentSource$outboundSchema.optional(),
-  airline: z.nullable(Airline$outboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
-  statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
-    .optional(),
-  previousSchemeTransactionId: z.nullable(z.string()).optional(),
-  previousTransactionLinkId: z.nullable(z.string()).optional(),
-  browserInfo: z.nullable(BrowserInfo$outboundSchema).optional(),
-  shippingDetailsId: z.nullable(z.string()).optional(),
-  connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
-    .optional(),
-  asyncCapture: z.boolean().default(false),
-  antiFraudFingerprint: z.nullable(z.string()).optional(),
-  paymentServiceId: z.nullable(z.string()).optional(),
-  accountFundingTransaction: z.boolean().default(false),
-  allowPartialAuthorization: z.boolean().default(false),
-  recipient: z.nullable(Recipient$outboundSchema).optional(),
-  installmentCount: z.nullable(z.number().int()).optional(),
-  taxAmount: z.nullable(z.number().int()).optional(),
-  merchantTaxId: z.nullable(z.string()).optional(),
-  purchaseOrderNumber: z.nullable(z.string()).optional(),
-  customerReferenceNumber: z.nullable(z.string()).optional(),
-  amountIncludesTax: z.nullable(z.boolean()).optional(),
-  supplierOrderNumber: z.nullable(z.string()).optional(),
-  dutyAmount: z.nullable(z.number().int()).optional(),
-  shippingAmount: z.nullable(z.number().int()).optional(),
-  integrationClient: z.nullable(IntegrationClient$outboundSchema).optional(),
-  approvalExpiresAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  isAmountEstimated: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentMethod: "payment_method",
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    giftCards: "gift_cards",
-    externalIdentifier: "external_identifier",
-    threeDSecureData: "three_d_secure_data",
-    threeDSecure: "three_d_secure",
-    isSubsequentPayment: "is_subsequent_payment",
-    merchantInitiated: "merchant_initiated",
-    paymentSource: "payment_source",
-    cartItems: "cart_items",
-    statementDescriptor: "statement_descriptor",
-    previousSchemeTransactionId: "previous_scheme_transaction_id",
-    previousTransactionLinkId: "previous_transaction_link_id",
-    browserInfo: "browser_info",
-    shippingDetailsId: "shipping_details_id",
-    connectionOptions: "connection_options",
-    asyncCapture: "async_capture",
-    antiFraudFingerprint: "anti_fraud_fingerprint",
-    paymentServiceId: "payment_service_id",
-    accountFundingTransaction: "account_funding_transaction",
-    allowPartialAuthorization: "allow_partial_authorization",
-    installmentCount: "installment_count",
-    taxAmount: "tax_amount",
-    merchantTaxId: "merchant_tax_id",
-    purchaseOrderNumber: "purchase_order_number",
-    customerReferenceNumber: "customer_reference_number",
-    amountIncludesTax: "amount_includes_tax",
-    supplierOrderNumber: "supplier_order_number",
-    dutyAmount: "duty_amount",
-    shippingAmount: "shipping_amount",
-    integrationClient: "integration_client",
-    approvalExpiresAt: "approval_expires_at",
-    isAmountEstimated: "is_amount_estimated",
-  });
-});
+    ).optional(),
+    buyer: z.nullable(GuestBuyer$outboundSchema).optional(),
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    giftCards: z.nullable(
+      z.array(
+        z.union([
+          GiftCardTransactionCreate$outboundSchema,
+          GiftCardTokenTransactionCreate$outboundSchema,
+        ]),
+      ),
+    ).optional(),
+    externalIdentifier: z.nullable(z.string()).optional(),
+    intent: TransactionIntent$outboundSchema.optional(),
+    store: z.boolean().default(false),
+    threeDSecureData: z.nullable(
+      z.union([
+        ThreeDSecureDataV1$outboundSchema,
+        ThreeDSecureDataV2$outboundSchema,
+      ]),
+    ).optional(),
+    threeDSecure: z.nullable(ThreeDSecure$outboundSchema).optional(),
+    metadata: z.nullable(z.record(z.string())).optional(),
+    isSubsequentPayment: z.boolean().default(false),
+    merchantInitiated: z.boolean().default(false),
+    paymentSource: TransactionPaymentSource$outboundSchema.optional(),
+    airline: z.nullable(Airline$outboundSchema).optional(),
+    description: z.nullable(z.string()).optional(),
+    cartItems: z.nullable(z.array(CartItem$outboundSchema)).optional(),
+    statementDescriptor: z.nullable(StatementDescriptor$outboundSchema)
+      .optional(),
+    previousSchemeTransactionId: z.nullable(z.string()).optional(),
+    previousTransactionLinkId: z.nullable(z.string()).optional(),
+    browserInfo: z.nullable(BrowserInfo$outboundSchema).optional(),
+    shippingDetailsId: z.nullable(z.string()).optional(),
+    connectionOptions: z.nullable(TransactionConnectionOptions$outboundSchema)
+      .optional(),
+    asyncCapture: z.boolean().default(false),
+    antiFraudFingerprint: z.nullable(z.string()).optional(),
+    paymentServiceId: z.nullable(z.string()).optional(),
+    accountFundingTransaction: z.boolean().default(false),
+    allowPartialAuthorization: z.boolean().default(false),
+    recipient: z.nullable(Recipient$outboundSchema).optional(),
+    installmentCount: z.nullable(z.number().int()).optional(),
+    taxAmount: z.nullable(z.number().int()).optional(),
+    merchantTaxId: z.nullable(z.string()).optional(),
+    purchaseOrderNumber: z.nullable(z.string()).optional(),
+    customerReferenceNumber: z.nullable(z.string()).optional(),
+    amountIncludesTax: z.nullable(z.boolean()).optional(),
+    supplierOrderNumber: z.nullable(z.string()).optional(),
+    dutyAmount: z.nullable(z.number().int()).optional(),
+    shippingAmount: z.nullable(z.number().int()).optional(),
+    integrationClient: z.nullable(IntegrationClient$outboundSchema).optional(),
+    approvalExpiresAt: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    isAmountEstimated: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentMethod: "payment_method",
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      giftCards: "gift_cards",
+      externalIdentifier: "external_identifier",
+      threeDSecureData: "three_d_secure_data",
+      threeDSecure: "three_d_secure",
+      isSubsequentPayment: "is_subsequent_payment",
+      merchantInitiated: "merchant_initiated",
+      paymentSource: "payment_source",
+      cartItems: "cart_items",
+      statementDescriptor: "statement_descriptor",
+      previousSchemeTransactionId: "previous_scheme_transaction_id",
+      previousTransactionLinkId: "previous_transaction_link_id",
+      browserInfo: "browser_info",
+      shippingDetailsId: "shipping_details_id",
+      connectionOptions: "connection_options",
+      asyncCapture: "async_capture",
+      antiFraudFingerprint: "anti_fraud_fingerprint",
+      paymentServiceId: "payment_service_id",
+      accountFundingTransaction: "account_funding_transaction",
+      allowPartialAuthorization: "allow_partial_authorization",
+      installmentCount: "installment_count",
+      taxAmount: "tax_amount",
+      merchantTaxId: "merchant_tax_id",
+      purchaseOrderNumber: "purchase_order_number",
+      customerReferenceNumber: "customer_reference_number",
+      amountIncludesTax: "amount_includes_tax",
+      supplierOrderNumber: "supplier_order_number",
+      dutyAmount: "duty_amount",
+      shippingAmount: "shipping_amount",
+      integrationClient: "integration_client",
+      approvalExpiresAt: "approval_expires_at",
+      isAmountEstimated: "is_amount_estimated",
+    });
+  })
+);
 
 export function transactionCreateToJSON(
   transactionCreate: TransactionCreate,

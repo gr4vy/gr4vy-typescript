@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { CardScheme, CardScheme$outboundSchema } from "./cardscheme.js";
 
 export type ThreeDSecureDataV2 = {
@@ -53,21 +54,23 @@ export const ThreeDSecureDataV2$outboundSchema: z.ZodType<
   ThreeDSecureDataV2$Outbound,
   z.ZodTypeDef,
   ThreeDSecureDataV2
-> = z.object({
-  cavv: z.string(),
-  eci: z.string(),
-  version: z.string(),
-  directoryResponse: z.string(),
-  scheme: z.nullable(CardScheme$outboundSchema).optional(),
-  authenticationResponse: z.nullable(z.string()).optional(),
-  directoryTransactionId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    directoryResponse: "directory_response",
-    authenticationResponse: "authentication_response",
-    directoryTransactionId: "directory_transaction_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    cavv: z.string(),
+    eci: z.string(),
+    version: z.string(),
+    directoryResponse: z.string(),
+    scheme: z.nullable(CardScheme$outboundSchema).optional(),
+    authenticationResponse: z.nullable(z.string()).optional(),
+    directoryTransactionId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      directoryResponse: "directory_response",
+      authenticationResponse: "authentication_response",
+      directoryTransactionId: "directory_transaction_id",
+    });
+  })
+);
 
 export function threeDSecureDataV2ToJSON(
   threeDSecureDataV2: ThreeDSecureDataV2,

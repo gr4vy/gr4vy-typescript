@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * An additional shipping address to pass to the Riskified API.
@@ -86,27 +87,29 @@ export const RiskifiedAntiFraudOptionsShippingAddress$outboundSchema: z.ZodType<
   RiskifiedAntiFraudOptionsShippingAddress$Outbound,
   z.ZodTypeDef,
   RiskifiedAntiFraudOptionsShippingAddress
-> = z.object({
-  id: z.string(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  phone: z.nullable(z.string()).optional(),
-  city: z.nullable(z.string()).optional(),
-  countryCode: z.nullable(z.string()).optional(),
-  zip: z.nullable(z.string()).optional(),
-  province: z.nullable(z.string()).optional(),
-  provinceCode: z.nullable(z.string()).optional(),
-  address1: z.nullable(z.string()).optional(),
-  address2: z.nullable(z.string()).optional(),
-  company: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    countryCode: "country_code",
-    provinceCode: "province_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    phone: z.nullable(z.string()).optional(),
+    city: z.nullable(z.string()).optional(),
+    countryCode: z.nullable(z.string()).optional(),
+    zip: z.nullable(z.string()).optional(),
+    province: z.nullable(z.string()).optional(),
+    provinceCode: z.nullable(z.string()).optional(),
+    address1: z.nullable(z.string()).optional(),
+    address2: z.nullable(z.string()).optional(),
+    company: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      countryCode: "country_code",
+      provinceCode: "province_code",
+    });
+  })
+);
 
 export function riskifiedAntiFraudOptionsShippingAddressToJSON(
   riskifiedAntiFraudOptionsShippingAddress:

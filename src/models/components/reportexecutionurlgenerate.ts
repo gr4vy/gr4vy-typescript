@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ReportExecutionUrlGenerate = {
   /**
@@ -22,13 +23,15 @@ export const ReportExecutionUrlGenerate$outboundSchema: z.ZodType<
   ReportExecutionUrlGenerate$Outbound,
   z.ZodTypeDef,
   ReportExecutionUrlGenerate
-> = z.object({
-  expiresIn: z.number().int().default(5),
-}).transform((v) => {
-  return remap$(v, {
-    expiresIn: "expires_in",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    expiresIn: z.number().int().default(5),
+  }).transform((v) => {
+    return remap$(v, {
+      expiresIn: "expires_in",
+    });
+  })
+);
 
 export function reportExecutionUrlGenerateToJSON(
   reportExecutionUrlGenerate: ReportExecutionUrlGenerate,

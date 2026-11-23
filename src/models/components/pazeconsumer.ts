@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -44,15 +44,17 @@ export const PazeConsumer$inboundSchema: z.ZodType<
   PazeConsumer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  firstName: z.nullable(z.string()),
-  lastName: z.nullable(z.string()),
-  fullName: z.string(),
-  countryCode: z.nullable(z.string()),
-  languageCode: z.nullable(z.string()),
-  emailAddress: z.string(),
-  mobileNumber: z.nullable(PazeMobileNumber$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()),
+    lastName: z.nullable(z.string()),
+    fullName: z.string(),
+    countryCode: z.nullable(z.string()),
+    languageCode: z.nullable(z.string()),
+    emailAddress: z.string(),
+    mobileNumber: z.nullable(PazeMobileNumber$inboundSchema),
+  })
+);
 
 export function pazeConsumerFromJSON(
   jsonString: string,

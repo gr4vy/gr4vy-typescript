@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -65,7 +65,9 @@ export const ResponseData$inboundSchema: z.ZodType<
   ResponseData,
   z.ZodTypeDef,
   unknown
-> = z.union([ThreeDSecureDataV1$inboundSchema, ThreeDSecureV2$inboundSchema]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([ThreeDSecureDataV1$inboundSchema, ThreeDSecureV2$inboundSchema])
+);
 
 export function responseDataFromJSON(
   jsonString: string,
@@ -82,21 +84,23 @@ export const TransactionThreeDSecureSummary$inboundSchema: z.ZodType<
   TransactionThreeDSecureSummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  version: z.nullable(z.string()).optional(),
-  status: z.nullable(ThreeDSecureStatus$inboundSchema).optional(),
-  method: z.nullable(ThreeDSecureMethod$inboundSchema).optional(),
-  response_data: z.nullable(
-    z.union([ThreeDSecureDataV1$inboundSchema, ThreeDSecureV2$inboundSchema]),
-  ).optional(),
-  error_data: z.nullable(ThreeDSecureError$inboundSchema).optional(),
-  amount: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "response_data": "responseData",
-    "error_data": "errorData",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    version: z.nullable(z.string()).optional(),
+    status: z.nullable(ThreeDSecureStatus$inboundSchema).optional(),
+    method: z.nullable(ThreeDSecureMethod$inboundSchema).optional(),
+    response_data: z.nullable(
+      z.union([ThreeDSecureDataV1$inboundSchema, ThreeDSecureV2$inboundSchema]),
+    ).optional(),
+    error_data: z.nullable(ThreeDSecureError$inboundSchema).optional(),
+    amount: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "response_data": "responseData",
+      "error_data": "errorData",
+    });
+  })
+);
 
 export function transactionThreeDSecureSummaryFromJSON(
   jsonString: string,

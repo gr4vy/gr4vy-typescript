@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type ReviewPazeMobileSessionGlobals = {
@@ -29,14 +30,17 @@ export const ReviewPazeMobileSessionRequest$outboundSchema: z.ZodType<
   ReviewPazeMobileSessionRequest$Outbound,
   z.ZodTypeDef,
   ReviewPazeMobileSessionRequest
-> = z.object({
-  merchantAccountId: z.nullable(z.string()).optional(),
-  pazeSessionReviewRequest: components.PazeSessionReviewRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    pazeSessionReviewRequest: "PazeSessionReviewRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchantAccountId: z.nullable(z.string()).optional(),
+    pazeSessionReviewRequest:
+      components.PazeSessionReviewRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      pazeSessionReviewRequest: "PazeSessionReviewRequest",
+    });
+  })
+);
 
 export function reviewPazeMobileSessionRequestToJSON(
   reviewPazeMobileSessionRequest: ReviewPazeMobileSessionRequest,

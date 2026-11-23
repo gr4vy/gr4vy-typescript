@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PazeClient = {
   /**
@@ -31,11 +32,13 @@ export const PazeClient$outboundSchema: z.ZodType<
   PazeClient$Outbound,
   z.ZodTypeDef,
   PazeClient
-> = z.object({
-  id: z.string(),
-  name: z.nullable(z.string()).optional(),
-  profileId: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    name: z.nullable(z.string()).optional(),
+    profileId: z.nullable(z.string()).optional(),
+  })
+);
 
 export function pazeClientToJSON(pazeClient: PazeClient): string {
   return JSON.stringify(PazeClient$outboundSchema.parse(pazeClient));

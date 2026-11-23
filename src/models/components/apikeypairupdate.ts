@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type APIKeyPairUpdate = {
   /**
@@ -34,18 +35,20 @@ export const APIKeyPairUpdate$outboundSchema: z.ZodType<
   APIKeyPairUpdate$Outbound,
   z.ZodTypeDef,
   APIKeyPairUpdate
-> = z.object({
-  displayName: z.nullable(z.string()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  roleIds: z.nullable(z.array(z.string())).optional(),
-  merchantAccountIds: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    roleIds: "role_ids",
-    merchantAccountIds: "merchant_account_ids",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayName: z.nullable(z.string()).optional(),
+    active: z.nullable(z.boolean()).optional(),
+    roleIds: z.nullable(z.array(z.string())).optional(),
+    merchantAccountIds: z.nullable(z.array(z.string())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+      roleIds: "role_ids",
+      merchantAccountIds: "merchant_account_ids",
+    });
+  })
+);
 
 export function apiKeyPairUpdateToJSON(
   apiKeyPairUpdate: APIKeyPairUpdate,

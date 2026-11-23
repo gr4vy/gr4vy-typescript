@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type CreateApplePayDigitalWalletSessionGlobals = {
@@ -30,14 +31,16 @@ export const CreateApplePayDigitalWalletSessionRequest$outboundSchema:
     CreateApplePayDigitalWalletSessionRequest$Outbound,
     z.ZodTypeDef,
     CreateApplePayDigitalWalletSessionRequest
-  > = z.object({
-    merchantAccountId: z.nullable(z.string()).optional(),
-    applePaySessionRequest: components.ApplePaySessionRequest$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      applePaySessionRequest: "ApplePaySessionRequest",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      merchantAccountId: z.nullable(z.string()).optional(),
+      applePaySessionRequest: components.ApplePaySessionRequest$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        applePaySessionRequest: "ApplePaySessionRequest",
+      });
+    })
+  );
 
 export function createApplePayDigitalWalletSessionRequestToJSON(
   createApplePayDigitalWalletSessionRequest:

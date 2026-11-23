@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -24,17 +24,19 @@ export const ReportExecutionContext$inboundSchema: z.ZodType<
   ReportExecutionContext,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  reference_timestamp: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ),
-  reference_timezone: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "reference_timestamp": "referenceTimestamp",
-    "reference_timezone": "referenceTimezone",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reference_timestamp: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ),
+    reference_timezone: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "reference_timestamp": "referenceTimestamp",
+      "reference_timezone": "referenceTimezone",
+    });
+  })
+);
 
 export function reportExecutionContextFromJSON(
   jsonString: string,

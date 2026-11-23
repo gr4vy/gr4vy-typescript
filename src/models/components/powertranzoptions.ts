@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PowertranzOptions = {
   /**
@@ -21,9 +22,11 @@ export const PowertranzOptions$outboundSchema: z.ZodType<
   PowertranzOptions$Outbound,
   z.ZodTypeDef,
   PowertranzOptions
-> = z.object({
-  skipThreeDSecure: z.nullable(z.boolean()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skipThreeDSecure: z.nullable(z.boolean()).optional(),
+  })
+);
 
 export function powertranzOptionsToJSON(
   powertranzOptions: PowertranzOptions,

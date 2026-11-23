@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -40,18 +40,22 @@ export const CreateSession$inboundSchema: z.ZodType<
   CreateSession,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-service-session").default("payment-service-session"),
-  status: CreateSessionStatus$inboundSchema,
-  code: z.nullable(z.string()).optional(),
-  status_code: z.nullable(z.number().int()).optional(),
-  response_body: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-    "response_body": "responseBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-service-session").default(
+      "payment-service-session",
+    ),
+    status: CreateSessionStatus$inboundSchema,
+    code: z.nullable(z.string()).optional(),
+    status_code: z.nullable(z.number().int()).optional(),
+    response_body: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+      "response_body": "responseBody",
+    });
+  })
+);
 
 export function createSessionFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeleteThreeDsScenarioGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const DeleteThreeDsScenarioRequest$outboundSchema: z.ZodType<
   DeleteThreeDsScenarioRequest$Outbound,
   z.ZodTypeDef,
   DeleteThreeDsScenarioRequest
-> = z.object({
-  threeDsScenarioId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    threeDsScenarioId: "three_ds_scenario_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    threeDsScenarioId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      threeDsScenarioId: "three_ds_scenario_id",
+    });
+  })
+);
 
 export function deleteThreeDsScenarioRequestToJSON(
   deleteThreeDsScenarioRequest: DeleteThreeDsScenarioRequest,

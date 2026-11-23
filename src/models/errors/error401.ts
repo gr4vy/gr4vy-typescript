@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 import { Gr4vyError } from "./gr4vyerror.js";
 
@@ -71,20 +72,22 @@ export const Error401$inboundSchema: z.ZodType<
   Error401,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("error").default("error"),
-  code: z.string().default("unauthorized"),
-  status: z.number().int().default(401),
-  message: z.string().default("No valid API authentication found"),
-  details: z.array(components.ErrorDetail$inboundSchema).optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new Error401(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("error").default("error"),
+    code: z.string().default("unauthorized"),
+    status: z.number().int().default(401),
+    message: z.string().default("No valid API authentication found"),
+    details: z.array(components.ErrorDetail$inboundSchema).optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new Error401(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

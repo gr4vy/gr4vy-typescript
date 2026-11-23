@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * The ID of a stored gift card to fetch a balance for.
@@ -24,9 +25,11 @@ export const GiftCardStoredRequest$outboundSchema: z.ZodType<
   GiftCardStoredRequest$Outbound,
   z.ZodTypeDef,
   GiftCardStoredRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function giftCardStoredRequestToJSON(
   giftCardStoredRequest: GiftCardStoredRequest,

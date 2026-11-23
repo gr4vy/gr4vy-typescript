@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,11 +47,13 @@ export const PaymentOptionContextContext$inboundSchema: z.ZodType<
   PaymentOptionContextContext,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  GooglePayPaymentOptionContext$inboundSchema,
-  WalletPaymentOptionContext$inboundSchema,
-  PaymentOptionContext$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    GooglePayPaymentOptionContext$inboundSchema,
+    WalletPaymentOptionContext$inboundSchema,
+    PaymentOptionContext$inboundSchema,
+  ])
+);
 
 export function paymentOptionContextContextFromJSON(
   jsonString: string,
@@ -68,28 +70,30 @@ export const PaymentOption$inboundSchema: z.ZodType<
   PaymentOption,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("payment-option").default("payment-option"),
-  method: z.string(),
-  icon_url: z.string(),
-  mode: Mode$inboundSchema,
-  label: z.string(),
-  can_store_payment_method: z.boolean(),
-  can_delay_capture: z.boolean(),
-  context: z.nullable(
-    z.union([
-      GooglePayPaymentOptionContext$inboundSchema,
-      WalletPaymentOptionContext$inboundSchema,
-      PaymentOptionContext$inboundSchema,
-    ]),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "icon_url": "iconUrl",
-    "can_store_payment_method": "canStorePaymentMethod",
-    "can_delay_capture": "canDelayCapture",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("payment-option").default("payment-option"),
+    method: z.string(),
+    icon_url: z.string(),
+    mode: Mode$inboundSchema,
+    label: z.string(),
+    can_store_payment_method: z.boolean(),
+    can_delay_capture: z.boolean(),
+    context: z.nullable(
+      z.union([
+        GooglePayPaymentOptionContext$inboundSchema,
+        WalletPaymentOptionContext$inboundSchema,
+        PaymentOptionContext$inboundSchema,
+      ]),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "icon_url": "iconUrl",
+      "can_store_payment_method": "canStorePaymentMethod",
+      "can_delay_capture": "canDelayCapture",
+    });
+  })
+);
 
 export function paymentOptionFromJSON(
   jsonString: string,

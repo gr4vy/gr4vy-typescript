@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ForterAntiFraudOptionsDiscountCouponDiscountAmount = {
   /**
@@ -33,16 +34,18 @@ export const ForterAntiFraudOptionsDiscountCouponDiscountAmount$outboundSchema:
     ForterAntiFraudOptionsDiscountCouponDiscountAmount$Outbound,
     z.ZodTypeDef,
     ForterAntiFraudOptionsDiscountCouponDiscountAmount
-  > = z.object({
-    amountUsd: z.nullable(z.string()).optional(),
-    amountLocalCurrency: z.nullable(z.string()).optional(),
-    currency: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      amountUsd: "amount_usd",
-      amountLocalCurrency: "amount_local_currency",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      amountUsd: z.nullable(z.string()).optional(),
+      amountLocalCurrency: z.nullable(z.string()).optional(),
+      currency: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        amountUsd: "amount_usd",
+        amountLocalCurrency: "amount_local_currency",
+      });
+    })
+  );
 
 export function forterAntiFraudOptionsDiscountCouponDiscountAmountToJSON(
   forterAntiFraudOptionsDiscountCouponDiscountAmount:

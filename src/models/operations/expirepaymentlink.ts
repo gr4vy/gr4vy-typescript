@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ExpirePaymentLinkGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const ExpirePaymentLinkRequest$outboundSchema: z.ZodType<
   ExpirePaymentLinkRequest$Outbound,
   z.ZodTypeDef,
   ExpirePaymentLinkRequest
-> = z.object({
-  paymentLinkId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentLinkId: "payment_link_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentLinkId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentLinkId: "payment_link_id",
+    });
+  })
+);
 
 export function expirePaymentLinkRequestToJSON(
   expirePaymentLinkRequest: ExpirePaymentLinkRequest,

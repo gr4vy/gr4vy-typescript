@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DlocalWalletOptions,
   DlocalWalletOptions$Outbound,
@@ -26,9 +27,11 @@ export const DlocalOptions$outboundSchema: z.ZodType<
   DlocalOptions$Outbound,
   z.ZodTypeDef,
   DlocalOptions
-> = z.object({
-  wallet: z.nullable(DlocalWalletOptions$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    wallet: z.nullable(DlocalWalletOptions$outboundSchema).optional(),
+  })
+);
 
 export function dlocalOptionsToJSON(dlocalOptions: DlocalOptions): string {
   return JSON.stringify(DlocalOptions$outboundSchema.parse(dlocalOptions));

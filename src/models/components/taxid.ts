@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -21,11 +21,13 @@ export type TaxId = {
 };
 
 /** @internal */
-export const TaxId$inboundSchema: z.ZodType<TaxId, z.ZodTypeDef, unknown> = z
-  .object({
-    value: z.string(),
-    kind: TaxIdKind$inboundSchema,
-  });
+export const TaxId$inboundSchema: z.ZodType<TaxId, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      value: z.string(),
+      kind: TaxIdKind$inboundSchema,
+    })
+  );
 /** @internal */
 export type TaxId$Outbound = {
   value: string;
@@ -37,10 +39,12 @@ export const TaxId$outboundSchema: z.ZodType<
   TaxId$Outbound,
   z.ZodTypeDef,
   TaxId
-> = z.object({
-  value: z.string(),
-  kind: TaxIdKind$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string(),
+    kind: TaxIdKind$outboundSchema,
+  })
+);
 
 export function taxIdToJSON(taxId: TaxId): string {
   return JSON.stringify(TaxId$outboundSchema.parse(taxId));

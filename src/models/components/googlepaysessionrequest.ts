@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GooglePaySessionRequest = {
   /**
@@ -22,13 +23,15 @@ export const GooglePaySessionRequest$outboundSchema: z.ZodType<
   GooglePaySessionRequest$Outbound,
   z.ZodTypeDef,
   GooglePaySessionRequest
-> = z.object({
-  originDomain: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    originDomain: "origin_domain",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    originDomain: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      originDomain: "origin_domain",
+    });
+  })
+);
 
 export function googlePaySessionRequestToJSON(
   googlePaySessionRequest: GooglePaySessionRequest,

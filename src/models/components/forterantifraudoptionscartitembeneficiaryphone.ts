@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ForterAntiFraudOptionsCartItemBeneficiaryPhone = {
   /**
@@ -22,9 +23,11 @@ export const ForterAntiFraudOptionsCartItemBeneficiaryPhone$outboundSchema:
     ForterAntiFraudOptionsCartItemBeneficiaryPhone$Outbound,
     z.ZodTypeDef,
     ForterAntiFraudOptionsCartItemBeneficiaryPhone
-  > = z.object({
-    phone: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      phone: z.string(),
+    })
+  );
 
 export function forterAntiFraudOptionsCartItemBeneficiaryPhoneToJSON(
   forterAntiFraudOptionsCartItemBeneficiaryPhone:

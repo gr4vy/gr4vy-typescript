@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  matchesPattern as matchesPattern$,
+  remap as remap$,
+} from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { ClosedEnum, OpenEnum } from "../../types/enums.js";
 
@@ -69,12 +73,12 @@ export type ListBuyerPaymentMethodsRequest = {
 };
 
 /** @internal */
-export const SortBy$outboundSchema: z.ZodNativeEnum<typeof SortBy> = z
-  .nativeEnum(SortBy);
+export const SortBy$outboundSchema: z.ZodNativeEnum<typeof SortBy> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(SortBy));
 
 /** @internal */
 export const OrderBy$outboundSchema: z.ZodType<string, z.ZodTypeDef, OrderBy> =
-  openEnums.outboundSchema(OrderBy);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(OrderBy));
 
 /** @internal */
 export type ListBuyerPaymentMethodsRequest$Outbound = {
@@ -92,22 +96,32 @@ export const ListBuyerPaymentMethodsRequest$outboundSchema: z.ZodType<
   ListBuyerPaymentMethodsRequest$Outbound,
   z.ZodTypeDef,
   ListBuyerPaymentMethodsRequest
-> = z.object({
-  buyerId: z.nullable(z.string()).optional(),
-  buyerExternalIdentifier: z.nullable(z.string()).optional(),
-  sortBy: z.nullable(SortBy$outboundSchema).optional(),
-  orderBy: OrderBy$outboundSchema.default("desc"),
-  country: z.nullable(z.string()).optional(),
-  currency: z.nullable(z.string()).optional(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buyerId: "buyer_id",
-    buyerExternalIdentifier: "buyer_external_identifier",
-    sortBy: "sort_by",
-    orderBy: "order_by",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    buyerId: z.nullable(z.string()).optional(),
+    buyerExternalIdentifier: z.nullable(z.string()).optional(),
+    sortBy: z.nullable(SortBy$outboundSchema).optional(),
+    orderBy: OrderBy$outboundSchema.default("desc"),
+    country: z.nullable(
+      z.string().refine(matchesPattern$("^[A-Z]{2}$"), {
+        message: "Value must match pattern ^[A-Z]{2}$",
+      }),
+    ).optional(),
+    currency: z.nullable(
+      z.string().refine(matchesPattern$("^[A-Z]{3}$"), {
+        message: "Value must match pattern ^[A-Z]{3}$",
+      }),
+    ).optional(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      buyerId: "buyer_id",
+      buyerExternalIdentifier: "buyer_external_identifier",
+      sortBy: "sort_by",
+      orderBy: "order_by",
+    });
+  })
+);
 
 export function listBuyerPaymentMethodsRequestToJSON(
   listBuyerPaymentMethodsRequest: ListBuyerPaymentMethodsRequest,

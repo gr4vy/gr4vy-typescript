@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -116,74 +116,76 @@ export const RouteType$inboundSchema: z.ZodType<
   RouteType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(RouteType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(RouteType));
 /** @internal */
 export const RouteType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   RouteType
-> = openEnums.outboundSchema(RouteType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(RouteType));
 
 /** @internal */
 export const AirlineLeg$inboundSchema: z.ZodType<
   AirlineLeg,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  arrival_airport: z.nullable(z.string()).optional(),
-  arrival_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  arrival_city: z.nullable(z.string()).optional(),
-  arrival_country: z.nullable(z.string()).optional(),
-  carrier_code: z.nullable(z.string()).optional(),
-  carrier_name: z.nullable(z.string()).optional(),
-  iata_designator: z.nullable(z.string()).optional(),
-  icao_code: z.nullable(z.string()).optional(),
-  coupon_number: z.nullable(z.string()).optional(),
-  departure_airport: z.nullable(z.string()).optional(),
-  departure_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  departure_city: z.nullable(z.string()).optional(),
-  departure_country: z.nullable(z.string()).optional(),
-  departure_tax_amount: z.nullable(z.number().int()).optional(),
-  fare_amount: z.nullable(z.number().int()).optional(),
-  fare_basis_code: z.nullable(z.string()).optional(),
-  fee_amount: z.nullable(z.number().int()).optional(),
-  flight_class: z.nullable(z.string()).optional(),
-  flight_number: z.nullable(z.string()).optional(),
-  route_type: z.nullable(RouteType$inboundSchema).optional(),
-  seat_class: z.nullable(z.string()).optional(),
-  stop_over: z.nullable(z.boolean()).optional(),
-  tax_amount: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "arrival_airport": "arrivalAirport",
-    "arrival_at": "arrivalAt",
-    "arrival_city": "arrivalCity",
-    "arrival_country": "arrivalCountry",
-    "carrier_code": "carrierCode",
-    "carrier_name": "carrierName",
-    "iata_designator": "iataDesignator",
-    "icao_code": "icaoCode",
-    "coupon_number": "couponNumber",
-    "departure_airport": "departureAirport",
-    "departure_at": "departureAt",
-    "departure_city": "departureCity",
-    "departure_country": "departureCountry",
-    "departure_tax_amount": "departureTaxAmount",
-    "fare_amount": "fareAmount",
-    "fare_basis_code": "fareBasisCode",
-    "fee_amount": "feeAmount",
-    "flight_class": "flightClass",
-    "flight_number": "flightNumber",
-    "route_type": "routeType",
-    "seat_class": "seatClass",
-    "stop_over": "stopOver",
-    "tax_amount": "taxAmount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    arrival_airport: z.nullable(z.string()).optional(),
+    arrival_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    arrival_city: z.nullable(z.string()).optional(),
+    arrival_country: z.nullable(z.string()).optional(),
+    carrier_code: z.nullable(z.string()).optional(),
+    carrier_name: z.nullable(z.string()).optional(),
+    iata_designator: z.nullable(z.string()).optional(),
+    icao_code: z.nullable(z.string()).optional(),
+    coupon_number: z.nullable(z.string()).optional(),
+    departure_airport: z.nullable(z.string()).optional(),
+    departure_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    departure_city: z.nullable(z.string()).optional(),
+    departure_country: z.nullable(z.string()).optional(),
+    departure_tax_amount: z.nullable(z.number().int()).optional(),
+    fare_amount: z.nullable(z.number().int()).optional(),
+    fare_basis_code: z.nullable(z.string()).optional(),
+    fee_amount: z.nullable(z.number().int()).optional(),
+    flight_class: z.nullable(z.string()).optional(),
+    flight_number: z.nullable(z.string()).optional(),
+    route_type: z.nullable(RouteType$inboundSchema).optional(),
+    seat_class: z.nullable(z.string()).optional(),
+    stop_over: z.nullable(z.boolean()).optional(),
+    tax_amount: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "arrival_airport": "arrivalAirport",
+      "arrival_at": "arrivalAt",
+      "arrival_city": "arrivalCity",
+      "arrival_country": "arrivalCountry",
+      "carrier_code": "carrierCode",
+      "carrier_name": "carrierName",
+      "iata_designator": "iataDesignator",
+      "icao_code": "icaoCode",
+      "coupon_number": "couponNumber",
+      "departure_airport": "departureAirport",
+      "departure_at": "departureAt",
+      "departure_city": "departureCity",
+      "departure_country": "departureCountry",
+      "departure_tax_amount": "departureTaxAmount",
+      "fare_amount": "fareAmount",
+      "fare_basis_code": "fareBasisCode",
+      "fee_amount": "feeAmount",
+      "flight_class": "flightClass",
+      "flight_number": "flightNumber",
+      "route_type": "routeType",
+      "seat_class": "seatClass",
+      "stop_over": "stopOver",
+      "tax_amount": "taxAmount",
+    });
+  })
+);
 /** @internal */
 export type AirlineLeg$Outbound = {
   arrival_airport?: string | null | undefined;
@@ -216,57 +218,60 @@ export const AirlineLeg$outboundSchema: z.ZodType<
   AirlineLeg$Outbound,
   z.ZodTypeDef,
   AirlineLeg
-> = z.object({
-  arrivalAirport: z.nullable(z.string()).optional(),
-  arrivalAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  arrivalCity: z.nullable(z.string()).optional(),
-  arrivalCountry: z.nullable(z.string()).optional(),
-  carrierCode: z.nullable(z.string()).optional(),
-  carrierName: z.nullable(z.string()).optional(),
-  iataDesignator: z.nullable(z.string()).optional(),
-  icaoCode: z.nullable(z.string()).optional(),
-  couponNumber: z.nullable(z.string()).optional(),
-  departureAirport: z.nullable(z.string()).optional(),
-  departureAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  departureCity: z.nullable(z.string()).optional(),
-  departureCountry: z.nullable(z.string()).optional(),
-  departureTaxAmount: z.nullable(z.number().int()).optional(),
-  fareAmount: z.nullable(z.number().int()).optional(),
-  fareBasisCode: z.nullable(z.string()).optional(),
-  feeAmount: z.nullable(z.number().int()).optional(),
-  flightClass: z.nullable(z.string()).optional(),
-  flightNumber: z.nullable(z.string()).optional(),
-  routeType: z.nullable(RouteType$outboundSchema).optional(),
-  seatClass: z.nullable(z.string()).optional(),
-  stopOver: z.nullable(z.boolean()).optional(),
-  taxAmount: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    arrivalAirport: "arrival_airport",
-    arrivalAt: "arrival_at",
-    arrivalCity: "arrival_city",
-    arrivalCountry: "arrival_country",
-    carrierCode: "carrier_code",
-    carrierName: "carrier_name",
-    iataDesignator: "iata_designator",
-    icaoCode: "icao_code",
-    couponNumber: "coupon_number",
-    departureAirport: "departure_airport",
-    departureAt: "departure_at",
-    departureCity: "departure_city",
-    departureCountry: "departure_country",
-    departureTaxAmount: "departure_tax_amount",
-    fareAmount: "fare_amount",
-    fareBasisCode: "fare_basis_code",
-    feeAmount: "fee_amount",
-    flightClass: "flight_class",
-    flightNumber: "flight_number",
-    routeType: "route_type",
-    seatClass: "seat_class",
-    stopOver: "stop_over",
-    taxAmount: "tax_amount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    arrivalAirport: z.nullable(z.string()).optional(),
+    arrivalAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    arrivalCity: z.nullable(z.string()).optional(),
+    arrivalCountry: z.nullable(z.string()).optional(),
+    carrierCode: z.nullable(z.string()).optional(),
+    carrierName: z.nullable(z.string()).optional(),
+    iataDesignator: z.nullable(z.string()).optional(),
+    icaoCode: z.nullable(z.string()).optional(),
+    couponNumber: z.nullable(z.string()).optional(),
+    departureAirport: z.nullable(z.string()).optional(),
+    departureAt: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    departureCity: z.nullable(z.string()).optional(),
+    departureCountry: z.nullable(z.string()).optional(),
+    departureTaxAmount: z.nullable(z.number().int()).optional(),
+    fareAmount: z.nullable(z.number().int()).optional(),
+    fareBasisCode: z.nullable(z.string()).optional(),
+    feeAmount: z.nullable(z.number().int()).optional(),
+    flightClass: z.nullable(z.string()).optional(),
+    flightNumber: z.nullable(z.string()).optional(),
+    routeType: z.nullable(RouteType$outboundSchema).optional(),
+    seatClass: z.nullable(z.string()).optional(),
+    stopOver: z.nullable(z.boolean()).optional(),
+    taxAmount: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      arrivalAirport: "arrival_airport",
+      arrivalAt: "arrival_at",
+      arrivalCity: "arrival_city",
+      arrivalCountry: "arrival_country",
+      carrierCode: "carrier_code",
+      carrierName: "carrier_name",
+      iataDesignator: "iata_designator",
+      icaoCode: "icao_code",
+      couponNumber: "coupon_number",
+      departureAirport: "departure_airport",
+      departureAt: "departure_at",
+      departureCity: "departure_city",
+      departureCountry: "departure_country",
+      departureTaxAmount: "departure_tax_amount",
+      fareAmount: "fare_amount",
+      fareBasisCode: "fare_basis_code",
+      feeAmount: "fee_amount",
+      flightClass: "flight_class",
+      flightNumber: "flight_number",
+      routeType: "route_type",
+      seatClass: "seat_class",
+      stopOver: "stop_over",
+      taxAmount: "tax_amount",
+    });
+  })
+);
 
 export function airlineLegToJSON(airlineLeg: AirlineLeg): string {
   return JSON.stringify(AirlineLeg$outboundSchema.parse(airlineLeg));

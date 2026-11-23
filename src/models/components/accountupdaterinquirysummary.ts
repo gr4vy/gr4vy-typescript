@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -28,15 +28,19 @@ export const AccountUpdaterInquirySummary$inboundSchema: z.ZodType<
   AccountUpdaterInquirySummary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.literal("account-updater-inquiry").default("account-updater-inquiry"),
-  id: z.string(),
-  payment_method_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_method_id": "paymentMethodId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.literal("account-updater-inquiry").default(
+      "account-updater-inquiry",
+    ),
+    id: z.string(),
+    payment_method_id: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "payment_method_id": "paymentMethodId",
+    });
+  })
+);
 
 export function accountUpdaterInquirySummaryFromJSON(
   jsonString: string,

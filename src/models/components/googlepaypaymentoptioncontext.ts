@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,18 +20,20 @@ export const GooglePayPaymentOptionContext$inboundSchema: z.ZodType<
   GooglePayPaymentOptionContext,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  merchant_name: z.string(),
-  supported_schemes: z.array(z.string()),
-  gateway: z.string(),
-  gateway_merchant_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "merchant_name": "merchantName",
-    "supported_schemes": "supportedSchemes",
-    "gateway_merchant_id": "gatewayMerchantId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    merchant_name: z.string(),
+    supported_schemes: z.array(z.string()),
+    gateway: z.string(),
+    gateway_merchant_id: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "merchant_name": "merchantName",
+      "supported_schemes": "supportedSchemes",
+      "gateway_merchant_id": "gatewayMerchantId",
+    });
+  })
+);
 
 export function googlePayPaymentOptionContextFromJSON(
   jsonString: string,

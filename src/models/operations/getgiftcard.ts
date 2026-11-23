@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetGiftCardGlobals = {
   merchantAccountId?: string | undefined;
@@ -31,14 +32,16 @@ export const GetGiftCardRequest$outboundSchema: z.ZodType<
   GetGiftCardRequest$Outbound,
   z.ZodTypeDef,
   GetGiftCardRequest
-> = z.object({
-  giftCardId: z.string(),
-  merchantAccountId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    giftCardId: "gift_card_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    giftCardId: z.string(),
+    merchantAccountId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      giftCardId: "gift_card_id",
+    });
+  })
+);
 
 export function getGiftCardRequestToJSON(
   getGiftCardRequest: GetGiftCardRequest,

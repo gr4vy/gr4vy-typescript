@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type NuveiKlarnaOptions = {
   /**
@@ -21,9 +22,11 @@ export const NuveiKlarnaOptions$outboundSchema: z.ZodType<
   NuveiKlarnaOptions$Outbound,
   z.ZodTypeDef,
   NuveiKlarnaOptions
-> = z.object({
-  customData: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customData: z.nullable(z.string()).optional(),
+  })
+);
 
 export function nuveiKlarnaOptionsToJSON(
   nuveiKlarnaOptions: NuveiKlarnaOptions,

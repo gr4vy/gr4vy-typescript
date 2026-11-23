@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -38,8 +38,8 @@ export const ThreeDSecureScenarioOutcomeResultTransactionStatus$inboundSchema:
     ThreeDSecureScenarioOutcomeResultTransactionStatus,
     z.ZodTypeDef,
     unknown
-  > = openEnums.inboundSchema(
-    ThreeDSecureScenarioOutcomeResultTransactionStatus,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.inboundSchema(ThreeDSecureScenarioOutcomeResultTransactionStatus)
   );
 /** @internal */
 export const ThreeDSecureScenarioOutcomeResultTransactionStatus$outboundSchema:
@@ -47,8 +47,8 @@ export const ThreeDSecureScenarioOutcomeResultTransactionStatus$outboundSchema:
     string,
     z.ZodTypeDef,
     ThreeDSecureScenarioOutcomeResultTransactionStatus
-  > = openEnums.outboundSchema(
-    ThreeDSecureScenarioOutcomeResultTransactionStatus,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.outboundSchema(ThreeDSecureScenarioOutcomeResultTransactionStatus)
   );
 
 /** @internal */
@@ -56,14 +56,16 @@ export const ThreeDSecureScenarioOutcomeResult$inboundSchema: z.ZodType<
   ThreeDSecureScenarioOutcomeResult,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  transaction_status:
-    ThreeDSecureScenarioOutcomeResultTransactionStatus$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_status": "transactionStatus",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transaction_status:
+      ThreeDSecureScenarioOutcomeResultTransactionStatus$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "transaction_status": "transactionStatus",
+    });
+  })
+);
 /** @internal */
 export type ThreeDSecureScenarioOutcomeResult$Outbound = {
   transaction_status: string;
@@ -74,14 +76,16 @@ export const ThreeDSecureScenarioOutcomeResult$outboundSchema: z.ZodType<
   ThreeDSecureScenarioOutcomeResult$Outbound,
   z.ZodTypeDef,
   ThreeDSecureScenarioOutcomeResult
-> = z.object({
-  transactionStatus:
-    ThreeDSecureScenarioOutcomeResultTransactionStatus$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    transactionStatus: "transaction_status",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactionStatus:
+      ThreeDSecureScenarioOutcomeResultTransactionStatus$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      transactionStatus: "transaction_status",
+    });
+  })
+);
 
 export function threeDSecureScenarioOutcomeResultToJSON(
   threeDSecureScenarioOutcomeResult: ThreeDSecureScenarioOutcomeResult,

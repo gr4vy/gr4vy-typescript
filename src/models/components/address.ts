@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -49,23 +49,25 @@ export type Address = {
 
 /** @internal */
 export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
-  z.object({
-    city: z.nullable(z.string()).optional(),
-    country: z.nullable(z.string()).optional(),
-    postal_code: z.nullable(z.string()).optional(),
-    state: z.nullable(z.string()).optional(),
-    state_code: z.nullable(z.string()).optional(),
-    house_number_or_name: z.nullable(z.string()).optional(),
-    line1: z.nullable(z.string()).optional(),
-    line2: z.nullable(z.string()).optional(),
-    organization: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "postal_code": "postalCode",
-      "state_code": "stateCode",
-      "house_number_or_name": "houseNumberOrName",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      city: z.nullable(z.string()).optional(),
+      country: z.nullable(z.string()).optional(),
+      postal_code: z.nullable(z.string()).optional(),
+      state: z.nullable(z.string()).optional(),
+      state_code: z.nullable(z.string()).optional(),
+      house_number_or_name: z.nullable(z.string()).optional(),
+      line1: z.nullable(z.string()).optional(),
+      line2: z.nullable(z.string()).optional(),
+      organization: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "postal_code": "postalCode",
+        "state_code": "stateCode",
+        "house_number_or_name": "houseNumberOrName",
+      });
+    })
+  );
 /** @internal */
 export type Address$Outbound = {
   city?: string | null | undefined;
@@ -84,23 +86,25 @@ export const Address$outboundSchema: z.ZodType<
   Address$Outbound,
   z.ZodTypeDef,
   Address
-> = z.object({
-  city: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  postalCode: z.nullable(z.string()).optional(),
-  state: z.nullable(z.string()).optional(),
-  stateCode: z.nullable(z.string()).optional(),
-  houseNumberOrName: z.nullable(z.string()).optional(),
-  line1: z.nullable(z.string()).optional(),
-  line2: z.nullable(z.string()).optional(),
-  organization: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    postalCode: "postal_code",
-    stateCode: "state_code",
-    houseNumberOrName: "house_number_or_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    city: z.nullable(z.string()).optional(),
+    country: z.nullable(z.string()).optional(),
+    postalCode: z.nullable(z.string()).optional(),
+    state: z.nullable(z.string()).optional(),
+    stateCode: z.nullable(z.string()).optional(),
+    houseNumberOrName: z.nullable(z.string()).optional(),
+    line1: z.nullable(z.string()).optional(),
+    line2: z.nullable(z.string()).optional(),
+    organization: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      postalCode: "postal_code",
+      stateCode: "state_code",
+      houseNumberOrName: "house_number_or_name",
+    });
+  })
+);
 
 export function addressToJSON(address: Address): string {
   return JSON.stringify(Address$outboundSchema.parse(address));
