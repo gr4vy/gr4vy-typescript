@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: f32cb71d19ca172a23120118d803ac78
+  docChecksum: 47e70762bb6bcf2370ee19034abe991b
   docVersion: 1.0.0
   speakeasyVersion: 1.811.0
   generationVersion: 2.968.1
-  releaseVersion: 2.4.51
-  configChecksum: 4e64298d7bb30a7edfc317bbf3334dcd
+  releaseVersion: 2.4.52
+  configChecksum: 2796f81bde7758c5404f6c290e156a6d
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: 4a8e4836-3eaf-454d-85c8-d8c6e1b49b36
-  pristine_commit_hash: 983f201b46a522f08059d773dce0a3d36ec0b320
-  pristine_tree_hash: 26fc4dbcf70139c7cc5f34a7a5011d945b8b2203
+  generation_id: 5e3d3774-9f00-4448-b233-4d5c4c8395a8
+  pristine_commit_hash: d8f05d384a295471996138e9dfd699c4f630d2bc
+  pristine_tree_hash: 4d7b714578061b836e3c6d369140e59bc74bf243
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -450,6 +450,10 @@ trackedFiles:
     id: 6f00c96e56d4
     last_write_checksum: sha1:642b5bd6caa10b957fd2fa1adc0c3cf575fff78e
     pristine_git_object: b5cf021367e40d4e875ed4280e3973e95cd952ae
+  docs/models/components/detokenization.md:
+    id: 04a8d69cad33
+    last_write_checksum: sha1:119aa867e378e5d0190f817c93e579ccc603fff4
+    pristine_git_object: 584aa2e6b77c4d32df6e37bab3b31860f9fcf191
   docs/models/components/digitalwallet.md:
     id: 857177c2dea3
     last_write_checksum: sha1:e253d97c46d9b97dd5cb0a2b688ad56a32706077
@@ -2126,6 +2130,14 @@ trackedFiles:
     id: 9dd82d3f48bd
     last_write_checksum: sha1:241402abf4740d62e9148f547fabddb134dacfde
     pristine_git_object: 7dca3341b5b9b0a15afec118cba3f1c267a59336
+  docs/models/operations/detokenizepaymentmethodglobals.md:
+    id: 6f03b7a0f464
+    last_write_checksum: sha1:380ffa1521d55b23d09913c35f8b7967d26816b8
+    pristine_git_object: 05821686f4992b99656f17abd28b8d80aa163126
+  docs/models/operations/detokenizepaymentmethodrequest.md:
+    id: d8bd6a426cce
+    last_write_checksum: sha1:d487a7b83655006b0098216e2c4119b69b50fedc
+    pristine_git_object: 34238f6392438f6d78a786dd9cfbc5edd7911b53
   docs/models/operations/editthreedsconfigurationrequest.md:
     id: 7fc85df6f72c
     last_write_checksum: sha1:0097d2f07ce0b51d2306db67cf3cb5616a6e0575
@@ -2868,8 +2880,8 @@ trackedFiles:
     pristine_git_object: 6b6bbb31497cd4deb6dd3e2b5641f4eb36433eae
   docs/sdks/paymentmethods/README.md:
     id: 98b2df26035c
-    last_write_checksum: sha1:f42c0cd212f091b84b645930bcddce53984a1a32
-    pristine_git_object: 60d53718c8c19914e4a123fa16a4a044326e615a
+    last_write_checksum: sha1:4655125211d631f2b209edcac6083444537bf954
+    pristine_git_object: 473120dbacd923f7a30db4606074a386f646a24e
   docs/sdks/paymentoptions/README.md:
     id: 575722e7ed6c
     last_write_checksum: sha1:624d90d982b699b79785b5c4836b1553f4fe7a42
@@ -2960,12 +2972,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:acea7bd65b7c22f3f87e068fe07ca187a55fa27f
-    pristine_git_object: 2d95376b62707dd947499ae27ae291656debde0e
+    last_write_checksum: sha1:9d36c9f2abbf2a7ba9b3d25040e4f4eff29cede5
+    pristine_git_object: fc71bc1c6830dc0a5f78d6fb38c56bb9a29d9587
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:c8644b6a58b75870765ec9529c957d4175b1e5d2
-    pristine_git_object: ab16ee9836d71a7ad2af496226c7008a16938bb5
+    last_write_checksum: sha1:4bfe50856953814e959dfa74faf502f2c2073e61
+    pristine_git_object: aa35cbac9544d27c366a0025980b7343d551dbc4
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3206,6 +3218,10 @@ trackedFiles:
     id: b9b3d4bb5271
     last_write_checksum: sha1:a702c63933b5f6132c064736679815631d00dd6d
     pristine_git_object: 98b50f41453089aeb6604585b70904dfd925e7ce
+  src/funcs/paymentMethodsDetokenize.ts:
+    id: a13c9e32d534
+    last_write_checksum: sha1:2cb0407550126da364b8430f6d76b8e4842d6591
+    pristine_git_object: 2fab75bcb1038b1278e4d78e78b1039ff092de75
   src/funcs/paymentMethodsGet.ts:
     id: de575f4d674f
     last_write_checksum: sha1:75490eea67dee26e676709ac5c9c0e15036d8797
@@ -3468,8 +3484,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:b0e732e039efd4bf00a96521f24f81ab4ec0a9b4
-    pristine_git_object: 56c219ccba4dc4c287a3a7eaaf35fe3b8f59d328
+    last_write_checksum: sha1:9a9456258cbcfc5d8bf7404e2f717c3bbf8ae4a2
+    pristine_git_object: 1da71bad931174fa0acf9af9094a0b5decd95970
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:320ad978da272ff7ef2a1d1efd5d53a81190a936
@@ -3854,6 +3870,10 @@ trackedFiles:
     id: cc1104a8e13e
     last_write_checksum: sha1:b8d0639f62886d842a707c63c1933c47345249b6
     pristine_git_object: 2ef5c430913017aaff136fe295a31050b3795fb6
+  src/models/components/detokenization.ts:
+    id: 484878bfe73c
+    last_write_checksum: sha1:8ee66061bec04c462dc06fda1b91da6d232e4673
+    pristine_git_object: 87b8c32fdb9d0df14dfc5393caa6edfaf16145fc
   src/models/components/digitalwallet.ts:
     id: 2d38a7e4164b
     last_write_checksum: sha1:cc127d91a168ff1686f330ba3fd6fec9a5b3bd1b
@@ -4108,8 +4128,8 @@ trackedFiles:
     pristine_git_object: 5258b67b3d676266e90d1b320e1efc710ba19626
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:8865735a155cb090839ee05c803024fe9409bd2e
-    pristine_git_object: 014865e912b6869ecee50c16a985615ac77a3da4
+    last_write_checksum: sha1:7572e79ec400e458bf187890fbf2ab8e96af2549
+    pristine_git_object: 3b3a290389d1462e3bc305d9722701ebdaf8442f
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:a835b641b3a194f63487959ae9439e2f7f193380
@@ -5218,6 +5238,10 @@ trackedFiles:
     id: 1608ec6d6316
     last_write_checksum: sha1:d4e42cfe21be8d649f504a898f274da87ad49cda
     pristine_git_object: 4999ad864484fed4ca20036712c61cb6b6f1a69a
+  src/models/operations/detokenizepaymentmethod.ts:
+    id: 8665efc1ffbe
+    last_write_checksum: sha1:24ff273667c26727a8c4eb53c298c4808faabced
+    pristine_git_object: 3a07619bc0b8d085ade12cf15f452b5ee3e6b5bd
   src/models/operations/editthreedsconfiguration.ts:
     id: b4867bff72f8
     last_write_checksum: sha1:505fd58df457d2bf3f3123c72a1cd99083c0d23b
@@ -5316,8 +5340,8 @@ trackedFiles:
     pristine_git_object: 37940d45f81deade9fcd1fe8c9b77384df786758
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:bab02a3ae847e722a610cd847069bdf3fe411ed4
-    pristine_git_object: 671c03b0c3a8cd5a87261143cb9998d03b87c79d
+    last_write_checksum: sha1:bc28c4c9d795608d56f9ce06d1914ec1c47ff7a7
+    pristine_git_object: 96874c784f727d2aef7a6a00b5ee0ed475733272
   src/models/operations/issuegiftcard.ts:
     id: 2a10b08296a9
     last_write_checksum: sha1:076cf81199d6bf34442b00fb96dad5d821a1d132
@@ -5732,12 +5756,12 @@ trackedFiles:
     pristine_git_object: bac9fabbed48fc87369ce3812688d17f781755b5
   src/sdk/paymentmethods.lazy.ts:
     id: 8473e66117da
-    last_write_checksum: sha1:b0018858f2d34517ede4bc350d3a3293d383346a
-    pristine_git_object: 853a3c1a6a6624784e812b92e9e694ea2aac452a
+    last_write_checksum: sha1:f0852c142794eff493d30fde564e7a1c0b3a08f9
+    pristine_git_object: 1674ffa7951294574952017582381e2f9c1d767f
   src/sdk/paymentmethods.ts:
     id: cace056515f3
-    last_write_checksum: sha1:00fb588b9c1351ed65ea7fb4cdaf473fbe72a8e8
-    pristine_git_object: 7d6f88941caec2c124046b7722ecf2e651806b0f
+    last_write_checksum: sha1:2fe1f6d7c791878cebfe21f3d0ae111406d93a53
+    pristine_git_object: 2aa0150db9a251b5601e0f8d3210301ae4d40950
   src/sdk/paymentoptions.lazy.ts:
     id: 75ecfb7df2c1
     last_write_checksum: sha1:58e8f0b39c66cf8daadceff8c56333eec784b502
@@ -10155,9 +10179,43 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  detokenize_payment_method:
+    speakeasy-default-detokenize-payment-method:
+      parameters:
+        path:
+          payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+      responses:
+        "200":
+          application/json: {"type": "payment-method-detokenization", "encrypted_payload": "eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOi..."}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.riskifiedAntiFraud.accountType` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.riskifiedAntiFraud.accountType` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.riskifiedAntiFraud.accountType` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `gr4vy.paymentMethods.detokenize()`: **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore

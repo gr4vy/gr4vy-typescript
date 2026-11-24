@@ -4,6 +4,7 @@
 
 import { paymentMethodsCreate } from "../funcs/paymentMethodsCreate.js";
 import { paymentMethodsDelete } from "../funcs/paymentMethodsDelete.js";
+import { paymentMethodsDetokenize } from "../funcs/paymentMethodsDetokenize.js";
 import { paymentMethodsGet } from "../funcs/paymentMethodsGet.js";
 import { paymentMethodsList } from "../funcs/paymentMethodsList.js";
 import { paymentMethodsUpdate } from "../funcs/paymentMethodsUpdate.js";
@@ -118,6 +119,25 @@ export class PaymentMethods extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(paymentMethodsDelete(
+      this,
+      paymentMethodId,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Detokenize a payment method
+   *
+   * @remarks
+   * Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's public key. Requests are rate limited.
+   */
+  async detokenize(
+    paymentMethodId: string,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.Detokenization> {
+    return unwrapAsync(paymentMethodsDetokenize(
       this,
       paymentMethodId,
       merchantAccountId,

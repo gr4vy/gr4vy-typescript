@@ -44,6 +44,7 @@ export * from "./deletepaymentmethodpaymentservicetoken.js";
 export * from "./deletepaymentservice.js";
 export * from "./deletethreedsconfiguration.js";
 export * from "./deletethreedsscenario.js";
+export * from "./detokenizepaymentmethod.js";
 export * from "./editthreedsconfiguration.js";
 export * from "./expirepaymentlink.js";
 export * from "./getapikeypair.js";

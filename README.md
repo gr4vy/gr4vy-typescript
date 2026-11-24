@@ -415,6 +415,7 @@ try {
 * [get](docs/sdks/paymentmethods/README.md#get) - Get payment method
 * [update](docs/sdks/paymentmethods/README.md#update) - Update payment method
 * [delete](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
+* [detokenize](docs/sdks/paymentmethods/README.md#detokenize) - Detokenize a payment method
 
 #### [PaymentMethods.NetworkTokens](docs/sdks/networktokens/README.md)
 
@@ -1102,6 +1103,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentLinksList`](docs/sdks/paymentlinks/README.md#list) - List all payment links
 - [`paymentMethodsCreate`](docs/sdks/paymentmethods/README.md#create) - Create payment method
 - [`paymentMethodsDelete`](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
+- [`paymentMethodsDetokenize`](docs/sdks/paymentmethods/README.md#detokenize) - Detokenize a payment method
 - [`paymentMethodsGet`](docs/sdks/paymentmethods/README.md#get) - Get payment method
 - [`paymentMethodsList`](docs/sdks/paymentmethods/README.md#list) - List all payment methods
 - [`paymentMethodsNetworkTokensCreate`](docs/sdks/networktokens/README.md#create) - Provision network token

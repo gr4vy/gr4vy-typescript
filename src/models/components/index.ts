@@ -86,6 +86,7 @@ export * from "./cybersourceoptions.js";
 export * from "./definitionfield.js";
 export * from "./definitionfieldformat.js";
 export * from "./detailedsettlementreportspec.js";
+export * from "./detokenization.js";
 export * from "./digitalwallet.js";
 export * from "./digitalwalletaddress.js";
 export * from "./digitalwalletcreate.js";
