@@ -99,6 +99,24 @@ const paymentMethodsDelete =
       })).then((module) => module.paymentMethodsDelete(...args).$inspect()),
     )) as typeof import("../funcs/paymentMethodsDelete.js").paymentMethodsDelete;
 
+let paymentMethodsDetokenize$module:
+  | Promise<typeof import("../funcs/paymentMethodsDetokenize.js")>
+  | undefined;
+const paymentMethodsDetokenize =
+  ((
+    ...args: Parameters<
+      typeof import("../funcs/paymentMethodsDetokenize.js").paymentMethodsDetokenize
+    >
+  ) =>
+    new APIPromise(
+      (paymentMethodsDetokenize$module ??= import(
+        "../funcs/paymentMethodsDetokenize.js"
+      ).catch((error: unknown) => {
+        paymentMethodsDetokenize$module = undefined;
+        throw error;
+      })).then((module) => module.paymentMethodsDetokenize(...args).$inspect()),
+    )) as typeof import("../funcs/paymentMethodsDetokenize.js").paymentMethodsDetokenize;
+
 export class PaymentMethods extends ClientSDK {
   private _paymentServiceTokens?: PaymentServiceTokens;
   get paymentServiceTokens(): PaymentServiceTokens {
@@ -202,6 +220,25 @@ export class PaymentMethods extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(paymentMethodsDelete(
+      this,
+      paymentMethodId,
+      merchantAccountId,
+      options,
+    ));
+  }
+
+  /**
+   * Detokenize a payment method
+   *
+   * @remarks
+   * Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's public key. Requests are rate limited.
+   */
+  async detokenize(
+    paymentMethodId: string,
+    merchantAccountId?: string | null | undefined,
+    options?: RequestOptions,
+  ): Promise<components.Detokenization> {
+    return unwrapAsync(paymentMethodsDetokenize(
       this,
       paymentMethodId,
       merchantAccountId,
