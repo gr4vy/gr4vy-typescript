@@ -56,6 +56,11 @@ import {
   CybersourceAntiFraudOptions$outboundSchema,
 } from "./cybersourceantifraudoptions.js";
 import {
+  CybersourceCardOptions,
+  CybersourceCardOptions$Outbound,
+  CybersourceCardOptions$outboundSchema,
+} from "./cybersourcecardoptions.js";
+import {
   CybersourceOptions,
   CybersourceOptions$Outbound,
   CybersourceOptions$outboundSchema,
@@ -115,6 +120,11 @@ import {
   LatitudeOptions$Outbound,
   LatitudeOptions$outboundSchema,
 } from "./latitudeoptions.js";
+import {
+  MastercardCardOptions,
+  MastercardCardOptions$Outbound,
+  MastercardCardOptions$outboundSchema,
+} from "./mastercardcardoptions.js";
 import {
   MattildaTapiOptions,
   MattildaTapiOptions$Outbound,
@@ -321,7 +331,7 @@ export type TransactionConnectionOptions = {
   /**
    * Custom options to be passed to the `cybersource-card` connector.
    */
-  cybersourceCard?: CybersourceOptions | null | undefined;
+  cybersourceCard?: CybersourceCardOptions | null | undefined;
   /**
    * Custom options to be passed to the `cybersource-ideal` connector.
    */
@@ -390,6 +400,10 @@ export type TransactionConnectionOptions = {
    * Custom options to be passed to the `latitude-latitudeds` connector.
    */
   latitudeLatitudeds?: LatitudeOptions | null | undefined;
+  /**
+   * Custom options to be passed to the `mastercard-card` connector.
+   */
+  mastercardCard?: MastercardCardOptions | null | undefined;
   /**
    * Custom options to be passed to the `mattilda-tapi` connector.
    */
@@ -529,7 +543,7 @@ export type TransactionConnectionOptions$Outbound = {
     | CybersourceAntiFraudOptions$Outbound
     | null
     | undefined;
-  "cybersource-card"?: CybersourceOptions$Outbound | null | undefined;
+  "cybersource-card"?: CybersourceCardOptions$Outbound | null | undefined;
   "cybersource-ideal"?: CybersourceOptions$Outbound | null | undefined;
   "cybersource-kcp"?: CybersourceOptions$Outbound | null | undefined;
   "dlocal-card"?: DlocalCardOptions$Outbound | null | undefined;
@@ -547,6 +561,7 @@ export type TransactionConnectionOptions$Outbound = {
   "gocardless-gocardless"?: GoCardlessOptions$Outbound | null | undefined;
   "latitude-latitude"?: LatitudeOptions$Outbound | null | undefined;
   "latitude-latitudeds"?: LatitudeOptions$Outbound | null | undefined;
+  "mastercard-card"?: MastercardCardOptions$Outbound | null | undefined;
   "mattilda-tapi"?: MattildaTapiOptions$Outbound | null | undefined;
   "mattilda-tapifintechs"?: MattildaTapiOptions$Outbound | null | undefined;
   "monato-spei"?: MonatoSpeiOptions$Outbound | null | undefined;
@@ -614,7 +629,8 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     chaseorbitalCard: z.nullable(ChaseOptions$outboundSchema).optional(),
     cybersourceAntiFraud: z.nullable(CybersourceAntiFraudOptions$outboundSchema)
       .optional(),
-    cybersourceCard: z.nullable(CybersourceOptions$outboundSchema).optional(),
+    cybersourceCard: z.nullable(CybersourceCardOptions$outboundSchema)
+      .optional(),
     cybersourceIdeal: z.nullable(CybersourceOptions$outboundSchema).optional(),
     cybersourceKcp: z.nullable(CybersourceOptions$outboundSchema).optional(),
     dlocalCard: z.nullable(DlocalCardOptions$outboundSchema).optional(),
@@ -635,6 +651,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
       .optional(),
     latitudeLatitude: z.nullable(LatitudeOptions$outboundSchema).optional(),
     latitudeLatitudeds: z.nullable(LatitudeOptions$outboundSchema).optional(),
+    mastercardCard: z.nullable(MastercardCardOptions$outboundSchema).optional(),
     mattildaTapi: z.nullable(MattildaTapiOptions$outboundSchema).optional(),
     mattildaTapifintechs: z.nullable(MattildaTapiOptions$outboundSchema)
       .optional(),
@@ -710,6 +727,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
       gocardlessGocardless: "gocardless-gocardless",
       latitudeLatitude: "latitude-latitude",
       latitudeLatitudeds: "latitude-latitudeds",
+      mastercardCard: "mastercard-card",
       mattildaTapi: "mattilda-tapi",
       mattildaTapifintechs: "mattilda-tapifintechs",
       monatoSpei: "monato-spei",
