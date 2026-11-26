@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 51cb4b7f-adbc-475c-a495-d8672b13ce8e
 management:
-  docChecksum: 3a3671f50796cf717c7dbb3d0d26ba4e
+  docChecksum: 52e94311aeb44d1f3fa8946c6d639539
   docVersion: 1.0.0
   speakeasyVersion: 1.812.0
   generationVersion: 2.968.1
-  releaseVersion: 2.4.53
-  configChecksum: 10eaa11a5d4d63f656941312f290c1e3
+  releaseVersion: 2.4.54
+  configChecksum: 6d15082f6c78d39acae5b9363d29e600
   repoURL: https://github.com/gr4vy/gr4vy-typescript.git
   installationURL: https://github.com/gr4vy/gr4vy-typescript
   published: true
 persistentEdits:
-  generation_id: ef7fced7-89bb-476a-a1a0-3c46dd1cdd1e
-  pristine_commit_hash: a643e8987060b5ba15fc4618f70b0d93d3383ef6
-  pristine_tree_hash: dc069b1dcb08889600b6e3c5081e809cbe72ffcd
+  generation_id: a20d86be-bd95-4c0f-ba3c-581927ecb03a
+  pristine_commit_hash: 80b5d1c5fedacf75eaba7b7d754ac025db57e25c
+  pristine_tree_hash: 75e48eb73b8f82f25e07b6712d9ac9f5be409e20
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -222,6 +222,10 @@ trackedFiles:
     id: 418bd55d026b
     last_write_checksum: sha1:4a4996b11a553c08c960d24b57af259a82878eba
     pristine_git_object: 8b9f3a5632224aaeb1101f6be747a45a6063171c
+  docs/models/components/authorizationmethod.md:
+    id: 9c34f01633e7
+    last_write_checksum: sha1:56f9b3bd7c8dac23d3b94f5d23c282c0f9ef47d1
+    pristine_git_object: 1c07d355d8464ccbcde66e73fb2ba78a767f34a1
   docs/models/components/avsresponsecode.md:
     id: 1303c5dba4f0
     last_write_checksum: sha1:92dbb85b1d2cebd0804651d1fb263c757ac2f89c
@@ -338,6 +342,10 @@ trackedFiles:
     id: ef3e8b3631ca
     last_write_checksum: sha1:1e244d30eed3754c63106c8d3016d3ec9d0ffa81
     pristine_git_object: 8a1c97c15cf8ba9ee1b828025c03c6e02ed25cad
+  docs/models/components/chasebankoptions.md:
+    id: aa680fab6b09
+    last_write_checksum: sha1:0e5c3e0dff913287adbcbfd467c390a9cdabeb79
+    pristine_git_object: 0756679b1172f675a74c6f30ba31bf5a8f0640fb
   docs/models/components/chaseoptions.md:
     id: 44838d0d9081
     last_write_checksum: sha1:585b3e340e78df7850247fc22272031544a0e5fd
@@ -1588,8 +1596,8 @@ trackedFiles:
     pristine_git_object: 35a0e8cbabc1a63f1d564f781b61760a28fd65d7
   docs/models/components/transactionconnectionoptions.md:
     id: a4843e535547
-    last_write_checksum: sha1:7d6129ca64055d42f3a800a904135776f64b097f
-    pristine_git_object: 52c026c578ff8e8464a88f555acc6a09de037319
+    last_write_checksum: sha1:91830a0c37a9097d0b0eb2c4792fcb80e7e8a06c
+    pristine_git_object: 27f8250eae63d8ca816787c5abba9b1abd064292
   docs/models/components/transactioncreate.md:
     id: 652e84478e51
     last_write_checksum: sha1:6e8038a70d73007c38cb55bd5a3fabdc1a7ee4d3
@@ -2972,12 +2980,12 @@ trackedFiles:
     pristine_git_object: 6e10529a93fb4185b404d0e45a9ce98b7b0ae408
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:7da63dc36ada889128370a77f53e7b9479733c6b
-    pristine_git_object: 26e98d99b51e76be299d1d9367cba08614434c67
+    last_write_checksum: sha1:e41596ac59c74ae720b50281b664af157e21a29f
+    pristine_git_object: f19dc2a9d5ea5736338059658e3144bde1e5da74
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:fb3c5d2994097e903f3220708c646a9720cfb15c
-    pristine_git_object: 7c99866109c342b93feb15b1a99c71112933d42f
+    last_write_checksum: sha1:c891b1a93a41f5e227e5644d9e049ad7b61031ea
+    pristine_git_object: 024b1e0e2642823cc993a8f7b924b97be5a5835e
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:45271ffd8867c65f66117c59ce98a8b3d8045841
@@ -3484,8 +3492,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4a81c6d7f649f4c48cfec7de80d59593522d22c8
-    pristine_git_object: f3e83212cc6421cc1b599b74d9dda2e6fe99d1d0
+    last_write_checksum: sha1:ba6d6942d1f7161557d3ce573be0275a572af1d7
+    pristine_git_object: 02ae1c4d729ea71a7b87668a88ee9d6bfb1e538d
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:320ad978da272ff7ef2a1d1efd5d53a81190a936
@@ -3774,6 +3782,10 @@ trackedFiles:
     id: af4586b191ab
     last_write_checksum: sha1:125309dfa5feb842b70825261c591a2337702083
     pristine_git_object: 5707c9edc829e278e8acb6960a0863affe537f34
+  src/models/components/chasebankoptions.ts:
+    id: ac5e6debc498
+    last_write_checksum: sha1:b188214260b81d33df68706556a05e56f1c382bd
+    pristine_git_object: 2e354aa6675c6c3d63ee7a72d24eaad18d5f070a
   src/models/components/chaseoptions.ts:
     id: bf7cbffe18cb
     last_write_checksum: sha1:3589dafa1bbb9c98f1aa526019e54315b062d5f3
@@ -4128,8 +4140,8 @@ trackedFiles:
     pristine_git_object: 5258b67b3d676266e90d1b320e1efc710ba19626
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:7572e79ec400e458bf187890fbf2ab8e96af2549
-    pristine_git_object: 3b3a290389d1462e3bc305d9722701ebdaf8442f
+    last_write_checksum: sha1:4e068f9288349ecc11451fc2270a5762dc6f2f49
+    pristine_git_object: 1322f6eeacc7141f7fd9c16160137f5e87a70194
   src/models/components/instrumenttype.ts:
     id: e716e9389f38
     last_write_checksum: sha1:a835b641b3a194f63487959ae9439e2f7f193380
@@ -4864,8 +4876,8 @@ trackedFiles:
     pristine_git_object: b2b54d86f38bc1c988d202bcfce044a0f3bcd1b6
   src/models/components/transactionconnectionoptions.ts:
     id: 3f42998a2d5b
-    last_write_checksum: sha1:6b9a9917c363a7720f121d6301f467a2b396016a
-    pristine_git_object: 5b259550d5cbd5f720b69ad4ddb8aac138e468e3
+    last_write_checksum: sha1:d6d0e49b61f0406e18adbb0056cb7b6076d8cc55
+    pristine_git_object: 2cbd42609501566f15b93efed9d0fedc0b6a2ca9
   src/models/components/transactioncreate.ts:
     id: 6ba6f0cd74e3
     last_write_checksum: sha1:241c7abc34abd72af03a73e3287245441fb6fe87
@@ -10213,6 +10225,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.chaseorbitalBank` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.chaseorbitalBank` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.chaseorbitalBank` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

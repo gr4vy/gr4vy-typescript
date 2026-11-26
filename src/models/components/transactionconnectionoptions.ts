@@ -41,6 +41,11 @@ import {
   BraintreeOptions$outboundSchema,
 } from "./braintreeoptions.js";
 import {
+  ChaseBankOptions,
+  ChaseBankOptions$Outbound,
+  ChaseBankOptions$outboundSchema,
+} from "./chasebankoptions.js";
+import {
   ChaseOptions,
   ChaseOptions$Outbound,
   ChaseOptions$outboundSchema,
@@ -302,6 +307,10 @@ export type TransactionConnectionOptions = {
    */
   braintreeCard?: BraintreeOptions | null | undefined;
   /**
+   * Custom options to be passed to the `chaseorbital-bank` connector.
+   */
+  chaseorbitalBank?: ChaseBankOptions | null | undefined;
+  /**
    * Custom options to be passed to the `chaseorbital-card` connector.
    */
   chaseorbitalCard?: ChaseOptions | null | undefined;
@@ -514,6 +523,7 @@ export type TransactionConnectionOptions$Outbound = {
   "adyen-vipps"?: AdyenOptions$Outbound | null | undefined;
   "affirm-affirm"?: AffirmOptions$Outbound | null | undefined;
   "braintree-card"?: BraintreeOptions$Outbound | null | undefined;
+  "chaseorbital-bank"?: ChaseBankOptions$Outbound | null | undefined;
   "chaseorbital-card"?: ChaseOptions$Outbound | null | undefined;
   "cybersource-anti-fraud"?:
     | CybersourceAntiFraudOptions$Outbound
@@ -600,6 +610,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
     adyenVipps: z.nullable(AdyenOptions$outboundSchema).optional(),
     affirmAffirm: z.nullable(AffirmOptions$outboundSchema).optional(),
     braintreeCard: z.nullable(BraintreeOptions$outboundSchema).optional(),
+    chaseorbitalBank: z.nullable(ChaseBankOptions$outboundSchema).optional(),
     chaseorbitalCard: z.nullable(ChaseOptions$outboundSchema).optional(),
     cybersourceAntiFraud: z.nullable(CybersourceAntiFraudOptions$outboundSchema)
       .optional(),
@@ -678,6 +689,7 @@ export const TransactionConnectionOptions$outboundSchema: z.ZodType<
       adyenVipps: "adyen-vipps",
       affirmAffirm: "affirm-affirm",
       braintreeCard: "braintree-card",
+      chaseorbitalBank: "chaseorbital-bank",
       chaseorbitalCard: "chaseorbital-card",
       cybersourceAntiFraud: "cybersource-anti-fraud",
       cybersourceCard: "cybersource-card",
