@@ -52,6 +52,16 @@ describe("Payment Methods", () => {
     expect(method.buyer?.id).toBe(owner.id);
   });
 
+  // Detokenization encrypts the card to the merchant account's public key,
+  // which the per-run merchant may not have, and is rate limited; a 4xx counts.
+  test("detokenize is exercised at the request level", async () => {
+    const card = await storeCard();
+    await reaches(
+      () => gr4vy.paymentMethods.detokenize(card.id),
+      "paymentMethods.detokenize"
+    );
+  });
+
   describe("network tokens", () => {
     test("listing tokens for a fresh card returns an empty collection", async () => {
       const card = await storeCard();
